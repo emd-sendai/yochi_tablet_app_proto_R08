@@ -55,12 +55,53 @@
                 </Style.Triggers>
             </Style>
 
+            <!-- 各種資料事業ボタン様式 -->
+            <Style x:Key="DocumentJigyoButtonStyle" TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
+                <Setter Property="Background" Value="#E69F00" />
+                <Setter Property="BorderBrush" Value="#E69F00" />
+                <Setter Property="Foreground" Value="#FEFEFEFE" />
+                <Setter Property="Width" Value="170" />
+                <Setter Property="Height" Value="65" />
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" Value="#FEFEFEFE" />
+                        <Setter Property="BorderBrush" Value="#E69F00" />
+                        <Setter Property="Foreground" Value="#E69F00" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+            <!-- 各種資料地権者ボタン様式 -->
+            <Style x:Key="DocumentLandownerButtonStyle" TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
+                <Setter Property="Background" Value="#1F78B4" />
+                <Setter Property="BorderBrush" Value="#1F78B4" />
+                <Setter Property="Foreground" Value="#FEFEFEFE" />
+                <Setter Property="Width" Value="170" />
+                <Setter Property="Height" Value="65" />
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" Value="#FEFEFEFE" />
+                        <Setter Property="BorderBrush" Value="#1F78B4" />
+                        <Setter Property="Foreground" Value="#1F78B4" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
             <!-- 折り返しテキストブロック様式 -->
             <Style x:Key="WrapTextBlockStyle" TargetType="TextBlock">
                 <Setter Property="TextWrapping" Value="Wrap" />
                 <Setter Property="TextAlignment" Value="Center" />
                 <Setter Property="VerticalAlignment" Value="Center" />
                 <Setter Property="HorizontalAlignment" Value="Center" />
+            </Style>
+
+            <!-- 各種資料コンボボックス様式 -->
+            <Style x:Key="DocumentComboBoxStyle" TargetType="ComboBox" BasedOn="{StaticResource MaterialDesignOutlinedComboBox}">
+                <Setter Property="Width" Value="500" />
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="MinHeight" Value="45" />
+                <Setter Property="Margin" Value="20,0,20,10" />
+                <Setter Property="Background" Value="White" />
             </Style>
 
             <!-- ボタン表示切替コンバータ -->

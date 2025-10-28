@@ -39,31 +39,168 @@
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
 
-            <Grid Grid.Row="0">
+            <!-- 事業資料エリア -->
+            <Grid Grid.Row="0" Margin="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="2*"/>
-                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
 
-                <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" >
-                    <ComboBox  materialDesign:HintAssist.Hint="事業を選択してください" Width="400" FontSize="20" Margin="10"/>
+                <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <ComboBox  materialDesign:HintAssist.Hint="事業を選択してください" 
+                               Style="{StaticResource DocumentComboBoxStyle}"/>
                 </StackPanel>
-
+                <!-- 事業資料ボタンエリア（上段） -->
+                <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                            Margin="0,0,0,10">
+                    <!-- 公図 -->
+                    <Button FontSize="20" Margin="20,0,15,0" 
+                            Style="{StaticResource DocumentJigyoButtonStyle}">
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" >
+                                <Run Text="公図" />
+                        </TextBlock>
+                    </Button>
+                    <!-- 登記簿 -->
+                    <Button FontSize="20"  Margin="0,0,15,0" 
+                            Style="{StaticResource DocumentJigyoButtonStyle}">
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" >
+                                <Run Text="登記簿" />
+                                <LineBreak />
+                                <Run Text="（土地・建物）" />
+                        </TextBlock>
+                    </Button>
+                    <!-- 用地平面図 -->
+                    <Button FontSize="20"  Margin="0,0,15,0" 
+                            Style="{StaticResource DocumentJigyoButtonStyle}">
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" >
+                                <Run Text="用地平面図" />
+                        </TextBlock>
+                    </Button>
+                    <!-- 面積計算書 -->
+                    <Button FontSize="20"  Margin="0,0,20,0" 
+                            Style="{StaticResource DocumentJigyoButtonStyle}">
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" >
+                                <Run Text="面積計算書" />
+                        </TextBlock>
+                    </Button>
+                </StackPanel>
+                <!-- 事業情報ボタンエリア（下段） -->
+                <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,10">
+                    <!-- 地積測量図 -->
+                    <Button FontSize="20"  Margin="20,0,15,0" 
+                            Style="{StaticResource DocumentJigyoButtonStyle}">
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" >
+                                <Run Text="地積測量図" />
+                        </TextBlock>
+                    </Button>
+                    <!-- 登記簿 -->
+                    <Button FontSize="20"  Margin="0,0,15,0" 
+                            Style="{StaticResource DocumentJigyoButtonStyle}">
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" >
+                                <Run Text="写真" />
+                                <LineBreak />
+                                <Run Text="（全体）" />
+                        </TextBlock>
+                    </Button>
+                    <!-- 事業計画図 -->
+                    <Button FontSize="20"  Margin="0,0,15,0" 
+                            Style="{StaticResource DocumentJigyoButtonStyle}">
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" >
+                                <Run Text="事業計画図" />
+                        </TextBlock>
+                    </Button>
+                    <!-- その他 -->
+                    <Button FontSize="20"  Margin="0,0,20,0" 
+                            Style="{StaticResource DocumentJigyoButtonStyle}">
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" >
+                                <Run Text="その他" />
+                        </TextBlock>
+                    </Button>
+                </StackPanel>
             </Grid>
 
-
-            <Grid Grid.Row="1">
+            <!-- 地権者資料エリア -->
+            <Grid Grid.Row="1" Margin="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="2*"/>
-                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
 
-                <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" >
-                    <ComboBox  materialDesign:HintAssist.Hint="地権者ユーザを選択してください" Width="400" FontSize="20" Margin="10"/>
+                <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <ComboBox  materialDesign:HintAssist.Hint="地権者ユーザを選択してください" 
+                               Style="{StaticResource DocumentComboBoxStyle}" />
                 </StackPanel>
 
+                <!-- 地権者資料ボタンエリア（上段） -->
+                <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,10">
+                    <!-- 配置図　調査表 -->
+                    <Button FontSize="20" Margin="20,0,15,0" 
+                            Style="{StaticResource DocumentLandownerButtonStyle}">
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" >
+                                <Run Text="配置図" />
+                                <LineBreak />
+                                <Run Text="調査表" />
+                        </TextBlock>
+                    </Button>
+                    <!-- 算定書 -->
+                    <Button FontSize="20" Margin="0,0,15,0" 
+                            Style="{StaticResource DocumentLandownerButtonStyle}">
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" >
+                                <Run Text="算定書" />
+                        </TextBlock>
+                    </Button>
+                    <!-- 写真（個別） -->
+                    <Button FontSize="20" Margin="0,0,15,0" 
+                            Style="{StaticResource DocumentLandownerButtonStyle}">
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" >
+                                <Run Text="写真" />
+                                <LineBreak />
+                                <Run Text="（個別）" />
+                        </TextBlock>
+                    </Button>
+                    <!-- 相続関係図（説明用） -->
+                    <Button FontSize="20" Margin="0,0,20,0" 
+                            Style="{StaticResource DocumentLandownerButtonStyle}">
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" >
+                                <Run Text="相続関係図" />
+                                <LineBreak />
+                                <Run Text="（説明用）" />
+                        </TextBlock>
+                    </Button>
+                </StackPanel>
+                <!-- 地権者資料ボタンエリア（下段） -->
+                <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,0,0,10">
+                    <!-- 調書 -->
+                    <Button FontSize="20" Margin="20,0,15,0" 
+                            Style="{StaticResource DocumentLandownerButtonStyle}">
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" >
+                                <Run Text="調書" />
+                        </TextBlock>
+                    </Button>
+                    <!-- 補償金提示書 -->
+                    <Button FontSize="20" Margin="0,0,15,0" 
+                            Style="{StaticResource DocumentLandownerButtonStyle}">
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" >
+                                <Run Text="補償金提示書" />
+                        </TextBlock>
+                    </Button>
+                    <!-- 契約書 -->
+                    <Button FontSize="20" Margin="0,0,15,0" 
+                            Style="{StaticResource DocumentLandownerButtonStyle}">
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" >
+                                <Run Text="契約書" />
+                        </TextBlock>
+                    </Button>
+                    <!-- その他 -->
+                    <Button FontSize="20" Margin="0,0,20,0" 
+                            Style="{StaticResource DocumentLandownerButtonStyle}">
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" >
+                                <Run Text="その他" />
+                        </TextBlock>
+                    </Button>
+                </StackPanel>
             </Grid>
         </Grid>
     </Grid>
