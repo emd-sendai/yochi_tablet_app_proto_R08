@@ -1,0 +1,99 @@
+﻿<UserControl x:Class="WpfApp.Screens.Aramashi.Views.SlideShellView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:WpfApp.Screens.Aramashi.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800">
+
+    <Grid>
+        <!-- Gridの行定義 -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+         </Grid.RowDefinitions>
+
+        <!-- ヘッダー -->
+        <!-- あらましメニューボタン -->
+        <Button Grid.Row="0" Style="{StaticResource MaterialDesignFlatButton}" 
+            Margin="10" Command="{Binding GoToAramashiMenuCommand}"
+                HorizontalAlignment="Left" FontSize="24" Height="40">
+            <StackPanel Orientation="Horizontal" >
+                <materialDesign:PackIcon Kind="OrderBoolAscending" Width="25" Height="35" Margin="0,0,5,0"/>
+                <TextBlock Text="用地補償の手順"  FontWeight="Bold" VerticalAlignment="Center"/>
+            </StackPanel>
+        </Button>
+        <!-- 基本ボタン -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
+
+            <!-- 拡大ボタン-->
+            <Button Grid.Row="0" Style="{StaticResource MaterialDesignIconButton}" 
+                Margin="5,10,5,10" Command="{Binding ZoomInCommand}">
+                <materialDesign:PackIcon Kind="PlusCircleOutline" Width="40" Height="40" />
+            </Button>
+            <!-- 縮小ボタン-->
+            <Button Grid.Row="0" Style="{StaticResource MaterialDesignIconButton}" 
+                Margin="5,10,5,10" Command="{Binding ZoomOutCommand}">
+                <materialDesign:PackIcon Kind="MinusCircleOutline" Width="40" Height="40" />
+            </Button>
+            <!-- ホームアイコンボタン -->
+            <Button Grid.Row="0" Style="{StaticResource MaterialDesignIconButton}" 
+                Margin="5,10,10,10" Command="{Binding GoToMenuCommand}">
+                <materialDesign:PackIcon Kind="Home" Width="40" Height="40" />
+            </Button>
+        </StackPanel>
+
+        <!-- ナビゲーション -->
+        <!-- 前へボタン -->
+        <StackPanel  HorizontalAlignment="Left" Margin="20,15,0,15" Grid.Row="1" >
+            <Button Content="◀ 前へ" Command="{Binding PrevCommand}"  Height="40" Width="90"
+                    Style="{StaticResource CommonButtonStyle}" FontSize="18"
+                    Visibility="{Binding CanGoPrev, Converter={StaticResource BooleanToVisibilityConverter}}" />
+        </StackPanel>
+        <!-- セクション概要 -->
+        <StackPanel HorizontalAlignment="Center" Margin="15" Grid.Row="1" Orientation="Horizontal">
+            <!-- セクションタイトル -->
+            <TextBlock Text="{Binding CurrentSlide.Title}" FontSize="26" FontWeight="Bold" VerticalAlignment="Center"/>
+            <!-- 動画アイコンボタン 動画表示コマンドと動画がない場合は非表示か薄くする機能実装予定-->
+            <Button Grid.Row="0" Style="{StaticResource MaterialDesignIconButton}" Margin="5,0,0,0" >
+                <materialDesign:PackIcon Kind="MoviePlay" Width="40" Height="40" />
+            </Button>
+        </StackPanel>
+        <!-- 次へボタン -->
+        <StackPanel  HorizontalAlignment="Right" Margin="15" Grid.Row="1">
+            <Button Content="次へ ▶" Command="{Binding NextCommand}" Height="40" Width="90"
+                    Style="{StaticResource CommonButtonStyle}" FontSize="18"
+                    Visibility="{Binding CanGoNext, Converter={StaticResource BooleanToVisibilityConverter}}" />
+        </StackPanel>
+
+        <ScrollViewer VerticalScrollBarVisibility="Auto"
+                  HorizontalScrollBarVisibility="Auto"
+                  PanningMode="Both"
+                  IsManipulationEnabled="True"
+                  PreviewMouseWheel="ScrollViewer_PreviewMouseWheel" Grid.Row="2">
+
+            <Border ManipulationStarting="Border_ManipulationStarting"
+                ManipulationDelta="Border_ManipulationDelta"
+                RenderTransformOrigin="0.5,0.5" >
+
+                <Border.RenderTransform >
+                    <ScaleTransform ScaleX="{Binding Scale}" ScaleY="{Binding Scale}" />
+                </Border.RenderTransform>
+                <!-- メインコンテンツ -->
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="20,25,20,20" >
+                    <!-- 画像表示 -->
+                    <Image Width="200" Height="200" Stretch="Uniform" Visibility="Visible" Margin="5" VerticalAlignment="Top"
+                                        Source="{Binding CurrentSlide.ImagePath}"/>
+                    <!-- テキスト説明 -->
+                    <TextBlock Text="{Binding CurrentSlide.Description}" TextWrapping="Wrap" Width="500" FontSize="18" Margin="5" />
+                </StackPanel>
+            </Border>
+        </ScrollViewer>
+
+
+    </Grid>
+
+</UserControl>

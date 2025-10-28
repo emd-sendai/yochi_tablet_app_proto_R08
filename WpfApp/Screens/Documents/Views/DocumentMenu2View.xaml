@@ -1,0 +1,67 @@
+﻿<UserControl x:Class="WpfApp.Screens.Documents.Views.DocumentMenu2View"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:WpfApp.Screens.Documents.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800">
+    <Grid>
+        <!-- Gridの行定義 -->
+        <Grid.RowDefinitions>
+            <!-- ヘッダー（１行目） -->
+            <RowDefinition Height="Auto" />
+            <!-- メインコンテンツ（２行目） -->
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- １行目 -->
+        <!-- ページタイトル -->
+        <TextBlock Grid.Row="0" Text="各種資料" Foreground="#3F51B5"
+            FontSize="30" FontWeight="Bold" Margin="0,10,0,10"
+            HorizontalAlignment="Center" VerticalAlignment="Center">
+        </TextBlock>
+
+        <!-- ホームアイコンボタン -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
+
+            <!-- ホームアイコンボタン -->
+            <Button Grid.Row="0" Style="{StaticResource MaterialDesignIconButton}" 
+                Margin="5,10,10,10" Command="{Binding GoToMenuCommand}">
+                <materialDesign:PackIcon Kind="Home" Width="40" Height="40" />
+            </Button>
+        </StackPanel>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" >
+                    <ComboBox  materialDesign:HintAssist.Hint="事業を選択してください" Width="400" FontSize="20" Margin="10"/>
+                </StackPanel>
+
+            </Grid>
+            
+            
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+
+            </Grid>
+        </Grid>
+        
+    </Grid>
+</UserControl>
