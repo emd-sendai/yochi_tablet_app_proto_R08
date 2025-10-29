@@ -56,7 +56,7 @@
             </Style>
 
             <!-- 各種資料事業ボタン様式 -->
-            <Style x:Key="DocumentJigyoButtonStyle" TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
+            <Style x:Key="DocumentWorkButtonStyle" TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
                 <Setter Property="Background" Value="#E69F00" />
                 <Setter Property="BorderBrush" Value="#E69F00" />
                 <Setter Property="Foreground" Value="#FEFEFEFE" />
@@ -97,11 +97,11 @@
 
             <!-- 各種資料コンボボックス様式 -->
             <Style x:Key="DocumentComboBoxStyle" TargetType="ComboBox" BasedOn="{StaticResource MaterialDesignOutlinedComboBox}">
-                <Setter Property="Width" Value="500" />
                 <Setter Property="FontSize" Value="20" />
                 <Setter Property="MinHeight" Value="45" />
                 <Setter Property="Margin" Value="20,0,20,10" />
                 <Setter Property="Background" Value="White" />
+                <Setter Property="VerticalAlignment" Value="Center" />
             </Style>
 
             <!-- ボタン表示切替コンバータ -->

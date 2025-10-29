@@ -23,11 +23,7 @@
 			<PublishedFiles Include="$(PublishDir)**\*.*" />
 		</ItemGroup>
 
-		<Copy
-		  SourceFiles="@(PublishedFiles)"
-		  DestinationFolder="$(ProjectDir)bin\Release\net8.0-windows\"
-		  SkipUnchangedFiles="true"
-		  Recursive="true" />
+		<Copy SourceFiles="@(PublishedFiles)" DestinationFolder="$(ProjectDir)bin\Release\net8.0-windows\" SkipUnchangedFiles="true" Recursive="true" />
 	</Target>
 
   <ItemGroup>
@@ -52,6 +48,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Data\Landowners.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Data\Works.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="SlideResources\Aramashi\aramashi1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
