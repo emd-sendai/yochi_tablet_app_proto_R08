@@ -18,12 +18,11 @@ namespace WpfApp.Common.ViewModels
         public event EventHandler? RequestClose;
         public string? Result { get; private set; }
 
-        [ObservableProperty]
-        private string password = string.Empty;
-
         [RelayCommand]
         private void Submit(PasswordBox pwBox)
         {
+            if (pwBox == null) return;
+
             Result = pwBox.Password;
             RequestClose?.Invoke(this, EventArgs.Empty);
         }

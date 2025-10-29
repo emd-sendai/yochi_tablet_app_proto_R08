@@ -23,18 +23,26 @@ namespace WpfApp.Common.Views
         public PasswordDialogWindow()
         {
             InitializeComponent();
+
+            Loaded += PasswordDialogWindow_Loaded;
         }
-        private void OnPasswordChanged(object sender, RoutedEventArgs e)
+
+        private void PasswordDialogWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            var passwordBox = sender as PasswordBox;
-            if (passwordBox != null)
+            if (DataContext is PasswordDialogViewModel vm)
             {
-                // ここで ViewModel にパスワードを渡す
-                if (DataContext is PasswordDialogViewModel vm)
+                vm.RequestClose += (s, args) =>
                 {
-                    vm.Password = passwordBox.Password;
-                }
+                    DialogResult = true; // ShowDialog で true が返る
+                    Close();
+                };
             }
+        }
+
+        private void Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.DialogResult = false;
+            this.Close();
         }
     }
 }

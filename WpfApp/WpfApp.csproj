@@ -27,10 +27,18 @@
 	</Target>
 
   <ItemGroup>
+    <None Remove="Data\Landowners.json" />
+    <None Remove="Data\Works.json" />
     <None Remove="SlideResources\Aramashi\slide_Aramashi2.jpg" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Data\landowners.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\works.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="MediaResources\AramashiSample.mp4">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -48,12 +56,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Data\Landowners.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Data\Works.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Update="SlideResources\Aramashi\aramashi1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
