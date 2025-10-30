@@ -49,7 +49,8 @@
 
             <!-- まとめボタン -->
             <Button Content="まとめ（内部管理資料）" FontSize="22" Height="60" Margin="0,0,0,50"
-                    Style="{StaticResource CommonButtonStyle}"/>
+                    Style="{StaticResource CommonButtonStyle}"
+                    Command="{Binding GoToAramashiMenuTestCommand}" />
 
             <!-- アプリ終了ボタン -->
             <Button Style="{StaticResource MaterialDesignFlatButton}" HorizontalAlignment="Center"
