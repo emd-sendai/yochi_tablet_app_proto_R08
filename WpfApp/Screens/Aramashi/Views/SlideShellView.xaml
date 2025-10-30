@@ -77,19 +77,37 @@
 
             <Border ManipulationStarting="Border_ManipulationStarting"
                 ManipulationDelta="Border_ManipulationDelta"
-                RenderTransformOrigin="0.5,0.5" >
+                RenderTransformOrigin="0.5,0" >
 
-                <Border.RenderTransform >
+                <Border.LayoutTransform>
                     <ScaleTransform ScaleX="{Binding Scale}" ScaleY="{Binding Scale}" />
-                </Border.RenderTransform>
+                </Border.LayoutTransform>
+                
                 <!-- メインコンテンツ -->
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="20,25,20,20" >
-                    <!-- 画像表示 -->
-                    <Image Width="200" Height="200" Stretch="Uniform" Visibility="Visible" Margin="5" VerticalAlignment="Top"
-                                        Source="{Binding CurrentSlide.ImagePath}"/>
-                    <!-- テキスト説明 -->
-                    <TextBlock Text="{Binding CurrentSlide.Description}" TextWrapping="Wrap" Width="500" FontSize="18" Margin="5" />
+                <StackPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="20,0,20,20" >
+                    
+                    <!-- エリア１ -->
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,0,0,10">
+                        <!-- テキスト１ -->
+                        <TextBlock Text="{Binding CurrentSlide.Description}" TextWrapping="Wrap" FontSize="18" Margin="0,0,10,0"
+                               MaxWidth="500"/>
+                        <!-- 画像１ -->
+                        <Image Stretch="Uniform" StretchDirection="DownOnly" Visibility="Visible" VerticalAlignment="Top"
+                           Source="{Binding CurrentSlide.ImagePath}" MaxWidth="200" MaxHeight="200"/>
+                    </StackPanel>
+
+                    <!-- エリア２ -->
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,0,0,10">
+                        <!-- テキスト２ -->
+                        <TextBlock Text="{Binding CurrentSlide.Description}" TextWrapping="Wrap" FontSize="18" Margin="0,0,10,0"
+                               MaxWidth="500"/>
+                        <!-- 画像２ -->
+                        <Image Stretch="Uniform" StretchDirection="DownOnly" Visibility="Visible" VerticalAlignment="Top"
+                           Source="{Binding CurrentSlide.ImagePath}" MaxWidth="200" MaxHeight="200"/>
+                    </StackPanel>
+
                 </StackPanel>
+
             </Border>
         </ScrollViewer>
 

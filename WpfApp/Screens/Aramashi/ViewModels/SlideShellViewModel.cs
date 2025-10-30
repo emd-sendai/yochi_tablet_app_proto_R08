@@ -9,6 +9,7 @@ using System.Reflection;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using WpfApp.Interfaces;
 using WpfApp.Screens.Aramashi.Models;
@@ -36,7 +37,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         private double scale = 1.0;
 
         public double MinScale { get; } = 1.0;
-        public double MaxScale { get; } = 1.3;
+        public double MaxScale { get; } = 2.0;
 
         public SlideShellViewModel(string screenName, NavigationService navigationService, IDialogService dialogService)
         {
@@ -53,6 +54,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
 
             if (!File.Exists(jsonPath))
             {
+                MessageBox.Show("スライドデータが見つかりません");
                 System.Diagnostics.Debug.WriteLine($"[DEBUG] slides.json not found: {jsonPath}");
                 return;
             }

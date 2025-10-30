@@ -67,7 +67,8 @@ namespace WpfApp.Screens.Documents.ViewModels
 
             if (!File.Exists(path))
             {
-                MessageBox.Show("works.json が見つかりません");
+                MessageBox.Show("事業データが見つかりません");
+                System.Diagnostics.Debug.WriteLine($"[DEBUG] slides.json not found: {path}");
                 return;
             }
 
@@ -84,7 +85,8 @@ namespace WpfApp.Screens.Documents.ViewModels
 
             if (!File.Exists(path))
             {
-                MessageBox.Show("landowners.json が見つかりません");
+                MessageBox.Show("地権者データが見つかりません");
+                System.Diagnostics.Debug.WriteLine($"[DEBUG] slides.json not found: {path}");
                 return;
             }
 
