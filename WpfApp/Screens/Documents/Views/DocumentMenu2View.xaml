@@ -18,10 +18,13 @@
 
         <!-- ヘッダー -->
         <!-- ページタイトル -->
-        <TextBlock Grid.Row="0" Text="各種資料" Foreground="#3F51B5"
-            FontSize="30" FontWeight="Bold" Margin="0,10,0,10"
-            HorizontalAlignment="Center" VerticalAlignment="Center">
-        </TextBlock>
+        <StackPanel Grid.Row="0" Orientation="Horizontal"  HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Grid.Row="0" Style="{StaticResource MaterialDesignIconButton}" 
+                Margin="5,10,10,10" Command="{Binding GoToDocumentMenuCommand}">
+                <materialDesign:PackIcon Kind="FileDocumentBoxes" Width="40" Height="40" />
+            </Button>
+            <TextBlock Text="各種資料" Foreground="#3F51B5" FontSize="30" FontWeight="Bold" Margin="0,10,0,10"/>
+        </StackPanel>
 
         <!-- ホームアイコンボタン -->
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">

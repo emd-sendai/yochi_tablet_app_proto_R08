@@ -7,9 +7,10 @@
         xmlns:local="clr-namespace:WpfApp.Common.Views"
         mc:Ignorable="d"
         Title="VideoPlayer" Height="600" Width="800"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        Background="{DynamicResource MaterialDesignPaper}">
 
-    <Grid Background="{DynamicResource MaterialDesignPaper}">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />

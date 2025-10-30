@@ -25,6 +25,12 @@ namespace WpfApp.Screens.Documents.ViewModels
         private readonly IDialogService _dia;
 
         [ObservableProperty]
+        private ObservableCollection<WorkData>? works;
+
+        [ObservableProperty]
+        private WorkData? selectedWork;
+
+        [ObservableProperty]
         private ObservableCollection<LandownerData>? landowners;
 
         [ObservableProperty]
@@ -40,12 +46,36 @@ namespace WpfApp.Screens.Documents.ViewModels
 
             SnackbarMessageQueue = new SnackbarMessageQueue();
             LoadLandownersFromJson();
+            LoadWorksFromJson();
         }
         
         [RelayCommand]
         private void GoToMenu()
         {
             _nav.Navigate(new MenuViewModel(_nav, _dia));
+        }
+
+        [RelayCommand]
+        private void GoToDocumentMenu2()
+        {
+            _nav.Navigate(new DocumentMenu2ViewModel(_nav, _dia));
+        }
+
+        private void LoadWorksFromJson()
+        {
+            string path = Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "Data/works.json");
+
+            if (!File.Exists(path))
+            {
+                MessageBox.Show("works.json が見つかりません");
+                return;
+            }
+
+            string json = File.ReadAllText(path);
+            var array = JsonSerializer.Deserialize<WorkData[]>(json);
+            Works = array != null
+                ? new ObservableCollection<WorkData>(array)
+                : new ObservableCollection<WorkData>();
         }
 
         private void LoadLandownersFromJson()

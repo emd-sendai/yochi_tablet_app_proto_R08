@@ -31,5 +31,10 @@ namespace WpfApp.Screens.Documents.ViewModels
             _nav.Navigate(new MenuViewModel(_nav, _dia));
         }
 
+        [RelayCommand]
+        private void GoToDocumentMenu()
+        {
+            _nav.Navigate(new DocumentMenuViewModel(_nav, _dia));
+        }
     }
 }
