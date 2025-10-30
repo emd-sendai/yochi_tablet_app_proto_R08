@@ -52,5 +52,13 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             slideVM.GoToSlide(1);
         }
 
+        [RelayCommand]
+        private void GoToSlide3()
+        {
+            var slideVM = new SlideShellViewModel("Aramashi", _nav, _dia);
+            _nav.Navigate(slideVM);
+            slideVM.GoToSlide(2);
+        }
+
     }
 }

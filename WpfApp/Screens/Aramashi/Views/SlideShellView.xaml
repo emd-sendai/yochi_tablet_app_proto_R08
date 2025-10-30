@@ -73,7 +73,8 @@
                   HorizontalScrollBarVisibility="Auto"
                   PanningMode="Both"
                   IsManipulationEnabled="True"
-                  PreviewMouseWheel="ScrollViewer_PreviewMouseWheel" Grid.Row="2">
+                  PreviewMouseWheel="ScrollViewer_PreviewMouseWheel" Grid.Row="2"
+                  Style="{StaticResource MaterialDesignScrollViewer}">
 
             <Border ManipulationStarting="Border_ManipulationStarting"
                 ManipulationDelta="Border_ManipulationDelta"
@@ -99,11 +100,21 @@
                     <!-- エリア２ -->
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,0,0,10">
                         <!-- テキスト２ -->
-                        <TextBlock Text="{Binding CurrentSlide.Description}" TextWrapping="Wrap" FontSize="18" Margin="0,0,10,0"
+                        <TextBlock  TextWrapping="Wrap" FontSize="18" Margin="0,0,10,0"
                                MaxWidth="500"/>
                         <!-- 画像２ -->
                         <Image Stretch="Uniform" StretchDirection="DownOnly" Visibility="Visible" VerticalAlignment="Top"
-                           Source="{Binding CurrentSlide.ImagePath}" MaxWidth="200" MaxHeight="200"/>
+                            MaxWidth="200" MaxHeight="200"/>
+                    </StackPanel>
+
+                    <!-- エリア３ -->
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,0,0,10">
+                        <!-- テキスト３ -->
+                        <TextBlock  TextWrapping="Wrap" FontSize="18" Margin="0,0,10,0"
+                               MaxWidth="500"/>
+                        <!-- 画像３ -->
+                        <Image Stretch="Uniform" StretchDirection="DownOnly" Visibility="Visible" VerticalAlignment="Top"
+                            MaxWidth="200" MaxHeight="200"/>
                     </StackPanel>
 
                 </StackPanel>

@@ -89,13 +89,13 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         [RelayCommand]
         public void ZoomIn()
         {
-            Zoom(1.1); // 1.2倍拡大
+            Zoom(1.1); // 1.1倍拡大
         }
 
         [RelayCommand]
         public void ZoomOut()
         {
-            Zoom(1 / 1.1); // 1.2分の1に縮小
+            Zoom(1 / 1.1); // 1.1分の1に縮小
         }
 
         [RelayCommand]
