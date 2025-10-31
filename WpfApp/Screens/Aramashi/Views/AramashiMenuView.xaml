@@ -19,7 +19,7 @@
 
         <!-- １行目 -->
         <!-- ページタイトル -->
-        <TextBlock Grid.Row="0" Text="用地補償のあらまし" Foreground="#3F51B5"
+        <TextBlock Grid.Row="0" Text="補償のあらまし" Foreground="#3F51B5"
             FontSize="30" FontWeight="Bold" Margin="0,10,0,10"
             HorizontalAlignment="Center" VerticalAlignment="Center">
         </TextBlock>
@@ -27,179 +27,163 @@
         <!-- ボタン -->
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
             <!-- ホームアイコンボタン -->
-            <Button Grid.Row="0" Style="{StaticResource MaterialDesignIconButton}" 
+            <Button Grid.Row="0" Style="{StaticResource IconTextButtonStyle}" 
                 Margin="5,10,10,10" Command="{Binding GoToMenuCommand}">
-                <materialDesign:PackIcon Kind="Home" Width="40" Height="40" />
+                <StackPanel Orientation="Vertical" >
+                    <materialDesign:PackIcon Kind="Home" Style="{StaticResource ITButtonIconStyle}"/>
+                    <TextBlock Text="メインメニュー" Style="{StaticResource ITButtonTextStyle}"/>
+                </StackPanel>
             </Button>
         </StackPanel>
-        
-        <!-- ２行目 -->
+
         <Grid Grid.Row="1" HorizontalAlignment="Center">
-            <!-- Gridの列定義（２行目） -->
             <Grid.ColumnDefinitions>
-                <!-- 用地補償の手順（１列目） -->
                 <ColumnDefinition Width="3*" />
-                <!-- その他（２列目） -->
+                <ColumnDefinition Width="70" />
                 <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
 
-            <!-- １列目 -->
             <Grid Grid.Column="0">
-                <!-- Gridの列定義（１列目） -->
                 <Grid.RowDefinitions>
-                    <!-- エリアタイトル（１行目） -->
                     <RowDefinition Height="Auto" />
-                    <!-- エリアコンテンツ（２行目） -->
-                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
                 <!-- エリアタイトル -->
-                <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
+                <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,0">
                     <TextBlock Text="用地補償の手順" FontSize="25" FontWeight="Bold" Margin="10,0,10,0" VerticalAlignment="Center"/>
                     <!-- 動画アイコンボタン -->
-                    <Button Style="{StaticResource MaterialDesignIconButton}" Margin="5,0,0,0" 
+                    <Button Style="{StaticResource IconTextButtonStyle}" Margin="5,0,0,0" 
                             Command="{Binding OpenVideoPlayerCommand}">
-                        <materialDesign:PackIcon Kind="MoviePlay" Width="30" Height="30" />
+                        <StackPanel Orientation="Vertical">
+                            <materialDesign:PackIcon Kind="MoviePlay" Style="{StaticResource ITButtonIconStyle}" />
+                            <TextBlock Text="動画" Style="{StaticResource ITButtonTextStyle}" />
+                        </StackPanel>
                     </Button>
                     <!-- PDF資料アイコンボタン -->
-                    <Button Style="{StaticResource MaterialDesignIconButton}" Margin="5,0,0,0" >
-                        <materialDesign:PackIcon Kind="File" Width="30" Height="30" />
+                    <Button Style="{StaticResource IconTextButtonStyle}" Margin="5,0,0,0" >
+                        <StackPanel Orientation="Vertical">
+                            <materialDesign:PackIcon Kind="File" Style="{StaticResource ITButtonIconStyle}" />
+                            <TextBlock Text="パンフレット" Style="{StaticResource ITButtonTextStyle}" />
+                        </StackPanel>
                     </Button>
                 </StackPanel>
 
-                <!-- エリアコンテンツ -->
+                <Grid x:Name="MainGrid" Grid.Row="1" HorizontalAlignment="Center"  Margin="0,5,0,0">
 
-                    <!-- Gridの列定義（ボタン配置エリア） -->
-                <Grid Grid.Row="1">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1*" />
-                            <ColumnDefinition Width="1*" />
-                        </Grid.ColumnDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="170"/>
+                        <ColumnDefinition Width="30"/>
+                        <!-- 列間スペース -->
+                        <ColumnDefinition Width="170"/>
+                    </Grid.ColumnDefinitions>
 
-                        <!-- ボタン配置エリア（１列目） -->
-                    <StackPanel  Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top"
-                                 Margin="0,20,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
 
-                            <!-- 手順１ -->
-                            <Button Command="{Binding GoToSlide1Command}"
-                                FontSize="16" Height="70" Margin="20,0,15,10"
-                                Style="{StaticResource AramashiButtonStyle}">
-                            <TextBlock Style="{StaticResource WrapTextBlockStyle}" >
+                    <Canvas x:Name="LineCanvas" IsHitTestVisible="False"
+                            Grid.Row="0" Grid.RowSpan="5" Grid.Column="0" Grid.ColumnSpan="3">
+                        <Polyline x:Name="ULine" Stroke="#94CBDC" StrokeThickness="30"/>
+                        <Path x:Name="Arrow" Stroke="#94CBDC" Fill="#94CBDC" StrokeThickness="5"/>
+                    </Canvas>
+
+                    <!-- 左列ボタン -->
+                    <Button x:Name="BtnL1" Grid.Row="0" Grid.Column="0" Style="{StaticResource AramashiTestButtonStyle}" 
+                            Command="{Binding GoToSlide1Command}" >
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" >
                                 <Run Text="１" />
                                 <LineBreak />
                                 <Run Text="事業計画等の説明" />
-                            </TextBlock>
-
-                             </Button>
-                            <!-- 手順２ -->
-                            <Button Command="{Binding GoToSlide2Command}"
-                                FontSize="16" Height="70" Margin="20,0,15,10"
-                                Style="{StaticResource AramashiButtonStyle}">
-                            <TextBlock Style="{StaticResource WrapTextBlockStyle}">
+                        </TextBlock>
+                    </Button>
+                    <Button x:Name="BtnL2" Grid.Row="1" Grid.Column="0" Style="{StaticResource AramashiTestButtonStyle}" 
+                            Command="{Binding GoToSlide2Command}">
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}">
                                 <Run Text="２" />
                                 <LineBreak />
-                                <Run Text="用地副杭の設置" />
-                            </TextBlock>
-                            </Button>
-                            <!-- 手順３ -->
-                            <Button Command="{Binding GoToSlide3Command}"
-                                FontSize="16" Height="70" Margin="20,0,15,10"
-                                Style="{StaticResource AramashiButtonStyle}">
-                            <TextBlock Style="{StaticResource WrapTextBlockStyle}">
+                                <Run Text="用地幅杭の設置" />
+                        </TextBlock>
+                    </Button>
+                    <Button x:Name="BtnL3" Grid.Row="2" Grid.Column="0" Style="{StaticResource AramashiTestButtonStyle}" 
+                            Command="{Binding GoToSlide3Command}">
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}">
                                 <Run Text="３" />
                                 <LineBreak />
-                                <Run Text="用地測量物件等の調査" />
-                            </TextBlock>
-                            </Button>
-                            <!-- 手順４ -->
-                            <Button Command="{Binding GoToSlide4Command}"
-                                FontSize="16" Height="70" Margin="20,0,15,10"
-                                Style="{StaticResource AramashiButtonStyle}">
-                            <TextBlock Style="{StaticResource WrapTextBlockStyle}">
+                                <Run Text="用地測量" />
+                                <LineBreak />
+                                <Run Text="物件等の調査" />
+                        </TextBlock>
+                    </Button>
+                    <Button x:Name="BtnL4" Grid.Row="3" Grid.Column="0" Style="{StaticResource AramashiTestButtonStyle}" >
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}">
                                 <Run Text="４" />
                                 <LineBreak />
-                                <Run Text="土地調書・物件調書の確認" />
-                            </TextBlock>
-                            </Button>
-                            <!-- 手順５ -->
-                            <Button Command="{Binding GoToSlide5Command}"
-                                FontSize="16" Height="70" Margin="20,0,15,0"
-                                Style="{StaticResource AramashiButtonStyle}">
-                            <TextBlock Style="{StaticResource WrapTextBlockStyle}">
+                                <Run Text="土地調書" />
+                                <LineBreak />
+                                <Run Text="物件調書の確認" />
+                        </TextBlock>
+                    </Button>
+                    <Button x:Name="BtnL5" Grid.Row="4" Grid.Column="0" Style="{StaticResource AramashiTestButtonStyle}" >
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}">
                                 <Run Text="５" />
                                 <LineBreak />
                                 <Run Text="補償金の算定" />
-                            </TextBlock>
-                        </Button>
-                        </StackPanel>
+                        </TextBlock>
+                    </Button>
 
-                        <!-- ボタン配置エリア（２列目） -->
-                    <StackPanel Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top"
-                                Margin="0,20,0,0">
-
-                        <!-- 手順６ -->
-                            <Button Command="{Binding GoToSlide6Command}"
-                                FontSize="16" Height="70" Margin="15,0,20,10"
-                                Style="{StaticResource AramashiButtonStyle}">
-                            <TextBlock Style="{StaticResource WrapTextBlockStyle}">
-                                <Run Text="６" />
+                    <!-- 右列ボタン -->
+                    <Button x:Name="BtnR1" Grid.Row="0" Grid.Column="2" Style="{StaticResource AramashiTestButtonStyle}" >
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}">
+                                <Run Text="１０" />
                                 <LineBreak />
-                                <Run Text="用地説明・協議（用地交渉）" />
-                            </TextBlock>
-                        </Button>
-                        <!-- 手順７ -->
-                        <Button Command="{Binding GoToSlide7Command}"
-                                FontSize="16" Height="70" Margin="15,0,20,10"
-                                Style="{StaticResource AramashiButtonStyle}">
-                            <TextBlock Style="{StaticResource WrapTextBlockStyle}">
-                                <Run Text="７" />
+                                <Run Text="補償金の" />
                                 <LineBreak />
-                                <Run Text="契約" />
-                            </TextBlock>
-                        </Button>
-                        <!-- 手順８ -->
-                        <Button Command="{Binding GoToSlide8Command}"
-                                FontSize="16" Height="70" Margin="15,0,20,10"
-                                Style="{StaticResource AramashiButtonStyle}">
-                            <TextBlock Style="{StaticResource WrapTextBlockStyle}">
+                                <Run Text="後金払・一括払" />
+                        </TextBlock>
+                    </Button>
+                    <Button x:Name="BtnR2" Grid.Row="1" Grid.Column="2" Style="{StaticResource AramashiTestButtonStyle}" >
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}">
+                                <Run Text="９" />
+                                <LineBreak />
+                                <Run Text="土地登記・物件移転・" />
+                                <LineBreak />
+                                <Run Text="土地の引渡し" />
+                        </TextBlock>
+                    </Button>
+                    <Button x:Name="BtnR3" Grid.Row="2" Grid.Column="2" Style="{StaticResource AramashiTestButtonStyle}" >
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}">
                                 <Run Text="８" />
                                 <LineBreak />
                                 <Run Text="補償金の前金払" />
-                            </TextBlock>
-                        </Button>
-                        <!-- 手順９ -->
-                        <Button Command="{Binding GoToSlide9Command}"
-                                FontSize="16" Height="70" Margin="15,0,20,10"
-                                Style="{StaticResource AramashiButtonStyle}">
-                            <TextBlock Style="{StaticResource WrapTextBlockStyle}">
-                                <Run Text="９" />
+                        </TextBlock>
+                    </Button>
+                    <Button x:Name="BtnR4" Grid.Row="3" Grid.Column="2" Style="{StaticResource AramashiTestButtonStyle}" >
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}">
+                                <Run Text="７" />
                                 <LineBreak />
-                                <Run Text="土地登記・物件移転" />
+                                <Run Text="契約" />
+                        </TextBlock>
+                    </Button>
+                    <Button x:Name="BtnR5" Grid.Row="4" Grid.Column="2" Style="{StaticResource AramashiTestButtonStyle}" >
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}">
+                                <Run Text="６" />
                                 <LineBreak />
-                                <Run Text="・土地の引渡し" />
-                            </TextBlock>
-                        </Button>
-                        <!-- 手順１０ -->
-                        <Button Command="{Binding GoToSlide10Command}"
-                                FontSize="16" Height="70" Margin="15,0,20,0"
-                                Style="{StaticResource AramashiButtonStyle}">
-                            <TextBlock Style="{StaticResource WrapTextBlockStyle}">
-                                <Run Text="１０" />
+                                <Run Text="補償説明・協議" />
                                 <LineBreak />
-                                <Run Text="補償金の後金払・一括払" />
-                            </TextBlock>
-                        </Button>
-                    
-                    </StackPanel>
+                                <Run Text="（用地交渉）" />
+                        </TextBlock>
+                    </Button>
 
-                    </Grid>
-
-
+                </Grid>
 
             </Grid>
 
-            <!-- ２列目 -->
-            <Grid Grid.Column="1">
+            <Grid Grid.Column="2">
                 <!-- Gridの列定義（１列目） -->
                 <Grid.RowDefinitions>
                     <!-- エリアタイトル（１行目） -->
@@ -209,55 +193,53 @@
                 </Grid.RowDefinitions>
 
                 <!-- エリアタイトル -->
-                <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0" >
-                    <TextBlock Text="その他" FontSize="25" FontWeight="Bold" Margin="0,0,0,5" VerticalAlignment="Center"/>
+                <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,7,0,8">
+                    <TextBlock Text="その他" FontSize="25" FontWeight="Bold" Margin="10,0,10,0" VerticalAlignment="Center"/>
                 </StackPanel>
 
-                <!-- エリアコンテンツ -->
-                <!-- ボタン配置エリア -->
-                <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top"
-                            Margin="0,20,0,0">
+                <Grid Grid.Row="1" HorizontalAlignment="Center"  Margin="0,5,0,0" Width="130">
 
-                    <!-- 代替地 -->
-                    <Button Command="{Binding GoToSlide11Command}"
-                                FontSize="16" Height="70" Margin="20,0,20,10"
-                                Style="{StaticResource OthersButtonStyle}">
-                        <TextBlock Text="代替地" Style="{StaticResource WrapTextBlockStyle}"/>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- ボタン -->
+                    <Button Grid.Row="0" Style="{StaticResource OthersTestButtonStyle}" >
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" >
+                                <Run Text="代替地" />
+                        </TextBlock>
                     </Button>
-                    <!-- 税金等 -->
-                    <Button Command="{Binding GoToSlide13Command}"
-                                FontSize="16" Height="70" Margin="20,0,20,10"
-                                Style="{StaticResource OthersButtonStyle}">
-                        <TextBlock Text="税金等" Style="{StaticResource WrapTextBlockStyle}"/>
+                    <Button Grid.Row="1" Style="{StaticResource OthersTestButtonStyle}" >
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}">
+                                <Run Text="税金等" />
+                        </TextBlock>
                     </Button>
-                    <!-- 損失補償基準 -->
-                    <Button Command="{Binding GoToSlide14Command}"
-                                FontSize="16" Height="70" Margin="20,0,20,10"
-                                Style="{StaticResource OthersButtonStyle}">
-                        <TextBlock Text="損失補償基準" Style="{StaticResource WrapTextBlockStyle}"/>
+                    <Button Grid.Row="2" Style="{StaticResource OthersTestButtonStyle}" >
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}">
+                                <Run Text="損失補償基準" />
+                        </TextBlock>
                     </Button>
-                    <!-- 用地六法 -->
-                    <Button Command="{Binding GoToSlide15Command}"
-                                FontSize="16" Height="70" Margin="20,0,20,10"
-                                Style="{StaticResource OthersButtonStyle}">
-                        <TextBlock Text="用地六法" Style="{StaticResource WrapTextBlockStyle}"/>
+                    <Button Grid.Row="3" Style="{StaticResource OthersTestButtonStyle}" >
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}">
+                                <Run Text="用地六法" />
+                        </TextBlock>
                     </Button>
-                    <!-- その他 -->
-                    <Button Command="{Binding GoToSlide16Command}"
-                                FontSize="16" Height="70" Margin="20,0,20,0"
-                                Style="{StaticResource OthersButtonStyle}">
-                        <TextBlock Text="その他" Style="{StaticResource WrapTextBlockStyle}"/>
+                    <Button  Grid.Row="4" Style="{StaticResource OthersTestButtonStyle}" >
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}">
+                                <Run Text="その他" />
+                        </TextBlock>
                     </Button>
-                </StackPanel>
+
+                </Grid>
 
             </Grid>
 
         </Grid>
 
-
-
-    </Grid>
-
-    
+    </Grid>  
     
 </UserControl>

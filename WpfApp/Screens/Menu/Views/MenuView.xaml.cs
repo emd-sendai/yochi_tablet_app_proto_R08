@@ -24,5 +24,10 @@ namespace WpfApp.Screens.Menu.Views
         {
             InitializeComponent();
         }
+
+        private void MenuButton_Click(object sender, RoutedEventArgs e)
+        {
+            DrawerHostControl.IsLeftDrawerOpen = !DrawerHostControl.IsLeftDrawerOpen;
+        }
     }
 }

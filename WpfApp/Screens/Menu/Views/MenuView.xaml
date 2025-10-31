@@ -9,60 +9,94 @@
              d:DesignHeight="600" d:DesignWidth="800">
 
     <Grid>
-        <!-- Gridの行定義 -->
-        <Grid.RowDefinitions>
-            <!-- ヘッダー（１行目） -->
-            <RowDefinition Height="Auto" />
-            <!-- メインコンテンツ（２行目） -->
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <!-- Drawer部分 -->
+            <ColumnDefinition Width="*"/>
+            <!-- メインコンテンツ部分 -->
+        </Grid.ColumnDefinitions>
 
-        <!-- メニューアイコンボタン（１行目） -->
-        <Button Grid.Row="0" 
-                Style="{StaticResource MaterialDesignIconButton}" 
-                HorizontalAlignment="Left" VerticalAlignment="Top"
-                Margin="10,10,10,10">
-            <materialDesign:PackIcon Kind="Menu" Width="30" Height="30" />
-        </Button>
+        <materialDesign:DrawerHost x:Name="DrawerHostControl" Grid.Column="0"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Stretch"
+                                   IsLeftDrawerOpen="False" >
+            <!-- サイドバー -->
+            <materialDesign:DrawerHost.LeftDrawerContent>
+                <StackPanel Background="{DynamicResource MaterialDesignPaper}">
+                    <TextBlock Text="管理メニュー" 
+                           FontSize="18" Margin="20"/>
+                    <Button Content="表示設定" FontSize="15"
+                        Style="{StaticResource MaterialDesignFlatButton}" />
+                    <Button Content="資料管理" FontSize="15"
+                        Style="{StaticResource MaterialDesignFlatButton}" />
+                </StackPanel>
+            </materialDesign:DrawerHost.LeftDrawerContent>
+        </materialDesign:DrawerHost>
 
-        <!-- １行目 -->
-        <!-- アプリタイトル -->
-        <TextBlock Grid.Row="0" Text="SampleApp" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center"
-                VerticalAlignment="Center" Margin="0,10,0,10" Foreground="#3F51B5"/>
 
-        <!-- ２行目 -->
-        <!-- ボタン配置エリア -->
-        <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center" Margin="0,90,0,0" Width="300">
+        <Grid Grid.Column="1">
+                <!-- Gridの行定義 -->
+                <Grid.RowDefinitions>
+                    <!-- ヘッダー（１行目） -->
+                    <RowDefinition Height="Auto" />
+                    <!-- メインコンテンツ（２行目） -->
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
 
-            <!-- 補償のあらましボタン -->
-            <Button Content="補償のあらまし" FontSize="22" Height="60" Margin="0,0,0,40"
+                <!-- メニューアイコンボタン（１行目） -->
+            <Button Grid.Row="0" Style="{StaticResource IconTextButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Top"
+                        Margin="10" Click="MenuButton_Click" >
+                <StackPanel Orientation="Vertical">
+                    <materialDesign:PackIcon Kind="Menu" Style="{StaticResource ITButtonIconStyle}"/>
+                    <TextBlock Text="管理メニュー" Style="{StaticResource ITButtonTextStyle}"/>
+                </StackPanel>
+            </Button>
+
+            <!-- １行目 -->
+                <!-- アプリタイトル -->
+            <StackPanel Grid.Row="0" Margin="0,10,0,10" HorizontalAlignment="Center" Orientation="Horizontal" >
+                <TextBlock Text="用地交渉アプリ(試作品)" FontSize="30" FontWeight="Bold" VerticalAlignment="Bottom"  Foreground="#3F51B5" 
+                           Margin="0,0,5,0" />
+                    <TextBlock Text="R7.10 ver." FontSize="22" VerticalAlignment="Bottom" Foreground="#3F51B5"/>
+                </StackPanel>
+
+                <!-- ２行目 -->
+                <!-- ボタン配置エリア -->
+                <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center" Margin="0,70,0,0" Width="300">
+
+                    <TextBlock Text="メインメニュー" FontSize="26" Foreground="#3F51B5" Margin="0,0,0,40"  HorizontalAlignment="Center" 
+                               FontWeight="Bold"/>
+
+                    <!-- 補償のあらましボタン -->
+                    <Button Content="補償のあらまし" FontSize="22" Height="60" Margin="0,0,0,40"
                     Command="{Binding GoToAramashiMenuCommand}" Style="{StaticResource CommonButtonStyle}"/>
 
-            <!-- 各種資料ボタン -->
-            <Button FontSize="22" Height="60" Margin="0,0,0,40"
+                    <!-- 各種資料ボタン -->
+                    <Button FontSize="22" Height="60" Margin="0,0,0,40"
                     Command="{Binding GoToDocumentMenuCommand}" Style="{StaticResource CommonButtonStyle}">
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                    <materialDesign:PackIcon Kind="FileDocumentBoxes" Width="35" Height="30" Margin="0,0,5,0"/>
-                    <TextBlock Text="各種資料" VerticalAlignment="Center"/>
-                </StackPanel>
-            </Button>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <materialDesign:PackIcon Kind="FileDocumentBoxes" Width="35" Height="30" Margin="0,0,5,0"/>
+                            <TextBlock Text="各種資料" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
 
-            <!-- まとめボタン -->
-            <Button Content="まとめ（内部管理資料）" FontSize="22" Height="60" Margin="0,0,0,50"
+                    <!-- まとめボタン -->
+                <!--Button Content="まとめ（内部管理資料）" FontSize="22" Height="60" Margin="0,0,0,50"
                     Style="{StaticResource CommonButtonStyle}"
-                    Command="{Binding GoToAramashiMenuTestCommand}" />
+                    Command="{Binding GoToAramashiMenuTestCommand}" -->
 
-            <!-- アプリ終了ボタン -->
-            <Button Style="{StaticResource MaterialDesignFlatButton}" HorizontalAlignment="Center"
+                    <!-- アプリ終了ボタン -->
+                    <Button Style="{StaticResource MaterialDesignFlatButton}" HorizontalAlignment="Center"
                     Command="{Binding ExitCommand}" Height="60" FontSize="20">
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                    <materialDesign:PackIcon Kind="Close" Width="30" Height="30" Margin="0,0,5,0"/>
-                    <TextBlock Text="アプリケーションを終了する" VerticalAlignment="Center"/>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <materialDesign:PackIcon Kind="Close" Width="30" Height="30" Margin="0,0,5,0"/>
+                            <TextBlock Text="アプリケーションを終了する" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
                 </StackPanel>
-            </Button>
 
-        </StackPanel>
-
-    </Grid>
+            </Grid>
+</Grid>
 
 </UserControl>

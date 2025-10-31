@@ -26,6 +26,28 @@
                 </Style.Triggers>
             </Style>
 
+            <!-- アイコン+テキストボタン様式 -->
+            <Style x:Key="IconTextButtonStyle" TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatButton}">
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="Height" Value="50"/>
+                <Setter Property="Width" Value="50"/>
+            </Style>
+
+            <!-- アイコン+テキストボタン内のアイコン様式 -->
+            <Style x:Key="ITButtonIconStyle" TargetType="materialDesign:PackIcon" >
+                <Setter Property="Height" Value="30"/>
+                <Setter Property="Width" Value="30"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+
+            <!-- アイコン+テキストボタン内のテキスト様式 -->
+            <Style x:Key="ITButtonTextStyle" TargetType="TextBlock" >
+                <Setter Property="FontSize" Value="10"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+
             <!-- 補償のあらまし手順ボタン様式 -->
             <Style x:Key="AramashiButtonStyle" TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
                 <Setter Property="Background" Value="#1F78B4" />
