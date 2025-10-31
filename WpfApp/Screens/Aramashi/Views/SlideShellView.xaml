@@ -30,19 +30,29 @@
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
 
             <!-- 拡大ボタン-->
-            <Button Grid.Row="0" Style="{StaticResource MaterialDesignIconButton}" 
+            <Button Grid.Row="0"  Style="{StaticResource IconTextButtonStyle}" 
                 Margin="5,10,5,10" Command="{Binding ZoomInCommand}">
-                <materialDesign:PackIcon Kind="PlusCircleOutline" Width="40" Height="40" />
+                <StackPanel Orientation="Vertical" >
+                    <materialDesign:PackIcon Kind="PlusCircleOutline" Style="{StaticResource ITButtonIconStyle}"/>
+                    <TextBlock Text="拡大" Style="{StaticResource ITButtonTextStyle}"/>
+                </StackPanel>
             </Button>
             <!-- 縮小ボタン-->
-            <Button Grid.Row="0" Style="{StaticResource MaterialDesignIconButton}" 
+            <Button Grid.Row="0"  Style="{StaticResource IconTextButtonStyle}" 
                 Margin="5,10,5,10" Command="{Binding ZoomOutCommand}">
-                <materialDesign:PackIcon Kind="MinusCircleOutline" Width="40" Height="40" />
+                <StackPanel Orientation="Vertical" >
+                    <materialDesign:PackIcon Kind="MinusCircleOutline" Style="{StaticResource ITButtonIconStyle}"/>
+                    <TextBlock Text="縮小" Style="{StaticResource ITButtonTextStyle}"/>
+                </StackPanel>
+
             </Button>
             <!-- ホームアイコンボタン -->
-            <Button Grid.Row="0" Style="{StaticResource MaterialDesignIconButton}" 
+            <Button Grid.Row="0" Style="{StaticResource IconTextButtonStyle}" 
                 Margin="5,10,10,10" Command="{Binding GoToMenuCommand}">
-                <materialDesign:PackIcon Kind="Home" Width="40" Height="40" />
+                <StackPanel Orientation="Vertical" >
+                    <materialDesign:PackIcon Kind="Home" Style="{StaticResource ITButtonIconStyle}"/>
+                    <TextBlock Text="メインメニュー" Style="{StaticResource ITButtonTextStyle}"/>
+                </StackPanel>
             </Button>
         </StackPanel>
 
@@ -58,8 +68,12 @@
             <!-- セクションタイトル -->
             <TextBlock Text="{Binding CurrentSlide.Title}" FontSize="26" FontWeight="Bold" VerticalAlignment="Center"/>
             <!-- 動画アイコンボタン 動画表示コマンドと動画がない場合は非表示か薄くする機能実装予定-->
-            <Button Grid.Row="0" Style="{StaticResource MaterialDesignIconButton}" Margin="5,0,0,0" >
-                <materialDesign:PackIcon Kind="MoviePlay" Width="40" Height="40" />
+            <Button Grid.Row="0" Style="{StaticResource IconTextButtonStyle}" 
+                    Margin="5,0,0,0" >
+                <StackPanel Orientation="Vertical" >
+                    <materialDesign:PackIcon Kind="MoviePlay" Style="{StaticResource ITButtonIconStyle}"/>
+                    <TextBlock Text="動画" Style="{StaticResource ITButtonTextStyle}"/>
+                </StackPanel>
             </Button>
         </StackPanel>
         <!-- 次へボタン -->

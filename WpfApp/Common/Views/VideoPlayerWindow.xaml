@@ -21,18 +21,27 @@
         <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,10">
             <!-- 再生ボタン -->
             <Button Command="{Binding PlayCommand}" CommandParameter="{Binding ElementName=Player}" Margin="5"
-                    Style="{StaticResource MaterialDesignIconButton}">
-                <materialDesign:PackIcon Kind="Play" Width="40" Height="40" />
+                    Style="{StaticResource IconTextButtonStyle}">
+                <StackPanel Orientation="Vertical" >
+                    <materialDesign:PackIcon Kind="Play" Style="{StaticResource ITButtonIconStyle}"/>
+                    <TextBlock Text="再生" Style="{StaticResource ITButtonTextStyle}" />
+                </StackPanel>
             </Button>
             <!-- 一時停止ボタン（押下後に再生ボタンを押下するとその時点から再生される） -->
             <Button Command="{Binding PauseCommand}" CommandParameter="{Binding ElementName=Player}" Margin="5"
-                    Style="{StaticResource MaterialDesignIconButton}">
-                <materialDesign:PackIcon Kind="Pause" Width="40" Height="40" />
+                    Style="{StaticResource IconTextButtonStyle}">
+                <StackPanel Orientation="Vertical" >
+                    <materialDesign:PackIcon Kind="Pause" Style="{StaticResource ITButtonIconStyle}"/>
+                    <TextBlock Text="一時停止" Style="{StaticResource ITButtonTextStyle}" />
+                </StackPanel>
             </Button>
             <!-- 停止ボタン（押下後に再生ボタンを押下すると最初から再生される） -->
             <Button Command="{Binding StopCommand}" CommandParameter="{Binding ElementName=Player}" Margin="5"
-                    Style="{StaticResource MaterialDesignIconButton}">
-                <materialDesign:PackIcon Kind="Stop" Width="40" Height="40" />
+                    Style="{StaticResource IconTextButtonStyle}">
+                <StackPanel Orientation="Vertical" >
+                    <materialDesign:PackIcon Kind="Stop" Style="{StaticResource ITButtonIconStyle}"/>
+                    <TextBlock Text="停止" Style="{StaticResource ITButtonTextStyle}" />
+                </StackPanel>
             </Button>
             <!-- 閉じるボタン -->
             <Button Command="{Binding CloseCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}" 
