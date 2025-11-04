@@ -20,7 +20,7 @@
         <!-- ページタイトル -->
         <StackPanel Grid.Row="0" Orientation="Horizontal"  HorizontalAlignment="Center" VerticalAlignment="Center">
             <Button Grid.Row="0" Style="{StaticResource MaterialDesignIconButton}" 
-                Margin="5,10,10,10" Command="{Binding GoToDocumentMenuCommand}">
+                Margin="5,10,10,10" Command="{Binding GoToDocumentMenu2Command}">
                 <materialDesign:PackIcon Kind="FileDocumentBoxes" Width="40" Height="40" />
             </Button>
             <TextBlock Text="各種資料" Foreground="#3F51B5" FontSize="30" FontWeight="Bold" Margin="0,10,0,10"/>
@@ -30,10 +30,14 @@
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
 
             <!-- ホームアイコンボタン -->
-            <Button Grid.Row="0" Style="{StaticResource MaterialDesignIconButton}" 
+            <Button Grid.Row="0" Style="{StaticResource IconTextButtonStyle}" 
                 Margin="5,10,10,10" Command="{Binding GoToMenuCommand}">
-                <materialDesign:PackIcon Kind="Home" Width="40" Height="40" />
+                <StackPanel Orientation="Vertical" >
+                    <materialDesign:PackIcon Kind="Home" Style="{StaticResource ITButtonIconStyle}"/>
+                    <TextBlock Text="メインメニュー" Style="{StaticResource ITButtonTextStyle}"/>
+                </StackPanel>
             </Button>
+            
         </StackPanel>
 
         <!-- メインコンテンツ -->
@@ -46,21 +50,24 @@
             </Grid.RowDefinitions>
 
             <!-- 事業資料エリア -->
-            <Grid Grid.Row="0" Margin="10">
+            <Grid Grid.Row="0" Margin="10,5,10,10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
 
-                <!-- 事業資料タイトル -->
-                <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" >
-                    <TextBlock Text="国道○号○○事業" FontSize="26" FontWeight="Bold" Margin="10,5,10,5" 
-                               VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <!-- 事業名のコンボボックス -->
+                <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <ComboBox  materialDesign:HintAssist.Hint="事業を選択してください" 
+                               Style="{StaticResource DocumentComboBoxStyle}" Width="500"
+                               ItemsSource="{Binding Works}"  DisplayMemberPath="WorkName" 
+                               SelectedItem="{Binding SelectedWork, Mode=TwoWay}" >
+                    </ComboBox>
                 </StackPanel>
                 <!-- 事業資料ボタンエリア（上段） -->
                 <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" 
-                            Margin="0,0,0,10">
+                            Margin="0,5,0,10">
                     <!-- 公図 -->
                     <Button FontSize="20" Margin="20,0,15,0" 
                             Style="{StaticResource DocumentWorkButtonStyle}">
@@ -92,7 +99,7 @@
                         </TextBlock>
                     </Button>
                 </StackPanel>
-                <!-- 事業情報ボタンエリア（下段） -->
+                <!-- 事業資料ボタンエリア（下段） -->
                 <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,10">
                     <!-- 地積測量図 -->
                     <Button FontSize="20"  Margin="20,0,15,0" 
@@ -127,22 +134,28 @@
                 </StackPanel>
             </Grid>
 
-            <!-- 地権者資料エリア -->
-            <Grid Grid.Row="1" Margin="10">
+            <!-- 地権者個別資料エリア -->
+            <Grid Grid.Row="1" Margin="10,10,10,5">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
 
-                <!-- 地権者個別資料タイトル -->
-                <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" >
-                    <TextBlock Text="地権者個別資料" FontSize="26" FontWeight="Bold" Margin="10,5,10,5" 
-                               VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <!-- 地権者コンボボックス -->
+                <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <ComboBox  materialDesign:HintAssist.Hint="地権者ユーザを選択してください" 
+                               Style="{StaticResource DocumentComboBoxStyle}" Width="400"
+                               ItemsSource="{Binding Landowners}"  DisplayMemberPath="LandownerName" 
+                               SelectedItem="{Binding SelectedLandowner, Mode=TwoWay}"  />
+                    <TextBlock Text="様" FontSize="23" VerticalAlignment="Center" />
+                    <Button Content="選択" Command="{Binding SelectLandownerCommand}" Style="{StaticResource CommonButtonStyle}"
+                            Margin="20,0,20,0" Height="50" Width="70"/>
                 </StackPanel>
 
                 <!-- 地権者個別資料ボタンエリア（上段） -->
-                <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,10">
+                <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                            Margin="0,5,0,10">
                     <!-- 配置図　調査表 -->
                     <Button FontSize="20" Margin="20,0,15,0" 
                             Style="{StaticResource DocumentLandownerButtonStyle}">
@@ -179,7 +192,7 @@
                     </Button>
                 </StackPanel>
                 <!-- 地権者個別資料ボタンエリア（下段） -->
-                <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,0,0,10">
+                <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,0,0,0">
                     <!-- 調書 -->
                     <Button FontSize="20" Margin="20,0,15,0" 
                             Style="{StaticResource DocumentLandownerButtonStyle}">
@@ -209,6 +222,13 @@
                         </TextBlock>
                     </Button>
                 </StackPanel>
+
+                <!-- 地権者ユーザ選択時のスナックバー -->
+                <materialDesign:Snackbar x:Name="LandownerSnackbar" MessageQueue="{Binding SnackbarMessageQueue}"
+                                         VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="18"
+                                         CornerRadius="16" Panel.ZIndex="9999" Foreground="{DynamicResource MaterialDesignPaper}"
+                                         Background="#3F51B5" materialDesign:ElevationAssist.Elevation="Dp3"/>
+
             </Grid>
         </Grid>
     </Grid>

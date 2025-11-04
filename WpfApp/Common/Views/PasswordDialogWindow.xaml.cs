@@ -37,6 +37,12 @@ namespace WpfApp.Common.Views
                     Close();
                 };
             }
+
+            // パスワードボックスにフォーカスを設定
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                PwBox.Focus();
+            }), System.Windows.Threading.DispatcherPriority.Input);
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)

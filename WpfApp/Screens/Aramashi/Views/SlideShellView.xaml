@@ -61,7 +61,7 @@
         <StackPanel  HorizontalAlignment="Left" Margin="20,15,0,15" Grid.Row="1" >
             <Button Content="◀ 前へ" Command="{Binding PrevCommand}"  Height="40" Width="90"
                     Style="{StaticResource CommonButtonStyle}" FontSize="18"
-                    Visibility="{Binding CanGoPrev, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                    Visibility="{Binding CanGoPrev, Converter={StaticResource BooleanToHiddenVisibilityConverter}}" />
         </StackPanel>
         <!-- セクション概要 -->
         <StackPanel HorizontalAlignment="Center" Margin="15" Grid.Row="1" Orientation="Horizontal">
@@ -80,7 +80,7 @@
         <StackPanel  HorizontalAlignment="Right" Margin="15" Grid.Row="1">
             <Button Content="次へ ▶" Command="{Binding NextCommand}" Height="40" Width="90"
                     Style="{StaticResource CommonButtonStyle}" FontSize="18"
-                    Visibility="{Binding CanGoNext, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                    Visibility="{Binding CanGoNext, Converter={StaticResource BooleanToHiddenVisibilityConverter}}" />
         </StackPanel>
 
         <ScrollViewer VerticalScrollBarVisibility="Auto"

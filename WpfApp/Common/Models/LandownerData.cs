@@ -9,7 +9,6 @@ namespace WpfApp.Common.Models
     public class LandownerData
     {
         public string? LandownerId { get; set; }
-        public string? LandownerName { get; set; }
-        public string? Password { get; set; }
+        public string? LandownerName { get; set; } = String.Empty;
     }
 }

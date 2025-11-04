@@ -4,6 +4,7 @@ using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -36,7 +37,8 @@ namespace WpfApp.Screens.Documents.ViewModels
         [ObservableProperty]
         private LandownerData? selectedLandowner;
 
-        public ISnackbarMessageQueue SnackbarMessageQueue { get; }
+
+        public bool IsLandownerSelected => SelectedLandowner != null;
 
 
         public DocumentMenuViewModel(NavigationService navigationService, IDialogService dialogService)
@@ -44,11 +46,14 @@ namespace WpfApp.Screens.Documents.ViewModels
             _nav = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
             _dia = dialogService ?? throw new ArgumentNullException(nameof(dialogService));
 
-            SnackbarMessageQueue = new SnackbarMessageQueue();
-            LoadLandownersFromJson();
-            LoadWorksFromJson();
         }
-        
+
+        partial void OnSelectedLandownerChanged(LandownerData? oldValue, LandownerData? newValue)
+        {
+            // SelectedLandowner が変わったら IsLandownerSelected も通知
+            OnPropertyChanged(nameof(IsLandownerSelected));
+        }
+
         [RelayCommand]
         private void GoToMenu()
         {
@@ -61,69 +66,83 @@ namespace WpfApp.Screens.Documents.ViewModels
             _nav.Navigate(new DocumentMenu2ViewModel(_nav, _dia));
         }
 
-        private void LoadWorksFromJson()
-        {
-            string path = Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "Data/works.json");
-
-            if (!File.Exists(path))
-            {
-                MessageBox.Show("事業データが見つかりません");
-                System.Diagnostics.Debug.WriteLine($"[DEBUG] slides.json not found: {path}");
-                return;
-            }
-
-            string json = File.ReadAllText(path);
-            var array = JsonSerializer.Deserialize<WorkData[]>(json);
-            Works = array != null
-                ? new ObservableCollection<WorkData>(array)
-                : new ObservableCollection<WorkData>();
-        }
-
-        private void LoadLandownersFromJson()
-        {
-            string path = Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "Data/landowners.json");
-
-            if (!File.Exists(path))
-            {
-                MessageBox.Show("地権者データが見つかりません");
-                System.Diagnostics.Debug.WriteLine($"[DEBUG] slides.json not found: {path}");
-                return;
-            }
-
-            string json = File.ReadAllText(path);
-            var array = JsonSerializer.Deserialize<LandownerData[]>(json);
-            Landowners = array != null
-                ? new ObservableCollection<LandownerData>(array)
-                : new ObservableCollection<LandownerData>();
-        }
 
         [RelayCommand]
-        private async Task SelectLandownerAsync()
+        private void OpenPasswordDialog()
         {
-            if (SelectedLandowner == null)
+            // パスワードダイアログを生成
+            var pwVm = new PasswordDialogViewModel();
+            var pwDialog = new PasswordDialogWindow
             {
-                SnackbarMessageQueue.Enqueue("地権者ユーザーを選択してください。");
-                return;
-            }
+                DataContext = pwVm,
+                Owner = Application.Current.MainWindow
+            };
 
-            // パスワードダイアログ呼び出し
-            var pwWindow = new Common.Views.PasswordDialogWindow();
-            var pwVM = new Common.ViewModels.PasswordDialogViewModel();
-            pwWindow.DataContext = pwVM;
-
-            bool? result = pwWindow.ShowDialog();
-            if (result == true)
+            // ShowDialog() は true/false/null を返す
+            if (pwDialog.ShowDialog() == true)
             {
-                if (pwVM.Result == SelectedLandowner.Password)
+                // 入力されたパスワードを参照
+                if (pwVm.Result == "0000")
                 {
-                    SnackbarMessageQueue.Enqueue($"{SelectedLandowner.LandownerName} 様の資料を表示します。");
+                    // パスワードが正解の場合、選択ウィンドウを開く
+                    var lanWin = new LandownerSelectWindow
+                    {
+                        Owner = Application.Current.MainWindow
+                    };
+
+                    if (lanWin.ShowDialog() == true)
+                    {
+                        // 選択された地権者ユーザを取得して画面に反映
+                        SelectedLandowner = lanWin.SelectedLandowner;
+
+                        // 地権者ユーザが選択されている場合（未選択の状態でキャンセルボタン押下時以外の場合）
+                        if (SelectedLandowner != null)
+                        {
+                            //メッセージウィンドウを表示
+                            var vm = new MessageDialogViewModel
+                            {
+                                Message = $"{SelectedLandowner.LandownerName} 様の資料を表示します"
+                            };
+
+                            var dialog = new MessageDialogWindow
+                            {
+                                DataContext = vm,
+                                Owner = Application.Current.MainWindow
+                            };
+
+                            bool? result = dialog.ShowDialog();
+                            if (result == true)
+                            {
+                                // OK押下後の処理
+                            }
+                        }
+                    }
                 }
                 else
                 {
-                    SnackbarMessageQueue.Enqueue("パスワードが間違っています。");
+                    //地権者ユーザの選択を初期化
                     SelectedLandowner = null;
+
+                    //メッセージウィンドウを表示
+                    var vm = new MessageDialogViewModel
+                    {
+                        Message = "パスワードが違います"
+                    };
+
+                    var dialog = new MessageDialogWindow
+                    {
+                        DataContext = vm,
+                        Owner = Application.Current.MainWindow
+                    };
+
+                    bool? result = dialog.ShowDialog();
+                    if (result == true)
+                    {
+                        // OK押下後の処理
+                    }
                 }
             }
         }
+
     }
 }
