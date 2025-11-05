@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using WpfApp.Common.ViewModels;
+using WpfApp.Common.Views;
 using WpfApp.Interfaces;
 using WpfApp.Screens.Aramashi.ViewModels;
 using WpfApp.Screens.Aramashi.Views;
@@ -24,10 +26,81 @@ namespace WpfApp.Screens.Menu.ViewModels
         private readonly NavigationService _nav;
         private readonly IDialogService _dia;
 
+        [ObservableProperty]
+        private bool isLeftDrawerOpen;
+
         public MenuViewModel(NavigationService navigationService, IDialogService dialogService)
         {
             _nav = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
             _dia = dialogService ?? throw new ArgumentNullException(nameof(dialogService));
+        }
+
+        [RelayCommand]
+        private void ToggleDrawer()
+        {
+            // サイドバーを開く場合
+            if (!IsLeftDrawerOpen)
+            {
+                // パスワードダイアログを生成
+                var pwVm = new PasswordDialogViewModel();
+                var pwDialog = new PasswordDialogWindow
+                {
+                    DataContext = pwVm,
+                    Owner = Application.Current.MainWindow
+                };
+
+                // ShowDialog() は true/false/null を返す
+                if (pwDialog.ShowDialog() == true)
+                {
+                    // パスワードが正解の場合
+                    if (pwVm.Result == "0000")
+                    {
+                        //メッセージウィンドウを表示
+                        var vm = new MessageDialogViewModel
+                        {
+                            Message = "管理メニューを表示します"
+                        };
+
+                        var dialog = new MessageDialogWindow
+                        {
+                            DataContext = vm,
+                            Owner = Application.Current.MainWindow
+                        };
+
+                        bool? result = dialog.ShowDialog();
+                        if (result == true)
+                        {
+                            IsLeftDrawerOpen = true;
+                        }
+                    }
+                    // パスワードが不正解の場合
+                    else
+                    {
+                        //メッセージウィンドウを表示
+                        var vm = new MessageDialogViewModel
+                        {
+                            Message = "パスワードが違います"
+                        };
+
+                        var dialog = new MessageDialogWindow
+                        {
+                            DataContext = vm,
+                            Owner = Application.Current.MainWindow
+                        };
+
+                        bool? result = dialog.ShowDialog();
+                        if (result == true)
+                        {
+                            // OK押下後の処理
+                        }
+                    }
+                }
+            }
+            // サイドバーを閉じる場合
+            else
+            {
+                IsLeftDrawerOpen = false;
+            }
         }
 
         [RelayCommand]

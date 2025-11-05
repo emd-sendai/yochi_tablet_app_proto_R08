@@ -17,17 +17,16 @@
         </Grid.ColumnDefinitions>
 
         <materialDesign:DrawerHost x:Name="DrawerHostControl" Grid.Column="0"
-                                   HorizontalAlignment="Left"
-                                   VerticalAlignment="Stretch"
-                                   IsLeftDrawerOpen="False" >
+                                   HorizontalAlignment="Left" VerticalAlignment="Stretch"
+                                   IsLeftDrawerOpen="{Binding IsLeftDrawerOpen, Mode=TwoWay}">
             <!-- サイドバー -->
             <materialDesign:DrawerHost.LeftDrawerContent>
                 <StackPanel Background="{DynamicResource MaterialDesignPaper}">
                     <TextBlock Text="管理メニュー" 
-                           FontSize="18" Margin="20"/>
-                    <Button Content="表示設定" FontSize="15"
+                           FontSize="22" Margin="20"/>
+                    <Button Content="表示設定" FontSize="20"
                         Style="{StaticResource MaterialDesignFlatButton}" />
-                    <Button Content="資料管理" FontSize="15"
+                    <Button Content="管理資料" FontSize="20"
                         Style="{StaticResource MaterialDesignFlatButton}" />
                 </StackPanel>
             </materialDesign:DrawerHost.LeftDrawerContent>
@@ -45,7 +44,7 @@
 
                 <!-- メニューアイコンボタン（１行目） -->
             <Button Grid.Row="0" Style="{StaticResource IconTextButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Top"
-                        Margin="10" Click="MenuButton_Click" >
+                        Margin="10"  Command="{Binding ToggleDrawerCommand}">
                 <StackPanel Orientation="Vertical">
                     <materialDesign:PackIcon Kind="Menu" Style="{StaticResource ITButtonIconStyle}"/>
                     <TextBlock Text="管理メニュー" Style="{StaticResource ITButtonTextStyle}"/>
