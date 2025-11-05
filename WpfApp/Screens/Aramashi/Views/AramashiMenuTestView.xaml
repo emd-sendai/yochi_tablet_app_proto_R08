@@ -81,7 +81,7 @@
                                  Margin="0,20,0,0">
 
                         <!-- 手順１ -->
-                        <Button Command="{Binding GoToSlide1Command}"
+                        <Button 
                                 FontSize="16" Height="70" Margin="20,0,15,10"
                                 Style="{StaticResource AramashiButtonStyle}">
                             <TextBlock Style="{StaticResource WrapTextBlockStyle}" >
@@ -92,7 +92,7 @@
 
                         </Button>
                         <!-- 手順２ -->
-                        <Button Command="{Binding GoToSlide2Command}"
+                        <Button 
                                 FontSize="16" Height="70" Margin="20,0,15,10"
                                 Style="{StaticResource AramashiButtonStyle}">
                             <TextBlock Style="{StaticResource WrapTextBlockStyle}">
@@ -102,7 +102,7 @@
                             </TextBlock>
                         </Button>
                         <!-- 手順３ -->
-                        <Button Command="{Binding GoToSlide3Command}"
+                        <Button 
                                 FontSize="16" Height="70" Margin="20,0,15,10"
                                 Style="{StaticResource AramashiButtonStyle}">
                             <TextBlock Style="{StaticResource WrapTextBlockStyle}">
@@ -112,7 +112,7 @@
                             </TextBlock>
                         </Button>
                         <!-- 手順４ -->
-                        <Button Command="{Binding GoToSlide4Command}"
+                        <Button 
                                 FontSize="16" Height="70" Margin="20,0,15,10"
                                 Style="{StaticResource AramashiButtonStyle}">
                             <TextBlock Style="{StaticResource WrapTextBlockStyle}">
@@ -122,7 +122,7 @@
                             </TextBlock>
                         </Button>
                         <!-- 手順５ -->
-                        <Button Command="{Binding GoToSlide5Command}"
+                        <Button 
                                 FontSize="16" Height="70" Margin="20,0,15,0"
                                 Style="{StaticResource AramashiButtonStyle}">
                             <TextBlock Style="{StaticResource WrapTextBlockStyle}">
@@ -138,7 +138,7 @@
                                 Margin="0,20,0,0">
 
                         <!-- 手順６ -->
-                        <Button Command="{Binding GoToSlide6Command}"
+                        <Button 
                                 FontSize="16" Height="70" Margin="15,0,20,10"
                                 Style="{StaticResource AramashiButtonStyle}">
                             <TextBlock Style="{StaticResource WrapTextBlockStyle}">
@@ -148,7 +148,7 @@
                             </TextBlock>
                         </Button>
                         <!-- 手順７ -->
-                        <Button Command="{Binding GoToSlide7Command}"
+                        <Button 
                                 FontSize="16" Height="70" Margin="15,0,20,10"
                                 Style="{StaticResource AramashiButtonStyle}">
                             <TextBlock Style="{StaticResource WrapTextBlockStyle}">
@@ -158,7 +158,7 @@
                             </TextBlock>
                         </Button>
                         <!-- 手順８ -->
-                        <Button Command="{Binding GoToSlide8Command}"
+                        <Button 
                                 FontSize="16" Height="70" Margin="15,0,20,10"
                                 Style="{StaticResource AramashiButtonStyle}">
                             <TextBlock Style="{StaticResource WrapTextBlockStyle}">
@@ -168,7 +168,7 @@
                             </TextBlock>
                         </Button>
                         <!-- 手順９ -->
-                        <Button Command="{Binding GoToSlide9Command}"
+                        <Button 
                                 FontSize="16" Height="70" Margin="15,0,20,10"
                                 Style="{StaticResource AramashiButtonStyle}">
                             <TextBlock Style="{StaticResource WrapTextBlockStyle}">
@@ -180,7 +180,7 @@
                             </TextBlock>
                         </Button>
                         <!-- 手順１０ -->
-                        <Button Command="{Binding GoToSlide10Command}"
+                        <Button 
                                 FontSize="16" Height="70" Margin="15,0,20,0"
                                 Style="{StaticResource AramashiButtonStyle}">
                             <TextBlock Style="{StaticResource WrapTextBlockStyle}">
@@ -219,31 +219,31 @@
                             Margin="0,20,0,0">
 
                     <!-- 代替地 -->
-                    <Button Command="{Binding GoToSlide11Command}"
+                    <Button 
                                 FontSize="16" Height="70" Margin="20,0,20,10"
                                 Style="{StaticResource OthersButtonStyle}">
                         <TextBlock Text="代替地" Style="{StaticResource WrapTextBlockStyle}"/>
                     </Button>
                     <!-- 税金等 -->
-                    <Button Command="{Binding GoToSlide13Command}"
+                    <Button 
                                 FontSize="16" Height="70" Margin="20,0,20,10"
                                 Style="{StaticResource OthersButtonStyle}">
                         <TextBlock Text="税金等" Style="{StaticResource WrapTextBlockStyle}"/>
                     </Button>
                     <!-- 損失補償基準 -->
-                    <Button Command="{Binding GoToSlide14Command}"
+                    <Button 
                                 FontSize="16" Height="70" Margin="20,0,20,10"
                                 Style="{StaticResource OthersButtonStyle}">
                         <TextBlock Text="損失補償基準" Style="{StaticResource WrapTextBlockStyle}"/>
                     </Button>
                     <!-- 用地六法 -->
-                    <Button Command="{Binding GoToSlide15Command}"
+                    <Button 
                                 FontSize="16" Height="70" Margin="20,0,20,10"
                                 Style="{StaticResource OthersButtonStyle}">
                         <TextBlock Text="用地六法" Style="{StaticResource WrapTextBlockStyle}"/>
                     </Button>
                     <!-- その他 -->
-                    <Button Command="{Binding GoToSlide16Command}"
+                    <Button 
                                 FontSize="16" Height="70" Margin="20,0,20,0"
                                 Style="{StaticResource OthersButtonStyle}">
                         <TextBlock Text="その他" Style="{StaticResource WrapTextBlockStyle}"/>

@@ -37,7 +37,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         }
 
         [RelayCommand]
-        private void GoToSlide1()
+        private void GoToSection1()
         {
             var slideVM = new SlideShellViewModel("Aramashi", _nav, _dia);
             _nav.Navigate(slideVM);
@@ -45,7 +45,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         }
 
         [RelayCommand]
-        private void GoToSlide2()
+        private void GoToSection2()
         {
             var slideVM = new SlideShellViewModel("Aramashi", _nav, _dia);
             _nav.Navigate(slideVM);
@@ -53,7 +53,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         }
 
         [RelayCommand]
-        private void GoToSlide3()
+        private void GoToSection3()
         {
             var slideVM = new SlideShellViewModel("Aramashi", _nav, _dia);
             _nav.Navigate(slideVM);

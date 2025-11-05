@@ -17,6 +17,8 @@ using WpfApp.Screens.Documents.ViewModels;
 using WpfApp.Screens.Documents.Views;
 using WpfApp.Screens.Menu.ViewModels;
 using WpfApp.Screens.Menu.Views;
+using WpfApp.Screens.Admin.ViewModels;
+using WpfApp.Screens.Admin.Views;
 using WpfApp.Services;
 
 namespace WpfApp.Screens.Menu.ViewModels
@@ -101,6 +103,12 @@ namespace WpfApp.Screens.Menu.ViewModels
             {
                 IsLeftDrawerOpen = false;
             }
+        }
+
+        [RelayCommand]
+        private void GoToAdminMenu()
+        {
+            _nav.Navigate(new AdminMenuViewModel(_nav, _dia));
         }
 
         [RelayCommand]

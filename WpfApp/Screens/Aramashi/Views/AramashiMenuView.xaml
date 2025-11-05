@@ -94,7 +94,7 @@
 
                     <!-- 左列ボタン -->
                     <Button x:Name="BtnL1" Grid.Row="0" Grid.Column="0" Style="{StaticResource AramashiTestButtonStyle}" 
-                            Command="{Binding GoToSlide1Command}" >
+                            Command="{Binding GoToSection1Command}" >
                         <TextBlock Style="{StaticResource WrapTextBlockStyle}" >
                                 <Run Text="１" />
                                 <LineBreak />
@@ -102,7 +102,7 @@
                         </TextBlock>
                     </Button>
                     <Button x:Name="BtnL2" Grid.Row="1" Grid.Column="0" Style="{StaticResource AramashiTestButtonStyle}" 
-                            Command="{Binding GoToSlide2Command}">
+                            Command="{Binding GoToSection2Command}">
                         <TextBlock Style="{StaticResource WrapTextBlockStyle}">
                                 <Run Text="２" />
                                 <LineBreak />
@@ -110,7 +110,7 @@
                         </TextBlock>
                     </Button>
                     <Button x:Name="BtnL3" Grid.Row="2" Grid.Column="0" Style="{StaticResource AramashiTestButtonStyle}" 
-                            Command="{Binding GoToSlide3Command}">
+                            Command="{Binding GoToSection3Command}">
                         <TextBlock Style="{StaticResource WrapTextBlockStyle}">
                                 <Run Text="３" />
                                 <LineBreak />

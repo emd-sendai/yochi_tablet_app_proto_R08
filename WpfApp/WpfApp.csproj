@@ -45,6 +45,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Screens\Admin\Models\" />
     <Folder Include="Screens\Menu\Models\" />
     <Folder Include="Screens\Documents\Models\" />
   </ItemGroup>
