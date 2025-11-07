@@ -1,24 +1,12 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using System;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using WpfApp.Common.ViewModels;
 using WpfApp.Common.Views;
 using WpfApp.Interfaces;
-using WpfApp.Screens.Aramashi.ViewModels;
-using WpfApp.Screens.Aramashi.Views;
-using WpfApp.Screens.Documents.ViewModels;
-using WpfApp.Screens.Documents.Views;
-using WpfApp.Screens.Menu.ViewModels;
-using WpfApp.Screens.Menu.Views;
 using WpfApp.Screens.Admin.ViewModels;
-using WpfApp.Screens.Admin.Views;
+using WpfApp.Screens.Aramashi.ViewModels;
+using WpfApp.Screens.Documents.ViewModels;
 using WpfApp.Services;
 
 namespace WpfApp.Screens.Menu.ViewModels
@@ -106,9 +94,9 @@ namespace WpfApp.Screens.Menu.ViewModels
         }
 
         [RelayCommand]
-        private void GoToAdminMenu()
+        private void GoToButtonSetttings()
         {
-            _nav.Navigate(new AdminMenuViewModel(_nav, _dia));
+            _nav.Navigate(new ButtonSettingsViewModel(_nav, _dia));
         }
 
         [RelayCommand]

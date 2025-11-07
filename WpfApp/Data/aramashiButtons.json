@@ -1,0 +1,42 @@
+[
+  {
+    "BtnId": "L1",
+    "BtnText": "１\n事業計画等の説明"
+  },
+  {
+    "BtnId": "L2",
+    "BtnText": "２\n用地幅杭の設置"
+  },
+  {
+    "BtnId": "L3",
+    "BtnText": "３\n用地測量・\n物件等の調査"
+  },
+  {
+    "BtnId": "L4",
+    "BtnText": "４\n土地調書・\n物件調書の確認"
+  },
+  {
+    "BtnId": "L5",
+    "BtnText": "５\n補償金の算定"
+  },
+  {
+    "BtnId": "R5",
+    "BtnText": "６\n補償説明・協議\n（用地交渉）"
+  },
+  {
+    "BtnId": "R4",
+    "BtnText": "７\n契約"
+  },
+  {
+    "BtnId": "R3",
+    "BtnText": "８\n補償金の前金払"
+  },
+  {
+    "BtnId": "R2",
+    "BtnText": "９\n土地登記・物件移転・\n土地の引渡し"
+  },
+  {
+    "BtnId": "R1",
+    "BtnText": "１０\n補償金の\n後金払・一括払"
+  }
+]

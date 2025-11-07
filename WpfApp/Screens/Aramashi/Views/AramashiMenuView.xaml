@@ -72,10 +72,10 @@
                 <Grid x:Name="MainGrid" Grid.Row="1" HorizontalAlignment="Center"  Margin="0,5,0,0">
 
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="170"/>
+                        <ColumnDefinition Width="180"/>
                         <ColumnDefinition Width="30"/>
                         <!-- 列間スペース -->
-                        <ColumnDefinition Width="170"/>
+                        <ColumnDefinition Width="180"/>
                     </Grid.ColumnDefinitions>
 
                     <Grid.RowDefinitions>
@@ -95,88 +95,48 @@
                     <!-- 左列ボタン -->
                     <Button x:Name="BtnL1" Grid.Row="0" Grid.Column="0" Style="{StaticResource AramashiTestButtonStyle}" 
                             Command="{Binding GoToSection1Command}" >
-                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" >
-                                <Run Text="１" />
-                                <LineBreak />
-                                <Run Text="事業計画等の説明" />
-                        </TextBlock>
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" 
+                                   Text="{Binding Buttons[0].BtnText}"/>
                     </Button>
                     <Button x:Name="BtnL2" Grid.Row="1" Grid.Column="0" Style="{StaticResource AramashiTestButtonStyle}" 
                             Command="{Binding GoToSection2Command}">
-                        <TextBlock Style="{StaticResource WrapTextBlockStyle}">
-                                <Run Text="２" />
-                                <LineBreak />
-                                <Run Text="用地幅杭の設置" />
-                        </TextBlock>
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" 
+                                   Text="{Binding Buttons[1].BtnText}"/>
                     </Button>
                     <Button x:Name="BtnL3" Grid.Row="2" Grid.Column="0" Style="{StaticResource AramashiTestButtonStyle}" 
                             Command="{Binding GoToSection3Command}">
-                        <TextBlock Style="{StaticResource WrapTextBlockStyle}">
-                                <Run Text="３" />
-                                <LineBreak />
-                                <Run Text="用地測量・" />
-                                <LineBreak />
-                                <Run Text="物件等の調査" />
-                        </TextBlock>
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" 
+                                   Text="{Binding Buttons[2].BtnText}"/>
                     </Button>
                     <Button x:Name="BtnL4" Grid.Row="3" Grid.Column="0" Style="{StaticResource AramashiTestButtonStyle}" >
-                        <TextBlock Style="{StaticResource WrapTextBlockStyle}">
-                                <Run Text="４" />
-                                <LineBreak />
-                                <Run Text="土地調書・" />
-                                <LineBreak />
-                                <Run Text="物件調書の確認" />
-                        </TextBlock>
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" 
+                                   Text="{Binding Buttons[3].BtnText}"/>
                     </Button>
                     <Button x:Name="BtnL5" Grid.Row="4" Grid.Column="0" Style="{StaticResource AramashiTestButtonStyle}" >
-                        <TextBlock Style="{StaticResource WrapTextBlockStyle}">
-                                <Run Text="５" />
-                                <LineBreak />
-                                <Run Text="補償金の算定" />
-                        </TextBlock>
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" 
+                                   Text="{Binding Buttons[4].BtnText}"/>
                     </Button>
 
                     <!-- 右列ボタン -->
                     <Button x:Name="BtnR1" Grid.Row="0" Grid.Column="2" Style="{StaticResource AramashiTestButtonStyle}" >
-                        <TextBlock Style="{StaticResource WrapTextBlockStyle}">
-                                <Run Text="１０" />
-                                <LineBreak />
-                                <Run Text="補償金の" />
-                                <LineBreak />
-                                <Run Text="後金払・一括払" />
-                        </TextBlock>
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" 
+                                   Text="{Binding Buttons[9].BtnText}"/>
                     </Button>
                     <Button x:Name="BtnR2" Grid.Row="1" Grid.Column="2" Style="{StaticResource AramashiTestButtonStyle}" >
-                        <TextBlock Style="{StaticResource WrapTextBlockStyle}">
-                                <Run Text="９" />
-                                <LineBreak />
-                                <Run Text="土地登記・物件移転・" />
-                                <LineBreak />
-                                <Run Text="土地の引渡し" />
-                        </TextBlock>
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" 
+                                   Text="{Binding Buttons[8].BtnText}"/>
                     </Button>
                     <Button x:Name="BtnR3" Grid.Row="2" Grid.Column="2" Style="{StaticResource AramashiTestButtonStyle}" >
-                        <TextBlock Style="{StaticResource WrapTextBlockStyle}">
-                                <Run Text="８" />
-                                <LineBreak />
-                                <Run Text="補償金の前金払" />
-                        </TextBlock>
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" 
+                                   Text="{Binding Buttons[7].BtnText}"/>
                     </Button>
                     <Button x:Name="BtnR4" Grid.Row="3" Grid.Column="2" Style="{StaticResource AramashiTestButtonStyle}" >
-                        <TextBlock Style="{StaticResource WrapTextBlockStyle}">
-                                <Run Text="７" />
-                                <LineBreak />
-                                <Run Text="契約" />
-                        </TextBlock>
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" 
+                                   Text="{Binding Buttons[6].BtnText}"/>
                     </Button>
                     <Button x:Name="BtnR5" Grid.Row="4" Grid.Column="2" Style="{StaticResource AramashiTestButtonStyle}" >
-                        <TextBlock Style="{StaticResource WrapTextBlockStyle}">
-                                <Run Text="６" />
-                                <LineBreak />
-                                <Run Text="補償説明・協議" />
-                                <LineBreak />
-                                <Run Text="（用地交渉）" />
-                        </TextBlock>
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" 
+                                   Text="{Binding Buttons[5].BtnText}"/>
                     </Button>
 
                 </Grid>

@@ -1,10 +1,11 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.IO;
+using System.Text.Json;
+using System.Windows;
+using WpfApp.Common.Models;
 using WpfApp.Common.ViewModels;
 using WpfApp.Interfaces;
 using WpfApp.Screens.Menu.ViewModels;
@@ -17,10 +18,41 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         private readonly NavigationService _nav;
         private readonly IDialogService _dia;
 
+        public ObservableCollection<ButtonData> Buttons { get; } = new();
+
         public AramashiMenuViewModel(NavigationService navigationService, IDialogService dialogService)
         {
             _nav = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
             _dia = dialogService ?? throw new ArgumentNullException(nameof(dialogService));
+            LoadButtonFromJson();
+        }
+
+        private void LoadButtonFromJson()
+        {
+            try
+            {
+                string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data/aramashiButtons.json");
+
+                if (!File.Exists(path))
+                {
+                    MessageBox.Show("ボタンデータが見つかりません");
+                    Debug.WriteLine($"[DEBUG] ボタンデータが見つかりません: {path}");
+                    return;
+                }
+
+                string json = File.ReadAllText(path);
+                var list = JsonSerializer.Deserialize<List<ButtonData>>(json) ?? new List<ButtonData>();
+
+                Buttons.Clear();
+                foreach (var btn in list)
+                    Buttons.Add(btn);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ボタンデータを読み込むことができません");
+                Debug.WriteLine($"[DEBUG] ボタンデータを読み込むことができません: {ex.Message}");
+            }
         }
 
         [RelayCommand]

@@ -24,9 +24,10 @@
                 <StackPanel Background="{DynamicResource MaterialDesignPaper}">
                     <TextBlock Text="管理メニュー" 
                            FontSize="22" Margin="20"/>
-                    <Button Content="表示設定" FontSize="20"
-                        Style="{StaticResource MaterialDesignFlatButton}" />
-                    <Button Content="管理資料" FontSize="20"
+                    <Button Content="表示設定" FontSize="20" VerticalAlignment="Center"
+                            Style="{StaticResource MaterialDesignFlatButton}" 
+                            Command="{Binding GoToButtonSetttingsCommand}"/>
+                    <Button Content="管理資料" FontSize="20" VerticalAlignment="Center"
                         Style="{StaticResource MaterialDesignFlatButton}" />
                 </StackPanel>
             </materialDesign:DrawerHost.LeftDrawerContent>

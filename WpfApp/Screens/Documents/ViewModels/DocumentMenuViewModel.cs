@@ -1,15 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using MaterialDesignThemes.Wpf;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
 using System.Windows;
 using WpfApp.Common.Models;
 using WpfApp.Common.ViewModels;
@@ -24,12 +15,6 @@ namespace WpfApp.Screens.Documents.ViewModels
     {
         private readonly NavigationService _nav;
         private readonly IDialogService _dia;
-
-        [ObservableProperty]
-        private ObservableCollection<WorkData>? works;
-
-        [ObservableProperty]
-        private WorkData? selectedWork;
 
         [ObservableProperty]
         private ObservableCollection<LandownerData>? landowners;

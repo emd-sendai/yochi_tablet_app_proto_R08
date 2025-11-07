@@ -162,7 +162,7 @@
                 <Setter Property="VerticalAlignment" Value="Center" />
             </Style>
 
-            <!-- 地権者ユーザ一覧リストボックス様式 -->
+            <!-- リストボックス様式 -->
             <Style x:Key="BorderedListBoxStyle" TargetType="ListBox">
                 <Setter Property="BorderBrush" Value="DarkGray"/>
                 <Setter Property="BorderThickness" Value="1"/>
@@ -190,6 +190,9 @@
 
             <!-- 表示切替コンバータ（非表示の時空間を詰めない） -->
             <conv:BooleanToHiddenVisibilityConverter x:Key="BooleanToHiddenVisibilityConverter" />
+
+            <!-- NULLチェックコンバータ -->
+            <conv:NullToBoolConverter x:Key="NullToBoolConverter" />
 
         </ResourceDictionary>
 

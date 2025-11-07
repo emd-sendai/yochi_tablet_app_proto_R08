@@ -1,17 +1,12 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Documents;
 using WpfApp.Common.Models;
+using WpfApp.Common.Views;
 
 namespace WpfApp.Common.ViewModels
 {
@@ -57,14 +52,32 @@ namespace WpfApp.Common.ViewModels
         [RelayCommand]
         private void Select()
         {
+            // 地権者ユーザが選択されていない場合
             if (SelectedLandowner == null)
             {
-                // 未選択の場合はメッセージを表示する
-                System.Windows.MessageBox.Show("地権者ユーザを選択してください。", "確認", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
+                //メッセージウィンドウを表示
+                var vm = new MessageDialogViewModel
+                {
+                    Message = "地権者ユーザを選択してください"
+                };
 
-            RequestClose?.Invoke(this, true);
+                var dialog = new MessageDialogWindow
+                {
+                    DataContext = vm,
+                    Owner = Application.Current.MainWindow
+                };
+
+                bool? result = dialog.ShowDialog();
+                if (result == true)
+                {
+                    // OK押下後の処理
+                }
+            }
+            else
+            {
+                RequestClose?.Invoke(this, true);
+            }
+                
         }
 
         [RelayCommand]

@@ -3,10 +3,58 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:WpfApp.Screens.Admin.Views"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="800">
     <Grid>
-            
+        <!-- Gridの行定義 -->
+        <Grid.RowDefinitions>
+            <!-- ヘッダー（１行目） -->
+            <RowDefinition Height="Auto" />
+            <!-- メインコンテンツ（２行目） -->
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- １行目 -->
+        <!-- ページタイトル -->
+        <TextBlock Grid.Row="0" Text="ボタンの表示設定" Foreground="#3F51B5"
+            FontSize="30" FontWeight="Bold" Margin="0,10,0,10"
+            HorizontalAlignment="Center" VerticalAlignment="Center">
+        </TextBlock>
+
+        <!-- ボタン -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
+            <!-- ホームアイコンボタン -->
+            <Button Grid.Row="0" Style="{StaticResource IconTextButtonStyle}" 
+                Margin="5,10,10,10" Command="{Binding GoToMenuCommand}">
+                <StackPanel Orientation="Vertical" >
+                    <materialDesign:PackIcon Kind="Home" Style="{StaticResource ITButtonIconStyle}"/>
+                    <TextBlock Text="メインメニュー" Style="{StaticResource ITButtonTextStyle}"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+        
+        <StackPanel Margin="20" Grid.Row="1">
+            <TextBlock Text="編集するボタンを選択してください" FontSize="18" Margin="30,0,20,10"/>
+            <ListBox materialDesign:HintAssist.Hint="画面"  Style="{StaticResource BorderedListBoxStyle}"
+                     Margin="20,10,20,10">
+                <ComboBoxItem Content="補償のあらまし" FontSize="20"/>
+            </ListBox>
+            <ListBox ItemsSource="{Binding Buttons}" SelectedItem="{Binding SelectedButton, Mode=TwoWay}" 
+                     DisplayMemberPath="LabelText" materialDesign:HintAssist.Hint="ボタン" 
+                     Height="270"  Style="{StaticResource BorderedListBoxStyle}"
+                     ScrollViewer.CanContentScroll="False"
+                     ScrollViewer.PanningMode="VerticalOnly"
+                     ScrollViewer.PanningDeceleration="0.001"
+                     ScrollViewer.VerticalScrollBarVisibility="Auto"
+                     Margin="20,10,20,10" FontSize="20"/>
+            <Button Content="編集" Width="80" Height="50" FontSize="20"
+                Command="{Binding EditSelectedCommand}" 
+                Style="{StaticResource CommonButtonStyle}" 
+                Margin="0,10,0,0"
+                IsEnabled="{Binding SelectedButton, Converter={StaticResource NullToBoolConverter}}"/>
+        </StackPanel>
+
     </Grid>
 </UserControl>
