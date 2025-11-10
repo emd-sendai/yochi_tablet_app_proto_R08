@@ -35,6 +35,7 @@ namespace WpfApp.Services
                 SlideShellViewModel => new SlideShellView(),
                 DocumentMenuViewModel => new DocumentMenuView(),
 
+                DisplaySettingsViewModel => new DisplaySettingsView(),
                 ButtonSettingsViewModel => new ButtonSettingsView(),
 
                 AramashiMenuTestViewModel => new AramashiMenuTestView(),

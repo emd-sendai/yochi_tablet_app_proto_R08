@@ -19,6 +19,9 @@ namespace WpfApp.Screens.Admin.ViewModels
         private readonly NavigationService _nav;
         private readonly IDialogService _dia;
 
+        [ObservableProperty]
+        private bool isLeftDrawerOpen;
+
         public ObservableCollection<ButtonData> Buttons { get; } = new();
 
         [ObservableProperty]
@@ -116,6 +119,18 @@ namespace WpfApp.Screens.Admin.ViewModels
                 MessageBox.Show("ボタンデータを保存できません");
                 Debug.WriteLine($"[DEBUG] ボタンデータを保存できません: {ex}");
             }
+        }
+
+        [RelayCommand]
+        private void ToggleDrawer()
+        {
+            IsLeftDrawerOpen = !IsLeftDrawerOpen;
+        }
+
+        [RelayCommand]
+        private void GoToDisplaySetttings()
+        {
+            _nav.Navigate(new DisplaySettingsViewModel(_nav, _dia));
         }
 
         [RelayCommand]

@@ -94,9 +94,9 @@ namespace WpfApp.Screens.Menu.ViewModels
         }
 
         [RelayCommand]
-        private void GoToButtonSetttings()
+        private void GoToDisplaySetttings()
         {
-            _nav.Navigate(new ButtonSettingsViewModel(_nav, _dia));
+            _nav.Navigate(new DisplaySettingsViewModel(_nav, _dia));
         }
 
         [RelayCommand]

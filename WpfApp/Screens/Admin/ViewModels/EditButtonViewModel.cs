@@ -94,7 +94,20 @@ namespace WpfApp.Screens.Admin.ViewModels
 
         private static bool IsFullWidth(char c)
         {
-            return c > 0xFF; // 全角判定（日本語・全角記号）
+            // Unicodeの全角文字 + ASCII英数字を全角扱いにする
+            if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || (c >= '0' && c <= '9'))
+                return true; // 英数字も全角扱いにする
+
+            // 通常の全角文字範囲
+            return (c >= 0x1100 && c <= 0x115F) ||
+                   (c >= 0x2329 && c <= 0x232A) ||
+                   (c >= 0x2E80 && c <= 0xA4CF) ||
+                   (c >= 0xAC00 && c <= 0xD7A3) ||
+                   (c >= 0xF900 && c <= 0xFAFF) ||
+                   (c >= 0xFE10 && c <= 0xFE19) ||
+                   (c >= 0xFE30 && c <= 0xFE6F) ||
+                   (c >= 0xFF01 && c <= 0xFF60) ||
+                   (c >= 0xFFE0 && c <= 0xFFE6);
         }
 
         [RelayCommand]

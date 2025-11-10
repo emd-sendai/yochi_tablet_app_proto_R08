@@ -54,7 +54,9 @@
                 <Setter Property="Background" Value="#1F78B4" />
                 <Setter Property="BorderBrush" Value="#1F78B4" />
                 <Setter Property="Foreground" Value="#FEFEFEFE" />
-                <Setter Property="Width" Value="250" />
+                <Setter Property="Height" Value="65" />
+                <Setter Property="Margin" Value="0,0,0,20" />
+                <Setter Property="FontSize" Value="15" />
                 <Style.Triggers>
                     <Trigger Property="IsMouseOver" Value="True">
                         <Setter Property="Background" Value="#FEFEFEFE" />
@@ -69,9 +71,7 @@
                 <Setter Property="Background" Value="#1F78B4" />
                 <Setter Property="BorderBrush" Value="#1F78B4" />
                 <Setter Property="Foreground" Value="#FEFEFEFE" />
-                <Setter Property="Height" Value="65" />
-                <Setter Property="Margin" Value="0,0,0,20" />
-                <Setter Property="FontSize" Value="15" />
+                <Setter Property="Width" Value="250" />
                 <Style.Triggers>
                     <Trigger Property="IsMouseOver" Value="True">
                         <Setter Property="Background" Value="#FEFEFEFE" />
@@ -80,13 +80,27 @@
                     </Trigger>
                 </Style.Triggers>
             </Style>
-            
+
+            <!-- 補償のあらまし手順プレビューボタン様式 -->
+            <Style x:Key="AramashiPreviewButtonStyle" TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
+                <Setter Property="Background" Value="#1F78B4" />
+                <Setter Property="BorderBrush" Value="#1F78B4" />
+                <Setter Property="Foreground" Value="#FEFEFEFE" />
+                <Setter Property="Height" Value="65" />
+                <Setter Property="Width" Value="190" />
+                <Setter Property="FontSize" Value="15" />
+                <Setter Property="IsHitTestVisible" Value="False" />
+                <Setter Property="Focusable" Value="False" />
+            </Style>
+
             <!-- 補償のあらましその他ボタン様式 -->
             <Style x:Key="OthersButtonStyle" TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
                 <Setter Property="Background" Value="#009E73" />
                 <Setter Property="BorderBrush" Value="#009E73" />
                 <Setter Property="Foreground" Value="#FEFEFEFE" />
-                <Setter Property="Width" Value="130" />
+                <Setter Property="Height" Value="65" />
+                <Setter Property="Margin" Value="0,0,0,20" />
+                <Setter Property="FontSize" Value="15" />
                 <Style.Triggers>
                     <Trigger Property="IsMouseOver" Value="True">
                         <Setter Property="Background" Value="#FEFEFEFE" />
@@ -101,9 +115,7 @@
                 <Setter Property="Background" Value="#009E73" />
                 <Setter Property="BorderBrush" Value="#009E73" />
                 <Setter Property="Foreground" Value="#FEFEFEFE" />
-                <Setter Property="Height" Value="65" />
-                <Setter Property="Margin" Value="0,0,0,20" />
-                <Setter Property="FontSize" Value="15" />
+                <Setter Property="Width" Value="130" />
                 <Style.Triggers>
                     <Trigger Property="IsMouseOver" Value="True">
                         <Setter Property="Background" Value="#FEFEFEFE" />

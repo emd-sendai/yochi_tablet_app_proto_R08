@@ -20,7 +20,7 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Margin="20" VerticalAlignment="Center" HorizontalAlignment="Center" >
-            <Button Style="{StaticResource AramashiButtonStyle}" Width="180" Height="70">
+            <Button Style="{StaticResource AramashiPreviewButtonStyle}" >
                 <TextBlock Text="{Binding PreviewText}" Style="{StaticResource WrapTextBlockStyle}"/>
             </Button>
         </StackPanel>

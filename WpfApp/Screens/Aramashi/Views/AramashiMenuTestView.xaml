@@ -83,7 +83,7 @@
                         <!-- 手順１ -->
                         <Button 
                                 FontSize="16" Height="70" Margin="20,0,15,10"
-                                Style="{StaticResource AramashiButtonStyle}">
+                                Style="{StaticResource AramashiTestButtonStyle}">
                             <TextBlock Style="{StaticResource WrapTextBlockStyle}" >
                                 <Run Text="１" />
                                 <LineBreak />
@@ -94,7 +94,7 @@
                         <!-- 手順２ -->
                         <Button 
                                 FontSize="16" Height="70" Margin="20,0,15,10"
-                                Style="{StaticResource AramashiButtonStyle}">
+                                Style="{StaticResource AramashiTestButtonStyle}">
                             <TextBlock Style="{StaticResource WrapTextBlockStyle}">
                                 <Run Text="２" />
                                 <LineBreak />
@@ -104,7 +104,7 @@
                         <!-- 手順３ -->
                         <Button 
                                 FontSize="16" Height="70" Margin="20,0,15,10"
-                                Style="{StaticResource AramashiButtonStyle}">
+                                Style="{StaticResource AramashiTestButtonStyle}">
                             <TextBlock Style="{StaticResource WrapTextBlockStyle}">
                                 <Run Text="３" />
                                 <LineBreak />
@@ -114,7 +114,7 @@
                         <!-- 手順４ -->
                         <Button 
                                 FontSize="16" Height="70" Margin="20,0,15,10"
-                                Style="{StaticResource AramashiButtonStyle}">
+                                Style="{StaticResource AramashiTestButtonStyle}">
                             <TextBlock Style="{StaticResource WrapTextBlockStyle}">
                                 <Run Text="４" />
                                 <LineBreak />
@@ -124,7 +124,7 @@
                         <!-- 手順５ -->
                         <Button 
                                 FontSize="16" Height="70" Margin="20,0,15,0"
-                                Style="{StaticResource AramashiButtonStyle}">
+                                Style="{StaticResource AramashiTestButtonStyle}">
                             <TextBlock Style="{StaticResource WrapTextBlockStyle}">
                                 <Run Text="５" />
                                 <LineBreak />
@@ -140,7 +140,7 @@
                         <!-- 手順６ -->
                         <Button 
                                 FontSize="16" Height="70" Margin="15,0,20,10"
-                                Style="{StaticResource AramashiButtonStyle}">
+                                Style="{StaticResource AramashiTestButtonStyle}">
                             <TextBlock Style="{StaticResource WrapTextBlockStyle}">
                                 <Run Text="６" />
                                 <LineBreak />
@@ -150,7 +150,7 @@
                         <!-- 手順７ -->
                         <Button 
                                 FontSize="16" Height="70" Margin="15,0,20,10"
-                                Style="{StaticResource AramashiButtonStyle}">
+                                Style="{StaticResource AramashiTestButtonStyle}">
                             <TextBlock Style="{StaticResource WrapTextBlockStyle}">
                                 <Run Text="７" />
                                 <LineBreak />
@@ -160,7 +160,7 @@
                         <!-- 手順８ -->
                         <Button 
                                 FontSize="16" Height="70" Margin="15,0,20,10"
-                                Style="{StaticResource AramashiButtonStyle}">
+                                Style="{StaticResource AramashiTestButtonStyle}">
                             <TextBlock Style="{StaticResource WrapTextBlockStyle}">
                                 <Run Text="８" />
                                 <LineBreak />
@@ -170,7 +170,7 @@
                         <!-- 手順９ -->
                         <Button 
                                 FontSize="16" Height="70" Margin="15,0,20,10"
-                                Style="{StaticResource AramashiButtonStyle}">
+                                Style="{StaticResource AramashiTestButtonStyle}">
                             <TextBlock Style="{StaticResource WrapTextBlockStyle}">
                                 <Run Text="９" />
                                 <LineBreak />
@@ -182,7 +182,7 @@
                         <!-- 手順１０ -->
                         <Button 
                                 FontSize="16" Height="70" Margin="15,0,20,0"
-                                Style="{StaticResource AramashiButtonStyle}">
+                                Style="{StaticResource AramashiTestButtonStyle}">
                             <TextBlock Style="{StaticResource WrapTextBlockStyle}">
                                 <Run Text="１０" />
                                 <LineBreak />
@@ -221,31 +221,31 @@
                     <!-- 代替地 -->
                     <Button 
                                 FontSize="16" Height="70" Margin="20,0,20,10"
-                                Style="{StaticResource OthersButtonStyle}">
+                                Style="{StaticResource OthersTestButtonStyle}">
                         <TextBlock Text="代替地" Style="{StaticResource WrapTextBlockStyle}"/>
                     </Button>
                     <!-- 税金等 -->
                     <Button 
                                 FontSize="16" Height="70" Margin="20,0,20,10"
-                                Style="{StaticResource OthersButtonStyle}">
+                                Style="{StaticResource OthersTestButtonStyle}">
                         <TextBlock Text="税金等" Style="{StaticResource WrapTextBlockStyle}"/>
                     </Button>
                     <!-- 損失補償基準 -->
                     <Button 
                                 FontSize="16" Height="70" Margin="20,0,20,10"
-                                Style="{StaticResource OthersButtonStyle}">
+                                Style="{StaticResource OthersTestButtonStyle}">
                         <TextBlock Text="損失補償基準" Style="{StaticResource WrapTextBlockStyle}"/>
                     </Button>
                     <!-- 用地六法 -->
                     <Button 
                                 FontSize="16" Height="70" Margin="20,0,20,10"
-                                Style="{StaticResource OthersButtonStyle}">
+                                Style="{StaticResource OthersTestButtonStyle}">
                         <TextBlock Text="用地六法" Style="{StaticResource WrapTextBlockStyle}"/>
                     </Button>
                     <!-- その他 -->
                     <Button 
                                 FontSize="16" Height="70" Margin="20,0,20,0"
-                                Style="{StaticResource OthersButtonStyle}">
+                                Style="{StaticResource OthersTestButtonStyle}">
                         <TextBlock Text="その他" Style="{StaticResource WrapTextBlockStyle}"/>
                     </Button>
                 </StackPanel>
