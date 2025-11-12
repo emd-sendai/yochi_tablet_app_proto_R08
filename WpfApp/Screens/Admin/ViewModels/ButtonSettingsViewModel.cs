@@ -22,10 +22,10 @@ namespace WpfApp.Screens.Admin.ViewModels
         [ObservableProperty]
         private bool isLeftDrawerOpen;
 
-        public ObservableCollection<ButtonData> Buttons { get; } = new();
+        public ObservableCollection<ButtonConfig> Buttons { get; } = new();
 
         [ObservableProperty]
-        private ButtonData selectedButton = new();
+        private ButtonConfig selectedButton = new();
 
         public ButtonSettingsViewModel(NavigationService navigationService, IDialogService dialogService)
         {
@@ -91,7 +91,7 @@ namespace WpfApp.Screens.Admin.ViewModels
                 }
 
                 string json = File.ReadAllText(path);
-                var list = JsonSerializer.Deserialize<List<ButtonData>>(json) ?? new List<ButtonData>();
+                var list = JsonSerializer.Deserialize<List<ButtonConfig>>(json) ?? new List<ButtonConfig>();
                 Debug.WriteLine($"[DEBUG] 読み込み完了: {path} 件数={list.Count}");
 
                 Buttons.Clear();

@@ -168,7 +168,8 @@
                     </Grid.RowDefinitions>
 
                     <!-- ボタン -->
-                    <Button Grid.Row="0" Style="{StaticResource OthersButtonStyle}" >
+                    <Button Grid.Row="0" Style="{StaticResource OthersButtonStyle}" 
+                            Command="{Binding GoToDaitaichiCommand}">
                         <TextBlock Style="{StaticResource WrapTextBlockStyle}" >
                                 <Run Text="代替地" />
                         </TextBlock>

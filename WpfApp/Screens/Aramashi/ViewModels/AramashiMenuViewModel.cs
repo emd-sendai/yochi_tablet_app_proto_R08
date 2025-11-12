@@ -18,7 +18,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         private readonly NavigationService _nav;
         private readonly IDialogService _dia;
 
-        public ObservableCollection<ButtonData> Buttons { get; } = new();
+        public ObservableCollection<ButtonConfig> Buttons { get; } = new();
 
         public AramashiMenuViewModel(NavigationService navigationService, IDialogService dialogService)
         {
@@ -41,7 +41,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
                 }
 
                 string json = File.ReadAllText(path);
-                var list = JsonSerializer.Deserialize<List<ButtonData>>(json) ?? new List<ButtonData>();
+                var list = JsonSerializer.Deserialize<List<ButtonConfig>>(json) ?? new List<ButtonConfig>();
 
                 Buttons.Clear();
                 foreach (var btn in list)
@@ -90,6 +90,12 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             var slideVM = new SlideShellViewModel("Aramashi", _nav, _dia);
             _nav.Navigate(slideVM);
             slideVM.GoToSlide(2);
+        }
+
+        [RelayCommand]
+        private void GoToDaitaichi()
+        {
+            _nav.Navigate(new PresentationViewerViewModel("Others", _nav, _dia));
         }
 
     }

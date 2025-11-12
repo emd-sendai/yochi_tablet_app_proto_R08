@@ -33,6 +33,7 @@ namespace WpfApp.Services
                 MenuViewModel => new MenuView(),
                 AramashiMenuViewModel => new AramashiMenuView(),
                 SlideShellViewModel => new SlideShellView(),
+
                 DocumentMenuViewModel => new DocumentMenuView(),
 
                 DisplaySettingsViewModel => new DisplaySettingsView(),
@@ -40,6 +41,8 @@ namespace WpfApp.Services
 
                 AramashiMenuTestViewModel => new AramashiMenuTestView(),
                 DocumentMenu2ViewModel => new DocumentMenu2View(),
+
+                PresentationViewerViewModel => new PresentationViewerView(),
 
                 _ => throw new ArgumentException("Unknown ViewModel"),
             };

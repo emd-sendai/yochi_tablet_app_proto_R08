@@ -64,10 +64,10 @@
                 <!-- ボタン配置エリア -->
                 <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center" Margin="0,70,0,0" Width="300">
 
-                    <TextBlock Text="メインメニュー" FontSize="26" Foreground="#3F51B5" Margin="0,0,0,40"  HorizontalAlignment="Center" 
+                <TextBlock Text="メインメニュー" FontSize="26" Foreground="#3F51B5" Margin="0,0,0,40"  HorizontalAlignment="Center" 
                                FontWeight="Bold"/>
 
-                    <!-- 補償のあらましボタン -->
+                <!-- 補償のあらましボタン -->
                     <Button Content="補償のあらまし" FontSize="22" Height="60" Margin="0,0,0,40"
                     Command="{Binding GoToAramashiMenuCommand}" Style="{StaticResource CommonButtonStyle}"/>
 

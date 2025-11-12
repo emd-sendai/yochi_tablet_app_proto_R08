@@ -2,7 +2,7 @@
 
 namespace WpfApp.Common.Models
 {
-    public partial class ButtonData : ObservableObject
+    public partial class ButtonConfig : ObservableObject
     {
         [ObservableProperty]
         private string btnId = string.Empty;
