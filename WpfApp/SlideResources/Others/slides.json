@@ -82,7 +82,8 @@
             {
               "text": "事業用地提供者、代替地提供者、公共事業の施行者の三者による契約（三者契約）",
               "bold": true,
-              "color": "#D32F2F"
+              "color": "#1F78B4",
+              "underline": true
             },
             {
               "text": "をした場合、代替地提供者に対して譲渡所得の特別控除の適用が受けられます。",
@@ -91,7 +92,8 @@
             }
           ],
           "fontSize": 18
-        }
+        },
+        "imagePath": "daitaichi1.png"
       }
     ]
   },
@@ -109,72 +111,91 @@
     },
     "sections": [
       {
-        "subtitle": {
-          "textRuns": [
-            {
-              "text": "１　移転先の選索",
-              "bold": true,
-              "color": "#3F51B5"
-            }
-          ],
-          "fontSize": 20
-        },
-        "checkBox": {
-          "id": "d3",
-          "label": "",
-          "isChecked": false
-        },
         "body": {
           "textRuns": [
             {
-              "text": "　移転先（代替地）については、希望の場所、形状、面積、価格等それぞれ個々の事情により異なりますので、皆さまで確保していただくようお願いしています。\n",
+              "text": "※ この特別控除の適用を受けるためには",
               "bold": false,
               "color": "#000000"
             },
             {
-              "text": "　なお、移転先のご要望をお聞きした時には、可能な範囲で情報提供を行います。\n",
-              "bold": false,
-              "color": "#000000"
-            },
-            {
-              "text": "　代替地に市街化調整区域の土地や農地を求められる場合には、皆さまで開発行為許可や農地転用等の手続きを行っていただく必要があります。\n",
-              "bold": false,
-              "color": "#000000"
-            }
-          ],
-          "fontSize": 18
-        }
-      },
-      {
-        "subtitle": {
-          "textRuns": [
-            {
-              "text": "２　代替地提供者への特別控除",
+              "text": "事前にいろいろな手続きが必要な場合がありますので、あらかじめ担当者に申し出ていただく",
               "bold": true,
-              "color": "#3F51B5"
-            }
-          ],
-          "fontSize": 20
-        },
-        "checkBox": {
-          "id": "d4",
-          "label": "",
-          "isChecked": false
-        },
-        "body": {
-          "textRuns": [
+              "color": "#1F78B4",
+              "underline": true
+            },
             {
-              "text": "　公共事業用地の提供者に対して代替地を提供していただける土地の所有者（代替地提供者）には、一定の要件のもとに、租税特別措置法上の優遇措置があります。\n",
+              "text": "ことをお願いします。\n\n",
               "bold": false,
               "color": "#000000"
             },
             {
-              "text": "　事業用地提供者、代替地提供者、公共事業の施行者の三者による契約（三者契約）",
+              "text": "●この特別控除の適用を受けるためには、",
               "bold": false,
-              "color": "#3F51B5"
+              "color": "#000000"
             },
             {
-              "text": "をした場合、代替地提供者に対して譲渡所得の特別控除の適用が受けられます。",
+              "text": "事前に税務署に対して",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            },
+            {
+              "text": "土地の地番、面積、",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "売買代金等について協議する必要",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            },
+            {
+              "text": "があります。",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "したがって、協議前に仮契約、手付金の支払や農地法の手続き等をされますと、特別控除の適用が受けられなくなります。\n",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            },
+            {
+              "text": "●提供していただく代替地が、",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "たな卸資産",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "その他これに準ずる資産に該当する場合には",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "適用されません。\n",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            },
+            {
+              "text": "●特別控除の適用を受けられる範囲は、",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "お譲りいただく事業用地の土地代金以内で、かつ、最大１，５００万円まで",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            },
+            {
+              "text": "です。",
               "bold": false,
               "color": "#000000"
             }

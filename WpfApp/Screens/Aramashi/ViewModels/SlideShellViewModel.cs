@@ -1,16 +1,10 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using WpfApp.Interfaces;
 using WpfApp.Screens.Aramashi.Models;
 using WpfApp.Screens.Menu.ViewModels;
@@ -55,11 +49,12 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             if (!File.Exists(jsonPath))
             {
                 MessageBox.Show("スライドデータが見つかりません");
-                System.Diagnostics.Debug.WriteLine($"[DEBUG] slides.json not found: {jsonPath}");
+                Debug.WriteLine($"[DEBUG] slides.json not found: {jsonPath}");
                 return;
             }
 
             var jsonText = File.ReadAllText(jsonPath);
+            Debug.WriteLine($"[DEBUG] 読み込み完了: {jsonPath}");
             var slideList = JsonSerializer.Deserialize<List<SlideContent>>(jsonText);
             if (slideList == null) return;
 

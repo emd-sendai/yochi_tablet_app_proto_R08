@@ -22,7 +22,7 @@
                 HorizontalAlignment="Left" FontSize="24" Height="40">
             <StackPanel Orientation="Horizontal" >
                 <materialDesign:PackIcon Kind="OrderBoolAscending" Width="25" Height="35" Margin="0,0,5,0"/>
-                <TextBlock Text="用地補償の手順"  FontWeight="Bold" VerticalAlignment="Center"/>
+                <TextBlock Text="補償のあらまし"  FontWeight="Bold" VerticalAlignment="Center"/>
             </StackPanel>
         </Button>
         <!-- 基本ボタン -->

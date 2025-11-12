@@ -1,8 +1,11 @@
-﻿using System.IO;
+﻿using System.Diagnostics;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 using WpfApp.Screens.Aramashi.Models;
 using WpfApp.Screens.Aramashi.ViewModels;
 
@@ -22,23 +25,17 @@ namespace WpfApp.Screens.Aramashi.Views
         {
             MainPanel.Children.Clear();
 
-            // タイトル
-            /*
-            if (page.Title != null)
-            {
-                var title = CreateTextBlock(page.Title);
-                title.Margin = new Thickness(0, 10, 0, 10);
-                MainPanel.Children.Add(title);
-            }
-            */
-
             // 各セクション
             foreach (var section in page.Sections)
             {
-                var row = new StackPanel { Orientation = Orientation.Horizontal };
+                //bool hasSubtitle = false;
+                bool hasBody = false;
+                bool hasImage = false;
+
+                var subtitleRow = new StackPanel { Orientation = Orientation.Horizontal };
 
                 if (section.Subtitle != null)
-                    row.Children.Add(CreateTextBlock(section.Subtitle));
+                    subtitleRow.Children.Add(CreateTextBlock(section.Subtitle));
 
                 if (section.CheckBox != null)
                 {
@@ -56,28 +53,124 @@ namespace WpfApp.Screens.Aramashi.Views
                     cb.Unchecked += (_, __) =>
                         viewModel.UpdateCheckBoxState(page.Id, section.CheckBox.Id, false);
 
-                    row.Children.Add(cb);
+                    subtitleRow.Children.Add(cb);
                 }
 
-                MainPanel.Children.Add(row);
+                MainPanel.Children.Add(subtitleRow);
 
                 if (section.Body != null)
                 {
+                    /*
                     var body = CreateTextBlock(section.Body);
                     body.Margin = new Thickness(20, 4, 0, 8);
                     MainPanel.Children.Add(body);
+                    */
+                    hasBody = true;
                 }
-            }
 
-            if (!string.IsNullOrWhiteSpace(page.ImagePath) && File.Exists(page.ImagePath))
-            {
-                var img = new Image
+                if (!string.IsNullOrWhiteSpace(section.ImagePath) && File.Exists(section.ImagePath))
                 {
-                    Source = new System.Windows.Media.Imaging.BitmapImage(new Uri(page.ImagePath)),
-                    MaxWidth = 600,
-                    Margin = new Thickness(0, 10, 0, 0)
-                };
-                MainPanel.Children.Add(img);
+                    /*
+                    try
+                    {
+                        var img = new Image
+                        {
+                            Source = new BitmapImage(new Uri(section.ImagePath)),
+                            MaxWidth = 200,
+                            MaxHeight = 200,
+                            Stretch = Stretch.Uniform,
+                            StretchDirection = StretchDirection.DownOnly,
+                            Margin = new Thickness(0, 10, 0, 0)
+                        };
+                        MainPanel.Children.Add(img);
+                    */
+                        hasImage = true;
+                    /*
+                        Debug.WriteLine($"[DEBUG] 読み込み完了: {section.ImagePath}");
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine($"[ERROR] 画像を読み込むことができません: {ex}");
+                    }
+                    */
+                }
+
+                // テキストと画像
+                if (hasBody && hasImage)
+                {
+                    var bodyRow = new StackPanel { Orientation = Orientation.Horizontal };
+                    // テキスト
+                    if (section.Body != null)
+                    {
+                        var body = CreateTextBlock(section.Body);
+                        body.Margin = new Thickness(20, 4, 0, 8);
+                        body.MaxWidth = 490;
+                        bodyRow.Children.Add(body);
+                    }
+                    // 画像
+                    if (!string.IsNullOrWhiteSpace(section.ImagePath) && File.Exists(section.ImagePath))
+                    {
+                        try
+                        {
+                            var img = new Image
+                            {
+                                Source = new BitmapImage(new Uri(section.ImagePath)),
+                                MaxWidth = 200,
+                                MaxHeight = 200,
+                                Stretch = Stretch.Uniform,
+                                StretchDirection = StretchDirection.DownOnly,
+                                Margin = new Thickness(10, 0, 0, 0)
+                            };
+                            bodyRow.Children.Add(img);
+                            Debug.WriteLine($"[DEBUG] 読み込み完了: {section.ImagePath}");
+                        }
+                        catch (Exception ex)
+                        {
+                            Debug.WriteLine($"[ERROR] 画像を読み込むことができません: {ex}");
+                        }
+                    }
+                    MainPanel.Children.Add(bodyRow);
+                }
+                // テキストのみ
+                else if (hasBody)
+                {
+                    if (section.Body != null)
+                    {
+                        var body = CreateTextBlock(section.Body);
+                        body.Margin = new Thickness(20, 4, 0, 8);
+                        MainPanel.Children.Add(body);
+                    }
+                }
+                // 画像のみ
+                else
+                {
+                    if (!string.IsNullOrWhiteSpace(section.ImagePath) && File.Exists(section.ImagePath))
+                    {
+                        try
+                        {
+                            var img = new Image
+                            {
+                                Source = new BitmapImage(new Uri(section.ImagePath)),
+                                MaxWidth = 700,
+                                MaxHeight = 400,
+                                Stretch = Stretch.Uniform,
+                                //StretchDirection = StretchDirection.DownOnly,
+                                HorizontalAlignment = HorizontalAlignment.Center,
+                                VerticalAlignment = VerticalAlignment.Center,
+                                Margin = new Thickness(0, 10, 0, 0)
+                            };
+                            MainPanel.Children.Add(img);
+                            Debug.WriteLine($"[DEBUG] 読み込み完了: {section.ImagePath}");
+                        }
+                        catch (Exception ex)
+                        {
+                            Debug.WriteLine($"[ERROR] 画像を読み込むことができません: {ex}");
+                        }
+                    }
+                }
+
+
+
             }
         }
 
