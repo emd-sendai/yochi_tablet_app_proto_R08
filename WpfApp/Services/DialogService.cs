@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using WpfApp.Interfaces;
 using WpfApp.Common.Views;
+using WpfApp.Interfaces;
 
 namespace WpfApp.Services
 {
@@ -32,6 +33,9 @@ namespace WpfApp.Services
                     tcs.SetResult(resultVm.Result);
                 };
             }
+            Debug.WriteLine($"[DEBUG] DialogService: vmType={vmType.FullName}");
+            Debug.WriteLine($"[DEBUG] DialogService: viewTypeName={viewTypeName}");
+            Debug.WriteLine($"[DEBUG] DialogService: viewType={viewType?.FullName}");
 
             window.ShowDialog();
             return await tcs.Task;

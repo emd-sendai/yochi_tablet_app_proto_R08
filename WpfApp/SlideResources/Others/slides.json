@@ -201,6 +201,25 @@
             }
           ],
           "fontSize": 18
+        },
+        "signMessage": {
+          "textRuns": [
+            {
+              "text": "",
+              "bold": true,
+              "color": "#D32F2F"
+            }
+          ],
+          "fontSize": 20
+        },
+        "signButton": {
+          "id": "daitaichi",
+          "text": "署名をする",
+          "fontsize": 20,
+          "bold": true,
+          "height": 70,
+          "width": 250,
+          "commandName": "EditSignatureCommand"
         }
       }
     ]

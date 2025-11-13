@@ -9,7 +9,10 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
+using WpfApp.Common.ViewModels;
+using WpfApp.Common.Views;
 using WpfApp.Interfaces;
+using WpfApp.Screens.Admin.ViewModels;
 using WpfApp.Screens.Aramashi.Models;
 using WpfApp.Screens.Menu.ViewModels;
 using WpfApp.Services;
@@ -26,6 +29,12 @@ namespace WpfApp.Screens.Aramashi.ViewModels
 
         [ObservableProperty]
         private PresentationPageConfig? currentSlide;
+
+        [ObservableProperty]
+        private Dictionary<string, bool> pageCheckStates = new();
+
+        public bool AllPagesChecked => PageCheckStates.Count > 0 && PageCheckStates.All(kv => kv.Value);
+        //public bool AllPagesChecked => PageCheckStates.All(kv => kv.Value); ページ情報が登録されておらずDictionaryが空の状態でもtrue扱いにする場合
 
         public bool CanGoPrev => _index > 0;
         public bool CanGoNext => _index < Slides.Count - 1;
@@ -88,6 +97,44 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             }
         }
 
+        public void UpdateCheckBoxState(string slideId, string checkBoxId, bool isChecked)
+        {
+            var slide = Slides.FirstOrDefault(s => s.Id == slideId);
+            if (slide == null) return;
+
+            var section = slide.Sections.FirstOrDefault(sec => sec.CheckBox?.Id == checkBoxId);
+            if (section?.CheckBox != null)
+            {
+                section.CheckBox.IsChecked = isChecked;
+                SaveSlidesToJson();
+            }
+
+            // CheckBoxの状態が変わるたびに全チェック判定を更新
+            UpdateAllCheckedState(slideId);
+        }
+
+        public void UpdateAllCheckedState(string slideId)
+        {
+            var slide = Slides.FirstOrDefault(s => s.Id == slideId);
+            if (slide == null) return;
+
+            var checkBoxes = slide.Sections
+                .Where(s => s.CheckBox != null)
+                .Select(s => s.CheckBox)
+                .ToList();
+
+            // チェックボックスが存在しない場合は true 扱い
+            bool allChecked = checkBoxes.Count == 0 || checkBoxes.All(cb => cb.IsChecked);
+
+            // 辞書に結果を格納（既存なら上書き）
+            PageCheckStates[slideId] = allChecked;
+
+            // Dictionary変更通知
+            OnPropertyChanged(nameof(PageCheckStates));
+            // すべてのPageのCheckBox判定変更通知
+            OnPropertyChanged(nameof(AllPagesChecked));
+        }
+
         [RelayCommand]
         public void Zoom(double factor)
         {
@@ -139,16 +186,38 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             _nav.Navigate(new AramashiMenuViewModel(_nav, _dia));
         }
 
-        public void UpdateCheckBoxState(string slideId, string checkBoxId, bool isChecked)
+        [RelayCommand]
+        private async Task EditSignatureAsync()
         {
-            var slide = Slides.FirstOrDefault(s => s.Id == slideId);
-            if (slide == null) return;
 
-            var section = slide.Sections.FirstOrDefault(sec => sec.CheckBox?.Id == checkBoxId);
-            if (section?.CheckBox != null)
+            if (AllPagesChecked == false)
             {
-                section.CheckBox.IsChecked = isChecked;
-                SaveSlidesToJson();
+                //メッセージウィンドウを表示
+                var vm = new MessageDialogViewModel
+                {
+                    Message = "チェックされていない項目があります"
+                };
+
+                var dialog = new MessageDialogWindow
+                {
+                    DataContext = vm,
+                    Owner = Application.Current.MainWindow
+                };
+
+                bool? result = dialog.ShowDialog();
+                if (result == true)
+                {
+                    // OK押下後の処理
+                }
+            }
+            else
+            {
+                // DialogService を使ってモーダル Window を開く
+                var result = await _dia.ShowDialogAsync<SignatureViewModel, string>();
+
+                if (result != null)
+                {
+                }
             }
         }
     }

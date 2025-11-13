@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Text.Json.Serialization;
 using System.Windows.Input;
 
 namespace WpfApp.Screens.Aramashi.Models
@@ -26,6 +27,7 @@ namespace WpfApp.Screens.Aramashi.Models
     {
         public List<StyledTextRun> TextRuns { get; set; } = new();
         public double FontSize { get; set; } = 18;
+
     }
 
     public class StyledTextRun
@@ -36,12 +38,29 @@ namespace WpfApp.Screens.Aramashi.Models
         public bool Underline { get; set; } = false;
     }
 
+    public static class TextBlockDataExtensions
+    {
+        public static string GetPlainText(this TextBlockData data)
+            => string.Join("", data.TextRuns.Select(r => r.Text));
+
+        public static void SetPlainText(this TextBlockData data, string text)
+        {
+            data.TextRuns.Clear();
+            data.TextRuns.Add(new StyledTextRun { Text = text });
+        }
+    }
+
     public class PageSection
     {
         public TextBlockData? Subtitle { get; set; }
         public CheckBoxData? CheckBox { get; set; }
         public TextBlockData? Body { get; set; }
         public string? ImagePath { get; set; }
+
+        //public ButtonData? Button { get; set; }
+
+        public TextBlockData? SignMessage { get; set; }
+        public ButtonData? SignButton { get; set; }
 
         public void ResolvePaths(string baseDir)
         {
@@ -65,11 +84,14 @@ namespace WpfApp.Screens.Aramashi.Models
     {
         public string Id { get; set; } = "";
         public string Text { get; set; } = string.Empty;
-        public string BackgroundColor { get; set; } = "#FFFFFF";
-        public string ForegroundColor { get; set; } = "#000000";
-        public double FontSize { get; set; } = 14;
+        public double FontSize { get; set; } = 20;
         public bool Bold { get; set; } = false;
-        public ICommand? Command { get; set; } 
+        public double Height { get; set; } = 50;
+        public double Width { get; set; } = 100;
+        public string? CommandName { get; set; } 
         public object? CommandParameter { get; set; }
+
+        [JsonIgnore]  // 実行時のみ設定
+        public ICommand? Command { get; set; }
     }
 }
