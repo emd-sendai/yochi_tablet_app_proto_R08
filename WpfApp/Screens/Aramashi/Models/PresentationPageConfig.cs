@@ -43,10 +43,17 @@ namespace WpfApp.Screens.Aramashi.Models
         public static string GetPlainText(this TextBlockData data)
             => string.Join("", data.TextRuns.Select(r => r.Text));
 
-        public static void SetPlainText(this TextBlockData data, string text)
+        public static void SetPlainText(this TextBlockData data, string text, bool bold, string color)
         {
             data.TextRuns.Clear();
-            data.TextRuns.Add(new StyledTextRun { Text = text });
+            data.TextRuns.Add
+                (
+                    new StyledTextRun 
+                    {
+                        Text = text,
+                        Bold = bold,
+                        Color = color
+                    });
         }
     }
 

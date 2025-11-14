@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -63,7 +64,8 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         {
             if (!File.Exists(_jsonPath))
             {
-                MessageBox.Show("スライドデータが見つかりません。");
+                MessageBox.Show("スライドデータが見つかりません");
+                Debug.WriteLine($"[DEBUG] スライドデータが見つかりません");
                 return;
             }
 
@@ -71,7 +73,12 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             var slideList = JsonSerializer.Deserialize<List<PresentationPageConfig>>(jsonText,
                 new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
-            if (slideList == null) return;
+            if (slideList == null)
+            {
+                MessageBox.Show("スライドデータが空です");
+                Debug.WriteLine($"[DEBUG] スライドデータが空です");
+                return;
+            }
 
             Slides.Clear();
             string slideDir = Path.GetDirectoryName(_jsonPath)!;

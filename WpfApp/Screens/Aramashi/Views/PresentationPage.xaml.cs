@@ -167,7 +167,7 @@ namespace WpfApp.Screens.Aramashi.Views
                     Debug.WriteLine($"[DEBUG] 説明完了年月日: {wareki}");
 
                     // 署名メッセージに現在の年月日を追加
-                    section.SignMessage.SetPlainText(wareki + "上記についてすべて説明を受けました。");
+                    section.SignMessage.SetPlainText(wareki + "上記についてすべて説明を受けました。", true, "#D32F2F");
 
                     // 署名メッセージTextBlockを作成
                     var body = CreateTextBlock(section.SignMessage);

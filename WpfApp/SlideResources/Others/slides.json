@@ -1,6 +1,6 @@
 [
   {
-    "id": "page1",
+    "id": "daitaichi",
     "title": {
       "textRuns": [
         {
@@ -98,7 +98,7 @@
     ]
   },
   {
-    "id": "page2",
+    "id": "daitaichi",
     "title": {
       "textRuns": [
         {
@@ -205,9 +205,7 @@
         "signMessage": {
           "textRuns": [
             {
-              "text": "",
-              "bold": true,
-              "color": "#D32F2F"
+              "text": "署名用メッセージ"
             }
           ],
           "fontSize": 20

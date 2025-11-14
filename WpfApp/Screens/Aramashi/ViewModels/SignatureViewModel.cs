@@ -26,8 +26,9 @@ namespace WpfApp.Screens.Aramashi.ViewModels
 
         // UI依存の通知イベント
         public event EventHandler<string>? ShowMessageRequested;
+        //public event EventHandler<string>? LoadRequested;
         public event EventHandler<InkCanvas>? SaveRequested;
-        public event EventHandler<InkCanvas>? PrintRequested;
+        public event EventHandler<string>? PrintRequested;
         public event EventHandler<InkCanvas>? ClearRequested;
 
         [RelayCommand]
@@ -50,18 +51,10 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         }
 
         [RelayCommand]
-        private void Print(object? parameter)
+        private void Print()
         {
-            if (parameter is not InkCanvas canvas)
-                return;
 
-            if (canvas.Strokes.Count == 0)
-            {
-                ShowMessageRequested?.Invoke(this, "署名がありません");
-                return;
-            }
-
-            PrintRequested?.Invoke(this, canvas);
+            PrintRequested?.Invoke(this, "");
         }
 
         [RelayCommand]
@@ -72,6 +65,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
                 Debug.WriteLine($"[DEBUG] InkCanvasではありません");
                 return;
             }
+
             ClearRequested?.Invoke(this, canvas);
         }
 

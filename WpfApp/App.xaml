@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:WpfApp"
-             xmlns:conv="clr-namespace:WpfApp.Converters">
+             xmlns:conv="clr-namespace:WpfApp.Converters"
+             xmlns:help="clr-namespace:WpfApp.Helpers">
 
     <Application.Resources>
         <ResourceDictionary>
@@ -16,6 +17,11 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign2.Defaults.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ScrollBar.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
+            <!-- ダブルクリック防止 -->
+            <Style TargetType="Button">
+                <Setter Property="help:DisableDoubleClickBehavior.IsEnabled" Value="True"/>
+            </Style>
 
             <!-- 基本ボタン様式 -->
             <Style x:Key="CommonButtonStyle" TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">

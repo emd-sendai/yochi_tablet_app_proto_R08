@@ -42,8 +42,7 @@
                     Command="{Binding SaveCommand}"  Style="{StaticResource CommonButtonStyle}"
                     CommandParameter="{Binding ElementName=SignatureCanvas}"/>
                 <Button Content="PDF出力" Width="130" Height="50" Margin="15,5,5,5" FontSize="24"
-                    Command="{Binding PrintCommand}"  Style="{StaticResource CommonButtonStyle}"
-                    CommandParameter="{Binding ElementName=SignatureCanvas}"/>
+                    Command="{Binding PrintCommand}"  Style="{StaticResource CommonButtonStyle}"/>
             </StackPanel>
 
             <Button Content="閉じる" Width="100" Height="50" Margin="5,5,10,5" FontSize="20" Grid.Row="4" HorizontalAlignment="Right"
