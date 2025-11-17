@@ -1,19 +1,13 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 using System.Windows;
 using WpfApp.Common.ViewModels;
 using WpfApp.Common.Views;
 using WpfApp.Interfaces;
-using WpfApp.Screens.Admin.ViewModels;
 using WpfApp.Screens.Aramashi.Models;
 using WpfApp.Screens.Menu.ViewModels;
 using WpfApp.Services;
@@ -194,7 +188,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         }
 
         [RelayCommand]
-        private async Task EditSignatureAsync()
+        private async Task EditSignatureAsync(string editedSignMessage)
         {
 
             if (AllPagesChecked == false)
@@ -219,8 +213,11 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             }
             else
             {
+
+                 string sectionTitle = currentSlide.TitleText ?? "";
+
                 // DialogService を使ってモーダル Window を開く
-                var result = await _dia.ShowDialogAsync<SignatureViewModel, string>();
+                var result = await _dia.ShowDialogAsync<SignatureViewModel, string>(sectionTitle, editedSignMessage);
 
                 if (result != null)
                 {

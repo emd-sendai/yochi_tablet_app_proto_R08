@@ -1,5 +1,4 @@
-﻿using CommunityToolkit.Mvvm.Input;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Windows;
@@ -7,13 +6,8 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using WpfApp.Common.ViewModels;
-using WpfApp.Common.Views;
-using WpfApp.Interfaces;
-using WpfApp.Screens.Admin.ViewModels;
 using WpfApp.Screens.Aramashi.Models;
 using WpfApp.Screens.Aramashi.ViewModels;
-using WpfApp.Services;
 
 namespace WpfApp.Screens.Aramashi.Views
 {
@@ -22,13 +16,10 @@ namespace WpfApp.Screens.Aramashi.Views
     /// </summary>
     public partial class PresentationPage : UserControl
     {
-        //private bool isAllCheckBox = false;
-        //private readonly IDialogService _dia;
 
         public PresentationPage()
         {
             InitializeComponent();
-            //_dia = new DialogService();
         }
 
         public void ApplyPage(PresentationPageConfig page, PresentationViewerViewModel viewModel)
@@ -164,10 +155,12 @@ namespace WpfApp.Screens.Aramashi.Views
                     var culture = new CultureInfo("ja-JP", false);
                     culture.DateTimeFormat.Calendar = new JapaneseCalendar();
                     string wareki = DateTime.Now.ToString("ggy年M月d日", culture);
+                    
+                    string editedSignMessage = wareki + "上記についてすべて説明を受けました。";
                     Debug.WriteLine($"[DEBUG] 説明完了年月日: {wareki}");
 
                     // 署名メッセージに現在の年月日を追加
-                    section.SignMessage.SetPlainText(wareki + "上記についてすべて説明を受けました。", true, "#D32F2F");
+                    section.SignMessage.SetPlainText(editedSignMessage, true, "#D32F2F");
 
                     // 署名メッセージTextBlockを作成
                     var body = CreateTextBlock(section.SignMessage);
@@ -178,6 +171,7 @@ namespace WpfApp.Screens.Aramashi.Views
                     var button = CreateButton(section.SignButton);
                     button.HorizontalAlignment = HorizontalAlignment.Right;
                     button.Command = viewModel.EditSignatureCommand; // 一般ボタンの場合はCommandNameで判定して該当するCommandを設定する
+                    button.CommandParameter = editedSignMessage;
                     MainPanel.Children.Add(button);
 
                 }

@@ -40,7 +40,7 @@ namespace WpfApp.Common.ViewModels
                 string json = File.ReadAllText(path);
                 var list = JsonSerializer.Deserialize<List<LandownerData>>(json);
 
-                landowners = new ObservableCollection<LandownerData>(list ?? new List<LandownerData>());
+                Landowners = new ObservableCollection<LandownerData>(list ?? new List<LandownerData>());
             }
             catch (Exception ex)
             {

@@ -19,10 +19,10 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Text="ここにタイトル（バインド予定）" 
+            <TextBlock Text="{Binding Title}"
                        FontSize="26" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" Grid.Row="0"/>
 
-            <TextBlock Text="令和〇年○月○日上記について説明を受けました。（バインド予定）" 
+            <TextBlock Text="{Binding SignMessage}" 
                        FontSize="22" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" Grid.Row="1"/>
 
 

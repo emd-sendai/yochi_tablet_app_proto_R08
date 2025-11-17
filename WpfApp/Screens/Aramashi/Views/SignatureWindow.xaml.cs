@@ -1,29 +1,17 @@
-﻿using CommunityToolkit.Mvvm.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Ink;
-using System.Windows.Input;
-using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using WpfApp.Common.ViewModels;
 using WpfApp.Common.Views;
 using WpfApp.Screens.Aramashi.Models;
 using WpfApp.Screens.Aramashi.ViewModels;
-using WpfApp.Services;
-using static MaterialDesignThemes.Wpf.Theme.ToolBar;
 
 namespace WpfApp.Screens.Aramashi.Views
 {
@@ -32,7 +20,6 @@ namespace WpfApp.Screens.Aramashi.Views
     /// </summary>
     public partial class SignatureWindow : Window
     {
-
         private string DataFolder => Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data", "Signature");
         private string IsfPath => Path.Combine(DataFolder, "signature.isf");
         private string PngPath => Path.Combine(DataFolder, "signature.png");
@@ -98,14 +85,24 @@ namespace WpfApp.Screens.Aramashi.Views
             canvas.Strokes.Clear();
             using var fs = new FileStream(path, FileMode.Open, FileAccess.Read);
             canvas.Strokes = new StrokeCollection(fs);
+            Debug.WriteLine("[DEBUG] 署名のISFデータを取得しました");
         }
 
         private void ClearCanvas(InkCanvas canvas)
         {
             canvas.Strokes.Clear();
-            if (File.Exists(IsfPath)) File.Delete(IsfPath);
-            if (File.Exists(PngPath)) File.Delete(PngPath);
+            if (File.Exists(IsfPath))
+            {
+                File.Delete(IsfPath);
+                Debug.WriteLine("[DEBUG] 署名のISFデータを削除しました");
+            }
+            if (File.Exists(PngPath))
+            {
+                File.Delete(PngPath);
+                Debug.WriteLine("[DEBUG] 署名のPNGデータを削除しました");
+            }
             //if (File.Exists(PdfPath)) File.Delete(PdfPath);
+            
         }
 
         // 署名だけをPNG画像としてローカルフォルダに保存する
@@ -143,22 +140,32 @@ namespace WpfApp.Screens.Aramashi.Views
                 Directory.CreateDirectory(DataFolder);
             }
 
-            SaveSignatureIsf(canvas, IsfPath);
-            SaveSignaturePng(canvas, PngPath);
+            // 署名をISF形式で保存
+            bool isf = SaveSignatureIsf(canvas, IsfPath);
+            // 署名をPNG形式で保存
+            bool png = SaveSignaturePng(canvas, PngPath);
 
-            ShowMessageWindow("署名データを保存しました");
+            if (isf && png)
+            {
+                ShowMessageWindow("署名データを保存しました");
+            }
+            else
+            {
+                ShowMessageWindow("署名データを保存できません");
+            }
         }
 
         // ISF保存
-        private void SaveSignatureIsf(InkCanvas canvas, string path)
+        private bool SaveSignatureIsf(InkCanvas canvas, string path)
         {
-            if (canvas.Strokes.Count == 0)
-                return;
+            bool ret = false;
 
             try
             {
                 using var fs = new FileStream(path, FileMode.Create);
                 canvas.Strokes.Save(fs);
+
+                ret = true;
                 Debug.WriteLine($"[DEBUG] 署名をISFデータとして保存しました");
             }
             catch (Exception ex)
@@ -166,13 +173,13 @@ namespace WpfApp.Screens.Aramashi.Views
                 Debug.WriteLine($"[ERROR] 署名をISFデータとして保存できません: {ex}");
             }
 
+            return ret;
         }
 
         // PNG保存
-        private void SaveSignaturePng(InkCanvas canvas, string path)
+        private bool SaveSignaturePng(InkCanvas canvas, string path)
         {
-            if (canvas.Strokes.Count == 0)
-                return;
+            bool ret = false;
 
             try
             {
@@ -181,12 +188,12 @@ namespace WpfApp.Screens.Aramashi.Views
                     (int)Math.Ceiling(bounds.Width),
                     (int)Math.Ceiling(bounds.Height),
                     96, 96,
-                    System.Windows.Media.PixelFormats.Pbgra32);
+                    PixelFormats.Pbgra32);
 
-                var dv = new System.Windows.Media.DrawingVisual();
+                var dv = new DrawingVisual();
                 using (var dc = dv.RenderOpen())
                 {
-                    dc.PushTransform(new System.Windows.Media.TranslateTransform(-bounds.X, -bounds.Y));
+                    dc.PushTransform(new TranslateTransform(-bounds.X, -bounds.Y));
                     canvas.Strokes.Draw(dc);
                 }
 
@@ -197,6 +204,8 @@ namespace WpfApp.Screens.Aramashi.Views
 
                 using var fs = new FileStream(path, FileMode.Create);
                 encoder.Save(fs);
+
+                ret = true;
                 Debug.WriteLine($"[DEBUG] 署名をPNGデータとして保存しました");
             }
             catch (Exception ex)
@@ -204,14 +213,15 @@ namespace WpfApp.Screens.Aramashi.Views
                 Debug.WriteLine($"[ERROR] 署名をPNGデータとして保存できません: {ex}");
             }
 
+            return ret;
         }
 
         private void PrintPreview()
         {
             if (!File.Exists(PngPath))
             {
-                Debug.WriteLine($"[DEBUG] 署名データが存在しません");
-                ShowMessageWindow("保存された署名がありません\n署名を保存してからPDF出力してください");
+                Debug.WriteLine($"[DEBUG] 署名のPNGデータが存在しません");
+                ShowMessageWindow("保存された署名がありません\n署名を保存してからPDF出力を行ってください");
                 return;
             }
 
@@ -306,13 +316,15 @@ namespace WpfApp.Screens.Aramashi.Views
                         var culture = new CultureInfo("ja-JP", false);
                         culture.DateTimeFormat.Calendar = new JapaneseCalendar();
                         string wareki = DateTime.Now.ToString("ggy年M月d日", culture);
+
+                        string editedSignMessage = wareki + "上記についてすべて説明を受けました。";
                         Debug.WriteLine($"[DEBUG] 説明完了年月日: {wareki}");
 
 
                         Paragraph signMessagePara = new Paragraph();
                         signMessagePara.Margin = new Thickness(20, 20, 0, 10);
                         signMessagePara.FontSize = 18;
-                        signMessagePara.Inlines.Add(wareki + "上記についてすべて説明を受けました。");
+                        signMessagePara.Inlines.Add(editedSignMessage);
                         doc.Blocks.Add(signMessagePara);
 
                         AddImageToFlowDocument(doc, singPath);
@@ -367,6 +379,5 @@ namespace WpfApp.Screens.Aramashi.Views
             };
             doc.Blocks.Add(container);
         }
-
     }
 }

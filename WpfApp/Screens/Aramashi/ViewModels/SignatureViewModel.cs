@@ -1,20 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Microsoft.Win32;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using WpfApp.Common.ViewModels;
-using WpfApp.Common.Views;
 using WpfApp.Interfaces;
 
 namespace WpfApp.Screens.Aramashi.ViewModels
@@ -24,12 +11,24 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         public event EventHandler? RequestClose;
         public string? Result { get; private set; }
 
+        [ObservableProperty]
+        private string? title;
+
+        [ObservableProperty]
+        private string? signMessage;
+
         // UI依存の通知イベント
         public event EventHandler<string>? ShowMessageRequested;
         //public event EventHandler<string>? LoadRequested;
         public event EventHandler<InkCanvas>? SaveRequested;
         public event EventHandler<string>? PrintRequested;
         public event EventHandler<InkCanvas>? ClearRequested;
+
+        public SignatureViewModel(string _title , string _signMessage)
+        {
+            Title = _title;
+            SignMessage = _signMessage;
+        }
 
         [RelayCommand]
         private void Save(object? parameter)
