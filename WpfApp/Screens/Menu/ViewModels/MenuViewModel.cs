@@ -120,7 +120,7 @@ namespace WpfApp.Screens.Menu.ViewModels
         [RelayCommand]
         private void Exit()
         {
-            //タスクの解放
+            ShutdownService.Cleanup();
 
             Application.Current.Shutdown();
         }

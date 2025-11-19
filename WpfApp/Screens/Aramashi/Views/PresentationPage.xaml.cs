@@ -26,6 +26,8 @@ namespace WpfApp.Screens.Aramashi.Views
         {
             MainPanel.Children.Clear();
 
+            int cnt = 0;
+
             // 各セクション
             foreach (var section in page.Sections)
             {
@@ -33,31 +35,40 @@ namespace WpfApp.Screens.Aramashi.Views
                 bool hasBody = false;
                 bool hasImage = false;
 
-                var subtitleRow = new StackPanel { Orientation = Orientation.Horizontal };
+                if (section.Subtitle != null) 
+                {
+                    var subtitleRow = new StackPanel { Orientation = Orientation.Horizontal };
+                    // ページ内の２つ目以降の要素である場合、上にMarginを設定する
+                    if (cnt > 0)
+                    {
+                        subtitleRow.Margin = new Thickness(0,10,0,0);
+                    }
 
-                if (section.Subtitle != null)
                     subtitleRow.Children.Add(CreateTextBlock(section.Subtitle));
 
-                if (section.CheckBox != null)
-                {
-                    var cb = new CheckBox
+                    if (section.CheckBox != null)
                     {
-                        Content = section.CheckBox.Label,
-                        IsChecked = section.CheckBox.IsChecked,
-                        Margin = new Thickness(10, 0, 0, 0),
-                        VerticalAlignment = VerticalAlignment.Center,
-                        //LayoutTransform = new ScaleTransform(1.1, 1.1) 
-                    };
+                        var cb = new CheckBox
+                        {
+                            //Content = section.CheckBox.Label,
+                            IsChecked = section.CheckBox.IsChecked,
+                            Margin = new Thickness(10, 0, 0, 0),
+                            Padding = new Thickness(0),
+                            VerticalAlignment = VerticalAlignment.Center,
+                            //LayoutTransform = new ScaleTransform(1.1, 1.1) 
+                            FontSize = section.Subtitle.FontSize,
+                        };
 
-                    cb.Checked += (_, __) =>
-                        viewModel.UpdateCheckBoxState(page.Id, section.CheckBox.Id, true);
-                    cb.Unchecked += (_, __) =>
-                        viewModel.UpdateCheckBoxState(page.Id, section.CheckBox.Id, false);
+                        cb.Checked += (_, __) =>
+                            viewModel.UpdateCheckBoxState(page.Id, section.CheckBox.Id, true);
+                        cb.Unchecked += (_, __) =>
+                            viewModel.UpdateCheckBoxState(page.Id, section.CheckBox.Id, false);
 
-                    subtitleRow.Children.Add(cb);
+                        subtitleRow.Children.Add(cb);
+                    }
+                    MainPanel.Children.Add(subtitleRow);
+                    cnt++;
                 }
-
-                MainPanel.Children.Add(subtitleRow);
 
                 if (section.Body != null)
                 {
@@ -73,6 +84,7 @@ namespace WpfApp.Screens.Aramashi.Views
                 if (hasBody && hasImage)
                 {
                     var bodyRow = new StackPanel { Orientation = Orientation.Horizontal };
+
                     /* 本文 */
                     if (section.Body != null)
                     {
@@ -95,7 +107,7 @@ namespace WpfApp.Screens.Aramashi.Views
                                 MaxHeight = 200,
                                 Stretch = Stretch.Uniform,
                                 StretchDirection = StretchDirection.DownOnly,
-                                Margin = new Thickness(10, 0, 0, 0)
+                                Margin = new Thickness(10, 4, 0, 0)
                             };
                             bodyRow.Children.Add(img);
                             Debug.WriteLine($"[DEBUG] 読み込み完了: {section.ImagePath}");
@@ -106,6 +118,7 @@ namespace WpfApp.Screens.Aramashi.Views
                         }
                     }
                     MainPanel.Children.Add(bodyRow);
+                    cnt++;
                 }
                 // 本文のみの場合
                 else if (hasBody)
@@ -116,6 +129,7 @@ namespace WpfApp.Screens.Aramashi.Views
                         var body = CreateTextBlock(section.Body);
                         body.Margin = new Thickness(20, 4, 0, 8);
                         MainPanel.Children.Add(body);
+                        cnt++;
                     }
                 }
                 // 画像のみの場合
@@ -138,6 +152,7 @@ namespace WpfApp.Screens.Aramashi.Views
                                 Margin = new Thickness(0, 10, 0, 0)
                             };
                             MainPanel.Children.Add(img);
+                            cnt++;
                             Debug.WriteLine($"[DEBUG] 読み込み完了: {section.ImagePath}");
                         }
                         catch (Exception ex)
@@ -148,8 +163,13 @@ namespace WpfApp.Screens.Aramashi.Views
                 }
 
                 // 署名メッセージと署名ボタンが設定されている場合
-                if(section.SignMessage !=  null && section.SignButton != null)
+                if(section.SignTarget != null && section.SignMessage !=  null && section.SignButton != null)
                 {
+                    /* 署名対象 */
+                    var signTarget = CreateTextBlock(section.SignTarget);
+                    signTarget.Margin = new Thickness(20, 40, 0, 0);
+                    MainPanel.Children.Add(signTarget);
+
                     /* 署名メッセージ */
                     // 現在の日付（和暦）を取得
                     var culture = new CultureInfo("ja-JP", false);
@@ -163,9 +183,10 @@ namespace WpfApp.Screens.Aramashi.Views
                     section.SignMessage.SetPlainText(editedSignMessage, true, "#D32F2F");
 
                     // 署名メッセージTextBlockを作成
-                    var body = CreateTextBlock(section.SignMessage);
-                    body.Margin = new Thickness(20, 4, 0, 8);
-                    MainPanel.Children.Add(body);
+                    var signMessage = CreateTextBlock(section.SignMessage);
+                    signMessage.Margin = new Thickness(20, 20, 0, 0);
+                    signMessage.FontSize = 20;
+                    MainPanel.Children.Add(signMessage);
 
                     /* 署名ボタン */
                     var button = CreateButton(section.SignButton);
@@ -173,9 +194,7 @@ namespace WpfApp.Screens.Aramashi.Views
                     button.Command = viewModel.EditSignatureCommand; // 一般ボタンの場合はCommandNameで判定して該当するCommandを設定する
                     button.CommandParameter = editedSignMessage;
                     MainPanel.Children.Add(button);
-
                 }
-
             }
             // ページ初期表示時点のチェック状態を更新
             viewModel.UpdateAllCheckedState(page.Id);

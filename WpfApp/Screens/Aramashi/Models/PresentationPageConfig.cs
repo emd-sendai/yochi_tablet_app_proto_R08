@@ -12,6 +12,10 @@ namespace WpfApp.Screens.Aramashi.Models
 
         public string TitleText => Title?.TextRuns.FirstOrDefault()?.Text ?? "";
 
+        public bool Video { get; set; } = false;
+
+        public string? VideoPath { get; set; }
+
         public List<PageSection> Sections { get; set; } = new();
 
         public void ResolvePaths(string baseDir)
@@ -26,7 +30,7 @@ namespace WpfApp.Screens.Aramashi.Models
     public class TextBlockData
     {
         public List<StyledTextRun> TextRuns { get; set; } = new();
-        public double FontSize { get; set; } = 18;
+        public double FontSize { get; set; } = 16;
 
     }
 
@@ -66,6 +70,7 @@ namespace WpfApp.Screens.Aramashi.Models
 
         //public ButtonData? Button { get; set; }
 
+        public TextBlockData? SignTarget { get; set; }
         public TextBlockData? SignMessage { get; set; }
         public ButtonData? SignButton { get; set; }
 

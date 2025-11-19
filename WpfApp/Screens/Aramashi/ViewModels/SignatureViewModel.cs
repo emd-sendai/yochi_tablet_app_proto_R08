@@ -12,22 +12,38 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         public string? Result { get; private set; }
 
         [ObservableProperty]
-        private string? title;
+        private string? signMessage;
 
         [ObservableProperty]
-        private string? signMessage;
+        private string? jsonPath;
+
+        [ObservableProperty]
+        private Dictionary<string, string> signaturefileNames = new();
 
         // UI依存の通知イベント
         public event EventHandler<string>? ShowMessageRequested;
-        //public event EventHandler<string>? LoadRequested;
         public event EventHandler<InkCanvas>? SaveRequested;
         public event EventHandler<string>? PrintRequested;
         public event EventHandler<InkCanvas>? ClearRequested;
 
-        public SignatureViewModel(string _title , string _signMessage)
+        public SignatureViewModel(string _signMessage, string _jsonPath, string presentationName)
         {
-            Title = _title;
-            SignMessage = _signMessage;
+            SignMessage = _signMessage ?? "";
+            JsonPath = _jsonPath ?? "";
+            GenerateSignatureFileNames(presentationName);
+        }
+
+        private void GenerateSignatureFileNames(string presentationName)
+        {
+            string baseName = presentationName switch
+            {
+                "daitaichi" => "signature_daitaichi",
+                "zeikin" => "signature_zeikin",
+                _ => throw new ArgumentException($"Invalid presentationName: {presentationName}")
+            };
+
+            SignaturefileNames["isf"] = $"{baseName}.isf";
+            SignaturefileNames["png"] = $"{baseName}.png";
         }
 
         [RelayCommand]
@@ -52,8 +68,15 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         [RelayCommand]
         private void Print()
         {
-
-            PrintRequested?.Invoke(this, "");
+            if (JsonPath != null)
+            {
+                PrintRequested?.Invoke(this, JsonPath);
+            }
+            else
+            {
+                Debug.WriteLine($"[DEBUG] スライドデータのパスが見つかりません");
+                return;
+            }
         }
 
         [RelayCommand]

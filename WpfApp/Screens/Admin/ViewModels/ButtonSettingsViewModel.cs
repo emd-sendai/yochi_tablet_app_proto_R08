@@ -27,20 +27,13 @@ namespace WpfApp.Screens.Admin.ViewModels
         [ObservableProperty]
         private ButtonConfig selectedButton = new();
 
+        private static readonly string DataFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data", "ButtonSettings");
+
         public ButtonSettingsViewModel(NavigationService navigationService, IDialogService dialogService)
         {
             _nav = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
             _dia = dialogService ?? throw new ArgumentNullException(nameof(dialogService));
             LoadButtonFromJson();
-        }
-
-        private static string GetButtonFilePath()
-        {
-            string dir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data");
-            if (!Directory.Exists(dir))
-                Directory.CreateDirectory(dir);
-
-            return Path.Combine(dir, "aramashiButtons.json");
         }
 
         [RelayCommand]
@@ -80,8 +73,7 @@ namespace WpfApp.Screens.Admin.ViewModels
         {
             try
             {
-                string path = GetButtonFilePath();
-                Debug.WriteLine($"[DEBUG] 読み込みパス: {path}");
+                string path = Path.Combine(DataFolder, "aramashiButtons.json");
 
                 if (!File.Exists(path))
                 {
@@ -91,9 +83,16 @@ namespace WpfApp.Screens.Admin.ViewModels
                 }
 
                 string json = File.ReadAllText(path);
-                var list = JsonSerializer.Deserialize<List<ButtonConfig>>(json) ?? new List<ButtonConfig>();
-                Debug.WriteLine($"[DEBUG] 読み込み完了: {path} 件数={list.Count}");
+                var list = JsonSerializer.Deserialize<List<ButtonConfig>>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
+                if(list == null)
+                {
+                    MessageBox.Show("ボタンデータが空です");
+                    Debug.WriteLine($"[DEBUG] ボタンデータが空です: {path}");
+                    return;
+                }
+
+                Debug.WriteLine($"[DEBUG] 読み込み完了: {path} 件数 = {list.Count}");
                 Buttons.Clear();
                 foreach (var btn in list)
                     Buttons.Add(btn);
@@ -109,7 +108,15 @@ namespace WpfApp.Screens.Admin.ViewModels
         {
             try
             {
-                string path = GetButtonFilePath();
+                string path = Path.Combine(DataFolder, "aramashiButtons.json");
+
+                if (!File.Exists(path))
+                {
+                    MessageBox.Show("ボタンの保存先が見つかりません");
+                    Debug.WriteLine($"[DEBUG] ボタンの保存先が見つかりません: {path}");
+                    return;
+                }
+
                 var json = JsonSerializer.Serialize(Buttons, new JsonSerializerOptions { WriteIndented = true });
                 File.WriteAllText(path, json);
                 Debug.WriteLine($"[DEBUG] 保存完了: {path}");

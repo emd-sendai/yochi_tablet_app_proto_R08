@@ -18,6 +18,8 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         private readonly NavigationService _nav;
         private readonly IDialogService _dia;
 
+        private static readonly string ButtonDataFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data", "ButtonSettings");
+
         public ObservableCollection<ButtonConfig> Buttons { get; } = new();
 
         public AramashiMenuViewModel(NavigationService navigationService, IDialogService dialogService)
@@ -31,7 +33,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         {
             try
             {
-                string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data/aramashiButtons.json");
+                string path = Path.Combine(ButtonDataFolder, "aramashiButtons.json");
 
                 if (!File.Exists(path))
                 {
@@ -41,8 +43,16 @@ namespace WpfApp.Screens.Aramashi.ViewModels
                 }
 
                 string json = File.ReadAllText(path);
-                var list = JsonSerializer.Deserialize<List<ButtonConfig>>(json) ?? new List<ButtonConfig>();
+                var list = JsonSerializer.Deserialize<List<ButtonConfig>>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
+                if (list == null)
+                {
+                    MessageBox.Show("ボタンデータが空です");
+                    Debug.WriteLine($"[DEBUG] ボタンデータが空です: {path}");
+                    return;
+                }
+
+                Debug.WriteLine($"[DEBUG] 読み込み完了: {path} 件数 = {list.Count}");
                 Buttons.Clear();
                 foreach (var btn in list)
                     Buttons.Add(btn);
@@ -95,7 +105,13 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         [RelayCommand]
         private void GoToDaitaichi()
         {
-            _nav.Navigate(new PresentationViewerViewModel("Others", _nav, _dia));
+            _nav.Navigate(new PresentationViewerViewModel("daitaichi", _nav, _dia));
+        }
+
+        [RelayCommand]
+        private void GoToZeikin()
+        {
+            _nav.Navigate(new PresentationViewerViewModel("zeikin", _nav, _dia));
         }
 
     }

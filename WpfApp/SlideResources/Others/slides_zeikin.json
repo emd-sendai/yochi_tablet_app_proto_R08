@@ -1,0 +1,824 @@
+[
+  {
+    "id": "zeikin1",
+    "title": {
+      "textRuns": [
+        {
+          "text": "Ⅲ 税制上の優遇措置について",
+          "bold": true,
+          "color": "#000000"
+        }
+      ],
+      "fontSize": 26
+    },
+    "video": true,
+    "videoPath": "",
+    "sections": [
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "１ 譲渡所得に対する課税の特例",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        },
+        "checkBox": {
+          "id": "z1",
+          "label": "",
+          "isChecked": false
+        },
+        "body": {
+          "textRuns": [
+            {
+              "text": "　土地や建物を他の人に譲り渡したときは、譲渡所得として課税されますが、公共事業のために譲り渡した場合には、お支払いする補償金のうち、土地代金、建物（取り壊した場合）等の補償金（対価補償金）については、",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "租税特別措置法に基づく優遇措置を受けることができ、次のいずれか一方を選択",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "することができます。",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16
+        }
+      },
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "（１）譲渡所得の特別控除",
+              "bold": true,
+              "color": "#1F78B4"
+            }
+          ],
+          "fontSize": 18
+        },
+        "checkBox": {
+          "id": "z2",
+          "label": "",
+          "isChecked": false
+        },
+        "body": {
+          "textRuns": [
+            {
+              "text": "　公共事業のために資産を譲渡した場合で、次の要件を満たすときは、",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "譲渡所得から対価補償金について、５，０００万円を限度として控除",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            },
+            {
+              "text": "できます。\n\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "●",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "たな卸資産でないこと。\n",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "●",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "買取りの申出をした日から６か月以内に譲渡",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            },
+            {
+              "text": "したこと。\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "●同一事業で２か年にまたがって２回以上に分けて譲渡した場合は、",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "最初の年の譲渡資産に限られる",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "こと。\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "●起業者から最初に買取りの申出を受けた者であること。（買取り申出後に売買や贈与等を行った場合、特別控除は認められません。）\n　なお、",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "同一年に２つ以上の公共事業により資産を譲渡",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "をした場合でも、",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "特別控除の額は、５，０００万円が限度",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "です。",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16
+        }
+      }
+    ]
+  },
+  {
+    "id": "zeikin2",
+    "title": {
+      "textRuns": [
+        {
+          "text": "Ⅲ 税制上の優遇措置について",
+          "bold": true,
+          "color": "#000000"
+        }
+      ],
+      "fontSize": 26
+    },
+    "video": true,
+    "videoPath": "",
+    "sections": [
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "（２）代替資産を取得した場合の課税の特例",
+              "bold": true,
+              "color": "#1F78B4"
+            }
+          ],
+          "fontSize": 18
+        },
+        "checkBox": {
+          "id": "z3",
+          "label": "",
+          "isChecked": false
+        },
+        "body": {
+          "textRuns": [
+            {
+              "text": "　公共事業のために資産を譲渡し、",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "原則として資産の譲渡があった日から２年以内に",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            },
+            {
+              "text": "、その対価補償金で一定の代替資産を取得した場合には、代替資産の取得に充てられた補償金に対応する部分は",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "譲渡がなかったものとみなされ課税されず",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "、残りの補償金に対して課税されます。\n\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "※",
+              "bold": false,
+              "color": "#000000",
+              "underline": true
+            },
+            {
+              "text": "事業施行地外の土地の上にある建物等の資産",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            },
+            {
+              "text": "（事業施行地内外にまたがっている場合を除きます。）に係る移転補償金等がある場合については、",
+              "bold": false,
+              "color": "#000000",
+              "underline": true
+            },
+            {
+              "text": "原則として、譲渡所得の特別控除（５，０００万円控除等）の適用はありません",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            },
+            {
+              "text": "。\n\n　",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "租税特別措置法の適用を受けるための条件は個々に異なりますので、詳細については所轄税務署の資産課税部門にご相談ください。",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 16
+        }
+      }
+    ]
+  },
+  {
+    "id": "zeikin3",
+    "title": {
+      "textRuns": [
+        {
+          "text": "Ⅲ 税制上の優遇措置について",
+          "bold": true,
+          "color": "#000000"
+        }
+      ],
+      "fontSize": 26
+    },
+    "video": true,
+    "videoPath": "",
+    "sections": [
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "２ 税務申告について",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        },
+        "body": {
+          "textRuns": [
+            {
+              "text": "　課税の特例の適用を受けるためには、確定申告書に特例の適用を受ける旨記載して、起業者が発行する",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "「買取り等の申出証明書」、「買取り等の証明書」、「収用証明書」を添付のうえ、納税地の所轄税務署に確定申告してください。\n\n",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            },
+            {
+              "text": "※なお、課税の特例については",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "補償金の全部が対象になるとは限りません。補償金の項目、内容によっては課税の対象となります。",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 16
+        }
+      }
+    ]
+  },
+  {
+    "id": "zeikin4",
+    "title": {
+      "textRuns": [
+        {
+          "text": "Ⅳ 土地の譲渡等に伴うその他の税金等",
+          "bold": true,
+          "color": "#000000"
+        }
+      ],
+      "fontSize": 26
+    },
+    "video": true,
+    "videoPath": "",
+    "sections": [
+      {
+        "body": {
+          "textRuns": [
+            {
+              "text": "　お支払いする補償金は皆さまの所得になりますので、",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "所得制限等により影響を受ける配偶者控除・扶養控除等、農業者年金、福祉年金等、国民健康保険料、後期高齢者医療保険料、介護保険料等について、控除を受けられなくなる場合や保険料の変更、年金の支給停止等になる場合がありますので、",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "各市区町村等にご相談ください。",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 16
+        }
+      },
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "１ 固定資産税・都市計画税について",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        },
+        "checkBox": {
+          "id": "z4",
+          "label": "",
+          "isChecked": false
+        },
+        "body": {
+          "textRuns": [
+            {
+              "text": "　固定資産税・都市計画税に関しては、",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "毎年１月１日現在の登記記録（登記簿）上の所有者等に対して課税することとなっており、年の途中で土地等を譲渡した場合でも、その年分の税金は従前の所有者に課されることになります。\n",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            },
+            {
+              "text": "（相談窓口）各所轄都税事務所・各市町村税務課",
+              "bold": false,
+              "color": "#1F78B4"
+            }
+          ],
+          "fontSize": 16
+        }
+      },
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "２ 住民税",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        },
+        "checkBox": {
+          "id": "z5",
+          "label": "",
+          "isChecked": false
+        },
+        "body": {
+          "textRuns": [
+            {
+              "text": "　住民税の均等割額については、特別控除の適用がありませんので、現在、住民税が非課税である場合は、翌年一年間に限り均等割額が課税されることがあります。\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "（相談窓口）各市区町村担当課",
+              "bold": false,
+              "color": "#1F78B4"
+            }
+          ],
+          "fontSize": 16
+        }
+      }
+    ]
+  },
+  {
+    "id": "zeikin5",
+    "title": {
+      "textRuns": [
+        {
+          "text": "Ⅳ 土地の譲渡等に伴うその他の税金等",
+          "bold": true,
+          "color": "#000000"
+        }
+      ],
+      "fontSize": 26
+    },
+    "video": true,
+    "videoPath": "",
+    "sections": [
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "３ 不動産取得税について",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        },
+        "checkBox": {
+          "id": "z6",
+          "label": "",
+          "isChecked": false
+        },
+        "body": {
+          "textRuns": [
+            {
+              "text": "　代替地を取得したり、建物を新築または取得された方には、原則として不動産取得税が課税されますが、一定期間内に代替と認められる資産を取得した場合には、申告により税額が軽減されます。\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "（相談窓口）各所轄都県税事務所",
+              "bold": false,
+              "color": "#1F78B4"
+            }
+          ],
+          "fontSize": 16
+        }
+      },
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "４ 納税猶予の特例を受けた農地について",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        },
+        "checkBox": {
+          "id": "z7",
+          "label": "",
+          "isChecked": false
+        },
+        "body": {
+          "textRuns": [
+            {
+              "text": "　納税猶予の特例を受けた農地を事業用地として譲渡した場合、譲渡面積に対応する部分の相続税、贈与税および不動産取得税ならびに納税猶予期間中の利子税および延滞金を土地所有者の方が納付しなければなりません。\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "（※利子税および延滞金については、平成２６年４月１日から令和８年３月３１日までの間は、届出することにより、全額免除されます。）\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "（相談窓口）各所轄税務署・各所轄都県税事務所",
+              "bold": false,
+              "color": "#1F78B4"
+            }
+          ],
+          "fontSize": 16
+        }
+      },
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "５ 配偶者控除・扶養控除等について（所得税・住民税）",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        },
+        "checkBox": {
+          "id": "z8",
+          "label": "",
+          "isChecked": false
+        },
+        "body": {
+          "textRuns": [
+            {
+              "text": "　控除対象配偶者および扶養親族等が、土地等を譲渡された場合、その方の所得が一定額以上になると、配偶者控除および扶養控除等の対象から除かれることになります。\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "（相談窓口）各所轄税務署・各市区町村税務課",
+              "bold": false,
+              "color": "#1F78B4"
+            }
+          ],
+          "fontSize": 16
+        }
+      }
+    ]
+  },
+  {
+    "id": "zeikin6",
+    "title": {
+      "textRuns": [
+        {
+          "text": "Ⅳ 土地の譲渡等に伴うその他の税金等",
+          "bold": true,
+          "color": "#000000"
+        }
+      ],
+      "fontSize": 26
+    },
+    "video": true,
+    "videoPath": "",
+    "sections": [
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "６ 農業者年金（経営移譲年金）について",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        },
+        "checkBox": {
+          "id": "z9",
+          "label": "",
+          "isChecked": false
+        },
+        "body": {
+          "textRuns": [
+            {
+              "text": "　経営移譲年金の受給者が、経営移譲した農地を譲渡したときは、経営移譲年金の支給が停止されますが、公共事業の用地として譲渡したときは支給停止されない場合があります。\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "（相談窓口）各市区町村農業委員会",
+              "bold": false,
+              "color": "#1F78B4"
+            }
+          ],
+          "fontSize": 16
+        }
+      },
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "７ 福祉年金等について",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        },
+        "checkBox": {
+          "id": "z10",
+          "label": "",
+          "isChecked": false
+        },
+        "body": {
+          "textRuns": [
+            {
+              "text": "　老齢福祉年金、障害基礎年金、遺族基礎年金、特別障害者手当、児童手当、特別児童扶養手当、児童扶養手当等も所得制限があり、これらの年金、手当等の支給の停止や減額される場合があります。\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "（相談窓口）各所轄年金事務所・各市区町村担当課",
+              "bold": false,
+              "color": "#1F78B4"
+            }
+          ],
+          "fontSize": 16
+        }
+      },
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "８ 国民健康保険料および後期高齢者医療保険料について",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        },
+        "checkBox": {
+          "id": "z11",
+          "label": "",
+          "isChecked": false
+        },
+        "body": {
+          "textRuns": [
+            {
+              "text": "　国民健康保険料および後期高齢者医療保険料については、譲渡所得の特別控除の制度が適用されることとなっていますが、特別控除額を超える譲渡所得額は所得割額の計算の基礎に加えられるため、翌年一年間に限り保険料が変更されることがあります。なお、均等割額等については、特別控除の適用がありませんので、現在、保険料の軽減措置を受けている場合は、翌年一年間に限り保険料が変更されることがあります。\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "（相談窓口）各市区町村担当課",
+              "bold": false,
+              "color": "#1F78B4"
+            }
+          ],
+          "fontSize": 16
+        }
+      }
+    ]
+  },
+  {
+    "id": "zeikin7",
+    "title": {
+      "textRuns": [
+        {
+          "text": "Ⅳ 土地の譲渡等に伴うその他の税金等",
+          "bold": true,
+          "color": "#000000"
+        }
+      ],
+      "fontSize": 26
+    },
+    "video": true,
+    "videoPath": "",
+    "sections": [
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "９ 介護保険料等について",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        },
+        "checkBox": {
+          "id": "z12",
+          "label": "",
+          "isChecked": false
+        },
+        "body": {
+          "textRuns": [
+            {
+              "text": "　介護保険料については、譲渡所得における特別控除の適用となりますが、他の判断指標により翌年一年間に限り保険料が変更されることがあります。また、",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "介護サービスを利用する場合の自己負担額等に影響",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "が出る場合があります。（※特定入所者介護サービス利用者で負担限度額の軽減認定を受けている場合は、預貯金等の残高が一定額を下回るまで継続的に自己負担額が増額される場合があります。）\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "（相談窓口）各市区町村担当課",
+              "bold": false,
+              "color": "#1F78B4"
+            }
+          ],
+          "fontSize": 16
+        }
+      },
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "10 土地改良区決済金について",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        },
+        "checkBox": {
+          "id": "z13",
+          "label": "",
+          "isChecked": false
+        },
+        "body": {
+          "textRuns": [
+            {
+              "text": "　土地改良事業に係る経費については、買収に伴い当該経費（買収面積に対応する部分）を土地改良区に対して決済する必要がありますが（土地改良法第４２条第２項）、",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "これらの経費は補償対象にはなりません",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "。\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "（相談窓口）土地改良区・各市区町村担当課\n\n",
+              "bold": false,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "※上記以外にも各種給付金、補助金等が停止または減額されたり、保険料等が変更になる場合がありますのでご留意ください。",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16
+        }
+      }
+    ]
+  },
+  {
+    "id": "zeikin8",
+    "title": {
+      "textRuns": [
+        {
+          "text": "署名",
+          "bold": true,
+          "color": "#000000"
+        }
+      ],
+      "fontSize": 26
+    },
+    "sections": [
+      {
+        "signTarget": {
+          "textRuns": [
+            {
+              "text": "Ⅲ 税制上の優遇措置について\n",
+              "bold": true,
+              "color": "#000000"
+            },
+            {
+              "text": "Ⅳ 土地の譲渡等に伴うその他の税金等",
+              "bold": true,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 20
+        },
+        "signMessage": {
+          "textRuns": [
+            {
+              "text": "署名用メッセージ"
+            }
+          ],
+          "fontSize": 20
+        },
+        "signButton": {
+          "id": "zeikin",
+          "text": "署名をする",
+          "fontsize": 20,
+          "bold": true,
+          "height": 60,
+          "width": 150,
+          "commandName": "EditSignatureCommand"
+        }
+      }
+    ]
+  }
+]

@@ -21,10 +21,10 @@ namespace WpfApp.Screens.Aramashi.Views
     public partial class SignatureWindow : Window
     {
         private string DataFolder => Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data", "Signature");
-        private string IsfPath => Path.Combine(DataFolder, "signature.isf");
-        private string PngPath => Path.Combine(DataFolder, "signature.png");
-        //private string PdfPath => Path.Combine(DataFolder, "output.pdf");
-        private string SlidePath => Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SlideResources", "Others", "slides.json");
+        private string IsfPath = "";
+        private string PngPath = "";
+
+        //private string SlidePath => Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SlideResources", "Others", "slides.json");
 
         public SignatureWindow()
         {
@@ -43,12 +43,15 @@ namespace WpfApp.Screens.Aramashi.Views
 
             Debug.WriteLine("[DEBUG] SignatureWindow Loaded - DataContext 取得成功");
 
+            IsfPath = Path.Combine(DataFolder, vm.SignaturefileNames["isf"]);
+            PngPath = Path.Combine(DataFolder, vm.SignaturefileNames["png"]);
+
             LoadCanvas();
 
             vm.ShowMessageRequested += (_, msg) => ShowMessageWindow(msg);
             //vm.LoadRequested += (_, _) => this.LoadCanvas();
             vm.SaveRequested += (_, canvas) => SaveCanvas(canvas);
-            vm.PrintRequested += (_, _) => PrintPreview();
+            vm.PrintRequested += (_, slidePath) => PrintPreview(slidePath);
             vm.ClearRequested += (_, canvas) => ClearCanvas(canvas);
             vm.RequestClose += (_, _) => this.Close();
         }
@@ -85,24 +88,24 @@ namespace WpfApp.Screens.Aramashi.Views
             canvas.Strokes.Clear();
             using var fs = new FileStream(path, FileMode.Open, FileAccess.Read);
             canvas.Strokes = new StrokeCollection(fs);
-            Debug.WriteLine("[DEBUG] 署名のISFデータを取得しました");
+            Debug.WriteLine($"[DEBUG] 署名のISFデータを取得しました: {path}");
         }
 
         private void ClearCanvas(InkCanvas canvas)
         {
             canvas.Strokes.Clear();
+
             if (File.Exists(IsfPath))
             {
                 File.Delete(IsfPath);
-                Debug.WriteLine("[DEBUG] 署名のISFデータを削除しました");
+                Debug.WriteLine($"[DEBUG] 署名のISFデータを削除しました: {IsfPath}");
             }
+
             if (File.Exists(PngPath))
             {
                 File.Delete(PngPath);
-                Debug.WriteLine("[DEBUG] 署名のPNGデータを削除しました");
-            }
-            //if (File.Exists(PdfPath)) File.Delete(PdfPath);
-            
+                Debug.WriteLine($"[DEBUG] 署名のPNGデータを削除しました: {PngPath}");
+            }            
         }
 
         // 署名だけをPNG画像としてローカルフォルダに保存する
@@ -166,7 +169,7 @@ namespace WpfApp.Screens.Aramashi.Views
                 canvas.Strokes.Save(fs);
 
                 ret = true;
-                Debug.WriteLine($"[DEBUG] 署名をISFデータとして保存しました");
+                Debug.WriteLine($"[DEBUG] 署名をISFデータとして保存しました: {path}");
             }
             catch (Exception ex)
             {
@@ -206,7 +209,7 @@ namespace WpfApp.Screens.Aramashi.Views
                 encoder.Save(fs);
 
                 ret = true;
-                Debug.WriteLine($"[DEBUG] 署名をPNGデータとして保存しました");
+                Debug.WriteLine($"[DEBUG] 署名をPNGデータとして保存しました: {path}");
             }
             catch (Exception ex)
             {
@@ -216,29 +219,28 @@ namespace WpfApp.Screens.Aramashi.Views
             return ret;
         }
 
-        private void PrintPreview()
+        private void PrintPreview(string slidePath)
         {
             if (!File.Exists(PngPath))
             {
-                Debug.WriteLine($"[DEBUG] 署名のPNGデータが存在しません");
+                Debug.WriteLine($"[DEBUG] 署名のPNGデータが存在しません: {PngPath}");
                 ShowMessageWindow("保存された署名がありません\n署名を保存してからPDF出力を行ってください");
                 return;
             }
 
-
-            if (!File.Exists(SlidePath))
+            if (!File.Exists(slidePath))
             {
-                Debug.WriteLine($"[DEBUG] スライドデータが見つかりません");
+                Debug.WriteLine($"[DEBUG] スライドデータが見つかりません: {slidePath}");
                 return;
             }
 
-            var jsonText = File.ReadAllText(SlidePath);
+            var jsonText = File.ReadAllText(slidePath);
             var slideList = JsonSerializer.Deserialize<List<PresentationPageConfig>>(jsonText,
                 new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
             if (slideList == null)
             {
-                Debug.WriteLine($"[DEBUG] スライドデータが空です");
+                Debug.WriteLine($"[DEBUG] スライドデータが空です: {slidePath}");
                 return;
             }
 
@@ -252,20 +254,31 @@ namespace WpfApp.Screens.Aramashi.Views
             FlowDocument doc = new FlowDocument();
             doc.PageWidth = 800;
             doc.PageHeight = 1120;
+            doc.PagePadding = new Thickness(50);
             doc.FontFamily = new FontFamily("メイリオ"); // 日本語対応
             doc.ColumnWidth = double.PositiveInfinity; // 折り返しを有効に
 
-            string preId = "";
+            string preTitle = "";
 
             foreach (var slide in slides)
             {
+                // ページ区切り
+                if (preTitle != "" && slide.Title != null && slide.Title.GetPlainText() != preTitle && slide.Title.GetPlainText() != "署名")
+                {
+                    doc.Blocks.Add(new Section()
+                    {
+                        BreakPageBefore = true
+                    });
+                }
+
                 // Title
-                if (slide.Title != null && slide.Id != preId)
+                if (slide.Title != null && slide.Title.GetPlainText() != preTitle && slide.Title.GetPlainText() != "署名")
                 {
                     Paragraph title = new Paragraph(new Run(slide.Title.GetPlainText()));
                     title.FontSize = slide.Title.FontSize;
+                    title.LineHeight = slide.Title.FontSize * 1.20;
                     title.FontWeight = FontWeights.Bold;
-                    title.Margin = new Thickness(0, 20, 0, 20);
+                    title.Margin = new Thickness(0, 0, 0, 10);
                     doc.Blocks.Add(title);
                 }
 
@@ -276,7 +289,8 @@ namespace WpfApp.Screens.Aramashi.Views
                     if (sec.Subtitle != null)
                     {
                         Paragraph subtitlePara = new Paragraph();
-                        subtitlePara.Margin = new Thickness(0, 5, 0, 5);
+                        subtitlePara.Margin = new Thickness(0, 25, 0, 5);
+                        subtitlePara.LineHeight = sec.Subtitle.FontSize * 1.20;
                         subtitlePara.Inlines.Add(new Run(sec.Subtitle.GetPlainText())
                         {
                             FontSize = sec.Subtitle.FontSize,
@@ -303,6 +317,7 @@ namespace WpfApp.Screens.Aramashi.Views
                         Paragraph bodyPara = new Paragraph();
                         bodyPara.Margin = new Thickness(20, 2, 0, 10);
                         bodyPara.FontSize = sec.Body.FontSize;
+                        bodyPara.LineHeight = sec.Body.FontSize * 1.15;
                         bodyPara.Inlines.Add(new Run(sec.Body.GetPlainText()));
                         doc.Blocks.Add(bodyPara);
                     }
@@ -310,6 +325,7 @@ namespace WpfApp.Screens.Aramashi.Views
                     // SignMessage
                     if (sec.SignMessage != null)
                     {
+                        StackPanel panel = new StackPanel();
 
                         /* 署名メッセージ */
                         // 現在の日付（和暦）を取得
@@ -322,26 +338,36 @@ namespace WpfApp.Screens.Aramashi.Views
 
 
                         Paragraph signMessagePara = new Paragraph();
-                        signMessagePara.Margin = new Thickness(20, 20, 0, 10);
+                        signMessagePara.Margin = new Thickness(20, 25, 0, 10);
                         signMessagePara.FontSize = 18;
+                        signMessagePara.LineHeight = 18 * 1.20;
+                        signMessagePara.FontWeight = FontWeights.Bold;
                         signMessagePara.Inlines.Add(editedSignMessage);
-                        doc.Blocks.Add(signMessagePara);
+                        //doc.Blocks.Add(signMessagePara);
 
-                        AddImageToFlowDocument(doc, singPath);
+                        //AddImageToFlowDocument(doc, singPath);
+
+                        panel.Children.Add(new TextBlock
+                        {
+                            Text = editedSignMessage,
+                            Margin = new Thickness(20, 25, 0, 10),
+                            FontSize = 18,
+                            LineHeight = 18 * 1.20,
+                            FontWeight = FontWeights.Bold
+                        });
+
+                        AddImageToStackPanel(panel, singPath);
+
+                        // BlockUIContainer に追加してFlowDocumentに追加
+                        doc.Blocks.Add(new BlockUIContainer(panel));
+
                     }
-
-                    // セクション間スペース
-                    doc.Blocks.Add(new Paragraph(new Run("")) { Margin = new Thickness(0, 5, 0, 5) });
                 }
-
-                // ページ区切り
-                if(preId != "" && slide.Id != preId)
+                // セクションのタイトルを記録
+                if(slide.Title != null)
                 {
-                    doc.Blocks.Add(new Paragraph(new Run("")) { BreakPageBefore = true });
+                    preTitle = slide.Title.GetPlainText();
                 }
-                
-                // 前のセクションのIdを記録
-                preId = slide.Id;
             }
 
             // 印刷プレビュー
@@ -349,14 +375,17 @@ namespace WpfApp.Screens.Aramashi.Views
             if (pd.ShowDialog() == true)
             {
                 IDocumentPaginatorSource idpSource = doc;
-                pd.PrintDocument(idpSource.DocumentPaginator, "Presentation Preview");
+                pd.PrintDocument(idpSource.DocumentPaginator, "Preview");
             }
         }
 
-        private static void AddImageToFlowDocument(FlowDocument doc, string imagePath, double maxWidth = 400)
+        private static void AddImageToFlowDocument(FlowDocument doc, string imagePath)
         {
             if (!File.Exists(imagePath))
                 return;
+
+            double maxHeight = 125;
+            //double maxWidth = 375;
 
             BitmapImage bitmap = new BitmapImage();
             bitmap.BeginInit();
@@ -367,17 +396,44 @@ namespace WpfApp.Screens.Aramashi.Views
             Image img = new Image
             {
                 Source = bitmap,
-                Width = Math.Min(bitmap.PixelWidth, maxWidth),
+                Height = Math.Min(bitmap.PixelHeight, maxHeight),
+                //Width = Math.Min(bitmap.PixelWidth, maxWidth),
                 Stretch = Stretch.Uniform,
-                Margin = new Thickness(0, 10, 0, 20)
+                Margin = new Thickness(0, 10, 0, 0)
             };
 
             // FlowDocument に追加
             BlockUIContainer container = new BlockUIContainer(img)
             {
-                Margin = new Thickness(0, 10, 0, 20)
+                Margin = new Thickness(0, 10, 0, 0)
             };
             doc.Blocks.Add(container);
+        }
+
+        private static void AddImageToStackPanel(StackPanel panel, string imagePath)
+        {
+            if (!File.Exists(imagePath))
+                return;
+
+            double maxHeight = 125;
+            //double maxWidth = 375;
+
+            BitmapImage bitmap = new BitmapImage();
+            bitmap.BeginInit();
+            bitmap.UriSource = new Uri(imagePath, UriKind.Absolute);
+            bitmap.CacheOption = BitmapCacheOption.OnLoad; // ファイルロック防止
+            bitmap.EndInit();
+
+            Image img = new Image
+            {
+                Source = bitmap,
+                Height = Math.Min(bitmap.PixelHeight, maxHeight),
+                //Width = Math.Min(bitmap.PixelWidth, maxWidth),
+                Stretch = Stretch.Uniform,
+                Margin = new Thickness(0, 10, 0, 0)
+            };
+
+            panel.Children.Add(img);
         }
     }
 }

@@ -174,7 +174,8 @@
                                 <Run Text="代替地" />
                         </TextBlock>
                     </Button>
-                    <Button Grid.Row="1" Style="{StaticResource OthersButtonStyle}" >
+                    <Button Grid.Row="1" Style="{StaticResource OthersButtonStyle}" 
+                            Command="{Binding GoToZeikinCommand}">
                         <TextBlock Style="{StaticResource WrapTextBlockStyle}">
                                 <Run Text="税金等" />
                         </TextBlock>

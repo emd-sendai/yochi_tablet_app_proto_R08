@@ -66,9 +66,9 @@
         <StackPanel HorizontalAlignment="Center" Margin="15" Grid.Row="1" Orientation="Horizontal">
             <!-- セクションタイトル -->
             <TextBlock Text="{Binding CurrentSlide.TitleText}" FontSize="26" FontWeight="Bold" VerticalAlignment="Center"/>
-            <!-- 動画アイコンボタン 動画表示コマンドと動画がない場合は非表示か薄くする機能実装予定-->
-            <Button Grid.Row="0" Style="{StaticResource IconTextButtonStyle}" 
-                    Margin="5,0,0,0" >
+            <!-- 動画アイコンボタン -->
+            <Button Grid.Row="0" Style="{StaticResource IconTextButtonStyle}" Margin="5,0,0,0" 
+                    Visibility="{Binding CurrentSlide.Video, Converter={StaticResource BooleanToHiddenVisibilityConverter}}">
                 <StackPanel Orientation="Vertical" >
                     <materialDesign:PackIcon Kind="MoviePlay" Style="{StaticResource ITButtonIconStyle}"/>
                     <TextBlock Text="動画" Style="{StaticResource ITButtonTextStyle}"/>

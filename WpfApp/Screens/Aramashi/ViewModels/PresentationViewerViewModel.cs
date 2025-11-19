@@ -28,6 +28,9 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         [ObservableProperty]
         private Dictionary<string, bool> pageCheckStates = new();
 
+        [ObservableProperty]
+        private string? presentationName;
+
         public bool AllPagesChecked => PageCheckStates.Count > 0 && PageCheckStates.All(kv => kv.Value);
         //public bool AllPagesChecked => PageCheckStates.All(kv => kv.Value); ページ情報が登録されておらずDictionaryが空の状態でもtrue扱いにする場合
 
@@ -42,16 +45,36 @@ namespace WpfApp.Screens.Aramashi.ViewModels
 
         private readonly string _jsonPath;
 
-        public PresentationViewerViewModel(string presentationName, NavigationService navigationService, IDialogService dialogService)
+        public PresentationViewerViewModel(string _presentationName, NavigationService navigationService, IDialogService dialogService)
         {
             _nav = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
             _dia = dialogService ?? throw new ArgumentNullException(nameof(dialogService));
 
-            var baseDir = AppDomain.CurrentDomain.BaseDirectory;
-            _jsonPath = Path.Combine(baseDir, "SlideResources", presentationName, "slides.json");
+            _jsonPath = GetJsonPath(_presentationName);
+            PresentationName = _presentationName ?? "";
 
             LoadSlidesFromJson();
             CurrentSlide = Slides.Count > 0 ? Slides[0] : null;
+        }
+
+        private string GetJsonPath(string presentationName)
+        {
+            string path = "";
+            var dataFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SlideResources");
+
+            switch (presentationName)
+            {
+                case "aramashi":
+                    path = Path.Combine(dataFolder, "Aramashi", "slides.json");
+                    break;
+                case "daitaichi":
+                    path = Path.Combine(dataFolder, "Others", "slides_daitaichi.json");
+                    break;
+                case "zeikin":
+                    path = Path.Combine(dataFolder, "Others", "slides_zeikin.json");
+                    break;
+            }
+            return path;
         }
 
         private void LoadSlidesFromJson()
@@ -94,7 +117,8 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"保存エラー: {ex.Message}");
+                MessageBox.Show($"チェックボックスの情報を保存できません");
+                Debug.WriteLine($"[DEBUG] チェックボックスの情報を保存できません: {ex.Message}");
             }
         }
 
@@ -213,11 +237,14 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             }
             else
             {
-
-                 string sectionTitle = currentSlide.TitleText ?? "";
-
+                if(PresentationName == null)
+                {
+                    MessageBox.Show("署名データを作成できません");
+                    Debug.WriteLine($"[DEBUG] PresentationNameがNULLです");
+                    return;
+                }
                 // DialogService を使ってモーダル Window を開く
-                var result = await _dia.ShowDialogAsync<SignatureViewModel, string>(sectionTitle, editedSignMessage);
+                var result = await _dia.ShowDialogAsync<SignatureViewModel, string>(editedSignMessage, _jsonPath, PresentationName);
 
                 if (result != null)
                 {

@@ -1,15 +1,8 @@
-﻿using System.Text;
+﻿using System.ComponentModel;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using WpfApp.Interfaces;
 using WpfApp.Screens.Menu.ViewModels;
 using WpfApp.Services;
-using WpfApp.Interfaces;
 
 namespace WpfApp
 {
@@ -37,6 +30,8 @@ namespace WpfApp
 
             // 初期画面を設定
             _navigationService.Navigate(new MenuViewModel(_navigationService, _dialogService));
+
+            this.Closing += MainWindow_Closing;
         }
 
         /// <summary>
@@ -65,7 +60,9 @@ namespace WpfApp
 
         }
 
-
-
+        private void MainWindow_Closing(object? sender, CancelEventArgs e)
+        {
+            ShutdownService.Cleanup();
+        }
     }
 }

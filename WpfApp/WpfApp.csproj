@@ -32,10 +32,12 @@
     <None Remove="Data\Works.json" />
     <None Remove="SlideResources\Aramashi\slide_Aramashi2.jpg" />
     <None Remove="SlideResources\Others\slides.json" />
+    <None Remove="SlideResources\Others\slides_daitaichi.json" />
+    <None Remove="SlideResources\Others\slides_zeikin.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Data\aramashiButtons.json">
+    <Content Include="Data\ButtonSettings\aramashiButtons.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Data\landowners.json">
@@ -48,6 +50,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="SlideResources\Others\slides.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Others\slides_daitaichi.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Others\slides_zeikin.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
