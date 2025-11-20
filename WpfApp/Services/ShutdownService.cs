@@ -21,6 +21,8 @@ namespace WpfApp.Services
         private static readonly string ZeikinIsfSignPath = Path.Combine(SignPath, "signature_zeikin.isf");
         private static readonly string ZeikinPngSignPath = Path.Combine(SignPath, "signature_zeikin.png");
 
+        private static readonly string TempFolder = Path.Combine(BaseDire, "Temp");
+
         public static void Cleanup()
         {
             if (_hasCleaned) return;
@@ -96,6 +98,14 @@ namespace WpfApp.Services
                 {
                     File.Delete(ZeikinPngSignPath);
                     Debug.WriteLine($"[DEBUG] 税金等PNG署名データを初期化しました");
+                }
+
+                // 一時保存フォルダの初期化
+                if (Directory.Exists(TempFolder))
+                {
+                    // サブフォルダやファイルをまとめて削除
+                    Directory.Delete(TempFolder, true);
+                    Debug.WriteLine($"[DEBUG] 一時保存フォルダを初期化しました: {TempFolder}");
                 }
 
                 Debug.WriteLine($"[DEBUG] データを初期化しました");

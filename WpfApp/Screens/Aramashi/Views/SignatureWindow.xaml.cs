@@ -6,12 +6,15 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Ink;
+using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using WpfApp.Common.ViewModels;
 using WpfApp.Common.Views;
+using WpfApp.Interfaces;
 using WpfApp.Screens.Aramashi.Models;
 using WpfApp.Screens.Aramashi.ViewModels;
+using WpfApp.Services;
 
 namespace WpfApp.Screens.Aramashi.Views
 {
@@ -250,10 +253,12 @@ namespace WpfApp.Screens.Aramashi.Views
 
         public static void PreviewDocument(List<PresentationPageConfig> slides, string singPath)
         {
+            const double inch = 96; // WPF 単位 = 1/96 inch
+
             // FlowDocument 作成
             FlowDocument doc = new FlowDocument();
-            doc.PageWidth = 800;
-            doc.PageHeight = 1120;
+            doc.PageWidth = 8.27 * inch;   // ≒ 794
+            doc.PageHeight = 11.69 * inch; // ≒ 1123
             doc.PagePadding = new Thickness(50);
             doc.FontFamily = new FontFamily("メイリオ"); // 日本語対応
             doc.ColumnWidth = double.PositiveInfinity; // 折り返しを有効に
@@ -371,43 +376,17 @@ namespace WpfApp.Screens.Aramashi.Views
             }
 
             // 印刷プレビュー
+            /*
             PrintDialog pd = new PrintDialog();
             if (pd.ShowDialog() == true)
             {
                 IDocumentPaginatorSource idpSource = doc;
                 pd.PrintDocument(idpSource.DocumentPaginator, "Preview");
             }
-        }
+            */
 
-        private static void AddImageToFlowDocument(FlowDocument doc, string imagePath)
-        {
-            if (!File.Exists(imagePath))
-                return;
-
-            double maxHeight = 125;
-            //double maxWidth = 375;
-
-            BitmapImage bitmap = new BitmapImage();
-            bitmap.BeginInit();
-            bitmap.UriSource = new Uri(imagePath, UriKind.Absolute);
-            bitmap.CacheOption = BitmapCacheOption.OnLoad; // ファイルロック防止
-            bitmap.EndInit();
-
-            Image img = new Image
-            {
-                Source = bitmap,
-                Height = Math.Min(bitmap.PixelHeight, maxHeight),
-                //Width = Math.Min(bitmap.PixelWidth, maxWidth),
-                Stretch = Stretch.Uniform,
-                Margin = new Thickness(0, 10, 0, 0)
-            };
-
-            // FlowDocument に追加
-            BlockUIContainer container = new BlockUIContainer(img)
-            {
-                Margin = new Thickness(0, 10, 0, 0)
-            };
-            doc.Blocks.Add(container);
+            DialogService dialogService = new DialogService();
+            dialogService.ShowWindow<PrintPreviewViewModel>(doc);
         }
 
         private static void AddImageToStackPanel(StackPanel panel, string imagePath)

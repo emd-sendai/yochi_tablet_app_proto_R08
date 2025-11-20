@@ -43,7 +43,6 @@
                     <materialDesign:PackIcon Kind="MinusCircleOutline" Style="{StaticResource ITButtonIconStyle}"/>
                     <TextBlock Text="縮小" Style="{StaticResource ITButtonTextStyle}"/>
                 </StackPanel>
-
             </Button>
             <!-- ホームアイコンボタン -->
             <Button Grid.Row="0" Style="{StaticResource IconTextButtonStyle}" 
