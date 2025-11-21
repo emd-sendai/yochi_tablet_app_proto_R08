@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
 namespace WpfApp.Helpers
@@ -8,7 +6,7 @@ namespace WpfApp.Helpers
     public static class DisableDoubleClickBehavior
     {
         public static bool GetIsEnabled(Button obj)
-    => (bool)obj.GetValue(IsEnabledProperty);
+            => (bool)obj.GetValue(IsEnabledProperty);
 
         public static void SetIsEnabled(Button obj, bool value)
             => obj.SetValue(IsEnabledProperty, value);
@@ -25,9 +23,22 @@ namespace WpfApp.Helpers
             if (d is not Button btn) return;
 
             if ((bool)e.NewValue)
+            {
                 btn.Click += OnClick;
+                Window? window = Window.GetWindow(btn);
+                if (window != null)
+                {
+                    window.Closed += (_, _) =>
+                    {
+                        btn.IsHitTestVisible = true;
+                    };
+                }
+            }
             else
+            {
                 btn.Click -= OnClick;
+            }
+
         }
 
         private static async void OnClick(object sender, RoutedEventArgs e)

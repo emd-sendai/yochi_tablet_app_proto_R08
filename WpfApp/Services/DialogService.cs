@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Windows;
 using WpfApp.Interfaces;
+using WpfApp.Screens.Aramashi.ViewModels;
 
 namespace WpfApp.Services
 {
@@ -19,14 +20,37 @@ namespace WpfApp.Services
 
             window.DataContext = vm;
 
+            bool isClosedByVm = false;
+
             if (vm is IDialogResult<TResult> resultVm)
             {
+                // ViewModel から閉じる場合
                 resultVm.RequestClose += (_, _) =>
                 {
-                    window.Close();
-                    tcs.SetResult(resultVm.Result);
+                    if (!isClosedByVm)
+                    {
+                        isClosedByVm = true;
+                        window.Close();
+                        tcs.TrySetResult(resultVm.Result);
+                    }
+                };
+
+                // Window の × ボタンや Alt+F4 の場合
+                window.Closing += (_, e) =>
+                {
+                    if (!isClosedByVm)
+                    {
+                        isClosedByVm = true;
+                        // ViewModel 側のイベントを呼ぶ
+                        // 外部から呼べるメソッド CloseByUser を追加しておく必要があります
+                        if (resultVm is SignatureViewModel sigVm)
+                            sigVm.CloseByUser();
+
+                        tcs.TrySetResult(resultVm.Result);
+                    }
                 };
             }
+
             Debug.WriteLine($"[DEBUG] DialogService: vmType={vmType.FullName}");
             Debug.WriteLine($"[DEBUG] DialogService: viewTypeName={viewTypeName}");
             Debug.WriteLine($"[DEBUG] DialogService: viewType={viewType?.FullName}");

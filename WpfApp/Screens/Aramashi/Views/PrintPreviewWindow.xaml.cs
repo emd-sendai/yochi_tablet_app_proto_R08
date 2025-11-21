@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel;
-using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using WpfApp.Screens.Aramashi.ViewModels;
 
 namespace WpfApp.Screens.Aramashi.Views
@@ -21,20 +21,67 @@ namespace WpfApp.Screens.Aramashi.Views
                 if (e.NewValue is PrintPreviewViewModel vm)
                 {
                     vm.RequestClose += (_, _) => this.Close();
-
-                    vm.PropertyChanged += Vm_PropertyChanged;
                 }
             };
         }
 
-        private void Vm_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+        private void DocViewer_Loaded(object sender, RoutedEventArgs e)
         {
-            if (e.PropertyName == nameof(PresentationViewerViewModel.Scale))
+            var viewer = sender as DocumentViewer;
+            if (viewer == null) return;
+
+            // 下部検索バーを非表示にする
+            var findBar = viewer.Template.FindName("PART_FindToolBarHost", viewer) as ContentControl;
+            if (findBar != null)
+                findBar.Visibility = Visibility.Collapsed;
+
+            // 上部ツールバーの要素を編集する
+            var toolBar = FindChild<ToolBar>(viewer, null);
+            if (toolBar != null)
             {
-                // Scale が変更された時に何か処理したい場合
-                // ここでUI更新やデバッグログなどを追加できる
-                Debug.WriteLine($"Scale changed: {(sender as PresentationViewerViewModel)?.Scale}");
+                // コピーコマンドボタンだけ非表示にする
+                foreach (var item in toolBar.Items)
+                {
+                    if (item is Button copyButton && copyButton.Command == ApplicationCommands.Copy)
+                    {
+                        copyButton.Visibility = Visibility.Collapsed;
+                    }
+                }
             }
+        }
+
+        private T? FindChild<T>(DependencyObject parent, string? name) where T : FrameworkElement
+        {
+            if (parent == null) return null;
+
+            int count = VisualTreeHelper.GetChildrenCount(parent);
+            for (int i = 0; i < count; i++)
+            {
+                var child = VisualTreeHelper.GetChild(parent, i);
+                if (child is T tChild && (name == null || tChild.Name == name))
+                    return tChild;
+
+                var result = FindChild<T>(child, name);
+                if (result != null)
+                    return result;
+            }
+            return null;
+        }
+
+        private void Print_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (DataContext is PrintPreviewViewModel vm && vm.SaveAsPdfCommand.CanExecute(null))
+            {
+                vm.SaveAsPdfCommand.Execute(null);
+            }
+        }
+
+        private void Print_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            if (DataContext is PrintPreviewViewModel vm)
+                e.CanExecute = vm.SaveAsPdfCommand.CanExecute(null);
+            else
+                e.CanExecute = false;
         }
 
         private void Window_Closing(object sender, CancelEventArgs e)
@@ -42,34 +89,6 @@ namespace WpfApp.Screens.Aramashi.Views
             if (DataContext is PrintPreviewViewModel vm)
             {
                 vm.CleanupTempFiles(); // 不要ファイル削除だけ実行
-            }
-            //this.Close();
-        }
-
-        private void Border_ManipulationStarting(object sender, ManipulationStartingEventArgs e)
-        {
-            e.ManipulationContainer = this;
-            e.Mode = ManipulationModes.Scale | ManipulationModes.Translate;
-        }
-
-        private void Border_ManipulationDelta(object sender, ManipulationDeltaEventArgs e)
-        {
-            if (DataContext is PresentationViewerViewModel vm)
-            {
-                vm.Zoom(e.DeltaManipulation.Scale.X);
-            }
-        }
-
-        private void ScrollViewer_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
-        {
-            if (DataContext is PresentationViewerViewModel vm)
-            {
-                if ((Keyboard.Modifiers & ModifierKeys.Control) != 0)
-                {
-                    e.Handled = true;
-                    double factor = e.Delta > 0 ? 1.1 : 1 / 1.1;
-                    vm.Zoom(factor);
-                }
             }
         }
     }

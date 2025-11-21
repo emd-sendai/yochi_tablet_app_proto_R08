@@ -9,6 +9,7 @@
         WindowStartupLocation="CenterScreen"
         Background="{DynamicResource MaterialDesignPaper}"
         ResizeMode="NoResize">
+    
     <Grid>
         <Grid Margin="10">
             <Grid.RowDefinitions>

@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System.ComponentModel;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Text.Json;
@@ -11,7 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using WpfApp.Common.ViewModels;
 using WpfApp.Common.Views;
-using WpfApp.Interfaces;
 using WpfApp.Screens.Aramashi.Models;
 using WpfApp.Screens.Aramashi.ViewModels;
 using WpfApp.Services;
@@ -23,6 +23,8 @@ namespace WpfApp.Screens.Aramashi.Views
     /// </summary>
     public partial class SignatureWindow : Window
     {
+        private bool _isClosingFromViewModel = false;
+
         private string DataFolder => Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data", "Signature");
         private string IsfPath = "";
         private string PngPath = "";
@@ -56,7 +58,21 @@ namespace WpfApp.Screens.Aramashi.Views
             vm.SaveRequested += (_, canvas) => SaveCanvas(canvas);
             vm.PrintRequested += (_, slidePath) => PrintPreview(slidePath);
             vm.ClearRequested += (_, canvas) => ClearCanvas(canvas);
-            vm.RequestClose += (_, _) => this.Close();
+            vm.RequestClose += (_, _) =>
+                {
+                    _isClosingFromViewModel = true;
+                };
+
+            this.Closing += Window_Closing;
+        }
+
+        private void Window_Closing(object? sender, CancelEventArgs e)
+        {
+            if (!_isClosingFromViewModel && DataContext is SignatureViewModel vm)
+            {
+                _isClosingFromViewModel = true;
+                vm.OnRequestClose(); // ここでイベントを発火
+            }
         }
 
         private void ShowMessageWindow(string msg)
@@ -247,172 +263,251 @@ namespace WpfApp.Screens.Aramashi.Views
                 return;
             }
 
-            PreviewDocument(slideList, PngPath);
+            // FixedDocumentを作成する
+            FixedDocument doc = new FixedDocument();
+            doc = GeneratFixedDocument(slideList, PngPath);
 
+            if(doc == null)
+            {
+                Debug.WriteLine($"[DEBUG] FixedDocumentを作成できませんでした");
+                ShowMessageWindow("PDFデータを出力できませんでした");
+                return;
+            }
+
+            // プレビュー画面を表示する
+            DialogService dialogService = new DialogService();
+            dialogService.ShowWindow<PrintPreviewViewModel>(doc);
         }
 
-        public static void PreviewDocument(List<PresentationPageConfig> slides, string singPath)
+        private FixedDocument GeneratFixedDocument(List<PresentationPageConfig> slides, string singPath)
         {
-            const double inch = 96; // WPF 単位 = 1/96 inch
+            const double inch = 96; // WPF単位 = 1/96 inch
+            double pageWidth = 8.27 * inch;
+            double pageHeight = 11.69 * inch;
+            double pagePadding = 50;
 
-            // FlowDocument 作成
-            FlowDocument doc = new FlowDocument();
-            doc.PageWidth = 8.27 * inch;   // ≒ 794
-            doc.PageHeight = 11.69 * inch; // ≒ 1123
-            doc.PagePadding = new Thickness(50);
-            doc.FontFamily = new FontFamily("メイリオ"); // 日本語対応
-            doc.ColumnWidth = double.PositiveInfinity; // 折り返しを有効に
+            double itemWidth = 670;
+
+            FixedDocument fixedDoc = new FixedDocument();
+            FixedPage currentPage;
+            double yOffset = 0;
+
+            void NewPage()
+            {
+                currentPage = new FixedPage
+                {
+                    Width = pageWidth,
+                    Height = pageHeight,
+                    Background = Brushes.White
+                };
+                PageContent pc = new PageContent();
+                ((IAddChild)pc).AddChild(currentPage);
+                fixedDoc.Pages.Add(pc);
+                yOffset = pagePadding;
+            }
+
+            NewPage();
 
             string preTitle = "";
 
             foreach (var slide in slides)
             {
-                // ページ区切り
-                if (preTitle != "" && slide.Title != null && slide.Title.GetPlainText() != preTitle && slide.Title.GetPlainText() != "署名")
+                // ページ区切り（タイトル変更時）
+                if (!string.IsNullOrEmpty(preTitle) && slide.Title != null &&
+                    slide.Title.GetPlainText() != preTitle && slide.Title.GetPlainText() != "署名")
                 {
-                    doc.Blocks.Add(new Section()
-                    {
-                        BreakPageBefore = true
-                    });
+                    NewPage();
                 }
 
                 // Title
-                if (slide.Title != null && slide.Title.GetPlainText() != preTitle && slide.Title.GetPlainText() != "署名")
+                if (slide.Title != null && slide.Title.GetPlainText() != preTitle &&
+                    slide.Title.GetPlainText() != "署名")
                 {
-                    Paragraph title = new Paragraph(new Run(slide.Title.GetPlainText()));
-                    title.FontSize = slide.Title.FontSize;
-                    title.LineHeight = slide.Title.FontSize * 1.20;
-                    title.FontWeight = FontWeights.Bold;
-                    title.Margin = new Thickness(0, 0, 0, 10);
-                    doc.Blocks.Add(title);
+                    TextBlock titleBlock = new TextBlock
+                    {
+                        Text = slide.Title.GetPlainText(),
+                        FontSize = slide.Title.FontSize,
+                        FontWeight = FontWeights.Bold,
+                        TextWrapping = TextWrapping.Wrap,
+                        Width = itemWidth, //pageWidth - 2 * pagePadding,  // 左右余白を均等に
+                        Margin = new Thickness(0, 0, 0, 10)
+                    };
+                    titleBlock.Measure(new Size(titleBlock.Width, double.PositiveInfinity));
+                    double titleHeight = titleBlock.DesiredSize.Height;
+
+                    if (yOffset + titleHeight > pageHeight - pagePadding)
+                        NewPage();
+
+                    FixedPage.SetLeft(titleBlock, pagePadding); // 左余白固定
+                    FixedPage.SetTop(titleBlock, yOffset);
+                    currentPage.Children.Add(titleBlock);
+                    yOffset += titleHeight + 10;
                 }
 
                 // Sections
                 foreach (var sec in slide.Sections)
                 {
-                    // Subtitle + Checkbox 横並び
+                    // Subtitle + Checkbox
                     if (sec.Subtitle != null)
                     {
-                        Paragraph subtitlePara = new Paragraph();
-                        subtitlePara.Margin = new Thickness(0, 25, 0, 5);
-                        subtitlePara.LineHeight = sec.Subtitle.FontSize * 1.20;
-                        subtitlePara.Inlines.Add(new Run(sec.Subtitle.GetPlainText())
-                        {
-                            FontSize = sec.Subtitle.FontSize,
-                            FontWeight = FontWeights.Bold
-                        });
-
+                        string subtitleText = sec.Subtitle.GetPlainText();
                         if (sec.CheckBox != null)
                         {
-                            subtitlePara.Inlines.Add(new Run(" ")); // スペース
-                                                                    // 簡易チェックボックス
                             string cbMark = sec.CheckBox.IsChecked ? "☑" : "□";
-                            subtitlePara.Inlines.Add(new Run($"{cbMark} {sec.CheckBox.Label}")
-                            {
-                                FontSize = sec.Subtitle.FontSize
-                            });
+                            subtitleText += $" {cbMark} {sec.CheckBox.Label}";
                         }
 
-                        doc.Blocks.Add(subtitlePara);
+                        TextBlock subtitleBlock = new TextBlock
+                        {
+                            Text = subtitleText,
+                            FontSize = sec.Subtitle.FontSize,
+                            FontWeight = FontWeights.Bold,
+                            TextWrapping = TextWrapping.Wrap,
+                            Width = itemWidth,  //pageWidth - 2 * pagePadding,  // 左右余白均等
+                            Margin = new Thickness(0, 10, 0, 5)
+                        };
+                        subtitleBlock.Measure(new Size(subtitleBlock.Width, double.PositiveInfinity));
+                        double subtitleHeight = subtitleBlock.DesiredSize.Height;
+
+                        if (yOffset + subtitleHeight > pageHeight - pagePadding)
+                            NewPage();
+
+                        FixedPage.SetLeft(subtitleBlock, pagePadding); // 左余白固定
+                        FixedPage.SetTop(subtitleBlock, yOffset);
+                        currentPage.Children.Add(subtitleBlock);
+                        yOffset += subtitleHeight + 5;
                     }
 
                     // Body
                     if (sec.Body != null)
                     {
-                        Paragraph bodyPara = new Paragraph();
-                        bodyPara.Margin = new Thickness(20, 2, 0, 10);
-                        bodyPara.FontSize = sec.Body.FontSize;
-                        bodyPara.LineHeight = sec.Body.FontSize * 1.15;
-                        bodyPara.Inlines.Add(new Run(sec.Body.GetPlainText()));
-                        doc.Blocks.Add(bodyPara);
+                        string fullText = sec.Body.GetPlainText();
+                        double fontSize = sec.Body.FontSize;
+
+                        int startIndex = 0;
+
+                        while (startIndex < fullText.Length)
+                        {
+                            TextBlock bodyBlock = new TextBlock
+                            {
+                                FontSize = fontSize,
+                                TextWrapping = TextWrapping.Wrap,
+                                Width = itemWidth,
+                                Margin = new Thickness(0, 2, 0, 10)
+                            };
+
+                            double availableHeight = pageHeight - pagePadding - yOffset;
+
+                            int length = 0;
+
+                            // 1文字ずつ追加し、高さが収まるところまで伸ばす
+                            for (int i = startIndex; i < fullText.Length; i++)
+                            {
+                                length++;
+
+                                bodyBlock.Text = fullText.Substring(startIndex, length);
+                                bodyBlock.Measure(new Size(itemWidth, double.PositiveInfinity));
+
+                                if (bodyBlock.DesiredSize.Height > availableHeight)
+                                {
+                                    length--; // 1つ戻す
+                                    break;
+                                }
+                            }
+
+                            // 一文字も入らない場合は強制で1文字入れる
+                            length = Math.Max(length, 1);
+
+                            // 行頭禁則（読点・句点）
+                            string segment = fullText.Substring(startIndex, length);
+                            if (segment.Length > 0 && (segment[0] == '、' || segment[0] == '。'))
+                            {
+                                segment = "\u200B" + segment;
+                            }
+
+                            bodyBlock.Text = segment;
+                            bodyBlock.Measure(new Size(itemWidth, double.PositiveInfinity));
+
+                            // ページに置く
+                            FixedPage.SetLeft(bodyBlock, pagePadding + 20);
+                            FixedPage.SetTop(bodyBlock, yOffset);
+                            currentPage.Children.Add(bodyBlock);
+
+                            yOffset += bodyBlock.DesiredSize.Height + 10;
+
+                            startIndex += length;
+
+                            // 次のページが必要なら新しいページを作る
+                            if (startIndex < fullText.Length)
+                            {
+                                NewPage();
+                            }
+                        }
                     }
 
-                    // SignMessage
+                    // SignMessage + Image
                     if (sec.SignMessage != null)
                     {
-                        StackPanel panel = new StackPanel();
+                        string wareki = DateTime.Now.ToString("ggy年M月d日", new CultureInfo("ja-JP") { DateTimeFormat = { Calendar = new JapaneseCalendar() } });
+                        string signText = wareki + "上記についてすべて説明を受けました.";
 
-                        /* 署名メッセージ */
-                        // 現在の日付（和暦）を取得
-                        var culture = new CultureInfo("ja-JP", false);
-                        culture.DateTimeFormat.Calendar = new JapaneseCalendar();
-                        string wareki = DateTime.Now.ToString("ggy年M月d日", culture);
-
-                        string editedSignMessage = wareki + "上記についてすべて説明を受けました。";
-                        Debug.WriteLine($"[DEBUG] 説明完了年月日: {wareki}");
-
-
-                        Paragraph signMessagePara = new Paragraph();
-                        signMessagePara.Margin = new Thickness(20, 25, 0, 10);
-                        signMessagePara.FontSize = 18;
-                        signMessagePara.LineHeight = 18 * 1.20;
-                        signMessagePara.FontWeight = FontWeights.Bold;
-                        signMessagePara.Inlines.Add(editedSignMessage);
-                        //doc.Blocks.Add(signMessagePara);
-
-                        //AddImageToFlowDocument(doc, singPath);
-
-                        panel.Children.Add(new TextBlock
+                        TextBlock signBlock = new TextBlock
                         {
-                            Text = editedSignMessage,
-                            Margin = new Thickness(20, 25, 0, 10),
+                            Text = signText,
                             FontSize = 18,
-                            LineHeight = 18 * 1.20,
-                            FontWeight = FontWeights.Bold
-                        });
+                            FontWeight = FontWeights.Bold,
+                            TextWrapping = TextWrapping.Wrap,
+                            Width = itemWidth, //pageWidth - 2 * pagePadding,  // 左右余白均等
+                            Margin = new Thickness(0, 20, 0, 10)
+                        };
+                        signBlock.Measure(new Size(signBlock.Width, double.PositiveInfinity));
+                        double signHeight = signBlock.DesiredSize.Height;
 
-                        AddImageToStackPanel(panel, singPath);
+                        double imgHeight = 0;
+                        Image? img = null;
+                        if (File.Exists(singPath))
+                        {
+                            BitmapImage bitmap = new BitmapImage();
+                            bitmap.BeginInit();
+                            bitmap.UriSource = new Uri(singPath, UriKind.Absolute);
+                            bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                            bitmap.EndInit();
 
-                        // BlockUIContainer に追加してFlowDocumentに追加
-                        doc.Blocks.Add(new BlockUIContainer(panel));
+                            img = new Image
+                            {
+                                Source = bitmap,
+                                Height = Math.Min(bitmap.PixelHeight, 125),
+                                Stretch = Stretch.Uniform,
+                                Width = pageWidth - 2 * pagePadding - 20, // 左右余白を均等に
+                            };
+                            imgHeight = img.Height;
+                        }
 
+                        // ページに収まらなければ改ページ
+                        if (yOffset + signHeight + imgHeight + 5 > pageHeight - pagePadding)
+                            NewPage();
+
+                        FixedPage.SetLeft(signBlock, pagePadding);
+                        FixedPage.SetTop(signBlock, yOffset);
+                        currentPage.Children.Add(signBlock);
+                        yOffset += signHeight + 10;
+
+                        if (img != null)
+                        {
+                            FixedPage.SetLeft(img, pagePadding + 20);
+                            FixedPage.SetTop(img, yOffset);
+                            currentPage.Children.Add(img);
+                            yOffset += imgHeight + 5;
+                        }
                     }
                 }
-                // セクションのタイトルを記録
-                if(slide.Title != null)
-                {
+
+                // タイトルを記録
+                if (slide.Title != null)
                     preTitle = slide.Title.GetPlainText();
-                }
             }
 
-            // 印刷プレビュー
-            /*
-            PrintDialog pd = new PrintDialog();
-            if (pd.ShowDialog() == true)
-            {
-                IDocumentPaginatorSource idpSource = doc;
-                pd.PrintDocument(idpSource.DocumentPaginator, "Preview");
-            }
-            */
-
-            DialogService dialogService = new DialogService();
-            dialogService.ShowWindow<PrintPreviewViewModel>(doc);
-        }
-
-        private static void AddImageToStackPanel(StackPanel panel, string imagePath)
-        {
-            if (!File.Exists(imagePath))
-                return;
-
-            double maxHeight = 125;
-            //double maxWidth = 375;
-
-            BitmapImage bitmap = new BitmapImage();
-            bitmap.BeginInit();
-            bitmap.UriSource = new Uri(imagePath, UriKind.Absolute);
-            bitmap.CacheOption = BitmapCacheOption.OnLoad; // ファイルロック防止
-            bitmap.EndInit();
-
-            Image img = new Image
-            {
-                Source = bitmap,
-                Height = Math.Min(bitmap.PixelHeight, maxHeight),
-                //Width = Math.Min(bitmap.PixelWidth, maxWidth),
-                Stretch = Stretch.Uniform,
-                Margin = new Thickness(0, 10, 0, 0)
-            };
-
-            panel.Children.Add(img);
+            return fixedDoc;
         }
     }
 }

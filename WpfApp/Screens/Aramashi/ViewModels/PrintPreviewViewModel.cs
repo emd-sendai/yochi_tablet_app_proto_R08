@@ -18,54 +18,11 @@ namespace WpfApp.Screens.Aramashi.ViewModels
 
         private string _previewXpsPath = "";
 
-        [ObservableProperty]
-        private double scale = 1.0;
-
-        public double MinScale { get; } = 0.5;
-        public double MaxScale { get; } = 5.0;
-
-        public PrintPreviewViewModel(FlowDocument flowDoc)
+        public PrintPreviewViewModel(FixedDocument doc)
         {
-            string appDir = AppDomain.CurrentDomain.BaseDirectory;
-            string tempFolder = Path.Combine(appDir, "Temp");
-            Directory.CreateDirectory(tempFolder);
+            _previewXpsPath = SaveFixedDocumentToXps(doc);
 
-            _previewXpsPath = Path.Combine(tempFolder, $"tmp_{Guid.NewGuid()}.xps");
-
-            Document = ConvertFlowDocumentToFixedDocument(flowDoc, _previewXpsPath);
-        }
-
-        /// <summary>
-        /// FlowDocument → FixedDocument（XPS経由）
-        /// </summary>
-        private FixedDocument ConvertFlowDocumentToFixedDocument(FlowDocument flowDoc, string tempXpsPath)
-        {
-            try
-            {
-                // FlowDocument を XPS に書き出す
-                using (var xps = new XpsDocument(tempXpsPath, FileAccess.ReadWrite))
-                {
-                    var writer = XpsDocument.CreateXpsDocumentWriter(xps);
-                    writer.Write(((IDocumentPaginatorSource)flowDoc).DocumentPaginator);
-                }
-
-                // XPS から FixedDocument を取得
-                using (var xpsForPreview = new XpsDocument(tempXpsPath, FileAccess.Read))
-                {
-                    var fds = xpsForPreview.GetFixedDocumentSequence();
-                    if (fds == null || fds.References.Count == 0)
-                        throw new InvalidOperationException("FixedDocumentSequence が取得できません。");
-
-                    return fds.References[0].GetDocument(true);
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"[ERROR] FlowDocument → FixedDocument 変換失敗: {ex.Message}");
-                MessageBox.Show("プレビューの作成に失敗しました。", "エラー",
-                    MessageBoxButton.OK, MessageBoxImage.Error);
-                throw;
-            }
+            Document = doc;
         }
 
         /// <summary>
@@ -133,21 +90,6 @@ namespace WpfApp.Screens.Aramashi.ViewModels
                 Debug.WriteLine($"[ERROR] {ex.Message}");
             }
         }
-
-        [RelayCommand]
-        public void Zoom(double factor)
-        {
-            double newScale = Scale * factor;
-            if (newScale < MinScale) newScale = MinScale;
-            if (newScale > MaxScale) newScale = MaxScale;
-            Scale = newScale;
-        }
-
-        [RelayCommand]
-        public void ZoomIn() => Zoom(1.1);
-
-        [RelayCommand]
-        public void ZoomOut() => Zoom(1 / 1.1);
 
         [RelayCommand]
         private void SaveAsPdf()

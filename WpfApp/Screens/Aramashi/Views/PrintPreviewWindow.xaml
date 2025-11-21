@@ -10,75 +10,12 @@
         WindowStartupLocation="CenterScreen"
         Closing="Window_Closing">
 
-    <Window.Resources>
-        <Style TargetType="DocumentViewer">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="DocumentViewer">
-                        <Border BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            Background="{TemplateBinding Background}">
-                            <ScrollViewer x:Name="PART_ContentHost" 
-                                      Focusable="false" 
-                                      HorizontalScrollBarVisibility="Auto"
-                                      VerticalScrollBarVisibility="Auto">
-                                <ItemsPresenter />
-                            </ScrollViewer>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </Window.Resources>
+    <DocumentViewer Document="{Binding Document}" Loaded="DocViewer_Loaded">
+        <DocumentViewer.CommandBindings>
+            <CommandBinding Command="ApplicationCommands.Print"
+                        Executed="Print_Executed"
+                        CanExecute="Print_CanExecute"/>
+        </DocumentViewer.CommandBindings>
+    </DocumentViewer>
 
-    <DockPanel Background="{DynamicResource MaterialDesignPaper}">
-        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Right" 
-                    Margin="0,0,0,5" >
-
-            <!-- 拡大ボタン-->
-            <Button Grid.Row="0"  Style="{StaticResource IconTextButtonStyle}" 
-                Margin="5" Command="{Binding ZoomInCommand}">
-                <StackPanel Orientation="Vertical" >
-                    <materialDesign:PackIcon Kind="PlusCircleOutline" Style="{StaticResource ITButtonIconStyle}"/>
-                    <TextBlock Text="拡大" Style="{StaticResource ITButtonTextStyle}"/>
-                </StackPanel>
-            </Button>
-            <!-- 縮小ボタン-->
-            <Button Grid.Row="0"  Style="{StaticResource IconTextButtonStyle}" 
-                Margin="5" Command="{Binding ZoomOutCommand}">
-                <StackPanel Orientation="Vertical" >
-                    <materialDesign:PackIcon Kind="MinusCircleOutline" Style="{StaticResource ITButtonIconStyle}"/>
-                    <TextBlock Text="縮小" Style="{StaticResource ITButtonTextStyle}"/>
-                </StackPanel>
-            </Button>
-            <Button Content="PDFとして保存" Style="{StaticResource CommonButtonStyle}"
-                    Height="50" Width="120" Margin="5"
-                    Command="{Binding SaveAsPdfCommand}" />
-            <Button Content="× 閉じる"
-                    Height="50" Width="80" Margin="5"
-                    Command="{Binding CloseCommand}"  Style="{StaticResource MaterialDesignFlatButton}"/>
-        </StackPanel>
-
-        <ScrollViewer VerticalScrollBarVisibility="Auto"
-                  HorizontalScrollBarVisibility="Auto"
-                  PanningMode="Both"
-                  IsManipulationEnabled="True"
-                  PreviewMouseWheel="ScrollViewer_PreviewMouseWheel"
-                  Style="{StaticResource MaterialDesignScrollViewer}">
-
-            <Border ManipulationStarting="Border_ManipulationStarting"
-                ManipulationDelta="Border_ManipulationDelta"
-                RenderTransformOrigin="0.5,0" >
-
-                <Border.LayoutTransform>
-                    <ScaleTransform ScaleX="{Binding Scale}" ScaleY="{Binding Scale}" />
-                </Border.LayoutTransform>
-
-                <DocumentViewer Name="docViewer" Document="{Binding Document}" />
-
-            </Border>
-        </ScrollViewer>
-
-    </DockPanel>
-    
 </Window>

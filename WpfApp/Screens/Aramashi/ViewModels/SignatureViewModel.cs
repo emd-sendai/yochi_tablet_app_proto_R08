@@ -92,9 +92,21 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         }
 
         [RelayCommand]
-        private void Close(string str)
+        private void Close()
         {
-            Result = str;
+            RequestClose?.Invoke(this, EventArgs.Empty);
+        }
+
+        public void OnRequestClose()
+        {
+            // イベントの null チェックとスレッドセーフ呼び出し
+            var handler = RequestClose;
+            if (handler != null)
+                handler(this, EventArgs.Empty);
+        }
+
+        public void CloseByUser()
+        {
             RequestClose?.Invoke(this, EventArgs.Empty);
         }
     }
