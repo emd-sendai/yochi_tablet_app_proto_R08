@@ -162,6 +162,83 @@ namespace WpfApp.Screens.Aramashi.Views
                     }
                 }
 
+                // 画像ボタンが設定されている場合
+                if(section.ImageButton != null)
+                {
+                    //Listの中身の数確認
+                    //横並びStackPanelの縦横幅設定
+                    //Label+ButtonDataの縦並びStackPanelつくってStackPanelに追加（別メソッドに処理分離）
+                    List<StyledImageButton> imgbtns = section.ImageButton.ImageButtons;
+
+                    if (imgbtns.Count > 0)
+                    {
+                        StackPanel rowPanel = new StackPanel()
+                        {
+                            Orientation = Orientation.Horizontal,
+                            HorizontalAlignment= HorizontalAlignment.Center,
+                        };
+
+                        foreach (StyledImageButton btn in imgbtns)
+                        {
+                            StackPanel colPanel = new StackPanel() 
+                            {
+                                Orientation = Orientation.Vertical,
+                                Margin = new Thickness(8,8,8,3),
+                            };
+
+                            var color = (Color)ColorConverter.ConvertFromString(btn.LabelColor);
+                            var brush = new SolidColorBrush(color);
+
+                            TextBlock label = new TextBlock()
+                            {
+                                Text = btn.Label,
+                                Foreground = brush,
+                            };
+                            colPanel.Children.Add(label);
+
+                            Button imgbtn = new Button()
+                            {
+                                Command = viewModel.PreviewImageCommand,
+                                CommandParameter = btn.ImagePath,
+                            };
+
+                            if (Application.Current.TryFindResource("ImageButtonStyle") is Style style)
+                            {
+                                imgbtn.Style = style;
+                            }
+
+                            if (!string.IsNullOrWhiteSpace(btn.ImagePath) && File.Exists(btn.ImagePath))
+                            {
+                                try
+                                {
+                                    // Imageを作成
+                                    var img = new Image
+                                    {
+                                        Source = new BitmapImage(new Uri(btn.ImagePath)),
+                                        MaxWidth = section.ImageButton.MaxWidth,
+                                        MaxHeight = section.ImageButton.MaxHeight,
+                                        Stretch = Stretch.Uniform,
+                                        //StretchDirection = StretchDirection.DownOnly,
+                                        HorizontalAlignment = HorizontalAlignment.Center,
+                                        VerticalAlignment = VerticalAlignment.Center,
+                                    };
+                                    imgbtn.Content = img;
+                                    
+                                    Debug.WriteLine($"[DEBUG] 読み込み完了: {btn.ImagePath}");
+                                }
+                                catch (Exception ex)
+                                {
+                                    Debug.WriteLine($"[ERROR] ボタンの画像を読み込むことができません: {ex}");
+                                }
+                            }
+                            colPanel.Children.Add(imgbtn);
+                            rowPanel.Children.Add(colPanel);
+                        }
+                        MainPanel.Children.Add(rowPanel);
+                        cnt++;
+                    }
+                }
+
                 // 署名メッセージと署名ボタンが設定されている場合
                 if(section.SignTarget != null && section.SignMessage !=  null && section.SignButton != null)
                 {

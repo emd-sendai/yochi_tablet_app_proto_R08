@@ -40,8 +40,8 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         [ObservableProperty]
         private double scale = 1.0;
 
-        public double MinScale { get; } = 1.0;
-        public double MaxScale { get; } = 2.0;
+        public double MinScale { get; } = 0.1;
+        public double MaxScale { get; } = 5.0;
 
         private readonly string _jsonPath;
 
@@ -209,6 +209,12 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         private void GoToAramashiMenu()
         {
             _nav.Navigate(new AramashiMenuViewModel(_nav, _dia));
+        }
+
+        [RelayCommand]
+        private void PreviewImage(string imagePath)
+        {
+            _dia.ShowWindow<ImagePreviewViewModel>(imagePath);
         }
 
         [RelayCommand]

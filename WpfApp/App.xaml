@@ -163,6 +163,21 @@
                 </Style.Triggers>
             </Style>
 
+            <!-- 画像ボタン様式 -->
+            <Style x:Key="ImageButtonStyle" TargetType="Button">
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="BorderThickness" Value="2"/>
+                <Setter Property="BorderBrush" Value="Gray"/>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="BorderBrush" Value="#1F78B4" />
+                    </Trigger>
+                    <Trigger Property="IsPressed" Value="True">
+                        <Setter Property="BorderBrush" Value="#3F51B5" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
             <!-- 折り返しテキストブロック様式 -->
             <Style x:Key="WrapTextBlockStyle" TargetType="TextBlock">
                 <Setter Property="TextWrapping" Value="Wrap" />

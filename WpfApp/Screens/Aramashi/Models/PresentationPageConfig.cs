@@ -23,6 +23,14 @@ namespace WpfApp.Screens.Aramashi.Models
             foreach (var section in Sections)
             {
                 section.ResolvePaths(baseDir);
+
+                if(section.ImageButton?.ImageButtons != null)
+                {
+                    foreach (var imgbtn in section.ImageButton.ImageButtons)
+                    {
+                        imgbtn.ResolveImageButtonPaths(baseDir);
+                    }
+                }
             }
         }
     }
@@ -70,6 +78,8 @@ namespace WpfApp.Screens.Aramashi.Models
 
         //public ButtonData? Button { get; set; }
 
+        public ImageButtonData? ImageButton { get; set; }
+
         public TextBlockData? SignTarget { get; set; }
         public TextBlockData? SignMessage { get; set; }
         public ButtonData? SignButton { get; set; }
@@ -101,6 +111,43 @@ namespace WpfApp.Screens.Aramashi.Models
         public double Height { get; set; } = 50;
         public double Width { get; set; } = 100;
         public string? CommandName { get; set; } 
+        public object? CommandParameter { get; set; }
+
+        [JsonIgnore]  // 実行時のみ設定
+        public ICommand? Command { get; set; }
+    }
+
+    public class ImageButtonData
+    {
+        public string Id { get; set; } = "";
+        public double MaxHeight { get; set; } = 100;
+        public double MaxWidth { get; set; } = 100;
+        public List<StyledImageButton> ImageButtons { get; set; } = new();
+    }
+
+    public class StyledImageButton
+    {
+        public string Id { get; set; } = "";
+        public string Label {  get; set; } = string.Empty;
+        public double LabelFontSize { get; set; } = 15;
+        public string LabelColor { get; set; } = "#1F78B4";
+
+        //public double Height { get; set; } = 100;
+        //public double Width { get; set; } = 100;
+
+        public string? ImagePath { get; set; }
+
+        public void ResolveImageButtonPaths(string baseDir)
+        {
+            if (string.IsNullOrWhiteSpace(ImagePath))
+                return;
+
+            var path = Path.Combine(baseDir, ImagePath);
+            if (File.Exists(path))
+                ImagePath = path;
+        }
+
+        public string? CommandName { get; set; }
         public object? CommandParameter { get; set; }
 
         [JsonIgnore]  // 実行時のみ設定
