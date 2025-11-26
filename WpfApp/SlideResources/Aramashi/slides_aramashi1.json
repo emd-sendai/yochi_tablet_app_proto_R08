@@ -1,0 +1,37 @@
+[
+  {
+    "id": "aramashi1_1",
+    "title": {
+      "textRuns": [
+        {
+          "text": "１ 事業計画等の説明（設計・用地説明）",
+          "bold": true,
+          "color": "#000000"
+        }
+      ],
+      "fontSize": 26
+    },
+    "video": true,
+    "videoPath": "",
+    "sections": [
+      {
+        "body": {
+          "textRuns": [
+            {
+              "text": "　事業を円滑に推進するため、あらかじめ土地等の権利者および住民の皆さま方に事業の目的、計画の概要、工期、施工方法等について説明し、ご理解を深めていただきます。\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　また、合わせて土地の測量および物件等調査の方法ならびに用地補償に関する考え方の説明を行います。",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16
+        },
+        "imagePath": "aramashi1.png"
+      }
+    ]
+  }
+]

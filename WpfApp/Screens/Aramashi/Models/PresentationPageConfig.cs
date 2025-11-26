@@ -18,6 +18,12 @@ namespace WpfApp.Screens.Aramashi.Models
 
         public List<PageSection> Sections { get; set; } = new();
 
+        [JsonIgnore]
+        public string SourceJsonPath { get; set; } = string.Empty;
+
+        [JsonIgnore]
+        public int OriginalIndex { get; set; }
+
         public void ResolvePaths(string baseDir)
         {
             foreach (var section in Sections)

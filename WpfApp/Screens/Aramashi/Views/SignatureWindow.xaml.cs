@@ -449,7 +449,7 @@ namespace WpfApp.Screens.Aramashi.Views
                     if (sec.SignMessage != null)
                     {
                         string wareki = DateTime.Now.ToString("ggy年M月d日", new CultureInfo("ja-JP") { DateTimeFormat = { Calendar = new JapaneseCalendar() } });
-                        string signText = wareki + "上記についてすべて説明を受けました.";
+                        string signText = wareki + "上記についてすべて説明を受けました。";
 
                         TextBlock signBlock = new TextBlock
                         {

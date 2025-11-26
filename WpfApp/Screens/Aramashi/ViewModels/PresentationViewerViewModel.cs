@@ -43,77 +43,176 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         public double MinScale { get; } = 0.1;
         public double MaxScale { get; } = 5.0;
 
-        private readonly string _jsonPath;
+        private List<string> _jsonPathList;
 
         public PresentationViewerViewModel(string _presentationName, NavigationService navigationService, IDialogService dialogService)
         {
             _nav = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
             _dia = dialogService ?? throw new ArgumentNullException(nameof(dialogService));
 
-            _jsonPath = GetJsonPath(_presentationName);
+            _jsonPathList = GetJsonPaths(_presentationName);
             PresentationName = _presentationName ?? "";
 
-            LoadSlidesFromJson();
-            CurrentSlide = Slides.Count > 0 ? Slides[0] : null;
+            if (_jsonPathList.Count > 0)
+            {
+                var slideList = LoadSlidesFromJsons(_jsonPathList);
+
+                if (slideList != null && slideList.Count > 0)
+                {
+                    Slides.Clear();
+                    foreach (var slide in slideList)
+                    {
+                        Slides.Add(slide);
+                    }
+                }
+                else
+                {
+                    Debug.WriteLine($"[DEBUG] スライドデータを取得できません");
+                    MessageBox.Show("スライドデータを取得できません");
+                    return;
+                }
+
+                CurrentSlide = Slides.Count > 0 ? Slides[0] : null;
+            }
+            else
+            {
+                Debug.WriteLine($"[DEBUG] スライドデータを取得できません");
+                MessageBox.Show("スライドデータを取得できません");
+                return;
+            }
         }
 
-        private string GetJsonPath(string presentationName)
+        private List<string> GetJsonPaths(string presentationName)
         {
-            string path = "";
+            List<string> pathList = new();
             var dataFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SlideResources");
 
             switch (presentationName)
             {
                 case "aramashi":
-                    path = Path.Combine(dataFolder, "Aramashi", "slides.json");
+
+                    for (int i = 1; ; i++)
+                    {
+                        var aramashiPath = Path.Combine(dataFolder, "Aramashi", $"slides_aramashi{i}.json");
+                        if (!Path.Exists(aramashiPath)) break;
+
+                        pathList.Add(aramashiPath);
+                        Debug.WriteLine($"[DEBUG] スライドパスを追加: {aramashiPath}");
+                    }
                     break;
+
                 case "daitaichi":
-                    path = Path.Combine(dataFolder, "Others", "slides_daitaichi.json");
+
+                    var daitaichiPath = Path.Combine(dataFolder, "Others", "slides_daitaichi.json");
+                    pathList.Add(daitaichiPath);
+                    Debug.WriteLine($"[DEBUG] スライドパスを追加: {daitaichiPath}");
                     break;
+
                 case "zeikin":
-                    path = Path.Combine(dataFolder, "Others", "slides_zeikin.json");
+
+                    var zeikinPath = Path.Combine(dataFolder, "Others", "slides_zeikin.json");
+                    pathList.Add(zeikinPath);
+                    Debug.WriteLine($"[DEBUG] スライドパスを追加: {zeikinPath}");
                     break;
             }
-            return path;
+            return pathList;
         }
 
-        private void LoadSlidesFromJson()
+        private List<PresentationPageConfig> LoadSlidesFromJsons(List<string> pathList)
         {
-            if (!File.Exists(_jsonPath))
+            List<PresentationPageConfig> ret = new List<PresentationPageConfig>();
+
+            foreach (var path in pathList) 
             {
-                MessageBox.Show("スライドデータが見つかりません");
-                Debug.WriteLine($"[DEBUG] スライドデータが見つかりません");
-                return;
+                if (File.Exists(path))
+                {
+                    var jsonText = File.ReadAllText(path);
+                    var slideList = JsonSerializer.Deserialize<List<PresentationPageConfig>>(jsonText,
+                        new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+
+                    if (slideList != null)
+                    {
+                        string slideDir = Path.GetDirectoryName(path)!;
+
+                        for (int i = 0; i < slideList.Count; i++)
+                        {
+                            slideList[i].SourceJsonPath = path;  // 元のJSONパス
+                            slideList[i].OriginalIndex = i;         // JSON内での順番
+                            slideList[i].ResolvePaths(slideDir);
+                            ret.Add(slideList[i]);
+                        }
+                    }
+                    else
+                    {
+                        Debug.WriteLine($"[DEBUG] スライドデータが空です: {path}");
+                        break;
+                    }
+                }
+                else
+                {
+                    Debug.WriteLine($"[DEBUG] スライドデータが見つかりません: {path}");
+                    break;
+                }
             }
+            return ret;
+        }
 
-            var jsonText = File.ReadAllText(_jsonPath);
-            var slideList = JsonSerializer.Deserialize<List<PresentationPageConfig>>(jsonText,
-                new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+        private List<PresentationPageConfig> LoadSlidesFromJson(string path)
+        {
+            List<PresentationPageConfig> ret = new List<PresentationPageConfig>();
 
-            if (slideList == null)
+            if (File.Exists(path))
             {
-                MessageBox.Show("スライドデータが空です");
-                Debug.WriteLine($"[DEBUG] スライドデータが空です");
-                return;
+                var jsonText = File.ReadAllText(path);
+                var slideList = JsonSerializer.Deserialize<List<PresentationPageConfig>>(jsonText,
+                    new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+
+                if (slideList != null)
+                {
+                    string slideDir = Path.GetDirectoryName(path)!;
+
+                    for (int i = 0; i < slideList.Count; i++)
+                    {
+                        slideList[i].SourceJsonPath = path;  // 元のJSONパス
+                        slideList[i].OriginalIndex = i;         // JSON内での順番
+                        slideList[i].ResolvePaths(slideDir);
+                        ret.Add(slideList[i]);
+                    }
+                    return ret;
+                }
+                else
+                {
+                    Debug.WriteLine($"[DEBUG] スライドデータが空です: {path}");
+                    return ret;
+                }
             }
-
-            Slides.Clear();
-            string slideDir = Path.GetDirectoryName(_jsonPath)!;
-
-            foreach (var slide in slideList)
+            else
             {
-                slide.ResolvePaths(slideDir);
-                Slides.Add(slide);
+                Debug.WriteLine($"[DEBUG] スライドデータが見つかりません: {path}");
+                return ret;
             }
         }
 
-        private void SaveSlidesToJson()
+        private void SaveSlidesToJson(PresentationPageConfig slide)
         {
             try
             {
-                var options = new JsonSerializerOptions { WriteIndented = true };
-                var json = JsonSerializer.Serialize(Slides, options);
-                File.WriteAllText(_jsonPath, json);
+                if(slide != null && File.Exists(slide.SourceJsonPath))
+                {
+                    List<PresentationPageConfig> saveSlideList = LoadSlidesFromJson(slide.SourceJsonPath);
+
+                    for(int i = 0; i < saveSlideList.Count; i++)
+                    {
+                        if (saveSlideList[i].OriginalIndex == slide.OriginalIndex)
+                        {
+                            saveSlideList[i] = slide;
+                        }
+                    }
+                    var options = new JsonSerializerOptions { WriteIndented = true };
+                    var json = JsonSerializer.Serialize(saveSlideList, options);
+                    File.WriteAllText(slide.SourceJsonPath, json);
+                    Debug.WriteLine($"[DEBUG] チェックボックスの情報を保存しました: {slide.SourceJsonPath}");
+                }
             }
             catch (Exception ex)
             {
@@ -124,14 +223,14 @@ namespace WpfApp.Screens.Aramashi.ViewModels
 
         public void UpdateCheckBoxState(string slideId, string checkBoxId, bool isChecked)
         {
-            var slide = Slides.FirstOrDefault(s => s.Id == slideId);
+            PresentationPageConfig? slide = Slides.FirstOrDefault(s => s.Id == slideId);
             if (slide == null) return;
 
             var section = slide.Sections.FirstOrDefault(sec => sec.CheckBox?.Id == checkBoxId);
             if (section?.CheckBox != null)
             {
                 section.CheckBox.IsChecked = isChecked;
-                SaveSlidesToJson();
+                SaveSlidesToJson(slide);
             }
 
             // CheckBoxの状態が変わるたびに全チェック判定を更新
@@ -175,10 +274,20 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         [RelayCommand]
         public void ZoomOut() => Zoom(1 / 1.1);
 
+        public void GoToSlide(int index)
+        {
+            if (index >= 0 && index < Slides.Count)
+            {
+                _index = index;
+                CurrentSlide = Slides[_index];
+                OnPropertyChanged(nameof(CanGoPrev));
+                OnPropertyChanged(nameof(CanGoNext));
+            }
+        }
+
         [RelayCommand]
         private void Next()
         {
-            SaveSlidesToJson();
             if (_index < Slides.Count - 1)
             {
                 CurrentSlide = Slides[++_index];
@@ -190,7 +299,6 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         [RelayCommand]
         private void Prev()
         {
-            SaveSlidesToJson();
             if (_index > 0)
             {
                 CurrentSlide = Slides[--_index];
@@ -250,7 +358,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
                     return;
                 }
                 // DialogService を使ってモーダル Window を開く
-                var result = await _dia.ShowDialogAsync<SignatureViewModel, string>(editedSignMessage, _jsonPath, PresentationName);
+                var result = await _dia.ShowDialogAsync<SignatureViewModel, string>(editedSignMessage, _jsonPathList[0], PresentationName);
 
                 if (result != null)
                 {
