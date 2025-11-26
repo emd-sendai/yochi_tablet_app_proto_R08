@@ -25,7 +25,7 @@ namespace WpfApp.Common.ViewModels
         {
             if (string.IsNullOrWhiteSpace(imagePath) && !File.Exists(imagePath))
             {
-                MessageBox.Show("画像を読み込むことができません");
+                MessageBox.Show("画像の読み込みができません");
                 Debug.WriteLine($"[DEBUG] imagePathを読み込むことができません: {imagePath}");
                 Close();
             }

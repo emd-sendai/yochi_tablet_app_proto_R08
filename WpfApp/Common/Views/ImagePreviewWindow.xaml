@@ -14,7 +14,13 @@
     <DockPanel>
         <!-- 基本ボタン -->
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Right">
-
+            <!-- 初期表示ボタン -->
+            <Button Style="{StaticResource IconTextButtonStyle}" Margin="5,10,5,10" Click="FitButton_Click">
+                <StackPanel Orientation="Vertical" >
+                    <materialDesign:PackIcon Kind="FitToScreen" Style="{StaticResource ITButtonIconStyle}"/>
+                    <TextBlock Text="全体表示" Style="{StaticResource ITButtonTextStyle}"/>
+                </StackPanel>
+            </Button>
             <!-- 拡大ボタン-->
             <Button Style="{StaticResource IconTextButtonStyle}" Margin="5,10,5,10" Command="{Binding ZoomInCommand}">
                 <StackPanel Orientation="Vertical" >
