@@ -8,7 +8,8 @@
         mc:Ignorable="d"
         Title="画像プレビュー" Height="600" Width="800"
         WindowStartupLocation="CenterScreen"
-        Background="{DynamicResource MaterialDesignPaper}">
+        Background="{DynamicResource MaterialDesignPaper}"
+        Loaded="Window_Loaded">
     
     <DockPanel>
         <!-- 基本ボタン -->
@@ -38,14 +39,12 @@
                       Style="{StaticResource MaterialDesignScrollViewer}"
                       CanContentScroll="False" PanningMode="Both"
                       IsManipulationEnabled="True" ManipulationDelta="ScrollViewer_ManipulationDelta">
-            <Grid>
-                <Image x:Name="image" Source="{Binding Image}" RenderTransformOrigin="0.5,0"
+            <Image x:Name="image" Source="{Binding Image}" RenderTransformOrigin="0.5,0"
                        HorizontalAlignment="Center" VerticalAlignment="Top">
-                    <Image.RenderTransform>
-                        <ScaleTransform x:Name="imageScale" ScaleX="{Binding Scale}" ScaleY="{Binding Scale}" />
-                    </Image.RenderTransform>
-                </Image>
-            </Grid>
+                <Image.LayoutTransform>
+                    <ScaleTransform x:Name="imageScale" ScaleX="{Binding Scale}" ScaleY="{Binding Scale}" />
+                </Image.LayoutTransform>
+            </Image>
         </ScrollViewer>
     </DockPanel>
 </Window>
