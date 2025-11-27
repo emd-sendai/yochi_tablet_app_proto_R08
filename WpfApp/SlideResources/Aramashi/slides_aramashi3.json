@@ -165,7 +165,9 @@
             }
           ],
           "fontSize": 16
-        },
+        }
+      },
+      {
         "ImageButton": {
           "id": "aramashi3_2_imgbtn1",
           "maxHeight": 160,
@@ -184,6 +186,296 @@
               "commandName": ""
             }
           ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "aramashi3_3",
+    "title": {
+      "textRuns": [
+        {
+          "text": "３ 用地測量および物件等の調査",
+          "bold": true,
+          "color": "#000000"
+        }
+      ],
+      "fontSize": 26
+    },
+    "sections": [
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "（１）権利者調査",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        }
+      },
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "　",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "２）登記記録（登記簿）調査（土地・建物等）",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        },
+        "body": {
+          "textRuns": [
+            {
+              "text": "　土地の地番や建物の所有者および権利関係の確認のため、各種の登記記録（登記簿）の調査を行います。",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16
+        }
+      },
+      {
+        "body": {
+          "textRuns": [
+            {
+              "text": "① 土地の登記記録（登記簿）の調査\n",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "　前述の地図（公図）の転写により明確になった土地の地番を基に土地の登記記録（登記簿）から、次の事項の調査を行います。\n\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　ア　土地の所在、地番、地目および地積\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　イ　土地所有者の住所および氏名または名称\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　ウ　所有権以外の権利（抵当権・地上権・質権等）\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　エ　仮登記、予告登記等\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　オ　その他必要な事項",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16
+        },
+        "ImageButton": {
+          "id": "aramashi3_3_imgbtn1",
+          "maxHeight": 160,
+          "maxWidth": 200,
+          "imageButtons": [
+            {
+              "id": "imgbtn1_aramashi3_3",
+              "label": "登記事項証明書（土地）（例）",
+              "imagePath": "aramashi3_3.png",
+              "commandName": ""
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "aramashi3_4",
+    "title": {
+      "textRuns": [
+        {
+          "text": "３ 用地測量および物件等の調査",
+          "bold": true,
+          "color": "#000000"
+        }
+      ],
+      "fontSize": 26
+    },
+    "sections": [
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "（１）権利者調査",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        }
+      },
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "　",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "２）登記記録（登記簿）調査（土地・建物等）",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        }
+      },
+      {
+        "body": {
+          "textRuns": [
+            {
+              "text": "② 建物の登記記録（登記簿）の調査\n",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "　建物についても建物の登記記録（登記簿）から、次の事項の調査を行います。\n\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　ア　建物の所在、家屋番号、種類、構造および床面積\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　イ　建物所有者の住所および氏名または名称\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　ウ　所有権以外の権利（抵当権等）\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　エ　その他必要な事項",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16
+        },
+        "ImageButton": {
+          "id": "aramashi3_4_imgbtn1",
+          "maxHeight": 160,
+          "maxWidth": 200,
+          "imageButtons": [
+            {
+              "id": "imgbtn1_aramashi3_4",
+              "label": "登記事項証明書（建物）（例）",
+              "imagePath": "aramashi3_4.png",
+              "commandName": ""
+            }
+          ]
+        }
+      },
+      {
+        "body": {
+          "textRuns": [
+            {
+              "text": "　なお、建物登記がなされていない場合には、聞き取り等により権利関係等の調査を行います。\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　また、令和２年４月１日相続法制に関する民法改正により、建物に対する新たな権利である「配偶者居住権」が創設されました。配偶者居住権は建物等が移転対象とならず土地のみを取得する場合も調査を行います。",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16
+        }
+      }
+    ]
+  },
+  {
+    "id": "aramashi3_5",
+    "title": {
+      "textRuns": [
+        {
+          "text": "３ 用地測量および物件等の調査",
+          "bold": true,
+          "color": "#000000"
+        }
+      ],
+      "fontSize": 26
+    },
+    "sections": [
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "（１）権利者調査",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        }
+      },
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "　",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "３）住民票等の調査",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        },
+        "body": {
+          "textRuns": [
+            {
+              "text": "　土地や建物の登記記録（登記簿）、聞き取り等によって調査した土地、建物の権利について、所有者等の氏名や住所等を市区町村にて住民票等で調査します。\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　また、登記記録（登記簿）上の権利者が死亡している場合には、戸籍簿等により相続関係の調査を行います。\n\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　住民票、戸籍等は、公共事業の権利者調査等で必要な場合、職員が役所で取得できます。",
+              "bold": true,
+              "color": "#1F78B4"
+            }
+          ],
+          "fontSize": 16
         }
       }
     ]

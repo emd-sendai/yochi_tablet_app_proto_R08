@@ -311,7 +311,9 @@
             }
           ],
           "fontSize": 16
-        },
+        }
+      },
+      {
         "ImageButton": {
           "id": "imgbtn1",
           "maxHeight": 190,

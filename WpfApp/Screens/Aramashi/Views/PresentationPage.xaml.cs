@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using WpfApp.Screens.Aramashi.Models;
 using WpfApp.Screens.Aramashi.ViewModels;
+using static System.Collections.Specialized.BitVector32;
 
 namespace WpfApp.Screens.Aramashi.Views
 {
@@ -34,6 +35,7 @@ namespace WpfApp.Screens.Aramashi.Views
                 //bool hasSubtitle = false;
                 bool hasBody = false;
                 bool hasImage = false;
+                bool hasImageButton = false;
 
                 if (section.Subtitle != null) 
                 {
@@ -77,11 +79,98 @@ namespace WpfApp.Screens.Aramashi.Views
 
                 if (!string.IsNullOrWhiteSpace(section.ImagePath) && File.Exists(section.ImagePath))
                 {
-                        hasImage = true;
+                    hasImage = true;
                 }
 
+                if (section.ImageButton != null)
+                {
+                    hasImageButton = true;
+                }
+
+                // 本文と画像と画像ボタンの場合
+                if (hasBody && hasImage && hasImageButton)
+                {
+                    var bodyRow = new StackPanel { Orientation = Orientation.Horizontal };
+
+                    /* 本文 */
+                    if (section.Body != null)
+                    {
+                        // 本文TextBlockを作成
+                        var body = CreateTextBlock(section.Body);
+                        body.Margin = new Thickness(20, 4, 0, 8);
+                        body.MaxWidth = 470;
+                        bodyRow.Children.Add(body);
+                    }
+                    /* 画像 */
+                    if (!string.IsNullOrWhiteSpace(section.ImagePath) && File.Exists(section.ImagePath))
+                    {
+                        try
+                        {
+                            // Imageを作成
+                            var img = new Image
+                            {
+                                Source = new BitmapImage(new Uri(section.ImagePath)),
+                                MaxWidth = 200,
+                                MaxHeight = 200,
+                                Stretch = Stretch.Uniform,
+                                StretchDirection = StretchDirection.DownOnly,
+                                Margin = new Thickness(10, 4, 0, 0)
+                            };
+                            bodyRow.Children.Add(img);
+                            Debug.WriteLine($"[DEBUG] 読み込み完了: {section.ImagePath}");
+                        }
+                        catch (Exception ex)
+                        {
+                            Debug.WriteLine($"[ERROR] 画像を読み込むことができません: {ex}");
+                        }
+                    }
+                    /* 画像ボタン */
+                    if (section.ImageButton != null)
+                    {
+                        List<StyledImageButton> imgbtns = section.ImageButton.ImageButtons;
+
+                        if (imgbtns.Count > 0)
+                        {
+                            double maxWidth = section.ImageButton.MaxWidth;
+                            double maxHeight = section.ImageButton.MaxHeight;
+
+                            // 行StackPanelを作成
+                            StackPanel rowPanel = new StackPanel()
+                            {
+                                Orientation = Orientation.Horizontal,
+                                HorizontalAlignment = HorizontalAlignment.Center,
+                            };
+
+                            foreach (StyledImageButton btn in imgbtns)
+                            {
+                                // 列StackPanelを作成
+                                StackPanel colPanel = new StackPanel()
+                                {
+                                    Orientation = Orientation.Vertical,
+                                    Margin = new Thickness(8, 8, 8, 3),
+                                };
+
+                                // ボタンラベルを作成
+                                TextBlock label = CreateImageButtonLabel(btn);
+                                colPanel.Children.Add(label);
+
+                                // ボタンを作成
+                                Button imgbtn = CreateImageButton(btn, maxWidth, maxHeight);
+                                imgbtn.Command = viewModel.PreviewImageCommand;
+
+                                colPanel.Children.Add(imgbtn);
+                                rowPanel.Children.Add(colPanel);
+                            }
+
+                            bodyRow.Children.Add(rowPanel);
+                        }
+                    }
+
+                    MainPanel.Children.Add(bodyRow);
+                    cnt++;
+                }
                 // 本文と画像の場合
-                if (hasBody && hasImage)
+                else if (hasBody && hasImage)
                 {
                     var bodyRow = new StackPanel { Orientation = Orientation.Horizontal };
 
@@ -120,6 +209,136 @@ namespace WpfApp.Screens.Aramashi.Views
                     MainPanel.Children.Add(bodyRow);
                     cnt++;
                 }
+                // 本文と画像ボタンの場合
+                else if (hasBody && hasImageButton)
+                {
+                    var bodyRow = new StackPanel { Orientation = Orientation.Horizontal };
+
+                    /* 本文 */
+                    if (section.Body != null)
+                    {
+                        // 本文TextBlockを作成
+                        var body = CreateTextBlock(section.Body);
+                        body.Margin = new Thickness(20, 4, 0, 8);
+                        body.MaxWidth = 490;
+                        bodyRow.Children.Add(body);
+                    }
+                    /* 画像ボタン */
+                    if (section.ImageButton != null)
+                    {
+                        List<StyledImageButton> imgbtns = section.ImageButton.ImageButtons;
+
+                        if (imgbtns.Count > 0)
+                        {
+                            double maxWidth = section.ImageButton.MaxWidth;
+                            double maxHeight = section.ImageButton.MaxHeight;
+
+                            // 行StackPanelを作成
+                            StackPanel rowPanel = new StackPanel()
+                            {
+                                Orientation = Orientation.Horizontal,
+                                HorizontalAlignment = HorizontalAlignment.Center,
+                            };
+
+                            foreach (StyledImageButton btn in imgbtns)
+                            {
+                                // 列StackPanelを作成
+                                StackPanel colPanel = new StackPanel()
+                                {
+                                    Orientation = Orientation.Vertical,
+                                    Margin = new Thickness(8, 8, 8, 3),
+                                };
+
+                                // ボタンラベルを作成
+                                TextBlock label = CreateImageButtonLabel(btn);
+                                colPanel.Children.Add(label);
+
+                                // ボタンを作成
+                                Button imgbtn = CreateImageButton(btn, maxWidth, maxHeight);
+                                imgbtn.Command = viewModel.PreviewImageCommand;
+
+                                colPanel.Children.Add(imgbtn);
+                                rowPanel.Children.Add(colPanel);
+                            }
+
+                            bodyRow.Children.Add(rowPanel);
+                        }
+                    }
+                    MainPanel.Children.Add(bodyRow);
+                    cnt++;
+                }
+                // 画像と画像ボタンの場合
+                else if (hasImage && hasImageButton)
+                {
+                    var bodyRow = new StackPanel { Orientation = Orientation.Horizontal };
+
+                    /* 画像 */
+                    if (!string.IsNullOrWhiteSpace(section.ImagePath) && File.Exists(section.ImagePath))
+                    {
+                        try
+                        {
+                            // Imageを作成
+                            var img = new Image
+                            {
+                                Source = new BitmapImage(new Uri(section.ImagePath)),
+                                MaxWidth = 200,
+                                MaxHeight = 200,
+                                Stretch = Stretch.Uniform,
+                                StretchDirection = StretchDirection.DownOnly,
+                                Margin = new Thickness(10, 4, 0, 0)
+                            };
+                            bodyRow.Children.Add(img);
+                            Debug.WriteLine($"[DEBUG] 読み込み完了: {section.ImagePath}");
+                        }
+                        catch (Exception ex)
+                        {
+                            Debug.WriteLine($"[ERROR] 画像を読み込むことができません: {ex}");
+                        }
+                    }
+                    /* 画像ボタン */
+                    if (section.ImageButton != null)
+                    {
+                        List<StyledImageButton> imgbtns = section.ImageButton.ImageButtons;
+
+                        if (imgbtns.Count > 0)
+                        {
+                            double maxWidth = section.ImageButton.MaxWidth;
+                            double maxHeight = section.ImageButton.MaxHeight;
+
+                            // 行StackPanelを作成
+                            StackPanel rowPanel = new StackPanel()
+                            {
+                                Orientation = Orientation.Horizontal,
+                                HorizontalAlignment = HorizontalAlignment.Center,
+                            };
+
+                            foreach (StyledImageButton btn in imgbtns)
+                            {
+                                // 列StackPanelを作成
+                                StackPanel colPanel = new StackPanel()
+                                {
+                                    Orientation = Orientation.Vertical,
+                                    Margin = new Thickness(8, 8, 8, 3),
+                                };
+
+                                // ボタンラベルを作成
+                                TextBlock label = CreateImageButtonLabel(btn);
+                                colPanel.Children.Add(label);
+
+                                // ボタンを作成
+                                Button imgbtn = CreateImageButton(btn, maxWidth, maxHeight);
+                                imgbtn.Command = viewModel.PreviewImageCommand;
+
+                                colPanel.Children.Add(imgbtn);
+                                rowPanel.Children.Add(colPanel);
+                            }
+
+                            bodyRow.Children.Add(rowPanel);
+                        }
+                    }
+                    MainPanel.Children.Add(bodyRow);
+                    cnt++;
+                }
                 // 本文のみの場合
                 else if (hasBody)
                 {
@@ -133,7 +352,7 @@ namespace WpfApp.Screens.Aramashi.Views
                     }
                 }
                 // 画像のみの場合
-                else
+                else if(hasImage)
                 {
                     if (!string.IsNullOrWhiteSpace(section.ImagePath) && File.Exists(section.ImagePath))
                     {
@@ -161,81 +380,49 @@ namespace WpfApp.Screens.Aramashi.Views
                         }
                     }
                 }
-
-                // 画像ボタンが設定されている場合
-                if(section.ImageButton != null)
+                // 画像ボタンのみの場合
+                else if (hasImageButton)
                 {
-                    //Listの中身の数確認
-                    //横並びStackPanelの縦横幅設定
-                    //Label+ButtonDataの縦並びStackPanelつくってStackPanelに追加（別メソッドに処理分離）
-                    List<StyledImageButton> imgbtns = section.ImageButton.ImageButtons;
-
-                    if (imgbtns.Count > 0)
+                    if (section.ImageButton != null)
                     {
-                        StackPanel rowPanel = new StackPanel()
+                        List<StyledImageButton> imgbtns = section.ImageButton.ImageButtons;
+
+                        if (imgbtns.Count > 0)
                         {
-                            Orientation = Orientation.Horizontal,
-                            HorizontalAlignment= HorizontalAlignment.Center,
-                        };
+                            double maxWidth = section.ImageButton.MaxWidth;
+                            double maxHeight = section.ImageButton.MaxHeight;
 
-                        foreach (StyledImageButton btn in imgbtns)
-                        {
-                            StackPanel colPanel = new StackPanel() 
+                            // 行StackPanelを作成
+                            StackPanel rowPanel = new StackPanel()
                             {
-                                Orientation = Orientation.Vertical,
-                                Margin = new Thickness(8,8,8,3),
+                                Orientation = Orientation.Horizontal,
+                                HorizontalAlignment = HorizontalAlignment.Center,
                             };
 
-                            var color = (Color)ColorConverter.ConvertFromString(btn.LabelColor);
-                            var brush = new SolidColorBrush(color);
-
-                            TextBlock label = new TextBlock()
+                            foreach (StyledImageButton btn in imgbtns)
                             {
-                                Text = btn.Label,
-                                Foreground = brush,
-                            };
-                            colPanel.Children.Add(label);
+                                // 列StackPanelを作成
+                                StackPanel colPanel = new StackPanel()
+                                {
+                                    Orientation = Orientation.Vertical,
+                                    Margin = new Thickness(8, 8, 8, 3),
+                                };
 
-                            Button imgbtn = new Button()
-                            {
-                                Command = viewModel.PreviewImageCommand,
-                                CommandParameter = btn.ImagePath,
-                            };
+                                // ボタンラベルを作成
+                                TextBlock label = CreateImageButtonLabel(btn);
+                                colPanel.Children.Add(label);
 
-                            if (Application.Current.TryFindResource("ImageButtonStyle") is Style style)
-                            {
-                                imgbtn.Style = style;
+                                // ボタンを作成
+                                Button imgbtn = CreateImageButton(btn, maxWidth, maxHeight);
+                                imgbtn.Command = viewModel.PreviewImageCommand;
+
+                                colPanel.Children.Add(imgbtn);
+                                rowPanel.Children.Add(colPanel);
                             }
 
-                            if (!string.IsNullOrWhiteSpace(btn.ImagePath) && File.Exists(btn.ImagePath))
-                            {
-                                try
-                                {
-                                    // Imageを作成
-                                    var img = new Image
-                                    {
-                                        Source = new BitmapImage(new Uri(btn.ImagePath)),
-                                        MaxWidth = section.ImageButton.MaxWidth,
-                                        MaxHeight = section.ImageButton.MaxHeight,
-                                        Stretch = Stretch.Uniform,
-                                        //StretchDirection = StretchDirection.DownOnly,
-                                        HorizontalAlignment = HorizontalAlignment.Center,
-                                        VerticalAlignment = VerticalAlignment.Center,
-                                    };
-                                    imgbtn.Content = img;
-                                    
-                                    Debug.WriteLine($"[DEBUG] 読み込み完了: {btn.ImagePath}");
-                                }
-                                catch (Exception ex)
-                                {
-                                    Debug.WriteLine($"[ERROR] ボタンの画像を読み込むことができません: {ex}");
-                                }
-                            }
-                            colPanel.Children.Add(imgbtn);
-                            rowPanel.Children.Add(colPanel);
+                            MainPanel.Children.Add(rowPanel);
+                            cnt++;
                         }
-                        MainPanel.Children.Add(rowPanel);
-                        cnt++;
                     }
                 }
 
@@ -327,6 +514,59 @@ namespace WpfApp.Screens.Aramashi.Views
             }
 
             return btn;
+        }
+
+        private TextBlock CreateImageButtonLabel(StyledImageButton data)
+        {
+            var color = (Color)ColorConverter.ConvertFromString(data.LabelColor);
+            var brush = new SolidColorBrush(color);
+
+            TextBlock label = new TextBlock()
+            {
+                Text = data.Label,
+                Foreground = brush,
+            };
+            return label;
+        }
+
+        private Button CreateImageButton(StyledImageButton data, double maxWidth, double maxHeight)
+        {
+            // ボタンを作成
+            Button imgbtn = new Button()
+            {
+                CommandParameter = data.ImagePath,
+            };
+
+            if (Application.Current.TryFindResource("ImageButtonStyle") is Style style)
+            {
+                imgbtn.Style = style;
+            }
+
+            // 画像データを作成
+            if (!string.IsNullOrWhiteSpace(data.ImagePath) && File.Exists(data.ImagePath))
+            {
+                try
+                {
+                    var img = new Image
+                    {
+                        Source = new BitmapImage(new Uri(data.ImagePath)),
+                        MaxWidth = maxWidth,
+                        MaxHeight = maxHeight,
+                        Stretch = Stretch.Uniform,
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        VerticalAlignment = VerticalAlignment.Center,
+                    };
+                    // 画像データをボタンに設定
+                    imgbtn.Content = img;
+
+                    Debug.WriteLine($"[DEBUG] 読み込み完了: {data.ImagePath}");
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine($"[ERROR] ボタンの画像を読み込むことができません: {ex}");
+                }
+            }
+            return imgbtn;
         }
     }
 }
