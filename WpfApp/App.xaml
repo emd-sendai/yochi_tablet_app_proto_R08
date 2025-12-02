@@ -178,12 +178,24 @@
                 </Style.Triggers>
             </Style>
 
+            <!-- 相続の概要ボタン様式 -->
+            <Style x:Key="InheritanceOverviewButtonStyle" TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
+            </Style>
+
             <!-- 折り返しテキストブロック様式 -->
             <Style x:Key="WrapTextBlockStyle" TargetType="TextBlock">
                 <Setter Property="TextWrapping" Value="Wrap" />
                 <Setter Property="TextAlignment" Value="Center" />
                 <Setter Property="VerticalAlignment" Value="Center" />
                 <Setter Property="HorizontalAlignment" Value="Center" />
+            </Style>
+
+            <!-- 家系図（相続の概要）のアイコン様式 -->
+            <Style x:Key="FamilyTreeIconStyle" TargetType="materialDesign:PackIcon" >
+                <Setter Property="Height" Value="40"/>
+                <Setter Property="Width" Value="30"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
             </Style>
 
             <!-- 各種資料コンボボックス様式 -->

@@ -326,6 +326,12 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         }
 
         [RelayCommand]
+        private void ShowInheritanceOverview(string imagePath)
+        {
+            _dia.ShowWindow<InheritanceOverviewViewModel>();
+        }
+
+        [RelayCommand]
         private async Task EditSignatureAsync(string editedSignMessage)
         {
 

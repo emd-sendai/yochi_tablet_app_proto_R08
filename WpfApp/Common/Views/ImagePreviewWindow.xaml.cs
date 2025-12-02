@@ -92,7 +92,6 @@ namespace WpfApp.Common.Views
             scrollViewer.ScrollToVerticalOffset(scrollViewer.VerticalOffset - e.DeltaManipulation.Translation.Y);
 
             e.Handled = true;
-
         }
     }
 }

@@ -8,7 +8,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using WpfApp.Screens.Aramashi.Models;
 using WpfApp.Screens.Aramashi.ViewModels;
-using static System.Collections.Specialized.BitVector32;
 
 namespace WpfApp.Screens.Aramashi.Views
 {
@@ -37,6 +36,7 @@ namespace WpfApp.Screens.Aramashi.Views
                 bool hasImage = false;
                 bool hasImageButton = false;
 
+                // サブタイトルが設定されている場合
                 if (section.Subtitle != null) 
                 {
                     var subtitleRow = new StackPanel { Orientation = Orientation.Horizontal };
@@ -72,16 +72,19 @@ namespace WpfApp.Screens.Aramashi.Views
                     cnt++;
                 }
 
+                // 本文が設定されている場合
                 if (section.Body != null)
                 {
                     hasBody = true;
                 }
 
+                // 画像が設定されている場合
                 if (!string.IsNullOrWhiteSpace(section.ImagePath) && File.Exists(section.ImagePath))
                 {
                     hasImage = true;
                 }
 
+                // 画像ボタンが設定されている場合
                 if (section.ImageButton != null)
                 {
                     hasImageButton = true;
@@ -423,6 +426,37 @@ namespace WpfApp.Screens.Aramashi.Views
                             MainPanel.Children.Add(rowPanel);
                             cnt++;
                         }
+                    }
+                }
+
+                // ボタン（テキストのみ）が設定されている場合
+                if (section.Button != null)
+                {
+                    List<ButtonData> btns = section.Button.TextButtons;
+
+                    if (btns.Count > 0)
+                    {
+                        // 行StackPanelを作成
+                        StackPanel colPanel = new StackPanel()
+                        {
+                            Orientation = Orientation.Horizontal,
+                            HorizontalAlignment = HorizontalAlignment.Right,
+                            Margin = new Thickness(8, 15, 8, 3),
+                        };
+
+                        foreach (var btn in btns)
+                        {
+                            Button button = CreateButton(btn);
+
+                            if (btn.CommandName == "ShowInheritanceOverviewCommand")
+                            {
+                                button.Command = viewModel.ShowInheritanceOverviewCommand;
+                            }
+
+                            colPanel.Children.Add(button);
+                        }
+                        MainPanel.Children.Add(colPanel);
+                        cnt++;
                     }
                 }
 

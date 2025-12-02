@@ -82,7 +82,7 @@ namespace WpfApp.Screens.Aramashi.Models
         public TextBlockData? Body { get; set; }
         public string? ImagePath { get; set; }
 
-        //public ButtonData? Button { get; set; }
+        public TextButtonData? Button { get; set; }
 
         public ImageButtonData? ImageButton { get; set; }
 
@@ -121,6 +121,12 @@ namespace WpfApp.Screens.Aramashi.Models
 
         [JsonIgnore]  // 実行時のみ設定
         public ICommand? Command { get; set; }
+    }
+
+    public class TextButtonData
+    {
+        public string Id { get; set; } = "";
+        public List<ButtonData> TextButtons { get; set; } = new ();
     }
 
     public class ImageButtonData

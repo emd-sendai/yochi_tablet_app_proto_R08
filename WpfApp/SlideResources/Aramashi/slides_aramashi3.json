@@ -476,6 +476,20 @@
             }
           ],
           "fontSize": 16
+        },
+        "button": {
+          "id": "aramashi3_5_txtbtn1",
+          "textButtons": [
+            {
+              "id": "txtbtn1_inheritanceOverview",
+              "text": "相続の概要",
+              "fontsize": 20,
+              "bold": true,
+              "height": 60,
+              "width": 150,
+              "commandName": "ShowInheritanceOverviewCommand"
+            }
+          ]
         }
       }
     ]

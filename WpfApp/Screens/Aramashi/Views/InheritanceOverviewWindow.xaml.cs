@@ -1,0 +1,214 @@
+﻿using System.Diagnostics;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Shapes;
+using WpfApp.Screens.Aramashi.ViewModels;
+
+namespace WpfApp.Screens.Aramashi.Views
+{
+    /// <summary>
+    /// InheritanceOverviewWindow.xaml の相互作用ロジック
+    /// </summary>
+    public partial class InheritanceOverviewWindow : Window
+    {
+        private List<Border> currentBorders = new List<Border>();
+
+        public InheritanceOverviewWindow()
+        {
+            InitializeComponent();
+
+            Loaded += (_, __) => UpdateAllLines();
+            SizeChanged += (_, __) => UpdateAllLines();
+
+            DataContextChanged += (s, e) =>
+            {
+                if (e.NewValue is InheritanceOverviewViewModel vm)
+                {
+                    vm.PropertyChanged += (s, e) =>
+                    {
+                        if (e.PropertyName == nameof(vm.SelectedCase))
+                        {
+                            if(vm.SelectedCase != string.Empty)
+                            {
+                                DrawBorders(vm.GetTargetsForSelectedCase());
+                            }
+                            else
+                            {
+                                DeleteBorders();
+                            }
+                            
+                        }
+                    };
+
+                    vm.RequestClose += (_, _) => this.Close();
+                }
+            };
+        }
+
+        private void DrawBorders(string[] targetNames)
+        {
+            // 以前の枠をすべて削除
+            DeleteBorders();
+
+            foreach (string name in targetNames)
+            {
+                var target = FindName(name) as FrameworkElement;
+                if (target == null) continue;
+
+                var position = GetLeftTop(target);
+
+                // デフォルトのカラーコード（赤）を設定
+                var colorCode = "#D64545";
+
+                // 配偶者の場合
+                if(name == "Spouse")
+                {
+                    // 緑
+                    colorCode = "#388E3C";
+                }
+                // 子の場合
+                else if (name == "Children")
+                {
+                    // 水色
+                    colorCode = "#42A5F5";
+                }
+                // 親の場合
+                else if (name == "Parents")
+                {
+                    // ピンク
+                    colorCode = "#E573A1";
+                }
+                // 兄弟姉妹の場合
+                else if (name == "Siblings")
+                {
+                    // オレンジ
+                    colorCode = "#FB8C00";
+                }
+
+                var color = (Color)ColorConverter.ConvertFromString(colorCode);
+                var brush = new SolidColorBrush(color);
+
+                Border border = new Border
+                {
+                    Width = target.ActualWidth,
+                    Height = target.ActualHeight,
+                    BorderBrush = brush,
+                    BorderThickness = new Thickness(2)
+                };
+
+                Canvas.SetLeft(border, position.X);
+                Canvas.SetTop(border, position.Y);
+
+                OverlayCanvas.Children.Add(border);
+                currentBorders.Add(border);
+                Debug.WriteLine($"枠線を描画しました: {name}");
+            }
+        }
+
+        private void DeleteBorders()
+        {
+            foreach (var border in currentBorders)
+                OverlayCanvas.Children.Remove(border);
+            currentBorders.Clear();
+            Debug.WriteLine($"描画を初期化しました");
+        }
+
+        private void UpdateAllLines()
+        {
+            var parents = GetCenter(Parents);
+            var siblings = GetCenter(Siblings);
+            var decedent = GetCenter(Decedent);
+            var spouse = GetCenter(Spouse);
+            var children = GetCenter(Children);
+
+            var midY_parents_siblings = GetMidY(parents, siblings);
+            var midX_decedent_spouse = GetMidX(decedent, spouse);
+
+            var end_ParentsVLine = new Point(parents.X, midY_parents_siblings);
+            var start_ParentsHLine = new Point(siblings.X - 2.5, midY_parents_siblings);
+            var end_ParentsHLine = new Point(decedent.X + 2.5, midY_parents_siblings);
+            var start_SiblingsVLine = new Point(siblings.X, midY_parents_siblings);
+            var start_DecedentVLine = new Point(decedent.X, midY_parents_siblings);
+            var start_ChildrenVLine = new Point(midX_decedent_spouse, decedent.Y);
+            var end_ChildrenVLine = new Point(midX_decedent_spouse, children.Y);
+
+            UpdateLine(ParentsVLine, parents, end_ParentsVLine);
+            UpdateLine(ParentsHLine, start_ParentsHLine, end_ParentsHLine);
+            UpdateLine(SiblingsVLine, start_SiblingsVLine, siblings);
+            UpdateLine(DecedentVLine, start_DecedentVLine, decedent);
+            UpdateLine(CoupleHLine, decedent, spouse);
+            UpdateLine(ChildrenVLine, start_ChildrenVLine, end_ChildrenVLine);
+        }
+
+        private void UpdateLine(Line line, Point start, Point end)
+        {
+            line.X1 = start.X;
+            line.Y1 = start.Y;
+            line.X2 = end.X;
+            line.Y2 = end.Y;
+        }
+
+        private Point GetCenter(FrameworkElement element)
+        {
+            // elementのローカル座標における中心点を取得
+            var centerLocal = new Point(element.RenderSize.Width / 2, element.RenderSize.Height / 2);
+
+            // スクリーン座標におけるelementの中心点を取得
+            var screenPoint = element.PointToScreen(centerLocal);
+
+            // スクリーン座標をGridのローカル座標へ変換
+            return FamilyTreeGrid.PointFromScreen(screenPoint);
+        }
+
+        private Point GetLeftTop(FrameworkElement element)
+        {
+            // elementの左上の点を設定
+            var leftTopLocal = new Point(0,0);
+            // スクリーン座標におけるelementの左上の点を取得
+            var screenPoint = element.PointToScreen(leftTopLocal);
+            //　スクリーン座標をGridのローカル座標へ変換
+            return FamilyTreeGrid.PointFromScreen(screenPoint);
+        }
+
+        private double GetMidY(Point p1, Point p2) 
+        { 
+            double midY = (p1.Y + p2.Y) / 2;
+            return midY;
+        }
+
+        private double GetMidX(Point p1, Point p2)
+        {
+            double midX = (p1.X + p2.X) / 2;
+            return midX;
+        }
+
+        private void Border_ManipulationStarting(object sender, ManipulationStartingEventArgs e)
+        {
+            e.ManipulationContainer = this;
+            e.Mode = ManipulationModes.Scale | ManipulationModes.Translate;
+        }
+
+        private void Border_ManipulationDelta(object sender, ManipulationDeltaEventArgs e)
+        {
+            if (DataContext is InheritanceOverviewViewModel vm)
+            {
+                vm.Zoom(e.DeltaManipulation.Scale.X);
+            }
+        }
+
+        private void ScrollViewer_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            if (DataContext is InheritanceOverviewViewModel vm)
+            {
+                if ((Keyboard.Modifiers & ModifierKeys.Control) != 0)
+                {
+                    e.Handled = true;
+                    double factor = e.Delta > 0 ? 1.1 : 1 / 1.1;
+                    vm.Zoom(factor);
+                }
+            }
+        }
+    }
+}
