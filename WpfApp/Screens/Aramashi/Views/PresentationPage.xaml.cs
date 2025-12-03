@@ -98,10 +98,13 @@ namespace WpfApp.Screens.Aramashi.Views
                     /* 本文 */
                     if (section.Body != null)
                     {
+                        // インデントを取得
+                        var indent = section.Body.Indent;
+
                         // 本文TextBlockを作成
                         var body = CreateTextBlock(section.Body);
-                        body.Margin = new Thickness(20, 4, 0, 8);
-                        body.MaxWidth = 470;
+                        body.Margin = new Thickness(20 + indent * 20, 4, 0, 8);
+                        body.MaxWidth = 470 - indent * 20;
                         bodyRow.Children.Add(body);
                     }
                     /* 画像 */
@@ -180,10 +183,13 @@ namespace WpfApp.Screens.Aramashi.Views
                     /* 本文 */
                     if (section.Body != null)
                     {
+                        // インデントを取得
+                        var indent = section.Body.Indent;
+
                         // 本文TextBlockを作成
                         var body = CreateTextBlock(section.Body);
-                        body.Margin = new Thickness(20, 4, 0, 8);
-                        body.MaxWidth = 490;
+                        body.Margin = new Thickness(20 + indent * 20, 4, 0, 8);
+                        body.MaxWidth = 470 - indent * 20;
                         bodyRow.Children.Add(body);
                     }
                     /* 画像 */
@@ -220,10 +226,13 @@ namespace WpfApp.Screens.Aramashi.Views
                     /* 本文 */
                     if (section.Body != null)
                     {
+                        // インデントを取得
+                        var indent = section.Body.Indent;
+
                         // 本文TextBlockを作成
                         var body = CreateTextBlock(section.Body);
-                        body.Margin = new Thickness(20, 4, 0, 8);
-                        body.MaxWidth = 490;
+                        body.Margin = new Thickness(20 + indent * 20, 4, 0, 8);
+                        body.MaxWidth = 470 - indent * 20;
                         bodyRow.Children.Add(body);
                     }
                     /* 画像ボタン */
@@ -347,9 +356,12 @@ namespace WpfApp.Screens.Aramashi.Views
                 {
                     if (section.Body != null)
                     {
+                        // インデントを取得
+                        var indent = section.Body.Indent;
+
                         // 本文TextBlockを作成
                         var body = CreateTextBlock(section.Body);
-                        body.Margin = new Thickness(20, 4, 0, 8);
+                        body.Margin = new Thickness(20 + indent * 20, 4, 0, 8);
                         MainPanel.Children.Add(body);
                         cnt++;
                     }
@@ -440,21 +452,33 @@ namespace WpfApp.Screens.Aramashi.Views
                         StackPanel colPanel = new StackPanel()
                         {
                             Orientation = Orientation.Horizontal,
-                            HorizontalAlignment = HorizontalAlignment.Right,
                             Margin = new Thickness(8, 15, 8, 3),
                         };
 
-                        foreach (var btn in btns)
+                        if (section.Button.HorizontalAlignment == "left")
                         {
-                            Button button = CreateButton(btn);
-
-                            if (btn.CommandName == "ShowInheritanceOverviewCommand")
-                            {
-                                button.Command = viewModel.ShowInheritanceOverviewCommand;
-                            }
-
-                            colPanel.Children.Add(button);
+                            colPanel.HorizontalAlignment = HorizontalAlignment.Left;
                         }
+                        else if (section.Button.HorizontalAlignment == "right")
+                        {
+                            colPanel.HorizontalAlignment = HorizontalAlignment.Right;
+                        }
+                        else 
+                        {
+                            colPanel.HorizontalAlignment = HorizontalAlignment.Center;
+                        }
+
+                            foreach (var btn in btns)
+                            {
+                                Button button = CreateButton(btn);
+
+                                if (btn.CommandName == "ShowInheritanceOverviewCommand")
+                                {
+                                    button.Command = viewModel.ShowInheritanceOverviewCommand;
+                                }
+
+                                colPanel.Children.Add(button);
+                            }
                         MainPanel.Children.Add(colPanel);
                         cnt++;
                     }

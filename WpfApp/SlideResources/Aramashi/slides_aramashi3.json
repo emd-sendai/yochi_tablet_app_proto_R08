@@ -477,8 +477,22 @@
           ],
           "fontSize": 16
         },
+        "imageButton": {
+          "id": "aramashi3_5_imgbtn1",
+          "maxHeight": 200,
+          "maxWidth": 300,
+          "imageButtons": [
+            {
+              "id": "imgbtn1_aramashi3_5",
+              "label": "相続関係説明図（例）",
+              "imagePath": "aramashi3_5.png",
+              "CommandName": ""
+            }
+          ]
+        },
         "button": {
           "id": "aramashi3_5_txtbtn1",
+          "horizontalAlignment": "center",
           "textButtons": [
             {
               "id": "txtbtn1_inheritanceOverview",
@@ -491,6 +505,1564 @@
             }
           ]
         }
+      }
+    ]
+  },
+  {
+    "id": "aramashi3_6",
+    "title": {
+      "textRuns": [
+        {
+          "text": "３ 用地測量および物件等の調査",
+          "bold": true,
+          "color": "#000000"
+        }
+      ],
+      "fontSize": 26
+    },
+    "sections": [
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "（１）権利者調査",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        }
+      },
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "　",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "３）住民票等の調査",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        },
+        "body": {
+          "textRuns": [
+            {
+              "text": "※",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "相続発生前に父母が死亡している場合、祖父母が相続人",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "となり、祖父母も死亡していれば曾祖父母が、というように、どこまでも上の代まで相続人となっていきます。\n\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "※",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "代襲相続",
+              "bold": true,
+              "color": "#D32F2F"
+            },
+            {
+              "text": "：",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "被相続人の子又は兄弟姉妹が相続開始以前に死亡している場合、その者の子が代わりに相続人となる",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "制度（民法第887条、第889条）。子の代襲者は、",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "限りなくその直系卑属が順次代襲します",
+              "bold": true,
+              "color": "#D32F2F"
+            },
+            {
+              "text": "（再代襲）。",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "一方、兄弟姉妹の代襲者はその子までです",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "（再代襲はありません）。",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16
+        },
+        "imageButton": {
+          "id": "aramashi3_6_imgbtn1",
+          "maxHeight": 140,
+          "maxWidth": 200,
+          "imageButtons": [
+            {
+              "id": "imgbtn1_aramashi3_6",
+              "label": "（参考）相続持分の変遷",
+              "imagePath": "aramashi3_6.png",
+              "CommandName": ""
+            }
+          ]
+        }
+      },
+      {
+        "body": {
+          "textRuns": [
+            {
+              "text": "　ただし、相続開始が昭和23年１月１日から昭和55年12月31日までの間であるときの兄弟姉妹の代襲者は、限りなくその直系卑属が順次代襲します（再代襲できます）。\n",
+              "bold": true,
+              "color": "#D32F2F"
+            },
+            {
+              "text": "　なお、相続開始が昭和22年5月3日から昭和22年12月31日までは、兄弟姉妹には、代襲相続制度がありません。",
+              "bold": true,
+              "color": "#1F78B4"
+            }
+          ],
+          "fontSize": 16
+        }
+      }
+    ]
+  },
+  {
+    "id": "aramashi3_7",
+    "title": {
+      "textRuns": [
+        {
+          "text": "３ 用地測量および物件等の調査",
+          "bold": true,
+          "color": "#000000"
+        }
+      ],
+      "fontSize": 26
+    },
+    "sections": [
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "（２）用地測量および物件等の調査",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        },
+        "body": {
+          "textRuns": [
+            {
+              "text": "権利者調査の結果に基づいて、土地・建物等の現地調査をさせていただきます。",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16
+        }
+      },
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "　",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "１）土地に関する調査",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        },
+        "body": {
+          "textRuns": [
+            {
+              "text": "①現地踏査\n",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "　調査を行う区域について現地踏査を行い、地域の状況、土地および建物等の概況を把握します。",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16
+        },
+        "imagePath": "aramashi3_7.png"
+      }
+    ]
+  },
+  {
+    "id": "aramashi3_8",
+    "title": {
+      "textRuns": [
+        {
+          "text": "３ 用地測量および物件等の調査",
+          "bold": true,
+          "color": "#000000"
+        }
+      ],
+      "fontSize": 26
+    },
+    "sections": [
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "（２）用地測量および物件等の調査",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        }
+      },
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "　",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "１）土地に関する調査",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        },
+        "body": {
+          "textRuns": [
+            {
+              "text": "②境界立会\n",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "　用地幅杭の設置により事業用地の範囲が明確になりましたら、土地の境界を確認していただくため土地所有者等の立会をお願いします。\n\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "ア 境界立会の依頼通知\n",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            },
+            {
+              "text": "（土地所有者・隣接土地所有者・関係人（借地人・耕作人等））\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　事業用地内の土地所有者および隣接土地所有者に対して境界立会の日時、場所等を記した依頼通知をあらかじめお送りします。\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　なお、その土地に関しての関係人（借地人・耕作人等）がいる場合には土地所有者から立会の連絡をお願いします。",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16
+        }
+      }
+    ]
+  },
+  {
+    "id": "aramashi3_9",
+    "title": {
+      "textRuns": [
+        {
+          "text": "３ 用地測量および物件等の調査",
+          "bold": true,
+          "color": "#000000"
+        }
+      ],
+      "fontSize": 26
+    },
+    "sections": [
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "（２）用地測量および物件等の調査",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        }
+      },
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "　",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "１）土地に関する調査",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        },
+        "body": {
+          "textRuns": [
+            {
+              "text": "②境界立会\n\n",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "イ 境界立会\n",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            },
+            {
+              "text": "（土地所有者・隣接土地所有者・関係人（借地人・耕作人等））\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　事業に必要な土地と隣接土地の境については、隣接する相互の所有者に確認していただきます。\n",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "　また、事業に必要な土地に関係人（借地人・耕作人等）がいる場合には、その権利の境界確認もお願いします。\n\n",
+              "bold": true,
+              "color": "#000000"
+            },
+            {
+              "text": "　〔境界立会でご用意いただくもの〕\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　□境界立会の依頼通知書\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　□印鑑\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　□土地に関する資料等をお持ちの方は、その資料等",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16
+        }
+      }
+    ]
+  },
+  {
+    "id": "aramashi3_10",
+    "title": {
+      "textRuns": [
+        {
+          "text": "３ 用地測量および物件等の調査",
+          "bold": true,
+          "color": "#000000"
+        }
+      ],
+      "fontSize": 26
+    },
+    "sections": [
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "（２）用地測量および物件等の調査",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        }
+      },
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "　",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "１）土地に関する調査",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        },
+        "body": {
+          "textRuns": [
+            {
+              "text": "②境界立会\n\n",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "ウ 土地境界立会確認書ヘの署名・押印\n",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            },
+            {
+              "text": "（土地所有者・隣接土地所有者・関係人（借地人、耕作人等））\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　土地の境界の確認をしていただきましたら、土地境界立会確認書に署名・押印をお願いします。\n",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "　確認した境界について、境界杭を打たせていただきます。",
+              "bold": true,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16
+        },
+        "imagePath": "aramashi3_8.png"
+      },
+      {
+        "body": {
+          "textRuns": [
+            {
+              "text": "\nイ境界立会",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "（原則、現地）、境界確認後の",
+              "bold": false,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "ウ土地境界立会確認書への署名押印のご協力よろしくお願いします。",
+              "bold": true,
+              "color": "#1F78B4"
+            }
+          ],
+          "fontSize": 16
+        }
+      }
+    ]
+  },
+  {
+    "id": "aramashi3_11",
+    "title": {
+      "textRuns": [
+        {
+          "text": "３ 用地測量および物件等の調査",
+          "bold": true,
+          "color": "#000000"
+        }
+      ],
+      "fontSize": 26
+    },
+    "sections": [
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "（２）用地測量および物件等の調査",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        }
+      },
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "　",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "１）土地に関する調査",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        },
+        "body": {
+          "textRuns": [
+            {
+              "text": "③用地測量\n",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "　",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "境界立会で確認した境界杭を基に一筆ごとに測量をさせていただきます。",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 16
+        }
+      },
+      {
+        "body": {
+          "textRuns": [
+            {
+              "text": "ア  土地への立入りは、所有者の了解を得て、原則、日出から日没までの間に行います。\n\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "イ  一筆の土地の一部に他の部分と異なる地目の土地があるとき、または一筆の土地に他の部分と異なる権利（借地権、耕作権等）が設定されているときは、それぞれ異なる地目の土地ごと、または異なる権利が設定されている土地ごとに測量を行います。\n\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "ウ  建物等の主要な物件が現地にある場合は、その位置の測量を行います。\n\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "エ  ",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "用地測量の成果を基に実測図等を作成",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "します。",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16
+        },
+        "imagePath": "aramashi3_9.png"
+      }
+    ]
+  },
+  {
+    "id": "aramashi3_12",
+    "title": {
+      "textRuns": [
+        {
+          "text": "３ 用地測量および物件等の調査",
+          "bold": true,
+          "color": "#000000"
+        }
+      ],
+      "fontSize": 26
+    },
+    "sections": [
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "（２）用地測量および物件等の調査",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        }
+      },
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "　",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "２）物件等に関する調査",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        },
+        "body": {
+          "textRuns": [
+            {
+              "text": "①建物の調査\n",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "　建物は、木造と非木造に区分し、さらに構造、用途等により、専用住宅、共同住宅、店舗、倉庫等に区分して、それぞれ一棟ごとに調査をさせていただきます。\n\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "ア  調査日の打合せ\n",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "　建物調査は、所有者および居住されている方々と相談しながら調査日を決めさせていただきます。\n\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "イ  調査の立会\n",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "　",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "調査の際は、実際に建物の内部に入って調査",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            },
+            {
+              "text": "することになりますので、その建物の所有者および居住されている方の立会をお願いします。\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　なお、建築確認申請書（控）等の資料がありましたらご用意ください。",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16
+        },
+        "imagePath": "aramashi3_10.png"
+      }
+    ]
+  },
+  {
+    "id": "aramashi3_13",
+    "title": {
+      "textRuns": [
+        {
+          "text": "３ 用地測量および物件等の調査",
+          "bold": true,
+          "color": "#000000"
+        }
+      ],
+      "fontSize": 26
+    },
+    "sections": [
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "（２）用地測量および物件等の調査",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        }
+      },
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "　",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "２）物件等に関する調査",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        },
+        "body": {
+          "textRuns": [
+            {
+              "text": "①建物の調査\n\n",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "ウ  建物調査の内容\n",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "　ａ  建物の所在、所有者、居住者、借家人、借間人\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　ｂ  建物の建築年月日\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　ｃ  建物の構造、用途、床面積\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　ｄ  建物の各部（基礎、柱、屋根、天井、床、内壁、外壁、建具、造作等）\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　ｅ  建物の写真撮影\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　ｆ  その他必要な事項",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16
+        }
+      },
+      {
+        "body": {
+          "textRuns": [
+            {
+              "text": "エ  建物平面図等の作成\n",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "　建物調査の成果を基に建物平面図等を作成します。",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16
+        },
+        "imagePath": "aramashi3_11.png"
+      }
+    ]
+  },
+  {
+    "id": "aramashi3_14",
+    "title": {
+      "textRuns": [
+        {
+          "text": "３ 用地測量および物件等の調査",
+          "bold": true,
+          "color": "#000000"
+        }
+      ],
+      "fontSize": 26
+    },
+    "sections": [
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "（２）用地測量および物件等の調査",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        }
+      },
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "　",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "２）物件等に関する調査",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        },
+        "body": {
+          "textRuns": [
+            {
+              "text": "②工作物の調査\n",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "　工作物には次のようなものがありますが、それぞれ種類、形状、寸法等の調査をさせていただき、工作物調査表および図面を作成します。",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16
+        }
+      },
+      {
+        "body": {
+          "textRuns": [
+            {
+              "text": "ア  建物に附随する工作物の主なもの\n",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "　ａ  電灯、テレビアンテナ等の電気設備\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　ｂ  水道、排水等の給排水設備\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　ｃ  便槽、便器等の衛生設備\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　ｄ  プロパンガス設備、インターホン等",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16
+        },
+        "imagePath": "aramashi3_12.png"
+      },
+      {
+        "body": {
+          "textRuns": [
+            {
+              "text": "イ  その他の工作物の主なもの\n",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "　ａ  物置、車庫、ブロック塀、門柱\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　ｂ  看板、物干し台、藤棚、花壇、庭石\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　ｃ  井戸、ビニールハウス等",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16
+        },
+        "imagePath": "aramashi3_13.png"
+      }
+    ]
+  },
+  {
+    "id": "aramashi3_15",
+    "title": {
+      "textRuns": [
+        {
+          "text": "３ 用地測量および物件等の調査",
+          "bold": true,
+          "color": "#000000"
+        }
+      ],
+      "fontSize": 26
+    },
+    "sections": [
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "（２）用地測量および物件等の調査",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        }
+      },
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "　",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "２）物件等に関する調査",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        },
+        "body": {
+          "textRuns": [
+            {
+              "text": "③立竹木の調査\n",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "　立竹木の調査は、庭木類、生垣、風致木、収穫樹、用材林、薪炭林、竹林、苗木、その他立木および草花等に分類し、それぞれ次の事項について調査させていただき、立竹木調査表を作成します。",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16
+        }
+      },
+      {
+        "body": {
+          "textRuns": [
+            {
+              "text": "　ａ  用途\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　ｂ  樹種、樹齢、樹高、樹幅、幹周、根廻りまたは株廻り\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　ｃ  本数、株数または面積\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　ｄ  管理状況および移植の適否\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　ｅ  収穫量\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　ｆ  その他必要な事",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16
+        },
+        "imagePath": "aramashi3_14.png"
+      }
+    ]
+  },
+  {
+    "id": "aramashi3_16",
+    "title": {
+      "textRuns": [
+        {
+          "text": "３ 用地測量および物件等の調査",
+          "bold": true,
+          "color": "#000000"
+        }
+      ],
+      "fontSize": 26
+    },
+    "sections": [
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "（２）用地測量および物件等の調査",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        }
+      },
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "　",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "２）物件等に関する調査",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        },
+        "body": {
+          "textRuns": [
+            {
+              "text": "④墳墓の調査\n",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "　墳墓の調査は、次の事項について調査させていただき、墳墓調査表を作成します。",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16
+        }
+      },
+      {
+        "body": {
+          "textRuns": [
+            {
+              "text": "　ａ  墓地管理者等の住所、氏名\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　ｂ  墓地の区画および通路等の配置の状況\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　ｃ  埋葬されている人の氏名および年次\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　ｄ  土葬、火葬の別\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　ｅ  墓石、棚、垣、および生垣の種類、形状、使用材料\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　ｆ  その他必要な事項",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16
+        },
+        "imagePath": "aramashi3_15.png"
+      }
+    ]
+  },
+  {
+    "id": "aramashi3_17",
+    "title": {
+      "textRuns": [
+        {
+          "text": "３ 用地測量および物件等の調査",
+          "bold": true,
+          "color": "#000000"
+        }
+      ],
+      "fontSize": 26
+    },
+    "sections": [
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "（２）用地測量および物件等の調査",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        }
+      },
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "　",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "２）物件等に関する調査",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        },
+        "body": {
+          "textRuns": [
+            {
+              "text": "⑤動産の調査\n",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "　動産に関する調査は、次のとおり",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "屋内動産",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "と",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "一般動産",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "に区分して調査させていただき、動産調査表を作成します。\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　屋内動産とは、居住用家財、店頭商品、事務用什器等、普通引越荷物として取り扱うことが適当なものをいいます。\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　一般動産とは、木材、薪炭、石炭、砂利、庭石、鉄鋼、据付けをしていない機械器具または金庫等の動産で、容積および重量で台数積算を行うのが適当なものをいいます。",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16
+        }
+      },
+      {
+        "body": {
+          "textRuns": [
+            {
+              "text": "　ａ  動産の所在地\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　ｂ  所有者の住所、氏名等\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　ｃ  その他必要な事項",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16
+        },
+        "imagePath": "aramashi3_16.png"
+      }
+    ]
+  },
+  {
+    "id": "aramashi3_18",
+    "title": {
+      "textRuns": [
+        {
+          "text": "３ 用地測量および物件等の調査",
+          "bold": true,
+          "color": "#000000"
+        }
+      ],
+      "fontSize": 26
+    },
+    "sections": [
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "（２）用地測量および物件等の調査",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        }
+      },
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "　",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "２）物件等に関する調査",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        },
+        "body": {
+          "textRuns": [
+            {
+              "text": "⑥居住者の調査\n",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "　居住者の調査は、移転対象となる建物に居住している方々について次の事項について調査させていただき、居住者調査表を作成します。\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　また、令和２年４月１日相続法制に関する民法改正により、建物に対する新たな権利である「配偶者居住権」が創設されたため、配偶者居住権に関する調査を行います。配偶者居住権は建物等が移転対象とならず土地のみを取得する場合も調査を行います。",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16
+        }
+      },
+      {
+        "body": {
+          "textRuns": [
+            {
+              "text": "　ａ  居住者の氏名、家族構成\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　ｂ  建物の使用状況\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　ｃ  配偶者居住権者の氏名、住所\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　ｄ  その他必要な事項",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16
+        },
+        "imagePath": "aramashi3_17.png"
+      }
+    ]
+  },
+  {
+    "id": "aramashi3_19",
+    "title": {
+      "textRuns": [
+        {
+          "text": "３ 用地測量および物件等の調査",
+          "bold": true,
+          "color": "#000000"
+        }
+      ],
+      "fontSize": 26
+    },
+    "sections": [
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "（２）用地測量および物件等の調査",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        }
+      },
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "　",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "２）物件等に関する調査",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        },
+        "body": {
+          "textRuns": [
+            {
+              "text": "⑦借家、借間人の調査\n",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "　家や部屋を借りて住んでいる方々について、次の事項について調査させていただき、居住者調査表を作成します。",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16
+        }
+      },
+      {
+        "body": {
+          "textRuns": [
+            {
+              "text": "　ａ  賃貸借の契約年月日、契約期間\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　ｂ  借りている建物等の面積\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　ｃ  現在の借家料、借間料\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　ｄ  その他必要な事項",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16
+        },
+        "imagePath": "aramashi3_18.png"
+      }
+    ]
+  },
+  {
+    "id": "aramashi3_20",
+    "title": {
+      "textRuns": [
+        {
+          "text": "３ 用地測量および物件等の調査",
+          "bold": true,
+          "color": "#000000"
+        }
+      ],
+      "fontSize": 26
+    },
+    "sections": [
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "（２）用地測量および物件等の調査",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        }
+      },
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "　",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "２）物件等に関する調査",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        },
+        "body": {
+          "textRuns": [
+            {
+              "text": "⑧営業調査\n",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "　移転を要する営業者に対しては、",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "必要な書類をお借りして次の事項について調査",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            },
+            {
+              "text": "させていただき、営業に関する調査表を作成します。",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16
+        }
+      },
+      {
+        "body": {
+          "textRuns": [
+            {
+              "text": "ａ  営業所の所在地、社名、代表者名、業種および開設年月日\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "ｂ  営業を営む者の住所、氏名および生年月日\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "ｃ  営業の種目および概要\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "ｄ  ",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "直近３か年の確定申告書の写し\n",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            },
+            {
+              "text": "ｅ  法人にあっては、",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "直近３か年の貸借対照表、損益計算書および財産目録等\n",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            },
+            {
+              "text": "ｆ  得意先の状況\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "ｇ  生産または加工の過程にある仕掛品があるときはその種類、数量、状況、原材料価格加工費および現在価格\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "ｈ  従業員の氏名、職種、労働協約、就業規則、直近３か月の賃金台帳その他の雇用契約の内容\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "ｉ  その他必要な事項",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16
+        },
+        "imagePath": "aramashi3_.png"
       }
     ]
   }

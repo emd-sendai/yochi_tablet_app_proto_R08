@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Text.Json.Serialization;
 using System.Windows.Input;
+using WpfApp.Screens.Aramashi.Models;
 
 namespace WpfApp.Screens.Aramashi.Models
 {
@@ -45,7 +46,10 @@ namespace WpfApp.Screens.Aramashi.Models
     {
         public List<StyledTextRun> TextRuns { get; set; } = new();
         public double FontSize { get; set; } = 16;
+        public double Indent {  get; set; } = 0;
 
+        // TableDataのCellsでのみ使用
+        public string BackgroundColor { get; set; } = "Transparent";
     }
 
     public class StyledTextRun
@@ -75,11 +79,21 @@ namespace WpfApp.Screens.Aramashi.Models
         }
     }
 
+    public class TableData
+    {
+        public int Rows { get; set; } = 0;
+        public int Columns { get; set; } = 0;
+        public double Indent { get; set; } = 0;
+        public bool ShowBorder { get; set; } = false;
+        public List<TextBlockData> Cells { get; set; } = new();
+    }
+
     public class PageSection
     {
         public TextBlockData? Subtitle { get; set; }
         public CheckBoxData? CheckBox { get; set; }
         public TextBlockData? Body { get; set; }
+        public TextBlockData? Table { get; set; }
         public string? ImagePath { get; set; }
 
         public TextButtonData? Button { get; set; }
@@ -126,6 +140,7 @@ namespace WpfApp.Screens.Aramashi.Models
     public class TextButtonData
     {
         public string Id { get; set; } = "";
+        public string HorizontalAlignment { get; set; } = "center";
         public List<ButtonData> TextButtons { get; set; } = new ();
     }
 
