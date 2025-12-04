@@ -1,9 +1,6 @@
-﻿using MaterialDesignThemes.Wpf.Transitions;
-using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Globalization;
 using System.IO;
-using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
@@ -34,11 +31,7 @@ namespace WpfApp.Screens.Aramashi.Views
             // 各セクション
             foreach (var section in page.Sections)
             {
-                //bool hasSubtitle = false;
-                bool hasBody = false;
-                bool hasImage = false;
-                bool hasImageButton = false;
-
+                // 並列描画可能な要素数
                 int rowElementCount = 0;
 
                 // サブタイトルが設定されている場合
@@ -80,23 +73,29 @@ namespace WpfApp.Screens.Aramashi.Views
                 // 本文が設定されている場合
                 if (section.Body != null)
                 {
-                    hasBody = true;
+                    rowElementCount++;
+                }
+
+                // テーブルが設定されている場合
+                if (section.Table != null)
+                {
+                    rowElementCount++;
                 }
 
                 // 画像が設定されている場合
-                if (!string.IsNullOrWhiteSpace(section.ImagePath) && File.Exists(section.ImagePath))
+                if (section.Image != null)
                 {
-                    hasImage = true;
+                    rowElementCount++;
                 }
 
                 // 画像ボタンが設定されている場合
                 if (section.ImageButton != null)
                 {
-                    hasImageButton = true;
+                    rowElementCount++;
                 }
 
-                // 本文と画像と画像ボタンの場合
-                if (hasBody && hasImage && hasImageButton)
+                // 並列描画可能な要素が２つ以上設定されている場合
+                if (rowElementCount > 1)
                 {
                     var bodyRow = new StackPanel { Orientation = Orientation.Horizontal };
 
@@ -109,70 +108,39 @@ namespace WpfApp.Screens.Aramashi.Views
                         // 本文TextBlockを作成
                         var body = CreateTextBlock(section.Body);
                         body.Margin = new Thickness(20 + indent * 20, 4, 0, 8);
-                        body.MaxWidth = 470 - indent * 20;
+                        //body.MaxWidth = 470 - indent * 20;
                         bodyRow.Children.Add(body);
                     }
-                    /* 画像 */
-                    if (!string.IsNullOrWhiteSpace(section.ImagePath) && File.Exists(section.ImagePath))
+
+                    /* テーブル */
+                    if (section.Table != null)
                     {
-                        try
+                        Grid grid = CreateTableGrid(section.Table);
+                        bodyRow.Children.Add(grid);
+                    }
+
+                    /* 画像 */
+                    if (section.Image != null)
+                    {
+                        var images = section.Image.Images;
+
+                        if (images.Count > 0)
                         {
-                            // Imageを作成
-                            var img = new Image
-                            {
-                                Source = new BitmapImage(new Uri(section.ImagePath)),
-                                MaxWidth = 200,
-                                MaxHeight = 200,
-                                Stretch = Stretch.Uniform,
-                                StretchDirection = StretchDirection.DownOnly,
-                                Margin = new Thickness(10, 4, 0, 0)
-                            };
-                            bodyRow.Children.Add(img);
-                            Debug.WriteLine($"[DEBUG] 読み込み完了: {section.ImagePath}");
-                        }
-                        catch (Exception ex)
-                        {
-                            Debug.WriteLine($"[ERROR] 画像を読み込むことができません: {ex}");
+                            // 行StackPanelを作成
+                            StackPanel rowPanel = CreateImagePanel(section.Image);
+                            bodyRow.Children.Add(rowPanel);
                         }
                     }
+
                     /* 画像ボタン */
                     if (section.ImageButton != null)
                     {
-                        List<StyledImageButton> imgbtns = section.ImageButton.ImageButtons;
+                        var imgbtns = section.ImageButton.ImageButtons;
 
                         if (imgbtns.Count > 0)
                         {
-                            double maxWidth = section.ImageButton.MaxWidth;
-                            double maxHeight = section.ImageButton.MaxHeight;
-
                             // 行StackPanelを作成
-                            StackPanel rowPanel = new StackPanel()
-                            {
-                                Orientation = Orientation.Horizontal,
-                                HorizontalAlignment = HorizontalAlignment.Center,
-                            };
-
-                            foreach (StyledImageButton btn in imgbtns)
-                            {
-                                // 列StackPanelを作成
-                                StackPanel colPanel = new StackPanel()
-                                {
-                                    Orientation = Orientation.Vertical,
-                                    Margin = new Thickness(8, 8, 8, 3),
-                                };
-
-                                // ボタンラベルを作成
-                                TextBlock label = CreateImageButtonLabel(btn);
-                                colPanel.Children.Add(label);
-
-                                // ボタンを作成
-                                Button imgbtn = CreateImageButton(btn, maxWidth, maxHeight);
-                                imgbtn.Command = viewModel.PreviewImageCommand;
-
-                                colPanel.Children.Add(imgbtn);
-                                rowPanel.Children.Add(colPanel);
-                            }
-
+                            StackPanel rowPanel = CreateImageButtonPanel(section.ImageButton, viewModel);
                             bodyRow.Children.Add(rowPanel);
                         }
                     }
@@ -180,185 +148,10 @@ namespace WpfApp.Screens.Aramashi.Views
                     MainPanel.Children.Add(bodyRow);
                     cnt++;
                 }
-                // 本文と画像の場合
-                else if (hasBody && hasImage)
+                // 並列可能な要素が１つの場合
+                else if (rowElementCount == 1)
                 {
-                    var bodyRow = new StackPanel { Orientation = Orientation.Horizontal };
-
-                    /* 本文 */
-                    if (section.Body != null)
-                    {
-                        // インデントを取得
-                        var indent = section.Body.Indent;
-
-                        // 本文TextBlockを作成
-                        var body = CreateTextBlock(section.Body);
-                        body.Margin = new Thickness(20 + indent * 20, 4, 0, 8);
-                        body.MaxWidth = 470 - indent * 20;
-                        bodyRow.Children.Add(body);
-                    }
-                    /* 画像 */
-                    if (!string.IsNullOrWhiteSpace(section.ImagePath) && File.Exists(section.ImagePath))
-                    {
-                        try
-                        {
-                            // Imageを作成
-                            var img = new Image
-                            {
-                                Source = new BitmapImage(new Uri(section.ImagePath)),
-                                MaxWidth = 200,
-                                MaxHeight = 200,
-                                Stretch = Stretch.Uniform,
-                                StretchDirection = StretchDirection.DownOnly,
-                                Margin = new Thickness(10, 4, 0, 0)
-                            };
-                            bodyRow.Children.Add(img);
-                            Debug.WriteLine($"[DEBUG] 読み込み完了: {section.ImagePath}");
-                        }
-                        catch (Exception ex)
-                        {
-                            Debug.WriteLine($"[ERROR] 画像を読み込むことができません: {ex}");
-                        }
-                    }
-                    MainPanel.Children.Add(bodyRow);
-                    cnt++;
-                }
-                // 本文と画像ボタンの場合
-                else if (hasBody && hasImageButton)
-                {
-                    var bodyRow = new StackPanel { Orientation = Orientation.Horizontal };
-
-                    /* 本文 */
-                    if (section.Body != null)
-                    {
-                        // インデントを取得
-                        var indent = section.Body.Indent;
-
-                        // 本文TextBlockを作成
-                        var body = CreateTextBlock(section.Body);
-                        body.Margin = new Thickness(20 + indent * 20, 4, 0, 8);
-                        body.MaxWidth = 470 - indent * 20;
-                        bodyRow.Children.Add(body);
-                    }
-                    /* 画像ボタン */
-                    if (section.ImageButton != null)
-                    {
-                        List<StyledImageButton> imgbtns = section.ImageButton.ImageButtons;
-
-                        if (imgbtns.Count > 0)
-                        {
-                            double maxWidth = section.ImageButton.MaxWidth;
-                            double maxHeight = section.ImageButton.MaxHeight;
-
-                            // 行StackPanelを作成
-                            StackPanel rowPanel = new StackPanel()
-                            {
-                                Orientation = Orientation.Horizontal,
-                                HorizontalAlignment = HorizontalAlignment.Center,
-                            };
-
-                            foreach (StyledImageButton btn in imgbtns)
-                            {
-                                // 列StackPanelを作成
-                                StackPanel colPanel = new StackPanel()
-                                {
-                                    Orientation = Orientation.Vertical,
-                                    Margin = new Thickness(8, 8, 8, 3),
-                                };
-
-                                // ボタンラベルを作成
-                                TextBlock label = CreateImageButtonLabel(btn);
-                                colPanel.Children.Add(label);
-
-                                // ボタンを作成
-                                Button imgbtn = CreateImageButton(btn, maxWidth, maxHeight);
-                                imgbtn.Command = viewModel.PreviewImageCommand;
-
-                                colPanel.Children.Add(imgbtn);
-                                rowPanel.Children.Add(colPanel);
-                            }
-
-                            bodyRow.Children.Add(rowPanel);
-                        }
-                    }
-                    MainPanel.Children.Add(bodyRow);
-                    cnt++;
-                }
-                // 画像と画像ボタンの場合
-                else if (hasImage && hasImageButton)
-                {
-                    var bodyRow = new StackPanel { Orientation = Orientation.Horizontal };
-
-                    /* 画像 */
-                    if (!string.IsNullOrWhiteSpace(section.ImagePath) && File.Exists(section.ImagePath))
-                    {
-                        try
-                        {
-                            // Imageを作成
-                            var img = new Image
-                            {
-                                Source = new BitmapImage(new Uri(section.ImagePath)),
-                                MaxWidth = 200,
-                                MaxHeight = 200,
-                                Stretch = Stretch.Uniform,
-                                StretchDirection = StretchDirection.DownOnly,
-                                Margin = new Thickness(10, 4, 0, 0)
-                            };
-                            bodyRow.Children.Add(img);
-                            Debug.WriteLine($"[DEBUG] 読み込み完了: {section.ImagePath}");
-                        }
-                        catch (Exception ex)
-                        {
-                            Debug.WriteLine($"[ERROR] 画像を読み込むことができません: {ex}");
-                        }
-                    }
-                    /* 画像ボタン */
-                    if (section.ImageButton != null)
-                    {
-                        List<StyledImageButton> imgbtns = section.ImageButton.ImageButtons;
-
-                        if (imgbtns.Count > 0)
-                        {
-                            double maxWidth = section.ImageButton.MaxWidth;
-                            double maxHeight = section.ImageButton.MaxHeight;
-
-                            // 行StackPanelを作成
-                            StackPanel rowPanel = new StackPanel()
-                            {
-                                Orientation = Orientation.Horizontal,
-                                HorizontalAlignment = HorizontalAlignment.Center,
-                            };
-
-                            foreach (StyledImageButton btn in imgbtns)
-                            {
-                                // 列StackPanelを作成
-                                StackPanel colPanel = new StackPanel()
-                                {
-                                    Orientation = Orientation.Vertical,
-                                    Margin = new Thickness(8, 8, 8, 3),
-                                };
-
-                                // ボタンラベルを作成
-                                TextBlock label = CreateImageButtonLabel(btn);
-                                colPanel.Children.Add(label);
-
-                                // ボタンを作成
-                                Button imgbtn = CreateImageButton(btn, maxWidth, maxHeight);
-                                imgbtn.Command = viewModel.PreviewImageCommand;
-
-                                colPanel.Children.Add(imgbtn);
-                                rowPanel.Children.Add(colPanel);
-                            }
-
-                            bodyRow.Children.Add(rowPanel);
-                        }
-                    }
-                    MainPanel.Children.Add(bodyRow);
-                    cnt++;
-                }
-                // 本文のみの場合
-                else if (hasBody)
-                {
+                    // 本文が設定されている場合
                     if (section.Body != null)
                     {
                         // インデントを取得
@@ -370,210 +163,41 @@ namespace WpfApp.Screens.Aramashi.Views
                         MainPanel.Children.Add(body);
                         cnt++;
                     }
-                }
-                // 画像のみの場合
-                else if(hasImage)
-                {
-                    if (!string.IsNullOrWhiteSpace(section.ImagePath) && File.Exists(section.ImagePath))
+
+                    // テーブルが設定されている場合
+                    if (section.Table != null)
                     {
-                        try
-                        {
-                            // Imageを作成
-                            var img = new Image
-                            {
-                                Source = new BitmapImage(new Uri(section.ImagePath)),
-                                MaxWidth = 700,
-                                MaxHeight = 400,
-                                Stretch = Stretch.Uniform,
-                                //StretchDirection = StretchDirection.DownOnly,
-                                HorizontalAlignment = HorizontalAlignment.Center,
-                                VerticalAlignment = VerticalAlignment.Center,
-                                Margin = new Thickness(0, 10, 0, 0)
-                            };
-                            MainPanel.Children.Add(img);
-                            cnt++;
-                            Debug.WriteLine($"[DEBUG] 読み込み完了: {section.ImagePath}");
-                        }
-                        catch (Exception ex)
-                        {
-                            Debug.WriteLine($"[ERROR] 画像を読み込むことができません: {ex}");
-                        }
+                        Grid grid = CreateTableGrid(section.Table);
+                        MainPanel.Children.Add(grid);
+                        cnt++;
                     }
-                }
-                // 画像ボタンのみの場合
-                else if (hasImageButton)
-                {
-                    if (section.ImageButton != null)
+
+                    // 画像が設定されている場合
+                    if (section.Image != null)
                     {
-                        List<StyledImageButton> imgbtns = section.ImageButton.ImageButtons;
+                        var images = section.Image.Images;
 
-                        if (imgbtns.Count > 0)
+                        if (images.Count > 0)
                         {
-                            double maxWidth = section.ImageButton.MaxWidth;
-                            double maxHeight = section.ImageButton.MaxHeight;
-
                             // 行StackPanelを作成
-                            StackPanel rowPanel = new StackPanel()
-                            {
-                                Orientation = Orientation.Horizontal,
-                                HorizontalAlignment = HorizontalAlignment.Center,
-                            };
-
-                            foreach (StyledImageButton btn in imgbtns)
-                            {
-                                // 列StackPanelを作成
-                                StackPanel colPanel = new StackPanel()
-                                {
-                                    Orientation = Orientation.Vertical,
-                                    Margin = new Thickness(8, 8, 8, 3),
-                                };
-
-                                // ボタンラベルを作成
-                                TextBlock label = CreateImageButtonLabel(btn);
-                                colPanel.Children.Add(label);
-
-                                // ボタンを作成
-                                Button imgbtn = CreateImageButton(btn, maxWidth, maxHeight);
-                                imgbtn.Command = viewModel.PreviewImageCommand;
-
-                                colPanel.Children.Add(imgbtn);
-                                rowPanel.Children.Add(colPanel);
-                            }
-
+                            StackPanel rowPanel = CreateImagePanel(section.Image);
                             MainPanel.Children.Add(rowPanel);
                             cnt++;
                         }
                     }
-                }
 
-                // テーブルが設定されている場合
-                if (section.Table != null)
-                {
-                    var data = section.Table;
-                    var rows = data.Rows;
-                    var cols = data.Columns;
-                    var indent = data.Indent;
-                    var showBorder = data.ShowBorder;
-                    var cells = data.Cells;
-
-                    Grid grid = new Grid
+                    // 画像ボタンが設定されている場合
+                    if (section.ImageButton != null)
                     {
-                        MaxWidth = 700,
-                        Margin = new Thickness(20 + indent * 20, 4, 0, 8),
-                    };
+                        var imgbtns = section.ImageButton.ImageButtons;
 
-                    // 行定義
-                    for (int r = 0; r < rows; r++)
-                    {
-                        grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-                    }
-                    // 列定義
-                    for(int c = 0;c < cols; c++)
-                    {
-                        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
-                    }
-
-                    int index = 0;
-
-                    for (int r = 0; r < rows; r++)
-                    {
-                        for (int c = 0; c < cols; c++)
+                        if (imgbtns.Count > 0)
                         {
-                            Thickness border = new Thickness(0); // 罫線なし
-                            Thickness padding = new Thickness(0); //内部の余白なし
-
-                            if (showBorder)
-                            {
-                                bool isFirstRow = r == 0;
-                                bool isFirstCol = c == 0;
-
-                                if (isFirstRow && isFirstCol)
-                                {
-                                    border = new Thickness(1);
-                                }
-                                else if(isFirstRow)
-                                {
-                                    border = new Thickness(0, 1, 1, 1);
-                                }
-                                else if (isFirstCol)
-                                {
-                                    border = new Thickness(1, 0, 1, 1);
-                                }
-                                else
-                                {
-                                    border = new Thickness(0, 0, 1, 1);
-                                }
-
-                                padding = new Thickness(4);
-                            }
-                            var text = CreateTextBlock(cells[index]);
-                            
-                            Border cell = new Border
-                            {
-                                BorderThickness = border,
-                                BorderBrush = Brushes.Black,
-                                Padding = padding,
-                                Child = text,
-                            };
-
-                            Grid.SetRow(cell, r);
-                            Grid.SetColumn(cell, c);
-                            grid.Children.Add(cell);
-
-                            index++;
+                            // 行StackPanelを作成
+                            StackPanel rowPanel = CreateImageButtonPanel(section.ImageButton, viewModel);
+                            MainPanel.Children.Add(rowPanel);
+                            cnt++;
                         }
-                    }
-                    MainPanel.Children.Add(grid);
-                    cnt++;
-                }
-
-                // 画像（複数の場合あり）が設定されている場合
-                if (section.Image != null)
-                {
-                    var images = section.Image.Images;
-
-                    if (images.Count > 0)
-                    {
-                        var maxWidth = section.Image.MaxWidth;
-                        var maxHeight = section.Image.MaxHeight;
-
-                        // 行StackPanelを作成
-                        StackPanel rowPanel = new StackPanel()
-                        {
-                            Orientation = Orientation.Horizontal,
-                            HorizontalAlignment = HorizontalAlignment.Center,
-                        };
-
-                        foreach (var image in images)
-                        {
-                            if (image.Label != string.Empty)
-                            {
-                                // 列StackPanelを作成
-                                StackPanel colPanel = new StackPanel()
-                                {
-                                    Orientation = Orientation.Vertical,
-                                    Margin = new Thickness(8, 8, 8, 3),
-                                };
-
-                                // ラベル
-                                var label = CreateImageLabel(image);
-                                colPanel.Children.Add(label);
-
-                                // 画像
-                                var img = CreateImage(image, maxWidth, maxHeight);
-                                colPanel.Children.Add(img);
-
-                                rowPanel.Children.Add(colPanel);
-                            }
-                            else
-                            {
-                                // 画像を作成
-                                var img = CreateImage(image, maxWidth, maxHeight);
-                                rowPanel.Children.Add(img);
-                            }
-                        }
-                        MainPanel.Children.Add(rowPanel);
-                        cnt++;
                     }
                 }
 
@@ -649,14 +273,13 @@ namespace WpfApp.Screens.Aramashi.Views
                     /* 署名ボタン */
                     var button = CreateButton(section.SignButton);
                     button.HorizontalAlignment = HorizontalAlignment.Right;
-                    button.Command = viewModel.EditSignatureCommand; // 一般ボタンの場合はCommandNameで判定して該当するCommandを設定する
+                    button.Command = viewModel.EditSignatureCommand;
                     button.CommandParameter = editedSignMessage;
                     MainPanel.Children.Add(button);
                 }
             }
             // ページ初期表示時点のチェック状態を更新
             viewModel.UpdateAllCheckedState(page.Id);
-            //isAllCheckBox = viewModel.AllPagesChecked;
         }
 
         private TextBlock CreateTextBlock(TextBlockData data)
@@ -820,6 +443,168 @@ namespace WpfApp.Screens.Aramashi.Views
                 }
             }
             return img;
+        }
+
+        private StackPanel CreateImagePanel(ImageData data)
+        {
+            var images = data.Images;
+
+            var maxWidth = data.MaxWidth;
+            var maxHeight = data.MaxHeight;
+
+            // 行StackPanelを作成
+            StackPanel rowPanel = new StackPanel()
+            {
+                Orientation = Orientation.Horizontal,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                Margin = new Thickness(10,0,0,0),
+            };
+
+            foreach (var image in images)
+            {
+                if (image.Label != string.Empty)
+                {
+                    // 列StackPanelを作成
+                    StackPanel colPanel = new StackPanel()
+                    {
+                        Orientation = Orientation.Vertical,
+                        Margin = new Thickness(8, 8, 8, 3),
+                    };
+
+                    // ラベル
+                    var label = CreateImageLabel(image);
+                    colPanel.Children.Add(label);
+
+                    // 画像
+                    var img = CreateImage(image, maxWidth, maxHeight);
+                    colPanel.Children.Add(img);
+
+                    rowPanel.Children.Add(colPanel);
+                }
+                else
+                {
+                    // 画像を作成
+                    var img = CreateImage(image, maxWidth, maxHeight);
+                    rowPanel.Children.Add(img);
+                }
+            }
+            return rowPanel;
+        }
+
+        private Grid CreateTableGrid(TableData data)
+        {
+            var rows = data.Rows;
+            var cols = data.Columns;
+            var indent = data.Indent;
+            var showBorder = data.ShowBorder;
+            var cells = data.Cells;
+
+            Grid grid = new Grid
+            {
+                MaxWidth = 700,
+                Margin = new Thickness(20 + indent * 20, 4, 0, 8),
+            };
+
+            // 行定義
+            for (int r = 0; r < rows; r++)
+            {
+                grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+            }
+            // 列定義
+            for (int c = 0; c < cols; c++)
+            {
+                grid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+            }
+
+            int index = 0;
+
+            for (int r = 0; r < rows; r++)
+            {
+                for (int c = 0; c < cols; c++)
+                {
+                    Thickness border = new Thickness(0); // 罫線なし
+                    Thickness padding = new Thickness(0); //内部の余白なし
+
+                    if (showBorder)
+                    {
+                        bool isFirstRow = r == 0;
+                        bool isFirstCol = c == 0;
+
+                        if (isFirstRow && isFirstCol)
+                        {
+                            border = new Thickness(1);
+                        }
+                        else if (isFirstRow)
+                        {
+                            border = new Thickness(0, 1, 1, 1);
+                        }
+                        else if (isFirstCol)
+                        {
+                            border = new Thickness(1, 0, 1, 1);
+                        }
+                        else
+                        {
+                            border = new Thickness(0, 0, 1, 1);
+                        }
+
+                        padding = new Thickness(4);
+                    }
+                    var text = CreateTextBlock(cells[index]);
+
+                    Border cell = new Border
+                    {
+                        BorderThickness = border,
+                        BorderBrush = Brushes.Black,
+                        Padding = padding,
+                        Child = text,
+                    };
+
+                    Grid.SetRow(cell, r);
+                    Grid.SetColumn(cell, c);
+                    grid.Children.Add(cell);
+
+                    index++;
+                }
+            }
+            return grid;
+        }
+
+        private StackPanel CreateImageButtonPanel(ImageButtonData data, PresentationViewerViewModel viewModel)
+        {
+            var imgbtns = data.ImageButtons;
+
+            double maxWidth = data.MaxWidth;
+            double maxHeight = data.MaxHeight;
+
+            // 行StackPanelを作成
+            StackPanel rowPanel = new StackPanel()
+            {
+                Orientation = Orientation.Horizontal,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                Margin = new Thickness(10, 0, 0, 0),
+            };
+
+            foreach (StyledImageButton btn in imgbtns)
+            {
+                // 列StackPanelを作成
+                StackPanel colPanel = new StackPanel()
+                {
+                    Orientation = Orientation.Vertical,
+                    Margin = new Thickness(8, 8, 8, 3),
+                };
+
+                // ボタンラベルを作成
+                TextBlock label = CreateImageButtonLabel(btn);
+                colPanel.Children.Add(label);
+
+                // ボタンを作成
+                Button imgbtn = CreateImageButton(btn, maxWidth, maxHeight);
+                imgbtn.Command = viewModel.PreviewImageCommand;
+
+                colPanel.Children.Add(imgbtn);
+                rowPanel.Children.Add(colPanel);
+            }
+            return rowPanel;
         }
     }
 }

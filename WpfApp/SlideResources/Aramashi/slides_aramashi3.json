@@ -283,7 +283,8 @@
               "color": "#000000"
             }
           ],
-          "fontSize": 16
+          "fontSize": 16,
+          "maxWidth": 480
         },
         "ImageButton": {
           "id": "aramashi3_3_imgbtn1",
@@ -379,7 +380,8 @@
               "color": "#000000"
             }
           ],
-          "fontSize": 16
+          "fontSize": 16,
+          "maxWidth": 480
         },
         "ImageButton": {
           "id": "aramashi3_4_imgbtn1",
@@ -475,7 +477,8 @@
               "color": "#1F78B4"
             }
           ],
-          "fontSize": 16
+          "fontSize": 16,
+          "maxWidth": 480
         },
         "imageButton": {
           "id": "aramashi3_5_imgbtn1",
@@ -614,7 +617,8 @@
               "color": "#000000"
             }
           ],
-          "fontSize": 16
+          "fontSize": 16,
+          "maxWidth": 460
         },
         "imageButton": {
           "id": "aramashi3_6_imgbtn1",
@@ -715,9 +719,18 @@
               "color": "#000000"
             }
           ],
-          "fontSize": 16
+          "fontSize": 16,
+          "maxWidth": 480
         },
-        "imagePath": "aramashi3_7.png"
+        "image": {
+          "maxHeight": 180,
+          "maxWidth": 180,
+          "images": [
+            {
+              "imagePath": "aramashi3_7.png"
+            }
+          ]
+        }
       }
     ]
   },
@@ -972,9 +985,18 @@
               "color": "#000000"
             }
           ],
-          "fontSize": 16
+          "fontSize": 16,
+          "maxWidth": 500
         },
-        "imagePath": "aramashi3_8.png"
+        "image": {
+          "maxHeight": 120,
+          "maxWidth": 120,
+          "images": [
+            {
+              "imagePath": "aramashi3_8.png"
+            }
+          ]
+        }
       },
       {
         "body": {
@@ -1099,9 +1121,18 @@
               "color": "#000000"
             }
           ],
-          "fontSize": 16
+          "fontSize": 16,
+          "maxWidth": 480
         },
-        "imagePath": "aramashi3_9.png"
+        "image": {
+          "maxHeight": 180,
+          "maxWidth": 180,
+          "images": [
+            {
+              "imagePath": "aramashi3_9.png"
+            }
+          ]
+        }
       }
     ]
   },
@@ -1197,9 +1228,18 @@
               "color": "#000000"
             }
           ],
-          "fontSize": 16
+          "fontSize": 16,
+          "maxWidth": 480
         },
-        "imagePath": "aramashi3_10.png"
+        "image": {
+          "maxHeight": 180,
+          "maxWidth": 180,
+          "images": [
+            {
+              "imagePath": "aramashi3_10.png"
+            }
+          ]
+        }
       }
     ]
   },
@@ -1306,9 +1346,18 @@
               "color": "#000000"
             }
           ],
-          "fontSize": 16
+          "fontSize": 16,
+          "maxWidth": 500
         },
-        "imagePath": "aramashi3_11.png"
+        "image": {
+          "maxHeight": 180,
+          "maxWidth": 180,
+          "images": [
+            {
+              "imagePath": "aramashi3_11.png"
+            }
+          ]
+        }
       }
     ]
   },
@@ -1400,9 +1449,18 @@
               "color": "#000000"
             }
           ],
-          "fontSize": 16
+          "fontSize": 16,
+          "maxWidth": 500
         },
-        "imagePath": "aramashi3_12.png"
+        "image": {
+          "maxHeight": 180,
+          "maxWidth": 180,
+          "images": [
+            {
+              "imagePath": "aramashi3_12.png"
+            }
+          ]
+        }
       },
       {
         "body": {
@@ -1428,9 +1486,18 @@
               "color": "#000000"
             }
           ],
-          "fontSize": 16
+          "fontSize": 16,
+          "maxWidth": 500
         },
-        "imagePath": "aramashi3_13.png"
+        "image": {
+          "maxHeight": 180,
+          "maxWidth": 180,
+          "images": [
+            {
+              "imagePath": "aramashi3_13.png"
+            }
+          ]
+        }
       }
     ]
   },
@@ -1527,9 +1594,18 @@
               "color": "#000000"
             }
           ],
-          "fontSize": 16
+          "fontSize": 16,
+          "maxWidth": 500
         },
-        "imagePath": "aramashi3_14.png"
+        "image": {
+          "maxHeight": 180,
+          "maxWidth": 180,
+          "images": [
+            {
+              "imagePath": "aramashi3_14.png"
+            }
+          ]
+        }
       }
     ]
   },
@@ -1626,9 +1702,18 @@
               "color": "#000000"
             }
           ],
-          "fontSize": 16
+          "fontSize": 16,
+          "maxWidth": 500
         },
-        "imagePath": "aramashi3_15.png"
+        "image": {
+          "maxHeight": 120,
+          "maxWidth": 120,
+          "images": [
+            {
+              "imagePath": "aramashi3_15.png"
+            }
+          ]
+        }
       }
     ]
   },
@@ -1740,9 +1825,18 @@
               "color": "#000000"
             }
           ],
-          "fontSize": 16
+          "fontSize": 16,
+          "maxWidth": 400
         },
-        "imagePath": "aramashi3_16.png"
+        "image": {
+          "maxHeight": 180,
+          "maxWidth": 300,
+          "images": [
+            {
+              "imagePath": "aramashi3_16.png"
+            }
+          ]
+        }
       }
     ]
   },
@@ -1834,9 +1928,18 @@
               "color": "#000000"
             }
           ],
-          "fontSize": 16
+          "fontSize": 16,
+          "maxWidth": 500
         },
-        "imagePath": "aramashi3_17.png"
+        "image": {
+          "maxHeight": 150,
+          "maxWidth": 150,
+          "images": [
+            {
+              "imagePath": "aramashi3_17.png"
+            }
+          ]
+        }
       }
     ]
   },
@@ -1923,9 +2026,18 @@
               "color": "#000000"
             }
           ],
-          "fontSize": 16
+          "fontSize": 16,
+          "maxWidth": 480
         },
-        "imagePath": "aramashi3_18.png"
+        "image": {
+          "maxHeight": 200,
+          "maxWidth": 200,
+          "images": [
+            {
+              "imagePath": "aramashi3_18.png"
+            }
+          ]
+        }
       }
     ]
   },
@@ -2211,7 +2323,7 @@
     ]
   },
   {
-    "id": "aramashi3_19",
+    "id": "aramashi3_21",
     "title": {
       "textRuns": [
         {

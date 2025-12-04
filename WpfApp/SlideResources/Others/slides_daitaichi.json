@@ -93,9 +93,18 @@
               "color": "#000000"
             }
           ],
-          "fontSize": 16
+          "fontSize": 16,
+          "maxWidth": 480
         },
-        "imagePath": "daitaichi1.png"
+        "image": {
+          "maxHeight": 200,
+          "maxWidth": 200,
+          "images": [
+            {
+              "imagePath": "daitaichi1.png"
+            }
+          ]
+        }
       }
     ]
   },

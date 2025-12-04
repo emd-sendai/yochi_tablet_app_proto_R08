@@ -28,9 +28,18 @@
               "color": "#000000"
             }
           ],
-          "fontSize": 16
+          "fontSize": 16,
+          "maxWidth": 500
         },
-        "imagePath": "aramashi1.png"
+        "image": {
+          "maxHeight": 180,
+          "maxWidth": 180,
+          "images": [
+            {
+              "imagePath": "aramashi1.png"
+            }
+          ]
+        }
       }
     ]
   }

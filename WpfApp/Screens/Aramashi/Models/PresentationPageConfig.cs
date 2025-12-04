@@ -1,7 +1,6 @@
 ﻿using System.IO;
 using System.Text.Json.Serialization;
 using System.Windows.Input;
-using WpfApp.Screens.Aramashi.Models;
 
 namespace WpfApp.Screens.Aramashi.Models
 {
@@ -29,7 +28,7 @@ namespace WpfApp.Screens.Aramashi.Models
         {
             foreach (var section in Sections)
             {
-                section.ResolvePaths(baseDir);
+                //section.ResolvePaths(baseDir);
 
                 if (section.Image?.Images != null)
                 {
@@ -101,16 +100,16 @@ namespace WpfApp.Screens.Aramashi.Models
         public CheckBoxData? CheckBox { get; set; }
         public TextBlockData? Body { get; set; }
         public TableData? Table { get; set; }
-        public string? ImagePath { get; set; }
         public ImageData? Image { get; set; }
-
         public TextButtonData? Button { get; set; }
         public ImageButtonData? ImageButton { get; set; }
-
         public TextBlockData? SignTarget { get; set; }
         public TextBlockData? SignMessage { get; set; }
         public ButtonData? SignButton { get; set; }
 
+
+        //public string? ImagePath { get; set; }
+        /*
         public void ResolvePaths(string baseDir)
         {
             if (string.IsNullOrWhiteSpace(ImagePath))
@@ -120,6 +119,7 @@ namespace WpfApp.Screens.Aramashi.Models
             if (File.Exists(path))
                 ImagePath = path;
         }
+        */
     }
 
     public class CheckBoxData
