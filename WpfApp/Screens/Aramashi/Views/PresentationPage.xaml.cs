@@ -1,6 +1,9 @@
-﻿using System.Diagnostics;
+﻿using MaterialDesignThemes.Wpf.Transitions;
+using System;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
@@ -35,6 +38,8 @@ namespace WpfApp.Screens.Aramashi.Views
                 bool hasBody = false;
                 bool hasImage = false;
                 bool hasImageButton = false;
+
+                int rowElementCount = 0;
 
                 // サブタイトルが設定されている場合
                 if (section.Subtitle != null) 
@@ -441,6 +446,137 @@ namespace WpfApp.Screens.Aramashi.Views
                     }
                 }
 
+                // テーブルが設定されている場合
+                if (section.Table != null)
+                {
+                    var data = section.Table;
+                    var rows = data.Rows;
+                    var cols = data.Columns;
+                    var indent = data.Indent;
+                    var showBorder = data.ShowBorder;
+                    var cells = data.Cells;
+
+                    Grid grid = new Grid
+                    {
+                        MaxWidth = 700,
+                        Margin = new Thickness(20 + indent * 20, 4, 0, 8),
+                    };
+
+                    // 行定義
+                    for (int r = 0; r < rows; r++)
+                    {
+                        grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+                    }
+                    // 列定義
+                    for(int c = 0;c < cols; c++)
+                    {
+                        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+                    }
+
+                    int index = 0;
+
+                    for (int r = 0; r < rows; r++)
+                    {
+                        for (int c = 0; c < cols; c++)
+                        {
+                            Thickness border = new Thickness(0); // 罫線なし
+                            Thickness padding = new Thickness(0); //内部の余白なし
+
+                            if (showBorder)
+                            {
+                                bool isFirstRow = r == 0;
+                                bool isFirstCol = c == 0;
+
+                                if (isFirstRow && isFirstCol)
+                                {
+                                    border = new Thickness(1);
+                                }
+                                else if(isFirstRow)
+                                {
+                                    border = new Thickness(0, 1, 1, 1);
+                                }
+                                else if (isFirstCol)
+                                {
+                                    border = new Thickness(1, 0, 1, 1);
+                                }
+                                else
+                                {
+                                    border = new Thickness(0, 0, 1, 1);
+                                }
+
+                                padding = new Thickness(4);
+                            }
+                            var text = CreateTextBlock(cells[index]);
+                            
+                            Border cell = new Border
+                            {
+                                BorderThickness = border,
+                                BorderBrush = Brushes.Black,
+                                Padding = padding,
+                                Child = text,
+                            };
+
+                            Grid.SetRow(cell, r);
+                            Grid.SetColumn(cell, c);
+                            grid.Children.Add(cell);
+
+                            index++;
+                        }
+                    }
+                    MainPanel.Children.Add(grid);
+                    cnt++;
+                }
+
+                // 画像（複数の場合あり）が設定されている場合
+                if (section.Image != null)
+                {
+                    var images = section.Image.Images;
+
+                    if (images.Count > 0)
+                    {
+                        var maxWidth = section.Image.MaxWidth;
+                        var maxHeight = section.Image.MaxHeight;
+
+                        // 行StackPanelを作成
+                        StackPanel rowPanel = new StackPanel()
+                        {
+                            Orientation = Orientation.Horizontal,
+                            HorizontalAlignment = HorizontalAlignment.Center,
+                        };
+
+                        foreach (var image in images)
+                        {
+                            if (image.Label != string.Empty)
+                            {
+                                // 列StackPanelを作成
+                                StackPanel colPanel = new StackPanel()
+                                {
+                                    Orientation = Orientation.Vertical,
+                                    Margin = new Thickness(8, 8, 8, 3),
+                                };
+
+                                // ラベル
+                                var label = CreateImageLabel(image);
+                                colPanel.Children.Add(label);
+
+                                // 画像
+                                var img = CreateImage(image, maxWidth, maxHeight);
+                                colPanel.Children.Add(img);
+
+                                rowPanel.Children.Add(colPanel);
+                            }
+                            else
+                            {
+                                // 画像を作成
+                                var img = CreateImage(image, maxWidth, maxHeight);
+                                rowPanel.Children.Add(img);
+                            }
+                        }
+                        MainPanel.Children.Add(rowPanel);
+                        cnt++;
+                    }
+                }
+
                 // ボタン（テキストのみ）が設定されている場合
                 if (section.Button != null)
                 {
@@ -525,7 +661,22 @@ namespace WpfApp.Screens.Aramashi.Views
 
         private TextBlock CreateTextBlock(TextBlockData data)
         {
-            var tb = new TextBlock { TextWrapping = TextWrapping.Wrap, FontSize = data.FontSize };
+            // デフォルトの背景色（透明）を設定する
+            var background = Brushes.Transparent;
+
+            if (data.BackgroundColor != "Transparent")
+            {
+                var color = (Color)ColorConverter.ConvertFromString(data.BackgroundColor);
+                background = new SolidColorBrush(color);
+            }
+
+            var tb = new TextBlock 
+            {
+                TextWrapping = TextWrapping.Wrap,
+                FontSize = data.FontSize,
+                MaxWidth = data.MaxWidth,
+                Background = background,
+            };
 
             foreach (var runInfo in data.TextRuns)
             {
@@ -583,6 +734,7 @@ namespace WpfApp.Screens.Aramashi.Views
             {
                 Text = data.Label,
                 Foreground = brush,
+                HorizontalAlignment = HorizontalAlignment.Center,
             };
             return label;
         }
@@ -625,6 +777,49 @@ namespace WpfApp.Screens.Aramashi.Views
                 }
             }
             return imgbtn;
+        }
+
+        private TextBlock CreateImageLabel(StyledImage data)
+        {
+            var color = (Color)ColorConverter.ConvertFromString(data.LabelColor);
+            var brush = new SolidColorBrush(color);
+
+            TextBlock label = new TextBlock()
+            {
+                Text = data.Label,
+                Foreground = brush,
+                HorizontalAlignment = HorizontalAlignment.Center,
+            };
+            return label;
+        }
+
+        private Image CreateImage(StyledImage data, double maxWidth, double maxHeight)
+        {
+            var img = new Image();
+
+            // 画像データを作成
+            if (!string.IsNullOrWhiteSpace(data.ImagePath) && File.Exists(data.ImagePath))
+            {
+                try
+                {
+                    img = new Image
+                    {
+                        Source = new BitmapImage(new Uri(data.ImagePath)),
+                        MaxWidth = maxWidth,
+                        MaxHeight = maxHeight,
+                        Stretch = Stretch.Uniform,
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        VerticalAlignment = VerticalAlignment.Center,
+                    };
+
+                    Debug.WriteLine($"[DEBUG] 読み込み完了: {data.ImagePath}");
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine($"[ERROR] ボタンの画像を読み込むことができません: {ex}");
+                }
+            }
+            return img;
         }
     }
 }

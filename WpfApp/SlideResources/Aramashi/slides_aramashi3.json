@@ -2000,69 +2000,289 @@
         }
       },
       {
+        "table": {
+          "rows": 9,
+          "columns": 3,
+          "indent": 1,
+          "cells": [
+            {
+              "textRuns": [
+                {
+                  "text": "a"
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "  "
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "営業所の所在地、社名、代表者名、業種および開設年月日"
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "b"
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "  "
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "営業を営む者の住所、氏名および生年月日"
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "c"
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "  "
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "営業の種目および概要"
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "d"
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "  "
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "直近３か年の確定申告書の写し",
+                  "bold": true,
+                  "color": "#1F78B4",
+                  "underline": true
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "e"
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "  "
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "法人にあっては、"
+                },
+                {
+                  "text": "直近３か年の貸借対照表、損益計算書および財産目録等",
+                  "bold": true,
+                  "color": "#1F78B4",
+                  "underline": true
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "f"
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "  "
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "得意先の状況"
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "g"
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "  "
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "生産または加工の過程にある仕掛品があるときはその種類、数量、状況、原材料価格加工費および現在価格"
+                }
+              ],
+              "maxwidth": 500
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "h"
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "  "
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "従業員の氏名、職種、労働協約、就業規則、直近３か月の賃金台帳その他の雇用契約の内容"
+                }
+              ],
+              "maxwidth": 500
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "i"
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "  "
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "その他必要な事項"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "aramashi3_19",
+    "title": {
+      "textRuns": [
+        {
+          "text": "３ 用地測量および物件等の調査",
+          "bold": true,
+          "color": "#000000"
+        }
+      ],
+      "fontSize": 26
+    },
+    "sections": [
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "（２）用地測量および物件等の調査",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        }
+      },
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "　",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "２）物件等に関する調査",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        },
         "body": {
           "textRuns": [
             {
-              "text": "ａ  営業所の所在地、社名、代表者名、業種および開設年月日\n",
-              "bold": false,
-              "color": "#000000"
-            },
-            {
-              "text": "ｂ  営業を営む者の住所、氏名および生年月日\n",
-              "bold": false,
-              "color": "#000000"
-            },
-            {
-              "text": "ｃ  営業の種目および概要\n",
-              "bold": false,
-              "color": "#000000"
-            },
-            {
-              "text": "ｄ  ",
-              "bold": false,
-              "color": "#000000"
-            },
-            {
-              "text": "直近３か年の確定申告書の写し\n",
+              "text": "⑦借家、借間人の調査\n",
               "bold": true,
-              "color": "#1F78B4",
-              "underline": true
+              "color": "#1F78B4"
             },
             {
-              "text": "ｅ  法人にあっては、",
-              "bold": false,
-              "color": "#000000"
-            },
-            {
-              "text": "直近３か年の貸借対照表、損益計算書および財産目録等\n",
-              "bold": true,
-              "color": "#1F78B4",
-              "underline": true
-            },
-            {
-              "text": "ｆ  得意先の状況\n",
-              "bold": false,
-              "color": "#000000"
-            },
-            {
-              "text": "ｇ  生産または加工の過程にある仕掛品があるときはその種類、数量、状況、原材料価格加工費および現在価格\n",
-              "bold": false,
-              "color": "#000000"
-            },
-            {
-              "text": "ｈ  従業員の氏名、職種、労働協約、就業規則、直近３か月の賃金台帳その他の雇用契約の内容\n",
-              "bold": false,
-              "color": "#000000"
-            },
-            {
-              "text": "ｉ  その他必要な事項",
+              "text": "　家や部屋を借りて住んでいる方々について、次の事項について調査させていただき、居住者調査表を作成します。",
               "bold": false,
               "color": "#000000"
             }
           ],
           "fontSize": 16
-        },
-        "imagePath": "aramashi3_.png"
+        }
+      },
+      {
+        "image": {
+          "maxHeight": 150,
+          "maxWidth": 150,
+          "images": [
+            {
+              "imagePath": "aramashi3_8.png"
+            },
+            {
+              "label": "画像ラベルテスト",
+              "imagePath": "aramashi3_11.png"
+            }
+          ]
+        }
       }
     ]
   }

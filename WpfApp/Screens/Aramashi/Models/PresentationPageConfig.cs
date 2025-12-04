@@ -31,7 +31,15 @@ namespace WpfApp.Screens.Aramashi.Models
             {
                 section.ResolvePaths(baseDir);
 
-                if(section.ImageButton?.ImageButtons != null)
+                if (section.Image?.Images != null)
+                {
+                    foreach (var imgbtn in section.Image.Images)
+                    {
+                        imgbtn.ResolveImagePaths(baseDir);
+                    }
+                }
+
+                if (section.ImageButton?.ImageButtons != null)
                 {
                     foreach (var imgbtn in section.ImageButton.ImageButtons)
                     {
@@ -47,9 +55,8 @@ namespace WpfApp.Screens.Aramashi.Models
         public List<StyledTextRun> TextRuns { get; set; } = new();
         public double FontSize { get; set; } = 16;
         public double Indent {  get; set; } = 0;
-
-        // TableDataのCellsでのみ使用
         public string BackgroundColor { get; set; } = "Transparent";
+        public double MaxWidth { get; set; } = 700;
     }
 
     public class StyledTextRun
@@ -93,11 +100,11 @@ namespace WpfApp.Screens.Aramashi.Models
         public TextBlockData? Subtitle { get; set; }
         public CheckBoxData? CheckBox { get; set; }
         public TextBlockData? Body { get; set; }
-        public TextBlockData? Table { get; set; }
+        public TableData? Table { get; set; }
         public string? ImagePath { get; set; }
+        public ImageData? Image { get; set; }
 
         public TextButtonData? Button { get; set; }
-
         public ImageButtonData? ImageButton { get; set; }
 
         public TextBlockData? SignTarget { get; set; }
@@ -159,9 +166,6 @@ namespace WpfApp.Screens.Aramashi.Models
         public double LabelFontSize { get; set; } = 15;
         public string LabelColor { get; set; } = "#1F78B4";
 
-        //public double Height { get; set; } = 100;
-        //public double Width { get; set; } = 100;
-
         public string? ImagePath { get; set; }
 
         public void ResolveImageButtonPaths(string baseDir)
@@ -179,5 +183,31 @@ namespace WpfApp.Screens.Aramashi.Models
 
         [JsonIgnore]  // 実行時のみ設定
         public ICommand? Command { get; set; }
+    }
+
+    public class ImageData
+    {
+        public double MaxHeight { get; set; } = 200;
+        public double MaxWidth { get; set; } = 200;
+        public List<StyledImage> Images { get; set; } = new();
+    }
+
+    public class StyledImage
+    {
+        public string Id { get; set; } = "";
+        public string Label { get; set; } = string.Empty;
+        public double LabelFontSize { get; set; } = 15;
+        public string LabelColor { get; set; } = "#000000";
+        public string? ImagePath { get; set; }
+
+        public void ResolveImagePaths(string baseDir)
+        {
+            if (string.IsNullOrWhiteSpace(ImagePath))
+                return;
+
+            var path = Path.Combine(baseDir, ImagePath);
+            if (File.Exists(path))
+                ImagePath = path;
+        }
     }
 }
