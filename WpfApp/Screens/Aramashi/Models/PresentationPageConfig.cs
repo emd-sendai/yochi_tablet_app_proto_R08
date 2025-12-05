@@ -91,6 +91,7 @@ namespace WpfApp.Screens.Aramashi.Models
         public int Columns { get; set; } = 0;
         public double Indent { get; set; } = 0;
         public bool ShowBorder { get; set; } = false;
+        public bool HasPadding { get; set; } = false;
         public List<TextBlockData> Cells { get; set; } = new();
     }
 

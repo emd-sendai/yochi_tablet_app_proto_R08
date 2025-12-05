@@ -497,6 +497,7 @@ namespace WpfApp.Screens.Aramashi.Views
             var cols = data.Columns;
             var indent = data.Indent;
             var showBorder = data.ShowBorder;
+            var hasPadding = data.HasPadding;
             var cells = data.Cells;
 
             Grid grid = new Grid
@@ -522,9 +523,11 @@ namespace WpfApp.Screens.Aramashi.Views
             {
                 for (int c = 0; c < cols; c++)
                 {
+                    // デフォルト値を設定
                     Thickness border = new Thickness(0); // 罫線なし
                     Thickness padding = new Thickness(0); //内部の余白なし
 
+                    // 罫線ありの場合
                     if (showBorder)
                     {
                         bool isFirstRow = r == 0;
@@ -546,9 +549,15 @@ namespace WpfApp.Screens.Aramashi.Views
                         {
                             border = new Thickness(0, 0, 1, 1);
                         }
+                    }
 
+                    // 内部の余白ありの場合 
+                    if (hasPadding)
+                    {
                         padding = new Thickness(4);
                     }
+
+                    Debug.WriteLine($"cell: {index} / {rows * cols - 1} をTextBlockに変換します");
                     var text = CreateTextBlock(cells[index]);
 
                     Border cell = new Border

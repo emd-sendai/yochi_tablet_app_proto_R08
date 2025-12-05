@@ -18,7 +18,7 @@
         "body": {
           "textRuns": [
             {
-              "text": "仮置き\n\n",
+              "text": "仮置き（遷移可能ボタン配置予定）\n\n",
               "bold": true,
               "color": "#000000"
             },
@@ -553,72 +553,104 @@
             }
           ],
           "fontSize": 18
-        },
+        }
+      },
+      {
+        "table": {
+          "rows": 1,
+          "columns": 2,
+          "cells": [
+            {
+              "textRuns": [
+                {
+                  "text": "※"
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "相続発生前に父母が死亡している場合、祖父母が相続人",
+                  "bold": true,
+                  "color": "#1F78B4"
+                },
+                {
+                  "text": "となり、祖父母も死亡していれば曾祖父母が、というように、どこまでも上の代まで相続人となっていきます。"
+                }
+              ],
+              "maxWidth": 680
+            }
+          ]
+        }
+      },
+      {
+        "table": {
+          "rows": 1,
+          "columns": 2,
+          "cells": [
+            {
+              "textRuns": [
+                {
+                  "text": "※"
+                },
+                {
+                  "text": "代襲相続",
+                  "bold": true,
+                  "color": "#D32F2F"
+                },
+                {
+                  "text": "："
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "被相続人の子又は兄弟姉妹が相続開始以前に死亡している場合、その者の子が代わりに相続人となる",
+                  "bold": true,
+                  "color": "#1F78B4"
+                },
+                {
+                  "text": "制度（民法第887条、第889条）。子の代襲者は、"
+                },
+                {
+                  "text": "限りなくその直系卑属が順次代襲します",
+                  "bold": true,
+                  "color": "#D32F2F"
+                },
+                {
+                  "text": "（再代襲）。"
+                },
+                {
+                  "text": "一方、兄弟姉妹の代襲者はその子までです",
+                  "bold": true,
+                  "color": "#1F78B4"
+                },
+                {
+                  "text": "（再代襲はありません）。"
+                }
+              ],
+              "maxWidth": 605
+            }
+          ]
+        }
+      },
+      {
         "body": {
           "textRuns": [
             {
-              "text": "※",
-              "bold": false,
-              "color": "#000000"
-            },
-            {
-              "text": "相続発生前に父母が死亡している場合、祖父母が相続人",
-              "bold": true,
-              "color": "#1F78B4"
-            },
-            {
-              "text": "となり、祖父母も死亡していれば曾祖父母が、というように、どこまでも上の代まで相続人となっていきます。\n\n",
-              "bold": false,
-              "color": "#000000"
-            },
-            {
-              "text": "※",
-              "bold": false,
-              "color": "#000000"
-            },
-            {
-              "text": "代襲相続",
+              "text": "\n　ただし、相続開始が昭和23年１月１日から昭和55年12月31日までの間であるときの兄弟姉妹の代襲者は、限りなくその直系卑属が順次代襲します（再代襲できます）。\n",
               "bold": true,
               "color": "#D32F2F"
             },
             {
-              "text": "：",
-              "bold": false,
-              "color": "#000000"
-            },
-            {
-              "text": "被相続人の子又は兄弟姉妹が相続開始以前に死亡している場合、その者の子が代わりに相続人となる",
+              "text": "　なお、相続開始が昭和22年5月3日から昭和22年12月31日までは、兄弟姉妹には、代襲相続制度がありません。",
               "bold": true,
               "color": "#1F78B4"
-            },
-            {
-              "text": "制度（民法第887条、第889条）。子の代襲者は、",
-              "bold": false,
-              "color": "#000000"
-            },
-            {
-              "text": "限りなくその直系卑属が順次代襲します",
-              "bold": true,
-              "color": "#D32F2F"
-            },
-            {
-              "text": "（再代襲）。",
-              "bold": false,
-              "color": "#000000"
-            },
-            {
-              "text": "一方、兄弟姉妹の代襲者はその子までです",
-              "bold": true,
-              "color": "#1F78B4"
-            },
-            {
-              "text": "（再代襲はありません）。",
-              "bold": false,
-              "color": "#000000"
             }
           ],
           "fontSize": 16,
-          "maxWidth": 460
+          "maxWidth": 480
         },
         "imageButton": {
           "id": "aramashi3_6_imgbtn1",
@@ -632,23 +664,6 @@
               "CommandName": ""
             }
           ]
-        }
-      },
-      {
-        "body": {
-          "textRuns": [
-            {
-              "text": "　ただし、相続開始が昭和23年１月１日から昭和55年12月31日までの間であるときの兄弟姉妹の代襲者は、限りなくその直系卑属が順次代襲します（再代襲できます）。\n",
-              "bold": true,
-              "color": "#D32F2F"
-            },
-            {
-              "text": "　なお、相続開始が昭和22年5月3日から昭和22年12月31日までは、兄弟姉妹には、代襲相続制度がありません。",
-              "bold": true,
-              "color": "#1F78B4"
-            }
-          ],
-          "fontSize": 16
         }
       }
     ]
@@ -796,7 +811,7 @@
               "underline": true
             },
             {
-              "text": "（土地所有者・隣接土地所有者・関係人（借地人・耕作人等））\n",
+              "text": "（土地所有者・隣接土地所有者・関係人（借地人・耕作人等））\n\n",
               "bold": false,
               "color": "#000000"
             },
@@ -873,7 +888,7 @@
               "underline": true
             },
             {
-              "text": "（土地所有者・隣接土地所有者・関係人（借地人・耕作人等））\n",
+              "text": "（土地所有者・隣接土地所有者・関係人（借地人・耕作人等））\n\n",
               "bold": false,
               "color": "#000000"
             },
@@ -893,17 +908,17 @@
               "color": "#000000"
             },
             {
-              "text": "　□境界立会の依頼通知書\n",
+              "text": "　□  境界立会の依頼通知書\n",
               "bold": false,
               "color": "#000000"
             },
             {
-              "text": "　□印鑑\n",
+              "text": "　□  印鑑\n",
               "bold": false,
               "color": "#000000"
             },
             {
-              "text": "　□土地に関する資料等をお持ちの方は、その資料等",
+              "text": "　□  土地に関する資料等をお持ちの方は、その資料等",
               "bold": false,
               "color": "#000000"
             }
@@ -970,7 +985,7 @@
               "underline": true
             },
             {
-              "text": "（土地所有者・隣接土地所有者・関係人（借地人、耕作人等））\n",
+              "text": "（土地所有者・隣接土地所有者・関係人（借地人、耕作人等））\n\n",
               "bold": false,
               "color": "#000000"
             },
@@ -986,7 +1001,7 @@
             }
           ],
           "fontSize": 16,
-          "maxWidth": 500
+          "maxWidth": 550
         },
         "image": {
           "maxHeight": 120,
@@ -1088,41 +1103,106 @@
         }
       },
       {
-        "body": {
-          "textRuns": [
+        "table": {
+          "rows": 4,
+          "columns": 3,
+          "indent": 1,
+          "hasPadding": true,
+          "cells": [
             {
-              "text": "ア  土地への立入りは、所有者の了解を得て、原則、日出から日没までの間に行います。\n\n",
-              "bold": false,
-              "color": "#000000"
+              "textRuns": [
+                {
+                  "text": "ア"
+                }
+              ]
             },
             {
-              "text": "イ  一筆の土地の一部に他の部分と異なる地目の土地があるとき、または一筆の土地に他の部分と異なる権利（借地権、耕作権等）が設定されているときは、それぞれ異なる地目の土地ごと、または異なる権利が設定されている土地ごとに測量を行います。\n\n",
-              "bold": false,
-              "color": "#000000"
+              "textRuns": [
+                {
+                  "text": "  "
+                }
+              ]
             },
             {
-              "text": "ウ  建物等の主要な物件が現地にある場合は、その位置の測量を行います。\n\n",
-              "bold": false,
-              "color": "#000000"
+              "textRuns": [
+                {
+                  "text": "土地への立入りは、所有者の了解を得て、原則、日出から日没までの間に行います。"
+                }
+              ],
+              "maxWidth": 450
             },
             {
-              "text": "エ  ",
-              "bold": false,
-              "color": "#000000"
+              "textRuns": [
+                {
+                  "text": "イ"
+                }
+              ]
             },
             {
-              "text": "用地測量の成果を基に実測図等を作成",
-              "bold": true,
-              "color": "#1F78B4"
+              "textRuns": [
+                {
+                  "text": "  "
+                }
+              ]
             },
             {
-              "text": "します。",
-              "bold": false,
-              "color": "#000000"
+              "textRuns": [
+                {
+                  "text": "一筆の土地の一部に他の部分と異なる地目の土地があるとき、または一筆の土地に他の部分と異なる権利（借地権、耕作権等）が設定されているときは、それぞれ異なる地目の土地ごと、または異なる権利が設定されている土地ごとに測量を行います。"
+                }
+              ],
+              "maxWidth": 450
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "ウ"
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "  "
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "建物等の主要な物件が現地にある場合は、その位置の測量を行います。"
+                }
+              ],
+              "maxWidth": 450
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "エ"
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "  "
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "用地測量の成果を基に実測図等を作成",
+                  "bold": true,
+                  "color": "#1F78B4"
+                },
+                {
+                  "text": "します。"
+                }
+              ],
+              "maxWidth": 450
             }
-          ],
-          "fontSize": 16,
-          "maxWidth": 480
+          ]
         },
         "image": {
           "maxHeight": 180,
@@ -1187,10 +1267,16 @@
               "color": "#1F78B4"
             },
             {
-              "text": "　建物は、木造と非木造に区分し、さらに構造、用途等により、専用住宅、共同住宅、店舗、倉庫等に区分して、それぞれ一棟ごとに調査をさせていただきます。\n\n",
+              "text": "　建物は、木造と非木造に区分し、さらに構造、用途等により、専用住宅、共同住宅、店舗、倉庫等に区分して、それぞれ一棟ごとに調査をさせていただきます。\n",
               "bold": false,
               "color": "#000000"
-            },
+            }
+          ]
+        }
+      },
+      {
+        "body": {
+          "textRuns": [
             {
               "text": "ア  調査日の打合せ\n",
               "bold": true,
@@ -1294,42 +1380,157 @@
               "color": "#1F78B4"
             },
             {
-              "text": "ウ  建物調査の内容\n",
+              "text": "ウ  建物調査の内容",
               "bold": true,
               "color": "#1F78B4"
-            },
-            {
-              "text": "　ａ  建物の所在、所有者、居住者、借家人、借間人\n",
-              "bold": false,
-              "color": "#000000"
-            },
-            {
-              "text": "　ｂ  建物の建築年月日\n",
-              "bold": false,
-              "color": "#000000"
-            },
-            {
-              "text": "　ｃ  建物の構造、用途、床面積\n",
-              "bold": false,
-              "color": "#000000"
-            },
-            {
-              "text": "　ｄ  建物の各部（基礎、柱、屋根、天井、床、内壁、外壁、建具、造作等）\n",
-              "bold": false,
-              "color": "#000000"
-            },
-            {
-              "text": "　ｅ  建物の写真撮影\n",
-              "bold": false,
-              "color": "#000000"
-            },
-            {
-              "text": "　ｆ  その他必要な事項",
-              "bold": false,
-              "color": "#000000"
             }
           ],
           "fontSize": 16
+        }
+      },
+      {
+        "table": {
+          "rows": 6,
+          "columns": 3,
+          "indent": 1,
+          "cells": [
+            {
+              "textRuns": [
+                {
+                  "text": "a"
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "  "
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "建物の所在、所有者、居住者、借家人、借間人"
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "b"
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "  "
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "建物の建築年月日"
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "c"
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "  "
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "建物の構造、用途、床面積"
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "d"
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "  "
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "建物の各部（基礎、柱、屋根、天井、床、内壁、外壁、建具、造作等）"
+                }
+              ],
+              "maxWidth": 500
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "e"
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "  "
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "建物の写真撮影"
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "f"
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "  "
+                }
+              ]
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "その他必要な事項"
+                }
+              ]
+            }
+          ]
+        },
+        "image": {
+          "maxHeight": 180,
+          "maxWidth": 180,
+          "images": [
+            {
+              "imagePath": "aramashi3_11.png"
+            }
+          ]
         }
       },
       {
@@ -1346,17 +1547,7 @@
               "color": "#000000"
             }
           ],
-          "fontSize": 16,
-          "maxWidth": 500
-        },
-        "image": {
-          "maxHeight": 180,
-          "maxWidth": 180,
-          "images": [
-            {
-              "imagePath": "aramashi3_11.png"
-            }
-          ]
+          "fontSize": 16
         }
       }
     ]
@@ -1429,7 +1620,7 @@
               "color": "#1F78B4"
             },
             {
-              "text": "　ａ  電灯、テレビアンテナ等の電気設備\n",
+              "text": "　ａ  電灯、テレビアンテナ等の電気設備　　　　　　\n",
               "bold": false,
               "color": "#000000"
             },
@@ -1453,8 +1644,8 @@
           "maxWidth": 500
         },
         "image": {
-          "maxHeight": 180,
-          "maxWidth": 180,
+          "maxHeight": 120,
+          "maxWidth": 120,
           "images": [
             {
               "imagePath": "aramashi3_12.png"
@@ -1476,7 +1667,7 @@
               "color": "#000000"
             },
             {
-              "text": "　ｂ  看板、物干し台、藤棚、花壇、庭石\n",
+              "text": "　ｂ  看板、物干し台、藤棚、花壇、庭石　　　　　　\n",
               "bold": false,
               "color": "#000000"
             },
@@ -1490,8 +1681,106 @@
           "maxWidth": 500
         },
         "image": {
-          "maxHeight": 180,
-          "maxWidth": 180,
+          "maxHeight": 120,
+          "maxWidth": 120,
+          "images": [
+            {
+              "imagePath": "aramashi3_13.png"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "aramashi3_14.5",
+    "title": {
+      "textRuns": [
+        {
+          "text": "３ 用地測量および物件等の調査",
+          "bold": true,
+          "color": "#000000"
+        }
+      ],
+      "fontSize": 26
+    },
+    "sections": [
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "（２）用地測量および物件等の調査",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        }
+      },
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "　",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "２）物件等に関する調査",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        }
+      },
+      {
+        "imageButton": {
+          "id": "aramashi3_14.5_imgbtn1",
+          "maxHeight": 300,
+          "maxWidth": 700,
+          "imageButtons": [
+            {
+              "id": "imgbtn1_aramashi3_12.5",
+              "label": "（参考）建物と工作物の補償区分",
+              "imagePath": "aramashi3_12.5.png",
+              "CommandName": ""
+            }
+          ]
+        }
+      },
+      {
+        "body": {
+          "textRuns": [
+            {
+              "text": "イ  その他の工作物の主なもの\n",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "　ａ  物置、車庫、ブロック塀、門柱\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　ｂ  看板、物干し台、藤棚、花壇、庭石　　　　　　\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　ｃ  井戸、ビニールハウス等",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16,
+          "maxWidth": 500
+        },
+        "image": {
+          "maxHeight": 120,
+          "maxWidth": 120,
           "images": [
             {
               "imagePath": "aramashi3_13.png"
@@ -1569,7 +1858,7 @@
               "color": "#000000"
             },
             {
-              "text": "　ｂ  樹種、樹齢、樹高、樹幅、幹周、根廻りまたは株廻り\n",
+              "text": "　ｂ  樹種、樹齢、樹高、樹幅、幹周、根廻りまたは株廻り　　　　　\n",
               "bold": false,
               "color": "#000000"
             },
@@ -1598,8 +1887,8 @@
           "maxWidth": 500
         },
         "image": {
-          "maxHeight": 180,
-          "maxWidth": 180,
+          "maxHeight": 120,
+          "maxWidth": 120,
           "images": [
             {
               "imagePath": "aramashi3_14.png"
@@ -1692,7 +1981,7 @@
               "color": "#000000"
             },
             {
-              "text": "　ｅ  墓石、棚、垣、および生垣の種類、形状、使用材料\n",
+              "text": "　ｅ  墓石、棚、垣、および生垣の種類、形状、使用材料　　　　　\n",
               "bold": false,
               "color": "#000000"
             },
@@ -1815,7 +2104,7 @@
               "color": "#000000"
             },
             {
-              "text": "　ｂ  所有者の住所、氏名等\n",
+              "text": "　ｂ  所有者の住所、氏名等　　　　　　　\n",
               "bold": false,
               "color": "#000000"
             },
@@ -1825,8 +2114,7 @@
               "color": "#000000"
             }
           ],
-          "fontSize": 16,
-          "maxWidth": 400
+          "fontSize": 16
         },
         "image": {
           "maxHeight": 180,
@@ -1918,7 +2206,7 @@
               "color": "#000000"
             },
             {
-              "text": "　ｃ  配偶者居住権者の氏名、住所\n",
+              "text": "　ｃ  配偶者居住権者の氏名、住所　　　　　　　\n",
               "bold": false,
               "color": "#000000"
             },
@@ -1928,8 +2216,7 @@
               "color": "#000000"
             }
           ],
-          "fontSize": 16,
-          "maxWidth": 500
+          "fontSize": 16
         },
         "image": {
           "maxHeight": 150,
@@ -2006,7 +2293,7 @@
         "body": {
           "textRuns": [
             {
-              "text": "　ａ  賃貸借の契約年月日、契約期間\n",
+              "text": "　ａ  賃貸借の契約年月日、契約期間　　　　　　　\n",
               "bold": false,
               "color": "#000000"
             },
@@ -2026,8 +2313,7 @@
               "color": "#000000"
             }
           ],
-          "fontSize": 16,
-          "maxWidth": 480
+          "fontSize": 16
         },
         "image": {
           "maxHeight": 200,
@@ -2136,7 +2422,8 @@
                 {
                   "text": "営業所の所在地、社名、代表者名、業種および開設年月日"
                 }
-              ]
+              ],
+              "maxwidth": 500
             },
             {
               "textRuns": [
@@ -2157,7 +2444,8 @@
                 {
                   "text": "営業を営む者の住所、氏名および生年月日"
                 }
-              ]
+              ],
+              "maxwidth": 500
             },
             {
               "textRuns": [
@@ -2178,7 +2466,8 @@
                 {
                   "text": "営業の種目および概要"
                 }
-              ]
+              ],
+              "maxwidth": 500
             },
             {
               "textRuns": [
@@ -2202,7 +2491,8 @@
                   "color": "#1F78B4",
                   "underline": true
                 }
-              ]
+              ],
+              "maxwidth": 500
             },
             {
               "textRuns": [
@@ -2229,7 +2519,8 @@
                   "color": "#1F78B4",
                   "underline": true
                 }
-              ]
+              ],
+              "maxwidth": 500
             },
             {
               "textRuns": [
@@ -2250,7 +2541,8 @@
                 {
                   "text": "得意先の状況"
                 }
-              ]
+              ],
+              "maxwidth": 500
             },
             {
               "textRuns": [
@@ -2315,83 +2607,17 @@
                 {
                   "text": "その他必要な事項"
                 }
-              ]
+              ],
+              "maxwidth": 500
             }
           ]
-        }
-      }
-    ]
-  },
-  {
-    "id": "aramashi3_21",
-    "title": {
-      "textRuns": [
-        {
-          "text": "３ 用地測量および物件等の調査",
-          "bold": true,
-          "color": "#000000"
-        }
-      ],
-      "fontSize": 26
-    },
-    "sections": [
-      {
-        "subtitle": {
-          "textRuns": [
-            {
-              "text": "（２）用地測量および物件等の調査",
-              "bold": true,
-              "color": "#1F78B4",
-              "underline": true
-            }
-          ],
-          "fontSize": 18
-        }
-      },
-      {
-        "subtitle": {
-          "textRuns": [
-            {
-              "text": "　",
-              "bold": true,
-              "color": "#1F78B4"
-            },
-            {
-              "text": "２）物件等に関する調査",
-              "bold": true,
-              "color": "#1F78B4",
-              "underline": true
-            }
-          ],
-          "fontSize": 18
         },
-        "body": {
-          "textRuns": [
-            {
-              "text": "⑦借家、借間人の調査\n",
-              "bold": true,
-              "color": "#1F78B4"
-            },
-            {
-              "text": "　家や部屋を借りて住んでいる方々について、次の事項について調査させていただき、居住者調査表を作成します。",
-              "bold": false,
-              "color": "#000000"
-            }
-          ],
-          "fontSize": 16
-        }
-      },
-      {
         "image": {
-          "maxHeight": 150,
-          "maxWidth": 150,
+          "maxHeight": 160,
+          "maxWidth": 160,
           "images": [
             {
-              "imagePath": "aramashi3_8.png"
-            },
-            {
-              "label": "画像ラベルテスト",
-              "imagePath": "aramashi3_11.png"
+              "imagePath": "aramashi3_19.png"
             }
           ]
         }
