@@ -18,82 +18,378 @@
         "body": {
           "textRuns": [
             {
-              "text": "仮置き（遷移可能ボタン配置予定）\n\n",
-              "bold": true,
-              "color": "#000000"
-            },
-            {
-              "text": "（１）権利者調査\n",
-              "bold": false,
-              "color": "#000000"
-            },
-            {
-              "text": "　１）地図（公図）の転写\n",
-              "bold": false,
-              "color": "#000000"
-            },
-            {
-              "text": "　２）登記記録（登記簿）調査（土地・建物等）\n",
-              "bold": false,
-              "color": "#000000"
-            },
-            {
-              "text": "　３）住民票等の調査\n\n",
-              "bold": false,
-              "color": "#000000"
-            },
-            {
-              "text": "（２）用地測量及び物件等の調査\n",
-              "bold": false,
-              "color": "#000000"
-            },
-            {
-              "text": "　１）土地に関する調査　　　　　　　　２）物件等に関する調査\n",
-              "bold": false,
-              "color": "#000000"
-            },
-            {
-              "text": "　　①現地踏査　　　　　　　　　　　　　①建物の調査\n",
-              "bold": false,
-              "color": "#000000"
-            },
-            {
-              "text": "　　②境界立会　　　　　　　　　　　　　②工作物の調査\n",
-              "bold": false,
-              "color": "#000000"
-            },
-            {
-              "text": "　　　ア 境界立会の依頼通知　　　　　　 ③立竹木の調査\n",
-              "bold": false,
-              "color": "#000000"
-            },
-            {
-              "text": "　　　イ 境界立会　　　　　　　　　　　 ④墳墓の調査\n",
-              "bold": false,
-              "color": "#000000"
-            },
-            {
-              "text": "　　　ウ 土地境界立会確認書ヘの　　　　 ⑤動産の調査\n",
-              "bold": false,
-              "color": "#000000"
-            },
-            {
-              "text": "　　　　 署名・押印　　　　　　　　　　 ⑥居住者の調査\n",
-              "bold": false,
-              "color": "#000000"
-            },
-            {
-              "text": "　　③用地測量　　　　　　　　　　　　　⑦借家、借間人の調査\n",
-              "bold": false,
-              "color": "#000000"
-            },
-            {
-              "text": "　　　　　　　　　　　　　　　　　　　　⑧営業調査",
-              "bold": false,
-              "color": "#000000"
+              "text": "（１）権利者調査",
+              "bold": true
             }
           ],
-          "fontSize": 16
+          "fontSize": 15
+        }
+      },
+      {
+        "table": {
+          "rows": 3,
+          "columns": 2,
+          "indent": 2,
+          "hasPadding": true,
+          "cells": [
+            {
+              "textRuns": [
+                {
+                  "text": "１） "
+                }
+              ],
+              "fontSize": 15
+            },
+            {
+              "text": "地図（公図）の転写",
+              "fontSize": 15,
+              "bold": true,
+              "style": "TableButtonStyle",
+              "commandName": "GoToSlideCommand",
+              "commandParameter": "3"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "２） "
+                }
+              ],
+              "fontSize": 15
+            },
+            {
+              "text": "登記記録（登記簿）調査（土地・建物等）",
+              "fontSize": 15,
+              "bold": true,
+              "style": "TableButtonStyle",
+              "commandName": "GoToSlideCommand",
+              "commandParameter": "4"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "３） "
+                }
+              ],
+              "fontSize": 15
+            },
+            {
+              "text": "住民票等の調査",
+              "fontSize": 15,
+              "bold": true,
+              "style": "TableButtonStyle",
+              "commandName": "GoToSlideCommand",
+              "commandParameter": "6"
+            }
+          ]
+        }
+      },
+      {
+        "body": {
+          "textRuns": [
+            {
+              "text": "（２）用地測量及び物件等の調査",
+              "bold": true
+            }
+          ],
+          "fontSize": 15
+        }
+      },
+      {
+        "table": {
+          "rows": 9,
+          "columns": 4,
+          "indent": 2,
+          "hasPadding": true,
+          "cells": [
+            {
+              "textRuns": [
+                {
+                  "text": "１）"
+                }
+              ],
+              "fontSize": 15
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "土地に関する調査"
+                }
+              ],
+              "fontSize": 15
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "２）"
+                }
+              ],
+              "fontSize": 15
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "物件等に関する調査"
+                }
+              ],
+              "fontSize": 15
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "　① "
+                }
+              ],
+              "fontSize": 15
+            },
+            {
+              "text": "現地踏査",
+              "fontSize": 15,
+              "bold": true,
+              "style": "TableButtonStyle",
+              "commandName": "GoToSlideCommand",
+              "commandParameter": "8"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "　① "
+                }
+              ],
+              "fontSize": 15
+            },
+            {
+              "text": "建物の調査",
+              "fontSize": 15,
+              "bold": true,
+              "style": "TableButtonStyle",
+              "commandName": "GoToSlideCommand",
+              "commandParameter": "13"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "　② "
+                }
+              ],
+              "fontSize": 15
+            },
+            {
+              "text": "境界立会",
+              "fontSize": 15,
+              "bold": true,
+              "style": "TableButtonStyle",
+              "commandName": "GoToSlideCommand",
+              "commandParameter": "9"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "　② "
+                }
+              ],
+              "fontSize": 15
+            },
+            {
+              "text": "工作物の調査",
+              "fontSize": 15,
+              "bold": true,
+              "style": "TableButtonStyle",
+              "commandName": "GoToSlideCommand",
+              "commandParameter": "15"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "　"
+                }
+              ],
+              "fontSize": 15
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "ア　境界立会の依頼通知"
+                }
+              ],
+              "fontSize": 15
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "　③ "
+                }
+              ],
+              "fontSize": 15
+            },
+            {
+              "text": "立竹木の調査",
+              "fontSize": 15,
+              "bold": true,
+              "style": "TableButtonStyle",
+              "commandName": "GoToSlideCommand",
+              "commandParameter": "17"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "　"
+                }
+              ],
+              "fontSize": 15
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "イ　境界立会"
+                }
+              ],
+              "fontSize": 15
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "　④ "
+                }
+              ],
+              "fontSize": 15
+            },
+            {
+              "text": "墳墓の調査",
+              "fontSize": 15,
+              "bold": true,
+              "style": "TableButtonStyle",
+              "commandName": "GoToSlideCommand",
+              "commandParameter": "18"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "　"
+                }
+              ],
+              "fontSize": 15
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "ウ　土地境界立会確認書ヘの署名・押印　　　"
+                }
+              ],
+              "fontSize": 15
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "　⑤ "
+                }
+              ],
+              "fontSize": 15
+            },
+            {
+              "text": "動産の調査",
+              "fontSize": 16,
+              "bold": true,
+              "style": "TableButtonStyle",
+              "commandName": "GoToSlideCommand",
+              "commandParameter": "19"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "　③ "
+                }
+              ],
+              "fontSize": 15
+            },
+            {
+              "text": "用地測量",
+              "fontSize": 15,
+              "bold": true,
+              "style": "TableButtonStyle",
+              "commandName": "GoToSlideCommand",
+              "commandParameter": "12"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "　⑥ "
+                }
+              ],
+              "fontSize": 15
+            },
+            {
+              "text": "居住者の調査",
+              "fontSize": 16,
+              "bold": true,
+              "style": "TableButtonStyle",
+              "commandName": "GoToSlideCommand",
+              "commandParameter": "20"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "　"
+                }
+              ],
+              "fontSize": 15
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "　"
+                }
+              ],
+              "fontSize": 15
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "　⑦ "
+                }
+              ],
+              "fontSize": 15
+            },
+            {
+              "text": "借家、借間人の調査",
+              "fontSize": 15,
+              "bold": true,
+              "style": "TableButtonStyle",
+              "commandName": "GoToSlideCommand",
+              "commandParameter": "21"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "　"
+                }
+              ],
+              "fontSize": 15
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "　"
+                }
+              ],
+              "fontSize": 15
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "　⑧ "
+                }
+              ],
+              "fontSize": 15
+            },
+            {
+              "text": "営業調査",
+              "fontSize": 15,
+              "bold": true,
+              "style": "TableButtonStyle",
+              "commandName": "GoToSlideCommand",
+              "commandParameter": "22"
+            }
+          ]
         }
       }
     ]

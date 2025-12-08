@@ -178,8 +178,21 @@
                 </Style.Triggers>
             </Style>
 
-            <!-- 相続の概要ボタン様式 -->
-            <Style x:Key="InheritanceOverviewButtonStyle" TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
+            <!-- テーブル（遷移用）ボタン様式 -->
+            <Style x:Key="TableButtonStyle" TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatButton}">
+                <!-- 通常時の文字色 -->
+                <Setter Property="Foreground" Value="#1F78B4"/>
+                <Style.Triggers>
+                    <!-- ホバー時 -->
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Foreground" Value="#1F78B4" />
+                    </Trigger>
+
+                    <!-- 押下時（IsPressed） -->
+                    <Trigger Property="IsPressed" Value="True">
+                        <Setter Property="Foreground" Value="#1F78B4" />
+                    </Trigger>
+                </Style.Triggers>
             </Style>
 
             <!-- 折り返しテキストブロック様式 -->

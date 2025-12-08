@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Globalization;
 using System.IO;
+using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
@@ -8,7 +9,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using WpfApp.Screens.Aramashi.Models;
 using WpfApp.Screens.Aramashi.ViewModels;
-using static System.Collections.Specialized.BitVector32;
 
 namespace WpfApp.Screens.Aramashi.Views
 {
@@ -51,12 +51,10 @@ namespace WpfApp.Screens.Aramashi.Views
                     {
                         var cb = new CheckBox
                         {
-                            //Content = section.CheckBox.Label,
                             IsChecked = section.CheckBox.IsChecked,
                             Margin = new Thickness(10, 0, 0, 0),
                             Padding = new Thickness(0),
                             VerticalAlignment = VerticalAlignment.Center,
-                            //LayoutTransform = new ScaleTransform(1.1, 1.1) 
                             FontSize = section.Subtitle.FontSize,
                         };
 
@@ -116,7 +114,7 @@ namespace WpfApp.Screens.Aramashi.Views
                     /* テーブル */
                     if (section.Table != null)
                     {
-                        Grid grid = CreateTableGrid(section.Table);
+                        Grid grid = CreateTableGrid(section.Table, viewModel);
                         bodyRow.Children.Add(grid);
                     }
 
@@ -168,7 +166,7 @@ namespace WpfApp.Screens.Aramashi.Views
                     // テーブルが設定されている場合
                     if (section.Table != null)
                     {
-                        Grid grid = CreateTableGrid(section.Table);
+                        Grid grid = CreateTableGrid(section.Table, viewModel);
                         MainPanel.Children.Add(grid);
                         cnt++;
                     }
@@ -300,6 +298,7 @@ namespace WpfApp.Screens.Aramashi.Views
 
         private Button CreateButton(ButtonData data, PresentationViewerViewModel viewModel)
         {
+
             var btn = new Button
             {
                 Content = data.Text,
@@ -307,26 +306,43 @@ namespace WpfApp.Screens.Aramashi.Views
                 FontWeight = data.Bold ? FontWeights.Bold : FontWeights.Normal,
                 Height = data.Height,
                 Width = data.Width,
-                CommandParameter = data.CommandParameter
+                //CommandParameter = data.CommandParameter
             };
 
-            // デフォルトスタイルを設定
-            if (Application.Current.TryFindResource("CommonButtonStyle") is Style style)
+            // スタイルを設定
+            if (data.Style == "CommonButtonStyle" && Application.Current.TryFindResource("CommonButtonStyle") is Style commonStyle)
             {
-                btn.Style = style;
+                btn.Style = commonStyle;
+            }
+            else if (data.Style == "TableButtonStyle" && Application.Current.TryFindResource("TableButtonStyle") is Style flatStyle)
+            {
+                btn.Style = flatStyle;
             }
 
-            // コマンドを設定
-            if(data.CommandName == "EditSignatureCommand")
+            // コマンドと引数を設定
+            string? param = data.CommandParameter as string;
+
+            if (data.CommandName == "EditSignatureCommand")
             {
+                btn.CommandParameter = data.CommandParameter;
                 btn.Command = viewModel.EditSignatureCommand;
             }
             else if (data.CommandName == "ShowInheritanceOverviewCommand")
             {
+                btn.CommandParameter = data.CommandParameter;
                 btn.Command = viewModel.ShowInheritanceOverviewCommand;
             }
             else if (data.CommandName == "GoToSlideCommand")
             {
+                if (param != null && int.TryParse(param, out int value))
+                {
+                    btn.CommandParameter = value;
+                }
+                else
+                {
+                    // 数値に変換できなかった場合の処理
+                    Debug.WriteLine("CommandParameter は数値ではありません");
+                }
                 btn.Command = viewModel.GoToSlideCommand;
             }
 
@@ -477,7 +493,7 @@ namespace WpfApp.Screens.Aramashi.Views
             return rowPanel;
         }
 
-        private Grid CreateTableGrid(TableData data)
+        private Grid CreateTableGrid(TableData data, PresentationViewerViewModel viewModel)
         {
             var rows = data.Rows;
             var cols = data.Columns;
@@ -490,6 +506,7 @@ namespace WpfApp.Screens.Aramashi.Views
             {
                 MaxWidth = 700,
                 Margin = new Thickness(20 + indent * 20, 4, 0, 8),
+                VerticalAlignment = VerticalAlignment.Center,
             };
 
             // 行定義
@@ -540,19 +557,62 @@ namespace WpfApp.Screens.Aramashi.Views
                     // 内部の余白ありの場合 
                     if (hasPadding)
                     {
-                        padding = new Thickness(4);
+                        padding = new Thickness(3);
                     }
-
-                    Debug.WriteLine($"cell: {index} / {rows * cols - 1} をTextBlockに変換します");
-                    var child = CreateTextBlock(cells[index]);
 
                     Border cell = new Border
                     {
                         BorderThickness = border,
                         BorderBrush = Brushes.Black,
                         Padding = padding,
-                        Child = child,
+                        //Child = child,
                     };
+
+                    var cellElement = cells[index];
+                    var readOption = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+
+                    if (cellElement.TryGetProperty("commandName", out _) || cellElement.TryGetProperty("CommandName", out _))
+                    {
+                        Debug.WriteLine($"cell: {index} / {rows * cols - 1} をButtonDataに変換します");
+                        var obj = JsonSerializer.Deserialize<ButtonData>(cellElement.GetRawText(),readOption);
+
+                        if (obj != null && obj is ButtonData)
+                        {
+                            Debug.WriteLine($"cell: {index} / {rows * cols - 1} をButtonに変換します");
+                            var child = CreateButton(obj, viewModel);
+
+                            child.Padding = new Thickness(0);
+                            child.Margin = new Thickness(0);
+                            child.Height = double.NaN;
+                            child.Width = double.NaN;
+                            child.HorizontalAlignment = HorizontalAlignment.Left;
+
+                            cell.Child = child;
+                        }
+                        else
+                        {
+                            Debug.WriteLine($"cell: {index} / {rows * cols - 1} をButtonDataに変換できません");
+                        }
+                    }
+                    else
+                    {
+                        Debug.WriteLine($"cell: {index} / {rows * cols - 1} をTextBlockDataに変換します");
+                        var obj = JsonSerializer.Deserialize<TextBlockData>(cellElement.GetRawText(), readOption);
+
+                        if (obj != null && obj is TextBlockData)
+                        {
+                            Debug.WriteLine($"cell: {index} / {rows * cols - 1} をTextBlockに変換します");
+                            var child = CreateTextBlock(obj);
+                            cell.Child = child;
+                        }
+                        else
+                        {
+                            Debug.WriteLine($"cell: {index} / {rows * cols - 1} をTextBlockDataに変換できません");
+                        }
+                    }
 
                     Grid.SetRow(cell, r);
                     Grid.SetColumn(cell, c);

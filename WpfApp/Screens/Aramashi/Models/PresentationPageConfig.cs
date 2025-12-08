@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Windows.Input;
 
@@ -92,7 +93,7 @@ namespace WpfApp.Screens.Aramashi.Models
         public double Indent { get; set; } = 0;
         public bool ShowBorder { get; set; } = false;
         public bool HasPadding { get; set; } = false;
-        public List<TextBlockData> Cells { get; set; } = new();
+        public List<JsonElement> Cells { get; set; } = new();
     }
 
     public class PageSection
@@ -138,8 +139,9 @@ namespace WpfApp.Screens.Aramashi.Models
         public bool Bold { get; set; } = false;
         public double Height { get; set; } = 50;
         public double Width { get; set; } = 100;
+        public string Style { get; set; } = "CommonButtonStyle";
         public string? CommandName { get; set; } 
-        public object? CommandParameter { get; set; }
+        public string? CommandParameter { get; set; }
 
         [JsonIgnore]  // 実行時のみ設定
         public ICommand? Command { get; set; }
