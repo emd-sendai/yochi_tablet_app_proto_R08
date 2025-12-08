@@ -274,6 +274,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         [RelayCommand]
         public void ZoomOut() => Zoom(1 / 1.1);
 
+        [RelayCommand]
         public void GoToSlide(int index)
         {
             if (index >= 0 && index < Slides.Count)

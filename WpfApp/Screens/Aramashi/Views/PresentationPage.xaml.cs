@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using WpfApp.Screens.Aramashi.Models;
 using WpfApp.Screens.Aramashi.ViewModels;
+using static System.Collections.Specialized.BitVector32;
 
 namespace WpfApp.Screens.Aramashi.Views
 {
@@ -208,38 +209,8 @@ namespace WpfApp.Screens.Aramashi.Views
 
                     if (btns.Count > 0)
                     {
-                        // 行StackPanelを作成
-                        StackPanel colPanel = new StackPanel()
-                        {
-                            Orientation = Orientation.Horizontal,
-                            Margin = new Thickness(8, 15, 8, 3),
-                        };
-
-                        if (section.Button.HorizontalAlignment == "left")
-                        {
-                            colPanel.HorizontalAlignment = HorizontalAlignment.Left;
-                        }
-                        else if (section.Button.HorizontalAlignment == "right")
-                        {
-                            colPanel.HorizontalAlignment = HorizontalAlignment.Right;
-                        }
-                        else 
-                        {
-                            colPanel.HorizontalAlignment = HorizontalAlignment.Center;
-                        }
-
-                            foreach (var btn in btns)
-                            {
-                                Button button = CreateButton(btn);
-
-                                if (btn.CommandName == "ShowInheritanceOverviewCommand")
-                                {
-                                    button.Command = viewModel.ShowInheritanceOverviewCommand;
-                                }
-
-                                colPanel.Children.Add(button);
-                            }
-                        MainPanel.Children.Add(colPanel);
+                        StackPanel rowPanel = CreateButtonPanel(section.Button, viewModel);
+                        MainPanel.Children.Add(rowPanel);
                         cnt++;
                     }
                 }
@@ -271,9 +242,9 @@ namespace WpfApp.Screens.Aramashi.Views
                     MainPanel.Children.Add(signMessage);
 
                     /* 署名ボタン */
-                    var button = CreateButton(section.SignButton);
+                    var button = CreateButton(section.SignButton, viewModel);
                     button.HorizontalAlignment = HorizontalAlignment.Right;
-                    button.Command = viewModel.EditSignatureCommand;
+                    //button.Command = viewModel.EditSignatureCommand;
                     button.CommandParameter = editedSignMessage;
                     MainPanel.Children.Add(button);
                 }
@@ -327,11 +298,10 @@ namespace WpfApp.Screens.Aramashi.Views
             return tb;
         }
 
-        private Button CreateButton(ButtonData data)
+        private Button CreateButton(ButtonData data, PresentationViewerViewModel viewModel)
         {
             var btn = new Button
             {
-                //Padding = new Thickness(8, 4, 8, 4),
                 Content = data.Text,
                 FontSize = data.FontSize,
                 FontWeight = data.Bold ? FontWeights.Bold : FontWeights.Normal,
@@ -340,9 +310,24 @@ namespace WpfApp.Screens.Aramashi.Views
                 CommandParameter = data.CommandParameter
             };
 
+            // デフォルトスタイルを設定
             if (Application.Current.TryFindResource("CommonButtonStyle") is Style style)
             {
                 btn.Style = style;
+            }
+
+            // コマンドを設定
+            if(data.CommandName == "EditSignatureCommand")
+            {
+                btn.Command = viewModel.EditSignatureCommand;
+            }
+            else if (data.CommandName == "ShowInheritanceOverviewCommand")
+            {
+                btn.Command = viewModel.ShowInheritanceOverviewCommand;
+            }
+            else if (data.CommandName == "GoToSlideCommand")
+            {
+                btn.Command = viewModel.GoToSlideCommand;
             }
 
             return btn;
@@ -362,12 +347,13 @@ namespace WpfApp.Screens.Aramashi.Views
             return label;
         }
 
-        private Button CreateImageButton(StyledImageButton data, double maxWidth, double maxHeight)
+        private Button CreateImageButton(StyledImageButton data, double maxWidth, double maxHeight, PresentationViewerViewModel viewModel)
         {
             // ボタンを作成
             Button imgbtn = new Button()
             {
                 CommandParameter = data.ImagePath,
+                Command = viewModel.PreviewImageCommand,
             };
 
             if (Application.Current.TryFindResource("ImageButtonStyle") is Style style)
@@ -558,14 +544,14 @@ namespace WpfApp.Screens.Aramashi.Views
                     }
 
                     Debug.WriteLine($"cell: {index} / {rows * cols - 1} をTextBlockに変換します");
-                    var text = CreateTextBlock(cells[index]);
+                    var child = CreateTextBlock(cells[index]);
 
                     Border cell = new Border
                     {
                         BorderThickness = border,
                         BorderBrush = Brushes.Black,
                         Padding = padding,
-                        Child = text,
+                        Child = child,
                     };
 
                     Grid.SetRow(cell, r);
@@ -607,11 +593,42 @@ namespace WpfApp.Screens.Aramashi.Views
                 colPanel.Children.Add(label);
 
                 // ボタンを作成
-                Button imgbtn = CreateImageButton(btn, maxWidth, maxHeight);
-                imgbtn.Command = viewModel.PreviewImageCommand;
+                Button imgbtn = CreateImageButton(btn, maxWidth, maxHeight,viewModel);
 
                 colPanel.Children.Add(imgbtn);
                 rowPanel.Children.Add(colPanel);
+            }
+            return rowPanel;
+        }
+
+        private StackPanel CreateButtonPanel(TextButtonData data, PresentationViewerViewModel viewModel)
+        {
+            var btns = data.TextButtons;
+
+            // 行StackPanelを作成
+            StackPanel rowPanel = new StackPanel()
+            {
+                Orientation = Orientation.Horizontal,
+                Margin = new Thickness(8, 15, 8, 3),
+            };
+
+            if (data.HorizontalAlignment == "left")
+            {
+                rowPanel.HorizontalAlignment = HorizontalAlignment.Left;
+            }
+            else if (data.HorizontalAlignment == "right")
+            {
+                rowPanel.HorizontalAlignment = HorizontalAlignment.Right;
+            }
+            else
+            {
+                rowPanel.HorizontalAlignment = HorizontalAlignment.Center;
+            }
+
+            foreach (var btn in btns)
+            {
+                Button button = CreateButton(btn, viewModel);
+                rowPanel.Children.Add(button);
             }
             return rowPanel;
         }
