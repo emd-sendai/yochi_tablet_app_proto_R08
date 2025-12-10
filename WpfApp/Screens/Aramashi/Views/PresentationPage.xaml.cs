@@ -49,14 +49,10 @@ namespace WpfApp.Screens.Aramashi.Views
 
                     if (section.CheckBox != null)
                     {
-                        var cb = new CheckBox
-                        {
-                            IsChecked = section.CheckBox.IsChecked,
-                            Margin = new Thickness(10, 0, 0, 0),
-                            Padding = new Thickness(0),
-                            VerticalAlignment = VerticalAlignment.Center,
-                            FontSize = section.Subtitle.FontSize,
-                        };
+                        var cb = CreateCheckBox(section.CheckBox);
+                        cb.Margin = new Thickness(10, 0, 0, 0);
+                        cb.Padding = new Thickness(0);
+                        cb.FontSize = section.Subtitle.FontSize;
 
                         cb.Checked += (_, __) =>
                             viewModel.UpdateCheckBoxState(page.Id, section.CheckBox.Id, true);
@@ -697,6 +693,24 @@ namespace WpfApp.Screens.Aramashi.Views
                 rowPanel.Children.Add(button);
             }
             return rowPanel;
+        }
+
+        private CheckBox CreateCheckBox(CheckBoxData data)
+        {
+            var cb = new CheckBox
+            {
+                IsChecked = data.IsChecked,
+                VerticalAlignment = VerticalAlignment.Center,
+                FontSize = data.FontSize,
+            };
+
+            // ラベルが指定されている場合は設定する
+            if (data.Label != null && data.Label != string.Empty)
+            {
+                cb.Content = data.Label;
+            }
+
+            return cb;
         }
     }
 }

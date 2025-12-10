@@ -127,7 +127,8 @@ namespace WpfApp.Screens.Aramashi.Models
     public class CheckBoxData
     {
         public string Id { get; set; } = "";
-        public string Label { get; set; } = "";
+        public string Label { get; set; } = string.Empty;
+        public double FontSize { get; set; } = 18;
         public bool IsChecked { get; set; } = false;
     }
 
