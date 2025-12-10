@@ -33,8 +33,8 @@
     <None Remove="SlideResources\Aramashi\slides_aramashi1.json" />
     <None Remove="SlideResources\Aramashi\slides_aramashi2.json" />
     <None Remove="SlideResources\Aramashi\slides_aramashi3.json" />
+    <None Remove="SlideResources\Aramashi\slides_aramashi4.json" />
     <None Remove="SlideResources\Aramashi\slide_Aramashi2.jpg" />
-    <None Remove="SlideResources\Others\slides.json" />
     <None Remove="SlideResources\Others\slides_daitaichi.json" />
     <None Remove="SlideResources\Others\slides_zeikin.json" />
   </ItemGroup>
@@ -64,7 +64,7 @@
     <Content Include="SlideResources\Aramashi\slides_aramashi2.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="SlideResources\Others\slides.json">
+    <Content Include="SlideResources\Aramashi\slides_aramashi4.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="SlideResources\Others\slides_daitaichi.json">
@@ -155,7 +155,16 @@
     <None Update="SlideResources\Aramashi\aramashi3_9.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="SlideResources\Aramashi\slides.json">
+    <None Update="SlideResources\Aramashi\aramashi4_1_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="SlideResources\Aramashi\aramashi4_1_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="SlideResources\Aramashi\aramashi5_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="SlideResources\Aramashi\slides_aramashi5.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="SlideResources\Aramashi\slide_Aramashi1.jpg">

@@ -10,8 +10,8 @@
     <Grid>
         <!-- Gridの行定義 -->
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="80"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
@@ -64,10 +64,10 @@
         <!-- セクション概要 -->
         <StackPanel HorizontalAlignment="Center" Margin="15" Grid.Row="1" Orientation="Horizontal">
             <!-- セクションタイトル -->
-            <TextBlock Text="{Binding CurrentSlide.TitleText}" FontSize="26" FontWeight="Bold" VerticalAlignment="Center"/>
+            <TextBlock Text="{Binding CurrentSlide.TitleText}" FontSize="24.5" FontWeight="Bold" VerticalAlignment="Center"/>
             <!-- 動画アイコンボタン -->
             <Button Grid.Row="0" Style="{StaticResource IconTextButtonStyle}" Margin="5,0,0,0" 
-                    Visibility="{Binding CurrentSlide.Video, Converter={StaticResource BooleanToHiddenVisibilityConverter}}">
+                    Visibility="{Binding CurrentSlide.Video, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <StackPanel Orientation="Vertical" >
                     <materialDesign:PackIcon Kind="MoviePlay" Style="{StaticResource ITButtonIconStyle}"/>
                     <TextBlock Text="動画" Style="{StaticResource ITButtonTextStyle}"/>

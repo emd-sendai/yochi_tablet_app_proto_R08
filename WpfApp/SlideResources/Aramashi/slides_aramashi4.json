@@ -1,0 +1,301 @@
+[
+  {
+    "id": "aramashi4_1",
+    "title": {
+      "textRuns": [
+        {
+          "text": "４ 土地調書・物件調書による面積・数量等の確認",
+          "bold": true,
+          "color": "#000000"
+        }
+      ]
+    },
+    "video": true,
+    "videoPath": "",
+    "sections": [
+      {
+        "body": {
+          "textRuns": [
+            {
+              "text": "　用地測量、物件等の調査が完了しますと、その調査結果について、土地所有者には土地調書、物件所有者には物件調書を作成します。\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　土地調書とは",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "、測量した土地の所在、地番、地目、地積、土地所有権以外の権利者がいる場合はその旨を記載したものです。\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　また、",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "物件調書とは",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "、建物の構造、用途、数量、工作物および立竹木の種類、数量を記載したものです（建物附随工作物は除きます）。\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　記載された内容について誤りがないかどうかを確認していただき、誤りがなければそれぞれの調書に署名・押印をお願いします。",
+              "bold": true,
+              "color": "#1F78B4"
+            }
+          ],
+          "fontSize": 16
+        }
+      },
+      {
+        "imageButton": {
+          "id": "aramashi4_1",
+          "maxHeight": 140,
+          "maxWidth": 200,
+          "imageButtons": [
+            {
+              "id": "aramashi4_1_1",
+              "label": "（例）土地調書",
+              "imagePath": "aramashi4_1_1.png"
+            },
+            {
+              "id": "aramashi4_1_2",
+              "label": "（例）物件調書",
+              "imagePath": "aramashi4_1_2.png"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "aramashi4_2",
+    "title": {
+      "textRuns": [
+        {
+          "text": "４ 土地調書・物件調書による面積・数量等の確認",
+          "bold": true,
+          "color": "#000000"
+        }
+      ]
+    },
+    "sections": [
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "４－１ 土地調書の見方、確認事項",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        },
+        "body": {
+          "textRuns": [
+            {
+              "text": "仮　土地調書の画像と確認事項の箇所",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16
+        }
+      }
+    ]
+  },
+  {
+    "id": "aramashi4_3",
+    "title": {
+      "textRuns": [
+        {
+          "text": "４ 土地調書・物件調書による面積・数量等の確認",
+          "bold": true,
+          "color": "#000000"
+        }
+      ]
+    },
+    "sections": [
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "４－１ 土地調書の見方、確認事項",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        },
+        "body": {
+          "textRuns": [
+            {
+              "text": "仮　用地実測図？",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16
+        }
+      }
+    ]
+  },
+  {
+    "id": "aramashi4_4",
+    "title": {
+      "textRuns": [
+        {
+          "text": "４ 土地調書・物件調書による面積・数量等の確認",
+          "bold": true,
+          "color": "#000000"
+        }
+      ]
+    },
+    "sections": [
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "４－１ 土地調書 確認事項",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        },
+        "body": {
+          "textRuns": [
+            {
+              "text": "仮　土地調書の確認事項一覧表",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16
+        }
+      }
+    ]
+  },
+  {
+    "id": "aramashi4_5",
+    "title": {
+      "textRuns": [
+        {
+          "text": "４ 土地調書・物件調書による面積・数量等の確認",
+          "bold": true,
+          "color": "#000000"
+        }
+      ]
+    },
+    "sections": [
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "４－２ 物件調書の見方、確認事項",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        },
+        "body": {
+          "textRuns": [
+            {
+              "text": "仮　物件調書の画像と確認事項の箇所",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16
+        }
+      }
+    ]
+  },
+  {
+    "id": "aramashi4_6",
+    "title": {
+      "textRuns": [
+        {
+          "text": "４ 土地調書・物件調書による面積・数量等の確認",
+          "bold": true,
+          "color": "#000000"
+        }
+      ]
+    },
+    "sections": [
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "４－２ 物件調書の見方、確認事項",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        },
+        "body": {
+          "textRuns": [
+            {
+              "text": "仮　配置図？",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16
+        }
+      }
+    ]
+  },
+  {
+    "id": "aramashi4_7",
+    "title": {
+      "textRuns": [
+        {
+          "text": "４ 土地調書・物件調書による面積・数量等の確認",
+          "bold": true,
+          "color": "#000000"
+        }
+      ]
+    },
+    "sections": [
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "４－２ 物件調書 確認事項",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        },
+        "body": {
+          "textRuns": [
+            {
+              "text": "仮　物件調書の確認事項一覧",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16
+        }
+      }
+    ]
+  }
+]

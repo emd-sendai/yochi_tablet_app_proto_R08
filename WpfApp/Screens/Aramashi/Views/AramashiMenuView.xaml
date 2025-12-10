@@ -108,33 +108,40 @@
                         <TextBlock Style="{StaticResource WrapTextBlockStyle}" 
                                    Text="{Binding Buttons[2].BtnText}"/>
                     </Button>
-                    <Button x:Name="BtnL4" Grid.Row="3" Grid.Column="0" Style="{StaticResource AramashiButtonStyle}" >
+                    <Button x:Name="BtnL4" Grid.Row="3" Grid.Column="0" Style="{StaticResource AramashiButtonStyle}" 
+                            Command="{Binding GoToSection4Command}">
                         <TextBlock Style="{StaticResource WrapTextBlockStyle}" 
                                    Text="{Binding Buttons[3].BtnText}"/>
                     </Button>
-                    <Button x:Name="BtnL5" Grid.Row="4" Grid.Column="0" Style="{StaticResource AramashiButtonStyle}" >
+                    <Button x:Name="BtnL5" Grid.Row="4" Grid.Column="0" Style="{StaticResource AramashiButtonStyle}" 
+                            Command="{Binding GoToSection5Command}">
                         <TextBlock Style="{StaticResource WrapTextBlockStyle}" 
                                    Text="{Binding Buttons[4].BtnText}"/>
                     </Button>
 
                     <!-- 右列ボタン -->
-                    <Button x:Name="BtnR1" Grid.Row="0" Grid.Column="2" Style="{StaticResource AramashiButtonStyle}" >
+                    <Button x:Name="BtnR1" Grid.Row="0" Grid.Column="2" Style="{StaticResource AramashiButtonStyle}" 
+                            Command="{Binding GoToSection10Command}">
                         <TextBlock Style="{StaticResource WrapTextBlockStyle}" 
                                    Text="{Binding Buttons[9].BtnText}"/>
                     </Button>
-                    <Button x:Name="BtnR2" Grid.Row="1" Grid.Column="2" Style="{StaticResource AramashiButtonStyle}" >
+                    <Button x:Name="BtnR2" Grid.Row="1" Grid.Column="2" Style="{StaticResource AramashiButtonStyle}" 
+                            Command="{Binding GoToSection9Command}">
                         <TextBlock Style="{StaticResource WrapTextBlockStyle}" 
                                    Text="{Binding Buttons[8].BtnText}"/>
                     </Button>
-                    <Button x:Name="BtnR3" Grid.Row="2" Grid.Column="2" Style="{StaticResource AramashiButtonStyle}" >
+                    <Button x:Name="BtnR3" Grid.Row="2" Grid.Column="2" Style="{StaticResource AramashiButtonStyle}" 
+                            Command="{Binding GoToSection8Command}">
                         <TextBlock Style="{StaticResource WrapTextBlockStyle}" 
                                    Text="{Binding Buttons[7].BtnText}"/>
                     </Button>
-                    <Button x:Name="BtnR4" Grid.Row="3" Grid.Column="2" Style="{StaticResource AramashiButtonStyle}" >
+                    <Button x:Name="BtnR4" Grid.Row="3" Grid.Column="2" Style="{StaticResource AramashiButtonStyle}" 
+                            Command="{Binding GoToSection7Command}">
                         <TextBlock Style="{StaticResource WrapTextBlockStyle}" 
                                    Text="{Binding Buttons[6].BtnText}"/>
                     </Button>
-                    <Button x:Name="BtnR5" Grid.Row="4" Grid.Column="2" Style="{StaticResource AramashiButtonStyle}" >
+                    <Button x:Name="BtnR5" Grid.Row="4" Grid.Column="2" Style="{StaticResource AramashiButtonStyle}" 
+                            Command="{Binding GoToSection6Command}">
                         <TextBlock Style="{StaticResource WrapTextBlockStyle}" 
                                    Text="{Binding Buttons[5].BtnText}"/>
                     </Button>

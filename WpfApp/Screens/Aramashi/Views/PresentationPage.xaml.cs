@@ -298,7 +298,6 @@ namespace WpfApp.Screens.Aramashi.Views
 
         private Button CreateButton(ButtonData data, PresentationViewerViewModel viewModel)
         {
-
             var btn = new Button
             {
                 Content = data.Text,
@@ -306,7 +305,7 @@ namespace WpfApp.Screens.Aramashi.Views
                 FontWeight = data.Bold ? FontWeights.Bold : FontWeights.Normal,
                 Height = data.Height,
                 Width = data.Width,
-                //CommandParameter = data.CommandParameter
+                CommandParameter = data.CommandParameter
             };
 
             // スタイルを設定
@@ -316,6 +315,15 @@ namespace WpfApp.Screens.Aramashi.Views
             }
             else if (data.Style == "TableButtonStyle" && Application.Current.TryFindResource("TableButtonStyle") is Style flatStyle)
             {
+                var text = data.Text;
+                var textBlock = new TextBlock
+                {
+                    Text = text,
+                    TextDecorations = TextDecorations.Underline,
+                    Padding = new Thickness(0),
+                    Margin = new Thickness(0),
+                };
+                btn.Content = textBlock;
                 btn.Style = flatStyle;
             }
 
@@ -324,24 +332,22 @@ namespace WpfApp.Screens.Aramashi.Views
 
             if (data.CommandName == "EditSignatureCommand")
             {
-                btn.CommandParameter = data.CommandParameter;
                 btn.Command = viewModel.EditSignatureCommand;
             }
             else if (data.CommandName == "ShowInheritanceOverviewCommand")
             {
-                btn.CommandParameter = data.CommandParameter;
                 btn.Command = viewModel.ShowInheritanceOverviewCommand;
             }
             else if (data.CommandName == "GoToSlideCommand")
             {
-                if (param != null && int.TryParse(param, out int value))
+                if (!string.IsNullOrWhiteSpace(param) && int.TryParse(param, out int value))
                 {
                     btn.CommandParameter = value;
                 }
                 else
                 {
-                    // 数値に変換できなかった場合の処理
                     Debug.WriteLine("CommandParameter は数値ではありません");
+                    btn.CommandParameter = 0;    // 最初のページに遷移
                 }
                 btn.Command = viewModel.GoToSlideCommand;
             }

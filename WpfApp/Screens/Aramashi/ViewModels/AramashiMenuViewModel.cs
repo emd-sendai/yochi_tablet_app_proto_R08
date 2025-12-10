@@ -103,6 +103,62 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         }
 
         [RelayCommand]
+        private void GoToSection4()
+        {
+            var vm = new PresentationViewerViewModel("aramashi", _nav, _dia);
+            _nav.Navigate(vm);
+            vm.GoToSlide(23);
+        }
+
+        [RelayCommand]
+        private void GoToSection5()
+        {
+            var vm = new PresentationViewerViewModel("aramashi", _nav, _dia);
+            _nav.Navigate(vm);
+            vm.GoToSlide(0);
+        }
+
+        [RelayCommand]
+        private void GoToSection6()
+        {
+            var vm = new PresentationViewerViewModel("aramashi", _nav, _dia);
+            _nav.Navigate(vm);
+            vm.GoToSlide(0);
+        }
+
+        [RelayCommand]
+        private void GoToSection7()
+        {
+            var vm = new PresentationViewerViewModel("aramashi", _nav, _dia);
+            _nav.Navigate(vm);
+            vm.GoToSlide(0);
+        }
+
+        [RelayCommand]
+        private void GoToSection8()
+        {
+            var vm = new PresentationViewerViewModel("aramashi", _nav, _dia);
+            _nav.Navigate(vm);
+            vm.GoToSlide(0);
+        }
+
+        [RelayCommand]
+        private void GoToSection9()
+        {
+            var vm = new PresentationViewerViewModel("aramashi", _nav, _dia);
+            _nav.Navigate(vm);
+            vm.GoToSlide(0);
+        }
+
+        [RelayCommand]
+        private void GoToSection10()
+        {
+            var vm = new PresentationViewerViewModel("aramashi", _nav, _dia);
+            _nav.Navigate(vm);
+            vm.GoToSlide(0);
+        }
+
+        [RelayCommand]
         private void GoToDaitaichi()
         {
             _nav.Navigate(new PresentationViewerViewModel("daitaichi", _nav, _dia));

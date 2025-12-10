@@ -1,0 +1,356 @@
+[
+  {
+    "id": "aramashi5_1",
+    "title": {
+      "textRuns": [
+        {
+          "text": "５ 補償金の算定",
+          "bold": true,
+          "color": "#000000"
+        }
+      ]
+    },
+    "video": true,
+    "videoPath": "",
+    "sections": [
+      {
+        "body": {
+          "textRuns": [
+            {
+              "text": "　公共事業のためにお譲りいただく土地等の補償金は、適正かつ公平でなければなりません。そのために、",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "国が定めた補償基準に基づき補償金を算定",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "し、権利者個々に金銭をもって補償します。",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "\n\n（遷移ボタン配置予定）",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16
+        }
+      }
+    ]
+  },
+  {
+    "id": "aramashi5_2",
+    "title": {
+      "textRuns": [
+        {
+          "text": "５ 補償金の算定",
+          "bold": true,
+          "color": "#000000"
+        }
+      ]
+    },
+    "sections": [
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "（１）土地価格",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        },
+        "body": {
+          "textRuns": [
+            {
+              "text": "　補償基準では「取得する土地に対しては、",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "正常な取引価格",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "をもって補償するものとする。」とされています。\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　そこで、取得価格の算定にあたっては、",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "利用状況等に着目し、次の①～④による資料に基づき算定を行い、総合的に比較検討したうえで決定",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "します。\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　なお、土地は、用地測量による",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "実測面積",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "でお譲りいただきます。",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16
+        }
+      },
+      {
+        "body": {
+          "textRuns": [
+            {
+              "text": "　① ",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "売買実例価格\n",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "　② ",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "地価公示価格・基準地価格\n",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "　③ ",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "不動産鑑定士による鑑定評価格　　　　　　　\n",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "　④ その他必要な事項",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16
+        },
+        "image": {
+          "maxHeight": 100,
+          "maxWidth": 300,
+          "images": [
+            {
+              "imagePath": "aramashi5_2.png"
+            }
+          ]
+        }
+      },
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "（２）借地権等に対する補償",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        },
+        "body": {
+          "textRuns": [
+            {
+              "text": "　借地権等が設定されている場合は、その権利が設定された事情、権利金、地代等の貸し借りの内容がそれぞれ異なっていますので、",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "土地所有者と借地人等相互で話し合っていただき権利の割合等を決めていただきます。\n",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "　そして、その割合等に基づいて個別に算定し補償します。",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16
+        }
+      }
+    ]
+  },
+  {
+    "id": "aramashi5_3",
+    "title": {
+      "textRuns": [
+        {
+          "text": "５ 補償金の算定",
+          "bold": true,
+          "color": "#000000"
+        }
+      ]
+    },
+    "sections": [
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "（３）物件等の補償",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        }
+      },
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "①建物の補償",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        },
+        "body": {
+          "textRuns": [
+            {
+              "text": "　土地に建物がある場合は、",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "その建物の配置、種類、構造、敷地の形状等に基づき通常妥当と認められる移転先および移転工法",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            },
+            {
+              "text": "（再築工法、曵家工法、改造工法、除却工法等）",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "を認定",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            },
+            {
+              "text": "し、その移転工法により移転するのに要する費用を補償します。建物の移転料は移転工法ごとに算定した額となります。",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16
+        }
+      },
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "②工作物の補償",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        },
+        "body": {
+          "textRuns": [
+            {
+              "text": "　工作物の移転料は",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "建物の移転料の算定方法に準じて算定",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            },
+            {
+              "text": "し補償します。ただし、",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "土地と一体をなして利用されている土留めや階段等の施設は土地の価格に含まれています",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            },
+            {
+              "text": "ので補償の対象にはなりません。",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16
+        }
+      },
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "③立竹木の補償",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        },
+        "body": {
+          "textRuns": [
+            {
+              "text": "　立竹木は、利用目的、樹種等によって算定方法が異なりますが、原則として、庭木等の移植することが相当と認められる場合の立竹木は移植（掘り起こし、運搬、根付け等）に必要な費用を、移植できない場合の立竹木については伐採（伐採、運搬等）に必要な費用の補償または取得による補償をします。\n\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "※廃材処分費について\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　物件の移転等に伴い必要となる廃材処分費については、上記①～③の各補償にそれぞれ含まれています。",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16
+        }
+      }
+    ]
+  }
+]
