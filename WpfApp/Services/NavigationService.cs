@@ -40,7 +40,6 @@ namespace WpfApp.Services
                 ButtonSettingsViewModel => new ButtonSettingsView(),
 
                 AramashiMenuTestViewModel => new AramashiMenuTestView(),
-                DocumentMenu2ViewModel => new DocumentMenu2View(),
 
                 PresentationViewerViewModel => new PresentationViewerView(),
 

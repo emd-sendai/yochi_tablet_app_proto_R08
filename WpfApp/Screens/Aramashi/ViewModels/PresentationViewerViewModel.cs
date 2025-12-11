@@ -1,9 +1,12 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using System;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Diagnostics;
 using System.IO;
 using System.Text.Json;
+using System.Text.Json.Nodes;
 using System.Windows;
 using WpfApp.Common.ViewModels;
 using WpfApp.Common.Views;
@@ -242,10 +245,82 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             var slide = Slides.FirstOrDefault(s => s.Id == slideId);
             if (slide == null) return;
 
-            var checkBoxes = slide.Sections
-                .Where(s => s.CheckBox != null)
-                .Select(s => s.CheckBox)
-                .ToList();
+            var sections = slide.Sections;
+            if (sections == null) return;
+
+            List<CheckBoxData> checkBoxes = new();
+
+            for(int i = 0; i < sections.Count; i++)
+            {
+                var section = sections[i];
+                if (section.CheckBox != null)
+                {
+                    checkBoxes.Add(section.CheckBox);
+                }
+            }
+
+            // チェックボックスが存在しない場合は true 扱い
+            bool allChecked = checkBoxes.Count == 0 || checkBoxes.All(cb => cb.IsChecked);
+
+            // 辞書に結果を格納（既存なら上書き）
+            PageCheckStates[slideId] = allChecked;
+
+            // Dictionary変更通知
+            OnPropertyChanged(nameof(PageCheckStates));
+            // すべてのPageのCheckBox判定変更通知
+            OnPropertyChanged(nameof(AllPagesChecked));
+        }
+
+        public void UpdateTableCheckBoxState(string slideId, TableData data, CheckBoxData cbData, string checkBoxId, bool isChecked)
+        {
+            PresentationPageConfig? slide = Slides.FirstOrDefault(s => s.Id == slideId);
+            if (slide == null) return;
+
+            var section = slide.Sections.FirstOrDefault(sec => sec.Table?.Id == data.Id);
+            if(section == null) return;
+
+            if (section.Table?.Cells.Count > 0)
+            {
+                var cells = section.Table.Cells;
+                var node = JsonNode.Parse(cells[cbData.CellIndex].GetRawText())!.AsObject();
+                node["IsChecked"] = isChecked;
+                cells[cbData.CellIndex] = JsonSerializer.Deserialize<JsonElement>(node.ToJsonString());
+
+                SaveSlidesToJson(slide);
+            }
+
+            // CheckBoxの状態が変わるたびに全チェック判定を更新
+            UpdateAllTableCheckedState(slideId, data);
+        }
+
+        public void UpdateAllTableCheckedState(string slideId, TableData data)
+        {
+            var slide = Slides.FirstOrDefault(s => s.Id == slideId);
+            if (slide == null) return;
+
+            var section = slide.Sections.FirstOrDefault(sec => sec.Table?.Id == data.Id);
+            if (section == null) return;
+
+            var cells = section.Table?.Cells;
+            if (cells == null || cells.Count <= 0) return;
+
+            List<CheckBoxData> checkBoxes = new ();
+
+            for (int i = 0; i < cells.Count; i++)
+            {
+                var cell = cells[i];
+                if (cell.TryGetProperty("isChecked", out _) || cell.TryGetProperty("IsChecked", out _))
+                {
+                    Debug.WriteLine($"[DEBUG] cell: {i} のCheckBoxの状態を記録します");
+                    var obj = JsonSerializer.Deserialize<CheckBoxData>(cell.GetRawText(), 
+                        new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+
+                    if (obj != null && obj is CheckBoxData)
+                    {
+                        checkBoxes.Add(obj);
+                    }
+                }
+            }
 
             // チェックボックスが存在しない場合は true 扱い
             bool allChecked = checkBoxes.Count == 0 || checkBoxes.All(cb => cb.IsChecked);

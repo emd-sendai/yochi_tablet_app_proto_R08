@@ -166,23 +166,298 @@
         "subtitle": {
           "textRuns": [
             {
-              "text": "４－１ 土地調書 確認事項",
+              "text": "４－１ 土地調書 確認事項☑",
               "bold": true,
               "color": "#1F78B4",
               "underline": true
             }
           ],
           "fontSize": 18
-        },
-        "body": {
-          "textRuns": [
+        }
+      },
+      {
+        "table": {
+          "id": "checkTable1",
+          "rows": 9,
+          "columns": 3,
+          "showBorder": true,
+          "hasPadding": true,
+          "cells": [
             {
-              "text": "仮　土地調書の確認事項一覧表",
-              "bold": false,
-              "color": "#000000"
+              "textRuns": [
+                {
+                  "text": "☑",
+                  "bold": true,
+                  "color": "#FFFFFF"
+                }
+              ],
+              "fontSize": 13,
+              "backgroundColor": "#C55A11",
+              "horizontalAlignment": "center"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "項目",
+                  "bold": true,
+                  "color": "#FFFFFF"
+                }
+              ],
+              "fontSize": 13,
+              "backgroundColor": "#C55A11",
+              "horizontalAlignment": "center"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "内容",
+                  "bold": true,
+                  "color": "#FFFFFF"
+                }
+              ],
+              "fontSize": 13,
+              "maxWidth": 530,
+              "backgroundColor": "#C55A11",
+              "horizontalAlignment": "center"
+            },
+            {
+              "id": "4-1_1",
+              "label": "①",
+              "fontSize": 15,
+              "isChecked": false,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "公簿",
+                  "bold": true
+                }
+              ],
+              "fontSize": 15,
+              "maxWidth": 70,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "土地登記簿に記載されている地目と面積（公募面積）を記載しています。",
+                  "bold": true
+                }
+              ],
+              "fontSize": 15,
+              "maxWidth": 530,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "id": "4-1_2",
+              "label": "②",
+              "fontSize": 15,
+              "isChecked": false,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "現況地目",
+                  "bold": true
+                }
+              ],
+              "fontSize": 15,
+              "maxWidth": 70,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "取得等させていただく土地の現地を調査した現況地目です。",
+                  "bold": true
+                },
+                {
+                  "text": "ひとつの土地で現況地目が異なる場合は、それぞれ記載があります。"
+                }
+              ],
+              "fontSize": 15,
+              "maxWidth": 530,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "id": "4-1_3-1",
+              "label": "③-1",
+              "fontSize": 15,
+              "isChecked": false,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "地積(取得等)",
+                  "bold": true
+                }
+              ],
+              "fontSize": 12,
+              "maxWidth": 70,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "境界確認結果をもとに測量した、取得等をお願いしたい実測の面積です。"
+                }
+              ],
+              "fontSize": 15,
+              "maxWidth": 530,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "id": "4-1_3-2",
+              "label": "③-2",
+              "fontSize": 15,
+              "isChecked": false,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "地積(取得等)",
+                  "bold": true
+                }
+              ],
+              "fontSize": 12,
+              "maxWidth": 70,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "添付した実測図と取得面積、取得範囲、残地面積、残地範囲を確認してください。",
+                  "bold": true
+                },
+                {
+                  "text": "公募面積と実測面積は異なる場合があります。"
+                }
+              ],
+              "fontSize": 15,
+              "maxWidth": 530,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "id": "4-1_4",
+              "label": "④",
+              "fontSize": 15,
+              "isChecked": false,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "所有権以外の権利",
+                  "bold": true
+                }
+              ],
+              "fontSize": 12,
+              "maxWidth": 70,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "土地に所有権以外の権利を有している方がいる場合に記載があります。権利の有無、種類を確認してください。",
+                  "bold": true
+                }
+              ],
+              "fontSize": 15,
+              "maxWidth": 530,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "id": "4-1_5",
+              "label": "⑤",
+              "fontSize": 15,
+              "isChecked": false,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "摘要",
+                  "bold": true
+                }
+              ],
+              "fontSize": 15,
+              "maxWidth": 70,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "分筆：土地の一部を取得　全筆：土地の全部を取得",
+                  "bold": true
+                }
+              ],
+              "fontSize": 15,
+              "maxWidth": 530,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "id": "4-1_6",
+              "label": "⑥",
+              "fontSize": 15,
+              "isChecked": false,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "所有者署名押印欄",
+                  "bold": true
+                }
+              ],
+              "fontSize": 12,
+              "maxWidth": 70,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "土地所有者の方は、記載内容に誤りがなければ署名押印をお願いします。",
+                  "bold": true
+                }
+              ],
+              "fontSize": 15,
+              "maxWidth": 530,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "id": "4-1_7",
+              "label": "⑦",
+              "fontSize": 15,
+              "isChecked": false,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "関係人署名押印欄",
+                  "bold": true
+                }
+              ],
+              "fontSize": 12,
+              "maxWidth": 70,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "借地人等、土地に所有権以外の権利を有する関係人がいる場合、関係人にも署名押印をいただきます。",
+                  "bold": true
+                }
+              ],
+              "fontSize": 15,
+              "maxWidth": 530,
+              "backgroundColor": "#FFFFFF"
             }
-          ],
-          "fontSize": 16
+          ]
         }
       }
     ]

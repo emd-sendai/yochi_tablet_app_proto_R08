@@ -46,13 +46,6 @@ namespace WpfApp.Screens.Documents.ViewModels
         }
 
         [RelayCommand]
-        private void GoToDocumentMenu2()
-        {
-            _nav.Navigate(new DocumentMenu2ViewModel(_nav, _dia));
-        }
-
-
-        [RelayCommand]
         private void OpenPasswordDialog()
         {
             // パスワードダイアログを生成

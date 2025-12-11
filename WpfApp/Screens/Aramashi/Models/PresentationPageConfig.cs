@@ -57,6 +57,7 @@ namespace WpfApp.Screens.Aramashi.Models
         public double Indent {  get; set; } = 0;
         public string BackgroundColor { get; set; } = "Transparent";
         public double MaxWidth { get; set; } = 700;
+        public string HorizontalAlignment { get; set; } = "stretch";
     }
 
     public class StyledTextRun
@@ -88,11 +89,14 @@ namespace WpfApp.Screens.Aramashi.Models
 
     public class TableData
     {
+        public string Id { get; set; } = "";
         public int Rows { get; set; } = 0;
         public int Columns { get; set; } = 0;
         public double Indent { get; set; } = 0;
         public bool ShowBorder { get; set; } = false;
         public bool HasPadding { get; set; } = false;
+        public double MaxWidth { get; set; } = 700;
+        public double MaxHeight { get; set; } = 400;
         public List<JsonElement> Cells { get; set; } = new();
     }
 
@@ -130,6 +134,11 @@ namespace WpfApp.Screens.Aramashi.Models
         public string Label { get; set; } = string.Empty;
         public double FontSize { get; set; } = 18;
         public bool IsChecked { get; set; } = false;
+
+        /* TableDataでのみ使用 */
+        public string BackgroundColor { get; set; } = "Transparent";
+        [JsonIgnore]
+        public int CellIndex { get; set; }
     }
 
     public class ButtonData

@@ -110,7 +110,7 @@ namespace WpfApp.Screens.Aramashi.Views
                     /* テーブル */
                     if (section.Table != null)
                     {
-                        Grid grid = CreateTableGrid(section.Table, viewModel);
+                        Grid grid = CreateTableGrid(section.Table, viewModel, page.Id);
                         bodyRow.Children.Add(grid);
                     }
 
@@ -162,7 +162,7 @@ namespace WpfApp.Screens.Aramashi.Views
                     // テーブルが設定されている場合
                     if (section.Table != null)
                     {
-                        Grid grid = CreateTableGrid(section.Table, viewModel);
+                        Grid grid = CreateTableGrid(section.Table, viewModel, page.Id);
                         MainPanel.Children.Add(grid);
                         cnt++;
                     }
@@ -251,7 +251,7 @@ namespace WpfApp.Screens.Aramashi.Views
         {
             // デフォルトの背景色（透明）を設定する
             var background = Brushes.Transparent;
-
+            // 透明以外が指定されている場合は設定を更新する
             if (data.BackgroundColor != "Transparent")
             {
                 var color = (Color)ColorConverter.ConvertFromString(data.BackgroundColor);
@@ -265,6 +265,11 @@ namespace WpfApp.Screens.Aramashi.Views
                 MaxWidth = data.MaxWidth,
                 Background = background,
             };
+
+            if (data.HorizontalAlignment == "center")
+            {
+                tb.HorizontalAlignment = HorizontalAlignment.Center;
+            }
 
             foreach (var runInfo in data.TextRuns)
             {
@@ -495,7 +500,7 @@ namespace WpfApp.Screens.Aramashi.Views
             return rowPanel;
         }
 
-        private Grid CreateTableGrid(TableData data, PresentationViewerViewModel viewModel)
+        private Grid CreateTableGrid(TableData data, PresentationViewerViewModel viewModel, string pageId)
         {
             var rows = data.Rows;
             var cols = data.Columns;
@@ -504,9 +509,11 @@ namespace WpfApp.Screens.Aramashi.Views
             var hasPadding = data.HasPadding;
             var cells = data.Cells;
 
+            // Gridを作成
             Grid grid = new Grid
             {
-                MaxWidth = 700,
+                MaxWidth = data.MaxWidth,
+                MaxHeight = data.MaxHeight,
                 Margin = new Thickness(20 + indent * 20, 4, 0, 8),
                 VerticalAlignment = VerticalAlignment.Center,
             };
@@ -576,9 +583,10 @@ namespace WpfApp.Screens.Aramashi.Views
                         PropertyNameCaseInsensitive = true
                     };
 
+                    // ボタンの場合
                     if (cellElement.TryGetProperty("commandName", out _) || cellElement.TryGetProperty("CommandName", out _))
                     {
-                        Debug.WriteLine($"cell: {index} / {rows * cols - 1} をButtonDataに変換します");
+                        Debug.WriteLine($"[DEBUG] cell: {index} / {rows * cols - 1} をButtonDataに変換します");
                         var obj = JsonSerializer.Deserialize<ButtonData>(cellElement.GetRawText(),readOption);
 
                         if (obj != null && obj is ButtonData)
@@ -596,23 +604,76 @@ namespace WpfApp.Screens.Aramashi.Views
                         }
                         else
                         {
-                            Debug.WriteLine($"cell: {index} / {rows * cols - 1} をButtonDataに変換できません");
+                            Debug.WriteLine($"[ERROR] cell: {index} / {rows * cols - 1} をButtonDataに変換できません");
                         }
                     }
-                    else
+                    // チェックボックスの場合
+                    else if (cellElement.TryGetProperty("isChecked", out _) || cellElement.TryGetProperty("IsChecked", out _))
                     {
-                        Debug.WriteLine($"cell: {index} / {rows * cols - 1} をTextBlockDataに変換します");
-                        var obj = JsonSerializer.Deserialize<TextBlockData>(cellElement.GetRawText(), readOption);
+                        Debug.WriteLine($"[DEBUG] cell: {index} / {rows * cols - 1} をCheckBoxDataに変換します");
+                        var obj = JsonSerializer.Deserialize<CheckBoxData>(cellElement.GetRawText(), readOption);
 
-                        if (obj != null && obj is TextBlockData)
+                        if (obj != null && obj is CheckBoxData)
                         {
-                            Debug.WriteLine($"cell: {index} / {rows * cols - 1} をTextBlockに変換します");
-                            var child = CreateTextBlock(obj);
+                            obj.CellIndex = index;
+
+                            Debug.WriteLine($"[DEBUG] cell: {index} / {rows * cols - 1} をCheckBoxに変換します");
+                            var child = CreateCheckBox(obj);
+
+                            child.Padding = new Thickness(0);
+                            child.Margin = new Thickness(0,0,4,0);
+
+                            // CheckBoxの背景色に透明以外が指定されている場合
+                            if (obj.BackgroundColor != "Transparent")
+                            {
+                                var color = (Color)ColorConverter.ConvertFromString(obj.BackgroundColor);
+                                var background = new SolidColorBrush(color);
+                                // セル（Border）に背景色を設定
+                                cell.Background = background;
+                            }
+
+                            // チェックボックスの状態を保存する
+                            child.Checked += (_, __) =>
+                                viewModel.UpdateTableCheckBoxState(pageId, data, obj, obj.Id, true);
+                            child.Unchecked += (_, __) =>
+                                viewModel.UpdateTableCheckBoxState(pageId, data, obj, obj.Id, false);
+
+
                             cell.Child = child;
                         }
                         else
                         {
-                            Debug.WriteLine($"cell: {index} / {rows * cols - 1} をTextBlockDataに変換できません");
+                            Debug.WriteLine($"[ERROR] cell: {index} / {rows * cols - 1} をCheckBoxDataに変換できません");
+                        }
+
+                    }
+                    // それ以外（テキストブロック）の場合
+                    else
+                    {
+                        Debug.WriteLine($"[DEBUG] cell: {index} / {rows * cols - 1} をTextBlockDataに変換します");
+                        var obj = JsonSerializer.Deserialize<TextBlockData>(cellElement.GetRawText(), readOption);
+
+                        if (obj != null && obj is TextBlockData)
+                        {
+                            Debug.WriteLine($"[DEBUG] cell: {index} / {rows * cols - 1} をTextBlockに変換します");
+                            var child = CreateTextBlock(obj);
+
+                            // テキストブロックの背景色に透明以外が指定されている場合
+                            if (obj.BackgroundColor != "Transparent")
+                            {
+                                var color = (Color)ColorConverter.ConvertFromString(obj.BackgroundColor);
+                                var background = new SolidColorBrush(color);
+                                // テキストブロックの背景を透明に変更
+                                child.Background = Brushes.Transparent;
+                                // セル（Border）に背景色を設定
+                                cell.Background = background;
+                            }
+
+                            cell.Child = child;
+                        }
+                        else
+                        {
+                            Debug.WriteLine($"[ERROR] cell: {index} / {rows * cols - 1} をTextBlockDataに変換できません");
                         }
                     }
 

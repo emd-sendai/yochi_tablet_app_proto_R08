@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.IO;
 using System.Text.Json;
+using System.Text.Json.Nodes;
 using WpfApp.Screens.Aramashi.Models;
 
 namespace WpfApp.Services
@@ -11,15 +12,17 @@ namespace WpfApp.Services
 
         private static readonly string BaseDire = AppDomain.CurrentDomain.BaseDirectory;
 
-        private static readonly string SlidePath = Path.Combine(BaseDire, "SlideResources");
-        private static readonly string DaitaichiSlidePath = Path.Combine(SlidePath, "Others", "slides_daitaichi.json");
-        private static readonly string ZeikinSlidePath = Path.Combine(SlidePath, "Others", "slides_zeikin.json");
+        private static readonly string SlideFolder = Path.Combine(BaseDire, "SlideResources");
+        private static readonly string AramashiFolder = Path.Combine(SlideFolder, "Aramashi");
+        private static readonly string OthersFolder = Path.Combine(SlideFolder, "Others");
+        private static readonly string DaitaichiSlidePath = Path.Combine(OthersFolder, "slides_daitaichi.json");
+        private static readonly string ZeikinSlidePath = Path.Combine(OthersFolder, "slides_zeikin.json");
 
-        private static readonly string SignPath = Path.Combine(BaseDire, "Data", "Signature");
-        private static readonly string DaitaichiIsfSignPath = Path.Combine(SignPath, "signature_daitaichi.isf");
-        private static readonly string DaitaichiPngSignPath = Path.Combine(SignPath, "signature_daitaichi.png");
-        private static readonly string ZeikinIsfSignPath = Path.Combine(SignPath, "signature_zeikin.isf");
-        private static readonly string ZeikinPngSignPath = Path.Combine(SignPath, "signature_zeikin.png");
+        private static readonly string SignFolder = Path.Combine(BaseDire, "Data", "Signature");
+        private static readonly string DaitaichiIsfSignPath = Path.Combine(SignFolder, "signature_daitaichi.isf");
+        private static readonly string DaitaichiPngSignPath = Path.Combine(SignFolder, "signature_daitaichi.png");
+        private static readonly string ZeikinIsfSignPath = Path.Combine(SignFolder, "signature_zeikin.isf");
+        private static readonly string ZeikinPngSignPath = Path.Combine(SignFolder, "signature_zeikin.png");
 
         private static readonly string TempFolder = Path.Combine(BaseDire, "Temp");
 
@@ -45,6 +48,32 @@ namespace WpfApp.Services
                     // インデントを追加して整形する
                     WriteIndented = true
                 };
+
+                /* 用地補償の手順（あらまし） */
+                // チェックボックスの初期化
+                if (Path.Exists(AramashiFolder))
+                {
+                    var paths = GetAramashiSlidePaths();
+                    int index = 1;
+
+                    foreach (var path in paths)
+                    {
+                        string json = File.ReadAllText(path);
+                        var slides = JsonSerializer.Deserialize<List<PresentationPageConfig>>(json, readOptions);
+                        // テーブル内のチェックボックスの初期化
+                        ClearTableCheckBox(slides);
+                        // チェックボックス（その他）の初期化
+                        ClearCheckBox(slides);
+
+                        if (slides != null)
+                        {
+                            var _json = JsonSerializer.Serialize(slides, writeOptions);
+                            File.WriteAllText(path, _json);
+                            Debug.WriteLine($"[DEBUG] 用地補償の手順: {index} のチェックボックスを初期化しました");
+                        }
+                        index++;
+                    }
+                }
 
                 /* 代替地 */
                 // チェックボックスの初期化
@@ -122,21 +151,63 @@ namespace WpfApp.Services
 
         public static void ClearCheckBox(List<PresentationPageConfig>? slides)
         {
-            if (slides != null)
+            if (slides == null) return;
+
+            foreach (var slide in slides)
             {
-                foreach (var slide in slides)
+                // Sections
+                foreach (var sec in slide.Sections)
                 {
-                    // Sections
-                    foreach (var sec in slide.Sections)
+                    if (sec.CheckBox != null)
                     {
-                        if (sec.CheckBox != null)
-                        {
-                            sec.CheckBox.IsChecked = false;
-                        }
+                        sec.CheckBox.IsChecked = false;
                     }
                 }
             }
         }
 
+        public static List<string> GetAramashiSlidePaths()
+        {
+            List<string> paths = new();
+
+            for (int i = 1; ; i++)
+            {
+                var aramashiPath = Path.Combine(AramashiFolder, $"slides_aramashi{i}.json");
+                if (!Path.Exists(aramashiPath)) break;
+
+                paths.Add(aramashiPath);
+                Debug.WriteLine($"[DEBUG] 用地補償の手順のスライドパスを追加: {aramashiPath}");
+            }
+            return paths;
+        }
+
+        public static void ClearTableCheckBox(List<PresentationPageConfig>? slides)
+        {
+            if (slides == null) return;
+
+            foreach (var slide in slides)
+            {
+                // Sections
+                foreach (var sec in slide.Sections)
+                {
+                    // Table が存在する場合
+                    if (sec.Table != null)
+                    {
+                        var cells = sec.Table.Cells;
+
+                        for (int i = 0; i < cells.Count; i++)
+                        {
+                            // cell に CheckBoxData が格納されている場合
+                            if (cells[i].TryGetProperty("isChecked", out _) || cells[i].TryGetProperty("IsChecked", out _))
+                            {
+                                var node = JsonNode.Parse(cells[i].GetRawText())!.AsObject();
+                                node["IsChecked"] = false;
+                                cells[i] = JsonSerializer.Deserialize<JsonElement>(node.ToJsonString());
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
