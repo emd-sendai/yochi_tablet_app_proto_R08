@@ -1,8 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using System;
 using System.Collections.ObjectModel;
-using System.Data;
 using System.Diagnostics;
 using System.IO;
 using System.Text.Json;

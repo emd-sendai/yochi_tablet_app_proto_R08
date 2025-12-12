@@ -8,6 +8,7 @@ using System.Windows;
 using WpfApp.Common.Models;
 using WpfApp.Common.ViewModels;
 using WpfApp.Interfaces;
+using WpfApp.Screens.Aramashi.Models;
 using WpfApp.Screens.Menu.ViewModels;
 using WpfApp.Services;
 
@@ -22,11 +23,14 @@ namespace WpfApp.Screens.Aramashi.ViewModels
 
         public ObservableCollection<ButtonConfig> Buttons { get; } = new();
 
+        private Dictionary<int, int> SectionPageCounts = new();
+
         public AramashiMenuViewModel(NavigationService navigationService, IDialogService dialogService)
         {
             _nav = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
             _dia = dialogService ?? throw new ArgumentNullException(nameof(dialogService));
             LoadButtonFromJson();
+            LoadSlidesFromJsons();
         }
 
         private void LoadButtonFromJson()
@@ -65,6 +69,70 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             }
         }
 
+        private int GetSectionFirstPages(int sectionIndex)
+        {
+            int firstPage = 0;
+
+            if(SectionPageCounts.TryGetValue(sectionIndex, out int pageCount))
+            {
+                firstPage = pageCount;
+            }
+
+            return firstPage;
+        }
+
+        private List<string> GetSlidePaths()
+        {
+            List<string> paths = new();
+            var dataFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SlideResources", "Aramashi");
+
+            for (int i = 1; ; i++)
+            {
+                var aramashiPath = Path.Combine(dataFolder, $"slides_aramashi{i}.json");
+                if (!Path.Exists(aramashiPath)) break;
+
+                paths.Add(aramashiPath);
+                Debug.WriteLine($"[DEBUG] スライドパスを追加: {aramashiPath}");
+            }
+
+            return paths;
+        }
+
+        private void LoadSlidesFromJsons()
+        {
+            var paths = GetSlidePaths();
+
+            int pageCount = 0;
+            int pageIndex = 1;
+
+            foreach (var path in paths)
+            {
+                if (File.Exists(path))
+                {
+                    var jsonText = File.ReadAllText(path);
+                    var slides = JsonSerializer.Deserialize<List<PresentationPageConfig>>(jsonText,
+                        new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+
+                    if (slides != null)
+                    {
+                        SectionPageCounts.Add(pageIndex, pageCount);
+                        pageCount += slides.Count;
+                    }
+                    else
+                    {
+                        Debug.WriteLine($"[DEBUG] スライドデータが空です: {path}");
+                        break;
+                    }
+                }
+                else
+                {
+                    Debug.WriteLine($"[DEBUG] スライドデータが見つかりません: {path}");
+                    break;
+                }
+                pageIndex++;
+            }
+        }
+
         [RelayCommand]
         private void GoToMenu()
         {
@@ -83,7 +151,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         {
             var vm = new PresentationViewerViewModel("aramashi", _nav, _dia);
             _nav.Navigate(vm);
-            vm.GoToSlide(0);
+            vm.GoToSlide(GetSectionFirstPages(1));
         }
 
         [RelayCommand]
@@ -91,7 +159,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         {
             var vm = new PresentationViewerViewModel("aramashi", _nav, _dia);
             _nav.Navigate(vm);
-            vm.GoToSlide(1);
+            vm.GoToSlide(GetSectionFirstPages(2));
         }
 
         [RelayCommand]
@@ -99,7 +167,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         {
             var vm = new PresentationViewerViewModel("aramashi", _nav, _dia);
             _nav.Navigate(vm);
-            vm.GoToSlide(2);
+            vm.GoToSlide(GetSectionFirstPages(3));
         }
 
         [RelayCommand]
@@ -107,7 +175,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         {
             var vm = new PresentationViewerViewModel("aramashi", _nav, _dia);
             _nav.Navigate(vm);
-            vm.GoToSlide(23);
+            vm.GoToSlide(GetSectionFirstPages(4));
         }
 
         [RelayCommand]
@@ -115,7 +183,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         {
             var vm = new PresentationViewerViewModel("aramashi", _nav, _dia);
             _nav.Navigate(vm);
-            vm.GoToSlide(0);
+            vm.GoToSlide(GetSectionFirstPages(5));
         }
 
         [RelayCommand]
@@ -123,7 +191,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         {
             var vm = new PresentationViewerViewModel("aramashi", _nav, _dia);
             _nav.Navigate(vm);
-            vm.GoToSlide(0);
+            vm.GoToSlide(GetSectionFirstPages(6));
         }
 
         [RelayCommand]
@@ -131,7 +199,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         {
             var vm = new PresentationViewerViewModel("aramashi", _nav, _dia);
             _nav.Navigate(vm);
-            vm.GoToSlide(0);
+            vm.GoToSlide(GetSectionFirstPages(7));
         }
 
         [RelayCommand]
@@ -139,7 +207,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         {
             var vm = new PresentationViewerViewModel("aramashi", _nav, _dia);
             _nav.Navigate(vm);
-            vm.GoToSlide(0);
+            vm.GoToSlide(GetSectionFirstPages(8));
         }
 
         [RelayCommand]
@@ -147,7 +215,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         {
             var vm = new PresentationViewerViewModel("aramashi", _nav, _dia);
             _nav.Navigate(vm);
-            vm.GoToSlide(0);
+            vm.GoToSlide(GetSectionFirstPages(9));
         }
 
         [RelayCommand]
@@ -155,7 +223,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         {
             var vm = new PresentationViewerViewModel("aramashi", _nav, _dia);
             _nav.Navigate(vm);
-            vm.GoToSlide(0);
+            vm.GoToSlide(GetSectionFirstPages(10));
         }
 
         [RelayCommand]
