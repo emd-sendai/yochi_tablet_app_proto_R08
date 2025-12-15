@@ -43,6 +43,11 @@ namespace WpfApp.Common.Views
             double viewHeight = scrollViewer.ActualHeight;
             if (viewWidth <= 0 || viewHeight <= 0) return;
 
+            // 余白率を指定（5%）
+            const double marginRatio = 0.05;
+            viewWidth *= (1.0 - marginRatio);
+            viewHeight *= (1.0 - marginRatio);
+
             Debug.WriteLine($"Image Size: {bmp.PixelWidth} x {bmp.PixelHeight}");
             Debug.WriteLine($"DPI: {bmp.DpiX}, {bmp.DpiY}");
 

@@ -460,14 +460,28 @@ namespace WpfApp.Screens.Aramashi.Views
 
             var maxWidth = data.MaxWidth;
             var maxHeight = data.MaxHeight;
+            var horizonalAlignment = data.HorizontalAlignment;
+
+            var alignment = HorizontalAlignment.Center;
+
+            if (horizonalAlignment == "left" || horizonalAlignment == "Left")
+            {
+                alignment = HorizontalAlignment.Left;
+            }
+            else if (horizonalAlignment == "right" || horizonalAlignment == "Right")
+            {
+                alignment = HorizontalAlignment.Right;
+            }
 
             // 行StackPanelを作成
             StackPanel rowPanel = new StackPanel()
             {
                 Orientation = Orientation.Horizontal,
-                HorizontalAlignment = HorizontalAlignment.Center,
+                HorizontalAlignment = alignment,
                 Margin = new Thickness(10,0,0,0),
             };
+
+            var cnt = 0;
 
             foreach (var image in images)
             {
@@ -477,8 +491,13 @@ namespace WpfApp.Screens.Aramashi.Views
                     StackPanel colPanel = new StackPanel()
                     {
                         Orientation = Orientation.Vertical,
-                        Margin = new Thickness(8, 8, 8, 3),
+                        //Margin = new Thickness(8, 8, 8, 3),
                     };
+
+                    if (cnt > 0)
+                    {
+                        colPanel.Margin = new Thickness(8, 0, 0, 0);
+                    }
 
                     // ラベル
                     var label = CreateImageLabel(image);
@@ -489,12 +508,20 @@ namespace WpfApp.Screens.Aramashi.Views
                     colPanel.Children.Add(img);
 
                     rowPanel.Children.Add(colPanel);
+                    cnt++;
                 }
                 else
                 {
                     // 画像を作成
                     var img = CreateImage(image, maxWidth, maxHeight);
+
+                    if(cnt > 0)
+                    {
+                        img.Margin = new Thickness(8, 0, 0, 0);
+                    }
+
                     rowPanel.Children.Add(img);
+                    cnt++;
                 }
             }
             return rowPanel;

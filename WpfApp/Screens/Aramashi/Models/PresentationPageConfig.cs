@@ -202,6 +202,7 @@ namespace WpfApp.Screens.Aramashi.Models
     {
         public double MaxHeight { get; set; } = 200;
         public double MaxWidth { get; set; } = 200;
+        public string HorizontalAlignment { get; set; } = "center";
         public List<StyledImage> Images { get; set; } = new();
     }
 

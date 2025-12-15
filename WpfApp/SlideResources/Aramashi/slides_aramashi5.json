@@ -27,17 +27,312 @@
               "color": "#1F78B4"
             },
             {
-              "text": "し、権利者個々に金銭をもって補償します。",
-              "bold": false,
-              "color": "#000000"
-            },
-            {
-              "text": "\n\n（遷移ボタン配置予定）",
+              "text": "し、権利者個々に金銭をもって補償します。\n",
               "bold": false,
               "color": "#000000"
             }
           ],
           "fontSize": 16
+        }
+      },
+      {
+        "table": {
+          "rows": 5,
+          "columns": 2,
+          "indent": 0,
+          "hasPadding": true,
+          "cells": [
+            {
+              "textRuns": [
+                {
+                  "text": "（１）"
+                }
+              ],
+              "fontSize": 16
+            },
+            {
+              "text": "土地価格",
+              "fontSize": 16,
+              "bold": true,
+              "style": "TableButtonStyle",
+              "commandName": "GoToSlideCommand",
+              "commandParameter": "29"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "　"
+                }
+              ],
+              "fontSize": 5
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "　"
+                }
+              ],
+              "fontSize": 5
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "（２）"
+                }
+              ],
+              "fontSize": 16
+            },
+            {
+              "text": "借地権等に関する補償",
+              "fontSize": 16,
+              "bold": true,
+              "style": "TableButtonStyle",
+              "commandName": "GoToSlideCommand",
+              "commandParameter": "29"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "　"
+                }
+              ],
+              "fontSize": 5
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "　"
+                }
+              ],
+              "fontSize": 5
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "（３）"
+                }
+              ],
+              "fontSize": 16
+            },
+            {
+              "text": "物件等の補償",
+              "fontSize": 16,
+              "bold": true,
+              "style": "TableButtonStyle",
+              "commandName": "GoToSlideCommand",
+              "commandParameter": "30"
+            }
+          ]
+        }
+      },
+      {
+        "table": {
+          "rows": 5,
+          "columns": 5,
+          "indent": 2,
+          "hasPadding": true,
+          "cells": [
+            {
+              "textRuns": [
+                {
+                  "text": "① "
+                }
+              ],
+              "fontSize": 16
+            },
+            {
+              "text": "建物の補償",
+              "fontSize": 16,
+              "bold": true,
+              "style": "TableButtonStyle",
+              "commandName": "GoToSlideCommand",
+              "commandParameter": "30"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "　"
+                }
+              ],
+              "fontSize": 15
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "⑥ "
+                }
+              ],
+              "fontSize": 16
+            },
+            {
+              "text": "借家人、借間人に対する補償",
+              "fontSize": 16,
+              "bold": true,
+              "style": "TableButtonStyle",
+              "commandName": "GoToSlideCommand",
+              "commandParameter": "33"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "② "
+                }
+              ],
+              "fontSize": 16
+            },
+            {
+              "text": "工作物の補償",
+              "fontSize": 16,
+              "bold": true,
+              "style": "TableButtonStyle",
+              "commandName": "GoToSlideCommand",
+              "commandParameter": "30"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "　"
+                }
+              ],
+              "fontSize": 15
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "⑦ "
+                }
+              ],
+              "fontSize": 16
+            },
+            {
+              "text": "家賃減収補償",
+              "fontSize": 16,
+              "bold": true,
+              "style": "TableButtonStyle",
+              "commandName": "GoToSlideCommand",
+              "commandParameter": "33"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "③ "
+                }
+              ],
+              "fontSize": 16
+            },
+            {
+              "text": "立竹木の補償",
+              "fontSize": 16,
+              "bold": true,
+              "style": "TableButtonStyle",
+              "commandName": "GoToSlideCommand",
+              "commandParameter": "31"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "　"
+                }
+              ],
+              "fontSize": 15
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "⑧ "
+                }
+              ],
+              "fontSize": 16
+            },
+            {
+              "text": "営業休止等の補償（営業補償）",
+              "fontSize": 16,
+              "bold": true,
+              "style": "TableButtonStyle",
+              "commandName": "GoToSlideCommand",
+              "commandParameter": "34"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "④ "
+                }
+              ],
+              "fontSize": 16
+            },
+            {
+              "text": "動産移転料の補償",
+              "fontSize": 16,
+              "bold": true,
+              "style": "TableButtonStyle",
+              "commandName": "GoToSlideCommand",
+              "commandParameter": "32"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "　"
+                }
+              ],
+              "fontSize": 15
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "⑨ "
+                }
+              ],
+              "fontSize": 16
+            },
+            {
+              "text": "移転雑費の補償",
+              "fontSize": 16,
+              "bold": true,
+              "style": "TableButtonStyle",
+              "commandName": "GoToSlideCommand",
+              "commandParameter": "35"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "⑤ "
+                }
+              ],
+              "fontSize": 16
+            },
+            {
+              "text": "仮住居等に要する費用の補償",
+              "fontSize": 16,
+              "bold": true,
+              "style": "TableButtonStyle",
+              "commandName": "GoToSlideCommand",
+              "commandParameter": "32"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "　"
+                }
+              ],
+              "fontSize": 15
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "⑩ "
+                }
+              ],
+              "fontSize": 16
+            },
+            {
+              "text": "残地補償",
+              "fontSize": 16,
+              "bold": true,
+              "style": "TableButtonStyle",
+              "commandName": "GoToSlideCommand",
+              "commandParameter": "35"
+            }
+          ]
         }
       }
     ]
@@ -270,7 +565,21 @@
               "color": "#000000"
             }
           ],
-          "fontSize": 16
+          "fontSize": 16,
+          "maxWidth": 470
+        },
+        "imageButton": {
+          "id": "aramashi5_3",
+          "maxHeight": 120,
+          "maxWidth": 200,
+          "imageButtons": [
+            {
+              "id": "aramashi3_12.5",
+              "label": "（参考）建物と工作物の補償区分",
+              "imagePath": "aramashi3_12.5.png",
+              "CommandName": ""
+            }
+          ]
         }
       },
       {
@@ -317,6 +626,33 @@
           ],
           "fontSize": 16
         }
+      }
+    ]
+  },
+  {
+    "id": "aramashi5_4",
+    "title": {
+      "textRuns": [
+        {
+          "text": "５ 補償金の算定",
+          "bold": true,
+          "color": "#000000"
+        }
+      ]
+    },
+    "sections": [
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "（３）物件等の補償",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        }
       },
       {
         "subtitle": {
@@ -333,17 +669,449 @@
         "body": {
           "textRuns": [
             {
-              "text": "　立竹木は、利用目的、樹種等によって算定方法が異なりますが、原則として、庭木等の移植することが相当と認められる場合の立竹木は移植（掘り起こし、運搬、根付け等）に必要な費用を、移植できない場合の立竹木については伐採（伐採、運搬等）に必要な費用の補償または取得による補償をします。\n\n",
+              "text": "　立竹木は、利用目的、樹種等によって算定方法が異なりますが、原則として、庭木等の移植することが相当と認められる場合の立竹木は移植（掘り起こし、運搬、根付け等）に必要な費用を、移植できない場合の立竹木については伐採（伐採、運搬等）に必要な費用の補償または取得による補償をします。",
               "bold": false,
               "color": "#000000"
-            },
+            }
+          ],
+          "fontSize": 16,
+          "maxWidth": 580
+        },
+        "image": {
+          "maxHeight": 100,
+          "maxWidth": 200,
+          "images": [
+            {
+              "imagePath": "aramashi3_14.png"
+            }
+          ]
+        }
+      },
+      {
+        "body": {
+          "textRuns": [
+            {
+              "text": "　",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16
+        }
+      },
+      {
+        "body": {
+          "textRuns": [
             {
               "text": "※廃材処分費について\n",
               "bold": false,
               "color": "#000000"
             },
             {
-              "text": "　物件の移転等に伴い必要となる廃材処分費については、上記①～③の各補償にそれぞれ含まれています。",
+              "text": "　物件の移転等に伴い必要となる廃材処分費については、①～③の各補償にそれぞれ含まれています。",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16,
+          "maxWidth": 500
+        },
+        "image": {
+          "maxHeight": 70,
+          "maxWidth": 202,
+          "HorizontalAlignment": "right",
+          "images": [
+            {
+              "imagePath": "aramashi5_4.png"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "aramashi5_5",
+    "title": {
+      "textRuns": [
+        {
+          "text": "５ 補償金の算定",
+          "bold": true,
+          "color": "#000000"
+        }
+      ]
+    },
+    "sections": [
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "（３）物件等の補償",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        }
+      },
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "④動産移転料の補償",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        },
+        "body": {
+          "textRuns": [
+            {
+              "text": "　建物の移転に伴う動産（家財道具、商品、諸材料等）については、荷造り、運搬等に必要な費用の補償をします。",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16,
+          "maxWidth": 480
+        },
+        "image": {
+          "maxHeight": 70,
+          "maxWidth": 202,
+          "images": [
+            {
+              "imagePath": "aramashi5_5_1.png"
+            },
+            {
+              "imagePath": "aramashi5_5_2.png"
+            }
+          ]
+        }
+      },
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "⑤仮住居等に要する費用の補償",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        },
+        "body": {
+          "textRuns": [
+            {
+              "text": "　建物移転等に通常要する期間中、仮住居や動産の一時保管を必要とする",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "ものと認められる場合には、その使用に要する費用を補償します。",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16
+        }
+      }
+    ]
+  },
+  {
+    "id": "aramashi5_6",
+    "title": {
+      "textRuns": [
+        {
+          "text": "５ 補償金の算定",
+          "bold": true,
+          "color": "#000000"
+        }
+      ]
+    },
+    "sections": [
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "（３）物件等の補償",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        }
+      },
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "⑥借家人、借間人に対する補償",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        },
+        "body": {
+          "textRuns": [
+            {
+              "text": "　建物の全部または一部を賃借りしている方が、現在の家主から賃借りを継続することが著しく困難となる場合、従来と同程度の建物を借りるために必要な費用および新たに借りる家賃（当該地区の標準家賃）と従来の家賃に生じる差額に対する費用を一定期間補償します。",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16,
+          "maxWidth": 550
+        },
+        "image": {
+          "maxHeight": 113,
+          "maxWidth": 125,
+          "images": [
+            {
+              "imagePath": "aramashi5_6.png"
+            }
+          ]
+        }
+      },
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "⑦家賃減収補償",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        },
+        "body": {
+          "textRuns": [
+            {
+              "text": "　建物の一部または全部を賃貸している者が当該建物を移転することにより移転期間中賃貸料（家賃）を得ることができない場合は、当該移転期間に応ずる賃貸料相当額から当該期間中の管理費相当額および修繕費相当額を控除した額を補償します。",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16
+        }
+      }
+    ]
+  },
+  {
+    "id": "aramashi5_7",
+    "title": {
+      "textRuns": [
+        {
+          "text": "５ 補償金の算定",
+          "bold": true,
+          "color": "#000000"
+        }
+      ]
+    },
+    "sections": [
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "（３）物件等の補償",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        }
+      },
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "⑧営業休止等の補償（営業補償）",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        }
+      },
+      {
+        "body": {
+          "textRuns": [
+            {
+              "text": "ア 収益減の補償\n",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "　店舗等が移転することにより、営業を一時休止する必要があると認められるときは、通常休業を必要とする一定期間の収益減（個人営業の場合は所得減）の補償をします。",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16
+        }
+      },
+      {
+        "body": {
+          "textRuns": [
+            {
+              "text": "イ 得意先喪失の補償\n",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "　休業または店舗等の移転により、一時的に得意先を喪失し従前の売上高を得ることができなくなると予測され一定の基準に該当する場合には通常生ずる損失額の補償をします。",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16
+        }
+      },
+      {
+        "body": {
+          "textRuns": [
+            {
+              "text": "ウ 固定的経費の補償\n",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "　休業期間中も継続して支出される営業用資産に対する公租公課等固定的経費の補償をします。",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16
+        }
+      },
+      {
+        "body": {
+          "textRuns": [
+            {
+              "text": "エ 休業（人件費）の補償\n",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "　営業休止期間に対応する従業員等の休業手当相当額の補償をします。",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16
+        }
+      },
+      {
+        "body": {
+          "textRuns": [
+            {
+              "text": "オ その他の補償\n",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "　営業用の店舗の移転に伴って生ずる損失（店舗移転広告費、移転通知費等）の補償をします。",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16
+        }
+      }
+    ]
+  },
+  {
+    "id": "aramashi5_8",
+    "title": {
+      "textRuns": [
+        {
+          "text": "５ 補償金の算定",
+          "bold": true,
+          "color": "#000000"
+        }
+      ]
+    },
+    "sections": [
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "（３）物件等の補償",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        }
+      },
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "⑨移転雑費の補償",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        },
+        "body": {
+          "textRuns": [
+            {
+              "text": "　建物等を移転するために支出することが想定される経費で、「移転先を探すための費用」、「住居移転のための届出等法令上の手続きに必要な費用」、「引越しの通知をするための費用」等の補償をします。",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16,
+          "maxWidth": 580
+        },
+        "image": {
+          "maxHeight": 80,
+          "maxWidth": 80,
+          "images": [
+            {
+              "imagePath": "aramashi5_8.png"
+            }
+          ]
+        }
+      },
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "⑩残地補償",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        },
+        "body": {
+          "textRuns": [
+            {
+              "text": "　従前の土地と比べて、取得の対象とならない土地（残地）の面積・形状等が変わったことにより残地の価値の減少等の損失が認められる場合には、これらに対する損失を補償します。\n\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "※消費税等の取扱いについて\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　補償の要否については、消費税等の納税義務（課税事業者、免税事業者）等により判断され、課税対象となる補償金に消費税等の税率を乗じた消費税等相当額分の補償をします。",
               "bold": false,
               "color": "#000000"
             }

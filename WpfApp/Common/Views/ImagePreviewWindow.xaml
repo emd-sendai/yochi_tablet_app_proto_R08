@@ -10,35 +10,8 @@
         WindowStartupLocation="CenterScreen"
         Background="{DynamicResource MaterialDesignPaper}"
         Loaded="Window_Loaded">
-    
-    <DockPanel>
-        <!-- 基本ボタン -->
-        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Right">
-            <!-- 全体表示ボタン -->
-            <Button Style="{StaticResource IconTextButtonStyle}" Margin="5,10,5,10" Click="FitButton_Click">
-                <StackPanel Orientation="Vertical" >
-                    <materialDesign:PackIcon Kind="FitToScreen" Style="{StaticResource ITButtonIconStyle}"/>
-                    <TextBlock Text="全体表示" Style="{StaticResource ITButtonTextStyle}"/>
-                </StackPanel>
-            </Button>
-            <!-- 拡大ボタン-->
-            <Button Style="{StaticResource IconTextButtonStyle}" Margin="5,10,5,10" Command="{Binding ZoomInCommand}">
-                <StackPanel Orientation="Vertical" >
-                    <materialDesign:PackIcon Kind="PlusCircleOutline" Style="{StaticResource ITButtonIconStyle}"/>
-                    <TextBlock Text="拡大" Style="{StaticResource ITButtonTextStyle}"/>
-                </StackPanel>
-            </Button>
-            <!-- 縮小ボタン-->
-            <Button Style="{StaticResource IconTextButtonStyle}" Margin="5,10,5,10" Command="{Binding ZoomOutCommand}">
-                <StackPanel Orientation="Vertical" >
-                    <materialDesign:PackIcon Kind="MinusCircleOutline" Style="{StaticResource ITButtonIconStyle}"/>
-                    <TextBlock Text="縮小" Style="{StaticResource ITButtonTextStyle}"/>
-                </StackPanel>
-            </Button>
-            <Button Content="× 画面を閉じる" Style="{StaticResource CommonButtonStyle}"
-                    Margin="20,10,10,10" FontSize="15" Height="45" Command="{Binding CloseCommand}" />
-        </StackPanel>
 
+    <Grid>
         <ScrollViewer x:Name="scrollViewer"
                       VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"
                       PreviewMouseWheel="ScrollViewer_PreviewMouseWheel"
@@ -46,11 +19,64 @@
                       CanContentScroll="False" PanningMode="Both"
                       IsManipulationEnabled="True" ManipulationDelta="ScrollViewer_ManipulationDelta">
             <Image x:Name="image" Source="{Binding Image}" RenderTransformOrigin="0.5,0"
-                       HorizontalAlignment="Center" VerticalAlignment="Top">
+                       HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Image.LayoutTransform>
                     <ScaleTransform x:Name="imageScale" ScaleX="{Binding Scale}" ScaleY="{Binding Scale}" />
                 </Image.LayoutTransform>
             </Image>
         </ScrollViewer>
-    </DockPanel>
+
+        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Height="50" Width="50" Margin="10">
+            <Border  CornerRadius="25"  Height="50" Width="50" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary}"/>
+                        <Setter Property="Effect" Value="{DynamicResource MaterialDesignShadowDepth1}"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary.Foreground}"/>
+                                <Setter Property="Effect" Value="{DynamicResource MaterialDesignShadowDepth3}"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+
+                <!-- PopupBox（メニュー） -->
+                <materialDesign:PopupBox StaysOpen="True" PlacementMode="LeftAndAlignTopEdges" Height="40" Width="40" 
+                                 Foreground="{DynamicResource MaterialDesign.Brush.Primary.Foreground}" HorizontalAlignment="Center">
+
+                    <materialDesign:PopupBox.ToggleContent>
+                        <materialDesign:PackIcon Kind="SliderVertical" Foreground="{DynamicResource MaterialDesign.Brush.Primary.Foreground}"
+                                                  Height="30" Width="40" HorizontalAlignment="Center"/>
+                    </materialDesign:PopupBox.ToggleContent>
+
+                    <StackPanel>
+                        <Button Style="{StaticResource IconTextButtonStyle}" Margin="5,10,5,10" Click="FitButton_Click">
+                            <StackPanel Orientation="Vertical" >
+                                <materialDesign:PackIcon Kind="FitToScreen" Style="{StaticResource ITButtonIconStyle}"/>
+                                <TextBlock Text="全体表示" Style="{StaticResource ITButtonTextStyle}"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Style="{StaticResource IconTextButtonStyle}" Margin="5,10,5,10" Command="{Binding ZoomInCommand}">
+                            <StackPanel Orientation="Vertical" >
+                                <materialDesign:PackIcon Kind="PlusCircleOutline" Style="{StaticResource ITButtonIconStyle}"/>
+                                <TextBlock Text="拡大" Style="{StaticResource ITButtonTextStyle}"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Style="{StaticResource IconTextButtonStyle}" Margin="5,10,5,10" Command="{Binding ZoomOutCommand}">
+                            <StackPanel Orientation="Vertical" >
+                                <materialDesign:PackIcon Kind="MinusCircleOutline" Style="{StaticResource ITButtonIconStyle}"/>
+                                <TextBlock Text="縮小" Style="{StaticResource ITButtonTextStyle}"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Content="× 画面を閉じる" Style="{StaticResource CommonButtonStyle}"
+                    Margin="20,10,10,10" FontSize="15" Height="45" Command="{Binding CloseCommand}" />
+                    </StackPanel>
+                </materialDesign:PopupBox>
+
+            </Border>
+        </StackPanel>
+        
+    </Grid>
 </Window>
