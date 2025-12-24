@@ -158,9 +158,9 @@
         "subtitle": {
           "textRuns": [
             {
-              "text": "損失補償協議書 特に確認していただきたいこと",
+              "text": "６ 損失補償協議書 特に確認していただきたいこと",
               "bold": true,
-              "color": "#1F78B4",
+              "color": "#C55A11",
               "underline": true
             }
           ],
@@ -175,7 +175,7 @@
           "imageButtons": [
             {
               "id": "aramashi6_2",
-              "label": "土地調書の見方、確認事項",
+              "label": "土地調書 確認事項",
               "imagePath": "aramashi6_2.png"
             }
           ]
@@ -199,9 +199,9 @@
         "subtitle": {
           "textRuns": [
             {
-              "text": "補償説明・協議（用地交渉） 損失補償協議書 確認事項☑",
+              "text": "６ 補償説明・協議（用地交渉） 損失補償協議書 確認事項☑",
               "bold": true,
-              "color": "#1F78B4",
+              "color": "#C55A11",
               "underline": true
             }
           ],
@@ -464,9 +464,9 @@
         "subtitle": {
           "textRuns": [
             {
-              "text": "補償説明・協議（用地交渉） 損失補償協議書 確認事項☑",
+              "text": "６ 補償説明・協議（用地交渉） 損失補償協議書 確認事項☑",
               "bold": true,
-              "color": "#1F78B4",
+              "color": "#C55A11",
               "underline": true
             }
           ],

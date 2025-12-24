@@ -1,0 +1,688 @@
+[
+  {
+    "id": "aramashi7_1",
+    "title": {
+      "textRuns": [
+        {
+          "text": "７ 契約",
+          "bold": true,
+          "color": "#000000"
+        }
+      ]
+    },
+    "video": true,
+    "videoPath": "",
+    "sections": [
+      {
+        "body": {
+          "textRuns": [
+            {
+              "text": "　補償内容や土地の引渡し期限等について、ご了解が得られましたら、所定の契約書に署名・押印（実印）を行っていただき、契約が成立します（法人の場合は記名によることができます。）。\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　契約に際し、実印と印鑑登録証明書を用意していただきます。\n\n",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16,
+          "maxWidth": 550
+        },
+        "image": {
+          "maxHeight": 100,
+          "maxWidth": 200,
+          "images": [
+            {
+              "imagePath": "aramashi7_1_1.png"
+            }
+          ]
+        }
+      },
+      {
+        "body": {
+          "textRuns": [
+            {
+              "text": "〔契約の際にご用意いただくもの〕\n",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            },
+            {
+              "text": "・ 実印（市町村に登録している印鑑）\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "・ 印鑑登録証明書（市町村等が発行したもの）　　　　　\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "・ 補償金振込先（通帳など）",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16,
+          "maxWidth": 500
+        },
+        "image": {
+          "maxHeight": 100,
+          "maxWidth": 100,
+          "images": [
+            {
+              "imagePath": "aramashi7_1_2.png"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "aramashi7_2",
+    "title": {
+      "textRuns": [
+        {
+          "text": "７ 契約",
+          "bold": true,
+          "color": "#000000"
+        }
+      ]
+    },
+    "sections": [
+      {
+        "body": {
+          "textRuns": [
+            {
+              "text": "〔契約関係書類（当所用意）〕\n",
+              "bold": true,
+              "underline": true
+            },
+            {
+              "text": "・ 契約書\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "・ 登記原因証明情報兼登記承諾書（登記に必要）\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "・ 請求書（支払いに使用）\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "・ マイナンバー提供依頼（提供は任意）\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "・ 委任状（第三者への委任払いがある場合）\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "・（関東）承諾書（基礎関係の移転義務が無く、撤去を国ですることの承諾書）",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16
+        }
+      },
+      {
+        "imageButton": {
+          "id": "aramashi7_2",
+          "maxHeight": 150,
+          "maxWidth": 120,
+          "imageButtons": [
+            {
+              "id": "aramashi7_2_1",
+              "label": "（例）請求書（前金払）",
+              "imagePath": "aramashi7_2_1.png"
+            },
+            {
+              "id": "aramashi7_2_2",
+              "label": "（例）請求書（後金払）",
+              "imagePath": "aramashi7_2_2.png"
+            },
+            {
+              "id": "aramashi7_2_3",
+              "label": "（例）登記原因証明情報兼承諾書",
+              "imagePath": "aramashi7_2_3.png"
+            },
+            {
+              "id": "aramashi7_2_4",
+              "label": "（例）承諾書",
+              "imagePath": "aramashi7_2_4.png"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "aramashi7_3",
+    "title": {
+      "textRuns": [
+        {
+          "text": "７ 契約",
+          "bold": true,
+          "color": "#000000"
+        }
+      ]
+    },
+    "sections": [
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "７ 契約 特に確認していただきたいこと",
+              "bold": true,
+              "color": "#C55A11",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        }
+      },
+      {
+        "imageButton": {
+          "id": "aramashi7_3",
+          "maxHeight": 250,
+          "maxWidth": 210,
+          "imageButtons": [
+            {
+              "id": "aramashi7_3_1",
+              "label": "土地売買に関する契約書 確認事項①～⑥",
+              "imagePath": "aramashi7_3_1.png"
+            },
+            {
+              "id": "aramashi7_3_2",
+              "label": "土地売買に関する契約書 確認事項⑦",
+              "imagePath": "aramashi7_3_2.png"
+            },
+            {
+              "id": "aramashi7_3_3",
+              "label": "土地売買に関する契約書 確認事項⑧",
+              "imagePath": "aramashi7_3_3.png"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "aramashi7_4",
+    "title": {
+      "textRuns": [
+        {
+          "text": "７ 契約",
+          "bold": true,
+          "color": "#000000"
+        }
+      ]
+    },
+    "sections": [
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "７ 契約 確認事項☑",
+              "bold": true,
+              "color": "#C55A11",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        }
+      },
+      {
+        "table": {
+          "id": "checkTable_7_4",
+          "rows": 7,
+          "columns": 3,
+          "showBorder": true,
+          "hasPadding": true,
+          "cells": [
+            {
+              "textRuns": [
+                {
+                  "text": "☑",
+                  "bold": true,
+                  "color": "#FFFFFF"
+                }
+              ],
+              "fontSize": 13,
+              "backgroundColor": "#C55A11",
+              "horizontalAlignment": "center"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "項目",
+                  "bold": true,
+                  "color": "#FFFFFF"
+                }
+              ],
+              "fontSize": 13,
+              "backgroundColor": "#C55A11",
+              "horizontalAlignment": "center"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "内容",
+                  "bold": true,
+                  "color": "#FFFFFF"
+                }
+              ],
+              "fontSize": 13,
+              "maxWidth": 550,
+              "backgroundColor": "#C55A11",
+              "horizontalAlignment": "center"
+            },
+            {
+              "id": "7_1",
+              "label": "①",
+              "fontSize": 15,
+              "isChecked": false,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "契約書\n契約金額",
+                  "bold": true
+                }
+              ],
+              "fontSize": 13,
+              "maxWidth": 70,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "契約金額は、○月○日損失補償協議書で提示した額と同じになります。",
+                  "bold": true
+                }
+              ],
+              "fontSize": 14,
+              "maxWidth": 550,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "id": "7_2",
+              "label": "②",
+              "fontSize": 15,
+              "isChecked": false,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "第1条",
+                  "bold": true
+                }
+              ],
+              "fontSize": 13,
+              "maxWidth": 70,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "契約の趣旨です。"
+                }
+              ],
+              "fontSize": 14,
+              "maxWidth": 550,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "id": "7-3",
+              "label": "③",
+              "fontSize": 15,
+              "isChecked": false,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "第2条",
+                  "bold": true
+                }
+              ],
+              "fontSize": 13,
+              "maxWidth": 70,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "土地の引渡期限です。"
+                }
+              ],
+              "fontSize": 14,
+              "maxWidth": 550,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "id": "7_4",
+              "label": "④",
+              "fontSize": 15,
+              "isChecked": false,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "第4条第1項",
+                  "bold": true
+                }
+              ],
+              "fontSize": 13,
+              "maxWidth": 70,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "前金払の支払い要件です。\n"
+                },
+                {
+                  "text": "①抵当権等の登記の抹消又は抹消承諾書の提出\n"
+                },
+                {
+                  "text": "②借地人、借家人等と補償契約が成立\n"
+                },
+                {
+                  "text": "③所有権移転登記嘱託に必要な書類等の提出（登記原因証明情報兼承諾書、印鑑証明書）"
+                }
+              ],
+              "fontSize": 14,
+              "maxWidth": 550,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "id": "7_5",
+              "label": "⑤",
+              "fontSize": 15,
+              "isChecked": false,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "第4条第2項",
+                  "bold": true
+                }
+              ],
+              "fontSize": 13,
+              "maxWidth": 70,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "後金の支払要件です。\n"
+                },
+                {
+                  "text": "①土地の引き渡し\n"
+                },
+                {
+                  "text": "②所有権移転登記の完了"
+                }
+              ],
+              "fontSize": 14,
+              "maxWidth": 550,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "id": "7_6",
+              "label": "⑥",
+              "fontSize": 15,
+              "isChecked": false,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "第6条",
+                  "bold": true
+                }
+              ],
+              "fontSize": 13,
+              "maxWidth": 70,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "契約締結後の禁止事項です。"
+                }
+              ],
+              "fontSize": 14,
+              "maxWidth": 550,
+              "backgroundColor": "#FFFFFF"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "aramashi7_5",
+    "title": {
+      "textRuns": [
+        {
+          "text": "７ 契約",
+          "bold": true,
+          "color": "#000000"
+        }
+      ]
+    },
+    "sections": [
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "７ 契約 確認事項☑",
+              "bold": true,
+              "color": "#C55A11",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        }
+      },
+      {
+        "table": {
+          "id": "checkTable_7_5",
+          "rows": 4,
+          "columns": 3,
+          "showBorder": true,
+          "hasPadding": true,
+          "cells": [
+            {
+              "textRuns": [
+                {
+                  "text": "☑",
+                  "bold": true,
+                  "color": "#FFFFFF"
+                }
+              ],
+              "fontSize": 13,
+              "backgroundColor": "#C55A11",
+              "horizontalAlignment": "center"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "項目",
+                  "bold": true,
+                  "color": "#FFFFFF"
+                }
+              ],
+              "fontSize": 13,
+              "backgroundColor": "#C55A11",
+              "horizontalAlignment": "center"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "内容",
+                  "bold": true,
+                  "color": "#FFFFFF"
+                }
+              ],
+              "fontSize": 13,
+              "maxWidth": 530,
+              "backgroundColor": "#C55A11",
+              "horizontalAlignment": "center"
+            },
+            {
+              "id": "7_7",
+              "label": "⑦",
+              "fontSize": 15,
+              "isChecked": false,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "別表第１\n土地の表示",
+                  "bold": true
+                }
+              ],
+              "fontSize": 12,
+              "maxWidth": 70,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "土地調書、添付図面にて取得面積、取得範囲、残地面積、残地範囲について、再度ご確認よろしくお願いします。"
+                }
+              ],
+              "fontSize": 13,
+              "maxWidth": 550,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "id": "7_8",
+              "label": "⑧",
+              "fontSize": 15,
+              "isChecked": false,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "別表第２\n物件その他\n通損の表示",
+                  "bold": true
+                }
+              ],
+              "fontSize": 12,
+              "maxWidth": 70,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "物件調書、添付物件配置図にて撤去していただく物件（移転義務有り）及びその範囲（基礎等の撤去の要否等）について、再度ご確認よろしくお願いします。\n"
+                },
+                {
+                  "text": "移転が終わりましたらご連絡お願い致します。"
+                }
+              ],
+              "fontSize": 13,
+              "maxWidth": 550,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "id": "7_9",
+              "label": "⑨",
+              "fontSize": 15,
+              "isChecked": false,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "（その他）\n税金等に\nついて",
+                  "bold": true
+                }
+              ],
+              "fontSize": 12,
+              "maxWidth": 70,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "「補償のあらまし」にて再度説明します。\n"
+                },
+                {
+                  "text": "「"
+                },
+                {
+                  "text": "Ⅲ 税制上の優遇措置について",
+                  "isLink": true,
+                  "commandName": "GoToZeikinCommand",
+                  "commandParameter": "0"
+                },
+                {
+                  "text": "」\n"
+                },
+                {
+                  "text": "・譲渡所得に対する課税の特例について（要件あり）\n"
+                },
+                {
+                  "text": "・税の確定申告が必要（証明書類は申告前に送付）\n"
+                },
+                {
+                  "text": "※租税特別措置法の適用を受けるための条件は個々に異なりますので、詳細については所轄税務署にご確認ください。\n"
+                },
+                {
+                  "text": "「"
+                },
+                {
+                  "text": "Ⅳ 土地の譲渡等に伴うその他の税金等",
+                  "isLink": true,
+                  "commandName": "GoToZeikinCommand",
+                  "commandParameter": "3"
+                },
+                {
+                  "text": "」\n"
+                },
+                {
+                  "text": "・土地、建物の固定資産税等について（1月1日の登記簿上の所有者に課税）\n"
+                },
+                {
+                  "text": "・不動産取得税について\n"
+                },
+                {
+                  "text": "・その他、補償金が所得となることにより影響があると考えられるもの\n"
+                },
+                {
+                  "text": "　配偶者控除・扶養控除等、農業者年金、福祉年金等、国民健康保険料、後期高齢者医療保険料、\n　介護保険料等\n"
+                },
+                {
+                  "text": "　※各市区町村等にご相談ください。"
+                }
+              ],
+              "fontSize": 13,
+              "maxWidth": 550,
+              "backgroundColor": "#FFFFFF"
+            }
+          ]
+        }
+      }
+    ]
+  }
+]

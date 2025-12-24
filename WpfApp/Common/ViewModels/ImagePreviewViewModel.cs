@@ -23,14 +23,22 @@ namespace WpfApp.Common.ViewModels
 
         public ImagePreviewViewModel(string imagePath) 
         {
-            if (string.IsNullOrWhiteSpace(imagePath) && !File.Exists(imagePath))
+            if (string.IsNullOrWhiteSpace(imagePath))
             {
                 MessageBox.Show("画像の読み込みができません");
-                Debug.WriteLine($"[DEBUG] imagePathを読み込むことができません: {imagePath}");
+                Debug.WriteLine($"[DEBUG] imagePathが空です");
                 Close();
             }
-
-            LoadImage(imagePath);
+            else if(!File.Exists(imagePath))
+            {
+                MessageBox.Show("画像の読み込みができません");
+                Debug.WriteLine($"[DEBUG] 画像が存在しません: {imagePath}");
+                Close();
+            }
+            else
+            {
+                LoadImage(imagePath);
+            }
         }
 
         public void LoadImage(string imagePath)

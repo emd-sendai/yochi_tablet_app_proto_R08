@@ -91,7 +91,7 @@
             {
               "text": "４－１ 土地調書の見方、確認事項",
               "bold": true,
-              "color": "#1F78B4",
+              "color": "#C55A11",
               "underline": true
             }
           ],
@@ -126,7 +126,7 @@
           "imageButtons": [
             {
               "id": "aramashi4_2_1",
-              "label": "土地調書の見方、確認事項",
+              "label": "土地調書 確認事項",
               "imagePath": "aramashi4_2_1.png"
             },
             {
@@ -157,7 +157,7 @@
             {
               "text": "４－１ 土地調書 確認事項☑",
               "bold": true,
-              "color": "#1F78B4",
+              "color": "#C55A11",
               "underline": true
             }
           ],
@@ -469,7 +469,7 @@
             {
               "text": "４－２ 物件調書の見方、確認事項",
               "bold": true,
-              "color": "#1F78B4",
+              "color": "#C55A11",
               "underline": true
             }
           ],
@@ -504,7 +504,7 @@
           "imageButtons": [
             {
               "id": "aramashi4_4_1",
-              "label": "物件調書の見方、確認事項",
+              "label": "物件調書 確認事項",
               "imagePath": "aramashi4_4_1.png"
             },
             {
@@ -535,7 +535,7 @@
             {
               "text": "４－２ 物件調書 確認事項☑",
               "bold": true,
-              "color": "#1F78B4",
+              "color": "#C55A11",
               "underline": true
             }
           ],
