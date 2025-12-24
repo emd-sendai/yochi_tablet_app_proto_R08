@@ -1,0 +1,159 @@
+[
+  {
+    "id": "aramashi8_1",
+    "title": {
+      "textRuns": [
+        {
+          "text": "８ 補償金の前金払（70％以内）",
+          "bold": true,
+          "color": "#000000"
+        }
+      ]
+    },
+    "video": true,
+    "videoPath": "",
+    "sections": [
+      {
+        "body": {
+          "textRuns": [
+            {
+              "text": "　補償金を前金払する場合",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "は、契約書に記載されている必要書類等の提出をしていただいたのち、",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "契約額の70％以内の範囲",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "でお支払いします。\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　なお、",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "抵当権等",
+              "bold": false,
+              "color": "#000000",
+              "underline": true
+            },
+            {
+              "text": "の権利については、あらかじめ抹消等していただく必要があります。\n\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "※前金の支払い要件「土地売買に関する契約書」第４条第１項\n",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            },
+            {
+              "text": "① 抵当権等の登記の抹消又は抹消承諾書の提出\n",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "② 借地人、借家人等と補償契約が成立\n",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "③ 所有権移転登記嘱託に必要な書類等の提出\n",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "　（登記原因証明情報兼承諾書、印鑑証明書）\n",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16,
+          "maxWidth": 550
+        },
+        "imageButton": {
+          "id": "aramashi8_1",
+          "maxHeight": 150,
+          "maxWidth": 120,
+          "imageButtons": [
+            {
+              "id": "aramashi7_2_1",
+              "label": "（例）請求書（前金払）",
+              "imagePath": "aramashi7_2_1.png"
+            }
+          ]
+        }
+      },
+      {
+        "body": {
+          "textRuns": [
+            {
+              "text": "　補償金は、請求書に基づき、",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "銀行等の指定の口座への振込によってお支払い",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "します。\n\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "※",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "移転すべき物件がない場合等には、",
+              "bold": false,
+              "color": "#000000",
+              "underline": true
+            },
+            {
+              "text": "所有権移転登記および土地の引渡しが完了した後、",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "一括してお支払い",
+              "bold": false,
+              "color": "#000000",
+              "underline": true
+            },
+            {
+              "text": "します。",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16,
+          "maxWidth": 590
+        },
+        "image": {
+          "maxHeight": 100,
+          "maxWidth": 100,
+          "images": [
+            {
+              "imagePath": "aramashi8_1.png"
+            }
+          ]
+        }
+      }
+    ]
+  }
+]
