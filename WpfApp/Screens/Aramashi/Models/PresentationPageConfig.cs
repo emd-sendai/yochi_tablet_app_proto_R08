@@ -66,6 +66,13 @@ namespace WpfApp.Screens.Aramashi.Models
         public bool Bold { get; set; } = false;
         public string Color { get; set; } = "#000000";
         public bool Underline { get; set; } = false;
+
+        public bool IsLink { get; set; } = false;
+        public string? CommandName { get; set; }
+        public string? CommandParameter { get; set; }
+
+        [JsonIgnore]  // 実行時のみ設定
+        public ICommand? Command { get; set; }
     }
 
     public static class TextBlockDataExtensions

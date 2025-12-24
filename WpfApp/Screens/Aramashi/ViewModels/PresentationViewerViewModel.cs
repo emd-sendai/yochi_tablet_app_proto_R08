@@ -394,6 +394,20 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         }
 
         [RelayCommand]
+        private void GoToDaitaichi()
+        {
+            _nav.Navigate(new PresentationViewerViewModel("daitaichi", _nav, _dia));
+        }
+
+        [RelayCommand]
+        private void GoToZeikin(int pageIndex)
+        {
+            var newVM = new PresentationViewerViewModel("zeikin", _nav, _dia);
+            _nav.Navigate(newVM);
+            newVM.GoToSlide(pageIndex);
+        }
+
+        [RelayCommand]
         private void PreviewImage(string imagePath)
         {
             _dia.ShowWindow<ImagePreviewViewModel>(imagePath);

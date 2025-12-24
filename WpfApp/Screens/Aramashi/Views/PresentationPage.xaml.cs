@@ -45,7 +45,7 @@ namespace WpfApp.Screens.Aramashi.Views
                         subtitleRow.Margin = new Thickness(0,10,0,0);
                     }
 
-                    subtitleRow.Children.Add(CreateTextBlock(section.Subtitle));
+                    subtitleRow.Children.Add(CreateTextBlock(section.Subtitle, viewModel));
 
                     if (section.CheckBox != null)
                     {
@@ -101,7 +101,7 @@ namespace WpfApp.Screens.Aramashi.Views
                         var indent = section.Body.Indent;
 
                         // 本文TextBlockを作成
-                        var body = CreateTextBlock(section.Body);
+                        var body = CreateTextBlock(section.Body, viewModel);
                         body.Margin = new Thickness(20 + indent * 20, 4, 0, 8);
                         //body.MaxWidth = 470 - indent * 20;
                         bodyRow.Children.Add(body);
@@ -153,7 +153,7 @@ namespace WpfApp.Screens.Aramashi.Views
                         var indent = section.Body.Indent;
 
                         // 本文TextBlockを作成
-                        var body = CreateTextBlock(section.Body);
+                        var body = CreateTextBlock(section.Body, viewModel);
                         body.Margin = new Thickness(20 + indent * 20, 4, 0, 8);
                         MainPanel.Children.Add(body);
                         cnt++;
@@ -213,7 +213,7 @@ namespace WpfApp.Screens.Aramashi.Views
                 if(section.SignTarget != null && section.SignMessage !=  null && section.SignButton != null)
                 {
                     /* 署名対象 */
-                    var signTarget = CreateTextBlock(section.SignTarget);
+                    var signTarget = CreateTextBlock(section.SignTarget, viewModel);
                     signTarget.Margin = new Thickness(20, 40, 0, 0);
                     MainPanel.Children.Add(signTarget);
 
@@ -230,7 +230,7 @@ namespace WpfApp.Screens.Aramashi.Views
                     section.SignMessage.SetPlainText(editedSignMessage, true, "#D32F2F");
 
                     // 署名メッセージTextBlockを作成
-                    var signMessage = CreateTextBlock(section.SignMessage);
+                    var signMessage = CreateTextBlock(section.SignMessage, viewModel);
                     signMessage.Margin = new Thickness(20, 20, 0, 0);
                     signMessage.FontSize = 20;
                     MainPanel.Children.Add(signMessage);
@@ -247,7 +247,7 @@ namespace WpfApp.Screens.Aramashi.Views
             viewModel.UpdateAllCheckedState(page.Id);
         }
 
-        private TextBlock CreateTextBlock(TextBlockData data)
+        private TextBlock CreateTextBlock(TextBlockData data, PresentationViewerViewModel viewModel)
         {
             // デフォルトの背景色（透明）を設定する
             var background = Brushes.Transparent;
@@ -286,12 +286,76 @@ namespace WpfApp.Screens.Aramashi.Views
                     };
 
                     if (runInfo.Underline)
+                    {
+                        run.TextDecorations = TextDecorations.Underline;
+                    }
+
+                    // リンクを含む場合
+                    if (runInfo.IsLink)
+                    {
+                        // Span（背景）を作成
+                        var span = new Span
+                        {
+                            Style = (Style)Application.Current.Resources["HyperlinkSpanStyle"],
+                        };
+
+                        // Run（文字）のスタイルを上書き
+                        var linkColor = (Color)ColorConverter.ConvertFromString("#FB8C00");
+                        var linkBrush = new SolidColorBrush(linkColor);
+                        run.Foreground = linkBrush;
+                        run.FontWeight = FontWeights.Bold;
                         run.TextDecorations = TextDecorations.Underline;
 
-                    tb.Inlines.Add(run);
+                        span.Inlines.Add(run);
+
+                        var hyperlink = new Hyperlink(span);
+
+                        // コマンドと引数を設定
+                        string? param = runInfo.CommandParameter as string;
+
+                        if (runInfo.CommandName == "GoToSlideCommand")
+                        {
+                            if (!string.IsNullOrWhiteSpace(param) && int.TryParse(param, out int value))
+                            {
+                                hyperlink.CommandParameter = value;
+                            }
+                            else
+                            {
+                                Debug.WriteLine("CommandParameter は数値ではありません");
+                                hyperlink.CommandParameter = 0;    // 最初のページに遷移
+                            }
+                            hyperlink.Command = viewModel.GoToSlideCommand;
+                        }
+                        else if (runInfo.CommandName == "GoToDaitaichiCommand")
+                        {
+                            hyperlink.Command = viewModel.GoToDaitaichiCommand;
+                        }
+                        else if (runInfo.CommandName == "GoToZeikinCommand")
+                        {
+                            if (!string.IsNullOrWhiteSpace(param) && int.TryParse(param, out int value))
+                            {
+                                hyperlink.CommandParameter = value;
+                            }
+                            else
+                            {
+                                Debug.WriteLine("CommandParameter は数値ではありません");
+                                hyperlink.CommandParameter = 0;    // 最初のページに遷移
+                            }
+                            hyperlink.Command = viewModel.GoToZeikinCommand;
+                        }
+
+                        tb.Inlines.Add(hyperlink);
+                    }
+                    // リンクを含まない場合
+                    else
+                    {
+                        tb.Inlines.Add(run);
+                    }
 
                     if (i < parts.Length - 1)
+                    {
                         tb.Inlines.Add(new LineBreak());
+                    }
                 }
             }
             return tb;
@@ -683,7 +747,7 @@ namespace WpfApp.Screens.Aramashi.Views
                         if (obj != null && obj is TextBlockData)
                         {
                             Debug.WriteLine($"[DEBUG] cell: {index} / {rows * cols - 1} をTextBlockに変換します");
-                            var child = CreateTextBlock(obj);
+                            var child = CreateTextBlock(obj, viewModel);
 
                             // テキストブロックの背景色に透明以外が指定されている場合
                             if (obj.BackgroundColor != "Transparent")

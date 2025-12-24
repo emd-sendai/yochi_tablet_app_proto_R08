@@ -181,16 +181,27 @@
             <!-- テーブル（遷移用）ボタン様式 -->
             <Style x:Key="TableButtonStyle" TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatButton}">
                 <!-- 通常時の文字色 -->
-                <Setter Property="Foreground" Value="#1F78B4"/>
+                <Setter Property="Foreground" Value="#FB8C00"/>
                 <Style.Triggers>
                     <!-- ホバー時 -->
                     <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Foreground" Value="#1F78B4" />
+                        <Setter Property="Foreground" Value="#FB8C00" />
                     </Trigger>
 
                     <!-- 押下時（IsPressed） -->
                     <Trigger Property="IsPressed" Value="True">
-                        <Setter Property="Foreground" Value="#1F78B4" />
+                        <Setter Property="Foreground" Value="#FB8C00" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+            <!-- ハイパーリンクの背景様式 -->
+            <Style x:Key="HyperlinkSpanStyle" TargetType="Span">
+                <Setter Property="Background" Value="Transparent" />
+                <Style.Triggers>
+                    <!-- ホバー時 -->
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" Value="#33FB8C00" />
                     </Trigger>
                 </Style.Triggers>
             </Style>

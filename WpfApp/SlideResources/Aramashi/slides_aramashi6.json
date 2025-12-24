@@ -1,0 +1,573 @@
+[
+  {
+    "id": "aramashi6_1",
+    "title": {
+      "textRuns": [
+        {
+          "text": "６ 補償説明・協議（用地交渉）",
+          "bold": true,
+          "color": "#000000"
+        }
+      ]
+    },
+    "video": true,
+    "videoPath": "",
+    "sections": [
+      {
+        "body": {
+          "textRuns": [
+            {
+              "text": "　土地価格や建物等の物件移転に伴う",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "補償内容や土地の引渡し期限等について",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "土地等の所有者および関係人の方々にご理解いただけるよう、それぞれ",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "個別に説明",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "させていただきます。\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　また、用地交渉は、以下により実施しますので、よろしくお願いします。\n",
+              "bold": true,
+              "color": "#1F78B4"
+            }
+          ],
+          "fontSize": 16,
+          "maxWidth": 550
+        },
+        "image": {
+          "maxHeight": 100,
+          "maxWidth": 200,
+          "images": [
+            {
+              "imagePath": "aramashi6_1_1.png"
+            }
+          ]
+        }
+      },
+      {
+        "body": {
+          "textRuns": [
+            {
+              "text": "◆用地交渉の基本的ルール\n\n",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            },
+            {
+              "text": "① 用地交渉は必ず２人以上で行います。\n",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "② 職員が個人的に工事業者等の情報提供を行うことはありません。　　　　\n",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "③ 職員が現金を扱うことは決してありません。",
+              "bold": true,
+              "color": "#1F78B4"
+            }
+          ],
+          "fontSize": 16,
+          "maxWidth": 500
+        },
+        "image": {
+          "maxHeight": 120,
+          "maxWidth": 200,
+          "images": [
+            {
+              "imagePath": "aramashi6_1_2.png"
+            }
+          ]
+        }
+      },
+      {
+        "body": {
+          "textRuns": [
+            {
+              "text": "\n　",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "土地の所有者に",
+              "bold": false,
+              "color": "#000000",
+              "underline": true
+            },
+            {
+              "text": "相続が発生",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            },
+            {
+              "text": "している場合や土地に",
+              "bold": false,
+              "color": "#000000",
+              "underline": true
+            },
+            {
+              "text": "抵当権等の権利が設定",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            },
+            {
+              "text": "されている場合は、契約までに相続登記に関することや抵当権等の権利抹消に関する準備が必要ですので、関係者の方々にお願いいただくことがあります。",
+              "bold": false,
+              "color": "#000000",
+              "underline": true
+            }
+          ],
+          "fontSize": 16
+        }
+      }
+    ]
+  },
+  {
+    "id": "aramashi6_2",
+    "title": {
+      "textRuns": [
+        {
+          "text": "６ 補償説明・協議（用地交渉）",
+          "bold": true,
+          "color": "#000000"
+        }
+      ]
+    },
+    "sections": [
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "損失補償協議書 特に確認していただきたいこと",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        }
+      },
+      {
+        "imageButton": {
+          "id": "aramashi6_2",
+          "maxHeight": 300,
+          "maxWidth": 700,
+          "imageButtons": [
+            {
+              "id": "aramashi6_2",
+              "label": "土地調書の見方、確認事項",
+              "imagePath": "aramashi6_2.png"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "aramashi6_3",
+    "title": {
+      "textRuns": [
+        {
+          "text": "６ 補償説明・協議（用地交渉）",
+          "bold": true,
+          "color": "#000000"
+        }
+      ]
+    },
+    "sections": [
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "補償説明・協議（用地交渉） 損失補償協議書 確認事項☑",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        }
+      },
+      {
+        "table": {
+          "id": "checkTable_6_3",
+          "rows": 5,
+          "columns": 3,
+          "showBorder": true,
+          "hasPadding": true,
+          "cells": [
+            {
+              "textRuns": [
+                {
+                  "text": "☑",
+                  "bold": true,
+                  "color": "#FFFFFF"
+                }
+              ],
+              "fontSize": 13,
+              "backgroundColor": "#C55A11",
+              "horizontalAlignment": "center"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "項目",
+                  "bold": true,
+                  "color": "#FFFFFF"
+                }
+              ],
+              "fontSize": 13,
+              "backgroundColor": "#C55A11",
+              "horizontalAlignment": "center"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "内容",
+                  "bold": true,
+                  "color": "#FFFFFF"
+                }
+              ],
+              "fontSize": 13,
+              "maxWidth": 530,
+              "backgroundColor": "#C55A11",
+              "horizontalAlignment": "center"
+            },
+            {
+              "id": "6_1",
+              "label": "①",
+              "fontSize": 15,
+              "isChecked": false,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "有効期限",
+                  "bold": true
+                }
+              ],
+              "fontSize": 13,
+              "maxWidth": 70,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "損失補償協議書の有効期限（通常、提示日の年度末）について説明。",
+                  "bold": true
+                }
+              ],
+              "fontSize": 14,
+              "maxWidth": 530,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "id": "6_2",
+              "label": "②",
+              "fontSize": 15,
+              "isChecked": false,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "補償内容の説明",
+                  "bold": true
+                }
+              ],
+              "fontSize": 13,
+              "maxWidth": 70,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "各「補償項目」の補償内容、補償額等について説明",
+                  "bold": true,
+                  "color": "#1F78B4"
+                },
+                {
+                  "text": "。"
+                },
+                {
+                  "text": "（「補償のあらまし」の「"
+                },
+                {
+                  "text": "５ 補償金の算定",
+                  "isLink": true,
+                  "commandName": "GoToSlideCommand",
+                  "commandParameter": "28"
+                },
+                {
+                  "text": "」参照。）\n"
+                },
+                {
+                  "text": "※土地調書と取得面積、物件調書と補償項目について整合を確認。"
+                }
+              ],
+              "fontSize": 14,
+              "maxWidth": 530,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "id": "6-3",
+              "label": "③",
+              "fontSize": 15,
+              "isChecked": false,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "税金の特例等の説明",
+                  "bold": true
+                }
+              ],
+              "fontSize": 13,
+              "maxWidth": 70,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "「補償のあらまし」の「"
+                },
+                {
+                  "text": "Ⅲ 税制上の優遇措置について",
+                  "isLink": true,
+                  "commandName": "GoToZeikinCommand",
+                  "commandParameter": "0"
+                },
+                {
+                  "text": "」、「"
+                },
+                {
+                  "text": "Ⅳ 土地の譲渡等に伴うその他の税金等",
+                  "isLink": true,
+                  "commandName": "GoToZeikinCommand",
+                  "commandParameter": "3"
+                },
+                {
+                  "text": "」にて説明。\n"
+                },
+                {
+                  "text": "譲渡所得税の特例の要件（"
+                },
+                {
+                  "text": "5000万円税控除の特例は、最初の譲渡のみ、申し出（提示日）から契約まで6ケ月以内、事業用地外の物件は特例対象外等",
+                  "bold": true,
+                  "color": "#1F78B4"
+                },
+                {
+                  "text": "）について説明。\n"
+                },
+                {
+                  "text": "補償項目のうち、特例対象外の補償項目がある旨説明。",
+                  "bold": true,
+                  "color": "#1F78B4"
+                },
+                {
+                  "text": "具体的には、譲渡所得税の特例の対象が対価補償金のため、"
+                },
+                {
+                  "text": "原則、建物、工作物、立竹木（伐採）が対象、それ以外の移転雑費などは譲渡所得税の特例の対象外",
+                  "underline": true
+                },
+                {
+                  "text": "について説明。"
+                }
+              ],
+              "fontSize": 14,
+              "maxWidth": 530,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "id": "6_4",
+              "label": "④",
+              "fontSize": 15,
+              "isChecked": false,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "代替地",
+                  "bold": true
+                }
+              ],
+              "fontSize": 13,
+              "maxWidth": 70,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "代替地を希望",
+                  "bold": true,
+                  "color": "#1F78B4"
+                },
+                {
+                  "text": "する場合、「補償のあらまし」の「"
+                },
+                {
+                  "text": "Ⅱ 代替地について",
+                  "isLink": true,
+                  "commandName": "GoToDaitaichiCommand"
+                },
+                {
+                  "text": "」で、代替地詮索、税の特例について説明。"
+                }
+              ],
+              "fontSize": 14,
+              "maxWidth": 530,
+              "backgroundColor": "#FFFFFF"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "aramashi6_4",
+    "title": {
+      "textRuns": [
+        {
+          "text": "６ 補償説明・協議（用地交渉）",
+          "bold": true,
+          "color": "#000000"
+        }
+      ]
+    },
+    "sections": [
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "補償説明・協議（用地交渉） 損失補償協議書 確認事項☑",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        }
+      },
+      {
+        "table": {
+          "id": "checkTable_6_4",
+          "rows": 2,
+          "columns": 3,
+          "showBorder": true,
+          "hasPadding": true,
+          "cells": [
+            {
+              "textRuns": [
+                {
+                  "text": "☑",
+                  "bold": true,
+                  "color": "#FFFFFF"
+                }
+              ],
+              "fontSize": 13,
+              "backgroundColor": "#C55A11",
+              "horizontalAlignment": "center"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "項目",
+                  "bold": true,
+                  "color": "#FFFFFF"
+                }
+              ],
+              "fontSize": 13,
+              "backgroundColor": "#C55A11",
+              "horizontalAlignment": "center"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "内容",
+                  "bold": true,
+                  "color": "#FFFFFF"
+                }
+              ],
+              "fontSize": 13,
+              "maxWidth": 530,
+              "backgroundColor": "#C55A11",
+              "horizontalAlignment": "center"
+            },
+            {
+              "id": "6_5",
+              "label": "⑤",
+              "fontSize": 15,
+              "isChecked": false,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "今回のまとめ、次回について",
+                  "bold": true
+                }
+              ],
+              "fontSize": 11,
+              "maxWidth": 70,
+              "backgroundColor": "#FFFFFF"
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "○"
+                },
+                {
+                  "text": "課題がある場合\n",
+                  "bold": true,
+                  "color": "#1F78B4"
+                },
+                {
+                  "text": "⇒今回、了解いただいたこと、課題を再確認⇒課題整理対応の可否、目安時間、次回の協議の時期について可能な範囲で説明。\n"
+                },
+                {
+                  "text": "○"
+                },
+                {
+                  "text": "損失補償協議書等に了解いただいた場合\n",
+                  "bold": true,
+                  "color": "#1F78B4"
+                },
+                {
+                  "text": "⇒契約の書類届き次第ご連絡する旨伝えます。契約必要書類について説明。"
+                }
+              ],
+              "fontSize": 14,
+              "maxWidth": 530,
+              "backgroundColor": "#FFFFFF"
+            }
+          ]
+        }
+      }
+    ]
+  }
+]

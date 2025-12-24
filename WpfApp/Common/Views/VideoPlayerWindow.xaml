@@ -14,13 +14,33 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        
-        <MediaElement Grid.Row="0" x:Name="Player" LoadedBehavior="Manual" UnloadedBehavior="Stop" Stretch="Uniform" Source="{Binding VideoPath}" />
-        
-        <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,10">
+
+        <MediaElement Grid.Row="0" x:Name="Media" LoadedBehavior="Manual" UnloadedBehavior="Manual" Stretch="Uniform" Source="{Binding VideoSource}" />
+
+        <Slider Grid.Row="1" Minimum="0" Maximum="{Binding Duration.TotalSeconds}" Value="{Binding CurrentPositionSeconds, Mode=TwoWay}"
+                PreviewMouseDown="Slider_PreviewMouseDown" PreviewMouseUp="Slider_PreviewMouseUp"/> 
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,10">
+            <!-- チャプター遷移（前へ）ボタン -->
+            <Button Command="{Binding PreviousChapterCommand}" Margin="5"
+                    Style="{StaticResource IconTextButtonStyle}">
+                <StackPanel Orientation="Vertical" >
+                    <materialDesign:PackIcon Kind="SkipPrevious" Style="{StaticResource ITButtonIconStyle}"/>
+                    <TextBlock Text="前へ" Style="{StaticResource ITButtonTextStyle}" />
+                </StackPanel>
+            </Button>
+            <!-- 巻き戻しボタン -->
+            <Button Command="{Binding RewindCommand}" Margin="5"
+                    Style="{StaticResource IconTextButtonStyle}">
+                <StackPanel Orientation="Vertical" >
+                    <materialDesign:PackIcon Kind="Rewind10" Style="{StaticResource ITButtonIconStyle}"/>
+                    <TextBlock Text="巻き戻し" Style="{StaticResource ITButtonTextStyle}" />
+                </StackPanel>
+            </Button>
             <!-- 再生ボタン -->
-            <Button Command="{Binding PlayCommand}" CommandParameter="{Binding ElementName=Player}" Margin="5"
+            <Button Command="{Binding PlayCommand}" Margin="5"
                     Style="{StaticResource IconTextButtonStyle}">
                 <StackPanel Orientation="Vertical" >
                     <materialDesign:PackIcon Kind="Play" Style="{StaticResource ITButtonIconStyle}"/>
@@ -28,7 +48,7 @@
                 </StackPanel>
             </Button>
             <!-- 一時停止ボタン（押下後に再生ボタンを押下するとその時点から再生される） -->
-            <Button Command="{Binding PauseCommand}" CommandParameter="{Binding ElementName=Player}" Margin="5"
+            <Button Command="{Binding PauseCommand}" Margin="5"
                     Style="{StaticResource IconTextButtonStyle}">
                 <StackPanel Orientation="Vertical" >
                     <materialDesign:PackIcon Kind="Pause" Style="{StaticResource ITButtonIconStyle}"/>
@@ -36,11 +56,27 @@
                 </StackPanel>
             </Button>
             <!-- 停止ボタン（押下後に再生ボタンを押下すると最初から再生される） -->
-            <Button Command="{Binding StopCommand}" CommandParameter="{Binding ElementName=Player}" Margin="5"
+            <Button Command="{Binding StopCommand}" Margin="5"
                     Style="{StaticResource IconTextButtonStyle}">
                 <StackPanel Orientation="Vertical" >
                     <materialDesign:PackIcon Kind="Stop" Style="{StaticResource ITButtonIconStyle}"/>
                     <TextBlock Text="停止" Style="{StaticResource ITButtonTextStyle}" />
+                </StackPanel>
+            </Button>
+            <!-- 早送りボタン -->
+            <Button Command="{Binding ForwardCommand}" Margin="5"
+                    Style="{StaticResource IconTextButtonStyle}">
+                <StackPanel Orientation="Vertical" >
+                    <materialDesign:PackIcon Kind="FastForward10" Style="{StaticResource ITButtonIconStyle}"/>
+                    <TextBlock Text="早送り" Style="{StaticResource ITButtonTextStyle}" />
+                </StackPanel>
+            </Button>
+            <!-- チャプター遷移（次へ）ボタン -->
+            <Button Command="{Binding PreviousChapterCommand}" Margin="5"
+                    Style="{StaticResource IconTextButtonStyle}">
+                <StackPanel Orientation="Vertical" >
+                    <materialDesign:PackIcon Kind="SkipNext" Style="{StaticResource ITButtonIconStyle}"/>
+                    <TextBlock Text="次へ" Style="{StaticResource ITButtonTextStyle}" />
                 </StackPanel>
             </Button>
             <!-- 閉じるボタン -->
