@@ -1,0 +1,93 @@
+﻿[
+  {
+    "id": "aramashi10_1",
+    "title": {
+      "textRuns": [
+        {
+          "text": "１０ 補償金の後金払・一括払",
+          "bold": true,
+          "color": "#000000"
+        }
+      ]
+    },
+    "video": true,
+    "videoPath": "",
+    "sections": [
+      {
+        "body": {
+          "textRuns": [
+            {
+              "text": "　土地の引渡しが完了した後、前金払を既に受けられた方には、後金払として残金についてお支払いします。\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　前金払がないときは一括してお支払いします。\n",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "　補償金は、請求書に基づき、",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "銀行等の指定の口座への振込によってお支払い",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "します。\n\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "※後金の支払い要件は、「土地売買に関する契約書」では",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "第４条第２項",
+              "isLink": true,
+              "commandName": "GoToSlideCommand",
+              "commandParameter": "43"
+            },
+            {
+              "text": "に記載。",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16,
+          "maxWidth": 560
+        },
+        "imageButton": {
+          "id": "aramashi10_1",
+          "maxHeight": 150,
+          "maxWidth": 120,
+          "imageButtons": [
+            {
+              "id": "aramashi7_2_2",
+              "label": "（例）請求書（後金払）",
+              "imagePath": "aramashi7_2_2.png"
+            }
+          ]
+        }
+      },
+      {
+        "image": {
+          "maxHeight": 100,
+          "maxWidth": 100,
+          "images": [
+            {
+              "imagePath": "aramashi8_1.png"
+            },
+            {
+              "imagePath": "aramashi10_1.png"
+            }
+          ]
+        }
+      }
+    ]
+  }
+]

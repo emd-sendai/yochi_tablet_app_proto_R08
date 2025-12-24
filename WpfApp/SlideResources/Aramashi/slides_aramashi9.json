@@ -1,0 +1,114 @@
+﻿[
+  {
+    "id": "aramashi9_1",
+    "title": {
+      "textRuns": [
+        {
+          "text": "９ 土地登記・建物等の物件移転・土地の引渡し",
+          "bold": true,
+          "color": "#000000"
+        }
+      ]
+    },
+    "video": true,
+    "videoPath": "",
+    "sections": [
+      {
+        "body": {
+          "textRuns": [
+            {
+              "text": "　お譲りいただいた土地は、",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "国が所有権移転の登記を申請",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "します。\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　また、",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "建物等の移転対象物件（※）については、",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "所有者の方に移転していただき",
+              "bold": true,
+              "color": "#1F78B4",
+              "underline": true
+            },
+            {
+              "text": "、国の完了の確認（履行検査）後に、土地を引渡して",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "いただきます。\n",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16
+        }
+      },
+      {
+        "body": {
+          "textRuns": [
+            {
+              "text": "※建物等の移転対象物件：\n",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "事業用地内の物件等の移転をお願いします。\n",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "「",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "物件調書",
+              "isLink": true,
+              "commandName": "GoToSlideCommand",
+              "commandParameter": "26"
+            },
+            {
+              "text": "」の移転義務有りの物件の移転をお願いします。\n",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "移転完了時点で、（できれば解体業者が撤収する前に）ご連絡お願い致します。",
+              "bold": true,
+              "color": "#1F78B4"
+            }
+          ],
+          "fontSize": 16,
+          "maxWidth": 590
+        },
+        "image": {
+          "maxHeight": 150,
+          "maxWidth": 150,
+          "images": [
+            {
+              "imagePath": "aramashi9_1.png"
+            }
+          ]
+        }
+      }
+    ]
+  }
+]
