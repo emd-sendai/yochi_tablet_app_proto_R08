@@ -102,11 +102,15 @@
             </Grid>
         </ScrollViewer>
 
-        <Grid Grid.RowSpan="3" IsHitTestVisible="False">
-            <TextBlock Text="{Binding SlideIndex}" FontWeight="Bold" FontSize="14"
-                   VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="15"/>
-        </Grid>
-        
+        <Border Grid.RowSpan="3" HorizontalAlignment="Right" VerticalAlignment="Bottom" 
+                Margin="16" Padding="5" CornerRadius="10,0,0,0" IsHitTestVisible="False" 
+                Background="{DynamicResource MaterialDesignPaper}" Opacity="0.85"
+                Height="27" Width="33">
+
+            <TextBlock Text="{Binding SlideIndex}" FontWeight="SemiBold" FontSize="14" HorizontalAlignment="Center"/>
+
+        </Border>
+
     </Grid>
     
 </UserControl>
