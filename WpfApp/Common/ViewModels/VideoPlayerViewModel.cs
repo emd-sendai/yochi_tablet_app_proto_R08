@@ -34,6 +34,23 @@ public Action? StopRequested;
             set => CurrentPosition = TimeSpan.FromSeconds(value);
         }
 
+        public string CurrentTimeText => CurrentPosition.ToString(@"hh\:mm\:ss");
+        public string DurationText => Duration.ToString(@"hh\:mm\:ss");
+        public string TimeDisplay => $"{CurrentTimeText} / {DurationText}";
+
+        partial void OnCurrentPositionChanged(TimeSpan oldValue, TimeSpan newValue)
+        {
+            OnPropertyChanged(nameof(CurrentPositionSeconds));
+            OnPropertyChanged(nameof(CurrentTimeText));
+            OnPropertyChanged(nameof(TimeDisplay));
+        }
+
+        partial void OnDurationChanged(TimeSpan oldValue, TimeSpan newValue)
+        {
+            OnPropertyChanged(nameof(DurationText));
+            OnPropertyChanged(nameof(TimeDisplay));
+        }
+
         [ObservableProperty]
         private bool isPlaying;
 
