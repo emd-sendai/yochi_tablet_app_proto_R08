@@ -7,6 +7,7 @@
              xmlns:local="clr-namespace:WpfApp.Screens.Aramashi.Views"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="800">
+    
     <Grid>
         <!-- Gridの行定義 -->
         <Grid.RowDefinitions>
@@ -81,25 +82,31 @@
                     Visibility="{Binding CanGoNext, Converter={StaticResource BooleanToHiddenVisibilityConverter}}" />
         </StackPanel>
 
-        <ScrollViewer VerticalScrollBarVisibility="Auto"
-                  HorizontalScrollBarVisibility="Auto"
-                  PanningMode="Both"
-                  IsManipulationEnabled="True"
-                  PreviewMouseWheel="ScrollViewer_PreviewMouseWheel" Grid.Row="2"
-                  Style="{StaticResource MaterialDesignScrollViewer}">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="2"
+                      HorizontalScrollBarVisibility="Auto" PanningMode="Both"
+                      IsManipulationEnabled="True"
+                      PreviewMouseWheel="ScrollViewer_PreviewMouseWheel" 
+                      Style="{StaticResource MaterialDesignScrollViewer}" >
 
-            <Border ManipulationStarting="Border_ManipulationStarting"
-                ManipulationDelta="Border_ManipulationDelta"
-                RenderTransformOrigin="0.5,0" >
+            <Grid ManipulationStarting="Border_ManipulationStarting"
+                  ManipulationDelta="Border_ManipulationDelta"
+                  RenderTransformOrigin="0.5,0"  
+                  VerticalAlignment="Top" HorizontalAlignment="Center">
 
-                <Border.LayoutTransform>
+                <Grid.LayoutTransform>
                     <ScaleTransform ScaleX="{Binding Scale}" ScaleY="{Binding Scale}" />
-                </Border.LayoutTransform>
+                </Grid.LayoutTransform>
 
                 <local:PresentationPage x:Name="PageControl" />
 
-            </Border>
+            </Grid>
         </ScrollViewer>
+
+        <Grid Grid.RowSpan="3" IsHitTestVisible="False">
+            <TextBlock Text="{Binding SlideIndex}" FontWeight="Bold" FontSize="14"
+                   VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="15"/>
+        </Grid>
+        
     </Grid>
     
 </UserControl>
