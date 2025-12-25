@@ -1,0 +1,30 @@
+[
+  {
+    "title": "Intro",
+    "start": 0
+  },
+  {
+    "title": "Part1",
+    "start": 56.5
+  },
+  {
+    "title": "Part2",
+    "start": 96.8
+  },
+  {
+    "title": "Part3",
+    "start": 204.5
+  },
+  {
+    "title": "Part4",
+    "start": 271.8
+  },
+  {
+    "title": "Part5",
+    "start": 373.5
+  },
+  {
+    "title": "Outro",
+    "start": 475
+  }
+]

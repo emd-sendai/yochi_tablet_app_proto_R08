@@ -3,8 +3,10 @@ using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
+using System.Text.Json;
 using System.Windows;
 using System.Windows.Threading;
+using WpfApp.Common.Models;
 
 namespace WpfApp.Common.ViewModels
 {
@@ -14,8 +16,8 @@ namespace WpfApp.Common.ViewModels
         public Action<TimeSpan>? SeekAction { get; set; }
 
         public Action? PlayRequested;
-public Action? PauseRequested;
-public Action? StopRequested;
+        public Action? PauseRequested;
+        public Action? StopRequested;
 
         private bool _isDragging;
 
@@ -58,17 +60,7 @@ public Action? StopRequested;
 
         public record Chapter(string Title, TimeSpan Start);
 
-        public ObservableCollection<Chapter> Chapters { get; } = new()
-        {
-        // 動画と同じフォルダにチャプターJSONを作成して読み込む
-        new("Intro",  TimeSpan.FromSeconds(0)),
-        new("Part 1", TimeSpan.FromSeconds(56)),
-        new("Part 2", TimeSpan.FromSeconds(96)),
-        new("Part 3", TimeSpan.FromSeconds(204)),
-        new("Part 4", TimeSpan.FromSeconds(271)),
-        new("Part 5", TimeSpan.FromSeconds(372)),
-        new("Outro",  TimeSpan.FromSeconds(475)),
-        };
+        public ObservableCollection<Chapter> Chapters { get; }
 
         private TimeSpan Current => PositionProvider?.Invoke() ?? TimeSpan.Zero;
 
@@ -81,6 +73,19 @@ public Action? StopRequested;
                 VideoSource = new Uri(path);
                 Debug.WriteLine($"[DEBUG] 動画のパスを設定しました: {path}");
             }
+            else
+            {
+                MessageBox.Show("動画が存在しません");
+                Debug.WriteLine($"[ERROR] 動画が存在しません: {path}");
+            }
+
+            var chapters = LoadChapers();
+            Chapters = new ObservableCollection<Chapter>(chapters);
+
+            if (!Chapters.Any())
+            {
+                Chapters.Add(new Chapter("Start", TimeSpan.Zero));
+            }
 
             Timer = new DispatcherTimer
             {
@@ -91,6 +96,23 @@ public Action? StopRequested;
                 if (!_isDragging)
                     CurrentPosition = PositionProvider?.Invoke() ?? TimeSpan.Zero;
             };
+        }
+
+        private static IReadOnlyList<Chapter> LoadChapers()
+        {
+            var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "MediaResources", "chapters.json");
+
+            if(!File.Exists(path)) return Array.Empty<Chapter>();
+
+            var json = File.ReadAllText(path);
+            var list = JsonSerializer.Deserialize<List<ChapterData>>(json,
+                new JsonSerializerOptions { PropertyNameCaseInsensitive = true }) ?? new List<ChapterData>();
+            Debug.WriteLine($"[DEBUG] チャプターを読み込みました: {path}");
+
+            return list
+                .OrderBy(c => c.Start)
+                .Select(c => new Chapter(c.Title,TimeSpan.FromSeconds(c.Start)))
+                .ToList();
         }
 
         // シーク開始
@@ -135,6 +157,19 @@ public Action? StopRequested;
         }
 
         [RelayCommand]
+        private void TogglePlayPause()
+        {
+            if (IsPlaying)
+            {
+                Pause();
+            }
+            else
+            {
+                Play();
+            }
+        }
+
+        [RelayCommand]
         private void Forward()
         {
             SeekAction?.Invoke(CurrentPosition + TimeSpan.FromSeconds(10));
@@ -148,30 +183,49 @@ public Action? StopRequested;
             SeekAction?.Invoke(target);
         }
 
+        private int GetCurrentChapterIndex()
+        {
+            var current = CurrentPosition;
+            var list = Chapters;
+
+            for (int i = list.Count - 1; i >= 0; i--)
+            {
+                if (current >= list[i].Start)
+                    return i;
+            }
+
+            return -1;
+        }
+
         [RelayCommand]
         private void NextChapter()
         {
-            var current = Current;
+            var list = Chapters;
+            var index = GetCurrentChapterIndex();
+            var nextIndex = index + 1;
 
-            var next = Chapters
-                .OrderBy(c => c.Start)
-                .FirstOrDefault(c => c.Start > current);
-
-            if (next != null)
-                SeekAction?.Invoke(next.Start);
+            if (nextIndex >= 0 && nextIndex < list.Count)
+            {
+                SeekAction?.Invoke(list[nextIndex].Start);
+            }
         }
 
         [RelayCommand]
         private void PreviousChapter()
         {
-            var current = Current;
+            var list = Chapters;
+            var index = GetCurrentChapterIndex();
+            if (index < 0) return;
 
-            var prev = Chapters
-                .OrderByDescending(c => c.Start)
-                .FirstOrDefault(c => c.Start < current);
-
-            if (prev != null)
-                SeekAction?.Invoke(prev.Start);
+            var chapterStart = Chapters[index].Start;
+            if (Current - chapterStart > TimeSpan.FromSeconds(3))
+            {
+                SeekAction?.Invoke(chapterStart);
+            }
+            else if (index > 0)
+            {
+                SeekAction?.Invoke(Chapters[index - 1].Start);
+            }
         }
 
         [RelayCommand]

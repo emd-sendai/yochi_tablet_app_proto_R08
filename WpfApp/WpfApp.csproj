@@ -89,6 +89,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="MediaResources\chapters.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="SlideResources\Aramashi\aramashi1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

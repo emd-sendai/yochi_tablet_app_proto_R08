@@ -68,12 +68,12 @@
                     <TextBlock Text="一時停止" Style="{StaticResource ITButtonTextStyle}" />
                 </StackPanel>
             </Button>
-            <!-- 停止ボタン（押下後に再生ボタンを押下すると最初から再生される） -->
+            <!-- 最初からボタン（押下後に再生ボタンを押下すると最初から再生される） -->
             <Button Command="{Binding StopCommand}" Margin="5"
                     Style="{StaticResource IconTextButtonStyle}">
                 <StackPanel Orientation="Vertical" >
-                    <materialDesign:PackIcon Kind="Stop" Style="{StaticResource ITButtonIconStyle}"/>
-                    <TextBlock Text="停止" Style="{StaticResource ITButtonTextStyle}" />
+                    <materialDesign:PackIcon Kind="Replay" Style="{StaticResource ITButtonIconStyle}"/>
+                    <TextBlock Text="最初から" Style="{StaticResource ITButtonTextStyle}" />
                 </StackPanel>
             </Button>
             <!-- 早送りボタン -->
@@ -85,7 +85,7 @@
                 </StackPanel>
             </Button>
             <!-- チャプター遷移（次へ）ボタン -->
-            <Button Command="{Binding PreviousChapterCommand}" Margin="5"
+            <Button Command="{Binding NextChapterCommand}" Margin="5"
                     Style="{StaticResource IconTextButtonStyle}">
                 <StackPanel Orientation="Vertical" >
                     <materialDesign:PackIcon Kind="SkipNext" Style="{StaticResource ITButtonIconStyle}"/>
