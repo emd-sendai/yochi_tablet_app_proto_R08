@@ -1054,8 +1054,7 @@
             {
               "text": "ア 境界立会の依頼通知\n",
               "bold": true,
-              "color": "#1F78B4",
-              "underline": true
+              "color": "#1F78B4"
             },
             {
               "text": "（土地所有者・隣接土地所有者・関係人（借地人・耕作人等））\n\n",
@@ -1130,8 +1129,7 @@
             {
               "text": "イ 境界立会\n",
               "bold": true,
-              "color": "#1F78B4",
-              "underline": true
+              "color": "#1F78B4"
             },
             {
               "text": "（土地所有者・隣接土地所有者・関係人（借地人・耕作人等））\n\n",
@@ -1226,8 +1224,7 @@
             {
               "text": "ウ 土地境界立会確認書ヘの署名・押印\n",
               "bold": true,
-              "color": "#1F78B4",
-              "underline": true
+              "color": "#1F78B4"
             },
             {
               "text": "（土地所有者・隣接土地所有者・関係人（借地人、耕作人等））\n\n",
@@ -1329,8 +1326,7 @@
             {
               "text": "境界立会で確認した境界杭を基に一筆ごとに測量をさせていただきます。",
               "bold": true,
-              "color": "#1F78B4",
-              "underline": true
+              "color": "#1F78B4"
             }
           ],
           "fontSize": 16
@@ -1341,7 +1337,7 @@
           "rows": 4,
           "columns": 3,
           "indent": 1,
-          "padding": 3,
+          "padding": 2,
           "cells": [
             {
               "textRuns": [
