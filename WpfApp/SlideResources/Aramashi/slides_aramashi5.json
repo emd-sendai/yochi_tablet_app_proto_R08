@@ -483,7 +483,7 @@
               "color": "#000000"
             },
             {
-              "text": "土地所有者と借地人等相互で話し合っていただき権利の割合等を決めていただきます。\n",
+              "text": "土地所有者と借地人等相互に話し合っていただき権利の割合等を決めていただきます。\n",
               "bold": true,
               "color": "#1F78B4"
             },
@@ -529,8 +529,7 @@
             {
               "text": "①建物の補償",
               "bold": true,
-              "color": "#1F78B4",
-              "underline": true
+              "color": "#1F78B4"
             }
           ],
           "fontSize": 18
@@ -545,19 +544,17 @@
             {
               "text": "その建物の配置、種類、構造、敷地の形状等に基づき通常妥当と認められる移転先および移転工法",
               "bold": true,
-              "color": "#1F78B4",
-              "underline": true
+              "color": "#1F78B4"
             },
             {
-              "text": "（再築工法、曵家工法、改造工法、除却工法等）",
+              "text": "（再築工法、曳家工法、改造工法、除却工法等）",
               "bold": false,
               "color": "#000000"
             },
             {
               "text": "を認定",
               "bold": true,
-              "color": "#1F78B4",
-              "underline": true
+              "color": "#1F78B4"
             },
             {
               "text": "し、その移転工法により移転するのに要する費用を補償します。建物の移転料は移転工法ごとに算定した額となります。",
@@ -588,8 +585,7 @@
             {
               "text": "②工作物の補償",
               "bold": true,
-              "color": "#1F78B4",
-              "underline": true
+              "color": "#1F78B4"
             }
           ],
           "fontSize": 18
@@ -604,8 +600,7 @@
             {
               "text": "建物の移転料の算定方法に準じて算定",
               "bold": true,
-              "color": "#1F78B4",
-              "underline": true
+              "color": "#1F78B4"
             },
             {
               "text": "し補償します。ただし、",
@@ -615,8 +610,7 @@
             {
               "text": "土地と一体をなして利用されている土留めや階段等の施設は土地の価格に含まれています",
               "bold": true,
-              "color": "#1F78B4",
-              "underline": true
+              "color": "#1F78B4"
             },
             {
               "text": "ので補償の対象にはなりません。",
@@ -660,8 +654,7 @@
             {
               "text": "③立竹木の補償",
               "bold": true,
-              "color": "#1F78B4",
-              "underline": true
+              "color": "#1F78B4"
             }
           ],
           "fontSize": 18
@@ -760,8 +753,7 @@
             {
               "text": "④動産移転料の補償",
               "bold": true,
-              "color": "#1F78B4",
-              "underline": true
+              "color": "#1F78B4"
             }
           ],
           "fontSize": 18
@@ -796,8 +788,7 @@
             {
               "text": "⑤仮住居等に要する費用の補償",
               "bold": true,
-              "color": "#1F78B4",
-              "underline": true
+              "color": "#1F78B4"
             }
           ],
           "fontSize": 18
@@ -851,8 +842,7 @@
             {
               "text": "⑥借家人、借間人に対する補償",
               "bold": true,
-              "color": "#1F78B4",
-              "underline": true
+              "color": "#1F78B4"
             }
           ],
           "fontSize": 18
@@ -884,8 +874,7 @@
             {
               "text": "⑦家賃減収補償",
               "bold": true,
-              "color": "#1F78B4",
-              "underline": true
+              "color": "#1F78B4"
             }
           ],
           "fontSize": 18
@@ -934,8 +923,7 @@
             {
               "text": "⑧営業休止等の補償（営業補償）",
               "bold": true,
-              "color": "#1F78B4",
-              "underline": true
+              "color": "#1F78B4"
             }
           ],
           "fontSize": 18
@@ -1059,8 +1047,7 @@
             {
               "text": "⑨移転雑費の補償",
               "bold": true,
-              "color": "#1F78B4",
-              "underline": true
+              "color": "#1F78B4"
             }
           ],
           "fontSize": 18
@@ -1092,8 +1079,7 @@
             {
               "text": "⑩残地補償",
               "bold": true,
-              "color": "#1F78B4",
-              "underline": true
+              "color": "#1F78B4"
             }
           ],
           "fontSize": 18
