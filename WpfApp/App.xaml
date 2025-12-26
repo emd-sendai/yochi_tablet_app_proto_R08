@@ -33,14 +33,14 @@
                 </Style.Triggers>
             </Style>
 
-            <!-- アイコン+テキストボタン様式 -->
+            <!-- アイコン+テキストボタン（透明）様式 -->
             <Style x:Key="IconTextButtonStyle" TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatButton}">
                 <Setter Property="Padding" Value="0"/>
                 <Setter Property="Height" Value="50"/>
                 <Setter Property="Width" Value="50"/>
             </Style>
 
-            <!-- アイコン+テキストボタン内のアイコン様式 -->
+            <!-- アイコン+テキストボタン（透明）内のアイコン様式 -->
             <Style x:Key="ITButtonIconStyle" TargetType="materialDesign:PackIcon" >
                 <Setter Property="Height" Value="30"/>
                 <Setter Property="Width" Value="30"/>
@@ -48,11 +48,18 @@
                 <Setter Property="VerticalAlignment" Value="Center"/>
             </Style>
 
-            <!-- アイコン+テキストボタン内のテキスト様式 -->
+            <!-- アイコン+テキストボタン（透明）内のテキスト様式 -->
             <Style x:Key="ITButtonTextStyle" TargetType="TextBlock" >
                 <Setter Property="FontSize" Value="10"/>
                 <Setter Property="HorizontalAlignment" Value="Center"/>
                 <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+
+            <!-- アイコン+テキストボタン（色付き）様式 -->
+            <Style x:Key="IconTextButtonStyle2" TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="Height" Value="50"/>
+                <Setter Property="Width" Value="50"/>
             </Style>
 
             <!-- 補償のあらまし手順ボタン様式 -->

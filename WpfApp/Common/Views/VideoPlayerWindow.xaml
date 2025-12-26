@@ -54,7 +54,7 @@
             </Button>
             <!-- 再生ボタン -->
             <Button Command="{Binding PlayCommand}" Margin="5"
-                    Style="{StaticResource IconTextButtonStyle}">
+                    Style="{StaticResource IconTextButtonStyle2}">
                 <StackPanel Orientation="Vertical" >
                     <materialDesign:PackIcon Kind="Play" Style="{StaticResource ITButtonIconStyle}"/>
                     <TextBlock Text="再生" Style="{StaticResource ITButtonTextStyle}" />
@@ -62,18 +62,18 @@
             </Button>
             <!-- 一時停止ボタン（押下後に再生ボタンを押下するとその時点から再生される） -->
             <Button Command="{Binding PauseCommand}" Margin="5"
-                    Style="{StaticResource IconTextButtonStyle}">
+                    Style="{StaticResource IconTextButtonStyle2}">
                 <StackPanel Orientation="Vertical" >
                     <materialDesign:PackIcon Kind="Pause" Style="{StaticResource ITButtonIconStyle}"/>
                     <TextBlock Text="一時停止" Style="{StaticResource ITButtonTextStyle}" />
                 </StackPanel>
             </Button>
-            <!-- 最初からボタン（押下後に再生ボタンを押下すると最初から再生される） -->
+            <!-- 停止（最初から）ボタン（押下後に再生ボタンを押下すると最初から再生される） -->
             <Button Command="{Binding StopCommand}" Margin="5"
-                    Style="{StaticResource IconTextButtonStyle}">
+                    Style="{StaticResource IconTextButtonStyle2}">
                 <StackPanel Orientation="Vertical" >
-                    <materialDesign:PackIcon Kind="Replay" Style="{StaticResource ITButtonIconStyle}"/>
-                    <TextBlock Text="最初から" Style="{StaticResource ITButtonTextStyle}" />
+                    <materialDesign:PackIcon Kind="Stop" Style="{StaticResource ITButtonIconStyle}"/>
+                    <TextBlock Text="停止" Style="{StaticResource ITButtonTextStyle}" />
                 </StackPanel>
             </Button>
             <!-- 早送りボタン -->
