@@ -597,7 +597,7 @@ namespace WpfApp.Screens.Aramashi.Views
             var cols = data.Columns;
             var indent = data.Indent;
             var showBorder = data.ShowBorder;
-            var hasPadding = data.HasPadding;
+            var padding = data.Padding;
             var cells = data.Cells;
 
             // Gridを作成
@@ -628,7 +628,6 @@ namespace WpfApp.Screens.Aramashi.Views
                 {
                     // デフォルト値を設定
                     Thickness border = new Thickness(0); // 罫線なし
-                    Thickness padding = new Thickness(0); //内部の余白なし
 
                     // 罫線ありの場合
                     if (showBorder)
@@ -654,17 +653,11 @@ namespace WpfApp.Screens.Aramashi.Views
                         }
                     }
 
-                    // 内部の余白ありの場合 
-                    if (hasPadding)
-                    {
-                        padding = new Thickness(3);
-                    }
-
                     Border cell = new Border
                     {
                         BorderThickness = border,
                         BorderBrush = Brushes.Black,
-                        Padding = padding,
+                        Padding = new Thickness(padding),
                         //Child = child,
                     };
 

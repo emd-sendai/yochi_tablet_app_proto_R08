@@ -104,7 +104,7 @@ namespace WpfApp.Screens.Aramashi.Models
         public int Columns { get; set; } = 0;
         public double Indent { get; set; } = 0;
         public bool ShowBorder { get; set; } = false;
-        public bool HasPadding { get; set; } = false;
+        public double Padding { get; set; } = 0;
         public double MaxWidth { get; set; } = 700;
         public double MaxHeight { get; set; } = 400;
         public List<JsonElement> Cells { get; set; } = new();

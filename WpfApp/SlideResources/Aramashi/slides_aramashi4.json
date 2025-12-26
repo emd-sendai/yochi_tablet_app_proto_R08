@@ -170,7 +170,7 @@
           "rows": 9,
           "columns": 3,
           "showBorder": true,
-          "hasPadding": true,
+          "padding": 3,
           "cells": [
             {
               "textRuns": [
@@ -548,7 +548,7 @@
           "rows": 7,
           "columns": 3,
           "showBorder": true,
-          "hasPadding": true,
+          "padding": 3,
           "cells": [
             {
               "textRuns": [
