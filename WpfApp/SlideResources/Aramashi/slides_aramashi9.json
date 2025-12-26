@@ -39,18 +39,17 @@
             {
               "text": "建物等の移転対象物件（※）については、",
               "bold": true,
-              "color": "#1F78B4"
+              "color": "#D32F2F"
             },
             {
               "text": "所有者の方に移転していただき",
               "bold": true,
-              "color": "#1F78B4",
-              "underline": true
+              "color": "#D32F2F"
             },
             {
               "text": "、国の完了の確認（履行検査）後に、土地を引渡して",
               "bold": true,
-              "color": "#1F78B4"
+              "color": "#D32F2F"
             },
             {
               "text": "いただきます。\n",
@@ -67,17 +66,17 @@
             {
               "text": "※建物等の移転対象物件：\n",
               "bold": true,
-              "color": "#1F78B4"
+              "color": "#D32F2F"
             },
             {
               "text": "事業用地内の物件等の移転をお願いします。\n",
               "bold": true,
-              "color": "#1F78B4"
+              "color": "#D32F2F"
             },
             {
               "text": "「",
               "bold": true,
-              "color": "#1F78B4"
+              "color": "#D32F2F"
             },
             {
               "text": "物件調書",
@@ -88,12 +87,12 @@
             {
               "text": "」の移転義務有りの物件の移転をお願いします。\n",
               "bold": true,
-              "color": "#1F78B4"
+              "color": "#D32F2F"
             },
             {
               "text": "移転完了時点で、（できれば解体業者が撤収する前に）ご連絡お願い致します。",
               "bold": true,
-              "color": "#1F78B4"
+              "color": "#D32F2F"
             }
           ],
           "fontSize": 16,
