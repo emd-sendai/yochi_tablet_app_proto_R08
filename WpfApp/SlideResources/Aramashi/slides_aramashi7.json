@@ -46,21 +46,50 @@
             {
               "text": "〔契約の際にご用意いただくもの〕\n",
               "bold": true,
-              "color": "#1F78B4",
-              "underline": true
+              "color": "#D32F2F"
             },
             {
-              "text": "・ 実印（市町村に登録している印鑑）\n",
+              "text": "・ ",
               "bold": false,
               "color": "#000000"
             },
             {
-              "text": "・ 印鑑登録証明書（市町村等が発行したもの）　　　　　\n",
+              "text": "実印",
+              "bold": true,
+              "color": "#D32F2F"
+            },
+            {
+              "text": "（市町村に登録している印鑑）\n",
               "bold": false,
               "color": "#000000"
             },
             {
-              "text": "・ 補償金振込先（通帳など）",
+              "text": "・ ",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "印鑑登録証明書",
+              "bold": true,
+              "color": "#D32F2F"
+            },
+            {
+              "text": "（市町村等が発行したもの）　　　　　\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "・ ",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "補償金振込先",
+              "bold": true,
+              "color": "#D32F2F"
+            },
+            {
+              "text": "（通帳など）",
               "bold": false,
               "color": "#000000"
             }
@@ -96,9 +125,7 @@
         "body": {
           "textRuns": [
             {
-              "text": "〔契約関係書類（当所用意）〕\n",
-              "bold": true,
-              "underline": true
+              "text": "〔契約関係書類（当所用意）〕\n"
             },
             {
               "text": "・ 契約書\n",
@@ -116,10 +143,17 @@
               "color": "#000000"
             },
             {
-              "text": "・ マイナンバー提供依頼（提供は任意）\n",
+              "text": "・ マイナンバー提供依頼（提供は任意）",
               "bold": false,
               "color": "#000000"
-            },
+            }
+          ],
+          "fontSize": 16
+        }
+      },
+      {
+        "body": {
+          "textRuns": [
             {
               "text": "・ 委任状（第三者への委任払いがある場合）\n",
               "bold": false,
@@ -131,7 +165,7 @@
               "color": "#000000"
             }
           ],
-          "fontSize": 16
+          "fontSize": 13
         }
       },
       {
@@ -183,7 +217,7 @@
             {
               "text": "７ 契約 特に確認していただきたいこと",
               "bold": true,
-              "color": "#C55A11",
+              "color": "#000000",
               "underline": true
             }
           ],
@@ -234,7 +268,7 @@
             {
               "text": "７ 契約 確認事項☑",
               "bold": true,
-              "color": "#C55A11",
+              "color": "#1F78B4",
               "underline": true
             }
           ],
@@ -380,7 +414,7 @@
             {
               "textRuns": [
                 {
-                  "text": "第4条第1項",
+                  "text": "第4条第1項\n（第3条）",
                   "bold": true
                 }
               ],
@@ -394,13 +428,13 @@
                   "text": "前金払の支払い要件です。\n"
                 },
                 {
-                  "text": "①抵当権等の登記の抹消又は抹消承諾書の提出\n"
+                  "text": "１）抵当権等の登記の抹消又は抹消承諾書の提出\n"
                 },
                 {
-                  "text": "②借地人、借家人等と補償契約が成立\n"
+                  "text": "２）借地人、借家人等と補償契約が成立\n"
                 },
                 {
-                  "text": "③所有権移転登記嘱託に必要な書類等の提出（登記原因証明情報兼承諾書、印鑑証明書）"
+                  "text": "３）所有権移転登記嘱託に必要な書類等の提出（登記原因証明情報兼承諾書、印鑑証明書等）（第3条）"
                 }
               ],
               "fontSize": 14,
@@ -431,10 +465,10 @@
                   "text": "後金の支払要件です。\n"
                 },
                 {
-                  "text": "①土地の引き渡し\n"
+                  "text": "１）土地の引き渡し\n"
                 },
                 {
-                  "text": "②所有権移転登記の完了"
+                  "text": "２）所有権移転登記の完了"
                 }
               ],
               "fontSize": 14,
@@ -492,7 +526,7 @@
             {
               "text": "７ 契約 確認事項☑",
               "bold": true,
-              "color": "#C55A11",
+              "color": "#1F78B4",
               "underline": true
             }
           ],
@@ -558,7 +592,7 @@
                   "bold": true
                 }
               ],
-              "fontSize": 12,
+              "fontSize": 13,
               "maxWidth": 70,
               "backgroundColor": "#FFFFFF"
             },
@@ -568,7 +602,7 @@
                   "text": "土地調書、添付図面にて取得面積、取得範囲、残地面積、残地範囲について、再度ご確認よろしくお願いします。"
                 }
               ],
-              "fontSize": 13,
+              "fontSize": 14,
               "maxWidth": 550,
               "backgroundColor": "#FFFFFF"
             },
@@ -586,7 +620,7 @@
                   "bold": true
                 }
               ],
-              "fontSize": 12,
+              "fontSize": 13,
               "maxWidth": 70,
               "backgroundColor": "#FFFFFF"
             },
@@ -599,7 +633,7 @@
                   "text": "移転が終わりましたらご連絡お願い致します。"
                 }
               ],
-              "fontSize": 13,
+              "fontSize": 14,
               "maxWidth": 550,
               "backgroundColor": "#FFFFFF"
             },
@@ -617,14 +651,14 @@
                   "bold": true
                 }
               ],
-              "fontSize": 12,
+              "fontSize": 13,
               "maxWidth": 70,
               "backgroundColor": "#FFFFFF"
             },
             {
               "textRuns": [
                 {
-                  "text": "「補償のあらまし」にて再度説明します。\n"
+                  "text": "「補償のあらまし」にて、"
                 },
                 {
                   "text": "「"
@@ -636,16 +670,7 @@
                   "commandParameter": "0"
                 },
                 {
-                  "text": "」\n"
-                },
-                {
-                  "text": "・譲渡所得に対する課税の特例について（要件あり）\n"
-                },
-                {
-                  "text": "・税の確定申告が必要（証明書類は申告前に送付）\n"
-                },
-                {
-                  "text": "※租税特別措置法の適用を受けるための条件は個々に異なりますので、詳細については所轄税務署にご確認ください。\n"
+                  "text": "」、確定申告が必要な点、確定申告添付書類の送付時期の説明。\n"
                 },
                 {
                   "text": "「"
@@ -657,25 +682,10 @@
                   "commandParameter": "3"
                 },
                 {
-                  "text": "」\n"
-                },
-                {
-                  "text": "・土地、建物の固定資産税等について（1月1日の登記簿上の所有者に課税）\n"
-                },
-                {
-                  "text": "・不動産取得税について\n"
-                },
-                {
-                  "text": "・その他、補償金が所得となることにより影響があると考えられるもの\n"
-                },
-                {
-                  "text": "　配偶者控除・扶養控除等、農業者年金、福祉年金等、国民健康保険料、後期高齢者医療保険料、\n　介護保険料等\n"
-                },
-                {
-                  "text": "　※各市区町村等にご相談ください。"
+                  "text": "」について説明。"
                 }
               ],
-              "fontSize": 13,
+              "fontSize": 14,
               "maxWidth": 550,
               "backgroundColor": "#FFFFFF"
             }
