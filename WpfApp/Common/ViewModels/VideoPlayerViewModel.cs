@@ -148,15 +148,6 @@ namespace WpfApp.Common.ViewModels
         }
 
         [RelayCommand]
-        private void Stop()
-        {
-            IsPlaying = false;
-            Timer.Stop();
-            StopRequested?.Invoke();
-            SeekAction?.Invoke(TimeSpan.Zero);
-        }
-
-        [RelayCommand]
         private void TogglePlayPause()
         {
             if (IsPlaying)

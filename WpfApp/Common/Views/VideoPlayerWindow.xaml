@@ -41,7 +41,7 @@
                     Style="{StaticResource IconTextButtonStyle}">
                 <StackPanel Orientation="Vertical" >
                     <materialDesign:PackIcon Kind="SkipPrevious" Style="{StaticResource ITButtonIconStyle}"/>
-                    <TextBlock Text="前へ" Style="{StaticResource ITButtonTextStyle}" />
+                    <TextBlock Text="前のチャプター" Style="{StaticResource ITButtonTextStyle}" FontSize="9"/>
                 </StackPanel>
             </Button>
             <!-- 巻き戻しボタン -->
@@ -68,14 +68,6 @@
                     <TextBlock Text="一時停止" Style="{StaticResource ITButtonTextStyle}" />
                 </StackPanel>
             </Button>
-            <!-- 停止（最初から）ボタン（押下後に再生ボタンを押下すると最初から再生される） -->
-            <Button Command="{Binding StopCommand}" Margin="5"
-                    Style="{StaticResource IconTextButtonStyle2}">
-                <StackPanel Orientation="Vertical" >
-                    <materialDesign:PackIcon Kind="Stop" Style="{StaticResource ITButtonIconStyle}"/>
-                    <TextBlock Text="停止" Style="{StaticResource ITButtonTextStyle}" />
-                </StackPanel>
-            </Button>
             <!-- 早送りボタン -->
             <Button Command="{Binding ForwardCommand}" Margin="5"
                     Style="{StaticResource IconTextButtonStyle}">
@@ -89,7 +81,7 @@
                     Style="{StaticResource IconTextButtonStyle}">
                 <StackPanel Orientation="Vertical" >
                     <materialDesign:PackIcon Kind="SkipNext" Style="{StaticResource ITButtonIconStyle}"/>
-                    <TextBlock Text="次へ" Style="{StaticResource ITButtonTextStyle}" />
+                    <TextBlock Text="次のチャプター" Style="{StaticResource ITButtonTextStyle}" FontSize="9"/>
                 </StackPanel>
             </Button>
 
