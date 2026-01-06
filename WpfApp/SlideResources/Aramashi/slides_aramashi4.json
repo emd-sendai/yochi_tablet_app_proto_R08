@@ -499,8 +499,8 @@
       {
         "imageButton": {
           "id": "aramashi4_4",
-          "maxHeight": 230,
-          "maxWidth": 330,
+          "maxHeight": 210,
+          "maxWidth": 310,
           "imageButtons": [
             {
               "id": "aramashi4_4_1",
