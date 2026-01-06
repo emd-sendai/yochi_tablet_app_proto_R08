@@ -117,6 +117,13 @@ namespace WpfApp.Screens.Aramashi.ViewModels
                     pathList.Add(zeikinPath);
                     Debug.WriteLine($"[DEBUG] スライドパスを追加: {zeikinPath}");
                     break;
+
+                case "sonshitsu":
+
+                    var sonshitsuPath = Path.Combine(dataFolder, "Others", "slides_sonshitsu.json");
+                    pathList.Add(sonshitsuPath);
+                    Debug.WriteLine($"[DEBUG] スライドパスを追加: {sonshitsuPath}");
+                    break;
             }
             return pathList;
         }
@@ -468,6 +475,33 @@ namespace WpfApp.Screens.Aramashi.ViewModels
                 {
                 }
             }
+        }
+
+        [RelayCommand]
+        private void OpenUrl(string url)
+        {
+            var result = MessageBox.Show("外部サイトをブラウザで開きます。よろしいですか。",
+                "OK",MessageBoxButton.OKCancel,MessageBoxImage.Information);
+
+            if (result != MessageBoxResult.OK) return;
+
+            try
+            {
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = url,
+                    UseShellExecute = true
+                });
+                Debug.WriteLine($"[DEBUG] 外部サイトをブラウザで開きます :{url}");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("外部サイトをブラウザで開くことができません");
+                Debug.WriteLine($"[ERROR] 外部サイトをブラウザで開くことができません :{url}");
+                Debug.WriteLine($"[ERROR] {ex.Message}");
+            }
+
+
         }
     }
 }

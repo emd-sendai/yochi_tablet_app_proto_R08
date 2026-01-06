@@ -343,6 +343,14 @@ namespace WpfApp.Screens.Aramashi.Views
                             }
                             hyperlink.Command = viewModel.GoToZeikinCommand;
                         }
+                        else if (runInfo.CommandName == "OpenUrlCommand")
+                        {
+                            if (!string.IsNullOrWhiteSpace(param))
+                            {
+                                hyperlink.CommandParameter = param;
+                            }
+                            hyperlink.Command = viewModel.OpenUrlCommand;
+                        }
 
                         tb.Inlines.Add(hyperlink);
                     }

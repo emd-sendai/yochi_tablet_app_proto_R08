@@ -187,7 +187,8 @@
                                 <Run Text="税金等" />
                         </TextBlock>
                     </Button>
-                    <Button Grid.Row="2" Style="{StaticResource OthersButtonStyle}" >
+                    <Button Grid.Row="2" Style="{StaticResource OthersButtonStyle}" 
+                            Command="{Binding GoToSonshitsuCommand}">
                         <TextBlock Style="{StaticResource WrapTextBlockStyle}">
                                 <Run Text="損失補償基準" />
                         </TextBlock>

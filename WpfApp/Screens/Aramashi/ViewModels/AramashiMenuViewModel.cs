@@ -238,5 +238,10 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             _nav.Navigate(new PresentationViewerViewModel("zeikin", _nav, _dia));
         }
 
+        [RelayCommand]
+        private void GoToSonshitsu()
+        {
+            _nav.Navigate(new PresentationViewerViewModel("sonshitsu", _nav, _dia));
+        }
     }
 }
