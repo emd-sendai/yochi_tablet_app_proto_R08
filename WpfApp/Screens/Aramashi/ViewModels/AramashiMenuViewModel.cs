@@ -7,6 +7,7 @@ using System.Text.Json;
 using System.Windows;
 using WpfApp.Common.Models;
 using WpfApp.Common.ViewModels;
+using WpfApp.Common.Views;
 using WpfApp.Interfaces;
 using WpfApp.Screens.Aramashi.Models;
 using WpfApp.Screens.Menu.ViewModels;
@@ -18,6 +19,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
     {
         private readonly NavigationService _nav;
         private readonly IDialogService _dia;
+        private readonly PdfDocumentService _pdf;
 
         private static readonly string BaseDire = AppDomain.CurrentDomain.BaseDirectory;
         private static readonly string ButtonDataFolder = Path.Combine(BaseDire, "Data", "ButtonSettings");
@@ -31,6 +33,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         {
             _nav = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
             _dia = dialogService ?? throw new ArgumentNullException(nameof(dialogService));
+            _pdf = new PdfDocumentService();
             LoadButtonFromJson();
             LoadSlidesFromJsons();
         }
@@ -152,8 +155,30 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         private void OpenPdfDocument()
         {
             var folderPath = Path.Combine(DocumentDataFolder, "Aramashi", "Aramashi");
-            // 非モーダル表示
-            _dia.ShowWindow<DocumentSelectViewModel>(folderPath);
+            var pdfList = _pdf.GetPdfList(folderPath);
+
+            // PDF資料が存在しない場合
+            if (pdfList.Count <= 0)
+            {
+                Debug.WriteLine($"[ERROR] PDFファイルが存在しません {folderPath}");
+                //メッセージウィンドウを表示
+                var vm = new MessageDialogViewModel
+                {
+                    Message = "PDFファイルが存在しません"
+                };
+
+                var dialog = new MessageDialogWindow
+                {
+                    DataContext = vm,
+                    Owner = Application.Current.MainWindow
+                };
+                dialog.ShowDialog();
+            }
+            else
+            {
+                // 非モーダル表示
+                _dia.ShowWindow<DocumentSelectViewModel>(pdfList);
+            }
         }
 
         [RelayCommand]

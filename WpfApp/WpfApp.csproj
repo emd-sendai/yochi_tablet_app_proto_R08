@@ -81,7 +81,10 @@
 
   <ItemGroup>
     <Folder Include="Data\Signature\" />
-    <Folder Include="DocumentResources\Documents\" />
+    <Folder Include="DocumentResources\Documents\Works\Document04\" />
+    <Folder Include="DocumentResources\Documents\Works\Document06\" />
+    <Folder Include="DocumentResources\Documents\Works\Document07\" />
+    <Folder Include="DocumentResources\Documents\Works\Document08\" />
     <Folder Include="Screens\Admin\Models\" />
     <Folder Include="Screens\Menu\Models\" />
     <Folder Include="Screens\Documents\Models\" />
@@ -107,6 +110,21 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="DocumentResources\Aramashi\Others\Zeikin\譲渡所得税の特例あらまし（関東信越国税局R7.7版）.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="DocumentResources\Documents\Works\Document01\【サンプル】地図（公図）.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="DocumentResources\Documents\Works\Document02\【サンプル】土地登記事項証明書.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="DocumentResources\Documents\Works\Document02\【サンプル】建物登記事項証明書.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="DocumentResources\Documents\Works\Document03\【サンプル】用地平面図.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="DocumentResources\Documents\Works\Document05\【サンプル】地積測量図.pdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="MediaResources\chapters.json">

@@ -24,20 +24,11 @@ namespace WpfApp.Common.ViewModels
 
         public event EventHandler? RequestClose;
 
-        public DocumentSelectViewModel(string folderPath)
+        public DocumentSelectViewModel(IReadOnlyList<PdfData> pdfList)
         {
             _pdf = new PdfDocumentService();
-            _documents = _pdf.GetPdfList(folderPath);
-
-            if (_documents.Count <= 0)
-            {
-                Debug.WriteLine($"[ERROR] PDFファイルが存在しません {folderPath}");
-                MessageBox.Show("PDFファイルデータが存在しません");
-            }
-            else
-            {
-                Documents = new ObservableCollection<PdfData>(_documents);
-            }
+            _documents = pdfList;
+            Documents = new ObservableCollection<PdfData>(_documents);
         }
 
         [RelayCommand]

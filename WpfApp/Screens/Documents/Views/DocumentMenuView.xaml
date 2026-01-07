@@ -64,17 +64,17 @@
 
                 <!-- 事業資料ボタンエリア（上段） -->
                 <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" 
-                            Margin="0,5,0,10">
+                            Margin="0,5,0,10" Cursor="Hand">
                     <!-- 公図 -->
-                    <Button FontSize="20" Margin="20,0,15,0" 
-                            Style="{StaticResource DocumentWorkButtonStyle}">
+                    <Button FontSize="20" Margin="20,0,15,0" Style="{StaticResource DocumentWorksButtonStyle}"
+                            Command="{Binding OpenWorksPdfDocumentCommand}" CommandParameter="Document01">
                         <TextBlock Style="{StaticResource WrapTextBlockStyle}" >
                                 <Run Text="公図" />
                         </TextBlock>
                     </Button>
                     <!-- 登記簿 -->
-                    <Button FontSize="20"  Margin="0,0,15,0" 
-                            Style="{StaticResource DocumentWorkButtonStyle}">
+                    <Button FontSize="20"  Margin="0,0,15,0" Style="{StaticResource DocumentWorksButtonStyle}"
+                            Command="{Binding OpenWorksPdfDocumentCommand}" CommandParameter="Document02">
                         <TextBlock Style="{StaticResource WrapTextBlockStyle}" >
                                 <Run Text="登記簿" />
                                 <LineBreak />
@@ -82,15 +82,15 @@
                         </TextBlock>
                     </Button>
                     <!-- 用地平面図 -->
-                    <Button FontSize="20"  Margin="0,0,15,0" 
-                            Style="{StaticResource DocumentWorkButtonStyle}">
+                    <Button FontSize="20"  Margin="0,0,15,0" Style="{StaticResource DocumentWorksButtonStyle}"
+                            Command="{Binding OpenWorksPdfDocumentCommand}" CommandParameter="Document03">
                         <TextBlock Style="{StaticResource WrapTextBlockStyle}" >
                                 <Run Text="用地平面図" />
                         </TextBlock>
                     </Button>
                     <!-- 面積計算書 -->
-                    <Button FontSize="20"  Margin="0,0,20,0" 
-                            Style="{StaticResource DocumentWorkButtonStyle}">
+                    <Button FontSize="20"  Margin="0,0,20,0" Style="{StaticResource DocumentWorksButtonStyle}"
+                            Command="{Binding OpenWorksPdfDocumentCommand}" CommandParameter="Document04">
                         <TextBlock Style="{StaticResource WrapTextBlockStyle}" >
                                 <Run Text="面積計算書" />
                         </TextBlock>
@@ -99,15 +99,15 @@
                 <!-- 事業資料ボタンエリア（下段） -->
                 <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,10">
                     <!-- 地積測量図 -->
-                    <Button FontSize="20"  Margin="20,0,15,0" 
-                            Style="{StaticResource DocumentWorkButtonStyle}">
+                    <Button FontSize="20"  Margin="20,0,15,0" Style="{StaticResource DocumentWorksButtonStyle}"
+                            Command="{Binding OpenWorksPdfDocumentCommand}" CommandParameter="Document05">
                         <TextBlock Style="{StaticResource WrapTextBlockStyle}" >
                                 <Run Text="地積測量図" />
                         </TextBlock>
                     </Button>
                     <!-- 登記簿 -->
-                    <Button FontSize="20"  Margin="0,0,15,0" 
-                            Style="{StaticResource DocumentWorkButtonStyle}">
+                    <Button FontSize="20"  Margin="0,0,15,0" Style="{StaticResource DocumentWorksButtonStyle}"
+                            Command="{Binding OpenWorksPdfDocumentCommand}" CommandParameter="Document06">
                         <TextBlock Style="{StaticResource WrapTextBlockStyle}" >
                                 <Run Text="写真" />
                                 <LineBreak />
@@ -115,15 +115,15 @@
                         </TextBlock>
                     </Button>
                     <!-- 事業計画図 -->
-                    <Button FontSize="20"  Margin="0,0,15,0" 
-                            Style="{StaticResource DocumentWorkButtonStyle}">
+                    <Button FontSize="20"  Margin="0,0,15,0" Style="{StaticResource DocumentWorksButtonStyle}"
+                            Command="{Binding OpenWorksPdfDocumentCommand}" CommandParameter="Document07">
                         <TextBlock Style="{StaticResource WrapTextBlockStyle}" >
                                 <Run Text="事業計画図" />
                         </TextBlock>
                     </Button>
                     <!-- その他 -->
-                    <Button FontSize="20"  Margin="0,0,20,0" 
-                            Style="{StaticResource DocumentWorkButtonStyle}">
+                    <Button FontSize="20"  Margin="0,0,20,0" Style="{StaticResource DocumentWorksButtonStyle}"
+                            Command="{Binding OpenWorksPdfDocumentCommand}" CommandParameter="Document08">
                         <TextBlock Style="{StaticResource WrapTextBlockStyle}" >
                                 <Run Text="その他" />
                         </TextBlock>

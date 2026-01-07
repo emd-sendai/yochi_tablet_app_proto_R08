@@ -1,6 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.IO;
 using System.Windows;
 using WpfApp.Common.Models;
 using WpfApp.Common.ViewModels;
@@ -15,6 +17,10 @@ namespace WpfApp.Screens.Documents.ViewModels
     {
         private readonly NavigationService _nav;
         private readonly IDialogService _dia;
+        private readonly PdfDocumentService _pdf;
+
+        private static readonly string BaseDire = AppDomain.CurrentDomain.BaseDirectory;
+        private static readonly string DocumentDataFolder = Path.Combine(BaseDire, "DocumentResources", "Documents");
 
         [ObservableProperty]
         private ObservableCollection<LandownerData>? landowners;
@@ -30,6 +36,7 @@ namespace WpfApp.Screens.Documents.ViewModels
         {
             _nav = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
             _dia = dialogService ?? throw new ArgumentNullException(nameof(dialogService));
+            _pdf = new PdfDocumentService();
 
         }
 
@@ -119,6 +126,36 @@ namespace WpfApp.Screens.Documents.ViewModels
                         // OK押下後の処理
                     }
                 }
+            }
+        }
+
+        [RelayCommand]
+        private void OpenWorksPdfDocument(string folderName)
+        {
+            var folderPath = Path.Combine(DocumentDataFolder, "Works", folderName);
+            var pdfList = _pdf.GetPdfList(folderPath);
+
+            // PDF資料が存在しない場合
+            if (pdfList.Count <= 0)
+            {
+                Debug.WriteLine($"[ERROR] PDFファイルが存在しません {folderPath}");
+                //メッセージウィンドウを表示
+                var vm = new MessageDialogViewModel
+                {
+                    Message = "PDFファイルが存在しません"
+                };
+
+                var dialog = new MessageDialogWindow
+                {
+                    DataContext = vm,
+                    Owner = Application.Current.MainWindow
+                };
+                dialog.ShowDialog();
+            }
+            else
+            {
+                // 非モーダル表示
+                _dia.ShowWindow<DocumentSelectViewModel>(pdfList);
             }
         }
 
