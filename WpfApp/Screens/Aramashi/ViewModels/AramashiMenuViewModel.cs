@@ -19,7 +19,9 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         private readonly NavigationService _nav;
         private readonly IDialogService _dia;
 
-        private static readonly string ButtonDataFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data", "ButtonSettings");
+        private static readonly string BaseDire = AppDomain.CurrentDomain.BaseDirectory;
+        private static readonly string ButtonDataFolder = Path.Combine(BaseDire, "Data", "ButtonSettings");
+        private static readonly string DocumentDataFolder = Path.Combine(BaseDire, "DocumentResources");
 
         public ObservableCollection<ButtonConfig> Buttons { get; } = new();
 
@@ -144,6 +146,14 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         {
             // 非モーダル表示
             _dia.ShowWindow<VideoPlayerViewModel> ("AramashiSample.mp4");
+        }
+
+        [RelayCommand]
+        private void OpenPdfDocument()
+        {
+            var folderPath = Path.Combine(DocumentDataFolder, "Aramashi");
+
+            _dia.ShowWindow<DocumentSelectViewModel>(folderPath);
         }
 
         [RelayCommand]

@@ -81,6 +81,7 @@
 
   <ItemGroup>
     <Folder Include="Data\Signature\" />
+    <Folder Include="DocumentResources\Documents\" />
     <Folder Include="Screens\Admin\Models\" />
     <Folder Include="Screens\Menu\Models\" />
     <Folder Include="Screens\Documents\Models\" />
@@ -93,6 +94,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="DocumentResources\Aramashi\【R7改訂案】補償のあらまし1217修正案.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="MediaResources\chapters.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
