@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
+using System.Security.Policy;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Windows;
@@ -502,6 +503,21 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             }
 
 
+        }
+
+        [RelayCommand]
+        private void OpenPdfDocument(string folderName)
+        {
+            if (!string.IsNullOrWhiteSpace(folderName))
+            {
+                var folderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "DocumentResources", "Aramashi", "Others", folderName);
+                // 非モーダル表示
+                _dia.ShowWindow<DocumentSelectViewModel>(folderPath);
+            }
+            else
+            {
+                Debug.WriteLine($"[ERROR] folderNameが空です");
+            }
         }
     }
 }

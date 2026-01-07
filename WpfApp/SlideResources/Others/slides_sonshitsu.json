@@ -11,6 +11,8 @@
       ],
       "fontSize": 26
     },
+    "document": true,
+    "documentFolderName": "Sonshitsu",
     "sections": [
       {
         "body": {
@@ -43,7 +45,8 @@
               "textRuns": [
                 {
                   "text": "国土交通省の公共用地の取得に伴う損失補償基準（平成１３年１月６日国土交通省訓令第７６号）",
-                  "isLink": true,
+                  "bold": true,
+                  "isLink": false,
                   "commandName": "",
                   "commandParameter": ""
                 }
@@ -54,7 +57,8 @@
               "textRuns": [
                 {
                   "text": "国土交通省の公共用地の取得に伴う損失補償基準の運用方針（平成１５年８月５日国総国調第５７号）",
-                  "isLink": true,
+                  "bold": true,
+                  "isLink": false,
                   "commandName": "",
                   "commandParameter": ""
                 }
@@ -65,7 +69,8 @@
               "textRuns": [
                 {
                   "text": "国土交通省損失補償取扱要領（平成１５年８月５日国総国調第５８号）",
-                  "isLink": true,
+                  "bold": true,
+                  "isLink": false,
                   "commandName": "",
                   "commandParameter": ""
                 }

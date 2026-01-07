@@ -17,6 +17,10 @@ namespace WpfApp.Screens.Aramashi.Models
 
         public string? VideoPath { get; set; }
 
+        public bool Document { get; set; } = false;
+
+        public string? DocumentFolderName { get; set; }
+
         public List<PageSection> Sections { get; set; } = new();
 
         [JsonIgnore]

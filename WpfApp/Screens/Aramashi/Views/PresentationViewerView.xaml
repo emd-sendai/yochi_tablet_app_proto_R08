@@ -74,6 +74,15 @@
                     <TextBlock Text="動画" Style="{StaticResource ITButtonTextStyle}"/>
                 </StackPanel>
             </Button>
+            <!-- PDF資料アイコンボタン -->
+            <Button Style="{StaticResource IconTextButtonStyle}" Margin="5,0,0,0" 
+                    Visibility="{Binding CurrentSlide.Document, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    Command="{Binding OpenPdfDocumentCommand}" CommandParameter="{Binding CurrentSlide.DocumentFolderName}">
+                <StackPanel Orientation="Vertical">
+                    <materialDesign:PackIcon Kind="File" Style="{StaticResource ITButtonIconStyle}" />
+                    <TextBlock Text="パンフレット" Style="{StaticResource ITButtonTextStyle}" />
+                </StackPanel>
+            </Button>
         </StackPanel>
         <!-- 次へボタン -->
         <StackPanel  HorizontalAlignment="Right" Margin="15" Grid.Row="1">

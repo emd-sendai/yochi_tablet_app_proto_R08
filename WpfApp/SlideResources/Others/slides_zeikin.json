@@ -13,6 +13,8 @@
     },
     "video": true,
     "videoPath": "",
+    "document": true,
+    "documentFolderName": "Zeikin",
     "sections": [
       {
         "subtitle": {
@@ -168,8 +170,6 @@
       ],
       "fontSize": 26
     },
-    "video": true,
-    "videoPath": "",
     "sections": [
       {
         "subtitle": {
@@ -267,8 +267,6 @@
       ],
       "fontSize": 26
     },
-    "video": true,
-    "videoPath": "",
     "sections": [
       {
         "subtitle": {
@@ -454,8 +452,6 @@
       ],
       "fontSize": 26
     },
-    "video": true,
-    "videoPath": "",
     "sections": [
       {
         "subtitle": {
@@ -575,8 +571,6 @@
       ],
       "fontSize": 26
     },
-    "video": true,
-    "videoPath": "",
     "sections": [
       {
         "subtitle": {
@@ -691,8 +685,6 @@
       ],
       "fontSize": 26
     },
-    "video": true,
-    "videoPath": "",
     "sections": [
       {
         "subtitle": {

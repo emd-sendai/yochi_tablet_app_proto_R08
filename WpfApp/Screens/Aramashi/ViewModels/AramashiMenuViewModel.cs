@@ -151,8 +151,8 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         [RelayCommand]
         private void OpenPdfDocument()
         {
-            var folderPath = Path.Combine(DocumentDataFolder, "Aramashi");
-
+            var folderPath = Path.Combine(DocumentDataFolder, "Aramashi", "Aramashi");
+            // 非モーダル表示
             _dia.ShowWindow<DocumentSelectViewModel>(folderPath);
         }
 
