@@ -19,7 +19,7 @@
         <StackPanel Grid.Row="0">
             <TextBlock Text="地権者ユーザを選択してください" Margin="15" FontSize="18"/>
             <ListBox ItemsSource="{Binding Landowners}" SelectedItem="{Binding SelectedLandowner}"
-                     DisplayMemberPath="LandownerName" FontSize="20" MaxHeight="300" Width="430" 
+                     DisplayMemberPath="LandownerName" FontSize="20" MaxHeight="280" Width="430" 
                      Style="{StaticResource BorderedListBoxStyle}" 
                      ScrollViewer.CanContentScroll="False"
                      ScrollViewer.PanningMode="VerticalOnly"

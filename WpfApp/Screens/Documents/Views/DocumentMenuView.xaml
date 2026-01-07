@@ -156,8 +156,8 @@
                 <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,5,0,10" 
                             Visibility="{Binding IsLandownerSelected, Converter={StaticResource BooleanToHiddenVisibilityConverter}}" >
                     <!-- 配置図　調査表 -->
-                    <Button FontSize="20" Margin="20,0,15,0" 
-                            Style="{StaticResource DocumentLandownerButtonStyle}">
+                    <Button FontSize="20" Margin="20,0,15,0" Style="{StaticResource DocumentLandownerButtonStyle}"
+                            Command="{Binding OpenLandownerPdfDocumentCommand}" CommandParameter="Document01">
                         <TextBlock Style="{StaticResource WrapTextBlockStyle}" >
                                 <Run Text="配置図" />
                                 <LineBreak />
@@ -165,15 +165,15 @@
                         </TextBlock>
                     </Button>
                     <!-- 算定書 -->
-                    <Button FontSize="20" Margin="0,0,15,0" 
-                            Style="{StaticResource DocumentLandownerButtonStyle}">
+                    <Button FontSize="20" Margin="0,0,15,0" Style="{StaticResource DocumentLandownerButtonStyle}"
+                            Command="{Binding OpenLandownerPdfDocumentCommand}" CommandParameter="Document02">
                         <TextBlock Style="{StaticResource WrapTextBlockStyle}" >
                                 <Run Text="算定書" />
                         </TextBlock>
                     </Button>
                     <!-- 写真（個別） -->
-                    <Button FontSize="20" Margin="0,0,15,0" 
-                            Style="{StaticResource DocumentLandownerButtonStyle}">
+                    <Button FontSize="20" Margin="0,0,15,0" Style="{StaticResource DocumentLandownerButtonStyle}"
+                            Command="{Binding OpenLandownerPdfDocumentCommand}" CommandParameter="Document03">
                         <TextBlock Style="{StaticResource WrapTextBlockStyle}" >
                                 <Run Text="写真" />
                                 <LineBreak />
@@ -181,8 +181,8 @@
                         </TextBlock>
                     </Button>
                     <!-- 相続関係図（説明用） -->
-                    <Button FontSize="20" Margin="0,0,20,0" 
-                            Style="{StaticResource DocumentLandownerButtonStyle}">
+                    <Button FontSize="20" Margin="0,0,20,0" Style="{StaticResource DocumentLandownerButtonStyle}"
+                            Command="{Binding OpenLandownerPdfDocumentCommand}" CommandParameter="Document04">
                         <TextBlock Style="{StaticResource WrapTextBlockStyle}" >
                                 <Run Text="相続関係図" />
                                 <LineBreak />
@@ -194,29 +194,29 @@
                 <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,0,0,0"
                             Visibility="{Binding IsLandownerSelected, Converter={StaticResource BooleanToHiddenVisibilityConverter}}" >
                     <!-- 調書 -->
-                    <Button FontSize="20" Margin="20,0,15,0" 
-                            Style="{StaticResource DocumentLandownerButtonStyle}">
+                    <Button FontSize="20" Margin="20,0,15,0" Style="{StaticResource DocumentLandownerButtonStyle}"
+                            Command="{Binding OpenLandownerPdfDocumentCommand}" CommandParameter="Document05">
                         <TextBlock Style="{StaticResource WrapTextBlockStyle}" >
                                 <Run Text="調書" />
                         </TextBlock>
                     </Button>
                     <!-- 補償金提示書 -->
-                    <Button FontSize="20" Margin="0,0,15,0" 
-                            Style="{StaticResource DocumentLandownerButtonStyle}">
+                    <Button FontSize="20" Margin="0,0,15,0" Style="{StaticResource DocumentLandownerButtonStyle}"
+                            Command="{Binding OpenLandownerPdfDocumentCommand}" CommandParameter="Document06">
                         <TextBlock Style="{StaticResource WrapTextBlockStyle}" >
                                 <Run Text="補償金提示書" />
                         </TextBlock>
                     </Button>
                     <!-- 契約書 -->
-                    <Button FontSize="20" Margin="0,0,15,0" 
-                            Style="{StaticResource DocumentLandownerButtonStyle}">
+                    <Button FontSize="20" Margin="0,0,15,0" Style="{StaticResource DocumentLandownerButtonStyle}"
+                            Command="{Binding OpenLandownerPdfDocumentCommand}" CommandParameter="Document07">
                         <TextBlock Style="{StaticResource WrapTextBlockStyle}" >
                                 <Run Text="契約書" />
                         </TextBlock>
                     </Button>
                     <!-- その他 -->
-                    <Button FontSize="20" Margin="0,0,20,0" 
-                            Style="{StaticResource DocumentLandownerButtonStyle}">
+                    <Button FontSize="20" Margin="0,0,20,0" Style="{StaticResource DocumentLandownerButtonStyle}"
+                            Command="{Binding OpenLandownerPdfDocumentCommand}" CommandParameter="Document08">
                         <TextBlock Style="{StaticResource WrapTextBlockStyle}" >
                                 <Run Text="その他" />
                         </TextBlock>

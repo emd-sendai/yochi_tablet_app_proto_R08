@@ -22,7 +22,25 @@ namespace WpfApp.Common.Views
                 {
                     this.Close();
                 };
+                vm.ShowMessageRequested += (_, msg) => ShowMessageWindow(msg);
             }
+        }
+
+        private void ShowMessageWindow(string msg)
+        {
+            //メッセージウィンドウを表示
+            var vm = new MessageDialogViewModel
+            {
+                Message = msg
+            };
+
+            var dialog = new MessageDialogWindow
+            {
+                DataContext = vm,
+                Owner = this
+            };
+
+            dialog.ShowDialog();
         }
     }
 }

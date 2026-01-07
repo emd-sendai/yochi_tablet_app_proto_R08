@@ -3,9 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
-using System.Windows;
 using WpfApp.Common.Models;
-using WpfApp.Common.Views;
 using WpfApp.Services;
 
 namespace WpfApp.Common.ViewModels
@@ -23,6 +21,7 @@ namespace WpfApp.Common.ViewModels
         private PdfData? selectedDocument;
 
         public event EventHandler? RequestClose;
+        public event EventHandler<string>? ShowMessageRequested;
 
         public DocumentSelectViewModel(IReadOnlyList<PdfData> pdfList)
         {
@@ -38,23 +37,7 @@ namespace WpfApp.Common.ViewModels
             if (SelectedDocument == null)
             {
                 Debug.WriteLine($"[ERROR] SelectedDocumentがNULLです");
-                //メッセージウィンドウを表示
-                var vm = new MessageDialogViewModel
-                {
-                    Message = "ファイル名を選択してください"
-                };
-
-                var dialog = new MessageDialogWindow
-                {
-                    DataContext = vm,
-                    Owner = Application.Current.MainWindow
-                };
-
-                bool? result = dialog.ShowDialog();
-                if (result == true)
-                {
-                    // OK押下後の処理
-                }
+                ShowMessageRequested?.Invoke(this, "ファイル名を選択してください");
             }
             else
             {
@@ -62,7 +45,7 @@ namespace WpfApp.Common.ViewModels
                 if (!File.Exists(SelectedDocument.FullPath))
                 {
                     Debug.WriteLine($"[ERROR] PDFファイルが存在しません {SelectedDocument.FullPath}");
-                    MessageBox.Show("ファイルデータが存在しません");
+                    ShowMessageRequested?.Invoke(this, "PDFファイルが存在しません");
                 }
                 else
                 {

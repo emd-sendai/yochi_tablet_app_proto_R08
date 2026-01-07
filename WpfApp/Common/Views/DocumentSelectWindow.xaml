@@ -19,7 +19,7 @@
         <StackPanel Grid.Row="0">
             <TextBlock Text="表示するファイル名を選択してください" Margin="15" FontSize="18"/>
             <ListBox ItemsSource="{Binding Documents}" SelectedItem="{Binding SelectedDocument}"
-                     DisplayMemberPath="FileName" FontSize="17" MaxHeight="300" Width="530" 
+                     DisplayMemberPath="FileName" FontSize="17" MaxHeight="180" Width="530" 
                      Style="{StaticResource BorderedListBoxStyle}" 
                      ScrollViewer.CanContentScroll="False"
                      ScrollViewer.PanningMode="VerticalOnly"

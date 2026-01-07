@@ -159,5 +159,37 @@ namespace WpfApp.Screens.Documents.ViewModels
             }
         }
 
+        [RelayCommand]
+        private void OpenLandownerPdfDocument(string folderName)
+        {
+            if (SelectedLandowner == null) return;
+            if (string.IsNullOrWhiteSpace(SelectedLandowner.LandownerId)) return;
+
+            var folderPath = Path.Combine(DocumentDataFolder, "Landowners", SelectedLandowner.LandownerId, folderName);
+            var pdfList = _pdf.GetPdfList(folderPath);
+
+            // PDF資料が存在しない場合
+            if (pdfList.Count <= 0)
+            {
+                Debug.WriteLine($"[ERROR] PDFファイルが存在しません {folderPath}");
+                //メッセージウィンドウを表示
+                var vm = new MessageDialogViewModel
+                {
+                    Message = "PDFファイルが存在しません"
+                };
+
+                var dialog = new MessageDialogWindow
+                {
+                    DataContext = vm,
+                    Owner = Application.Current.MainWindow
+                };
+                dialog.ShowDialog();
+            }
+            else
+            {
+                // 非モーダル表示
+                _dia.ShowWindow<DocumentSelectViewModel>(pdfList);
+            }
+        }
     }
 }

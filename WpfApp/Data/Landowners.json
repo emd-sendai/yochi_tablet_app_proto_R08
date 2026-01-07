@@ -1,42 +1,42 @@
 [
   {
     "LandownerId": "001",
-    "LandownerName": "用地　太郎"
+    "LandownerName": "国土太郎"
   },
   {
     "LandownerId": "002",
-    "LandownerName": "用地　次郎"
+    "LandownerName": "用地次郎"
   },
   {
     "LandownerId": "003",
-    "LandownerName": "用地　三郎"
+    "LandownerName": "用地三郎"
   },
   {
     "LandownerId": "004",
-    "LandownerName": "用地　四郎"
+    "LandownerName": "用地四郎"
   },
   {
     "LandownerId": "005",
-    "LandownerName": "用地　五郎"
+    "LandownerName": "用地五郎"
   },
   {
     "LandownerId": "006",
-    "LandownerName": "用地　六郎"
+    "LandownerName": "用地六郎"
   },
   {
     "LandownerId": "007",
-    "LandownerName": "用地　七郎"
+    "LandownerName": "用地七郎"
   },
   {
     "LandownerId": "008",
-    "LandownerName": "用地　八郎"
+    "LandownerName": "用地八郎"
   },
   {
     "LandownerId": "009",
-    "LandownerName": "用地　九郎"
+    "LandownerName": "用地九郎"
   },
   {
     "LandownerId": "010",
-    "LandownerName": "用地　十郎"
+    "LandownerName": "用地十郎"
   }
 ]

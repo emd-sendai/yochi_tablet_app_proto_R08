@@ -81,6 +81,10 @@
 
   <ItemGroup>
     <Folder Include="Data\Signature\" />
+    <Folder Include="DocumentResources\Documents\Landowners\001\Document03\" />
+    <Folder Include="DocumentResources\Documents\Landowners\001\Document08\" />
+    <Folder Include="DocumentResources\Documents\Landowners\002\" />
+    <Folder Include="DocumentResources\Documents\Landowners\003\" />
     <Folder Include="DocumentResources\Documents\Works\Document04\" />
     <Folder Include="DocumentResources\Documents\Works\Document06\" />
     <Folder Include="DocumentResources\Documents\Works\Document07\" />
@@ -110,6 +114,54 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="DocumentResources\Aramashi\Others\Zeikin\譲渡所得税の特例あらまし（関東信越国税局R7.7版）.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="DocumentResources\Documents\Landowners\001\Document01\02 建物図面.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="DocumentResources\Documents\Landowners\001\Document01\04 工作物図面.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="DocumentResources\Documents\Landowners\001\Document01\06 立竹木図面.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="DocumentResources\Documents\Landowners\001\Document02\【サンプル】土地評価資料.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="DocumentResources\Documents\Landowners\001\Document02\【サンプル】物件補償金算定資料.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="DocumentResources\Documents\Landowners\001\Document04\【サンプル】戸籍（説明時は個人情報削除）.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="DocumentResources\Documents\Landowners\001\Document04\【サンプル】相続関係図（説明時は個人情報削除）.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="DocumentResources\Documents\Landowners\001\Document04\（参考）法定相続の変遷.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="DocumentResources\Documents\Landowners\001\Document05\【サンプル】土地調書.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="DocumentResources\Documents\Landowners\001\Document05\【サンプル】物件調書.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="DocumentResources\Documents\Landowners\001\Document06\【サンプル】補償金提示書.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="DocumentResources\Documents\Landowners\001\Document07\01【サンプル】土地売買契約書.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="DocumentResources\Documents\Landowners\001\Document07\02【サンプル】請求書.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="DocumentResources\Documents\Landowners\001\Document07\03【サンプル】登記原因証明情報兼承諾書.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="DocumentResources\Documents\Landowners\001\Document07\04【サンプル】マイナンバー提供依頼.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="DocumentResources\Documents\Landowners\001\Document07\05【サンプル】基礎撤去承諾書（関東）.pdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="DocumentResources\Documents\Works\Document01\【サンプル】地図（公図）.pdf">
