@@ -445,22 +445,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             if (AllPagesChecked == false)
             {
                 //メッセージウィンドウを表示
-                var vm = new MessageDialogViewModel
-                {
-                    Message = "チェックされていない項目があります"
-                };
-
-                var dialog = new MessageDialogWindow
-                {
-                    DataContext = vm,
-                    Owner = Application.Current.MainWindow
-                };
-
-                bool? result = dialog.ShowDialog();
-                if (result == true)
-                {
-                    // OK押下後の処理
-                }
+                ShowMessageWindow("チェックされていない項目があります");
             }
             else
             {
@@ -507,7 +492,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         }
 
         [RelayCommand]
-        private void OpenPdfDocument(string folderName)
+        private void OpenPdfDocuments(string folderName)
         {
             if (!string.IsNullOrWhiteSpace(folderName))
             {
@@ -520,17 +505,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
                 {
                     Debug.WriteLine($"[ERROR] PDFファイルが存在しません {folderPath}");
                     //メッセージウィンドウを表示
-                    var vm = new MessageDialogViewModel
-                    {
-                        Message = "PDFファイルが存在しません"
-                    };
-
-                    var dialog = new MessageDialogWindow
-                    {
-                        DataContext = vm,
-                        Owner = Application.Current.MainWindow
-                    };
-                    dialog.ShowDialog();
+                    ShowMessageWindow("PDFファイルが存在しません");
                 }
                 else
                 {
@@ -542,6 +517,41 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             {
                 Debug.WriteLine($"[ERROR] folderNameが空です");
             }
+        }
+
+        [RelayCommand]
+        private void OpenSonshitsuPdfDocument(string fileName)
+        {
+            if (!string.IsNullOrWhiteSpace(fileName))
+            {
+                var folderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "DocumentResources", "Aramashi", "Others", "Sonshitsu");
+
+                var result = MessageBox.Show("PDFファイルを開きます。よろしいですか。",
+                    "OK", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+
+                if (result != MessageBoxResult.OK) return;
+
+                _pdf.OpenPdf(folderPath, fileName);
+            }
+            else
+            {
+                Debug.WriteLine($"[ERROR] fileNameが空です");
+            }
+        }
+
+        private void ShowMessageWindow(string message)
+        {
+            var vm = new MessageDialogViewModel
+            {
+                Message = message
+            };
+
+            var dialog = new MessageDialogWindow
+            {
+                DataContext = vm,
+                Owner = Application.Current.MainWindow
+            };
+            dialog.ShowDialog();
         }
     }
 }

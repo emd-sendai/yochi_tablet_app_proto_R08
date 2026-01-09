@@ -39,6 +39,12 @@ namespace WpfApp.Screens.Admin.ViewModels
         }
 
         [RelayCommand]
+        private void GoToPdfDocumentSettings()
+        {
+            _nav.Navigate(new ScreenSelectViewModel(_nav, _dia, "PdfDocumentSettings"));
+        }
+
+        [RelayCommand]
         private void GoToMenu()
         {
             _nav.Navigate(new MenuViewModel(_nav, _dia));

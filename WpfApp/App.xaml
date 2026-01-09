@@ -208,7 +208,7 @@
                 <Style.Triggers>
                     <!-- ホバー時 -->
                     <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Background" Value="#33FB8C00" />
+                        <Setter Property="Background" Value="#D6DBF5" />
                     </Trigger>
                 </Style.Triggers>
             </Style>
@@ -229,11 +229,10 @@
                 <Setter Property="VerticalAlignment" Value="Center"/>
             </Style>
 
-            <!-- 各種資料コンボボックス様式 -->
-            <Style x:Key="DocumentComboBoxStyle" TargetType="ComboBox" BasedOn="{StaticResource MaterialDesignOutlinedComboBox}">
-                <Setter Property="FontSize" Value="20" />
-                <Setter Property="MinHeight" Value="45" />
-                <Setter Property="Margin" Value="20,0,20,10" />
+            <!-- コンボボックス様式 -->
+            <Style x:Key="BorderedComboBoxStyle" TargetType="ComboBox" BasedOn="{StaticResource MaterialDesignOutlinedComboBox}">
+                <Setter Property="Padding" Value="8,5,8,5"/>
+                <Setter Property="Height" Value="40" />
                 <Setter Property="Background" Value="White" />
                 <Setter Property="VerticalAlignment" Value="Center" />
             </Style>

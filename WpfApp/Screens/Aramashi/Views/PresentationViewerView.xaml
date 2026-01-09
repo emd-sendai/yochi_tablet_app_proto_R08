@@ -77,7 +77,7 @@
             <!-- PDF資料アイコンボタン -->
             <Button Style="{StaticResource IconTextButtonStyle}" Margin="5,0,0,0" 
                     Visibility="{Binding CurrentSlide.Document, Converter={StaticResource BooleanToVisibilityConverter}}"
-                    Command="{Binding OpenPdfDocumentCommand}" CommandParameter="{Binding CurrentSlide.DocumentFolderName}">
+                    Command="{Binding OpenPdfDocumentsCommand}" CommandParameter="{Binding CurrentSlide.DocumentFolderName}">
                 <StackPanel Orientation="Vertical">
                     <materialDesign:PackIcon Kind="File" Style="{StaticResource ITButtonIconStyle}" />
                     <TextBlock Text="パンフレット" Style="{StaticResource ITButtonTextStyle}" />

@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace WpfApp.Screens.Admin.Views
 {
     /// <summary>
-    /// AdminMenuView.xaml の相互作用ロジック
+    /// PdfDocumentSettingsView.xaml の相互作用ロジック
     /// </summary>
-    public partial class AdminMenuView : UserControl
+    public partial class PdfDocumentSettingsView : UserControl
     {
-        public AdminMenuView()
+        public PdfDocumentSettingsView()
         {
             InitializeComponent();
         }

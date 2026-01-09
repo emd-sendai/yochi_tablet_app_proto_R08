@@ -25,7 +25,7 @@ namespace WpfApp.Screens.Admin.ViewModels
         public ObservableCollection<ButtonConfig> Buttons { get; } = new();
 
         [ObservableProperty]
-        private ButtonConfig selectedButton = new();
+        private ButtonConfig? selectedButton;
 
         private static readonly string DataFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data", "ButtonSettings");
 
@@ -39,20 +39,13 @@ namespace WpfApp.Screens.Admin.ViewModels
         [RelayCommand]
         private async Task EditSelectedAsync()
         {
-            if (SelectedButton == null) return;
-
-            // DialogService を使ってモーダル Window を開く
-            var editedText = await _dia.ShowDialogAsync<EditButtonViewModel, string>(SelectedButton.BtnText);
-
-            if (!string.IsNullOrWhiteSpace(editedText))
+            // 編集対象のボタンが未選択の場合
+            if (SelectedButton == null)
             {
-                SelectedButton.BtnText = editedText;
-                SaveToJson();
-
                 //メッセージウィンドウを表示
                 var vm = new MessageDialogViewModel
                 {
-                    Message = "ボタンに編集内容を適用しました"
+                    Message = "ボタンを選択してください"
                 };
 
                 var dialog = new MessageDialogWindow
@@ -61,10 +54,35 @@ namespace WpfApp.Screens.Admin.ViewModels
                     Owner = Application.Current.MainWindow
                 };
 
-                bool? result = dialog.ShowDialog();
-                if (result == true)
+                dialog.ShowDialog();
+            }
+            else
+            {
+                // DialogService を使ってモーダル Window を開く
+                var editedText = await _dia.ShowDialogAsync<EditButtonViewModel, string>(SelectedButton.BtnText);
+
+                if (!string.IsNullOrWhiteSpace(editedText))
                 {
-                    // OK押下後の処理
+                    SelectedButton.BtnText = editedText;
+                    SaveToJson();
+
+                    //メッセージウィンドウを表示
+                    var vm = new MessageDialogViewModel
+                    {
+                        Message = "ボタンに編集内容を適用しました"
+                    };
+
+                    var dialog = new MessageDialogWindow
+                    {
+                        DataContext = vm,
+                        Owner = Application.Current.MainWindow
+                    };
+
+                    bool? result = dialog.ShowDialog();
+                    if (result == true)
+                    {
+                        // OK押下後の処理
+                    }
                 }
             }
         }

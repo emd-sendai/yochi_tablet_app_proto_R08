@@ -62,7 +62,7 @@
                     </Button>
                     <!-- PDF資料アイコンボタン -->
                     <Button Style="{StaticResource IconTextButtonStyle}" Margin="5,0,0,0" 
-                            Command="{Binding OpenPdfDocumentCommand}">
+                            Command="{Binding OpenPdfDocumentsCommand}">
                         <StackPanel Orientation="Vertical">
                             <materialDesign:PackIcon Kind="File" Style="{StaticResource ITButtonIconStyle}" />
                             <TextBlock Text="パンフレット" Style="{StaticResource ITButtonTextStyle}" />

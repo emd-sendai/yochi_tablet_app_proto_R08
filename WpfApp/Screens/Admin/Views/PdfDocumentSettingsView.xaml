@@ -1,0 +1,209 @@
+﻿<UserControl x:Class="WpfApp.Screens.Admin.Views.PdfDocumentSettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:WpfApp.Screens.Admin.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <!-- Drawer部分 -->
+            <ColumnDefinition Width="*"/>
+            <!-- メインコンテンツ部分 -->
+        </Grid.ColumnDefinitions>
+
+        <materialDesign:DrawerHost x:Name="DrawerHostControl" Grid.Column="0"
+                                   HorizontalAlignment="Left" VerticalAlignment="Stretch"
+                                   IsLeftDrawerOpen="{Binding IsLeftDrawerOpen, Mode=TwoWay}">
+            <!-- サイドバー -->
+            <materialDesign:DrawerHost.LeftDrawerContent>
+                <StackPanel Background="{DynamicResource MaterialDesignPaper}">
+                    <TextBlock Text="管理メニュー" 
+                           FontSize="22" Margin="20"/>
+                    <Button Content="表示設定" FontSize="20" VerticalAlignment="Center"
+                            Style="{StaticResource MaterialDesignFlatButton}" 
+                            Command="{Binding GoToDisplaySetttingsCommand}"/>
+                    <Button Content="管理資料" FontSize="20" VerticalAlignment="Center"
+                        Style="{StaticResource MaterialDesignFlatButton}" />
+                </StackPanel>
+            </materialDesign:DrawerHost.LeftDrawerContent>
+        </materialDesign:DrawerHost>
+
+        <Grid Grid.Column="1">
+            <!-- Gridの行定義 -->
+            <Grid.RowDefinitions >
+                <!-- ヘッダー（１行目） -->
+                <RowDefinition Height="Auto" />
+                <!-- メインコンテンツ（２行目） -->
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!-- １行目 -->
+            <!-- ページタイトル -->
+            <TextBlock Grid.Row="0" Text="{Binding Title}" 
+                       Foreground="#3F51B5" FontSize="30" FontWeight="Bold" Margin="0,10,0,10" 
+                       HorizontalAlignment="Center" VerticalAlignment="Center">
+            </TextBlock>
+
+            <!-- ボタン -->
+            <!-- ヘッダー（左側） -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <!-- 管理メニューアイコンボタン -->
+                <Button Grid.Row="0" Style="{StaticResource IconTextButtonStyle}" 
+                        Margin="10"  Command="{Binding ToggleDrawerCommand}">
+                    <StackPanel Orientation="Vertical">
+                        <materialDesign:PackIcon Kind="Menu" Style="{StaticResource ITButtonIconStyle}"/>
+                        <TextBlock Text="管理メニュー" Style="{StaticResource ITButtonTextStyle}"/>
+                    </StackPanel>
+                </Button>
+                <!-- 戻るボタン -->
+                <Button Grid.Row="0" Style="{StaticResource IconTextButtonStyle}" 
+                        Margin="5,10,5,10"  Command="{Binding GoBackCommand}">
+                    <StackPanel Orientation="Vertical">
+                        <materialDesign:PackIcon Kind="ArrowBack" Style="{StaticResource ITButtonIconStyle}"/>
+                        <TextBlock Text="戻る" Style="{StaticResource ITButtonTextStyle}"/>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+
+            <!-- ヘッダー（右側） -->
+            <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
+                <!-- ホームアイコンボタン -->
+                <Button Grid.Row="0" Style="{StaticResource IconTextButtonStyle}" 
+                Margin="5,10,10,10" Command="{Binding GoToMenuCommand}">
+                    <StackPanel Orientation="Vertical" >
+                        <materialDesign:PackIcon Kind="Home" Style="{StaticResource ITButtonIconStyle}"/>
+                        <TextBlock Text="メインメニュー" Style="{StaticResource ITButtonTextStyle}"/>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+
+            <Grid Margin="20" Grid.Row="1">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="380"/>
+                    <RowDefinition Height="60"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0" Orientation="Vertical">
+
+                    <TextBlock Text="PDF資料を編集する箇所を選択してください" FontSize="16.5" Margin="10,0,20,10" 
+                               FontWeight="SemiBold"/>
+
+                    <TabControl Style="{DynamicResource MaterialDesignFilledTabControl}"
+                                SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}">
+
+                        <TabControl.Resources>
+                            <Style TargetType="TabItem">
+                                <Setter Property="Padding" Value="2"/>
+                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                            </Style>
+                        </TabControl.Resources>
+
+                        <TabItem Header="用地補償の手順" Visibility="{Binding IsAramashi, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <TabItem.Style>
+                                <Style TargetType="TabItem" BasedOn="{StaticResource MaterialDesignTabItem}" />
+                            </TabItem.Style>
+                            <StackPanel>
+                                <TextBlock Text="項目を選択してください" Margin="10,10,0,10" FontSize="16" FontWeight="SemiBold"
+                                       Foreground="{DynamicResource MaterialDesign.Brush.Primary}"/>
+                                <ListBox FontSize="16" MaxHeight="250" Style="{DynamicResource BorderedListBoxStyle}"
+                                         ScrollViewer.CanContentScroll="False"
+                                         ScrollViewer.PanningMode="VerticalOnly"
+                                         ScrollViewer.PanningDeceleration="0.001"
+                                         ScrollViewer.VerticalScrollBarVisibility="Auto">
+                                    <ListBoxItem Content="用地補償の手順"/>
+                                </ListBox>
+                            </StackPanel>
+                        </TabItem>
+
+                        <TabItem Header="その他" Visibility="{Binding IsAramashi, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <TabItem.Style>
+                                <Style TargetType="TabItem" BasedOn="{StaticResource MaterialDesignTabItem}" />
+                            </TabItem.Style>
+                            <StackPanel>
+                                <TextBlock Text="項目を選択してください" Margin="10,10,0,10" FontSize="16" FontWeight="SemiBold"
+                                       Foreground="{DynamicResource MaterialDesign.Brush.Primary}"/>
+                                <ListBox FontSize="16" MaxHeight="250" Style="{DynamicResource BorderedListBoxStyle}"
+                                         ScrollViewer.CanContentScroll="False"
+                                         ScrollViewer.PanningMode="VerticalOnly"
+                                         ScrollViewer.PanningDeceleration="0.001"
+                                         ScrollViewer.VerticalScrollBarVisibility="Auto">
+                                    <ListBoxItem Content="税金等"/>
+                                    <ListBoxItem Content="損失補償基準"/>
+                                </ListBox>
+                            </StackPanel>
+                        </TabItem>
+
+                        <TabItem Header="事業全般資料" Visibility="{Binding IsDocument, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <TabItem.Style>
+                                <Style TargetType="TabItem" BasedOn="{StaticResource MaterialDesignTabItem}" />
+                            </TabItem.Style>
+                            <StackPanel>
+                                <TextBlock Text="項目を選択してください" Margin="10,10,0,10" FontSize="16" FontWeight="SemiBold"
+                                       Foreground="{DynamicResource MaterialDesign.Brush.Primary}"/>
+                                <ListBox FontSize="16" MaxHeight="250" Style="{DynamicResource BorderedListBoxStyle}"
+                                         ScrollViewer.CanContentScroll="False"
+                                         ScrollViewer.PanningMode="VerticalOnly"
+                                         ScrollViewer.PanningDeceleration="0.001"
+                                         ScrollViewer.VerticalScrollBarVisibility="Auto">
+                                    <ListBoxItem Content="公図"/>
+                                    <ListBoxItem Content="登記簿 （土地・建物）"/>
+                                    <ListBoxItem Content="用地平面図"/>
+                                    <ListBoxItem Content="面積計算書"/>
+                                    <ListBoxItem Content="地積測量図"/>
+                                    <ListBoxItem Content="写真 （全体）"/>
+                                    <ListBoxItem Content="その他"/>
+                                </ListBox>
+                            </StackPanel>
+                        </TabItem>
+
+                        <TabItem Header="地権者個別資料" Visibility="{Binding IsDocument, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <TabItem.Style>
+                                <Style TargetType="TabItem" BasedOn="{StaticResource MaterialDesignTabItem}" />
+                            </TabItem.Style>
+                            <StackPanel>
+                                <TextBlock Text="地権者ユーザを選択してください" Margin="10,10,0,10" FontSize="16" FontWeight="SemiBold"
+                                       Foreground="{DynamicResource MaterialDesign.Brush.Primary}"/>
+                                <ComboBox FontSize="16" Style="{DynamicResource BorderedComboBoxStyle}">
+                                    <ComboBoxItem Content="国土太郎"/>
+                                    <ComboBoxItem Content="用地次郎"/>
+                                    <ComboBoxItem Content="用地三郎"/>
+                                    <ComboBoxItem Content="用地四郎"/>
+                                    <ComboBoxItem Content="用地五郎"/>
+                                </ComboBox>
+
+                                <TextBlock Text="項目を選択してください" Margin="10,10,0,10" FontSize="16" FontWeight="SemiBold"
+                                       Foreground="{DynamicResource MaterialDesign.Brush.Primary}"/>
+                                <ListBox FontSize="16" MaxHeight="170" Style="{DynamicResource BorderedListBoxStyle}"
+                                         ScrollViewer.CanContentScroll="False"
+                                         ScrollViewer.PanningMode="VerticalOnly"
+                                         ScrollViewer.PanningDeceleration="0.001"
+                                         ScrollViewer.VerticalScrollBarVisibility="Auto">
+                                    <ListBoxItem Content="配置図 調査表"/>
+                                    <ListBoxItem Content="算定書"/>
+                                    <ListBoxItem Content="写真 （個別）"/>
+                                    <ListBoxItem Content="相関関係図 （説明用）"/>
+                                    <ListBoxItem Content="調書"/>
+                                    <ListBoxItem Content="契約書"/>
+                                    <ListBoxItem Content="その他"/>
+                                </ListBox>
+                            </StackPanel>
+                        </TabItem>
+                    </TabControl>
+                </StackPanel>
+
+                <StackPanel Grid.Row="1">
+                    <Button Content="選択" Width="80" Height="50" FontSize="20" Margin="0,10,0,0" 
+                            VerticalAlignment="Top" Style="{StaticResource CommonButtonStyle}" 
+                            Command="{Binding EditSelectedCommand}" 
+                            IsEnabled="{Binding SelectedButton, Converter={StaticResource NullToBoolConverter}}"/>
+                </StackPanel>
+                
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

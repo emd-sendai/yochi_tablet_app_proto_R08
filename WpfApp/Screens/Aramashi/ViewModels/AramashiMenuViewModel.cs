@@ -152,7 +152,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         }
 
         [RelayCommand]
-        private void OpenPdfDocument()
+        private void OpenPdfDocuments()
         {
             var folderPath = Path.Combine(DocumentDataFolder, "Aramashi", "Aramashi");
             var pdfList = _pdf.GetPdfList(folderPath);

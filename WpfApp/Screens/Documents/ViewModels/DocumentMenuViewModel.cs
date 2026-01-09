@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
+using System.Text.Json;
 using System.Windows;
 using WpfApp.Common.Models;
 using WpfApp.Common.ViewModels;
@@ -20,7 +21,16 @@ namespace WpfApp.Screens.Documents.ViewModels
         private readonly PdfDocumentService _pdf;
 
         private static readonly string BaseDire = AppDomain.CurrentDomain.BaseDirectory;
+        private static readonly string ButtonDataFolder = Path.Combine(BaseDire, "Data", "ButtonSettings");
+        private static readonly string WorksButtonPath = Path.Combine(ButtonDataFolder, "documentWorksButtons.json");
+        private static readonly string LandownerButtonPath = Path.Combine(ButtonDataFolder, "documentLandownerButtons.json");
         private static readonly string DocumentDataFolder = Path.Combine(BaseDire, "DocumentResources", "Documents");
+
+        [ObservableProperty]
+        private ObservableCollection<ButtonConfig>? worksButtons;
+
+        [ObservableProperty]
+        private ObservableCollection<ButtonConfig>? landownerButtons;
 
         [ObservableProperty]
         private ObservableCollection<LandownerData>? landowners;
@@ -28,6 +38,7 @@ namespace WpfApp.Screens.Documents.ViewModels
         [ObservableProperty]
         private LandownerData? selectedLandowner;
 
+        private bool isPasswordCorrect;
 
         public bool IsLandownerSelected => SelectedLandowner != null;
 
@@ -38,6 +49,42 @@ namespace WpfApp.Screens.Documents.ViewModels
             _dia = dialogService ?? throw new ArgumentNullException(nameof(dialogService));
             _pdf = new PdfDocumentService();
 
+            // 追加予定
+            //WorksButtons = LoadButtonFromJson(WorksButtonPath);
+            //LandownerButtons = LoadButtonFromJson(LandownerButtonPath);
+        }
+
+        private ObservableCollection<ButtonConfig> LoadButtonFromJson(string path)
+        {
+            var buttons = new ObservableCollection<ButtonConfig>();
+
+            if (!File.Exists(path))
+            {
+                MessageBox.Show("ボタンの名称を表示できません");
+                Debug.WriteLine($"[DEBUG] ボタンデータが存在しません: {path}");
+            }
+            else
+            {
+                string json = File.ReadAllText(path);
+                var list = JsonSerializer.Deserialize<List<ButtonConfig>>
+                    (json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+
+                if(list == null || list.Count <= 0)
+                {
+                    MessageBox.Show("ボタンの名称を表示できません");
+                    Debug.WriteLine($"[DEBUG] ボタンデータが空です: {path}");
+                }
+                else
+                {
+                    foreach (var btn in list)
+                    {
+                        buttons.Add(btn);
+                    }
+                    Debug.WriteLine($"[DEBUG] ボタンデータ読み込み完了: {path} 件数 = {buttons.Count}");
+                }
+            }
+
+            return buttons;
         }
 
         partial void OnSelectedLandownerChanged(LandownerData? oldValue, LandownerData? newValue)
@@ -55,63 +102,82 @@ namespace WpfApp.Screens.Documents.ViewModels
         [RelayCommand]
         private void OpenPasswordDialog()
         {
-            // パスワードダイアログを生成
-            var pwVm = new PasswordDialogViewModel();
-            var pwDialog = new PasswordDialogWindow
+            // パスワードが照合済の場合
+            if(isPasswordCorrect == true)
             {
-                DataContext = pwVm,
-                Owner = Application.Current.MainWindow
-            };
-
-            // ShowDialog() は true/false/null を返す
-            if (pwDialog.ShowDialog() == true)
+                OpenLandownerSelectWindow();
+            }
+            // パスワードが照合されていない場合
+            else
             {
-                // 入力されたパスワードを参照
-                if (pwVm.Result == "0000")
+                // パスワードダイアログを生成
+                var pwVm = new PasswordDialogViewModel();
+                var pwDialog = new PasswordDialogWindow
                 {
-                    // パスワードが正解の場合、選択ウィンドウを開く
-                    var lanWin = new LandownerSelectWindow
-                    {
-                        Owner = Application.Current.MainWindow
-                    };
+                    DataContext = pwVm,
+                    Owner = Application.Current.MainWindow
+                };
 
-                    if (lanWin.ShowDialog() == true)
+                // パスワード入力後にOKボタンが押下された場合
+                if (pwDialog.ShowDialog() == true)
+                {
+                    // パスワードが正しい場合
+                    if (pwVm.Result == "0000")
                     {
-                        // 選択された地権者ユーザを取得して画面に反映
-                        SelectedLandowner = lanWin.SelectedLandowner;
+                        isPasswordCorrect = true;
+                        
+                        // 地権者ユーザ選択ウィンドウを開く
+                        OpenLandownerSelectWindow();
+                    }
+                    // パスワードが誤っている場合
+                    else
+                    {
+                        isPasswordCorrect = false;
 
-                        // 地権者ユーザが選択されている場合（未選択の状態でキャンセルボタン押下時以外の場合）
-                        if (SelectedLandowner != null)
+                        //地権者ユーザの選択を初期化
+                        SelectedLandowner = null;
+
+                        //メッセージウィンドウを表示
+                        var vm = new MessageDialogViewModel
                         {
-                            //メッセージウィンドウを表示
-                            var vm = new MessageDialogViewModel
-                            {
-                                Message = $"{SelectedLandowner.LandownerName} 様の資料を表示します"
-                            };
+                            Message = "パスワードが違います"
+                        };
 
-                            var dialog = new MessageDialogWindow
-                            {
-                                DataContext = vm,
-                                Owner = Application.Current.MainWindow
-                            };
+                        var dialog = new MessageDialogWindow
+                        {
+                            DataContext = vm,
+                            Owner = Application.Current.MainWindow
+                        };
 
-                            bool? result = dialog.ShowDialog();
-                            if (result == true)
-                            {
-                                // OK押下後の処理
-                            }
+                        bool? result = dialog.ShowDialog();
+                        if (result == true)
+                        {
+                            // OK押下後の処理
                         }
                     }
                 }
-                else
-                {
-                    //地権者ユーザの選択を初期化
-                    SelectedLandowner = null;
+            }
+        }
 
+        private void OpenLandownerSelectWindow()
+        {
+            var lanWin = new LandownerSelectWindow
+            {
+                Owner = Application.Current.MainWindow
+            };
+
+            if (lanWin.ShowDialog() == true)
+            {
+                // 選択された地権者ユーザを取得して画面に反映
+                SelectedLandowner = lanWin.SelectedLandowner;
+
+                // 地権者ユーザが選択されている場合（未選択の状態でキャンセルボタン押下時以外の場合）
+                if (SelectedLandowner != null)
+                {
                     //メッセージウィンドウを表示
                     var vm = new MessageDialogViewModel
                     {
-                        Message = "パスワードが違います"
+                        Message = $"{SelectedLandowner.LandownerName} 様の資料を表示します"
                     };
 
                     var dialog = new MessageDialogWindow

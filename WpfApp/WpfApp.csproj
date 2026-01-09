@@ -89,7 +89,6 @@
     <Folder Include="DocumentResources\Documents\Works\Document06\" />
     <Folder Include="DocumentResources\Documents\Works\Document07\" />
     <Folder Include="DocumentResources\Documents\Works\Document08\" />
-    <Folder Include="Screens\Admin\Models\" />
     <Folder Include="Screens\Menu\Models\" />
     <Folder Include="Screens\Documents\Models\" />
   </ItemGroup>
@@ -101,19 +100,19 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="DocumentResources\Aramashi\Aramashi\【R7改訂案】補償のあらまし1217修正案.pdf">
+    <None Update="DocumentResources\Aramashi\Aramashi\補償のあらまし.pdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="DocumentResources\Aramashi\Others\Sonshitsu\国土交通省の公共用地の取得に伴う損失補償基準%28R2.1改正版）.pdf">
+    <None Update="DocumentResources\Aramashi\Others\Sonshitsu\国土交通省の公共用地の取得に伴う損失補償基準.pdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="DocumentResources\Aramashi\Others\Sonshitsu\国土交通省の公共用地の取得に伴う損失補償基準の運用方針%28R4.3改正版）.pdf">
+    <None Update="DocumentResources\Aramashi\Others\Sonshitsu\国土交通省の公共用地の取得に伴う損失補償基準の運用方針.pdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="DocumentResources\Aramashi\Others\Sonshitsu\国土交通省損失補償取扱要領%28R6.4改正版）.pdf">
+    <None Update="DocumentResources\Aramashi\Others\Sonshitsu\国土交通省損失補償取扱要領.pdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="DocumentResources\Aramashi\Others\Zeikin\譲渡所得税の特例あらまし（関東信越国税局R7.7版）.pdf">
+    <None Update="DocumentResources\Aramashi\Others\Zeikin\譲渡所得税の特例あらまし.pdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="DocumentResources\Documents\Landowners\001\Document01\02 建物図面.pdf">

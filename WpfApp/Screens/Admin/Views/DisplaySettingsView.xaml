@@ -75,14 +75,21 @@
 
             <!-- ２行目 -->
             <!-- ボタン配置エリア -->
-            <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center" Margin="0,70,0,0" Width="300">
+            <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center" Margin="0,50,0,0" Width="300">
 
                 <TextBlock Text="設定項目" FontSize="26" Foreground="#3F51B5" Margin="0,0,0,40"  HorizontalAlignment="Center" 
-                               FontWeight="Bold"/>
+                           FontWeight="Bold"/>
 
-                <!-- ボタンの表示設定ボタン -->
-                <Button Content="ボタンの名称" FontSize="22" Height="60" Margin="0,0,0,40"
-                    Command="{Binding GoToButtonSettingsCommand}" Style="{StaticResource CommonButtonStyle}"/>
+                <!-- ボタンの名称ボタン -->
+                <Button Content="ボタンの名称" FontSize="22" Height="60" Margin="0,0,0,40" Style="{StaticResource CommonButtonStyle}"
+                        Command="{Binding GoToButtonSettingsCommand}"/>
+
+                <!-- PDF資料ボタン -->
+                <Button Content="PDF資料" FontSize="22" Height="60" Margin="0,0,0,40" Style="{StaticResource CommonButtonStyle}"
+                        Command="{Binding GoToPdfDocumentSettingsCommand}"/>
+
+                <!-- 動画ボタン -->
+                <Button Content="動画" FontSize="22" Height="60" Margin="0,0,0,40" Style="{StaticResource CommonButtonStyle}"/>
 
             </StackPanel>
         </Grid>

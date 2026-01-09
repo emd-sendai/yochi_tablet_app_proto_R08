@@ -300,7 +300,7 @@ namespace WpfApp.Screens.Aramashi.Views
                         };
 
                         // Run（文字）のスタイルを上書き
-                        var linkColor = (Color)ColorConverter.ConvertFromString("#FB8C00");
+                        var linkColor = (Color)ColorConverter.ConvertFromString("#3F51B5");
                         var linkBrush = new SolidColorBrush(linkColor);
                         run.Foreground = linkBrush;
                         run.FontWeight = FontWeights.Bold;
@@ -350,6 +350,14 @@ namespace WpfApp.Screens.Aramashi.Views
                                 hyperlink.CommandParameter = param;
                             }
                             hyperlink.Command = viewModel.OpenUrlCommand;
+                        }
+                        else if (runInfo.CommandName == "OpenSonshitsuPdfDocumentCommand")
+                        {
+                            if (!string.IsNullOrWhiteSpace(param))
+                            {
+                                hyperlink.CommandParameter = param;
+                            }
+                            hyperlink.Command = viewModel.OpenSonshitsuPdfDocumentCommand;
                         }
 
                         tb.Inlines.Add(hyperlink);
