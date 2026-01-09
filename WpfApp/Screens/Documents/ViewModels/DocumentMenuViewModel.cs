@@ -49,9 +49,8 @@ namespace WpfApp.Screens.Documents.ViewModels
             _dia = dialogService ?? throw new ArgumentNullException(nameof(dialogService));
             _pdf = new PdfDocumentService();
 
-            // 追加予定
-            //WorksButtons = LoadButtonFromJson(WorksButtonPath);
-            //LandownerButtons = LoadButtonFromJson(LandownerButtonPath);
+            WorksButtons = LoadButtonFromJson(WorksButtonPath);
+            LandownerButtons = LoadButtonFromJson(LandownerButtonPath);
         }
 
         private ObservableCollection<ButtonConfig> LoadButtonFromJson(string path)

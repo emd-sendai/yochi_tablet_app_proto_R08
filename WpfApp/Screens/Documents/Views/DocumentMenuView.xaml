@@ -68,32 +68,22 @@
                     <!-- 公図 -->
                     <Button FontSize="20" Margin="20,0,15,0" Style="{StaticResource DocumentWorksButtonStyle}"
                             Command="{Binding OpenWorksPdfDocumentCommand}" CommandParameter="Document01">
-                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" >
-                                <Run Text="公図" />
-                        </TextBlock>
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding WorksButtons[0].BtnText}"/>
                     </Button>
                     <!-- 登記簿 -->
                     <Button FontSize="20"  Margin="0,0,15,0" Style="{StaticResource DocumentWorksButtonStyle}"
                             Command="{Binding OpenWorksPdfDocumentCommand}" CommandParameter="Document02">
-                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" >
-                                <Run Text="登記簿" />
-                                <LineBreak />
-                                <Run Text="（土地・建物）" />
-                        </TextBlock>
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding WorksButtons[1].BtnText}"/>
                     </Button>
                     <!-- 用地平面図 -->
                     <Button FontSize="20"  Margin="0,0,15,0" Style="{StaticResource DocumentWorksButtonStyle}"
                             Command="{Binding OpenWorksPdfDocumentCommand}" CommandParameter="Document03">
-                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" >
-                                <Run Text="用地平面図" />
-                        </TextBlock>
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding WorksButtons[2].BtnText}"/>
                     </Button>
                     <!-- 面積計算書 -->
                     <Button FontSize="20"  Margin="0,0,20,0" Style="{StaticResource DocumentWorksButtonStyle}"
                             Command="{Binding OpenWorksPdfDocumentCommand}" CommandParameter="Document04">
-                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" >
-                                <Run Text="面積計算書" />
-                        </TextBlock>
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding WorksButtons[3].BtnText}"/>
                     </Button>
                 </StackPanel>
                 <!-- 事業資料ボタンエリア（下段） -->
@@ -101,32 +91,22 @@
                     <!-- 地積測量図 -->
                     <Button FontSize="20"  Margin="20,0,15,0" Style="{StaticResource DocumentWorksButtonStyle}"
                             Command="{Binding OpenWorksPdfDocumentCommand}" CommandParameter="Document05">
-                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" >
-                                <Run Text="地積測量図" />
-                        </TextBlock>
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding WorksButtons[4].BtnText}"/>
                     </Button>
                     <!-- 登記簿 -->
                     <Button FontSize="20"  Margin="0,0,15,0" Style="{StaticResource DocumentWorksButtonStyle}"
                             Command="{Binding OpenWorksPdfDocumentCommand}" CommandParameter="Document06">
-                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" >
-                                <Run Text="写真" />
-                                <LineBreak />
-                                <Run Text="（全体）" />
-                        </TextBlock>
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding WorksButtons[5].BtnText}"/>
                     </Button>
                     <!-- 事業計画図 -->
                     <Button FontSize="20"  Margin="0,0,15,0" Style="{StaticResource DocumentWorksButtonStyle}"
                             Command="{Binding OpenWorksPdfDocumentCommand}" CommandParameter="Document07">
-                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" >
-                                <Run Text="事業計画図" />
-                        </TextBlock>
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding WorksButtons[6].BtnText}"/>
                     </Button>
                     <!-- その他 -->
                     <Button FontSize="20"  Margin="0,0,20,0" Style="{StaticResource DocumentWorksButtonStyle}"
                             Command="{Binding OpenWorksPdfDocumentCommand}" CommandParameter="Document08">
-                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" >
-                                <Run Text="その他" />
-                        </TextBlock>
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding WorksButtons[7].BtnText}"/>
                     </Button>
                 </StackPanel>
             </Grid>
@@ -158,36 +138,22 @@
                     <!-- 配置図　調査表 -->
                     <Button FontSize="20" Margin="20,0,15,0" Style="{StaticResource DocumentLandownerButtonStyle}"
                             Command="{Binding OpenLandownerPdfDocumentCommand}" CommandParameter="Document01">
-                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" >
-                                <Run Text="配置図" />
-                                <LineBreak />
-                                <Run Text="調査表" />
-                        </TextBlock>
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding LandownerButtons[0].BtnText}"/>
                     </Button>
                     <!-- 算定書 -->
                     <Button FontSize="20" Margin="0,0,15,0" Style="{StaticResource DocumentLandownerButtonStyle}"
                             Command="{Binding OpenLandownerPdfDocumentCommand}" CommandParameter="Document02">
-                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" >
-                                <Run Text="算定書" />
-                        </TextBlock>
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding LandownerButtons[1].BtnText}"/>
                     </Button>
                     <!-- 写真（個別） -->
                     <Button FontSize="20" Margin="0,0,15,0" Style="{StaticResource DocumentLandownerButtonStyle}"
                             Command="{Binding OpenLandownerPdfDocumentCommand}" CommandParameter="Document03">
-                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" >
-                                <Run Text="写真" />
-                                <LineBreak />
-                                <Run Text="（個別）" />
-                        </TextBlock>
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding LandownerButtons[2].BtnText}"/>
                     </Button>
                     <!-- 相続関係図（説明用） -->
                     <Button FontSize="20" Margin="0,0,20,0" Style="{StaticResource DocumentLandownerButtonStyle}"
                             Command="{Binding OpenLandownerPdfDocumentCommand}" CommandParameter="Document04">
-                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" >
-                                <Run Text="相続関係図" />
-                                <LineBreak />
-                                <Run Text="（説明用）" />
-                        </TextBlock>
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding LandownerButtons[3].BtnText}"/>
                     </Button>
                 </StackPanel>
                 <!-- 地権者個別資料ボタンエリア（下段） -->
@@ -196,30 +162,22 @@
                     <!-- 調書 -->
                     <Button FontSize="20" Margin="20,0,15,0" Style="{StaticResource DocumentLandownerButtonStyle}"
                             Command="{Binding OpenLandownerPdfDocumentCommand}" CommandParameter="Document05">
-                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" >
-                                <Run Text="調書" />
-                        </TextBlock>
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding LandownerButtons[4].BtnText}"/>
                     </Button>
                     <!-- 補償金提示書 -->
                     <Button FontSize="20" Margin="0,0,15,0" Style="{StaticResource DocumentLandownerButtonStyle}"
                             Command="{Binding OpenLandownerPdfDocumentCommand}" CommandParameter="Document06">
-                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" >
-                                <Run Text="補償金提示書" />
-                        </TextBlock>
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding LandownerButtons[5].BtnText}"/>
                     </Button>
                     <!-- 契約書 -->
                     <Button FontSize="20" Margin="0,0,15,0" Style="{StaticResource DocumentLandownerButtonStyle}"
                             Command="{Binding OpenLandownerPdfDocumentCommand}" CommandParameter="Document07">
-                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" >
-                                <Run Text="契約書" />
-                        </TextBlock>
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding LandownerButtons[6].BtnText}"/>
                     </Button>
                     <!-- その他 -->
                     <Button FontSize="20" Margin="0,0,20,0" Style="{StaticResource DocumentLandownerButtonStyle}"
                             Command="{Binding OpenLandownerPdfDocumentCommand}" CommandParameter="Document08">
-                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" >
-                                <Run Text="その他" />
-                        </TextBlock>
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding LandownerButtons[7].BtnText}"/>
                     </Button>
                 </StackPanel>
                 

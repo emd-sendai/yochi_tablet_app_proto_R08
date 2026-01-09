@@ -1,0 +1,34 @@
+[
+  {
+    "BtnId": "Document01",
+    "BtnText": "公図"
+  },
+  {
+    "BtnId": "Document02",
+    "BtnText": "登記簿\n（土地・建物）"
+  },
+  {
+    "BtnId": "Document03",
+    "BtnText": "用地平面図"
+  },
+  {
+    "BtnId": "Document04",
+    "BtnText": "面積計算書"
+  },
+  {
+    "BtnId": "Document05",
+    "BtnText": "地積測量図"
+  },
+  {
+    "BtnId": "Document06",
+    "BtnText": "写真\n（全体）"
+  },
+  {
+    "BtnId": "Document07",
+    "BtnText": "事業計画図"
+  },
+  {
+    "BtnId": "Document08",
+    "BtnText": "その他"
+  }
+]

@@ -28,6 +28,8 @@
 
   <ItemGroup>
     <None Remove="Data\aramashiButtons.json" />
+    <None Remove="Data\ButtonSettings\documentLandownerButtons.json" />
+    <None Remove="Data\ButtonSettings\documentWorksButtons.json" />
     <None Remove="Data\Landowners.json" />
     <None Remove="Data\Works.json" />
     <None Remove="SlideResources\Aramashi\slides_aramashi1.json" />
@@ -41,6 +43,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Data\ButtonSettings\documentLandownerButtons.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\ButtonSettings\documentWorksButtons.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="SlideResources\Aramashi\slides_aramashi3.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
