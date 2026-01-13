@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
+using System.Text.Json;
 using System.Windows;
 using WpfApp.Common.Models;
 using WpfApp.Common.ViewModels;
@@ -23,6 +24,12 @@ namespace WpfApp.Screens.Admin.ViewModels
         private static readonly string BaseDire = AppDomain.CurrentDomain.BaseDirectory;
         private static readonly string AramashiDataFolder = Path.Combine(BaseDire, "DocumentResources", "Aramashi");
         private static readonly string DocumentDataFolder = Path.Combine(BaseDire, "DocumentResources", "Documents");
+
+        private static readonly string ButtonDataFolder = Path.Combine(BaseDire, "Data", "ButtonSettings");
+        private static readonly string WorksButtonPath = Path.Combine(ButtonDataFolder, "documentWorksButtons.json");
+        private static readonly string LandownerButtonPath = Path.Combine(ButtonDataFolder, "documentLandownerButtons.json");
+
+        private static readonly string LandownersDataPath = Path.Combine(BaseDire, "Data", "landowners.json");
 
         [ObservableProperty]
         private bool isLeftDrawerOpen;
@@ -50,13 +57,16 @@ namespace WpfApp.Screens.Admin.ViewModels
         private ObservableCollection<TabItemData>? tabItems;
 
         [ObservableProperty]
+        private Dictionary<string, ObservableCollection<PdfDocumentData>>? landownerDocuments;
+
+        [ObservableProperty]
         private int selectedTabIndex;
 
         [ObservableProperty]
         private LandownerData? selectedLandowner;
 
         [ObservableProperty]
-        private PdfData? selectedPdfDocument;
+        private PdfDocumentData? selectedPdfDocument;
 
         public PdfDocumentSettingsViewModel(NavigationService navigationService, IDialogService dialogService, string selectedScreen)
         {
@@ -64,6 +74,7 @@ namespace WpfApp.Screens.Admin.ViewModels
             _dia = dialogService ?? throw new ArgumentNullException(nameof(dialogService));
             _selectedScreen = selectedScreen;
             Title = GetTitle();
+            SetTabItems();
             InitializeViewState();
         }
 
@@ -117,35 +128,134 @@ namespace WpfApp.Screens.Admin.ViewModels
 
             var tab = new TabItemData();
             var landowners = new ObservableCollection<LandownerData>();
-            var documents = new ObservableCollection<DocumentData>();
+            var documents = new ObservableCollection<PdfDocumentData>();
+            var doc = new PdfDocumentData();
 
-            // 用地補償の手順
-            var doc = new DocumentData();
-            doc.DisplayName = "用地補償の手順";
-            doc.FolderPath = Path.Combine(AramashiDataFolder, "Aramashi");
-            documents.Add(doc);
+
+            /* 用地補償の手順 */
+            documents.Add(GetDocumentData("用地補償の手順", Path.Combine(AramashiDataFolder, "Aramashi"), "Aramashi"));
             tab.Documents = documents;
+            // TabItemリストに格納
             items.Add(tab);
 
-            // その他
-            documents = new ObservableCollection<DocumentData>();
-            doc = new DocumentData();
-            doc.DisplayName = "税金等";
-            doc.FolderPath = Path.Combine(AramashiDataFolder, "Others", "Zeikin");
-            documents.Add(doc);
-            doc = new DocumentData();
-            doc.DisplayName = "損失補償基準";
-            doc.FolderPath = Path.Combine(AramashiDataFolder, "Others", "Sonshitsu");
-            documents.Add(doc);
+
+            /* その他 */
+            tab = new TabItemData();
+            documents = new ObservableCollection<PdfDocumentData>();
+
+            documents.Add(GetDocumentData("税金等", Path.Combine(AramashiDataFolder, "Others", "Zeikin"), "Zeikin"));
+            documents.Add(GetDocumentData("損失補償基準", Path.Combine(AramashiDataFolder, "Others", "Sonshitsu"), "Sonshitsu"));
             tab.Documents = documents;
+            // TabItemリストに格納
             items.Add(tab);
 
-            // 事業全般資料
-            // ボタンをJSONからよみこむようにしてから
 
-            // 地権者個別資料
-            // ボタンをJSONからよみこむようにしてから
+            /* 事業全般資料 Works */
+            tab = new TabItemData();
+            documents = new ObservableCollection<PdfDocumentData>();
 
+            var worksButtons = LoadButtonFromJson(WorksButtonPath);
+            foreach (var button in worksButtons)
+            {
+                documents.Add(GetDocumentData(button.LabelText, Path.Combine(DocumentDataFolder, "Works", button.BtnId), button.BtnId));
+            }
+            tab.Documents = documents;
+            // TabItemリストに格納
+            items.Add(tab);
+
+
+            /* 地権者個別資料 Landowner */
+            tab = new TabItemData();
+
+            landowners = new ObservableCollection<LandownerData>();
+            // 地権者ユーザリストを取得
+            landowners = LoadLandownersFromJson();
+            // TabItemDataに格納
+            tab.Landowners = landowners;
+
+            LandownerDocuments = new();
+            // 地権者個別資料のボタンの名称、Id（フォルダ名）を取得
+            var landownerButtons = LoadButtonFromJson(LandownerButtonPath);
+
+            foreach (var owner in landowners)
+            {
+                // 初期化
+                documents = new ObservableCollection<PdfDocumentData>();
+
+                for (int i = 0; i < landownerButtons.Count; i++)
+                {
+                    var button = landownerButtons[i];
+                    // PDFデータフォルダのパスを取得して格納
+                    documents.Add(GetDocumentData(button.LabelText, Path.Combine(DocumentDataFolder, "Landowners", owner.LandownerId, button.BtnId), button.BtnId));
+                }
+                // 地権者ごとのPDFフォルダ情報をDictonaryに格納
+                LandownerDocuments.Add(owner.LandownerId, documents);
+                Debug.WriteLine($"[DEBUG] 地権者個別資料データを格納します :{owner.LandownerId}");
+            }
+            // 最後のPDFフォルダ情報を格納（表示用）
+            tab.Documents = documents;
+            // TabItemリストに格納
+            items.Add(tab);
+
+            // 画面表示用リストに格納
+            TabItems = items;
+        }
+
+        private PdfDocumentData GetDocumentData(string displayName, string folderPath, string id)
+        {
+            var doc = new PdfDocumentData();
+
+            doc.DisplayName = displayName;
+            doc.FolderPath = folderPath;
+            doc.Id = id;
+
+            return doc;
+        }
+
+        private List<ButtonConfig> LoadButtonFromJson(string path)
+        {
+            var buttons = new List<ButtonConfig>();
+
+            if (!File.Exists(path))
+            {
+                MessageBox.Show("ボタンの名称を表示できません");
+                Debug.WriteLine($"[DEBUG] ボタンデータが存在しません: {path}");
+            }
+            else
+            {
+                string json = File.ReadAllText(path);
+                buttons = JsonSerializer.Deserialize<List<ButtonConfig>>
+                    (json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true }) ?? new List<ButtonConfig>();
+            }
+            return buttons;
+        }
+
+        private ObservableCollection<LandownerData> LoadLandownersFromJson()
+        {
+            var landowners = new ObservableCollection<LandownerData>();
+
+            try
+            {
+                string path = LandownersDataPath;
+
+                if (!File.Exists(path))
+                {
+                    MessageBox.Show("地権者データが見つかりません");
+                    Debug.WriteLine($"[DEBUG] 地権者データが見つかりません: {path}");
+                }
+
+                string json = File.ReadAllText(path);
+                var list = JsonSerializer.Deserialize<List<LandownerData>>(json);
+
+                landowners = new ObservableCollection<LandownerData>(list ?? new List<LandownerData>());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("地権者データを読み込むことができません");
+                Debug.WriteLine($"[DEBUG] 地権者データを読み込むことができません: {ex.Message}");
+            }
+
+            return landowners;
         }
 
         partial void OnSelectedTabIndexChanged(int oldValue, int newValue)
@@ -177,6 +287,75 @@ namespace WpfApp.Screens.Admin.ViewModels
         private void GoToMenu()
         {
             _nav.Navigate(new MenuViewModel(_nav, _dia));
+
+        }
+
+        [RelayCommand]
+        private void Select()
+        {
+            // 地権者個別資料の場合
+            if (SelectedTabIndex == 3)
+            {
+                if(SelectedLandowner == null)
+                {
+                    ShowMessageWindow("地権者ユーザを選択してください");
+                    Debug.WriteLine($"[ERROR] SelectedLandownerがNULLです");
+                    return;
+                }
+
+                if (SelectedPdfDocument == null)
+                {
+                    ShowMessageWindow("項目を選択してください");
+                    Debug.WriteLine($"[ERROR] SelectedPdfDocumentがNULLです");
+                    return;
+                }
+
+                if (LandownerDocuments != null && LandownerDocuments.TryGetValue(SelectedLandowner.LandownerId, out var pdfDocuments))
+                {
+                    foreach(var pdfDoc in pdfDocuments)
+                    {
+                        if(pdfDoc.Id == SelectedPdfDocument.Id)
+                        {
+                            SelectedPdfDocument = pdfDoc;
+                            Debug.WriteLine($"[DEBUG] SelectedPdfDocumentを更新しました");
+                            break;
+                        }
+                        else
+                        {
+                            ShowMessageWindow("地権者個別資料の項目を選択できません");
+                            Debug.WriteLine($"[ERROR] SelectedPdfDocumentを更新できません");
+                            return;
+                        }
+                    }
+
+                    // 画面遷移
+                    GoToPdfDocumentEdit();
+                }
+                else
+                {
+                    ShowMessageWindow("地権者個別資料の項目を選択できません");
+                    Debug.WriteLine($"[ERROR] LandownerDocumentsがNULLです");
+                    return;
+                }
+
+            }
+            // それ以外の場合
+            else
+            {
+                if (SelectedPdfDocument == null)
+                {
+                    ShowMessageWindow("項目を選択してください");
+                    Debug.WriteLine($"[ERROR] SelectedPdfDocumentがNULLです");
+                    return;
+                }
+
+                // 画面遷移
+                GoToPdfDocumentEdit();
+            }
+        }
+
+        private void GoToPdfDocumentEdit()
+        {
 
         }
 

@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WpfApp.Common.Models
+﻿namespace WpfApp.Common.Models
 {
     public class LandownerData
     {
-        public string? LandownerId { get; set; }
-        public string? LandownerName { get; set; } = String.Empty;
+        public string LandownerId { get; set; } = string.Empty;
+        public string LandownerName { get; set; } = string.Empty;
     }
 }

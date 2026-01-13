@@ -114,8 +114,9 @@
                                          ScrollViewer.CanContentScroll="False"
                                          ScrollViewer.PanningMode="VerticalOnly"
                                          ScrollViewer.PanningDeceleration="0.001"
-                                         ScrollViewer.VerticalScrollBarVisibility="Auto">
-                                    <ListBoxItem Content="用地補償の手順"/>
+                                         ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                         ItemsSource="{Binding TabItems[0].Documents}" SelectedItem="{Binding SelectedPdfDocument, Mode=TwoWay}"
+                                         DisplayMemberPath="DisplayName">
                                 </ListBox>
                             </StackPanel>
                         </TabItem>
@@ -131,9 +132,9 @@
                                          ScrollViewer.CanContentScroll="False"
                                          ScrollViewer.PanningMode="VerticalOnly"
                                          ScrollViewer.PanningDeceleration="0.001"
-                                         ScrollViewer.VerticalScrollBarVisibility="Auto">
-                                    <ListBoxItem Content="税金等"/>
-                                    <ListBoxItem Content="損失補償基準"/>
+                                         ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                         ItemsSource="{Binding TabItems[1].Documents}" SelectedItem="{Binding SelectedPdfDocument, Mode=TwoWay}" 
+                                         DisplayMemberPath="DisplayName">
                                 </ListBox>
                             </StackPanel>
                         </TabItem>
@@ -149,14 +150,9 @@
                                          ScrollViewer.CanContentScroll="False"
                                          ScrollViewer.PanningMode="VerticalOnly"
                                          ScrollViewer.PanningDeceleration="0.001"
-                                         ScrollViewer.VerticalScrollBarVisibility="Auto">
-                                    <ListBoxItem Content="公図"/>
-                                    <ListBoxItem Content="登記簿 （土地・建物）"/>
-                                    <ListBoxItem Content="用地平面図"/>
-                                    <ListBoxItem Content="面積計算書"/>
-                                    <ListBoxItem Content="地積測量図"/>
-                                    <ListBoxItem Content="写真 （全体）"/>
-                                    <ListBoxItem Content="その他"/>
+                                         ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                         ItemsSource="{Binding TabItems[2].Documents}" SelectedItem="{Binding SelectedPdfDocument, Mode=TwoWay}" 
+                                         DisplayMemberPath="DisplayName">
                                 </ListBox>
                             </StackPanel>
                         </TabItem>
@@ -168,29 +164,24 @@
                             <StackPanel>
                                 <TextBlock Text="地権者ユーザを選択してください" Margin="10,10,0,10" FontSize="16" FontWeight="SemiBold"
                                        Foreground="{DynamicResource MaterialDesign.Brush.Primary}"/>
-                                <ComboBox FontSize="16" Style="{DynamicResource BorderedComboBoxStyle}">
-                                    <ComboBoxItem Content="国土太郎"/>
-                                    <ComboBoxItem Content="用地次郎"/>
-                                    <ComboBoxItem Content="用地三郎"/>
-                                    <ComboBoxItem Content="用地四郎"/>
-                                    <ComboBoxItem Content="用地五郎"/>
+                                <ComboBox FontSize="16" Style="{DynamicResource BorderedComboBoxStyle}"
+                                          ItemsSource="{Binding TabItems[3].Landowners}" SelectedItem="{Binding SelectedLandowner, Mode=TwoWay}"
+                                          DisplayMemberPath="LandownerName">
                                 </ComboBox>
 
-                                <TextBlock Text="項目を選択してください" Margin="10,10,0,10" FontSize="16" FontWeight="SemiBold"
+                                <StackPanel IsEnabled="{Binding SelectedLandowner, Converter={StaticResource NullToBoolConverter}}">
+                                    <TextBlock Text="項目を選択してください" Margin="10,10,0,10" FontSize="16" FontWeight="SemiBold"
                                        Foreground="{DynamicResource MaterialDesign.Brush.Primary}"/>
-                                <ListBox FontSize="16" MaxHeight="170" Style="{DynamicResource BorderedListBoxStyle}"
+                                    <ListBox FontSize="16" MaxHeight="170" Style="{DynamicResource BorderedListBoxStyle}"
                                          ScrollViewer.CanContentScroll="False"
                                          ScrollViewer.PanningMode="VerticalOnly"
                                          ScrollViewer.PanningDeceleration="0.001"
-                                         ScrollViewer.VerticalScrollBarVisibility="Auto">
-                                    <ListBoxItem Content="配置図 調査表"/>
-                                    <ListBoxItem Content="算定書"/>
-                                    <ListBoxItem Content="写真 （個別）"/>
-                                    <ListBoxItem Content="相関関係図 （説明用）"/>
-                                    <ListBoxItem Content="調書"/>
-                                    <ListBoxItem Content="契約書"/>
-                                    <ListBoxItem Content="その他"/>
-                                </ListBox>
+                                         ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                         ItemsSource="{Binding TabItems[3].Documents}" SelectedItem="{Binding SelectedPdfDocument, Mode=TwoWay}" 
+                                         DisplayMemberPath="DisplayName">
+                                    </ListBox>
+                                </StackPanel>
+                                
                             </StackPanel>
                         </TabItem>
                     </TabControl>
@@ -199,8 +190,8 @@
                 <StackPanel Grid.Row="1">
                     <Button Content="選択" Width="80" Height="50" FontSize="20" Margin="0,10,0,0" 
                             VerticalAlignment="Top" Style="{StaticResource CommonButtonStyle}" 
-                            Command="{Binding EditSelectedCommand}" 
-                            IsEnabled="{Binding SelectedButton, Converter={StaticResource NullToBoolConverter}}"/>
+                            Command="{Binding SelectCommand}" 
+                            IsEnabled="{Binding SelectedPdfDocument, Converter={StaticResource NullToBoolConverter}}"/>
                 </StackPanel>
                 
             </Grid>
