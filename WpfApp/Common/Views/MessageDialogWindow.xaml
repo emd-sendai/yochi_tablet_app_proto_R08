@@ -10,12 +10,27 @@
         Background="{DynamicResource MaterialDesignPaper}"
         ResizeMode="NoResize">
     
-    <Grid Margin="30">
-        <TextBlock Text="{Binding Message}" FontSize="18" TextWrapping="Wrap" HorizontalAlignment="Center"
-                   Margin="0,50,0,50"/>
-        <Button Content="OK"  HorizontalAlignment="Right" VerticalAlignment="Bottom"
-                IsDefault="True" FontSize="22" Height="50" Width="80"
-                Command="{Binding OkCommand}" Style="{StaticResource CommonButtonStyle}"/>
+    <Grid Margin="25">
+
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        
+        <TextBlock Grid.Row="0" Text="{Binding Message}" FontSize="17" TextWrapping="Wrap" 
+                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="キャンセル" FontSize="22" Height="50" Width="120" Margin="0,0,30,0"
+                    Command="{Binding CancelCommand}" Style="{StaticResource CommonButtonStyle}"
+                    Visibility="{Binding ShowCancel, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+            <Button Content="OK" IsDefault="True" FontSize="22" Height="50" Width="80"
+                    Command="{Binding OkCommand}" Style="{StaticResource CommonButtonStyle}"/>
+        </StackPanel>
+        
+
     </Grid>
     
 </Window>

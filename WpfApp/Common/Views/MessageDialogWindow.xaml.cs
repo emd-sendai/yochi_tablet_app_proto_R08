@@ -1,16 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using WpfApp.Common.ViewModels;
 
 namespace WpfApp.Common.Views
@@ -24,17 +13,27 @@ namespace WpfApp.Common.Views
         {
             InitializeComponent();
             Loaded += MessageDialogWindow_Loaded;
+            Closing += MessageDialogWindow_Closing;
         }
 
         private void MessageDialogWindow_Loaded(object sender, RoutedEventArgs e)
         {
             if (DataContext is MessageDialogViewModel vm)
             {
-                vm.RequestClose += (s, args) =>
+                vm.RequestClose += (s, result) =>
                 {
-                    DialogResult = true; // ShowDialog で true を返す
+                    DialogResult = result;
                     Close();
                 };
+            }
+        }
+
+        private void MessageDialogWindow_Closing(object? sender, CancelEventArgs e)
+        {
+            // DialogResult が未設定の場合
+            if (DialogResult == null)
+            {
+                DialogResult = false; // キャンセル扱い
             }
         }
     }

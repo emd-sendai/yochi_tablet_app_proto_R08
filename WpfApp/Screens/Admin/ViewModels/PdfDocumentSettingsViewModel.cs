@@ -312,24 +312,26 @@ namespace WpfApp.Screens.Admin.ViewModels
 
                 if (LandownerDocuments != null && LandownerDocuments.TryGetValue(SelectedLandowner.LandownerId, out var pdfDocuments))
                 {
+                    var isUpdated = false;
+
                     foreach(var pdfDoc in pdfDocuments)
                     {
                         if(pdfDoc.Id == SelectedPdfDocument.Id)
                         {
                             SelectedPdfDocument = pdfDoc;
                             Debug.WriteLine($"[DEBUG] SelectedPdfDocumentを更新しました");
+                            isUpdated = true;
                             break;
-                        }
-                        else
-                        {
-                            ShowMessageWindow("地権者個別資料の項目を選択できません");
-                            Debug.WriteLine($"[ERROR] SelectedPdfDocumentを更新できません");
-                            return;
                         }
                     }
 
-                    // 画面遷移
-                    GoToPdfDocumentEdit();
+                    if (!isUpdated)
+                    {
+                        ShowMessageWindow("地権者個別資料の項目を選択できません");
+                        Debug.WriteLine($"[ERROR] LandownerDocuments[{SelectedLandowner.LandownerId}]に「{SelectedPdfDocument.Id}」と一致するPDFフォルダが存在しません");
+                        Debug.WriteLine($"[ERROR] SelectedPdfDocumentを更新できません");
+                        return;
+                    }
                 }
                 else
                 {
@@ -348,15 +350,19 @@ namespace WpfApp.Screens.Admin.ViewModels
                     Debug.WriteLine($"[ERROR] SelectedPdfDocumentがNULLです");
                     return;
                 }
-
-                // 画面遷移
-                GoToPdfDocumentEdit();
             }
-        }
 
-        private void GoToPdfDocumentEdit()
-        {
-
+            // 画面遷移
+            if(SelectedPdfDocument.FolderPath != null)
+            {
+                _nav.Navigate(new PdfDocumentManagementViewModel(_nav, _dia, Title, SelectedPdfDocument));
+            }
+            else
+            {
+                ShowMessageWindow("項目を選択できません");
+                Debug.WriteLine($"[ERROR] SelectedPdfDocument.FolderPathがNULLです");
+                return;
+            }
         }
 
         private void ShowMessageWindow(string message)

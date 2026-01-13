@@ -40,6 +40,7 @@ namespace WpfApp.Services
                 ScreenSelectViewModel => new ScreenSelectView(),
                 ButtonSettingsViewModel => new ButtonSettingsView(),
                 PdfDocumentSettingsViewModel => new PdfDocumentSettingsView(),
+                PdfDocumentManagementViewModel => new PdfDocumentManagementView(),
 
                 AramashiMenuTestViewModel => new AramashiMenuTestView(),
 

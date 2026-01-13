@@ -5,9 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Text.Json;
 using System.Text.Json.Nodes;
-using System.Windows;
 using WpfApp.Common.ViewModels;
-using WpfApp.Common.Views;
 using WpfApp.Interfaces;
 using WpfApp.Screens.Aramashi.Models;
 using WpfApp.Screens.Menu.ViewModels;
@@ -21,6 +19,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         private readonly NavigationService _nav;
         private readonly IDialogService _dia;
         private readonly PdfDocumentService _pdf;
+        private readonly IMessageDialogService _messageDialog;
 
         public ObservableCollection<PresentationPageConfig> Slides { get; } = new();
 
@@ -54,6 +53,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             _nav = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
             _dia = dialogService ?? throw new ArgumentNullException(nameof(dialogService));
             _pdf = new PdfDocumentService();
+            _messageDialog = new MessageDialogService();
 
             _jsonPathList = GetJsonPaths(_presentationName);
             PresentationName = _presentationName ?? "";
@@ -73,7 +73,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
                 else
                 {
                     Debug.WriteLine($"[DEBUG] スライドデータを取得できません");
-                    MessageBox.Show("スライドデータを取得できません");
+                    _messageDialog.ShowMessage("スライドデータを取得できません");
                     return;
                 }
 
@@ -82,7 +82,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             else
             {
                 Debug.WriteLine($"[DEBUG] スライドデータを取得できません");
-                MessageBox.Show("スライドデータを取得できません");
+                _messageDialog.ShowMessage("スライドデータを取得できません");
                 return;
             }
         }
@@ -233,7 +233,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"チェックボックスの情報を保存できません");
+                _messageDialog.ShowMessage($"チェックボックスの情報を保存できません");
                 Debug.WriteLine($"[DEBUG] チェックボックスの情報を保存できません: {ex.Message}");
             }
         }
@@ -445,13 +445,13 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             if (AllPagesChecked == false)
             {
                 //メッセージウィンドウを表示
-                ShowMessageWindow("チェックされていない項目があります");
+                _messageDialog.ShowMessage("チェックされていない項目があります");
             }
             else
             {
                 if(PresentationName == null)
                 {
-                    MessageBox.Show("署名データを作成できません");
+                    _messageDialog.ShowMessage("署名データを作成できません");
                     Debug.WriteLine($"[DEBUG] PresentationNameがNULLです");
                     return;
                 }
@@ -467,28 +467,24 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         [RelayCommand]
         private void OpenUrl(string url)
         {
-            var result = MessageBox.Show("外部サイトをブラウザで開きます。よろしいですか。",
-                "OK",MessageBoxButton.OKCancel,MessageBoxImage.Information);
-
-            if (result != MessageBoxResult.OK) return;
-
-            try
+            if (_messageDialog.ShowConfirm($"外部サイトをブラウザで開きます。よろしいですか？"))
             {
-                Process.Start(new ProcessStartInfo
+                try
                 {
-                    FileName = url,
-                    UseShellExecute = true
-                });
-                Debug.WriteLine($"[DEBUG] 外部サイトをブラウザで開きます :{url}");
+                    Process.Start(new ProcessStartInfo
+                    {
+                        FileName = url,
+                        UseShellExecute = true
+                    });
+                    Debug.WriteLine($"[DEBUG] 外部サイトをブラウザで開きます :{url}");
+                }
+                catch (Exception ex)
+                {
+                    _messageDialog.ShowMessage($"以下の外部サイトをブラウザで開くことができません。\n{url}");
+                    Debug.WriteLine($"[ERROR] 外部サイトをブラウザで開くことができません :{url}");
+                    Debug.WriteLine($"[ERROR] {ex.Message}");
+                }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("外部サイトをブラウザで開くことができません");
-                Debug.WriteLine($"[ERROR] 外部サイトをブラウザで開くことができません :{url}");
-                Debug.WriteLine($"[ERROR] {ex.Message}");
-            }
-
-
         }
 
         [RelayCommand]
@@ -505,7 +501,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
                 {
                     Debug.WriteLine($"[ERROR] PDFファイルが存在しません {folderPath}");
                     //メッセージウィンドウを表示
-                    ShowMessageWindow("PDFファイルが存在しません");
+                    _messageDialog.ShowMessage("PDFファイルが存在しません");
                 }
                 else
                 {
@@ -526,32 +522,15 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             {
                 var folderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "DocumentResources", "Aramashi", "Others", "Sonshitsu");
 
-                var result = MessageBox.Show("PDFファイルを開きます。よろしいですか。",
-                    "OK", MessageBoxButton.OKCancel, MessageBoxImage.Information);
-
-                if (result != MessageBoxResult.OK) return;
-
-                _pdf.OpenPdf(folderPath, fileName);
+                if (_messageDialog.ShowConfirm($"PDFファイルを開きます。よろしいですか？"))
+                {
+                    _pdf.OpenPdf(folderPath, fileName);
+                }
             }
             else
             {
                 Debug.WriteLine($"[ERROR] fileNameが空です");
             }
-        }
-
-        private void ShowMessageWindow(string message)
-        {
-            var vm = new MessageDialogViewModel
-            {
-                Message = message
-            };
-
-            var dialog = new MessageDialogWindow
-            {
-                DataContext = vm,
-                Owner = Application.Current.MainWindow
-            };
-            dialog.ShowDialog();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Windows;
 using WpfApp.Common.Models;
@@ -19,6 +20,24 @@ namespace WpfApp.Services
             return Directory.GetFiles(folderPath, "*.pdf")
                             .Select(p => new PdfData(p))
                             .ToList();
+        }
+
+        public ObservableCollection<PdfData> GetPdfDatas(string folderPath)
+        {
+            var ret = new ObservableCollection<PdfData>();
+
+            if (!Directory.Exists(folderPath))
+            {
+                return ret;
+            }
+            else
+            {
+                ret = new ObservableCollection<PdfData>(
+                    Directory.GetFiles(folderPath, "*.pdf").Select(p => new PdfData(p)).ToList()
+                );
+                return ret;
+            }
+
         }
 
         public void OpenPdf(PdfData data)
