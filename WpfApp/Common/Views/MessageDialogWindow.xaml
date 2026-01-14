@@ -19,7 +19,7 @@
 
         <ScrollViewer Grid.Row="0" MaxHeight="150"
                       VerticalScrollBarVisibility="Auto">
-            <TextBlock Text="{Binding Message}" FontSize="17" TextWrapping="Wrap" 
+            <TextBlock Text="{Binding Message}" FontSize="18" TextWrapping="Wrap" 
                    HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
         </ScrollViewer>
         
