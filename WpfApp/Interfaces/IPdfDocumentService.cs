@@ -12,5 +12,11 @@ namespace WpfApp.Interfaces
         void OpenPdf(PdfData data);
 
         void OpenPdf(string folderPath, string fileNameWithoutExtension);
+
+        PdfData AddPdf(string folderPath, string sourceFilePath);
+
+        void UpdatePdf(string folderPath, string sourceFilePath);
+
+        bool DeletePdf(PdfData data);
     }
 }

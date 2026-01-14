@@ -49,7 +49,7 @@ namespace WpfApp.Services
                     WriteIndented = true
                 };
 
-                /* 用地補償の手順（あらまし） */
+                /* 用地補償の手順（補償のあらまし） */
                 // チェックボックスの初期化
                 if (Path.Exists(AramashiFolder))
                 {
@@ -75,7 +75,7 @@ namespace WpfApp.Services
                     }
                 }
 
-                /* 代替地 */
+                /* 代替地（補償のあらまし - その他） */
                 // チェックボックスの初期化
                 if (File.Exists(DaitaichiSlidePath))
                 {
@@ -102,7 +102,7 @@ namespace WpfApp.Services
                     Debug.WriteLine($"[DEBUG] 代替地PNG署名データを初期化しました");
                 }
 
-                /* 税金等 */
+                /* 税金等（補償のあらまし - その他） */
                 // チェックボックスの初期化
                 if (File.Exists(ZeikinSlidePath))
                 {

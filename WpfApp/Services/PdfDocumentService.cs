@@ -1,10 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
-using System.Windows;
 using WpfApp.Common.Models;
-using WpfApp.Common.ViewModels;
-using WpfApp.Common.Views;
 using WpfApp.Interfaces;
 
 
@@ -12,6 +9,8 @@ namespace WpfApp.Services
 {
     public class PdfDocumentService : IPdfDocumentService
     {
+        private readonly IMessageDialogService _messageDialog = new MessageDialogService();
+
         public IReadOnlyList<PdfData> GetPdfList(string folderPath)
         {
             if (!Directory.Exists(folderPath))
@@ -46,17 +45,7 @@ namespace WpfApp.Services
             {
                 Debug.WriteLine($"[ERROR] PDFファイルが存在しません: {data.FullPath}");
                 //メッセージウィンドウを表示
-                var vm = new MessageDialogViewModel
-                {
-                    Message = "PDFファイルが存在しません"
-                };
-
-                var dialog = new MessageDialogWindow
-                {
-                    DataContext = vm,
-                    Owner = Application.Current.MainWindow
-                };
-                dialog.ShowDialog();
+                _messageDialog.ShowMessage("PDFファイルが存在しません");
             }
             else
             {
@@ -71,18 +60,7 @@ namespace WpfApp.Services
             if (!File.Exists(fullPath))
             {
                 Debug.WriteLine($"[ERROR] PDFファイルが存在しません: {fullPath}");
-                //メッセージウィンドウを表示
-                var vm = new MessageDialogViewModel
-                {
-                    Message = "PDFファイルが存在しません"
-                };
-
-                var dialog = new MessageDialogWindow
-                {
-                    DataContext = vm,
-                    Owner = Application.Current.MainWindow
-                };
-                dialog.ShowDialog();
+                _messageDialog.ShowMessage("PDFファイルが存在しません");
             }
             else
             {
@@ -97,6 +75,58 @@ namespace WpfApp.Services
                 FileName = fullPath,
                 UseShellExecute = true
             });
+        }
+
+        public PdfData AddPdf(string folderPath, string sourceFilePath)
+        {
+            // フォルダが存在しない場合は作成
+            Directory.CreateDirectory(folderPath);
+
+            var fileName = Path.GetFileName(sourceFilePath);
+            var addFilePath = Path.Combine(folderPath, fileName);
+
+            if (Path.Exists(addFilePath))
+            {
+                throw new InvalidOperationException($"[ERROR] PDFファイルが既に存在します: {fileName}");
+            }
+
+            File.Copy(sourceFilePath, addFilePath);
+            Debug.WriteLine($"[DEBUG] PDFファイルを追加しました: {addFilePath}");
+
+            return new PdfData(addFilePath);
+        }
+
+        public void UpdatePdf(string filePath, string sourceFilePath)
+        {
+            var fileName = Path.GetFileName(filePath);
+
+            if (!Path.Exists(filePath))
+            {
+                throw new InvalidOperationException($"[ERROR] 上書き対象のPDFが存在しません: {fileName}");
+            }
+
+            File.Copy(sourceFilePath, filePath, overwrite: true);
+            Debug.WriteLine($"[DEBUG] PDFファイルの内容を上書きしました: {filePath}");
+        }
+
+        public bool DeletePdf(PdfData data)
+        {
+            var result = false;
+
+            if (!File.Exists(data.FullPath))
+            {
+                result = false;
+                _messageDialog.ShowMessage("PDFファイルが存在しません");
+                Debug.WriteLine($"[ERROR] PDFファイルが存在しません: {data.FullPath}");
+            }
+            else
+            {
+                File.Delete(data.FullPath);
+                result = true;
+                Debug.WriteLine($"[DEBUG] PDFファイルを削除しました: {data.FullPath}");
+            }
+
+            return result;
         }
     }
 }
