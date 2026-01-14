@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using WpfApp.Interfaces;
 using WpfApp.Screens.Admin.ViewModels;
 using WpfApp.Screens.Admin.Views;
 using WpfApp.Screens.Aramashi.ViewModels;
@@ -55,6 +56,12 @@ namespace WpfApp.Services
 
         public void GoBack()
         {
+            if (_contentControl.Content is UserControl view && view.DataContext is INavigationTarget nav && nav.CreateBackViewModel != null)
+            {
+                Navigate(nav.CreateBackViewModel());
+                return;
+            }
+
             if (_history.Count > 0)
             {
                 var previousVm = _history.Pop();

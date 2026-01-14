@@ -12,12 +12,14 @@ using static WpfApp.Screens.Admin.Models.TabItemData;
 
 namespace WpfApp.Screens.Admin.ViewModels
 {
-    public partial class PdfDocumentManagementViewModel : ObservableObject
+    public partial class PdfDocumentManagementViewModel : ObservableObject , INavigationTarget
     {
         private readonly NavigationService _nav;
         private readonly IDialogService _dia;
         private readonly PdfDocumentService _pdf;
         private readonly IMessageDialogService _messageDialog;
+
+        public Func<object>? CreateBackViewModel => () => new PdfDocumentSettingsViewModel(_nav, _dia, _selectedScreen);
 
         [ObservableProperty]
         private bool isLeftDrawerOpen;
@@ -29,6 +31,8 @@ namespace WpfApp.Screens.Admin.ViewModels
         private string subTitle;
 
         private static readonly string _subTitleItem = "PDFファイル一覧";
+
+        private readonly string _selectedScreen;
 
         private readonly PdfDocumentData _pdfDataFolder;
 
@@ -48,7 +52,8 @@ namespace WpfApp.Screens.Admin.ViewModels
             NormalizePath(Path.Combine(_protectedFolder, "国土交通省損失補償取扱要領.pdf"))
         };
 
-        public PdfDocumentManagementViewModel(NavigationService navigationService, IDialogService dialogService, string prevTitle, PdfDocumentData selectedPdfData)
+        public PdfDocumentManagementViewModel(NavigationService navigationService, IDialogService dialogService, string prevTitle, 
+            PdfDocumentData selectedPdfData , string selectedScreen)
         {
             _nav = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
             _dia = dialogService ?? throw new ArgumentNullException(nameof(dialogService));
@@ -59,6 +64,7 @@ namespace WpfApp.Screens.Admin.ViewModels
 
             Title = prevTitle;
             SubTitle = GetSubTitle();
+            _selectedScreen = selectedScreen;
         }
 
         public void OnViewLoaded()

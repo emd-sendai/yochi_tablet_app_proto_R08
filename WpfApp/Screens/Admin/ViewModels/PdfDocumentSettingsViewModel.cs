@@ -16,10 +16,12 @@ using static WpfApp.Screens.Admin.Models.TabItemData;
 
 namespace WpfApp.Screens.Admin.ViewModels
 {
-    public partial class PdfDocumentSettingsViewModel : ObservableObject
+    public partial class PdfDocumentSettingsViewModel : ObservableObject , INavigationTarget
     {
         private readonly NavigationService _nav;
         private readonly IDialogService _dia;
+
+        public Func<object>? CreateBackViewModel => () => new ScreenSelectViewModel(_nav, _dia, "PdfDocumentSettings");
 
         private static readonly string BaseDire = AppDomain.CurrentDomain.BaseDirectory;
         private static readonly string AramashiDataFolder = Path.Combine(BaseDire, "DocumentResources", "Aramashi");
@@ -355,7 +357,7 @@ namespace WpfApp.Screens.Admin.ViewModels
             // 画面遷移
             if(SelectedPdfDocument.FolderPath != null)
             {
-                _nav.Navigate(new PdfDocumentManagementViewModel(_nav, _dia, Title, SelectedPdfDocument));
+                _nav.Navigate(new PdfDocumentManagementViewModel(_nav, _dia, Title, SelectedPdfDocument, _selectedScreen));
             }
             else
             {

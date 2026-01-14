@@ -10,10 +10,12 @@ using WpfApp.Services;
 
 namespace WpfApp.Screens.Admin.ViewModels
 {
-    public partial class ScreenSelectViewModel : ObservableObject
+    public partial class ScreenSelectViewModel : ObservableObject , INavigationTarget
     {
         private readonly NavigationService _nav;
         private readonly IDialogService _dia;
+
+        public Func<object>? CreateBackViewModel => () => new DisplaySettingsViewModel(_nav, _dia);
 
         [ObservableProperty]
         private bool isLeftDrawerOpen;
