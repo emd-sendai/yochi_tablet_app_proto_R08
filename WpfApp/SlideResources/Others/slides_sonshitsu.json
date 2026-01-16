@@ -11,6 +11,8 @@
       ],
       "fontSize": 26
     },
+    "video": true,
+    "videoPath": "",
     "document": true,
     "documentFolderName": "Sonshitsu",
     "sections": [
