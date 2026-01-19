@@ -497,7 +497,7 @@ namespace WpfApp.Screens.Aramashi.Views
 
             TextBlock label = new TextBlock()
             {
-                Text = "↑ クリックすると拡大",
+                Text = "↑ クリック(タップ)で拡大",
                 Foreground = brush,
                 HorizontalAlignment = HorizontalAlignment.Center,
             };
