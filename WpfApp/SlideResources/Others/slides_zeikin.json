@@ -317,7 +317,7 @@
       {
         "ImageButton": {
           "id": "imgbtn1",
-          "maxHeight": 190,
+          "maxHeight": 178,
           "maxWidth": 200,
           "imageButtons": [
             {

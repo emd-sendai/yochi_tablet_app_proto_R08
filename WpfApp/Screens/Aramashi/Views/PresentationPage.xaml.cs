@@ -491,6 +491,19 @@ namespace WpfApp.Screens.Aramashi.Views
             return imgbtn;
         }
 
+        private TextBlock CreateImageButtonHintText()
+        {
+            var brush = new SolidColorBrush(Colors.Gray);
+
+            TextBlock label = new TextBlock()
+            {
+                Text = "↑ クリックすると拡大",
+                Foreground = brush,
+                HorizontalAlignment = HorizontalAlignment.Center,
+            };
+            return label;
+        }
+
         private TextBlock CreateImageLabel(StyledImage data)
         {
             var color = (Color)ColorConverter.ConvertFromString(data.LabelColor);
@@ -817,8 +830,12 @@ namespace WpfApp.Screens.Aramashi.Views
 
                 // ボタンを作成
                 Button imgbtn = CreateImageButton(btn, maxWidth, maxHeight,viewModel);
-
                 colPanel.Children.Add(imgbtn);
+
+                // ヒントテキストを作成
+                TextBlock hint = CreateImageButtonHintText();
+                colPanel.Children.Add(hint);
+
                 rowPanel.Children.Add(colPanel);
             }
             return rowPanel;
