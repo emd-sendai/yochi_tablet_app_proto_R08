@@ -188,16 +188,16 @@
             <!-- テーブル（遷移用）ボタン様式 -->
             <Style x:Key="TableButtonStyle" TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatButton}">
                 <!-- 通常時の文字色 -->
-                <Setter Property="Foreground" Value="#FB8C00"/>
+                <Setter Property="Foreground" Value="#3F51B5"/>
                 <Style.Triggers>
                     <!-- ホバー時 -->
                     <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Foreground" Value="#FB8C00" />
+                        <Setter Property="Foreground" Value="#3F51B5" />
                     </Trigger>
 
                     <!-- 押下時（IsPressed） -->
                     <Trigger Property="IsPressed" Value="True">
-                        <Setter Property="Foreground" Value="#FB8C00" />
+                        <Setter Property="Foreground" Value="#3F51B5" />
                     </Trigger>
                 </Style.Triggers>
             </Style>
