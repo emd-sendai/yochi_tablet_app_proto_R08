@@ -114,9 +114,9 @@
         <Border Grid.RowSpan="3" HorizontalAlignment="Right" VerticalAlignment="Bottom" 
                 Margin="16" Padding="5" CornerRadius="10,0,0,0" IsHitTestVisible="False" 
                 Background="{DynamicResource MaterialDesignPaper}" Opacity="0.85"
-                Height="27" Width="33">
+                Height="27" Width="50">
 
-            <TextBlock Text="{Binding SlideIndex}" FontWeight="SemiBold" FontSize="14" HorizontalAlignment="Center"/>
+            <TextBlock Text="{Binding CurrentSlide.PageIndex}" FontWeight="SemiBold" FontSize="14" HorizontalAlignment="Center"/>
 
         </Border>
 

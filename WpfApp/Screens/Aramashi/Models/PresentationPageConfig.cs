@@ -32,6 +32,9 @@ namespace WpfApp.Screens.Aramashi.Models
         [JsonIgnore]
         public int GlobalIndex { get; set; }
 
+        [JsonIgnore]
+        public string PageIndex { get; set; } = string.Empty;
+
         public void ResolvePaths(string baseDir)
         {
             foreach (var section in Sections)

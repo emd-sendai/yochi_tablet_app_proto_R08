@@ -38,7 +38,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         public bool CanGoPrev => _index > 0;
         public bool CanGoNext => _index < Slides.Count - 1;
 
-        public int SlideIndex => _index + 1;
+        //public int SlideIndex => _index + 1;
 
         [ObservableProperty]
         private double scale = 1.0;
@@ -152,6 +152,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
                         {
                             slideList[i].SourceJsonPath = path;     // 元のJSONパス
                             slideList[i].OriginalIndex = i;         // JSON内での順番
+                            slideList[i].PageIndex = $"{i+1} / {slideList.Count}";　　// ページ番号表示用
                             slideList[i].GlobalIndex = globalIndex; // 全体での順番
                             slideList[i].ResolvePaths(slideDir);
                             ret.Add(slideList[i]);
@@ -372,7 +373,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
                 CurrentSlide = Slides[_index];
                 OnPropertyChanged(nameof(CanGoPrev));
                 OnPropertyChanged(nameof(CanGoNext));
-                OnPropertyChanged(nameof(SlideIndex));
+                //OnPropertyChanged(nameof(SlideIndex));
             }
         }
 
@@ -384,7 +385,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
                 CurrentSlide = Slides[++_index];
                 OnPropertyChanged(nameof(CanGoPrev));
                 OnPropertyChanged(nameof(CanGoNext));
-                OnPropertyChanged(nameof(SlideIndex));
+                //OnPropertyChanged(nameof(SlideIndex));
             }
         }
 
@@ -396,7 +397,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
                 CurrentSlide = Slides[--_index];
                 OnPropertyChanged(nameof(CanGoPrev));
                 OnPropertyChanged(nameof(CanGoNext));
-                OnPropertyChanged(nameof(SlideIndex));
+                //OnPropertyChanged(nameof(SlideIndex));
             }
         }
 
