@@ -1,0 +1,134 @@
+﻿<UserControl x:Class="WpfApp.Screens.Admin.Views.AdminDocumentView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:WpfApp.Screens.Admin.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <!-- Drawer部分 -->
+            <ColumnDefinition Width="*"/>
+            <!-- メインコンテンツ部分 -->
+        </Grid.ColumnDefinitions>
+
+        <materialDesign:DrawerHost x:Name="DrawerHostControl" Grid.Column="0"
+                                   HorizontalAlignment="Left" VerticalAlignment="Stretch"
+                                   IsLeftDrawerOpen="{Binding IsLeftDrawerOpen, Mode=TwoWay}">
+            <!-- サイドバー -->
+            <materialDesign:DrawerHost.LeftDrawerContent>
+                <StackPanel Background="{DynamicResource MaterialDesignPaper}">
+                    <TextBlock Text="管理メニュー" 
+                           FontSize="22" Margin="20"/>
+                    <Button Content="表示設定" FontSize="20" VerticalAlignment="Center"
+                            Style="{StaticResource MaterialDesignFlatButton}" 
+                            Command="{Binding GoToDisplaySetttingsCommand}"/>
+                    <Button Content="管理資料" FontSize="20" VerticalAlignment="Center"
+                            Style="{StaticResource MaterialDesignFlatButton}" 
+                            Command="{Binding GoToAdminDocumentCommand}"/>
+                </StackPanel>
+            </materialDesign:DrawerHost.LeftDrawerContent>
+        </materialDesign:DrawerHost>
+
+        <Grid Grid.Column="1">
+            <!-- Gridの行定義 -->
+            <Grid.RowDefinitions>
+                <!-- ヘッダー（１行目） -->
+                <RowDefinition Height="Auto" />
+                <!-- メインコンテンツ（２行目） -->
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!-- １行目 -->
+            <!-- ページタイトル -->
+            <TextBlock Grid.Row="0" Text="管理資料" Foreground="#3F51B5"
+            FontSize="30" FontWeight="Bold" Margin="0,10,0,10"
+            HorizontalAlignment="Center" VerticalAlignment="Center">
+            </TextBlock>
+
+            <!-- ボタン -->
+            <!-- ヘッダー（左側） -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <!-- 管理メニューアイコンボタン -->
+                <Button Grid.Row="0" Style="{StaticResource IconTextButtonStyle}" 
+                        Margin="10"  Command="{Binding ToggleDrawerCommand}">
+                    <StackPanel Orientation="Vertical">
+                        <materialDesign:PackIcon Kind="Menu" Style="{StaticResource ITButtonIconStyle}"/>
+                        <TextBlock Text="管理メニュー" Style="{StaticResource ITButtonTextStyle}"/>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+
+            <!-- ヘッダー（右側） -->
+            <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
+                <!-- ホームアイコンボタン -->
+                <Button Grid.Row="0" Style="{StaticResource IconTextButtonStyle}" 
+                Margin="5,10,10,10" Command="{Binding GoToMenuCommand}">
+                    <StackPanel Orientation="Vertical" >
+                        <materialDesign:PackIcon Kind="Home" Style="{StaticResource ITButtonIconStyle}"/>
+                        <TextBlock Text="メインメニュー" Style="{StaticResource ITButtonTextStyle}"/>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+
+            <!-- ２行目 -->
+            <!-- ボタン配置エリア -->
+            <!-- 事業資料エリア -->
+            <Grid Grid.Row="1" Margin="10,5,10,10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+
+                <!-- 事業名 -->
+                <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="国道○号○○事業" FontSize="26" FontWeight="Bold" Margin="10,5,10,5" 
+                               VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </StackPanel>
+
+                <!-- ボタンエリア（上段） -->
+                <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                            Margin="0,20,0,10" Cursor="Hand">
+                    <!--  -->
+                    <Button FontSize="20" Margin="20,0,15,0" Style="{StaticResource DocumentWorksButtonStyle}" Height="80"
+                            Command="" CommandParameter="">
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="項目①"/>
+                    </Button>
+                    <!--  -->
+                    <Button FontSize="20"  Margin="0,0,15,0" Style="{StaticResource DocumentWorksButtonStyle}" Height="80"
+                            Command="" CommandParameter="">
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="項目②"/>
+                    </Button>
+                    <!--  -->
+                    <Button FontSize="20"  Margin="0,0,20,0" Style="{StaticResource DocumentWorksButtonStyle}" Height="80"
+                            Command="" CommandParameter="">
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="項目③"/>
+                    </Button>
+                </StackPanel>
+                
+                <!-- ボタンエリア（下段） -->
+                <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,20,0,10">
+                    <!--  -->
+                    <Button FontSize="20" Margin="20,0,15,0" Style="{StaticResource DocumentWorksButtonStyle}" Height="80"
+                            Command="" CommandParameter="">
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="項目④"/>
+                    </Button>
+                    <!--  -->
+                    <Button FontSize="20"  Margin="0,0,15,0" Style="{StaticResource DocumentWorksButtonStyle}" Height="80"
+                            Command="" CommandParameter="">
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="項目⑤"/>
+                    </Button>
+                    <!--  -->
+                    <Button FontSize="20"  Margin="0,0,20,0" Style="{StaticResource DocumentWorksButtonStyle}" Height="80"
+                            Command="" CommandParameter="">
+                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="項目⑥"/>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

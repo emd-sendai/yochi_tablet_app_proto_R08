@@ -32,9 +32,14 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         [ObservableProperty]
         private string? presentationName;
 
+        private bool IsAramashi = false;
+
+        [ObservableProperty]
+        private string? topButtonText;
+
         public bool AllPagesChecked => PageCheckStates.Count > 0 && PageCheckStates.All(kv => kv.Value);
         //public bool AllPagesChecked => PageCheckStates.All(kv => kv.Value); ページ情報が登録されておらずDictionaryが空の状態でもtrue扱いにする場合
-
+        
         public bool CanGoPrev => _index > 0;
         public bool CanGoNext => _index < Slides.Count - 1;
 
@@ -85,6 +90,8 @@ namespace WpfApp.Screens.Aramashi.ViewModels
                 _messageDialog.ShowMessage("スライドデータを取得できません");
                 return;
             }
+
+            TopButtonText = GetTopButtonText();
         }
 
         private List<string> GetJsonPaths(string presentationName)
@@ -98,6 +105,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
 
                     for (int i = 1; ; i++)
                     {
+                        IsAramashi = true;
                         var aramashiPath = Path.Combine(dataFolder, "Aramashi", $"slides_aramashi{i}.json");
                         if (!Path.Exists(aramashiPath)) break;
 
@@ -147,6 +155,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
                     if (slideList != null)
                     {
                         string slideDir = Path.GetDirectoryName(path)!;
+                        int slideTopPageGlobalIndex = 0;
 
                         for (int i = 0; i < slideList.Count; i++)
                         {
@@ -155,6 +164,13 @@ namespace WpfApp.Screens.Aramashi.ViewModels
                             slideList[i].PageIndex = $"{i+1} / {slideList.Count}";　　// ページ番号表示用
                             slideList[i].GlobalIndex = globalIndex; // 全体での順番
                             slideList[i].ResolvePaths(slideDir);
+
+                            if (i == 0)
+                            {
+                                slideTopPageGlobalIndex = globalIndex;
+                            }
+                            slideList[i].TopPageGlobalIndex = slideTopPageGlobalIndex;　　// 手順（項目）のTOPページ番号
+
                             ret.Add(slideList[i]);
 
                             globalIndex++;
@@ -209,6 +225,18 @@ namespace WpfApp.Screens.Aramashi.ViewModels
                 Debug.WriteLine($"[DEBUG] スライドデータが見つかりません: {path}");
                 return ret;
             }
+        }
+
+        private string GetTopButtonText()
+        {
+            var ret = "本項目TOP";
+
+            if (IsAramashi)
+            {
+                ret = "本手順TOP";
+            }
+
+            return ret;
         }
 
         private void SaveSlidesToJson(PresentationPageConfig slide)
@@ -399,6 +427,14 @@ namespace WpfApp.Screens.Aramashi.ViewModels
                 OnPropertyChanged(nameof(CanGoNext));
                 //OnPropertyChanged(nameof(SlideIndex));
             }
+        }
+
+        [RelayCommand]
+        private void GoToTopPage()
+        {
+            if(CurrentSlide == null) return;
+
+            GoToSlide(CurrentSlide.TopPageGlobalIndex);
         }
 
         [RelayCommand]

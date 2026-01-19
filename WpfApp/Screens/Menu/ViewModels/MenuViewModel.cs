@@ -100,6 +100,12 @@ namespace WpfApp.Screens.Menu.ViewModels
         }
 
         [RelayCommand]
+        private void GoToAdminDocument()
+        {
+            _nav.Navigate(new AdminDocumentViewModel(_nav, _dia));
+        }
+
+        [RelayCommand]
         private void GoToAramashiMenu()
         {
             _nav.Navigate(new AramashiMenuViewModel(_nav, _dia));

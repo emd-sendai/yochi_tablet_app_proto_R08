@@ -77,6 +77,12 @@ namespace WpfApp.Screens.Admin.ViewModels
         }
 
         [RelayCommand]
+        private void GoToAdminDocument()
+        {
+            _nav.Navigate(new AdminDocumentViewModel(_nav, _dia));
+        }
+
+        [RelayCommand]
         private void GoBack()
         {
             _nav.GoBack();

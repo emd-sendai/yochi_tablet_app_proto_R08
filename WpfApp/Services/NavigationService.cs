@@ -43,6 +43,8 @@ namespace WpfApp.Services
                 PdfDocumentSettingsViewModel => new PdfDocumentSettingsView(),
                 PdfDocumentManagementViewModel => new PdfDocumentManagementView(),
 
+                AdminDocumentViewModel => new AdminDocumentView(),
+
                 AramashiMenuTestViewModel => new AramashiMenuTestView(),
 
                 PresentationViewerViewModel => new PresentationViewerView(),

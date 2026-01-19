@@ -33,6 +33,12 @@ namespace WpfApp.Screens.Admin.ViewModels
         }
 
         [RelayCommand]
+        private void GoToAdminDocument()
+        {
+            _nav.Navigate(new AdminDocumentViewModel(_nav, _dia));
+        }
+
+        [RelayCommand]
         private void GoToButtonSettings()
         {
             _nav.Navigate(new ButtonSettingsViewModel(_nav, _dia));

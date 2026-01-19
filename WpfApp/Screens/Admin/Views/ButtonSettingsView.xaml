@@ -27,7 +27,8 @@
                             Style="{StaticResource MaterialDesignFlatButton}" 
                             Command="{Binding GoToDisplaySetttingsCommand}"/>
                     <Button Content="管理資料" FontSize="20" VerticalAlignment="Center"
-                        Style="{StaticResource MaterialDesignFlatButton}" />
+                            Style="{StaticResource MaterialDesignFlatButton}" 
+                            Command="{Binding GoToAdminDocumentCommand}"/>
                 </StackPanel>
             </materialDesign:DrawerHost.LeftDrawerContent>
         </materialDesign:DrawerHost>

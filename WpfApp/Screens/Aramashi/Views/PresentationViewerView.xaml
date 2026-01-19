@@ -45,6 +45,14 @@
                     <TextBlock Text="縮小" Style="{StaticResource ITButtonTextStyle}"/>
                 </StackPanel>
             </Button>
+            <!-- 本手順TOPへ戻るボタン -->
+            <Button Grid.Row="0" Style="{StaticResource IconTextButtonStyle}" 
+                Margin="5,10,5,10" Command="{Binding GoToTopPageCommand}">
+                <StackPanel Orientation="Vertical" >
+                    <materialDesign:PackIcon Kind="ArrowCollapseLeft" Style="{StaticResource ITButtonIconStyle}" Width="25"/>
+                    <TextBlock Text="{Binding TopButtonText}" Style="{StaticResource ITButtonTextStyle}"/>
+                </StackPanel>
+            </Button>
             <!-- ホームアイコンボタン -->
             <Button Grid.Row="0" Style="{StaticResource IconTextButtonStyle}" 
                 Margin="5,10,10,10" Command="{Binding GoToMenuCommand}">
@@ -116,7 +124,7 @@
                 Background="{DynamicResource MaterialDesignPaper}" Opacity="0.85"
                 Height="27" Width="50">
 
-            <TextBlock Text="{Binding CurrentSlide.PageIndex}" FontWeight="SemiBold" FontSize="14" HorizontalAlignment="Center"/>
+                <TextBlock Text="{Binding CurrentSlide.PageIndex}" FontWeight="SemiBold" FontSize="14" HorizontalAlignment="Center"/>
 
         </Border>
 
