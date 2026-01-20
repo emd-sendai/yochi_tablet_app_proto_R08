@@ -4,10 +4,8 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Text.Json;
-using System.Windows;
 using WpfApp.Common.Models;
 using WpfApp.Common.ViewModels;
-using WpfApp.Common.Views;
 using WpfApp.Interfaces;
 using WpfApp.Screens.Aramashi.Models;
 using WpfApp.Screens.Menu.ViewModels;
@@ -20,10 +18,8 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         private readonly NavigationService _nav;
         private readonly IDialogService _dia;
         private readonly PdfDocumentService _pdf;
-
-        private static readonly string BaseDire = AppDomain.CurrentDomain.BaseDirectory;
-        private static readonly string ButtonDataFolder = Path.Combine(BaseDire, "Data", "ButtonSettings");
-        private static readonly string DocumentDataFolder = Path.Combine(BaseDire, "DocumentResources");
+        private readonly IMessageDialogService _message;
+        private readonly IAppPathService _path;
 
         public ObservableCollection<ButtonConfig> Buttons { get; } = new();
 
@@ -34,6 +30,9 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             _nav = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
             _dia = dialogService ?? throw new ArgumentNullException(nameof(dialogService));
             _pdf = new PdfDocumentService();
+            _message = new MessageDialogService();
+            _path = new AppPathService();
+
             LoadButtonFromJson();
             LoadSlidesFromJsons();
         }
@@ -42,12 +41,12 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         {
             try
             {
-                string path = Path.Combine(ButtonDataFolder, "aramashiButtons.json");
+                string path = Path.Combine(_path.ButtonDire, "aramashiButtons.json");
 
                 if (!File.Exists(path))
                 {
-                    MessageBox.Show("ボタンデータが見つかりません");
-                    Debug.WriteLine($"[DEBUG] ボタンデータが見つかりません: {path}");
+                    _message.ShowMessage("ボタン表示設定データが見つかりません。");
+                    Debug.WriteLine($"[DEBUG] ボタン表示設定JSONファイルが見つかりません: {path}");
                     return;
                 }
 
@@ -56,8 +55,8 @@ namespace WpfApp.Screens.Aramashi.ViewModels
 
                 if (list == null)
                 {
-                    MessageBox.Show("ボタンデータが空です");
-                    Debug.WriteLine($"[DEBUG] ボタンデータが空です: {path}");
+                    _message.ShowMessage("ボタン表示設定が行われていません。");
+                    Debug.WriteLine($"[DEBUG] ボタン表示設定JSONファイルの中身がNULLです: {path}");
                     return;
                 }
 
@@ -69,7 +68,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             }
             catch (Exception ex)
             {
-                MessageBox.Show("ボタンデータを読み込むことができません");
+                _message.ShowMessage("ボタンデータを読み込むことができません。");
                 Debug.WriteLine($"[DEBUG] ボタンデータを読み込むことができません: {ex.Message}");
             }
         }
@@ -89,7 +88,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         private List<string> GetSlidePaths()
         {
             List<string> paths = new();
-            var dataFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SlideResources", "Aramashi");
+            var dataFolder = _path.AramashiSlideDire;
 
             for (int i = 1; ; i++)
             {
@@ -154,7 +153,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         [RelayCommand]
         private void OpenPdfDocuments()
         {
-            var folderPath = Path.Combine(DocumentDataFolder, "Aramashi", "Aramashi");
+            var folderPath = _path.AramashiPdfDire;
             var pdfList = _pdf.GetPdfList(folderPath);
 
             // PDF資料が存在しない場合
@@ -162,17 +161,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             {
                 Debug.WriteLine($"[ERROR] PDFファイルが存在しません {folderPath}");
                 //メッセージウィンドウを表示
-                var vm = new MessageDialogViewModel
-                {
-                    Message = "PDFファイルが存在しません"
-                };
-
-                var dialog = new MessageDialogWindow
-                {
-                    DataContext = vm,
-                    Owner = Application.Current.MainWindow
-                };
-                dialog.ShowDialog();
+                _message.ShowMessage("PDFファイルが存在しません。");
             }
             else
             {

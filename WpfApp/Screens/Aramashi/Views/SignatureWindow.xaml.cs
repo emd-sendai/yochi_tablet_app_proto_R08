@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using WpfApp.Common.ViewModels;
 using WpfApp.Common.Views;
+using WpfApp.Interfaces;
 using WpfApp.Screens.Aramashi.Models;
 using WpfApp.Screens.Aramashi.ViewModels;
 using WpfApp.Services;
@@ -24,12 +25,11 @@ namespace WpfApp.Screens.Aramashi.Views
     public partial class SignatureWindow : Window
     {
         private bool _isClosingFromViewModel = false;
+        private IAppPathService? _path;
 
-        private string DataFolder => Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data", "Signature");
-        private string IsfPath = "";
-        private string PngPath = "";
-
-        //private string SlidePath => Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SlideResources", "Others", "slides.json");
+        private string? DataFolder;
+        private string? IsfPath;
+        private string? PngPath;
 
         public SignatureWindow()
         {
@@ -48,6 +48,8 @@ namespace WpfApp.Screens.Aramashi.Views
 
             Debug.WriteLine("[DEBUG] SignatureWindow Loaded - DataContext 取得成功");
 
+            _path = new AppPathService();
+            DataFolder = _path.SignatureDire;
             IsfPath = Path.Combine(DataFolder, vm.SignaturefileNames["isf"]);
             PngPath = Path.Combine(DataFolder, vm.SignaturefileNames["png"]);
 
@@ -156,6 +158,12 @@ namespace WpfApp.Screens.Aramashi.Views
 
         private void SaveCanvas(InkCanvas canvas)
         {
+            if (string.IsNullOrWhiteSpace(DataFolder) || string.IsNullOrWhiteSpace(IsfPath)
+                || string.IsNullOrWhiteSpace(PngPath))
+            {
+                ShowMessageWindow("署名データを保存できません");
+                return;
+            }
 
             if (!Directory.Exists(DataFolder))
             {

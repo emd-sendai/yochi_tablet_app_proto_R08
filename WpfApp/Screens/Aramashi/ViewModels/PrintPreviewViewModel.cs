@@ -3,15 +3,19 @@ using CommunityToolkit.Mvvm.Input;
 using System.Diagnostics;
 using System.IO;
 using System.Printing;
-using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Xps.Packaging;
+using WpfApp.Interfaces;
+using WpfApp.Services;
 
 namespace WpfApp.Screens.Aramashi.ViewModels
 {
     public partial class PrintPreviewViewModel : ObservableObject
     {
         public event EventHandler? RequestClose;
+
+        private readonly IMessageDialogService _message;
+        private readonly IAppPathService _path;
 
         [ObservableProperty]
         private FixedDocument document;
@@ -20,6 +24,9 @@ namespace WpfApp.Screens.Aramashi.ViewModels
 
         public PrintPreviewViewModel(FixedDocument doc)
         {
+            _message = new MessageDialogService();
+            _path = new AppPathService();
+
             _previewXpsPath = SaveFixedDocumentToXps(doc);
 
             Document = doc;
@@ -30,8 +37,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         /// </summary>
         private string SaveFixedDocumentToXps(FixedDocument fixedDoc)
         {
-            string appDir = AppDomain.CurrentDomain.BaseDirectory;
-            string tempFolder = Path.Combine(appDir, "Temp");
+            string tempFolder = _path.TempDire;
             Directory.CreateDirectory(tempFolder);
             string tempXps = Path.Combine(tempFolder, $"tmp_{Guid.NewGuid()}.xps");
             try
@@ -47,7 +53,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             catch (Exception ex)
             {
                 Debug.WriteLine($"[ERROR] FixedDocument → XPS 書き出し失敗: {ex.Message}");
-                MessageBox.Show("PDF 作成用 XPS の生成に失敗しました。", "エラー", MessageBoxButton.OK, MessageBoxImage.Error);
+                _message.ShowMessage("PDF 作成用 XPS の生成に失敗しました。");
                 throw;
             }
         }
@@ -67,8 +73,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             catch (Exception ex)
             {
                 Debug.WriteLine($"[ERROR] XPS → PDF 印刷処理で失敗: {ex.Message}");
-                MessageBox.Show("PDF の作成に失敗しました。", "エラー",
-                    MessageBoxButton.OK, MessageBoxImage.Error);
+                _message.ShowMessage("PDF の作成に失敗しました。");
                 throw;
             }
         }

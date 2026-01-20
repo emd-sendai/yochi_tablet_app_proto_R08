@@ -20,6 +20,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         private readonly IDialogService _dia;
         private readonly PdfDocumentService _pdf;
         private readonly IMessageDialogService _messageDialog;
+        private readonly IAppPathService _path;
 
         public ObservableCollection<PresentationPageConfig> Slides { get; } = new();
 
@@ -59,6 +60,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             _dia = dialogService ?? throw new ArgumentNullException(nameof(dialogService));
             _pdf = new PdfDocumentService();
             _messageDialog = new MessageDialogService();
+            _path = new AppPathService();
 
             _jsonPathList = GetJsonPaths(_presentationName);
             PresentationName = _presentationName ?? "";
@@ -97,7 +99,6 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         private List<string> GetJsonPaths(string presentationName)
         {
             List<string> pathList = new();
-            var dataFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SlideResources");
 
             switch (presentationName)
             {
@@ -106,7 +107,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
                     for (int i = 1; ; i++)
                     {
                         IsAramashi = true;
-                        var aramashiPath = Path.Combine(dataFolder, "Aramashi", $"slides_aramashi{i}.json");
+                        var aramashiPath = Path.Combine(_path.AramashiSlideDire, $"slides_aramashi{i}.json");
                         if (!Path.Exists(aramashiPath)) break;
 
                         pathList.Add(aramashiPath);
@@ -116,21 +117,21 @@ namespace WpfApp.Screens.Aramashi.ViewModels
 
                 case "daitaichi":
 
-                    var daitaichiPath = Path.Combine(dataFolder, "Others", "slides_daitaichi.json");
+                    var daitaichiPath = Path.Combine(_path.OthersSlideDire, "slides_daitaichi.json");
                     pathList.Add(daitaichiPath);
                     Debug.WriteLine($"[DEBUG] スライドパスを追加: {daitaichiPath}");
                     break;
 
                 case "zeikin":
 
-                    var zeikinPath = Path.Combine(dataFolder, "Others", "slides_zeikin.json");
+                    var zeikinPath = Path.Combine(_path.OthersSlideDire, "slides_zeikin.json");
                     pathList.Add(zeikinPath);
                     Debug.WriteLine($"[DEBUG] スライドパスを追加: {zeikinPath}");
                     break;
 
                 case "sonshitsu":
 
-                    var sonshitsuPath = Path.Combine(dataFolder, "Others", "slides_sonshitsu.json");
+                    var sonshitsuPath = Path.Combine(_path.OthersSlideDire, "slides_sonshitsu.json");
                     pathList.Add(sonshitsuPath);
                     Debug.WriteLine($"[DEBUG] スライドパスを追加: {sonshitsuPath}");
                     break;
@@ -529,7 +530,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         {
             if (!string.IsNullOrWhiteSpace(folderName))
             {
-                var folderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "DocumentResources", "Aramashi", "Others", folderName);
+                var folderPath = Path.Combine(_path.OthersPdfDire, folderName);
 
                 var pdfList = _pdf.GetPdfList(folderPath);
 
@@ -557,11 +558,9 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         {
             if (!string.IsNullOrWhiteSpace(fileName))
             {
-                var folderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "DocumentResources", "Aramashi", "Others", "Sonshitsu");
-
                 if (_messageDialog.ShowConfirm($"PDFファイルを開きます。よろしいですか？"))
                 {
-                    _pdf.OpenPdf(folderPath, fileName);
+                    _pdf.OpenPdf(_path.SonshitsuPdfDire, fileName);
                 }
             }
             else
