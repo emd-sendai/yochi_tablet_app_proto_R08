@@ -118,12 +118,6 @@ namespace WpfApp.Screens.Menu.ViewModels
         }
 
         [RelayCommand]
-        private void GoToAramashiMenuTest()
-        {
-            _nav.Navigate(new AramashiMenuTestViewModel(_nav, _dia));
-        }
-
-        [RelayCommand]
         private void Exit()
         {
             ShutdownService.Cleanup();
