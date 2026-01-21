@@ -7,6 +7,10 @@ namespace WpfApp.Services
     {
         public string AppRoot => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "DX_SampleApp", "R7_sampleApp");
 
+
+        //public string DataRoot => Path.Combine(AppRoot, "Logs");
+        public string LogsDire => Path.Combine(DataRoot, "Logs");
+
         //public string DataRoot => Path.Combine(AppRoot, "Data");
         public string DataRoot => Path.Combine(AppDomain.CurrentDomain.BaseDirectory);
 

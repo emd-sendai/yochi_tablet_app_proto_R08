@@ -3,6 +3,8 @@
     public interface IAppPathService
     {
         string AppRoot { get; }
+
+        string LogsDire { get; }
         string DataRoot { get; }
 
         string DataDire {  get; }

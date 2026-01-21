@@ -2,31 +2,23 @@
 using System.IO;
 using System.Text.Json;
 using System.Text.Json.Nodes;
+using WpfApp.Interfaces;
 using WpfApp.Screens.Aramashi.Models;
 
 namespace WpfApp.Services
 {
-    public static class ShutdownService
+    public class ShutdownService
     {
+        private readonly IAppPathService _path;
+
         private static bool _hasCleaned = false;
 
-        private static readonly string BaseDire = AppDomain.CurrentDomain.BaseDirectory;
+        public ShutdownService()
+        {
+            _path = new AppPathService();
+        }
 
-        private static readonly string SlideFolder = Path.Combine(BaseDire, "SlideResources");
-        private static readonly string AramashiFolder = Path.Combine(SlideFolder, "Aramashi");
-        private static readonly string OthersFolder = Path.Combine(SlideFolder, "Others");
-        private static readonly string DaitaichiSlidePath = Path.Combine(OthersFolder, "slides_daitaichi.json");
-        private static readonly string ZeikinSlidePath = Path.Combine(OthersFolder, "slides_zeikin.json");
-
-        private static readonly string SignFolder = Path.Combine(BaseDire, "Data", "Signature");
-        private static readonly string DaitaichiIsfSignPath = Path.Combine(SignFolder, "signature_daitaichi.isf");
-        private static readonly string DaitaichiPngSignPath = Path.Combine(SignFolder, "signature_daitaichi.png");
-        private static readonly string ZeikinIsfSignPath = Path.Combine(SignFolder, "signature_zeikin.isf");
-        private static readonly string ZeikinPngSignPath = Path.Combine(SignFolder, "signature_zeikin.png");
-
-        private static readonly string TempFolder = Path.Combine(BaseDire, "Temp");
-
-        public static void Cleanup()
+        public void Cleanup()
         {
             if (_hasCleaned) return;
 
@@ -49,9 +41,9 @@ namespace WpfApp.Services
                     WriteIndented = true
                 };
 
-                /* 用地補償の手順（補償のあらまし） */
+                /* 用地補償の手順 - 補償のあらまし */
                 // チェックボックスの初期化
-                if (Path.Exists(AramashiFolder))
+                if (Path.Exists(_path.AramashiSlideDire))
                 {
                     var paths = GetAramashiSlidePaths();
                     int index = 1;
@@ -75,66 +67,41 @@ namespace WpfApp.Services
                     }
                 }
 
-                /* 代替地（補償のあらまし - その他） */
-                // チェックボックスの初期化
-                if (File.Exists(DaitaichiSlidePath))
+                /* 用地補償の手順 - その他 */
+                if (Directory.Exists(_path.OthersSlideDire))
                 {
-                    string json = File.ReadAllText(DaitaichiSlidePath);
-                    var slides = JsonSerializer.Deserialize<List<PresentationPageConfig>>(json, readOptions);
-                    ClearCheckBox(slides);
-                    if(slides != null)
+                    var paths = Directory.GetFiles(_path.OthersSlideDire, "*.json");
+
+                    foreach (var path in paths)
                     {
-                        var _json = JsonSerializer.Serialize(slides, writeOptions);
-                        File.WriteAllText(DaitaichiSlidePath, _json);
-                        Debug.WriteLine($"[DEBUG] 代替地チェックボックスを初期化しました");
+                        string json = File.ReadAllText(path);
+                        var slides = JsonSerializer.Deserialize<List<PresentationPageConfig>>(json, readOptions);
+                        ClearCheckBox(slides);
+
+                        if (slides != null)
+                        {
+                            var _json = JsonSerializer.Serialize(slides, writeOptions);
+                            File.WriteAllText(path, _json);
+                            Debug.WriteLine($"[DEBUG] チェックボックスを初期化しました: {path}");
+                        }
                     }
-                }
-                // 署名ISFデータの初期化
-                if (File.Exists(DaitaichiIsfSignPath))
-                {
-                    File.Delete(DaitaichiIsfSignPath);
-                    Debug.WriteLine($"[DEBUG] 代替地ISF署名データを初期化しました");
-                }
-                // 署名PNGデータの初期化
-                if (File.Exists(DaitaichiPngSignPath))
-                {
-                    File.Delete(DaitaichiPngSignPath);
-                    Debug.WriteLine($"[DEBUG] 代替地PNG署名データを初期化しました");
                 }
 
-                /* 税金等（補償のあらまし - その他） */
-                // チェックボックスの初期化
-                if (File.Exists(ZeikinSlidePath))
+
+                // 署名データの初期化
+                if (Directory.Exists(_path.SignatureDire))
                 {
-                    string json = File.ReadAllText(ZeikinSlidePath);
-                    var slides = JsonSerializer.Deserialize<List<PresentationPageConfig>>(json, readOptions);
-                    ClearCheckBox(slides);
-                    if (slides != null)
-                    {
-                        var _json = JsonSerializer.Serialize(slides, writeOptions);
-                        File.WriteAllText(ZeikinSlidePath, _json);
-                        Debug.WriteLine($"[DEBUG] 税金等チェックボックスを初期化しました");
-                    }
-                }
-                // 署名ISFデータの初期化
-                if (File.Exists(ZeikinIsfSignPath))
-                {
-                    File.Delete(ZeikinIsfSignPath);
-                    Debug.WriteLine($"[DEBUG] 税金等ISF署名データを初期化しました");
-                }
-                // 署名PNGデータの初期化
-                if (File.Exists(ZeikinPngSignPath))
-                {
-                    File.Delete(ZeikinPngSignPath);
-                    Debug.WriteLine($"[DEBUG] 税金等PNG署名データを初期化しました");
+                    // サブフォルダやファイルをまとめて削除
+                    Directory.Delete(_path.SignatureDire, true);
+                    Debug.WriteLine($"[DEBUG] 署名データを初期化しました: {_path.SignatureDire}");
                 }
 
                 // 一時保存フォルダの初期化
-                if (Directory.Exists(TempFolder))
+                if (Directory.Exists(_path.TempDire))
                 {
                     // サブフォルダやファイルをまとめて削除
-                    Directory.Delete(TempFolder, true);
-                    Debug.WriteLine($"[DEBUG] 一時保存フォルダを初期化しました: {TempFolder}");
+                    Directory.Delete(_path.TempDire, true);
+                    Debug.WriteLine($"[DEBUG] 一時保存フォルダを初期化しました: {_path.TempDire}");
                 }
 
                 Debug.WriteLine($"[DEBUG] データを初期化しました");
@@ -143,13 +110,18 @@ namespace WpfApp.Services
             catch (Exception ex)
             {
                 Debug.WriteLine($"[ERROR] データの初期化ができませんでした");
-                string logPath = Path.Combine(BaseDire, "error.log");
+
+                Directory.CreateDirectory(_path.LogsDire);
+                // 古いlogファイルを削除
+                CleanupOldLogs();
+
+                string logPath = Path.Combine(_path.LogsDire, $"shutdown_{DateTime.Now:yyyyMMdd_HHmmss}.log");
                 File.AppendAllText(logPath, ex.ToString());
-                Debug.WriteLine($"[ERROR] エラーログ : {logPath}");
+                Debug.WriteLine($"[ERROR] シャットダウン処理時のlogファイルを生成しました : {logPath}");
             }
         }
 
-        public static void ClearCheckBox(List<PresentationPageConfig>? slides)
+        public void ClearCheckBox(List<PresentationPageConfig>? slides)
         {
             if (slides == null) return;
 
@@ -166,13 +138,13 @@ namespace WpfApp.Services
             }
         }
 
-        public static List<string> GetAramashiSlidePaths()
+        public List<string> GetAramashiSlidePaths()
         {
             List<string> paths = new();
 
             for (int i = 1; ; i++)
             {
-                var aramashiPath = Path.Combine(AramashiFolder, $"slides_aramashi{i}.json");
+                var aramashiPath = Path.Combine(_path.AramashiSlideDire, $"slides_aramashi{i}.json");
                 if (!Path.Exists(aramashiPath)) break;
 
                 paths.Add(aramashiPath);
@@ -209,5 +181,30 @@ namespace WpfApp.Services
                 }
             }
         }
+
+
+        private void CleanupOldLogs()
+        {
+            if (!Directory.Exists(_path.LogsDire)) { return; }
+
+            var files = new DirectoryInfo(_path.LogsDire)
+                .GetFiles("*.log")
+                .OrderByDescending(f => f.CreationTime)
+                .ToList();
+
+            // 最新10ファイルを残し、それ以外は削除
+            foreach (var oldFile in files.Skip(10))
+            {
+                try
+                {
+                    oldFile.Delete();
+                }
+                catch
+                {
+                    // 削除失敗は無視
+                }
+            }
+        }
+
     }
 }

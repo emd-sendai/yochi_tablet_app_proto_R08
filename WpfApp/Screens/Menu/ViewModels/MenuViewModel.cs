@@ -15,6 +15,8 @@ namespace WpfApp.Screens.Menu.ViewModels
     {
         private readonly NavigationService _nav;
         private readonly IDialogService _dia;
+        private readonly IMessageDialogService _message;
+        private readonly ShutdownService _shutdownService;
 
         [ObservableProperty]
         private bool isLeftDrawerOpen;
@@ -23,6 +25,8 @@ namespace WpfApp.Screens.Menu.ViewModels
         {
             _nav = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
             _dia = dialogService ?? throw new ArgumentNullException(nameof(dialogService));
+            _message = new MessageDialogService();
+            _shutdownService = new ShutdownService();
         }
 
         [RelayCommand]
@@ -67,22 +71,7 @@ namespace WpfApp.Screens.Menu.ViewModels
                     else
                     {
                         //メッセージウィンドウを表示
-                        var vm = new MessageDialogViewModel
-                        {
-                            Message = "パスワードが違います"
-                        };
-
-                        var dialog = new MessageDialogWindow
-                        {
-                            DataContext = vm,
-                            Owner = Application.Current.MainWindow
-                        };
-
-                        bool? result = dialog.ShowDialog();
-                        if (result == true)
-                        {
-                            // OK押下後の処理
-                        }
+                        _message.ShowMessage("パスワードが違います");
                     }
                 }
             }
@@ -120,7 +109,7 @@ namespace WpfApp.Screens.Menu.ViewModels
         [RelayCommand]
         private void Exit()
         {
-            ShutdownService.Cleanup();
+            _shutdownService.Cleanup();
 
             Application.Current.Shutdown();
         }

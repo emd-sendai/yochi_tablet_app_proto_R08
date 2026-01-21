@@ -14,6 +14,7 @@ namespace WpfApp
 
         private readonly NavigationService _navigationService;
         private readonly IDialogService _dialogService;
+        private readonly ShutdownService _shutdownService;
 
         /// <summary>
         /// 初期画面を表示する
@@ -27,6 +28,9 @@ namespace WpfApp
 
             // DialogService の初期化
             _dialogService = new DialogService();
+
+            // ShutdownServiceの初期化
+            _shutdownService = new ShutdownService();
 
             // 初期画面を設定
             _navigationService.Navigate(new MenuViewModel(_navigationService, _dialogService));
@@ -62,7 +66,7 @@ namespace WpfApp
 
         private void MainWindow_Closing(object? sender, CancelEventArgs e)
         {
-            ShutdownService.Cleanup();
+            _shutdownService.Cleanup();
         }
     }
 }
