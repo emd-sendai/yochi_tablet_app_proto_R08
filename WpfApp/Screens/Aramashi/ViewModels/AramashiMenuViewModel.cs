@@ -41,7 +41,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         {
             try
             {
-                string path = Path.Combine(_path.ButtonDire, "aramashiButtons.json");
+                string path = _path.AramashiButtonPath;
 
                 if (!File.Exists(path))
                 {

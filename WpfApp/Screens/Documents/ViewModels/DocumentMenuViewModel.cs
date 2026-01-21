@@ -47,8 +47,8 @@ namespace WpfApp.Screens.Documents.ViewModels
             _message = new MessageDialogService();
             _path = new AppPathService();
 
-            WorksButtons = LoadButtonFromJson(Path.Combine(_path.ButtonDire, "documentWorksButtons.json"));
-            LandownerButtons = LoadButtonFromJson(Path.Combine(_path.ButtonDire, "documentLandownerButtons.json"));
+            WorksButtons = LoadButtonFromJson(_path.WorksButtonPath);
+            LandownerButtons = LoadButtonFromJson(_path.LandownerButtonPath);
         }
 
         private ObservableCollection<ButtonConfig> LoadButtonFromJson(string path)

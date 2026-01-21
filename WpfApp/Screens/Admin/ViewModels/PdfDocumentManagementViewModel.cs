@@ -18,6 +18,7 @@ namespace WpfApp.Screens.Admin.ViewModels
         private readonly IDialogService _dia;
         private readonly PdfDocumentService _pdf;
         private readonly IMessageDialogService _messageDialog;
+        private readonly IAppPathService _path;
 
         public Func<object>? CreateBackViewModel => () => new PdfDocumentSettingsViewModel(_nav, _dia, _selectedScreen);
 
@@ -42,24 +43,15 @@ namespace WpfApp.Screens.Admin.ViewModels
         [ObservableProperty]
         private PdfData? selectedDocument;
 
-
-        private static readonly string _protectedFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "DocumentResources", "Aramashi", "Others", "Sonshitsu");
-
-        private static readonly HashSet<string> _protectedFilePaths = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
-        {
-            NormalizePath(Path.Combine(_protectedFolder, "国土交通省の公共用地の取得に伴う損失補償基準.pdf")),
-            NormalizePath(Path.Combine(_protectedFolder, "国土交通省の公共用地の取得に伴う損失補償基準の運用方針.pdf")),
-            NormalizePath(Path.Combine(_protectedFolder, "国土交通省損失補償取扱要領.pdf"))
-        };
-
         public PdfDocumentManagementViewModel(NavigationService navigationService, IDialogService dialogService, string prevTitle, 
             PdfDocumentData selectedPdfData , string selectedScreen)
         {
             _nav = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
             _dia = dialogService ?? throw new ArgumentNullException(nameof(dialogService));
-            _messageDialog = new MessageDialogService();
-
             _pdf = new PdfDocumentService();
+            _messageDialog = new MessageDialogService();
+            _path = new AppPathService();
+
             _pdfDataFolder = selectedPdfData;
 
             Title = prevTitle;
@@ -278,7 +270,7 @@ namespace WpfApp.Screens.Admin.ViewModels
                 return;
             }
 
-            if (!CanDelete())
+            if (!_path.CanDelete(SelectedDocument.FullPath))
             {
                 _messageDialog.ShowMessage($"このファイルはリンクテキストからの表示に使用されているため削除できません。");
                 Debug.WriteLine($"[ERROR] リンクテキストからの直接表示に使用されているため削除できません: {SelectedDocument.FullPath}");
@@ -303,37 +295,5 @@ namespace WpfApp.Screens.Admin.ViewModels
                 }
             }
         }
-
-        private bool CanDelete()
-        {
-            if (SelectedDocument == null) { return false; }
-
-            // 選択中のフォルダが削除不可ファイルを含むフォルダでない場合、削除可能
-            if(_pdfDataFolder.FolderPath != _protectedFolder) { return true; }
-
-            // パスの形式を統一
-            string normalizedPath = NormalizePath(SelectedDocument.FullPath);
-
-            // 削除不可ファイルパスリストに選択中のファイルパスが含まれている場合
-            if (_protectedFilePaths.Contains(normalizedPath))
-            {
-                // 削除不可
-                return false;
-            }
-            // それ以外
-            else
-            {
-                // 削除可能
-                return true;
-            }
-        }
-
-        private static string NormalizePath(string path)
-        {
-            return Path.GetFullPath(path)
-                       .TrimEnd(Path.DirectorySeparatorChar)
-                       .ToUpperInvariant();
-        }
-
     }
 }

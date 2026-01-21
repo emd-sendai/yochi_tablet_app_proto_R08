@@ -6,7 +6,10 @@
         string DataRoot { get; }
 
         string DataDire {  get; }
-        string ButtonDire { get; }
+        string ButtonRoot { get; }
+        string AramashiButtonPath { get; }
+        string WorksButtonPath { get; }
+        string LandownerButtonPath { get; }
         string SignatureDire { get; }
 
         string DocumentResourcesRoot { get; }
@@ -26,6 +29,11 @@
         string OthersSlideDire { get; }
 
         string TempDire { get; }
+
+
+        string NormalizePath(string path);
+
+        bool CanDelete(string filePath);
 
         void EnsureInitialData();
     }

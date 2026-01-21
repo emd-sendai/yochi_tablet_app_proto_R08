@@ -5,7 +5,7 @@ namespace WpfApp.Services
 {
     public class AppPathService : IAppPathService
     {
-        public string AppRoot => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MyCompany", "MyApp");
+        public string AppRoot => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "DX_SampleApp", "R7_sampleApp");
 
         //public string DataRoot => Path.Combine(AppRoot, "Data");
         public string DataRoot => Path.Combine(AppDomain.CurrentDomain.BaseDirectory);
@@ -13,7 +13,13 @@ namespace WpfApp.Services
 
         public string DataDire => Path.Combine(DataRoot, "Data");
 
-        public string ButtonDire => Path.Combine(DataDire, "ButtonSettings");
+        public string ButtonRoot => Path.Combine(DataDire, "ButtonSettings");
+
+        public string AramashiButtonPath => Path.Combine(ButtonRoot, "aramashiButtons.json");
+
+        public string WorksButtonPath => Path.Combine(ButtonRoot, "documentWorksButtons.json");
+
+        public string LandownerButtonPath => Path.Combine(ButtonRoot, "documentLandownerButtons.json");
 
         public string SignatureDire => Path.Combine(DataDire, "Signature");
 
@@ -27,6 +33,8 @@ namespace WpfApp.Services
         public string OthersPdfDire => Path.Combine(AramashiPdfRoot, "Others");
 
         public string SonshitsuPdfDire => Path.Combine(OthersPdfDire, "Sonshitsu");
+
+        private readonly HashSet<string> _inUseFilePaths;
 
         public string ZeikinPdfDire => Path.Combine(OthersPdfDire, "Zeikin");
 
@@ -49,6 +57,43 @@ namespace WpfApp.Services
 
         public string TempDire => Path.Combine(DataRoot, "Temp");
 
+
+        public AppPathService()
+        {
+            _inUseFilePaths = GetInUseFilePaths();
+        }
+
+
+        public string NormalizePath(string path)
+        {
+            return Path.GetFullPath(path)
+           .TrimEnd(Path.DirectorySeparatorChar)
+           .ToUpperInvariant();
+        }
+
+        private HashSet<string> GetInUseFilePaths()
+        {
+            return new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+            {
+                NormalizePath(Path.Combine(SonshitsuPdfDire, "国土交通省の公共用地の取得に伴う損失補償基準.pdf")),
+                NormalizePath(Path.Combine(SonshitsuPdfDire, "国土交通省の公共用地の取得に伴う損失補償基準の運用方針.pdf")),
+                NormalizePath(Path.Combine(SonshitsuPdfDire, "国土交通省損失補償取扱要領.pdf"))
+            };
+        }
+
+        public bool CanDelete(string filePath)
+        {
+            if (_inUseFilePaths.Contains(NormalizePath(filePath)))
+            {
+                // 削除不可
+                return false;
+            }
+            else
+            {
+                // 削除可能
+                return true;
+            }
+        }
 
         public void EnsureInitialData()
         {

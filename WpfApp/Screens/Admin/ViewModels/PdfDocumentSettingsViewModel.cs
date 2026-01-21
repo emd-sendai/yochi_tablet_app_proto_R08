@@ -4,10 +4,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Text.Json;
-using System.Windows;
 using WpfApp.Common.Models;
-using WpfApp.Common.ViewModels;
-using WpfApp.Common.Views;
 using WpfApp.Interfaces;
 using WpfApp.Screens.Admin.Models;
 using WpfApp.Screens.Menu.ViewModels;
@@ -20,18 +17,10 @@ namespace WpfApp.Screens.Admin.ViewModels
     {
         private readonly NavigationService _nav;
         private readonly IDialogService _dia;
+        private readonly IMessageDialogService _message;
+        private readonly IAppPathService _path;
 
         public Func<object>? CreateBackViewModel => () => new ScreenSelectViewModel(_nav, _dia, "PdfDocumentSettings");
-
-        private static readonly string BaseDire = AppDomain.CurrentDomain.BaseDirectory;
-        private static readonly string AramashiDataFolder = Path.Combine(BaseDire, "DocumentResources", "Aramashi");
-        private static readonly string DocumentDataFolder = Path.Combine(BaseDire, "DocumentResources", "Documents");
-
-        private static readonly string ButtonDataFolder = Path.Combine(BaseDire, "Data", "ButtonSettings");
-        private static readonly string WorksButtonPath = Path.Combine(ButtonDataFolder, "documentWorksButtons.json");
-        private static readonly string LandownerButtonPath = Path.Combine(ButtonDataFolder, "documentLandownerButtons.json");
-
-        private static readonly string LandownersDataPath = Path.Combine(BaseDire, "Data", "landowners.json");
 
         [ObservableProperty]
         private bool isLeftDrawerOpen;
@@ -74,6 +63,9 @@ namespace WpfApp.Screens.Admin.ViewModels
         {
             _nav = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
             _dia = dialogService ?? throw new ArgumentNullException(nameof(dialogService));
+            _message = new MessageDialogService();
+            _path = new AppPathService();
+
             _selectedScreen = selectedScreen;
             Title = GetTitle();
             SetTabItems();
@@ -120,7 +112,7 @@ namespace WpfApp.Screens.Admin.ViewModels
             else
             {
                 Debug.WriteLine($"[ERROR] _selectedScreenがNULLもしくは不正な値です");
-                ShowMessageWindow("選択項目を表示できません");
+                _message.ShowMessage("選択項目を表示できません。");
             }
         }
 
@@ -135,7 +127,7 @@ namespace WpfApp.Screens.Admin.ViewModels
 
 
             /* 用地補償の手順 */
-            documents.Add(GetDocumentData("用地補償の手順", Path.Combine(AramashiDataFolder, "Aramashi"), "Aramashi"));
+            documents.Add(GetDocumentData("用地補償の手順", _path.AramashiPdfDire, "Aramashi"));
             tab.Documents = documents;
             // TabItemリストに格納
             items.Add(tab);
@@ -145,8 +137,8 @@ namespace WpfApp.Screens.Admin.ViewModels
             tab = new TabItemData();
             documents = new ObservableCollection<PdfDocumentData>();
 
-            documents.Add(GetDocumentData("税金等", Path.Combine(AramashiDataFolder, "Others", "Zeikin"), "Zeikin"));
-            documents.Add(GetDocumentData("損失補償基準", Path.Combine(AramashiDataFolder, "Others", "Sonshitsu"), "Sonshitsu"));
+            documents.Add(GetDocumentData("税金等", _path.ZeikinPdfDire, "Zeikin"));
+            documents.Add(GetDocumentData("損失補償基準", _path.SonshitsuPdfDire, "Sonshitsu"));
             tab.Documents = documents;
             // TabItemリストに格納
             items.Add(tab);
@@ -156,10 +148,10 @@ namespace WpfApp.Screens.Admin.ViewModels
             tab = new TabItemData();
             documents = new ObservableCollection<PdfDocumentData>();
 
-            var worksButtons = LoadButtonFromJson(WorksButtonPath);
+            var worksButtons = LoadButtonFromJson(_path.WorksButtonPath);
             foreach (var button in worksButtons)
             {
-                documents.Add(GetDocumentData(button.LabelText, Path.Combine(DocumentDataFolder, "Works", button.BtnId), button.BtnId));
+                documents.Add(GetDocumentData(button.LabelText, Path.Combine(_path.WorksPdfDire, button.BtnId), button.BtnId));
             }
             tab.Documents = documents;
             // TabItemリストに格納
@@ -177,7 +169,7 @@ namespace WpfApp.Screens.Admin.ViewModels
 
             LandownerDocuments = new();
             // 地権者個別資料のボタンの名称、Id（フォルダ名）を取得
-            var landownerButtons = LoadButtonFromJson(LandownerButtonPath);
+            var landownerButtons = LoadButtonFromJson(_path.LandownerButtonPath);
 
             foreach (var owner in landowners)
             {
@@ -188,7 +180,7 @@ namespace WpfApp.Screens.Admin.ViewModels
                 {
                     var button = landownerButtons[i];
                     // PDFデータフォルダのパスを取得して格納
-                    documents.Add(GetDocumentData(button.LabelText, Path.Combine(DocumentDataFolder, "Landowners", owner.LandownerId, button.BtnId), button.BtnId));
+                    documents.Add(GetDocumentData(button.LabelText, Path.Combine(_path.LandownersPdfDire, owner.LandownerId, button.BtnId), button.BtnId));
                 }
                 // 地権者ごとのPDFフォルダ情報をDictonaryに格納
                 LandownerDocuments.Add(owner.LandownerId, documents);
@@ -220,7 +212,7 @@ namespace WpfApp.Screens.Admin.ViewModels
 
             if (!File.Exists(path))
             {
-                MessageBox.Show("ボタンの名称を表示できません");
+                _message.ShowMessage("ボタンの名称を表示できません。");
                 Debug.WriteLine($"[DEBUG] ボタンデータが存在しません: {path}");
             }
             else
@@ -238,11 +230,11 @@ namespace WpfApp.Screens.Admin.ViewModels
 
             try
             {
-                string path = LandownersDataPath;
+                string path = Path.Combine(_path.DataDire, "landowners.json");
 
                 if (!File.Exists(path))
                 {
-                    MessageBox.Show("地権者データが見つかりません");
+                    _message.ShowMessage("地権者データが見つかりません。");
                     Debug.WriteLine($"[DEBUG] 地権者データが見つかりません: {path}");
                 }
 
@@ -253,7 +245,7 @@ namespace WpfApp.Screens.Admin.ViewModels
             }
             catch (Exception ex)
             {
-                MessageBox.Show("地権者データを読み込むことができません");
+                _message.ShowMessage("地権者データを読み込むことができません。");
                 Debug.WriteLine($"[DEBUG] 地権者データを読み込むことができません: {ex.Message}");
             }
 
@@ -306,14 +298,14 @@ namespace WpfApp.Screens.Admin.ViewModels
             {
                 if(SelectedLandowner == null)
                 {
-                    ShowMessageWindow("地権者ユーザを選択してください");
+                    _message.ShowMessage("地権者ユーザを選択してください。");
                     Debug.WriteLine($"[ERROR] SelectedLandownerがNULLです");
                     return;
                 }
 
                 if (SelectedPdfDocument == null)
                 {
-                    ShowMessageWindow("項目を選択してください");
+                    _message.ShowMessage("項目を選択してください。");
                     Debug.WriteLine($"[ERROR] SelectedPdfDocumentがNULLです");
                     return;
                 }
@@ -335,7 +327,7 @@ namespace WpfApp.Screens.Admin.ViewModels
 
                     if (!isUpdated)
                     {
-                        ShowMessageWindow("地権者個別資料の項目を選択できません");
+                        _message.ShowMessage("地権者個別資料の項目を選択できません。");
                         Debug.WriteLine($"[ERROR] LandownerDocuments[{SelectedLandowner.LandownerId}]に「{SelectedPdfDocument.Id}」と一致するPDFフォルダが存在しません");
                         Debug.WriteLine($"[ERROR] SelectedPdfDocumentを更新できません");
                         return;
@@ -343,7 +335,7 @@ namespace WpfApp.Screens.Admin.ViewModels
                 }
                 else
                 {
-                    ShowMessageWindow("地権者個別資料の項目を選択できません");
+                    _message.ShowMessage("地権者個別資料の項目を選択できません。");
                     Debug.WriteLine($"[ERROR] LandownerDocumentsがNULLです");
                     return;
                 }
@@ -354,7 +346,7 @@ namespace WpfApp.Screens.Admin.ViewModels
             {
                 if (SelectedPdfDocument == null)
                 {
-                    ShowMessageWindow("項目を選択してください");
+                    _message.ShowMessage("項目を選択してください。");
                     Debug.WriteLine($"[ERROR] SelectedPdfDocumentがNULLです");
                     return;
                 }
@@ -367,25 +359,10 @@ namespace WpfApp.Screens.Admin.ViewModels
             }
             else
             {
-                ShowMessageWindow("項目を選択できません");
+                _message.ShowMessage("項目を選択できません。");
                 Debug.WriteLine($"[ERROR] SelectedPdfDocument.FolderPathがNULLです");
                 return;
             }
-        }
-
-        private void ShowMessageWindow(string message)
-        {
-            var vm = new MessageDialogViewModel
-            {
-                Message = message
-            };
-
-            var dialog = new MessageDialogWindow
-            {
-                DataContext = vm,
-                Owner = Application.Current.MainWindow
-            };
-            dialog.ShowDialog();
         }
     }
 }
