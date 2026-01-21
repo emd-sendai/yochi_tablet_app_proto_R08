@@ -19,12 +19,8 @@ namespace WpfApp.Screens.Documents.ViewModels
         private readonly NavigationService _nav;
         private readonly IDialogService _dia;
         private readonly PdfDocumentService _pdf;
-
-        private static readonly string BaseDire = AppDomain.CurrentDomain.BaseDirectory;
-        private static readonly string ButtonDataFolder = Path.Combine(BaseDire, "Data", "ButtonSettings");
-        private static readonly string WorksButtonPath = Path.Combine(ButtonDataFolder, "documentWorksButtons.json");
-        private static readonly string LandownerButtonPath = Path.Combine(ButtonDataFolder, "documentLandownerButtons.json");
-        private static readonly string DocumentDataFolder = Path.Combine(BaseDire, "DocumentResources", "Documents");
+        private readonly IMessageDialogService _message;
+        private readonly IAppPathService _path;
 
         [ObservableProperty]
         private ObservableCollection<ButtonConfig>? worksButtons;
@@ -48,9 +44,11 @@ namespace WpfApp.Screens.Documents.ViewModels
             _nav = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
             _dia = dialogService ?? throw new ArgumentNullException(nameof(dialogService));
             _pdf = new PdfDocumentService();
+            _message = new MessageDialogService();
+            _path = new AppPathService();
 
-            WorksButtons = LoadButtonFromJson(WorksButtonPath);
-            LandownerButtons = LoadButtonFromJson(LandownerButtonPath);
+            WorksButtons = LoadButtonFromJson(Path.Combine(_path.ButtonDire, "documentWorksButtons.json"));
+            LandownerButtons = LoadButtonFromJson(Path.Combine(_path.ButtonDire, "documentLandownerButtons.json"));
         }
 
         private ObservableCollection<ButtonConfig> LoadButtonFromJson(string path)
@@ -59,7 +57,7 @@ namespace WpfApp.Screens.Documents.ViewModels
 
             if (!File.Exists(path))
             {
-                MessageBox.Show("ボタンの名称を表示できません");
+                _message.ShowMessage("ボタンの名称を表示できません。");
                 Debug.WriteLine($"[DEBUG] ボタンデータが存在しません: {path}");
             }
             else
@@ -70,7 +68,7 @@ namespace WpfApp.Screens.Documents.ViewModels
 
                 if(list == null || list.Count <= 0)
                 {
-                    MessageBox.Show("ボタンの名称を表示できません");
+                    _message.ShowMessage("ボタンの名称を表示できません。");
                     Debug.WriteLine($"[DEBUG] ボタンデータが空です: {path}");
                 }
                 else
@@ -137,22 +135,7 @@ namespace WpfApp.Screens.Documents.ViewModels
                         SelectedLandowner = null;
 
                         //メッセージウィンドウを表示
-                        var vm = new MessageDialogViewModel
-                        {
-                            Message = "パスワードが違います"
-                        };
-
-                        var dialog = new MessageDialogWindow
-                        {
-                            DataContext = vm,
-                            Owner = Application.Current.MainWindow
-                        };
-
-                        bool? result = dialog.ShowDialog();
-                        if (result == true)
-                        {
-                            // OK押下後の処理
-                        }
+                        _message.ShowMessage("パスワードが違います");
                     }
                 }
             }
@@ -174,22 +157,7 @@ namespace WpfApp.Screens.Documents.ViewModels
                 if (SelectedLandowner != null)
                 {
                     //メッセージウィンドウを表示
-                    var vm = new MessageDialogViewModel
-                    {
-                        Message = $"{SelectedLandowner.LandownerName} 様の資料を表示します"
-                    };
-
-                    var dialog = new MessageDialogWindow
-                    {
-                        DataContext = vm,
-                        Owner = Application.Current.MainWindow
-                    };
-
-                    bool? result = dialog.ShowDialog();
-                    if (result == true)
-                    {
-                        // OK押下後の処理
-                    }
+                    _message.ShowMessage($"{SelectedLandowner.LandownerName} 様の資料を表示します");
                 }
             }
         }
@@ -197,7 +165,7 @@ namespace WpfApp.Screens.Documents.ViewModels
         [RelayCommand]
         private void OpenWorksPdfDocument(string folderName)
         {
-            var folderPath = Path.Combine(DocumentDataFolder, "Works", folderName);
+            var folderPath = Path.Combine(_path.WorksPdfDire, folderName);
             var pdfList = _pdf.GetPdfList(folderPath);
 
             // PDF資料が存在しない場合
@@ -205,17 +173,7 @@ namespace WpfApp.Screens.Documents.ViewModels
             {
                 Debug.WriteLine($"[ERROR] PDFファイルが存在しません {folderPath}");
                 //メッセージウィンドウを表示
-                var vm = new MessageDialogViewModel
-                {
-                    Message = "PDFファイルが存在しません"
-                };
-
-                var dialog = new MessageDialogWindow
-                {
-                    DataContext = vm,
-                    Owner = Application.Current.MainWindow
-                };
-                dialog.ShowDialog();
+                _message.ShowMessage("PDFファイルが存在しません");
             }
             else
             {
@@ -230,7 +188,7 @@ namespace WpfApp.Screens.Documents.ViewModels
             if (SelectedLandowner == null) return;
             if (string.IsNullOrWhiteSpace(SelectedLandowner.LandownerId)) return;
 
-            var folderPath = Path.Combine(DocumentDataFolder, "Landowners", SelectedLandowner.LandownerId, folderName);
+            var folderPath = Path.Combine(_path.LandownersPdfDire, SelectedLandowner.LandownerId, folderName);
             var pdfList = _pdf.GetPdfList(folderPath);
 
             // PDF資料が存在しない場合
@@ -238,17 +196,7 @@ namespace WpfApp.Screens.Documents.ViewModels
             {
                 Debug.WriteLine($"[ERROR] PDFファイルが存在しません {folderPath}");
                 //メッセージウィンドウを表示
-                var vm = new MessageDialogViewModel
-                {
-                    Message = "PDFファイルが存在しません"
-                };
-
-                var dialog = new MessageDialogWindow
-                {
-                    DataContext = vm,
-                    Owner = Application.Current.MainWindow
-                };
-                dialog.ShowDialog();
+                _message.ShowMessage("PDFファイルが存在しません");
             }
             else
             {
