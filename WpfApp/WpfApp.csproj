@@ -32,14 +32,101 @@
     <None Remove="Data\ButtonSettings\documentWorksButtons.json" />
     <None Remove="Data\Landowners.json" />
     <None Remove="Data\Works.json" />
+    <None Remove="DocumentResources\Aramashi\Aramashi\補償のあらまし.pdf" />
+    <None Remove="DocumentResources\Aramashi\Others\Sonshitsu\国土交通省の公共用地の取得に伴う損失補償基準.pdf" />
+    <None Remove="DocumentResources\Aramashi\Others\Sonshitsu\国土交通省の公共用地の取得に伴う損失補償基準の運用方針.pdf" />
+    <None Remove="DocumentResources\Aramashi\Others\Sonshitsu\国土交通省損失補償取扱要領.pdf" />
+    <None Remove="DocumentResources\Aramashi\Others\Zeikin\譲渡所得税の特例あらまし.pdf" />
+    <None Remove="DocumentResources\Documents\Landowners\001\Document01\02 建物図面.pdf" />
+    <None Remove="DocumentResources\Documents\Landowners\001\Document01\04 工作物図面.pdf" />
+    <None Remove="DocumentResources\Documents\Landowners\001\Document01\06 立竹木図面.pdf" />
+    <None Remove="DocumentResources\Documents\Landowners\001\Document02\【サンプル】土地評価資料.pdf" />
+    <None Remove="DocumentResources\Documents\Landowners\001\Document02\【サンプル】物件補償金算定資料.pdf" />
+    <None Remove="DocumentResources\Documents\Landowners\001\Document04\【サンプル】戸籍（説明時は個人情報削除）.pdf" />
+    <None Remove="DocumentResources\Documents\Landowners\001\Document04\【サンプル】相続関係図（説明時は個人情報削除）.pdf" />
+    <None Remove="DocumentResources\Documents\Landowners\001\Document04\（参考）法定相続の変遷.pdf" />
+    <None Remove="DocumentResources\Documents\Landowners\001\Document05\【サンプル】土地調書.pdf" />
+    <None Remove="DocumentResources\Documents\Landowners\001\Document05\【サンプル】物件調書.pdf" />
+    <None Remove="DocumentResources\Documents\Landowners\001\Document06\【サンプル】補償金提示書.pdf" />
+    <None Remove="DocumentResources\Documents\Landowners\001\Document07\01【サンプル】土地売買契約書.pdf" />
+    <None Remove="DocumentResources\Documents\Landowners\001\Document07\02【サンプル】請求書.pdf" />
+    <None Remove="DocumentResources\Documents\Landowners\001\Document07\03【サンプル】登記原因証明情報兼承諾書.pdf" />
+    <None Remove="DocumentResources\Documents\Landowners\001\Document07\04【サンプル】マイナンバー提供依頼.pdf" />
+    <None Remove="DocumentResources\Documents\Landowners\001\Document07\05【サンプル】基礎撤去承諾書（関東）.pdf" />
+    <None Remove="DocumentResources\Documents\Works\Document01\【サンプル】地図（公図）.pdf" />
+    <None Remove="DocumentResources\Documents\Works\Document02\【サンプル】土地登記事項証明書.pdf" />
+    <None Remove="DocumentResources\Documents\Works\Document02\【サンプル】建物登記事項証明書.pdf" />
+    <None Remove="DocumentResources\Documents\Works\Document03\【サンプル】用地平面図.pdf" />
+    <None Remove="DocumentResources\Documents\Works\Document05\【サンプル】地積測量図.pdf" />
+    <None Remove="MediaResources\chapters.json" />
+    <None Remove="SlideResources\Aramashi\aramashi1.png" />
+    <None Remove="SlideResources\Aramashi\aramashi10_1.png" />
+    <None Remove="SlideResources\Aramashi\aramashi2.png" />
+    <None Remove="SlideResources\Aramashi\aramashi3_1.png" />
+    <None Remove="SlideResources\Aramashi\aramashi3_10.png" />
+    <None Remove="SlideResources\Aramashi\aramashi3_11.png" />
+    <None Remove="SlideResources\Aramashi\aramashi3_12.5.png" />
+    <None Remove="SlideResources\Aramashi\aramashi3_12.png" />
+    <None Remove="SlideResources\Aramashi\aramashi3_13.png" />
+    <None Remove="SlideResources\Aramashi\aramashi3_14.png" />
+    <None Remove="SlideResources\Aramashi\aramashi3_15.png" />
+    <None Remove="SlideResources\Aramashi\aramashi3_16.png" />
+    <None Remove="SlideResources\Aramashi\aramashi3_17.png" />
+    <None Remove="SlideResources\Aramashi\aramashi3_18.png" />
+    <None Remove="SlideResources\Aramashi\aramashi3_19.png" />
+    <None Remove="SlideResources\Aramashi\aramashi3_2.png" />
+    <None Remove="SlideResources\Aramashi\aramashi3_3.png" />
+    <None Remove="SlideResources\Aramashi\aramashi3_4.png" />
+    <None Remove="SlideResources\Aramashi\aramashi3_5.png" />
+    <None Remove="SlideResources\Aramashi\aramashi3_6.png" />
+    <None Remove="SlideResources\Aramashi\aramashi3_7.png" />
+    <None Remove="SlideResources\Aramashi\aramashi3_8.png" />
+    <None Remove="SlideResources\Aramashi\aramashi3_9.png" />
+    <None Remove="SlideResources\Aramashi\aramashi4_1_1.png" />
+    <None Remove="SlideResources\Aramashi\aramashi4_1_2.png" />
+    <None Remove="SlideResources\Aramashi\aramashi4_1_3.png" />
+    <None Remove="SlideResources\Aramashi\aramashi4_2_1.png" />
+    <None Remove="SlideResources\Aramashi\aramashi4_2_2.png" />
+    <None Remove="SlideResources\Aramashi\aramashi4_4_1.png" />
+    <None Remove="SlideResources\Aramashi\aramashi4_4_2.png" />
+    <None Remove="SlideResources\Aramashi\aramashi5_2.png" />
+    <None Remove="SlideResources\Aramashi\aramashi5_4.png" />
+    <None Remove="SlideResources\Aramashi\aramashi5_5_1.png" />
+    <None Remove="SlideResources\Aramashi\aramashi5_5_2.png" />
+    <None Remove="SlideResources\Aramashi\aramashi5_6.png" />
+    <None Remove="SlideResources\Aramashi\aramashi5_8.png" />
+    <None Remove="SlideResources\Aramashi\aramashi6_1_1.png" />
+    <None Remove="SlideResources\Aramashi\aramashi6_1_2.png" />
+    <None Remove="SlideResources\Aramashi\aramashi6_2.png" />
+    <None Remove="SlideResources\Aramashi\aramashi7_1_1.png" />
+    <None Remove="SlideResources\Aramashi\aramashi7_1_2.png" />
+    <None Remove="SlideResources\Aramashi\aramashi7_2_1.png" />
+    <None Remove="SlideResources\Aramashi\aramashi7_2_2.png" />
+    <None Remove="SlideResources\Aramashi\aramashi7_2_3.png" />
+    <None Remove="SlideResources\Aramashi\aramashi7_2_4.png" />
+    <None Remove="SlideResources\Aramashi\aramashi7_3_1.png" />
+    <None Remove="SlideResources\Aramashi\aramashi7_3_2.png" />
+    <None Remove="SlideResources\Aramashi\aramashi7_3_3.png" />
+    <None Remove="SlideResources\Aramashi\aramashi8_1.png" />
+    <None Remove="SlideResources\Aramashi\aramashi9_1.png" />
     <None Remove="SlideResources\Aramashi\slides_aramashi1.json" />
+    <None Remove="SlideResources\Aramashi\slides_aramashi10.json" />
     <None Remove="SlideResources\Aramashi\slides_aramashi2.json" />
     <None Remove="SlideResources\Aramashi\slides_aramashi3.json" />
     <None Remove="SlideResources\Aramashi\slides_aramashi4.json" />
+    <None Remove="SlideResources\Aramashi\slides_aramashi5.json" />
+    <None Remove="SlideResources\Aramashi\slides_aramashi6.json" />
+    <None Remove="SlideResources\Aramashi\slides_aramashi7.json" />
+    <None Remove="SlideResources\Aramashi\slides_aramashi8.json" />
+    <None Remove="SlideResources\Aramashi\slides_aramashi9.json" />
     <None Remove="SlideResources\Aramashi\slide_Aramashi2.jpg" />
+    <None Remove="SlideResources\Others\daitaichi1.png" />
     <None Remove="SlideResources\Others\slides_daitaichi.json" />
     <None Remove="SlideResources\Others\slides_sonshitsu.json" />
     <None Remove="SlideResources\Others\slides_zeikin.json" />
+    <None Remove="SlideResources\Others\zeikin1.png" />
+    <None Remove="SlideResources\Others\zeikin2.png" />
+    <None Remove="SlideResources\Others\zeikin3.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -47,6 +134,240 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Data\ButtonSettings\documentWorksButtons.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DocumentResources\Aramashi\Aramashi\補償のあらまし.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DocumentResources\Aramashi\Others\Sonshitsu\国土交通省の公共用地の取得に伴う損失補償基準.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DocumentResources\Aramashi\Others\Sonshitsu\国土交通省の公共用地の取得に伴う損失補償基準の運用方針.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DocumentResources\Aramashi\Others\Sonshitsu\国土交通省損失補償取扱要領.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DocumentResources\Aramashi\Others\Zeikin\譲渡所得税の特例あらまし.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DocumentResources\Documents\Landowners\001\Document01\02 建物図面.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DocumentResources\Documents\Landowners\001\Document01\04 工作物図面.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DocumentResources\Documents\Landowners\001\Document01\06 立竹木図面.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DocumentResources\Documents\Landowners\001\Document02\【サンプル】土地評価資料.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DocumentResources\Documents\Landowners\001\Document02\【サンプル】物件補償金算定資料.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DocumentResources\Documents\Landowners\001\Document04\【サンプル】戸籍（説明時は個人情報削除）.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DocumentResources\Documents\Landowners\001\Document04\【サンプル】相続関係図（説明時は個人情報削除）.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DocumentResources\Documents\Landowners\001\Document04\（参考）法定相続の変遷.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DocumentResources\Documents\Landowners\001\Document05\【サンプル】土地調書.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DocumentResources\Documents\Landowners\001\Document05\【サンプル】物件調書.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DocumentResources\Documents\Landowners\001\Document06\【サンプル】補償金提示書.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DocumentResources\Documents\Landowners\001\Document07\01【サンプル】土地売買契約書.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DocumentResources\Documents\Landowners\001\Document07\02【サンプル】請求書.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DocumentResources\Documents\Landowners\001\Document07\03【サンプル】登記原因証明情報兼承諾書.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DocumentResources\Documents\Landowners\001\Document07\04【サンプル】マイナンバー提供依頼.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DocumentResources\Documents\Landowners\001\Document07\05【サンプル】基礎撤去承諾書（関東）.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DocumentResources\Documents\Works\Document01\【サンプル】地図（公図）.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DocumentResources\Documents\Works\Document02\【サンプル】土地登記事項証明書.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DocumentResources\Documents\Works\Document02\【サンプル】建物登記事項証明書.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DocumentResources\Documents\Works\Document03\【サンプル】用地平面図.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DocumentResources\Documents\Works\Document05\【サンプル】地積測量図.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MediaResources\chapters.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\aramashi1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\aramashi10_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\aramashi2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\aramashi3_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\aramashi3_10.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\aramashi3_11.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\aramashi3_12.5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\aramashi3_12.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\aramashi3_13.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\aramashi3_14.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\aramashi3_15.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\aramashi3_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\aramashi3_17.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\aramashi3_18.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\aramashi3_19.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\aramashi3_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\aramashi3_3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\aramashi3_4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\aramashi3_5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\aramashi3_6.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\aramashi3_7.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\aramashi3_8.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\aramashi3_9.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\aramashi4_1_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\aramashi4_1_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\aramashi4_1_3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\aramashi4_2_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\aramashi4_2_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\aramashi4_4_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\aramashi4_4_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\aramashi5_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\aramashi5_4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\aramashi5_5_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\aramashi5_5_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\aramashi5_6.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\aramashi5_8.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\aramashi6_1_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\aramashi6_1_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\aramashi6_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\aramashi7_1_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\aramashi7_1_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\aramashi7_2_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\aramashi7_2_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\aramashi7_2_3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\aramashi7_2_4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\aramashi7_3_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\aramashi7_3_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\aramashi7_3_3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\aramashi8_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\aramashi9_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\slides_aramashi10.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="SlideResources\Aramashi\slides_aramashi3.json">
@@ -76,6 +397,24 @@
     <Content Include="SlideResources\Aramashi\slides_aramashi4.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="SlideResources\Aramashi\slides_aramashi5.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\slides_aramashi6.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\slides_aramashi7.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\slides_aramashi8.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\slides_aramashi9.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Others\daitaichi1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="SlideResources\Others\slides_daitaichi.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -83,6 +422,15 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="SlideResources\Others\slides_zeikin.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Others\zeikin1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Others\zeikin2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Others\zeikin3.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -105,273 +453,6 @@
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
     <PackageReference Include="MaterialDesignColors" Version="5.3.0" />
     <PackageReference Include="MaterialDesignThemes" Version="5.3.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="DocumentResources\Aramashi\Aramashi\補償のあらまし.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="DocumentResources\Aramashi\Others\Sonshitsu\国土交通省の公共用地の取得に伴う損失補償基準.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="DocumentResources\Aramashi\Others\Sonshitsu\国土交通省の公共用地の取得に伴う損失補償基準の運用方針.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="DocumentResources\Aramashi\Others\Sonshitsu\国土交通省損失補償取扱要領.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="DocumentResources\Aramashi\Others\Zeikin\譲渡所得税の特例あらまし.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="DocumentResources\Documents\Landowners\001\Document01\02 建物図面.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="DocumentResources\Documents\Landowners\001\Document01\04 工作物図面.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="DocumentResources\Documents\Landowners\001\Document01\06 立竹木図面.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="DocumentResources\Documents\Landowners\001\Document02\【サンプル】土地評価資料.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="DocumentResources\Documents\Landowners\001\Document02\【サンプル】物件補償金算定資料.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="DocumentResources\Documents\Landowners\001\Document04\【サンプル】戸籍（説明時は個人情報削除）.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="DocumentResources\Documents\Landowners\001\Document04\【サンプル】相続関係図（説明時は個人情報削除）.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="DocumentResources\Documents\Landowners\001\Document04\（参考）法定相続の変遷.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="DocumentResources\Documents\Landowners\001\Document05\【サンプル】土地調書.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="DocumentResources\Documents\Landowners\001\Document05\【サンプル】物件調書.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="DocumentResources\Documents\Landowners\001\Document06\【サンプル】補償金提示書.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="DocumentResources\Documents\Landowners\001\Document07\01【サンプル】土地売買契約書.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="DocumentResources\Documents\Landowners\001\Document07\02【サンプル】請求書.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="DocumentResources\Documents\Landowners\001\Document07\03【サンプル】登記原因証明情報兼承諾書.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="DocumentResources\Documents\Landowners\001\Document07\04【サンプル】マイナンバー提供依頼.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="DocumentResources\Documents\Landowners\001\Document07\05【サンプル】基礎撤去承諾書（関東）.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="DocumentResources\Documents\Works\Document01\【サンプル】地図（公図）.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="DocumentResources\Documents\Works\Document02\【サンプル】土地登記事項証明書.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="DocumentResources\Documents\Works\Document02\【サンプル】建物登記事項証明書.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="DocumentResources\Documents\Works\Document03\【サンプル】用地平面図.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="DocumentResources\Documents\Works\Document05\【サンプル】地積測量図.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="MediaResources\chapters.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Aramashi\aramashi1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Aramashi\aramashi10_1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Aramashi\aramashi2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Aramashi\aramashi3_1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Aramashi\aramashi3_10.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Aramashi\aramashi3_11.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Aramashi\aramashi3_12.5.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Aramashi\aramashi3_12.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Aramashi\aramashi3_13.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Aramashi\aramashi3_14.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Aramashi\aramashi3_15.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Aramashi\aramashi3_16.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Aramashi\aramashi3_17.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Aramashi\aramashi3_18.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Aramashi\aramashi3_19.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Aramashi\aramashi3_2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Aramashi\aramashi3_3.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Aramashi\aramashi3_4.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Aramashi\aramashi3_6.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Aramashi\aramashi3_5.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Aramashi\aramashi3_7.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Aramashi\aramashi3_8.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Aramashi\aramashi3_9.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Aramashi\aramashi4_1_1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Aramashi\aramashi4_1_2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Aramashi\aramashi4_1_3.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Aramashi\aramashi4_2_1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Aramashi\aramashi4_2_2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Aramashi\aramashi4_4_1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Aramashi\aramashi4_4_2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Aramashi\aramashi5_2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Aramashi\aramashi5_4.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Aramashi\aramashi5_5_1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Aramashi\aramashi5_5_2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Aramashi\aramashi5_6.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Aramashi\aramashi5_8.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Aramashi\aramashi6_1_1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Aramashi\aramashi6_1_2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Aramashi\aramashi6_2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Aramashi\aramashi7_1_1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Aramashi\aramashi7_1_2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Aramashi\aramashi7_2_1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Aramashi\aramashi7_2_2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Aramashi\aramashi7_2_3.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Aramashi\aramashi7_2_4.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Aramashi\aramashi7_3_1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Aramashi\aramashi7_3_2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Aramashi\aramashi7_3_3.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Aramashi\aramashi8_1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Aramashi\aramashi9_1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Aramashi\slides_aramashi10.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Aramashi\slides_aramashi5.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Aramashi\slides_aramashi6.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Aramashi\slides_aramashi7.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Aramashi\slides_aramashi8.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Aramashi\slides_aramashi9.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Aramashi\slide_Aramashi1.jpg">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Others\daitaichi1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Others\zeikin1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Others\zeikin2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SlideResources\Others\zeikin3.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
 </Project>
