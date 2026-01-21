@@ -11,6 +11,7 @@
         string WorksButtonPath { get; }
         string LandownerButtonPath { get; }
         string SignatureDire { get; }
+        string LandownersPath { get; }
 
         string DocumentResourcesRoot { get; }
         string AramashiPdfRoot { get; }

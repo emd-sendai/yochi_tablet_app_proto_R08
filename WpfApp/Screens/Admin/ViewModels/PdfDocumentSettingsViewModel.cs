@@ -230,7 +230,7 @@ namespace WpfApp.Screens.Admin.ViewModels
 
             try
             {
-                string path = Path.Combine(_path.DataDire, "landowners.json");
+                string path = Path.Combine(_path.LandownersPath);
 
                 if (!File.Exists(path))
                 {

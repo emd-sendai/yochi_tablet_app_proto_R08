@@ -7,11 +7,16 @@ using System.Text.Json;
 using System.Windows;
 using System.Windows.Threading;
 using WpfApp.Common.Models;
+using WpfApp.Interfaces;
+using WpfApp.Services;
 
 namespace WpfApp.Common.ViewModels
 {
     public partial class VideoPlayerViewModel : ObservableObject
     {
+        private readonly IMessageDialogService _message;
+        private readonly IAppPathService _path;
+
         public Func<TimeSpan>? PositionProvider { get; set; }
         public Action<TimeSpan>? SeekAction { get; set; }
 
@@ -67,7 +72,10 @@ namespace WpfApp.Common.ViewModels
 
         public VideoPlayerViewModel(string videoFileName)
         {
-            var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "MediaResources", videoFileName);
+            _message = new MessageDialogService();
+            _path = new AppPathService();
+
+            var path = Path.Combine(_path.MediaResourcesDire, videoFileName);
 
             if (File.Exists(path)){
                 VideoSource = new Uri(path);
@@ -75,11 +83,11 @@ namespace WpfApp.Common.ViewModels
             }
             else
             {
-                MessageBox.Show("動画が存在しません");
+                _message.ShowMessage("動画が存在しません。");
                 Debug.WriteLine($"[ERROR] 動画が存在しません: {path}");
             }
 
-            var chapters = LoadChapers();
+            var chapters = LoadChapers(Path.Combine(_path.MediaResourcesDire, "chapters.json"));
             Chapters = new ObservableCollection<Chapter>(chapters);
 
             if (!Chapters.Any())
@@ -98,10 +106,8 @@ namespace WpfApp.Common.ViewModels
             };
         }
 
-        private static IReadOnlyList<Chapter> LoadChapers()
+        private static IReadOnlyList<Chapter> LoadChapers(string path)
         {
-            var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "MediaResources", "chapters.json");
-
             if(!File.Exists(path)) return Array.Empty<Chapter>();
 
             var json = File.ReadAllText(path);

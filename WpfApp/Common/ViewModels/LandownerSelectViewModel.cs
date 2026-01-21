@@ -4,14 +4,17 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Text.Json;
-using System.Windows;
 using WpfApp.Common.Models;
-using WpfApp.Common.Views;
+using WpfApp.Interfaces;
+using WpfApp.Services;
 
 namespace WpfApp.Common.ViewModels
 {
     public partial class LandownerSelectViewModel : ObservableObject
     {
+        private readonly IMessageDialogService _message;
+        private readonly IAppPathService _path;
+
         [ObservableProperty]
         private ObservableCollection<LandownerData>? landowners;
 
@@ -22,6 +25,9 @@ namespace WpfApp.Common.ViewModels
 
         public LandownerSelectViewModel()
         {
+            _message = new MessageDialogService();
+            _path = new AppPathService();
+
             LoadLandownersFromJson();
         }
 
@@ -29,11 +35,11 @@ namespace WpfApp.Common.ViewModels
         {
             try 
             { 
-                string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data/landowners.json");
+                string path = _path.LandownersPath;
 
                 if (!File.Exists(path))
                 {
-                    MessageBox.Show("地権者データが見つかりません");
+                    _message.ShowMessage("地権者データが見つかりません");
                     Debug.WriteLine($"[DEBUG] 地権者データが見つかりません: {path}");
                 } 
                     
@@ -44,7 +50,7 @@ namespace WpfApp.Common.ViewModels
             }
             catch (Exception ex)
             {
-                MessageBox.Show("地権者データを読み込むことができません");
+                _message.ShowMessage("地権者データを読み込むことができません");
                 Debug.WriteLine($"[DEBUG] 地権者データを読み込むことができません: {ex.Message}");
             }
         }
@@ -56,22 +62,7 @@ namespace WpfApp.Common.ViewModels
             if (SelectedLandowner == null)
             {
                 //メッセージウィンドウを表示
-                var vm = new MessageDialogViewModel
-                {
-                    Message = "地権者ユーザを選択してください"
-                };
-
-                var dialog = new MessageDialogWindow
-                {
-                    DataContext = vm,
-                    Owner = Application.Current.MainWindow
-                };
-
-                bool? result = dialog.ShowDialog();
-                if (result == true)
-                {
-                    // OK押下後の処理
-                }
+                _message.ShowMessage("地権者ユーザを選択してください");
             }
             else
             {

@@ -23,6 +23,8 @@ namespace WpfApp.Services
 
         public string SignatureDire => Path.Combine(DataDire, "Signature");
 
+        public string LandownersPath => Path.Combine(DataDire, "landowners.json");
+
 
         public string DocumentResourcesRoot => Path.Combine(DataRoot, "DocumentResources");
 
