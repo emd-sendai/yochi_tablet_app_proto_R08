@@ -102,10 +102,5 @@ namespace WpfApp.Services
                 return true;
             }
         }
-
-        public void EnsureInitialData()
-        {
-            // 初回コピー処理を実装
-        }
     }
 }

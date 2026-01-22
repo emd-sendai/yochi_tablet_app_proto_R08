@@ -39,7 +39,5 @@
         string NormalizePath(string path);
 
         bool CanDelete(string filePath);
-
-        void EnsureInitialData();
     }
 }
