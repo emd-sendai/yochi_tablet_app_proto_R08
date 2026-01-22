@@ -7,15 +7,17 @@ namespace WpfApp.Services
     {
         public string AppRoot => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "DX_SampleApp", "R7_sampleApp");
 
+        public string InitializeFlagFile => Path.Combine(AppRoot, ".initialized");
+
 
         //public string DataRoot => Path.Combine(AppRoot, "Logs");
-        public string LogsDire => Path.Combine(DataRoot, "Logs");
+        public string LogsDire => Path.Combine(AppResourcesRoot, "Logs");
 
-        //public string DataRoot => Path.Combine(AppRoot, "Data");
-        public string DataRoot => Path.Combine(AppDomain.CurrentDomain.BaseDirectory);
+        //public string AppResourcesRoot => Path.Combine(AppRoot, "AppResources");
+        public string AppResourcesRoot => Path.Combine(AppDomain.CurrentDomain.BaseDirectory);
 
 
-        public string DataDire => Path.Combine(DataRoot, "Data");
+        public string DataDire => Path.Combine(AppResourcesRoot, "Data");
 
         public string ButtonRoot => Path.Combine(DataDire, "ButtonSettings");
 
@@ -30,7 +32,7 @@ namespace WpfApp.Services
         public string LandownersPath => Path.Combine(DataDire, "landowners.json");
 
 
-        public string DocumentResourcesRoot => Path.Combine(DataRoot, "DocumentResources");
+        public string DocumentResourcesRoot => Path.Combine(AppResourcesRoot, "DocumentResources");
 
         public string AramashiPdfRoot => Path.Combine(DocumentResourcesRoot, "Aramashi");
 
@@ -51,17 +53,17 @@ namespace WpfApp.Services
         public string WorksPdfDire => Path.Combine(DocumentPdfRoot, "Works");
 
 
-        public string MediaResourcesDire => Path.Combine(DataRoot, "MediaResources");
+        public string MediaResourcesDire => Path.Combine(AppResourcesRoot, "MediaResources");
 
 
-        public string SlideResourcesRoot => Path.Combine(DataRoot, "SlideResources");
+        public string SlideResourcesRoot => Path.Combine(AppResourcesRoot, "SlideResources");
 
         public string AramashiSlideDire => Path.Combine(SlideResourcesRoot, "Aramashi");
 
         public string OthersSlideDire => Path.Combine(SlideResourcesRoot, "Others");
 
 
-        public string TempDire => Path.Combine(DataRoot, "Temp");
+        public string TempDire => Path.Combine(AppResourcesRoot, "Temp");
 
 
         public AppPathService()

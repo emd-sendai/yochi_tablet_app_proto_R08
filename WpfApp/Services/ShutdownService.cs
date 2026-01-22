@@ -10,12 +10,14 @@ namespace WpfApp.Services
     public class ShutdownService
     {
         private readonly IAppPathService _path;
+        private readonly ILoggingService _log;
 
         private static bool _hasCleaned = false;
 
         public ShutdownService()
         {
             _path = new AppPathService();
+            _log = new LoggingService();
         }
 
         public void Cleanup()
@@ -105,19 +107,12 @@ namespace WpfApp.Services
                 }
 
                 Debug.WriteLine($"[DEBUG] データを初期化しました");
-
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[ERROR] データの初期化ができませんでした");
+                Debug.WriteLine($"[ERROR] シャットダウン時のデータの初期化ができませんでした");
+                _log.LogError(ex);
 
-                Directory.CreateDirectory(_path.LogsDire);
-                // 古いlogファイルを削除
-                CleanupOldLogs();
-
-                string logPath = Path.Combine(_path.LogsDire, $"shutdown_{DateTime.Now:yyyyMMdd_HHmmss}.log");
-                File.AppendAllText(logPath, ex.ToString());
-                Debug.WriteLine($"[ERROR] シャットダウン処理時のlogファイルを生成しました : {logPath}");
             }
         }
 
@@ -181,30 +176,5 @@ namespace WpfApp.Services
                 }
             }
         }
-
-
-        private void CleanupOldLogs()
-        {
-            if (!Directory.Exists(_path.LogsDire)) { return; }
-
-            var files = new DirectoryInfo(_path.LogsDire)
-                .GetFiles("*.log")
-                .OrderByDescending(f => f.CreationTime)
-                .ToList();
-
-            // 最新10ファイルを残し、それ以外は削除
-            foreach (var oldFile in files.Skip(10))
-            {
-                try
-                {
-                    oldFile.Delete();
-                }
-                catch
-                {
-                    // 削除失敗は無視
-                }
-            }
-        }
-
     }
 }

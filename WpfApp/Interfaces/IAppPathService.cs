@@ -4,8 +4,10 @@
     {
         string AppRoot { get; }
 
+        string InitializeFlagFile { get; }
+
         string LogsDire { get; }
-        string DataRoot { get; }
+        string AppResourcesRoot { get; }
 
         string DataDire {  get; }
         string ButtonRoot { get; }
