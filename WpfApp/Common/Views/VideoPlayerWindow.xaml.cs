@@ -20,7 +20,6 @@ namespace WpfApp.Common.Views
                 {
                     vm.PlayRequested += () => Media.Play();
                     vm.PauseRequested += () => Media.Pause();
-                    vm.StopRequested += () => Media.Stop();
                     vm.PositionProvider = () => Media.Position;
                     vm.SeekAction = time => Media.Position = time;
 
