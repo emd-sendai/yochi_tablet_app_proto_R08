@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Threading;
 using WpfApp.Common.ViewModels;
 
 namespace WpfApp.Common.Views
@@ -10,6 +11,9 @@ namespace WpfApp.Common.Views
     /// </summary>
     public partial class VideoPlayerWindow : Window
     {
+        private DispatcherTimer? _timer;
+        private bool _isDragging;
+
         public VideoPlayerWindow()
         {
             InitializeComponent();
@@ -18,14 +22,41 @@ namespace WpfApp.Common.Views
             {
                 if (DataContext is VideoPlayerViewModel vm)
                 {
-                    vm.PlayRequested += () => Media.Play();
-                    vm.PauseRequested += () => Media.Pause();
-                    vm.PositionProvider = () => Media.Position;
-                    vm.SeekAction = time => Media.Position = time;
+                    Media.MediaOpened += Media_MediaOpened;
 
-                    Media.MediaOpened += (_, _) =>
+                    vm.PlayRequested += () =>
                     {
-                        vm.Duration = Media.NaturalDuration.TimeSpan;
+                        Media.Play();
+                        vm.IsPlaying = true;
+                        _timer?.Start();
+                    };
+                    
+                    vm.PauseRequested += () =>
+                    {
+                        Media.Pause();
+                        vm.IsPlaying = false;
+                        _timer?.Stop();
+                    };
+
+                    vm.SeekRequested += time =>
+                    {
+                        if (Media.NaturalDuration.HasTimeSpan)
+                        {
+                            Media.Position = time;
+                        }
+                    };
+
+                    _timer = new DispatcherTimer
+                    {
+                        Interval = TimeSpan.FromMilliseconds(200)
+                    };
+
+                    _timer.Tick += (_, _) =>
+                    {
+                        if (!_isDragging && Media.NaturalDuration.HasTimeSpan)
+                        {
+                            vm.CurrentPosition = Media.Position;
+                        }
                     };
                 }
             };
@@ -39,15 +70,24 @@ namespace WpfApp.Common.Views
             if (DataContext is VideoPlayerViewModel vm)
             {
                 vm.Duration = Media.NaturalDuration.TimeSpan;
-                Media.Play();
+                vm.CurrentPosition = TimeSpan.Zero;
             }
         }
 
         private void Slider_PreviewMouseDown(object sender, MouseButtonEventArgs e)
-            => (DataContext as VideoPlayerViewModel)?.BeginSeek();
+        {
+            _isDragging = true;
+        }
 
         private void Slider_PreviewMouseUp(object sender, MouseButtonEventArgs e)
-            => (DataContext as VideoPlayerViewModel)?.EndSeek();
+        {
+            _isDragging = false;
+
+            if (DataContext is VideoPlayerViewModel vm)
+            {
+                Media.Position = vm.CurrentPosition;
+            }
+        }
 
         private void VideoPlayerWindow_Closing(object? sender, CancelEventArgs e)
         {

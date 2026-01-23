@@ -5,7 +5,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Text.Json;
 using System.Windows;
-using System.Windows.Threading;
 using WpfApp.Common.Models;
 using WpfApp.Interfaces;
 using WpfApp.Services;
@@ -17,14 +16,12 @@ namespace WpfApp.Common.ViewModels
         private readonly IMessageDialogService _message;
         private readonly IAppPathService _path;
 
-        public Func<TimeSpan>? PositionProvider { get; set; }
-        public Action<TimeSpan>? SeekAction { get; set; }
+        public event Action? PlayRequested;
+        public event Action? PauseRequested;
+        public event Action<TimeSpan>? SeekRequested;
 
-        public Action? PlayRequested;
-        public Action? PauseRequested;
-        public Action? StopRequested;
-
-        private bool _isDragging;
+        [ObservableProperty]
+        private bool isPlaying;
 
         [ObservableProperty]
         private Uri? videoSource;
@@ -58,17 +55,9 @@ namespace WpfApp.Common.ViewModels
             OnPropertyChanged(nameof(TimeDisplay));
         }
 
-        [ObservableProperty]
-        private bool isPlaying;
-
-        public DispatcherTimer Timer { get; }
-
         public record Chapter(string Title, TimeSpan Start);
 
         public ObservableCollection<Chapter> Chapters { get; }
-
-        private TimeSpan Current => PositionProvider?.Invoke() ?? TimeSpan.Zero;
-
 
         public VideoPlayerViewModel(string videoFileName)
         {
@@ -94,16 +83,6 @@ namespace WpfApp.Common.ViewModels
             {
                 Chapters.Add(new Chapter("Start", TimeSpan.Zero));
             }
-
-            Timer = new DispatcherTimer
-            {
-                Interval = TimeSpan.FromMilliseconds(200)
-            };
-            Timer.Tick += (_, _) =>
-            {
-                if (!_isDragging)
-                    CurrentPosition = PositionProvider?.Invoke() ?? TimeSpan.Zero;
-            };
         }
 
         private static IReadOnlyList<Chapter> LoadChapers(string path)
@@ -121,64 +100,22 @@ namespace WpfApp.Common.ViewModels
                 .ToList();
         }
 
-        // シーク開始
-        public void BeginSeek() => _isDragging = true;
-
-        // シーク確定
-        public void EndSeek()
-        {
-            SeekAction?.Invoke(CurrentPosition);
-            _isDragging = false;
-        }
-
         // セクションジャンプ
-        public void JumpTo(TimeSpan time)
-        {
-            SeekAction?.Invoke(time);
-        }
+        public void JumpTo(TimeSpan time) => SeekRequested?.Invoke(time);
 
         [RelayCommand]
-        private void Play()
-        {
-            IsPlaying = true;
-            Timer.Start();
-            PlayRequested?.Invoke();
-        }
+        private void Play() => PlayRequested?.Invoke();
 
         [RelayCommand]
-        private void Pause()
-        {
-            IsPlaying = false;
-            Timer.Stop();
-            PauseRequested?.Invoke();
-        }
+        private void Pause() => PauseRequested?.Invoke();
 
         [RelayCommand]
-        private void TogglePlayPause()
-        {
-            if (IsPlaying)
-            {
-                Pause();
-            }
-            else
-            {
-                Play();
-            }
-        }
+        private void Forward() => SeekRequested?.Invoke(CurrentPosition + TimeSpan.FromSeconds(10));
+
 
         [RelayCommand]
-        private void Forward()
-        {
-            SeekAction?.Invoke(CurrentPosition + TimeSpan.FromSeconds(10));
-        }
-
-        [RelayCommand]
-        private void Rewind()
-        {
-            var target = CurrentPosition - TimeSpan.FromSeconds(10);
-            if (target < TimeSpan.Zero) target = TimeSpan.Zero;
-            SeekAction?.Invoke(target);
-        }
+        private void Rewind() => SeekRequested?.Invoke(
+            CurrentPosition > TimeSpan.FromSeconds(10)? CurrentPosition - TimeSpan.FromSeconds(10): TimeSpan.Zero);
 
         private int GetCurrentChapterIndex()
         {
@@ -203,7 +140,7 @@ namespace WpfApp.Common.ViewModels
 
             if (nextIndex >= 0 && nextIndex < list.Count)
             {
-                SeekAction?.Invoke(list[nextIndex].Start);
+                SeekRequested?.Invoke(list[nextIndex].Start);
             }
         }
 
@@ -215,13 +152,13 @@ namespace WpfApp.Common.ViewModels
             if (index < 0) return;
 
             var chapterStart = Chapters[index].Start;
-            if (Current - chapterStart > TimeSpan.FromSeconds(3))
+            if (CurrentPosition - chapterStart > TimeSpan.FromSeconds(3))
             {
-                SeekAction?.Invoke(chapterStart);
+                SeekRequested?.Invoke(chapterStart);
             }
             else if (index > 0)
             {
-                SeekAction?.Invoke(Chapters[index - 1].Start);
+                SeekRequested?.Invoke(Chapters[index - 1].Start);
             }
         }
 
