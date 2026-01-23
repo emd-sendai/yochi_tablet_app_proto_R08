@@ -59,14 +59,21 @@ namespace WpfApp.Common.ViewModels
 
         public ObservableCollection<Chapter> Chapters { get; }
 
-        public VideoPlayerViewModel(string videoFileName)
+        public enum MediaCategory
+        {
+            Main,
+            Parts
+        }
+
+        public VideoPlayerViewModel(string folderPath, MediaCategory category)
         {
             _message = new MessageDialogService();
             _path = new AppPathService();
 
-            var path = Path.Combine(_path.MediaResourcesDire, videoFileName);
+            // 動画のパスを取得する
+            var path = GetVideoPath(folderPath);
 
-            if (File.Exists(path)){
+            if (!string.IsNullOrWhiteSpace(path) && File.Exists(path)){
                 VideoSource = new Uri(path);
                 Debug.WriteLine($"[DEBUG] 動画のパスを設定しました: {path}");
             }
@@ -76,12 +83,46 @@ namespace WpfApp.Common.ViewModels
                 Debug.WriteLine($"[ERROR] 動画が存在しません: {path}");
             }
 
-            var chapters = LoadChapers(Path.Combine(_path.MediaResourcesDire, "chapters.json"));
-            Chapters = new ObservableCollection<Chapter>(chapters);
-
-            if (!Chapters.Any())
+            // 全体動画の場合
+            if (category == MediaCategory.Main)
             {
+                // チャプターを取得する
+                var chapters = LoadChapers(_path.MediaMeinAramashiChapterPath);
+                // チャプターを設定する
+                Chapters = new ObservableCollection<Chapter>(chapters);
+
+                if (!Chapters.Any())
+                {
+                    Chapters.Add(new Chapter("Start", TimeSpan.Zero));
+                }
+            }
+            // 個別動画の場合
+            else
+            {
+                // チャプター（開始時間のみ）を設定する
+                Chapters = new ObservableCollection<Chapter>();
                 Chapters.Add(new Chapter("Start", TimeSpan.Zero));
+            }
+        }
+
+        private string GetVideoPath(string folderPath)
+        {
+            if (!Directory.Exists(folderPath))
+            {
+                return string.Empty;
+            }
+            else
+            {
+                var list = Directory.GetFiles(folderPath, "*.mp4").ToList();
+
+                if (list.Count > 0)
+                {
+                    return list[0];
+                }
+                else
+                {
+                    return string.Empty;
+                }
             }
         }
 

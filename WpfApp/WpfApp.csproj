@@ -33,6 +33,9 @@
     <Content Include="Data\ButtonSettings\documentWorksButtons.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Data\ButtonSettings\othersButtons.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="DocumentResources\Aramashi\Aramashi\補償のあらまし.pdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -111,7 +114,10 @@
     <Content Include="DocumentResources\Documents\Works\Document05\【サンプル】地積測量図.pdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="MediaResources\chapters.json">
+    <Content Include="MediaResources\Aramashi\Main\AramashiSample.mp4">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MediaResources\Aramashi\Main\chapters.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="SlideResources\Aramashi\aramashi1.png">
@@ -282,9 +288,6 @@
     <Content Include="Data\works.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="MediaResources\AramashiSample.mp4">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="SlideResources\Aramashi\slides_aramashi1.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -342,6 +345,8 @@
     <Folder Include="DocumentResources\Documents\Works\Document06\" />
     <Folder Include="DocumentResources\Documents\Works\Document07\" />
     <Folder Include="DocumentResources\Documents\Works\Document08\" />
+    <Folder Include="MediaResources\Aramashi\Parts\Aramashi\" />
+    <Folder Include="MediaResources\Aramashi\Parts\Others\" />
     <Folder Include="Screens\Menu\Models\" />
     <Folder Include="Screens\Documents\Models\" />
   </ItemGroup>

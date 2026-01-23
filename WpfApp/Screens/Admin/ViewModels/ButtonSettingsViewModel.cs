@@ -84,9 +84,10 @@ namespace WpfApp.Screens.Admin.ViewModels
                     return;
                 }
 
-                Debug.WriteLine($"[DEBUG] 読み込み完了: {path} 件数 = {list.Count}");
+                var sortedList = list.OrderBy(x => x.BtnId).ToList();
+                Debug.WriteLine($"[DEBUG] 読み込み完了: {path} 件数 = {sortedList.Count}");
                 Buttons.Clear();
-                foreach (var btn in list)
+                foreach (var btn in sortedList)
                     Buttons.Add(btn);
             }
             catch (Exception ex)

@@ -25,7 +25,7 @@ namespace WpfApp.Services
             CopyDirectoryIfNotExists(sourceRoot, _path.DocumentResourcesRoot);
 
             sourceRoot = Path.Combine(AppDire, "MediaResources");
-            CopyDirectoryIfNotExists(sourceRoot, _path.MediaResourcesDire);
+            CopyDirectoryIfNotExists(sourceRoot, _path.MediaResourcesRoot);
 
             sourceRoot = Path.Combine(AppDire, "SlideResources");
             CopyDirectoryIfNotExists(sourceRoot, _path.SlideResourcesRoot);

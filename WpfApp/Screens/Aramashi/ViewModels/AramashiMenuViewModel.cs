@@ -10,6 +10,7 @@ using WpfApp.Interfaces;
 using WpfApp.Screens.Aramashi.Models;
 using WpfApp.Screens.Menu.ViewModels;
 using WpfApp.Services;
+using static WpfApp.Common.ViewModels.VideoPlayerViewModel;
 
 namespace WpfApp.Screens.Aramashi.ViewModels
 {
@@ -60,9 +61,11 @@ namespace WpfApp.Screens.Aramashi.ViewModels
                     return;
                 }
 
-                Debug.WriteLine($"[DEBUG] 読み込み完了: {path} 件数 = {list.Count}");
+                var sortedList = list.OrderBy(x => x.BtnId).ToList();
+
+                Debug.WriteLine($"[DEBUG] 読み込み完了: {path} 件数 = {sortedList.Count}");
                 Buttons.Clear();
-                foreach (var btn in list)
+                foreach (var btn in sortedList)
                     Buttons.Add(btn);
 
             }
@@ -147,7 +150,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         private void OpenVideoPlayer()
         {
             // 非モーダル表示
-            _dia.ShowWindow<VideoPlayerViewModel> ("AramashiSample.mp4");
+            _dia.ShowWindow<VideoPlayerViewModel> (_path.MediaMeinAramashiDire, MediaCategory.Main);
         }
 
         [RelayCommand]

@@ -27,7 +27,12 @@
         string LandownersPdfDire { get; }
         string WorksPdfDire { get; }
 
-        string MediaResourcesDire { get; }
+        string MediaResourcesRoot { get; }
+        string MediaAramashiRoot { get; }
+        string MediaMeinAramashiDire { get; }
+        string MediaMeinAramashiChapterPath { get; }
+        string MediaPartsAramashiDire { get; }
+        string MediaPartsOthersDire { get; }
 
         string SlideResourcesRoot { get; }
         string AramashiSlideDire { get; }

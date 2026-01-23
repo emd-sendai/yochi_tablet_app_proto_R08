@@ -53,7 +53,17 @@ namespace WpfApp.Services
         public string WorksPdfDire => Path.Combine(DocumentPdfRoot, "Works");
 
 
-        public string MediaResourcesDire => Path.Combine(AppResourcesRoot, "MediaResources");
+        public string MediaResourcesRoot => Path.Combine(AppResourcesRoot, "MediaResources");
+
+        public string MediaAramashiRoot => Path.Combine(MediaResourcesRoot, "Aramashi");
+
+        public string MediaMeinAramashiDire => Path.Combine(MediaAramashiRoot, "Main");
+
+        public string MediaMeinAramashiChapterPath => Path.Combine(MediaMeinAramashiDire, "chapters.json");
+
+        public string MediaPartsAramashiDire => Path.Combine(MediaAramashiRoot, "Parts", "Aramashi");
+
+        public string MediaPartsOthersDire => Path.Combine(MediaAramashiRoot, "Parts", "Others");
 
 
         public string SlideResourcesRoot => Path.Combine(AppResourcesRoot, "SlideResources");
