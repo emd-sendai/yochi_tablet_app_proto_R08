@@ -43,6 +43,9 @@ namespace WpfApp.Common.Views
                         if (Media.NaturalDuration.HasTimeSpan)
                         {
                             Media.Position = time;
+
+                            // 直接現在の再生位置を設定（UI要素の更新）
+                            vm.CurrentPosition = time;
                         }
                     };
 

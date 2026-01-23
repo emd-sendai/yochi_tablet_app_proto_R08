@@ -19,7 +19,7 @@
 
         <!-- 動画 -->
         <Grid Grid.Row="0">
-            <MediaElement x:Name="Media" LoadedBehavior="Manual" UnloadedBehavior="Manual" Stretch="Uniform" 
+            <MediaElement x:Name="Media" LoadedBehavior="Manual" UnloadedBehavior="Manual" ScrubbingEnabled="True" Stretch="Uniform" 
                       Source="{Binding VideoSource}" />
         </Grid>
 
