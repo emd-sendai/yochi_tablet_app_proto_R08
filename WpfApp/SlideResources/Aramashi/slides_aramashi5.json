@@ -38,27 +38,25 @@
       {
         "table": {
           "rows": 5,
-          "columns": 2,
-          "indent": 0,
+          "columns": 1,
           "padding": 3,
           "cells": [
             {
               "textRuns": [
                 {
-                  "text": "（１）"
+                  "text": "（１）",
+                  "bold": true
+                },
+                {
+                  "text": "土地価格",
+                  "isLink": true,
+                  "commandName": "GoToSlideCommand",
+                  "commandParameter": "29"
                 }
               ],
               "fontSize": 16
             },
             {
-              "text": "土地価格",
-              "fontSize": 16,
-              "bold": true,
-              "style": "TableButtonStyle",
-              "commandName": "GoToSlideCommand",
-              "commandParameter": "29"
-            },
-            {
               "textRuns": [
                 {
                   "text": "　"
@@ -69,28 +67,19 @@
             {
               "textRuns": [
                 {
-                  "text": "　"
-                }
-              ],
-              "fontSize": 5
-            },
-            {
-              "textRuns": [
+                  "text": "（２）",
+                  "bold": true
+                },
                 {
-                  "text": "（２）"
+                  "text": "借地権等に関する補償",
+                  "isLink": true,
+                  "commandName": "GoToSlideCommand",
+                  "commandParameter": "29"
                 }
               ],
               "fontSize": 16
             },
             {
-              "text": "借地権等に関する補償",
-              "fontSize": 16,
-              "bold": true,
-              "style": "TableButtonStyle",
-              "commandName": "GoToSlideCommand",
-              "commandParameter": "29"
-            },
-            {
               "textRuns": [
                 {
                   "text": "　"
@@ -101,26 +90,17 @@
             {
               "textRuns": [
                 {
-                  "text": "　"
-                }
-              ],
-              "fontSize": 5
-            },
-            {
-              "textRuns": [
+                  "text": "（３）",
+                  "bold": true
+                },
                 {
-                  "text": "（３）"
+                  "text": "物件等の補償",
+                  "isLink": true,
+                  "commandName": "GoToSlideCommand",
+                  "commandParameter": "30"
                 }
               ],
               "fontSize": 16
-            },
-            {
-              "text": "物件等の補償",
-              "fontSize": 16,
-              "bold": true,
-              "style": "TableButtonStyle",
-              "commandName": "GoToSlideCommand",
-              "commandParameter": "30"
             }
           ]
         }
@@ -128,209 +108,148 @@
       {
         "table": {
           "rows": 5,
-          "columns": 5,
-          "indent": 2,
+          "columns": 2,
           "padding": 3,
           "cells": [
             {
               "textRuns": [
                 {
-                  "text": "① "
+                  "text": "　　① "
+                },
+                {
+                  "text": "建物の補償",
+                  "isLink": true,
+                  "commandName": "GoToSlideCommand",
+                  "commandParameter": "30"
                 }
               ],
               "fontSize": 16
             },
             {
-              "text": "建物の補償",
-              "fontSize": 16,
-              "bold": true,
-              "style": "TableButtonStyle",
-              "commandName": "GoToSlideCommand",
-              "commandParameter": "30"
-            },
-            {
               "textRuns": [
                 {
-                  "text": "　"
-                }
-              ],
-              "fontSize": 15
-            },
-            {
-              "textRuns": [
+                  "text": "　　⑥ "
+                },
                 {
-                  "text": "⑥ "
+                  "text": "借家人、借間人に対する補償",
+                  "isLink": true,
+                  "commandName": "GoToSlideCommand",
+                  "commandParameter": "33"
                 }
               ],
               "fontSize": 16
             },
             {
-              "text": "借家人、借間人に対する補償",
-              "fontSize": 16,
-              "bold": true,
-              "style": "TableButtonStyle",
-              "commandName": "GoToSlideCommand",
-              "commandParameter": "33"
-            },
-            {
               "textRuns": [
                 {
-                  "text": "② "
+                  "text": "　　② "
+                },
+                {
+                  "text": "工作物の補償",
+                  "isLink": true,
+                  "commandName": "GoToSlideCommand",
+                  "commandParameter": "30"
                 }
               ],
               "fontSize": 16
             },
             {
-              "text": "工作物の補償",
-              "fontSize": 16,
-              "bold": true,
-              "style": "TableButtonStyle",
-              "commandName": "GoToSlideCommand",
-              "commandParameter": "30"
-            },
-            {
               "textRuns": [
                 {
-                  "text": "　"
-                }
-              ],
-              "fontSize": 15
-            },
-            {
-              "textRuns": [
+                  "text": "　　⑦ "
+                },
                 {
-                  "text": "⑦ "
+                  "text": "家賃減収補償",
+                  "isLink": true,
+                  "commandName": "GoToSlideCommand",
+                  "commandParameter": "33"
                 }
               ],
               "fontSize": 16
             },
             {
-              "text": "家賃減収補償",
-              "fontSize": 16,
-              "bold": true,
-              "style": "TableButtonStyle",
-              "commandName": "GoToSlideCommand",
-              "commandParameter": "33"
-            },
-            {
               "textRuns": [
                 {
-                  "text": "③ "
+                  "text": "　　③ "
+                },
+                {
+                  "text": "立竹木の補償",
+                  "isLink": true,
+                  "commandName": "GoToSlideCommand",
+                  "commandParameter": "31"
                 }
               ],
               "fontSize": 16
             },
             {
-              "text": "立竹木の補償",
-              "fontSize": 16,
-              "bold": true,
-              "style": "TableButtonStyle",
-              "commandName": "GoToSlideCommand",
-              "commandParameter": "31"
-            },
-            {
               "textRuns": [
                 {
-                  "text": "　"
-                }
-              ],
-              "fontSize": 15
-            },
-            {
-              "textRuns": [
+                  "text": "　　⑧ "
+                },
                 {
-                  "text": "⑧ "
+                  "text": "営業休止等の補償（営業補償）",
+                  "isLink": true,
+                  "commandName": "GoToSlideCommand",
+                  "commandParameter": "34"
                 }
               ],
               "fontSize": 16
             },
             {
-              "text": "営業休止等の補償（営業補償）",
-              "fontSize": 16,
-              "bold": true,
-              "style": "TableButtonStyle",
-              "commandName": "GoToSlideCommand",
-              "commandParameter": "34"
-            },
-            {
               "textRuns": [
                 {
-                  "text": "④ "
+                  "text": "　　④ "
+                },
+                {
+                  "text": "動産移転料の補償",
+                  "isLink": true,
+                  "commandName": "GoToSlideCommand",
+                  "commandParameter": "32"
                 }
               ],
               "fontSize": 16
             },
             {
-              "text": "動産移転料の補償",
-              "fontSize": 16,
-              "bold": true,
-              "style": "TableButtonStyle",
-              "commandName": "GoToSlideCommand",
-              "commandParameter": "32"
-            },
-            {
               "textRuns": [
                 {
-                  "text": "　"
-                }
-              ],
-              "fontSize": 15
-            },
-            {
-              "textRuns": [
+                  "text": "　　⑨ "
+                },
                 {
-                  "text": "⑨ "
+                  "text": "移転雑費の補償",
+                  "isLink": true,
+                  "commandName": "GoToSlideCommand",
+                  "commandParameter": "35"
                 }
               ],
               "fontSize": 16
             },
             {
-              "text": "移転雑費の補償",
-              "fontSize": 16,
-              "bold": true,
-              "style": "TableButtonStyle",
-              "commandName": "GoToSlideCommand",
-              "commandParameter": "35"
-            },
-            {
               "textRuns": [
                 {
-                  "text": "⑤ "
+                  "text": "　　⑤ "
+                },
+                {
+                  "text": "仮住居等に要する費用の補償",
+                  "isLink": true,
+                  "commandName": "GoToSlideCommand",
+                  "commandParameter": "32"
                 }
               ],
               "fontSize": 16
             },
             {
-              "text": "仮住居等に要する費用の補償",
-              "fontSize": 16,
-              "bold": true,
-              "style": "TableButtonStyle",
-              "commandName": "GoToSlideCommand",
-              "commandParameter": "32"
-            },
-            {
               "textRuns": [
                 {
-                  "text": "　"
-                }
-              ],
-              "fontSize": 15
-            },
-            {
-              "textRuns": [
+                  "text": "　　⑩ "
+                },
                 {
-                  "text": "⑩ "
+                  "text": "残地補償",
+                  "isLink": true,
+                  "commandName": "GoToSlideCommand",
+                  "commandParameter": "35"
                 }
               ],
               "fontSize": 16
-            },
-            {
-              "text": "残地補償",
-              "fontSize": 16,
-              "bold": true,
-              "style": "TableButtonStyle",
-              "commandName": "GoToSlideCommand",
-              "commandParameter": "35"
             }
           ]
         }
