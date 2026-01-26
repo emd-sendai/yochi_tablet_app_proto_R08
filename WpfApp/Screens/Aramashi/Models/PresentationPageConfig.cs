@@ -15,7 +15,8 @@ namespace WpfApp.Screens.Aramashi.Models
 
         public bool Video { get; set; } = false;
 
-        public string? VideoPath { get; set; }
+        [JsonIgnore]
+        public string VideoFolderName { get; set; } = string.Empty;
 
         public bool Document { get; set; } = false;
 

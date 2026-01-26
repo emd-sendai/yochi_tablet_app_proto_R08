@@ -10,6 +10,7 @@ using WpfApp.Interfaces;
 using WpfApp.Screens.Aramashi.Models;
 using WpfApp.Screens.Menu.ViewModels;
 using WpfApp.Services;
+using static WpfApp.Common.ViewModels.VideoPlayerViewModel;
 
 namespace WpfApp.Screens.Aramashi.ViewModels
 {
@@ -33,8 +34,6 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         [ObservableProperty]
         private string? presentationName;
 
-        private bool IsAramashi = false;
-
         [ObservableProperty]
         private string? topButtonText;
 
@@ -53,6 +52,16 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         public double MaxScale { get; } = 5.0;
 
         private List<string> _jsonPathList;
+
+        public enum PresentationCategory
+        {
+            Aramashi,
+            Others001,
+            Others002,
+            Others003,
+        }
+
+        private PresentationCategory _category;
 
         public PresentationViewerViewModel(string _presentationName, NavigationService navigationService, IDialogService dialogService)
         {
@@ -106,7 +115,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
 
                     for (int i = 1; ; i++)
                     {
-                        IsAramashi = true;
+                        _category = PresentationCategory.Aramashi;
                         var aramashiPath = Path.Combine(_path.AramashiSlideDire, $"slides_aramashi{i}.json");
                         if (!Path.Exists(aramashiPath)) break;
 
@@ -117,6 +126,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
 
                 case "daitaichi":
 
+                    _category = PresentationCategory.Others001;
                     var daitaichiPath = Path.Combine(_path.OthersSlideDire, "slides_daitaichi.json");
                     pathList.Add(daitaichiPath);
                     Debug.WriteLine($"[DEBUG] スライドパスを追加: {daitaichiPath}");
@@ -124,6 +134,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
 
                 case "zeikin":
 
+                    _category = PresentationCategory.Others002;
                     var zeikinPath = Path.Combine(_path.OthersSlideDire, "slides_zeikin.json");
                     pathList.Add(zeikinPath);
                     Debug.WriteLine($"[DEBUG] スライドパスを追加: {zeikinPath}");
@@ -131,6 +142,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
 
                 case "sonshitsu":
 
+                    _category = PresentationCategory.Others003;
                     var sonshitsuPath = Path.Combine(_path.OthersSlideDire, "slides_sonshitsu.json");
                     pathList.Add(sonshitsuPath);
                     Debug.WriteLine($"[DEBUG] スライドパスを追加: {sonshitsuPath}");
@@ -144,9 +156,12 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             List<PresentationPageConfig> ret = new List<PresentationPageConfig>();
 
             int globalIndex = 0;
+            int slidePartIndex = 1;
 
             foreach (var path in pathList) 
             {
+                var videofolderName = slidePartIndex.ToString("D3");
+
                 if (File.Exists(path))
                 {
                     var jsonText = File.ReadAllText(path);
@@ -165,6 +180,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
                             slideList[i].PageIndex = $"{i+1} / {slideList.Count}";　　// ページ番号表示用
                             slideList[i].GlobalIndex = globalIndex; // 全体での順番
                             slideList[i].ResolvePaths(slideDir);
+                            slideList[i].VideoFolderName = videofolderName; // 用地補償の手順スライドでのみ使用
 
                             if (i == 0)
                             {
@@ -188,6 +204,8 @@ namespace WpfApp.Screens.Aramashi.ViewModels
                     Debug.WriteLine($"[DEBUG] スライドデータが見つかりません: {path}");
                     break;
                 }
+
+                slidePartIndex++;
             }
             return ret;
         }
@@ -232,7 +250,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         {
             var ret = "本項目TOP";
 
-            if (IsAramashi)
+            if (_category == PresentationCategory.Aramashi)
             {
                 ret = "本手順TOP";
             }
@@ -539,7 +557,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
                 {
                     Debug.WriteLine($"[ERROR] PDFファイルが存在しません {folderPath}");
                     //メッセージウィンドウを表示
-                    _messageDialog.ShowMessage("PDFファイルが存在しません");
+                    _messageDialog.ShowMessage("PDFファイルが存在しません。");
                 }
                 else
                 {
@@ -567,6 +585,37 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             {
                 Debug.WriteLine($"[ERROR] fileNameが空です");
             }
+        }
+
+        [RelayCommand]
+        private void OpenVideoPlayer()
+        {
+            if (CurrentSlide == null) { return; }
+
+            string path = string.Empty;
+
+            if (_category == PresentationCategory.Aramashi)
+            {
+                path = Path.Combine(_path.MediaPartsAramashiDire, CurrentSlide.VideoFolderName);
+            }
+            else if (_category == PresentationCategory.Others001)
+            {
+                path = Path.Combine(_path.MediaPartsOthersDire, "001");
+            }
+            else if (_category == PresentationCategory.Others002)
+            {
+                path = Path.Combine(_path.MediaPartsOthersDire, "002");
+            }
+
+            if(!Directory.Exists(path))
+            {
+                _messageDialog.ShowMessage("動画が存在しません。");
+                Debug.WriteLine($"[ERROR] 動画フォルダが存在しません: {path}");
+                return;
+            }
+
+            // 非モーダル表示
+            _dia.ShowWindow<VideoPlayerViewModel>(path, MediaCategory.Parts);
         }
     }
 }
