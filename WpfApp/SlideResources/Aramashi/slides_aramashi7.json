@@ -1,6 +1,7 @@
 [
   {
     "id": "aramashi7_1",
+    "originalIndex": 0,
     "title": {
       "textRuns": [
         {
@@ -110,6 +111,7 @@
   },
   {
     "id": "aramashi7_2",
+    "originalIndex": 1,
     "title": {
       "textRuns": [
         {
@@ -200,6 +202,7 @@
   },
   {
     "id": "aramashi7_3",
+    "originalIndex": 2,
     "title": {
       "textRuns": [
         {
@@ -251,6 +254,7 @@
   },
   {
     "id": "aramashi7_4",
+    "originalIndex": 3,
     "title": {
       "textRuns": [
         {
@@ -509,6 +513,7 @@
   },
   {
     "id": "aramashi7_5",
+    "originalIndex": 4,
     "title": {
       "textRuns": [
         {

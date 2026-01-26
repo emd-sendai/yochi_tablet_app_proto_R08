@@ -170,14 +170,16 @@ namespace WpfApp.Screens.Aramashi.ViewModels
 
                     if (slideList != null)
                     {
+                        // スライドを順番に並べ替える
+                        slideList = slideList.OrderBy(x => x.OriginalIndex).ToList();
+
                         string slideDir = Path.GetDirectoryName(path)!;
                         int slideTopPageGlobalIndex = 0;
 
                         for (int i = 0; i < slideList.Count; i++)
                         {
                             slideList[i].SourceJsonPath = path;     // 元のJSONパス
-                            slideList[i].OriginalIndex = i;         // JSON内での順番
-                            slideList[i].PageIndex = $"{i+1} / {slideList.Count}";　　// ページ番号表示用
+                            slideList[i].PageIndex = $"{slideList[i].OriginalIndex + 1} / {slideList.Count}";　　// ページ番号表示用
                             slideList[i].GlobalIndex = globalIndex; // 全体での順番
                             slideList[i].ResolvePaths(slideDir);
                             slideList[i].VideoFolderName = videofolderName; // 用地補償の手順スライドでのみ使用
@@ -222,12 +224,14 @@ namespace WpfApp.Screens.Aramashi.ViewModels
 
                 if (slideList != null)
                 {
+                    // スライドを順番に並べ替える
+                    slideList = slideList.OrderBy(x => x.OriginalIndex).ToList();
+
                     string slideDir = Path.GetDirectoryName(path)!;
 
                     for (int i = 0; i < slideList.Count; i++)
                     {
                         slideList[i].SourceJsonPath = path;  // 元のJSONパス
-                        slideList[i].OriginalIndex = i;         // JSON内での順番
                         slideList[i].ResolvePaths(slideDir);
                         ret.Add(slideList[i]);
                     }

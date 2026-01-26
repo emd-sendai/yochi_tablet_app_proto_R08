@@ -1,6 +1,7 @@
 [
   {
     "id": "daitaichi1",
+    "originalIndex": 0,
     "title": {
       "textRuns": [
         {
@@ -108,6 +109,7 @@
   },
   {
     "id": "daitaichi2",
+    "originalIndex": 1,
     "title": {
       "textRuns": [
         {
@@ -211,6 +213,7 @@
   },
   {
     "id": "daitaichi3",
+    "originalIndex": 2,
     "title": {
       "textRuns": [
         {

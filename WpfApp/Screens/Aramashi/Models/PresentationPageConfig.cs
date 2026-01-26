@@ -5,6 +5,9 @@ using System.Windows.Input;
 
 namespace WpfApp.Screens.Aramashi.Models
 {
+    /// <summary>
+    /// 用地補償の手順・その他の各ページの内容を保持するクラス
+    /// </summary>
     public class PresentationPageConfig
     {
         public string Id { get; set; } = string.Empty;
@@ -27,7 +30,6 @@ namespace WpfApp.Screens.Aramashi.Models
         [JsonIgnore]
         public string SourceJsonPath { get; set; } = string.Empty;
 
-        [JsonIgnore]
         public int OriginalIndex { get; set; }
 
         [JsonIgnore]

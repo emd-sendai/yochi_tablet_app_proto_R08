@@ -1,6 +1,7 @@
 [
   {
     "id": "aramashi5_1",
+    "originalIndex": 0,
     "title": {
       "textRuns": [
         {
@@ -338,6 +339,7 @@
   },
   {
     "id": "aramashi5_2",
+    "originalIndex": 1,
     "title": {
       "textRuns": [
         {
@@ -499,6 +501,7 @@
   },
   {
     "id": "aramashi5_3",
+    "originalIndex": 2,
     "title": {
       "textRuns": [
         {
@@ -624,6 +627,7 @@
   },
   {
     "id": "aramashi5_4",
+    "originalIndex": 3,
     "title": {
       "textRuns": [
         {
@@ -723,6 +727,7 @@
   },
   {
     "id": "aramashi5_5",
+    "originalIndex": 4,
     "title": {
       "textRuns": [
         {
@@ -812,6 +817,7 @@
   },
   {
     "id": "aramashi5_6",
+    "originalIndex": 5,
     "title": {
       "textRuns": [
         {
@@ -893,6 +899,7 @@
   },
   {
     "id": "aramashi5_7",
+    "originalIndex": 6,
     "title": {
       "textRuns": [
         {
@@ -1017,6 +1024,7 @@
   },
   {
     "id": "aramashi5_8",
+    "originalIndex": 7,
     "title": {
       "textRuns": [
         {

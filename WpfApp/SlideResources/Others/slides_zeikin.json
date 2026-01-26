@@ -1,6 +1,7 @@
 [
   {
     "id": "zeikin1",
+    "originalIndex": 0,
     "title": {
       "textRuns": [
         {
@@ -159,6 +160,7 @@
   },
   {
     "id": "zeikin2",
+    "originalIndex": 1,
     "title": {
       "textRuns": [
         {
@@ -259,6 +261,7 @@
   },
   {
     "id": "zeikin3",
+    "originalIndex": 2,
     "title": {
       "textRuns": [
         {
@@ -342,6 +345,7 @@
   },
   {
     "id": "zeikin4",
+    "originalIndex": 3,
     "title": {
       "textRuns": [
         {
@@ -448,6 +452,7 @@
   },
   {
     "id": "zeikin5",
+    "originalIndex": 4,
     "title": {
       "textRuns": [
         {
@@ -570,6 +575,7 @@
   },
   {
     "id": "zeikin6",
+    "originalIndex": 5,
     "title": {
       "textRuns": [
         {
@@ -687,6 +693,7 @@
   },
   {
     "id": "zeikin7",
+    "originalIndex": 6,
     "title": {
       "textRuns": [
         {
@@ -796,6 +803,7 @@
   },
   {
     "id": "zeikin8",
+    "originalIndex": 7,
     "title": {
       "textRuns": [
         {
