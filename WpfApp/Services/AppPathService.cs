@@ -3,9 +3,12 @@ using WpfApp.Interfaces;
 
 namespace WpfApp.Services
 {
+    /// <summary>
+    /// アプリ内で使用するディレクトリ、ファイルのパスや状態を取得する。
+    /// </summary>
     public class AppPathService : IAppPathService
     {
-        public string AppRoot => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "DX_SampleApp", "R7_sampleApp");
+        public string AppRoot => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MyCompany", "SampleApp");
 
         public string InitializeFlagFile => Path.Combine(AppRoot, ".initialized");
 
@@ -22,6 +25,8 @@ namespace WpfApp.Services
         public string ButtonRoot => Path.Combine(DataDire, "ButtonSettings");
 
         public string AramashiButtonPath => Path.Combine(ButtonRoot, "aramashiButtons.json");
+
+        public string OthersButtonPath => Path.Combine(ButtonRoot, "othersButtons.json");
 
         public string WorksButtonPath => Path.Combine(ButtonRoot, "documentWorksButtons.json");
 
@@ -42,7 +47,10 @@ namespace WpfApp.Services
 
         public string SonshitsuPdfDire => Path.Combine(OthersPdfDire, "Sonshitsu");
 
-        private readonly HashSet<string> _inUseFilePaths;
+        /// <summary>
+        /// 他画面のリンクから直接参照されているパス。
+        /// </summary>
+        private readonly HashSet<string> _linkedPathsInOtherView;
 
         public string ZeikinPdfDire => Path.Combine(OthersPdfDire, "Zeikin");
 
@@ -78,10 +86,14 @@ namespace WpfApp.Services
 
         public AppPathService()
         {
-            _inUseFilePaths = GetInUseFilePaths();
+            _linkedPathsInOtherView = GetlinkedPathsInOtherView();
         }
 
-
+        /// <summary>
+        /// pathの形式を標準化する。
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
         public string NormalizePath(string path)
         {
             return Path.GetFullPath(path)
@@ -89,7 +101,11 @@ namespace WpfApp.Services
            .ToUpperInvariant();
         }
 
-        private HashSet<string> GetInUseFilePaths()
+        /// <summary>
+        /// 他画面のリンクから直接参照されているパスを取得する。
+        /// </summary>
+        /// <returns></returns>
+        private HashSet<string> GetlinkedPathsInOtherView()
         {
             return new HashSet<string>(StringComparer.OrdinalIgnoreCase)
             {
@@ -99,13 +115,20 @@ namespace WpfApp.Services
             };
         }
 
+        /// <summary>
+        /// 指定されたfilePathが削除可能か判定し、その結果を返す。
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <returns></returns>
         public bool CanDelete(string filePath)
         {
-            if (_inUseFilePaths.Contains(NormalizePath(filePath)))
+            // 他画面から直接参照されている場合
+            if (_linkedPathsInOtherView.Contains(NormalizePath(filePath)))
             {
                 // 削除不可
                 return false;
             }
+            // それ以外の場合
             else
             {
                 // 削除可能

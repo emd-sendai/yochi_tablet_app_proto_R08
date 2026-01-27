@@ -27,8 +27,10 @@ namespace WpfApp
 
             try
             {
-                // 初回起動時のみコンテンツディレクトリのコピーを行う
+                // 初回起動時のみすべての初期ファイルをローカルフォルダへコピーする
                 //initializer.InitializeIfNeeded();
+                // 必須ファイルが存在しない場合はローカルフォルダへコピーする
+                //initializer.EnsureRequiredResources();
             }
             catch (Exception ex)
             {

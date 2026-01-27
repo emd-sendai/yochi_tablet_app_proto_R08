@@ -1,5 +1,8 @@
 ﻿namespace WpfApp.Interfaces
 {
+    /// <summary>
+    /// アプリ内で使用するディレクトリ、ファイルのパスや状態を取得するためのインターフェース。
+    /// </summary>
     public interface IAppPathService
     {
         string AppRoot { get; }
@@ -12,6 +15,7 @@
         string DataDire {  get; }
         string ButtonRoot { get; }
         string AramashiButtonPath { get; }
+        string OthersButtonPath { get; }
         string WorksButtonPath { get; }
         string LandownerButtonPath { get; }
         string SignatureDire { get; }

@@ -14,6 +14,10 @@ using WpfApp.Services;
 
 namespace WpfApp.Screens.Documents.ViewModels
 {
+    /// <summary>
+    /// DocumentMenuView.xamlに対応するViewModel。
+    /// 各種資料画面での処理を行う。
+    /// </summary>
     public partial class DocumentMenuViewModel : ObservableObject
     {
         private readonly NavigationService _nav;
@@ -31,6 +35,10 @@ namespace WpfApp.Screens.Documents.ViewModels
         [ObservableProperty]
         private ObservableCollection<LandownerData>? landowners;
 
+        /// <summary>
+        /// 選択中の地権者ユーザ。
+        /// nullの場合は未選択状態を表す。
+        /// </summary>
         [ObservableProperty]
         private LandownerData? selectedLandowner;
 
@@ -51,6 +59,11 @@ namespace WpfApp.Screens.Documents.ViewModels
             LandownerButtons = LoadButtonFromJson(_path.LandownerButtonPath);
         }
 
+        /// <summary>
+        /// ボタンに表示する名称を取得する。
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
         private ObservableCollection<ButtonConfig> LoadButtonFromJson(string path)
         {
             var buttons = new ObservableCollection<ButtonConfig>();
@@ -73,6 +86,8 @@ namespace WpfApp.Screens.Documents.ViewModels
                 }
                 else
                 {
+                    list = list.OrderBy(x => x.BtnId).ToList();
+
                     foreach (var btn in list)
                     {
                         buttons.Add(btn);
@@ -86,16 +101,23 @@ namespace WpfApp.Screens.Documents.ViewModels
 
         partial void OnSelectedLandownerChanged(LandownerData? oldValue, LandownerData? newValue)
         {
-            // SelectedLandowner が変わったら IsLandownerSelected も通知
+            // SelectedLandowner の値が変更された際に IsLandownerSelected に通知
             OnPropertyChanged(nameof(IsLandownerSelected));
         }
 
+        /// <summary>
+        /// メインメニュー画面に遷移する。
+        /// </summary>
         [RelayCommand]
         private void GoToMenu()
         {
             _nav.Navigate(new MenuViewModel(_nav, _dia));
         }
 
+        /// <summary>
+        /// パスワード画面を表示する。
+        /// パスワードが正しい場合に地権者ユーザ選択画面を表示する。
+        /// </summary>
         [RelayCommand]
         private void OpenPasswordDialog()
         {
@@ -123,7 +145,7 @@ namespace WpfApp.Screens.Documents.ViewModels
                     {
                         isPasswordCorrect = true;
                         
-                        // 地権者ユーザ選択ウィンドウを開く
+                        // 地権者ユーザ選択画面を表示する
                         OpenLandownerSelectWindow();
                     }
                     // パスワードが誤っている場合
@@ -141,6 +163,10 @@ namespace WpfApp.Screens.Documents.ViewModels
             }
         }
 
+        /// <summary>
+        /// 地権者ユーザ選択画面を表示する。
+        /// 選択中の地権者ユーザをSelectedLandownerに代入する。
+        /// </summary>
         private void OpenLandownerSelectWindow()
         {
             var lanWin = new LandownerSelectWindow
@@ -162,6 +188,10 @@ namespace WpfApp.Screens.Documents.ViewModels
             }
         }
 
+        /// <summary>
+        /// 事業全般資料の各項目に対応するPDF資料選択画面を表示する。
+        /// </summary>
+        /// <param name="folderName"></param>
         [RelayCommand]
         private void OpenWorksPdfDocument(string folderName)
         {
@@ -182,6 +212,10 @@ namespace WpfApp.Screens.Documents.ViewModels
             }
         }
 
+        /// <summary>
+        /// 地権者個別資料に対応するPDF資料選択画面を表示する。
+        /// </summary>
+        /// <param name="folderName"></param>
         [RelayCommand]
         private void OpenLandownerPdfDocument(string folderName)
         {

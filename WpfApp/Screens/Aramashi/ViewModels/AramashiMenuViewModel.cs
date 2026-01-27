@@ -14,6 +14,10 @@ using static WpfApp.Common.ViewModels.VideoPlayerViewModel;
 
 namespace WpfApp.Screens.Aramashi.ViewModels
 {
+    /// <summary>
+    /// AramashiMenuView.xamlに対応するViewModel。
+    /// 補償のあらまし画面での処理を行う。
+    /// </summary>
     public partial class AramashiMenuViewModel : ObservableObject
     {
         private readonly NavigationService _nav;
@@ -22,8 +26,15 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         private readonly IMessageDialogService _message;
         private readonly IAppPathService _path;
 
-        public ObservableCollection<ButtonConfig> Buttons { get; } = new();
+        [ObservableProperty]
+        private ObservableCollection<ButtonConfig> aramashiButtons;
 
+        [ObservableProperty]
+        private ObservableCollection<ButtonConfig> othersButtons;
+
+        /// <summary>
+        /// 用地補償の手順の番号をキー、各手順の最初のページを値として保持する。
+        /// </summary>
         private Dictionary<int, int> SectionPageCounts = new();
 
         public AramashiMenuViewModel(NavigationService navigationService, IDialogService dialogService)
@@ -33,49 +44,59 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             _pdf = new PdfDocumentService();
             _message = new MessageDialogService();
             _path = new AppPathService();
+            
+            AramashiButtons = LoadButtonFromJson(_path.AramashiButtonPath);
+            OthersButtons = LoadButtonFromJson(_path.OthersButtonPath);
 
-            LoadButtonFromJson();
             LoadSlidesFromJsons();
         }
 
-        private void LoadButtonFromJson()
+        /// <summary>
+        /// ボタンに表示する名称を取得する。
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        private ObservableCollection<ButtonConfig> LoadButtonFromJson(string path)
         {
-            try
+            var buttons = new ObservableCollection<ButtonConfig>();
+
+            if (!File.Exists(path))
             {
-                string path = _path.AramashiButtonPath;
-
-                if (!File.Exists(path))
-                {
-                    _message.ShowMessage("ボタン表示設定データが見つかりません。");
-                    Debug.WriteLine($"[DEBUG] ボタン表示設定JSONファイルが見つかりません: {path}");
-                    return;
-                }
-
+                _message.ShowMessage("ボタンの名称を表示できません。");
+                Debug.WriteLine($"[DEBUG] ボタンデータが存在しません: {path}");
+            }
+            else
+            {
                 string json = File.ReadAllText(path);
-                var list = JsonSerializer.Deserialize<List<ButtonConfig>>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                var list = JsonSerializer.Deserialize<List<ButtonConfig>>
+                    (json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
-                if (list == null)
+                if (list == null || list.Count <= 0)
                 {
-                    _message.ShowMessage("ボタン表示設定が行われていません。");
-                    Debug.WriteLine($"[DEBUG] ボタン表示設定JSONファイルの中身がNULLです: {path}");
-                    return;
+                    _message.ShowMessage("ボタンの名称を表示できません。");
+                    Debug.WriteLine($"[DEBUG] ボタンデータが空です: {path}");
                 }
+                else
+                {
+                    list = list.OrderBy(x => x.BtnId).ToList();
 
-                var sortedList = list.OrderBy(x => x.BtnId).ToList();
-
-                Debug.WriteLine($"[DEBUG] 読み込み完了: {path} 件数 = {sortedList.Count}");
-                Buttons.Clear();
-                foreach (var btn in sortedList)
-                    Buttons.Add(btn);
-
+                    foreach (var btn in list)
+                    {
+                        buttons.Add(btn);
+                    }
+                    Debug.WriteLine($"[DEBUG] ボタンデータ読み込み完了: {path} 件数 = {buttons.Count}");
+                }
             }
-            catch (Exception ex)
-            {
-                _message.ShowMessage("ボタンデータを読み込むことができません。");
-                Debug.WriteLine($"[DEBUG] ボタンデータを読み込むことができません: {ex.Message}");
-            }
+
+            return buttons;
         }
 
+        /// <summary>
+        /// sectionIndexと一致する用地補償の手順の最初のページ番号を取得する。
+        /// 一致する手順番号が存在しない場合は1ページを表示する。
+        /// </summary>
+        /// <param name="sectionIndex"></param>
+        /// <returns></returns>
         private int GetSectionFirstPages(int sectionIndex)
         {
             int firstPage = 0;
@@ -88,6 +109,10 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             return firstPage;
         }
 
+        /// <summary>
+        /// 補償のあらましの各手順の表示内容の設定ファイルのパスを取得する。
+        /// </summary>
+        /// <returns></returns>
         private List<string> GetSlidePaths()
         {
             List<string> paths = new();
@@ -105,6 +130,9 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             return paths;
         }
 
+        /// <summary>
+        /// 補償のあらましの各手順の設定ファイルのパスから表示内容を取得する。
+        /// </summary>
         private void LoadSlidesFromJsons()
         {
             var paths = GetSlidePaths();
@@ -140,12 +168,18 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             }
         }
 
+        /// <summary>
+        /// メインメニュー画面に遷移する。
+        /// </summary>
         [RelayCommand]
         private void GoToMenu()
         {
             _nav.Navigate(new MenuViewModel(_nav, _dia));
         }
 
+        /// <summary>
+        /// 動画再生画面で補償のあらましの動画（統合版）を表示する。
+        /// </summary>
         [RelayCommand]
         private void OpenVideoPlayer()
         {
@@ -153,6 +187,9 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             _dia.ShowWindow<VideoPlayerViewModel> (_path.MediaMeinAramashiDire, MediaCategory.Main);
         }
 
+        /// <summary>
+        /// PDF資料選択画面で補償のあらましのPDF資料を表示する。
+        /// </summary>
         [RelayCommand]
         private void OpenPdfDocuments()
         {
@@ -173,6 +210,9 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             }
         }
 
+        /// <summary>
+        /// 用地補償の手順 1 の最初のページを表示する。
+        /// </summary>
         [RelayCommand]
         private void GoToSection1()
         {
@@ -181,6 +221,9 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             vm.GoToSlide(GetSectionFirstPages(1));
         }
 
+        /// <summary>
+        /// 用地補償の手順 2 の最初のページを表示する。
+        /// </summary>
         [RelayCommand]
         private void GoToSection2()
         {
@@ -189,6 +232,9 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             vm.GoToSlide(GetSectionFirstPages(2));
         }
 
+        /// <summary>
+        /// 用地補償の手順 3 の最初のページを表示する。
+        /// </summary>
         [RelayCommand]
         private void GoToSection3()
         {
@@ -197,6 +243,9 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             vm.GoToSlide(GetSectionFirstPages(3));
         }
 
+        /// <summary>
+        /// 用地補償の手順 4 の最初のページを表示する。
+        /// </summary>
         [RelayCommand]
         private void GoToSection4()
         {
@@ -205,6 +254,9 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             vm.GoToSlide(GetSectionFirstPages(4));
         }
 
+        /// <summary>
+        /// 用地補償の手順 5 の最初のページを表示する。
+        /// </summary>
         [RelayCommand]
         private void GoToSection5()
         {
@@ -213,6 +265,9 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             vm.GoToSlide(GetSectionFirstPages(5));
         }
 
+        /// <summary>
+        /// 用地補償の手順 6 の最初のページを表示する。
+        /// </summary>
         [RelayCommand]
         private void GoToSection6()
         {
@@ -221,6 +276,9 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             vm.GoToSlide(GetSectionFirstPages(6));
         }
 
+        /// <summary>
+        /// 用地補償の手順 7 の最初のページを表示する。
+        /// </summary>
         [RelayCommand]
         private void GoToSection7()
         {
@@ -229,6 +287,9 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             vm.GoToSlide(GetSectionFirstPages(7));
         }
 
+        /// <summary>
+        /// 用地補償の手順 8 の最初のページを表示する。
+        /// </summary>
         [RelayCommand]
         private void GoToSection8()
         {
@@ -237,6 +298,9 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             vm.GoToSlide(GetSectionFirstPages(8));
         }
 
+        /// <summary>
+        /// 用地補償の手順 9 の最初のページを表示する。
+        /// </summary>
         [RelayCommand]
         private void GoToSection9()
         {
@@ -245,6 +309,9 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             vm.GoToSlide(GetSectionFirstPages(9));
         }
 
+        /// <summary>
+        /// 用地補償の手順 10 の最初のページを表示する。
+        /// </summary>
         [RelayCommand]
         private void GoToSection10()
         {
@@ -253,18 +320,27 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             vm.GoToSlide(GetSectionFirstPages(10));
         }
 
+        /// <summary>
+        /// その他 1 （代替地）の最初のページを表示する。
+        /// </summary>
         [RelayCommand]
         private void GoToDaitaichi()
         {
             _nav.Navigate(new PresentationViewerViewModel("daitaichi", _nav, _dia));
         }
 
+        /// <summary>
+        /// その他 2 （税金等）の最初のページを表示する。
+        /// </summary>
         [RelayCommand]
         private void GoToZeikin()
         {
             _nav.Navigate(new PresentationViewerViewModel("zeikin", _nav, _dia));
         }
 
+        /// <summary>
+        /// その他 3 （損失補償基準）の最初のページを表示する。
+        /// </summary>
         [RelayCommand]
         private void GoToSonshitsu()
         {
