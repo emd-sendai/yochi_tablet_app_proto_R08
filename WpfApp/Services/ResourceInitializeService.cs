@@ -136,15 +136,15 @@ namespace WpfApp.Services
                 Debug.WriteLine($"[ERROR] アプリ内のファイルが使用中か読み取り専用のためディレクトリを削除できません");
                 Debug.WriteLine($"[ERROR] {ex}");
                 _log.LogError(ex);
-                _message.ShowConfirm("アプリで使用中のファイルまたは他のアプリで開いているアプリがあります。" +
+                _message.ShowConfirm("アプリで使用中のファイルまたは他のアプリで開いているファイルがあります。" +
                     "\nファイルを閉じてから、もう一度お試しください。");
             }
             catch (UnauthorizedAccessException ex)
             {
-                Debug.WriteLine($"[ERROR] 権限が不足しているためディレクトリを削除できません");
+                Debug.WriteLine($"[ERROR] アクセス権が不足しているためディレクトリを削除できません");
                 Debug.WriteLine($"[ERROR] {ex}");
                 _log.LogError(ex);
-                _message.ShowConfirm("削除権限が不足しているため、ファイルを削除できません。");
+                _message.ShowConfirm("アクセス権が不足しているため、ファイルを削除できません。");
             }
             catch (Exception ex)
             {

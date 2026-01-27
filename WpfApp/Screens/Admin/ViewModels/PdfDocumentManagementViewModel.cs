@@ -12,11 +12,16 @@ using static WpfApp.Screens.Admin.Models.TabItemData;
 
 namespace WpfApp.Screens.Admin.ViewModels
 {
+    /// <summary>
+    /// PdfDocumentManagementView.xamlに対応するViewModel。
+    /// アプリ内のPDFファイルの追加、上書き、削除を行う。
+    /// </summary>
     public partial class PdfDocumentManagementViewModel : ObservableObject , INavigationTarget
     {
         private readonly NavigationService _nav;
         private readonly IDialogService _dia;
         private readonly PdfDocumentService _pdf;
+        private readonly ILoggingService _log;
         private readonly IMessageDialogService _messageDialog;
         private readonly IAppPathService _path;
 
@@ -43,12 +48,29 @@ namespace WpfApp.Screens.Admin.ViewModels
         [ObservableProperty]
         private PdfData? selectedDocument;
 
+        private enum FailReason
+        {
+            FileAlreadyExists,      // 既存ファイルと重複
+            FileLockedOrReadOnly,   // ファイルが使用中または読み取り専用
+            NoAccess,               // アクセス権の不足
+            Other                   // その他
+        }
+
+        private static readonly Dictionary<FailReason, string> FailReasonMessages = new()
+        {
+            { FailReason.FileAlreadyExists, "・既に同名のファイルが存在します" },
+            { FailReason.FileLockedOrReadOnly, "・ファイルが使用中または読み取り専用です" },
+            { FailReason.NoAccess, "・アクセス権が不足しています" },
+            { FailReason.Other, "・その他（管理者へお問い合わせください）" }
+        };
+
         public PdfDocumentManagementViewModel(NavigationService navigationService, IDialogService dialogService, string prevTitle, 
             PdfDocumentData selectedPdfData , string selectedScreen)
         {
             _nav = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
             _dia = dialogService ?? throw new ArgumentNullException(nameof(dialogService));
             _pdf = new PdfDocumentService();
+            _log = new LoggingService();
             _messageDialog = new MessageDialogService();
             _path = new AppPathService();
 
@@ -59,6 +81,9 @@ namespace WpfApp.Screens.Admin.ViewModels
             _selectedScreen = selectedScreen;
         }
 
+        /// <summary>
+        /// View読み込み時にPDFファイル一覧を取得する。
+        /// </summary>
         public void OnViewLoaded()
         {
             if (_pdfDataFolder.FolderPath != null)
@@ -76,6 +101,10 @@ namespace WpfApp.Screens.Admin.ViewModels
             }
         }
 
+        /// <summary>
+        /// Viewに表示するサブタイトルを取得する。
+        /// </summary>
+        /// <returns></returns>
         private string GetSubTitle()
         {
             // サブタイトルに初期値を設定
@@ -119,6 +148,9 @@ namespace WpfApp.Screens.Admin.ViewModels
 
         }
 
+        /// <summary>
+        /// 選択されたPDFファイルを追加する。（複数選択可能）
+        /// </summary>
         [RelayCommand]
         private void Add()
         {
@@ -139,7 +171,15 @@ namespace WpfApp.Screens.Admin.ViewModels
             // 追加成功データ格納用
             var successFiles = new List<string>();
             // 追加失敗データ格納用
-            var failedFiles = new List<string>();
+            var failedFilesByReason = new Dictionary<FailReason, List<string>>();
+
+            void AddFailed(string fileName, FailReason reason)
+            {
+                if (!failedFilesByReason.ContainsKey(reason))
+                    failedFilesByReason[reason] = new List<string>();
+
+                failedFilesByReason[reason].Add(fileName);
+            }
 
             foreach (var filePath in selectedFiles)
             {
@@ -160,9 +200,29 @@ namespace WpfApp.Screens.Admin.ViewModels
                         Documents.Add(pdfData);
                     }
                 }
-                catch (InvalidOperationException)
+                catch (InvalidOperationException ex)
                 {
-                    failedFiles.Add(fileName);
+                    Debug.WriteLine($"[ERROR] {ex}");
+                    AddFailed(fileName, FailReason.FileAlreadyExists);
+                }
+                catch (IOException ex)
+                {
+                    Debug.WriteLine($"[ERROR] 使用中か読み取り専用のためファイルを追加できません");
+                    Debug.WriteLine($"[ERROR] {ex}");
+                    AddFailed(fileName, FailReason.FileLockedOrReadOnly);
+                }
+                catch (UnauthorizedAccessException ex)
+                {
+                    Debug.WriteLine($"[ERROR] 権限が不足しているためファイルを追加できません");
+                    Debug.WriteLine($"[ERROR] {ex}");
+                    AddFailed(fileName, FailReason.NoAccess);
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine($"[ERROR] ファイルを追加できません");
+                    Debug.WriteLine($"[ERROR] {ex}");
+                    _log.LogError(ex);
+                    AddFailed(fileName, FailReason.Other);
                 }
             }
 
@@ -173,12 +233,24 @@ namespace WpfApp.Screens.Admin.ViewModels
             }
 
             // 追加失敗データの表示
-            if (failedFiles.Any())
+            if (failedFilesByReason.Any())
             {
-                _messageDialog.ShowMessage("以下は追加できませんでした。\n" + string.Join("\n", failedFiles));
+                var lines = new List<string>();
+
+                foreach (var reasonGroup in failedFilesByReason)
+                {
+                    lines.Add(FailReasonMessages[reasonGroup.Key]);
+                    lines.AddRange(reasonGroup.Value.Select(f => "  " + f));
+                }
+
+                _messageDialog.ShowMessage("以下を追加できませんでした。\n" + string.Join("\n", lines));
             }
         }
 
+        /// <summary>
+        /// PDF選択ダイアログを表示する。（複数選択可能）
+        /// </summary>
+        /// <returns></returns>
         private string[] ShowMultSelectPdfDialog()
         {
             var dlg = new OpenFileDialog
@@ -202,6 +274,9 @@ namespace WpfApp.Screens.Admin.ViewModels
             }
         }
 
+        /// <summary>
+        /// 選択されたファイルの内容で既存のPDFファイルの内容を上書きする。（単一選択）
+        /// </summary>
         [RelayCommand]
         private void Update()
         {
@@ -224,12 +299,37 @@ namespace WpfApp.Screens.Admin.ViewModels
                 _pdf.UpdatePdf(SelectedDocument.FullPath, selectedFile);
                 _messageDialog.ShowMessage($"以下の内容を上書きしました。\n「{SelectedDocument.FullFileName}」");
             }
-            catch (InvalidOperationException)
+            catch (InvalidOperationException ex)
             {
-                _messageDialog.ShowMessage($"以下の内容を上書きできませんでした。\n「{SelectedDocument.FullFileName}」");
+                Debug.WriteLine($"[ERROR] {ex}");
+                _messageDialog.ShowMessage($"対象のファイルが存在しないため、上書きできません。");
+            }
+            catch (IOException ex)
+            {
+                Debug.WriteLine($"[ERROR] 使用中か読み取り専用のためファイルを上書きできません");
+                Debug.WriteLine($"[ERROR] {ex}");
+                _messageDialog.ShowConfirm("ファイルが開かれているため、上書きできません。" +
+                    "\nファイルを閉じてから、もう一度お試しください。");
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                Debug.WriteLine($"[ERROR] アクセス権が不足しているためファイルを上書きできません");
+                Debug.WriteLine($"[ERROR] {ex}");
+                _messageDialog.ShowConfirm("アクセス権が不足しているため、ファイルを上書きできません。");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"[ERROR] ファイルを上書きできません");
+                Debug.WriteLine($"[ERROR] {ex}");
+                _log.LogError(ex);
+                _messageDialog.ShowConfirm("ファイルを上書きできません。\n管理者へお問い合わせください。");
             }
         }
 
+        /// <summary>
+        /// PDF選択ダイアログを表示する。（単一選択）
+        /// </summary>
+        /// <returns></returns>
         private string ShowSelectPdfDialog()
         {
             var dlg = new OpenFileDialog
@@ -253,6 +353,9 @@ namespace WpfApp.Screens.Admin.ViewModels
             }
         }
 
+        /// <summary>
+        /// 既存のPDFファイルを削除する。
+        /// </summary>
         [RelayCommand]
         private void Delete()
         {
@@ -279,21 +382,44 @@ namespace WpfApp.Screens.Admin.ViewModels
 
             if (_messageDialog.ShowConfirm($"以下を削除します。よろしいですか？\n「{SelectedDocument.FullFileName}」"))
             {
-                // 削除処理
-                if (_pdf.DeletePdf(SelectedDocument))
+                try
                 {
+                    _pdf.DeletePdf(SelectedDocument);
                     _messageDialog.ShowMessage($"以下を削除しました。\n「{SelectedDocument.FullFileName}」");
-                    
                     // 一覧表示の更新
                     Documents.Remove(SelectedDocument);
                     // 選択状態の初期化
                     SelectedDocument = null;
                 }
-                else
+                catch (InvalidOperationException ex)
                 {
-                    _messageDialog.ShowMessage($"以下を削除できませんでした。\n「{SelectedDocument.FullFileName}」");
+                    Debug.WriteLine($"[ERROR] {ex}");
+                    _messageDialog.ShowMessage($"対象のファイルが存在しないため、削除できません。");
                 }
+                catch (IOException ex)
+                {
+                    Debug.WriteLine($"[ERROR] 使用中か読み取り専用のためファイルを削除できません");
+                    Debug.WriteLine($"[ERROR] {ex}");
+                    _messageDialog.ShowConfirm("ファイルが開かれているため、削除できません。" +
+                        "\nファイルを閉じてから、もう一度お試しください。");
+                }
+                catch (UnauthorizedAccessException ex)
+                {
+                    Debug.WriteLine($"[ERROR] アクセス権が不足しているためファイルを削除できません");
+                    Debug.WriteLine($"[ERROR] {ex}");
+                    _messageDialog.ShowConfirm("アクセス権が不足しているため、ファイルを削除できません。");
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine($"[ERROR] ファイルを削除できません");
+                    Debug.WriteLine($"[ERROR] {ex}");
+                    _log.LogError(ex);
+                    _messageDialog.ShowConfirm("ファイルを削除できません。\n管理者へお問い合わせください。");
+                }
+
             }
+
+
         }
     }
 }

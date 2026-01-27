@@ -3,6 +3,9 @@ using WpfApp.Common.Models;
 
 namespace WpfApp.Interfaces
 {
+    /// <summary>
+    /// アプリ内のPDFファイルの閲覧、追加、上書き、削除を行うためのインターフェース。
+    /// </summary>
     public interface IPdfDocumentService
     {
         IReadOnlyList<PdfData> GetPdfList(string folderPath);
@@ -17,6 +20,6 @@ namespace WpfApp.Interfaces
 
         void UpdatePdf(string folderPath, string sourceFilePath);
 
-        bool DeletePdf(PdfData data);
+        void DeletePdf(PdfData data);
     }
 }
