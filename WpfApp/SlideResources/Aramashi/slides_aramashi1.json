@@ -22,17 +22,18 @@
               "color": "#000000"
             },
             {
-              "text": "　また、あわせて土地の測量および物件等調査の方法ならびに用地補償に関する考え方の説明を行います。",
+              "text": "　また、あわせて土地の測量および物件等調査の方法ならびに用地補償に関する考え方の説明を行います。\n",
               "bold": false,
               "color": "#000000"
             }
           ],
-          "fontSize": 16,
-          "maxWidth": 500
-        },
+          "fontSize": 16
+        }
+      },
+      {
         "image": {
-          "maxHeight": 180,
-          "maxWidth": 180,
+          "maxHeight": 250,
+          "maxWidth": 691,
           "images": [
             {
               "imagePath": "aramashi1.png"

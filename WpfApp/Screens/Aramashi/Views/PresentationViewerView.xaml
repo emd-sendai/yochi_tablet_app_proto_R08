@@ -76,7 +76,8 @@
             <TextBlock Text="{Binding CurrentSlide.TitleText}" FontSize="24.5" FontWeight="Bold" VerticalAlignment="Center"/>
             <!-- 動画アイコンボタン -->
             <Button Grid.Row="0" Style="{StaticResource IconTextButtonStyle}" Margin="5,0,0,0" 
-                    Visibility="{Binding CurrentSlide.Video, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    Visibility="{Binding CurrentSlide.Video, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    Command="{Binding OpenVideoPlayerCommand}">
                 <StackPanel Orientation="Vertical" >
                     <materialDesign:PackIcon Kind="MoviePlay" Style="{StaticResource ITButtonIconStyle}"/>
                     <TextBlock Text="動画" Style="{StaticResource ITButtonTextStyle}"/>
