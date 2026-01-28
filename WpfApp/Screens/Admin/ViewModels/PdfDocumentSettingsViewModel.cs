@@ -10,9 +10,15 @@ using WpfApp.Screens.Admin.Models;
 using WpfApp.Screens.Menu.ViewModels;
 using WpfApp.Services;
 using static WpfApp.Screens.Admin.Models.TabItemData;
+using static WpfApp.Screens.Admin.ViewModels.DisplaySettingsViewModel;
+using static WpfApp.Screens.Admin.ViewModels.ScreenSelectViewModel;
 
 namespace WpfApp.Screens.Admin.ViewModels
 {
+    /// <summary>
+    /// PdfDocumentSettingsView.xamlに対応するViewModel。
+    /// PDF資料設定画面での処理を行う。
+    /// </summary>
     public partial class PdfDocumentSettingsViewModel : ObservableObject , INavigationTarget
     {
         private readonly NavigationService _nav;
@@ -20,12 +26,12 @@ namespace WpfApp.Screens.Admin.ViewModels
         private readonly IMessageDialogService _message;
         private readonly IAppPathService _path;
 
-        public Func<object>? CreateBackViewModel => () => new ScreenSelectViewModel(_nav, _dia, "PdfDocumentSettings");
+        public Func<object>? CreateBackViewModel => () => new ScreenSelectViewModel(_nav, _dia, DisplaySettingsCategory.PdfDocumentSettings);
 
         [ObservableProperty]
         private bool isLeftDrawerOpen;
 
-        private readonly string _selectedScreen;
+        private readonly ScreenCategory _selectedScreen;
 
         [ObservableProperty]
         private bool isAramashi;
@@ -38,10 +44,10 @@ namespace WpfApp.Screens.Admin.ViewModels
 
         private static readonly string _titleItem = "PDF資料設定";
 
-        public Dictionary<string, string> Screens { get; } = new Dictionary<string, string>
+        public Dictionary<ScreenCategory, string> Screens { get; } = new Dictionary<ScreenCategory, string>
         {
-            { "Aramashi", "補償のあらまし" },
-            { "Document", "各種資料" }
+            { ScreenCategory.Aramashi, "補償のあらまし" },
+            { ScreenCategory.Document, "各種資料" }
         };
 
         [ObservableProperty]
@@ -59,7 +65,7 @@ namespace WpfApp.Screens.Admin.ViewModels
         [ObservableProperty]
         private PdfDocumentData? selectedPdfDocument;
 
-        public PdfDocumentSettingsViewModel(NavigationService navigationService, IDialogService dialogService, string selectedScreen)
+        public PdfDocumentSettingsViewModel(NavigationService navigationService, IDialogService dialogService, ScreenCategory selectedScreen)
         {
             _nav = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
             _dia = dialogService ?? throw new ArgumentNullException(nameof(dialogService));
@@ -72,6 +78,10 @@ namespace WpfApp.Screens.Admin.ViewModels
             InitializeViewState();
         }
 
+        /// <summary>
+        /// 前の画面で選択された画面の名称を取得する。
+        /// </summary>
+        /// <returns></returns>
         private string? GetSelectedScreenTitle()
         {
             Screens.TryGetValue(_selectedScreen, out var selectedScreentitle);
@@ -79,6 +89,10 @@ namespace WpfApp.Screens.Admin.ViewModels
             return selectedScreentitle;
         }
 
+        /// <summary>
+        /// 画面タイトルの文字列を取得する。
+        /// </summary>
+        /// <returns></returns>
         private string GetTitle()
         {
             // タイトルに初期値を設定
@@ -93,16 +107,19 @@ namespace WpfApp.Screens.Admin.ViewModels
             return title;
         }
 
+        /// <summary>
+        /// 表示するタブを設定する。
+        /// </summary>
         private void InitializeViewState()
         {
-            if(_selectedScreen == "Aramashi")
+            if(_selectedScreen == ScreenCategory.Aramashi)
             {
                 IsAramashi = true;
                 IsDocument = false;
                 SelectedTabIndex = 0;
                 Debug.WriteLine($"[DEBUG] {_selectedScreen}のPDF資料選択項目を表示します");
             }
-            else if(_selectedScreen == "Document")
+            else if(_selectedScreen == ScreenCategory.Document)
             {
                 IsAramashi = false;
                 IsDocument = true;
@@ -116,6 +133,9 @@ namespace WpfApp.Screens.Admin.ViewModels
             }
         }
 
+        /// <summary>
+        /// 各タブ内に表示するデータを設定する。
+        /// </summary>
         private void SetTabItems()
         {
             var items = new ObservableCollection<TabItemData>();
@@ -195,6 +215,13 @@ namespace WpfApp.Screens.Admin.ViewModels
             TabItems = items;
         }
 
+        /// <summary>
+        /// 引数として受け取ったデータをPdfDocumentDataに格納して返す。
+        /// </summary>
+        /// <param name="displayName"></param>
+        /// <param name="folderPath"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
         private PdfDocumentData GetDocumentData(string displayName, string folderPath, string id)
         {
             var doc = new PdfDocumentData();
@@ -206,13 +233,18 @@ namespace WpfApp.Screens.Admin.ViewModels
             return doc;
         }
 
+        /// <summary>
+        /// ボタンの設定データを取得する。
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
         private List<ButtonConfig> LoadButtonFromJson(string path)
         {
             var buttons = new List<ButtonConfig>();
 
             if (!File.Exists(path))
             {
-                _message.ShowMessage("ボタンの名称を表示できません。");
+                _message.ShowMessage("項目を表示できません。");
                 Debug.WriteLine($"[DEBUG] ボタンデータが存在しません: {path}");
             }
             else
@@ -220,10 +252,15 @@ namespace WpfApp.Screens.Admin.ViewModels
                 string json = File.ReadAllText(path);
                 buttons = JsonSerializer.Deserialize<List<ButtonConfig>>
                     (json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true }) ?? new List<ButtonConfig>();
+                buttons = buttons.OrderBy(x => x.BtnId).ToList();
             }
             return buttons;
         }
 
+        /// <summary>
+        /// 地権者ユーザのデータを取得する。
+        /// </summary>
+        /// <returns></returns>
         private ObservableCollection<LandownerData> LoadLandownersFromJson()
         {
             var landowners = new ObservableCollection<LandownerData>();
@@ -234,14 +271,15 @@ namespace WpfApp.Screens.Admin.ViewModels
 
                 if (!File.Exists(path))
                 {
-                    _message.ShowMessage("地権者データが見つかりません。");
-                    Debug.WriteLine($"[DEBUG] 地権者データが見つかりません: {path}");
+                    _message.ShowMessage("地権者ユーザを表示できません。");
+                    Debug.WriteLine($"[DEBUG] 地権者データが存在しません: {path}");
                 }
 
                 string json = File.ReadAllText(path);
-                var list = JsonSerializer.Deserialize<List<LandownerData>>(json);
+                var list = JsonSerializer.Deserialize<List<LandownerData>>(json) ?? new List<LandownerData>();
+                list = list.OrderBy(x => x.LandownerId).ToList();
 
-                landowners = new ObservableCollection<LandownerData>(list ?? new List<LandownerData>());
+                landowners = new ObservableCollection<LandownerData>(list);
             }
             catch (Exception ex)
             {
@@ -290,6 +328,10 @@ namespace WpfApp.Screens.Admin.ViewModels
 
         }
 
+        /// <summary>
+        /// 項目を選択し、PDF資料管理画面へ遷移する。
+        /// 地権者個別資料タブの場合は、地権者ユーザと項目を選択する。
+        /// </summary>
         [RelayCommand]
         private void Select()
         {

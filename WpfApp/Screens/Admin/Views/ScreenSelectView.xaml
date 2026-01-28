@@ -92,11 +92,11 @@
                 <!-- 補償のあらましボタン -->
                 <Button Content="補償のあらまし" FontSize="22" Height="60" Margin="0,0,0,40" Width="300" 
                         Style="{StaticResource CommonButtonStyle}"
-                        Command="{Binding GoToNextScreenCommand}" CommandParameter="Aramashi"/>
+                        Command="{Binding GoToNextScreenByAramashiCommand}" />
 
                 <!-- 各種資料ボタン -->
                 <Button FontSize="22" Height="60" Margin="0,0,0,40" Width="300" Style="{StaticResource CommonButtonStyle}"
-                        Command="{Binding GoToNextScreenCommand}" CommandParameter="Document">
+                        Command="{Binding GoToNextScreenByDocumentCommand}" >
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                         <materialDesign:PackIcon Kind="FileDocumentBoxes" Width="35" Height="30" Margin="0,0,5,0"/>
                         <TextBlock Text="各種資料" VerticalAlignment="Center"/>

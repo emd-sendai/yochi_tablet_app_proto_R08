@@ -7,9 +7,14 @@ using WpfApp.Common.Views;
 using WpfApp.Interfaces;
 using WpfApp.Screens.Menu.ViewModels;
 using WpfApp.Services;
+using static WpfApp.Screens.Admin.ViewModels.DisplaySettingsViewModel;
 
 namespace WpfApp.Screens.Admin.ViewModels
 {
+    /// <summary>
+    /// ScreenSelectView.xamlに対応するViewModel。
+    /// 画面選択画面での処理を行う。
+    /// </summary>
     public partial class ScreenSelectViewModel : ObservableObject , INavigationTarget
     {
         private readonly NavigationService _nav;
@@ -20,20 +25,26 @@ namespace WpfApp.Screens.Admin.ViewModels
         [ObservableProperty]
         private bool isLeftDrawerOpen;
 
-        private readonly string _nextScreen;
+        private readonly DisplaySettingsCategory _nextScreen;
 
         [ObservableProperty]
         private string title;
 
         private static readonly string _titleItem = "画面選択";
 
-        public Dictionary<string, string> Screens { get; } = new Dictionary<string, string>
+        public Dictionary<DisplaySettingsCategory, string> Screens { get; } = new Dictionary<DisplaySettingsCategory, string>
         {
-            { "ButtonSettings", "ボタンの名称設定" },
-            { "PdfDocumentSettings", "PDF資料設定" }
+            { DisplaySettingsCategory.ButtonSettings, "ボタンの名称設定" },
+            { DisplaySettingsCategory.PdfDocumentSettings, "PDF資料設定" }
         };
 
-        public ScreenSelectViewModel(NavigationService navigationService, IDialogService dialogService, string nextScreen)
+        public enum ScreenCategory
+        {
+            Aramashi,   // 補償のあらまし
+            Document    // 各種資料
+        }
+
+        public ScreenSelectViewModel(NavigationService navigationService, IDialogService dialogService, DisplaySettingsCategory nextScreen)
         {
             _nav = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
             _dia = dialogService ?? throw new ArgumentNullException(nameof(dialogService));
@@ -42,14 +53,14 @@ namespace WpfApp.Screens.Admin.ViewModels
             Title = GetTitle(_nextScreen);
         }
 
-        private string? GetNextScreenTitle(string nextScreen)
+        private string? GetNextScreenTitle(DisplaySettingsCategory nextScreen)
         {
             Screens.TryGetValue(nextScreen ,out var nextScreenTitle);
 
             return nextScreenTitle;
         }
 
-        private string GetTitle(string nextScreen)
+        private string GetTitle(DisplaySettingsCategory nextScreen)
         {
             // タイトルに初期値を設定
             var title = _titleItem;
@@ -96,11 +107,25 @@ namespace WpfApp.Screens.Admin.ViewModels
         }
 
         [RelayCommand]
-        private void GoToNextScreen(string selectedScreen)
+        private void GoToNextScreenByAramashi()
         {
-            if(_nextScreen == "PdfDocumentSettings")
+            if(_nextScreen == DisplaySettingsCategory.PdfDocumentSettings)
             {
-                _nav.Navigate(new PdfDocumentSettingsViewModel(_nav, _dia, selectedScreen));
+                _nav.Navigate(new PdfDocumentSettingsViewModel(_nav, _dia, ScreenCategory.Aramashi));
+            }
+            else
+            {
+                Debug.WriteLine($"[ERROR] _nextScreenが存在しません");
+                ShowMessageWindow("次の画面を表示できません");
+            }
+        }
+
+        [RelayCommand]
+        private void GoToNextScreenByDocument()
+        {
+            if (_nextScreen == DisplaySettingsCategory.PdfDocumentSettings)
+            {
+                _nav.Navigate(new PdfDocumentSettingsViewModel(_nav, _dia, ScreenCategory.Document));
             }
             else
             {

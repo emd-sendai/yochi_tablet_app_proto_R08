@@ -9,12 +9,13 @@ using WpfApp.Interfaces;
 using WpfApp.Screens.Menu.ViewModels;
 using WpfApp.Services;
 using static WpfApp.Screens.Admin.Models.TabItemData;
+using static WpfApp.Screens.Admin.ViewModels.ScreenSelectViewModel;
 
 namespace WpfApp.Screens.Admin.ViewModels
 {
     /// <summary>
     /// PdfDocumentManagementView.xamlに対応するViewModel。
-    /// アプリ内のPDFファイルの追加、上書き、削除を行う。
+    /// PDF資料管理画面での処理（アプリ内のPDFファイルの追加、上書き、削除）を行う。
     /// </summary>
     public partial class PdfDocumentManagementViewModel : ObservableObject , INavigationTarget
     {
@@ -38,7 +39,7 @@ namespace WpfApp.Screens.Admin.ViewModels
 
         private static readonly string _subTitleItem = "PDFファイル一覧";
 
-        private readonly string _selectedScreen;
+        private readonly ScreenCategory _selectedScreen;
 
         private readonly PdfDocumentData _pdfDataFolder;
 
@@ -65,7 +66,7 @@ namespace WpfApp.Screens.Admin.ViewModels
         };
 
         public PdfDocumentManagementViewModel(NavigationService navigationService, IDialogService dialogService, string prevTitle, 
-            PdfDocumentData selectedPdfData , string selectedScreen)
+            PdfDocumentData selectedPdfData , ScreenCategory selectedScreen)
         {
             _nav = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
             _dia = dialogService ?? throw new ArgumentNullException(nameof(dialogService));
