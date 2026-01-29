@@ -1,9 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Diagnostics;
-using System.Windows;
-using WpfApp.Common.ViewModels;
-using WpfApp.Common.Views;
 using WpfApp.Interfaces;
 using WpfApp.Screens.Menu.ViewModels;
 using WpfApp.Services;
@@ -13,12 +10,13 @@ namespace WpfApp.Screens.Admin.ViewModels
 {
     /// <summary>
     /// ScreenSelectView.xamlに対応するViewModel。
-    /// 画面選択画面での処理を行う。
+    /// 画面選択画面での処理（項目を編集する画面の選択）を行う。
     /// </summary>
     public partial class ScreenSelectViewModel : ObservableObject , INavigationTarget
     {
         private readonly NavigationService _nav;
         private readonly IDialogService _dia;
+        private readonly IMessageDialogService _message;
 
         public Func<object>? CreateBackViewModel => () => new DisplaySettingsViewModel(_nav, _dia);
 
@@ -48,24 +46,33 @@ namespace WpfApp.Screens.Admin.ViewModels
         {
             _nav = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
             _dia = dialogService ?? throw new ArgumentNullException(nameof(dialogService));
+            _message = new MessageDialogService();
 
             _nextScreen = nextScreen;
-            Title = GetTitle(_nextScreen);
+            Title = GetTitle();
         }
 
-        private string? GetNextScreenTitle(DisplaySettingsCategory nextScreen)
+        /// <summary>
+        /// 次に遷移する画面のタイトルを取得する。
+        /// </summary>
+        /// <returns></returns>
+        private string? GetNextScreenTitle()
         {
-            Screens.TryGetValue(nextScreen ,out var nextScreenTitle);
+            Screens.TryGetValue(_nextScreen, out var nextScreenTitle);
 
             return nextScreenTitle;
         }
 
-        private string GetTitle(DisplaySettingsCategory nextScreen)
+        /// <summary>
+        /// 画面のタイトルを取得する。
+        /// </summary>
+        /// <returns></returns>
+        private string GetTitle()
         {
             // タイトルに初期値を設定
             var title = _titleItem;
 
-            var nextScreentitle = GetNextScreenTitle(nextScreen);
+            var nextScreentitle = GetNextScreenTitle();
 
             if (!string.IsNullOrWhiteSpace(nextScreentitle))
             {
@@ -106,6 +113,9 @@ namespace WpfApp.Screens.Admin.ViewModels
 
         }
 
+        /// <summary>
+        /// 補償のあらまし画面を選択し、PDF資料設定画面へ遷移する。
+        /// </summary>
         [RelayCommand]
         private void GoToNextScreenByAramashi()
         {
@@ -115,11 +125,14 @@ namespace WpfApp.Screens.Admin.ViewModels
             }
             else
             {
-                Debug.WriteLine($"[ERROR] _nextScreenが存在しません");
-                ShowMessageWindow("次の画面を表示できません");
+                Debug.WriteLine($"[ERROR] _nextScreenの値が不正です: ScreenCategory.{_nextScreen}");
+                _message.ShowMessage("次の画面を表示できません。\n前の画面に戻って、もう一度お試しください。");
             }
         }
 
+        /// <summary>
+        /// 各種資料画面を選択し、PDF資料設定画面へ遷移する。
+        /// </summary>
         [RelayCommand]
         private void GoToNextScreenByDocument()
         {
@@ -129,24 +142,9 @@ namespace WpfApp.Screens.Admin.ViewModels
             }
             else
             {
-                Debug.WriteLine($"[ERROR] _nextScreenが存在しません");
-                ShowMessageWindow("次の画面を表示できません");
+                Debug.WriteLine($"[ERROR] _nextScreenの値が不正です: ScreenCategory.{_nextScreen}");
+                _message.ShowMessage("次の画面を表示できません。\n前の画面に戻って、もう一度お試しください。");
             }
-        }
-
-        private void ShowMessageWindow(string message)
-        {
-            var vm = new MessageDialogViewModel
-            {
-                Message = message
-            };
-
-            var dialog = new MessageDialogWindow
-            {
-                DataContext = vm,
-                Owner = Application.Current.MainWindow
-            };
-            dialog.ShowDialog();
         }
     }
 }

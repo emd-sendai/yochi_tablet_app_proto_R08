@@ -49,6 +49,13 @@ namespace WpfApp.Screens.Admin.ViewModels
             _nav.Navigate(new AdminDocumentViewModel(_nav, _dia));
         }
 
+        [RelayCommand]
+        private void GoToMenu()
+        {
+            _nav.Navigate(new MenuViewModel(_nav, _dia));
+
+        }
+
         /// <summary>
         /// ボタンの名称設定画面へ遷移する。
         /// </summary>
@@ -67,11 +74,13 @@ namespace WpfApp.Screens.Admin.ViewModels
             _nav.Navigate(new ScreenSelectViewModel(_nav, _dia, DisplaySettingsCategory.PdfDocumentSettings));
         }
 
+        /// <summary>
+        /// 詳細項目選択画面（動画設定）画面へ遷移する。
+        /// </summary>
         [RelayCommand]
-        private void GoToMenu()
+        private void GoToVideoSettings()
         {
-            _nav.Navigate(new MenuViewModel(_nav, _dia));
-
+            _nav.Navigate(new SubCategorySelectViewModel(_nav, _dia, DisplaySettingsCategory.VideoSettings));
         }
     }
 }
