@@ -28,11 +28,11 @@
             }
           ],
           "fontSize": 16,
-          "maxWidth": 500
+          "maxWidth": 350
         },
         "image": {
-          "maxHeight": 120,
-          "maxWidth": 210,
+          "maxHeight": 200,
+          "maxWidth": 350,
           "images": [
             {
               "imagePath": "aramashi4_1_3.png"

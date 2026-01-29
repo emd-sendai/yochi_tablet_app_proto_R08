@@ -27,12 +27,22 @@
               "color": "#1F78B4"
             },
             {
-              "text": "し、権利者個々に金銭をもって補償します。\n",
+              "text": "し、権利者個々に金銭をもって補償します。",
               "bold": false,
               "color": "#000000"
             }
           ],
-          "fontSize": 16
+          "fontSize": 16,
+          "maxWidth": 390
+        },
+        "image": {
+          "maxHeight": 200,
+          "maxWidth": 280,
+          "images": [
+            {
+              "imagePath": "aramashi5_1.png"
+            }
+          ]
         }
       },
       {
@@ -75,6 +85,9 @@
                   "isLink": true,
                   "commandName": "GoToSlideCommand",
                   "commandParameter": "29"
+                },
+                {
+                  "text": "　　　　　　"
                 }
               ],
               "fontSize": 16
@@ -128,7 +141,7 @@
             {
               "textRuns": [
                 {
-                  "text": "　　⑥ "
+                  "text": "　　　　　⑥ "
                 },
                 {
                   "text": "借家人、借間人に対する補償",
@@ -156,7 +169,7 @@
             {
               "textRuns": [
                 {
-                  "text": "　　⑦ "
+                  "text": "　　　　　⑦ "
                 },
                 {
                   "text": "家賃減収補償",
@@ -184,7 +197,7 @@
             {
               "textRuns": [
                 {
-                  "text": "　　⑧ "
+                  "text": "　　　　　⑧ "
                 },
                 {
                   "text": "営業休止等の補償（営業補償）",
@@ -212,7 +225,7 @@
             {
               "textRuns": [
                 {
-                  "text": "　　⑨ "
+                  "text": "　　　　　⑨ "
                 },
                 {
                   "text": "移転雑費の補償",
@@ -240,7 +253,7 @@
             {
               "textRuns": [
                 {
-                  "text": "　　⑩ "
+                  "text": "　　　　　⑩ "
                 },
                 {
                   "text": "残地補償",
@@ -361,7 +374,7 @@
               "color": "#000000"
             },
             {
-              "text": "不動産鑑定士による鑑定評価格　　　　　　　\n",
+              "text": "不動産鑑定士による鑑定評価格\n",
               "bold": true,
               "color": "#1F78B4"
             },
@@ -372,15 +385,6 @@
             }
           ],
           "fontSize": 16
-        },
-        "image": {
-          "maxHeight": 100,
-          "maxWidth": 300,
-          "images": [
-            {
-              "imagePath": "aramashi5_2.png"
-            }
-          ]
         }
       },
       {
@@ -628,18 +632,7 @@
               "color": "#000000"
             }
           ],
-          "fontSize": 16,
-          "maxWidth": 500
-        },
-        "image": {
-          "maxHeight": 70,
-          "maxWidth": 202,
-          "HorizontalAlignment": "right",
-          "images": [
-            {
-              "imagePath": "aramashi5_4.png"
-            }
-          ]
+          "fontSize": 16
         }
       }
     ]
@@ -690,17 +683,14 @@
             }
           ],
           "fontSize": 16,
-          "maxWidth": 480
+          "maxWidth": 510
         },
         "image": {
-          "maxHeight": 70,
-          "maxWidth": 202,
+          "maxHeight": 100,
+          "maxWidth": 250,
           "images": [
             {
-              "imagePath": "aramashi5_5_1.png"
-            },
-            {
-              "imagePath": "aramashi5_5_2.png"
+              "imagePath": "aramashi5_5.png"
             }
           ]
         }
@@ -981,22 +971,12 @@
         "body": {
           "textRuns": [
             {
-              "text": "　建物等を移転するために支出することが想定される経費で、「移転先を探すための費用」、「住居移転のための届出等法令上の手続きに必要な費用」、「引越しの通知をするための費用」等の補償をします。",
+              "text": "　建物等を移転するために支出することが想定される経費で、「移転先を探すための費用」、「住居移転のための届出等法令上の手続きに必要な費用」、「引越しの通知をするための費用」等の補償をします。\n",
               "bold": false,
               "color": "#000000"
             }
           ],
-          "fontSize": 16,
-          "maxWidth": 580
-        },
-        "image": {
-          "maxHeight": 80,
-          "maxWidth": 80,
-          "images": [
-            {
-              "imagePath": "aramashi5_8.png"
-            }
-          ]
+          "fontSize": 16
         }
       },
       {

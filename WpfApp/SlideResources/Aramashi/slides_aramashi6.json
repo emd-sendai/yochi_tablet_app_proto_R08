@@ -48,14 +48,14 @@
             }
           ],
           "fontSize": 16,
-          "maxWidth": 550
+          "maxWidth": 370
         },
         "image": {
-          "maxHeight": 100,
-          "maxWidth": 200,
+          "maxHeight": 200,
+          "maxWidth": 320,
           "images": [
             {
-              "imagePath": "aramashi6_1_1.png"
+              "imagePath": "aramashi6_1.png"
             }
           ]
         }
@@ -84,17 +84,7 @@
               "color": "#1F78B4"
             }
           ],
-          "fontSize": 16,
-          "maxWidth": 500
-        },
-        "image": {
-          "maxHeight": 120,
-          "maxWidth": 200,
-          "images": [
-            {
-              "imagePath": "aramashi6_1_2.png"
-            }
-          ]
+          "fontSize": 16
         }
       },
       {

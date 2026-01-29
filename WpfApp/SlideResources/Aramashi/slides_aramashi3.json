@@ -2647,17 +2647,7 @@
               "color": "#D32F2F"
             }
           ],
-          "fontSize": 16,
-          "maxWidth": 450
-        },
-        "image": {
-          "maxHeight": 200,
-          "maxWidth": 200,
-          "images": [
-            {
-              "imagePath": "aramashi3_21.png"
-            }
-          ]
+          "fontSize": 16
         }
       },
       {
@@ -2685,7 +2675,8 @@
                 {
                   "text": "営業所の所在地、社名、代表者名、業種および開設年月日"
                 }
-              ]
+              ],
+              "maxwidth": 450
             },
             {
               "textRuns": [
@@ -2706,7 +2697,8 @@
                 {
                   "text": "営業を営む者の住所、氏名および生年月日"
                 }
-              ]
+              ],
+              "maxwidth": 450
             },
             {
               "textRuns": [
@@ -2727,7 +2719,8 @@
                 {
                   "text": "営業の種目および概要"
                 }
-              ]
+              ],
+              "maxwidth": 450
             },
             {
               "textRuns": [
@@ -2750,7 +2743,8 @@
                   "bold": true,
                   "color": "#D32F2F"
                 }
-              ]
+              ],
+              "maxwidth": 450
             },
             {
               "textRuns": [
@@ -2776,7 +2770,8 @@
                   "bold": true,
                   "color": "#D32F2F"
                 }
-              ]
+              ],
+              "maxwidth": 450
             },
             {
               "textRuns": [
@@ -2797,7 +2792,8 @@
                 {
                   "text": "得意先の状況"
                 }
-              ]
+              ],
+              "maxwidth": 450
             },
             {
               "textRuns": [
@@ -2819,7 +2815,7 @@
                   "text": "生産または加工の過程にある仕掛品があるときはその種類、数量、状況、原材料価格加工費および現在価格"
                 }
               ],
-              "maxwidth": 640
+              "maxwidth": 450
             },
             {
               "textRuns": [
@@ -2841,7 +2837,7 @@
                   "text": "従業員の氏名、職種、労働協約、就業規則、直近３か月の賃金台帳その他の雇用契約の内容"
                 }
               ],
-              "maxwidth": 640
+              "maxwidth": 450
             },
             {
               "textRuns": [
@@ -2862,7 +2858,17 @@
                 {
                   "text": "その他必要な事項"
                 }
-              ]
+              ],
+              "maxwidth": 450
+            }
+          ]
+        },
+        "image": {
+          "maxHeight": 120,
+          "maxWidth": 120,
+          "images": [
+            {
+              "imagePath": "aramashi3_21.png"
             }
           ]
         }
