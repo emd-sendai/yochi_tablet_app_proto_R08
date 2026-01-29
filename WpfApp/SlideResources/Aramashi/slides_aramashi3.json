@@ -983,22 +983,12 @@
               "color": "#1F78B4"
             },
             {
-              "text": "　調査を行う区域について現地踏査を行い、地域の状況、土地および建物等の概況を把握します。",
+              "text": "　調査を行う区域について現地踏査を行い、地域の状況、土地および建物等の概況を把握します。\n",
               "bold": false,
               "color": "#000000"
             }
           ],
-          "fontSize": 16,
-          "maxWidth": 480
-        },
-        "image": {
-          "maxHeight": 180,
-          "maxWidth": 180,
-          "images": [
-            {
-              "imagePath": "aramashi3_7.png"
-            }
-          ]
+          "fontSize": 16
         }
       }
     ]
@@ -1150,32 +1140,48 @@
               "color": "#D32F2F"
             },
             {
-              "text": "　また、事業に必要な土地に関係人（借地人・耕作人等）がいる場合には、その権利の境界確認もお願いします。\n\n",
+              "text": "　また、事業に必要な土地に関係人（借地人・耕作人等）がいる場合には、その権利の境界確認もお願いします。",
               "bold": true,
               "color": "#000000"
-            },
+            }
+          ],
+          "fontSize": 16
+        }
+      },
+      {
+        "body": {
+          "textRuns": [
             {
-              "text": "　〔境界立会でご用意いただくもの〕\n",
+              "text": "〔境界立会でご用意いただくもの〕\n",
               "bold": false,
               "color": "#000000"
             },
             {
-              "text": "　□  境界立会の依頼通知書\n",
+              "text": "　□ 境界立会の依頼通知書\n",
               "bold": false,
               "color": "#000000"
             },
             {
-              "text": "　□  印鑑\n",
+              "text": "　□ 印鑑\n",
               "bold": false,
               "color": "#000000"
             },
             {
-              "text": "　□  土地に関する資料等をお持ちの方は、その資料等",
+              "text": "　□ 土地に関する資料等をお持ちの方は、その資料等　",
               "bold": false,
               "color": "#000000"
             }
           ],
           "fontSize": 16
+        },
+        "image": {
+          "maxHeight": 200,
+          "maxWidth": 290,
+          "images": [
+            {
+              "imagePath": "aramashi3_7.png"
+            }
+          ]
         }
       }
     ]
@@ -1236,30 +1242,40 @@
               "color": "#1F78B4"
             },
             {
-              "text": "（土地所有者・隣接土地所有者・関係人（借地人、耕作人等））\n\n",
+              "text": "（土地所有者・隣接土地所有者・関係人（借地人、耕作人等））",
               "bold": false,
               "color": "#000000"
-            },
+            }
+          ],
+          "fontSize": 16
+        }
+      },
+      {
+        "body": {
+          "textRuns": [
             {
-              "text": "　土地の境界の確認をしていただきましたら、土地境界立会確認書に署名・押印をお願いします。\n",
+              "text": "\n　土地の境界の確認をしていただきましたら、土地境界立会確認書に署名・押印をお願いします。\n",
               "bold": true,
               "color": "#D32F2F"
             },
             {
-              "text": "　確認した境界について、境界杭を打たせていただきます。",
+              "text": "　確認した境界について、境界杭を打たせていただきます。\n",
               "bold": true,
               "color": "#000000"
             }
           ],
           "fontSize": 16,
-          "maxWidth": 550
+          "maxWidth": 450
         },
         "image": {
           "maxHeight": 120,
-          "maxWidth": 120,
+          "maxWidth": 200,
           "images": [
             {
-              "imagePath": "aramashi3_8.png"
+              "imagePath": "aramashi3_10_1.png"
+            },
+            {
+              "imagePath": "aramashi3_10_2.png"
             }
           ]
         }
@@ -1368,8 +1384,7 @@
                 {
                   "text": "土地への立入りは、所有者の了解を得て、原則、日出から日没までの間に行います。"
                 }
-              ],
-              "maxWidth": 450
+              ]
             },
             {
               "textRuns": [
@@ -1391,7 +1406,7 @@
                   "text": "一筆の土地の一部に他の部分と異なる地目の土地があるとき、または一筆の土地に他の部分と異なる権利（借地権、耕作権等）が設定されているときは、それぞれ異なる地目の土地ごと、または異なる権利が設定されている土地ごとに測量を行います。"
                 }
               ],
-              "maxWidth": 450
+              "maxWidth": 650
             },
             {
               "textRuns": [
@@ -1412,8 +1427,7 @@
                 {
                   "text": "建物等の主要な物件が現地にある場合は、その位置の測量を行います。"
                 }
-              ],
-              "maxWidth": 450
+              ]
             },
             {
               "textRuns": [
@@ -1439,14 +1453,15 @@
                 {
                   "text": "します。"
                 }
-              ],
-              "maxWidth": 450
+              ]
             }
           ]
-        },
+        }
+      },
+      {
         "image": {
-          "maxHeight": 180,
-          "maxWidth": 180,
+          "maxHeight": 100,
+          "maxWidth": 200,
           "images": [
             {
               "imagePath": "aramashi3_9.png"
@@ -1523,10 +1538,17 @@
               "color": "#1F78B4"
             },
             {
-              "text": "　建物調査は、所有者および居住されている方々と相談しながら調査日を決めさせていただきます。\n\n",
+              "text": "　建物調査は、所有者および居住されている方々と相談しながら調査日を決めさせていただきます。\n",
               "bold": false,
               "color": "#000000"
-            },
+            }
+          ],
+          "fontSize": 16
+        }
+      },
+      {
+        "body": {
+          "textRuns": [
             {
               "text": "イ  調査の立会\n",
               "bold": true,
@@ -1554,28 +1576,16 @@
             }
           ],
           "fontSize": 16,
-          "maxWidth": 480
+          "maxWidth": 470
         },
         "image": {
           "maxHeight": 180,
-          "maxWidth": 180,
+          "maxWidth": 220,
           "images": [
             {
               "imagePath": "aramashi3_10.png"
             }
           ]
-        }
-      },
-      {
-        "body": {
-          "textRuns": [
-            {
-              "text": "　建物の調査は、建物の内部に入って調査いたします。ご協力よろしくお願いします。",
-              "bold": true,
-              "color": "#D32F2F"
-            }
-          ],
-          "fontSize": 16
         }
       }
     ]
@@ -1728,7 +1738,7 @@
                   "text": "建物の各部（基礎、柱、屋根、天井、床、内壁、外壁、建具、造作等）"
                 }
               ],
-              "maxWidth": 500
+              "maxWidth": 330
             },
             {
               "textRuns": [
@@ -1775,8 +1785,8 @@
           ]
         },
         "image": {
-          "maxHeight": 180,
-          "maxWidth": 180,
+          "maxHeight": 200,
+          "maxWidth": 330,
           "images": [
             {
               "imagePath": "aramashi3_11.png"
@@ -1788,7 +1798,7 @@
         "body": {
           "textRuns": [
             {
-              "text": "エ  建物平面図等の作成\n",
+              "text": "\nエ  建物平面図等の作成\n",
               "bold": true,
               "color": "#1F78B4"
             },
@@ -2246,7 +2256,7 @@
           "maxWidth": 500
         },
         "image": {
-          "maxHeight": 120,
+          "maxHeight": 150,
           "maxWidth": 120,
           "images": [
             {
@@ -2368,11 +2378,14 @@
           "fontSize": 16
         },
         "image": {
-          "maxHeight": 180,
-          "maxWidth": 300,
+          "maxHeight": 150,
+          "maxWidth": 200,
           "images": [
             {
-              "imagePath": "aramashi3_16.png"
+              "imagePath": "aramashi3_18_1.png"
+            },
+            {
+              "imagePath": "aramashi3_18_2.png"
             }
           ]
         }
@@ -2634,7 +2647,17 @@
               "color": "#D32F2F"
             }
           ],
-          "fontSize": 16
+          "fontSize": 16,
+          "maxWidth": 450
+        },
+        "image": {
+          "maxHeight": 200,
+          "maxWidth": 200,
+          "images": [
+            {
+              "imagePath": "aramashi3_21.png"
+            }
+          ]
         }
       },
       {
@@ -2662,8 +2685,7 @@
                 {
                   "text": "営業所の所在地、社名、代表者名、業種および開設年月日"
                 }
-              ],
-              "maxwidth": 500
+              ]
             },
             {
               "textRuns": [
@@ -2684,8 +2706,7 @@
                 {
                   "text": "営業を営む者の住所、氏名および生年月日"
                 }
-              ],
-              "maxwidth": 500
+              ]
             },
             {
               "textRuns": [
@@ -2706,8 +2727,7 @@
                 {
                   "text": "営業の種目および概要"
                 }
-              ],
-              "maxwidth": 500
+              ]
             },
             {
               "textRuns": [
@@ -2730,8 +2750,7 @@
                   "bold": true,
                   "color": "#D32F2F"
                 }
-              ],
-              "maxwidth": 500
+              ]
             },
             {
               "textRuns": [
@@ -2757,8 +2776,7 @@
                   "bold": true,
                   "color": "#D32F2F"
                 }
-              ],
-              "maxwidth": 500
+              ]
             },
             {
               "textRuns": [
@@ -2779,8 +2797,7 @@
                 {
                   "text": "得意先の状況"
                 }
-              ],
-              "maxwidth": 500
+              ]
             },
             {
               "textRuns": [
@@ -2802,7 +2819,7 @@
                   "text": "生産または加工の過程にある仕掛品があるときはその種類、数量、状況、原材料価格加工費および現在価格"
                 }
               ],
-              "maxwidth": 500
+              "maxwidth": 640
             },
             {
               "textRuns": [
@@ -2824,7 +2841,7 @@
                   "text": "従業員の氏名、職種、労働協約、就業規則、直近３か月の賃金台帳その他の雇用契約の内容"
                 }
               ],
-              "maxwidth": 500
+              "maxwidth": 640
             },
             {
               "textRuns": [
@@ -2845,17 +2862,7 @@
                 {
                   "text": "その他必要な事項"
                 }
-              ],
-              "maxwidth": 500
-            }
-          ]
-        },
-        "image": {
-          "maxHeight": 160,
-          "maxWidth": 160,
-          "images": [
-            {
-              "imagePath": "aramashi3_19.png"
+              ]
             }
           ]
         }

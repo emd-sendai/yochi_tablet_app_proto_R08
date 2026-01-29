@@ -32,20 +32,24 @@
               "color": "#000000"
             },
             {
-              "text": "　この作業は、土地所有者の方のご理解とご協力が必要となります。",
+              "text": "　この作業は、土地所有者の方のご理解とご協力が必要となります。\n",
               "bold": false,
               "color": "#000000"
             }
           ],
-          "fontSize": 16,
-          "maxWidth": 380
-        },
+          "fontSize": 16
+        }
+      },
+      {
         "image": {
-          "maxHeight": 300,
-          "maxWidth": 300,
+          "maxHeight": 200,
+          "maxWidth": 500,
           "images": [
             {
-              "imagePath": "aramashi2.png"
+              "imagePath": "aramashi2_1_1.png"
+            },
+            {
+              "imagePath": "aramashi2_1_2.png"
             }
           ]
         }
