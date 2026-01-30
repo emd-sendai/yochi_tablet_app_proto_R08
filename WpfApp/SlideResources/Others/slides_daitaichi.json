@@ -93,14 +93,17 @@
             }
           ],
           "fontSize": 16,
-          "maxWidth": 480
+          "maxWidth": 470
         },
-        "image": {
+        "imageButton": {
+          "id": "daitaichi_1",
           "maxHeight": 200,
           "maxWidth": 200,
-          "images": [
+          "imageButtons": [
             {
-              "imagePath": "daitaichi1.png"
+              "id": "daitaichi_1_1",
+              "label": "（参考）三者契約",
+              "imagePath": "daitaichi_1_1.png"
             }
           ]
         }
@@ -206,7 +209,17 @@
               "color": "#000000"
             }
           ],
-          "fontSize": 16
+          "fontSize": 16,
+          "maxWidth": 550
+        },
+        "image": {
+          "maxHeight": 200,
+          "maxWidth": 200,
+          "images": [
+            {
+              "imagePath": "daitaichi_2_1.png"
+            }
+          ]
         }
       }
     ]

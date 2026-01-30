@@ -153,7 +153,17 @@
               "color": "#000000"
             }
           ],
-          "fontSize": 16
+          "fontSize": 16,
+          "maxWidth": 500
+        },
+        "image": {
+          "maxHeight": 200,
+          "maxWidth": 190,
+          "images": [
+            {
+              "imagePath": "zeikin_1_1.png"
+            }
+          ]
         }
       }
     ]
@@ -323,19 +333,19 @@
             {
               "id": "imgbtn1_zeikin1",
               "label": "買取り等の申出証明書（例）",
-              "imagePath": "zeikin1.png",
+              "imagePath": "zeikin_3_1.png",
               "commandName": ""
             },
             {
               "id": "imgbtn1_zeikin2",
               "label": "買取り等の証明書（例）",
-              "imagePath": "zeikin2.png",
+              "imagePath": "zeikin_3_2.png",
               "commandName": ""
             },
             {
               "id": "imgbtn1_zeikin3",
               "label": "収用証明書（例）",
-              "imagePath": "zeikin3.png",
+              "imagePath": "zeikin_3_3.png",
               "commandName": ""
             }
           ]

@@ -327,7 +327,10 @@
     <Content Include="SlideResources\Aramashi\slides_aramashi9.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="SlideResources\Others\daitaichi1.png">
+    <Content Include="SlideResources\Others\daitaichi_1_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Others\daitaichi_2_1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="SlideResources\Others\slides_daitaichi.json">
@@ -339,13 +342,16 @@
     <Content Include="SlideResources\Others\slides_zeikin.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="SlideResources\Others\zeikin1.png">
+    <Content Include="SlideResources\Others\zeikin_1_1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="SlideResources\Others\zeikin2.png">
+    <Content Include="SlideResources\Others\zeikin_3_1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="SlideResources\Others\zeikin3.png">
+    <Content Include="SlideResources\Others\zeikin_3_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Others\zeikin_3_3.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
