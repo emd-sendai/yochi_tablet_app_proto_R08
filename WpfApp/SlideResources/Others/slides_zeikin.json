@@ -1,6 +1,6 @@
 [
   {
-    "id": "zeikin1",
+    "id": "zeikin_1",
     "originalIndex": 0,
     "title": {
       "textRuns": [
@@ -83,10 +83,17 @@
               "color": "#1F78B4"
             },
             {
-              "text": "できます。\n\n",
+              "text": "できます。",
               "bold": false,
               "color": "#000000"
-            },
+            }
+          ],
+          "fontSize": 16
+        }
+      },
+      {
+        "body": {
+          "textRuns": [
             {
               "text": "●",
               "bold": false,
@@ -154,7 +161,7 @@
             }
           ],
           "fontSize": 16,
-          "maxWidth": 500
+          "maxWidth": 490
         },
         "image": {
           "maxHeight": 200,
@@ -169,7 +176,7 @@
     ]
   },
   {
-    "id": "zeikin2",
+    "id": "zeikin_2",
     "originalIndex": 1,
     "title": {
       "textRuns": [
@@ -270,7 +277,7 @@
     ]
   },
   {
-    "id": "zeikin3",
+    "id": "zeikin_3",
     "originalIndex": 2,
     "title": {
       "textRuns": [
@@ -326,24 +333,24 @@
       },
       {
         "ImageButton": {
-          "id": "imgbtn1",
+          "id": "zeikin_3",
           "maxHeight": 178,
           "maxWidth": 200,
           "imageButtons": [
             {
-              "id": "imgbtn1_zeikin1",
+              "id": "zeikin_3_1",
               "label": "買取り等の申出証明書（例）",
               "imagePath": "zeikin_3_1.png",
               "commandName": ""
             },
             {
-              "id": "imgbtn1_zeikin2",
+              "id": "zeikin_3_2",
               "label": "買取り等の証明書（例）",
               "imagePath": "zeikin_3_2.png",
               "commandName": ""
             },
             {
-              "id": "imgbtn1_zeikin3",
+              "id": "zeikin_3_3",
               "label": "収用証明書（例）",
               "imagePath": "zeikin_3_3.png",
               "commandName": ""
@@ -354,7 +361,7 @@
     ]
   },
   {
-    "id": "zeikin4",
+    "id": "zeikin_4",
     "originalIndex": 3,
     "title": {
       "textRuns": [
@@ -461,7 +468,7 @@
     ]
   },
   {
-    "id": "zeikin5",
+    "id": "zeikin_5",
     "originalIndex": 4,
     "title": {
       "textRuns": [
@@ -584,7 +591,7 @@
     ]
   },
   {
-    "id": "zeikin6",
+    "id": "zeikin_6",
     "originalIndex": 5,
     "title": {
       "textRuns": [
@@ -702,7 +709,7 @@
     ]
   },
   {
-    "id": "zeikin7",
+    "id": "zeikin_7",
     "originalIndex": 6,
     "title": {
       "textRuns": [
@@ -812,7 +819,7 @@
     ]
   },
   {
-    "id": "zeikin8",
+    "id": "zeikin_8",
     "originalIndex": 7,
     "title": {
       "textRuns": [
