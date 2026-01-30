@@ -22,20 +22,34 @@
               "color": "#000000"
             },
             {
-              "text": "　契約に際し、実印と印鑑登録証明書を用意していただきます。\n\n",
+              "text": "　契約に際し、実印と印鑑登録証明書を用意していただきます。\n",
               "bold": false,
               "color": "#000000"
             }
           ],
           "fontSize": 16,
-          "maxWidth": 550
+          "maxWidth": 330
         },
         "image": {
-          "maxHeight": 100,
+          "maxHeight": 150,
           "maxWidth": 200,
           "images": [
             {
               "imagePath": "aramashi7_1_1.png"
+            },
+            {
+              "imagePath": "aramashi7_1_2.png"
+            }
+          ]
+        }
+      },
+      {
+        "body": {
+          "textRuns": [
+            {
+              "text": "",
+              "bold": false,
+              "color": "#000000"
             }
           ]
         }
@@ -74,7 +88,7 @@
               "color": "#D32F2F"
             },
             {
-              "text": "（市町村等が発行したもの）　　　　　\n",
+              "text": "（市町村等が発行したもの）　　\n",
               "bold": false,
               "color": "#000000"
             },
@@ -98,11 +112,14 @@
           "maxWidth": 500
         },
         "image": {
-          "maxHeight": 100,
-          "maxWidth": 100,
+          "maxHeight": 80,
+          "maxWidth": 200,
           "images": [
             {
-              "imagePath": "aramashi7_1_2.png"
+              "imagePath": "aramashi7_1_3.png"
+            },
+            {
+              "imagePath": "aramashi7_1_4.png"
             }
           ]
         }

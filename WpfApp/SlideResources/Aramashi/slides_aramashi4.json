@@ -28,11 +28,11 @@
             }
           ],
           "fontSize": 16,
-          "maxWidth": 350
+          "maxWidth": 370
         },
         "image": {
           "maxHeight": 200,
-          "maxWidth": 350,
+          "maxWidth": 320,
           "images": [
             {
               "imagePath": "aramashi4_1_3.png"
@@ -49,14 +49,14 @@
               "color": "#000000"
             }
           ],
-          "fontSize": 16
+          "fontSize": 5
         }
       },
       {
         "imageButton": {
           "id": "aramashi4_1",
-          "maxHeight": 140,
-          "maxWidth": 200,
+          "maxHeight": 160,
+          "maxWidth": 350,
           "imageButtons": [
             {
               "id": "aramashi4_1_1",

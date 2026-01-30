@@ -53,7 +53,7 @@
               "commandParameter": "43"
             },
             {
-              "text": "に記載。",
+              "text": "に記載。\n",
               "bold": false,
               "color": "#000000"
             }
@@ -63,7 +63,7 @@
         },
         "imageButton": {
           "id": "aramashi10_1",
-          "maxHeight": 150,
+          "maxHeight": 100,
           "maxWidth": 120,
           "imageButtons": [
             {
@@ -76,12 +76,9 @@
       },
       {
         "image": {
-          "maxHeight": 100,
-          "maxWidth": 100,
+          "maxHeight": 210,
+          "maxWidth": 500,
           "images": [
-            {
-              "imagePath": "aramashi8_1.png"
-            },
             {
               "imagePath": "aramashi10_1.png"
             }

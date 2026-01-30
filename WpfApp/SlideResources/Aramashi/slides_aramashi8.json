@@ -47,17 +47,24 @@
               "color": "#000000"
             },
             {
-              "text": "の権利については、あらかじめ抹消等していただく必要があります。\n\n",
+              "text": "の権利については、あらかじめ抹消等していただく必要があります。",
               "bold": false,
               "color": "#000000"
-            },
+            }
+          ],
+          "fontSize": 16
+        }
+      },
+      {
+        "body": {
+          "textRuns": [
             {
-              "text": "※前金の支払い要件",
+              "text": "\n※前金の支払い要件",
               "bold": true,
               "color": "#D32F2F"
             },
             {
-              "text": "「土地売買に関する契約書」第４条第１項\n"
+              "text": "「土地売買に関する契約書」第４条第１項　\n"
             },
             {
               "text": "１）抵当権等の登記の抹消又は抹消承諾書の提出\n",
@@ -79,9 +86,18 @@
           "fontSize": 16,
           "maxWidth": 550
         },
+        "image": {
+          "maxHeight": 120,
+          "maxWidth": 100,
+          "images": [
+            {
+              "imagePath": "aramashi8_1_1.png"
+            }
+          ]
+        },
         "imageButton": {
           "id": "aramashi8_1",
-          "maxHeight": 150,
+          "maxHeight": 120,
           "maxWidth": 120,
           "imageButtons": [
             {
@@ -144,7 +160,7 @@
           "maxWidth": 100,
           "images": [
             {
-              "imagePath": "aramashi8_1.png"
+              "imagePath": "aramashi8_1_2.png"
             }
           ]
         }

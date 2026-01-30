@@ -52,17 +52,10 @@
               "color": "#D32F2F"
             },
             {
-              "text": "いただきます。\n",
+              "text": "いただきます。\n\n",
               "bold": false,
               "color": "#000000"
-            }
-          ],
-          "fontSize": 16
-        }
-      },
-      {
-        "body": {
-          "textRuns": [
+            },
             {
               "text": "※建物等の移転対象物件：\n",
               "bold": true,
@@ -90,20 +83,34 @@
               "color": "#D32F2F"
             },
             {
-              "text": "移転完了時点で、（できれば解体業者が撤収する前に）ご連絡お願い致します。",
+              "text": "移転完了時点で、（できれば解体業者が撤収する前に）ご連絡お願い致します。\n",
               "bold": true,
               "color": "#D32F2F"
             }
           ],
           "fontSize": 16,
-          "maxWidth": 590
+          "maxWidth": 550
         },
         "image": {
           "maxHeight": 150,
           "maxWidth": 150,
           "images": [
             {
-              "imagePath": "aramashi9_1.png"
+              "imagePath": "aramashi9_1_1.png"
+            }
+          ]
+        }
+      },
+      {
+        "image": {
+          "maxHeight": 155,
+          "maxWidth": 350,
+          "images": [
+            {
+              "imagePath": "aramashi9_1_2.png"
+            },
+            {
+              "imagePath": "aramashi9_1_3.png"
             }
           ]
         }

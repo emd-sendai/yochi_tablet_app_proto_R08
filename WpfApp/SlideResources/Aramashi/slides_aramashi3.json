@@ -1262,13 +1262,18 @@
               "text": "　確認した境界について、境界杭を打たせていただきます。\n",
               "bold": true,
               "color": "#000000"
+            },
+            {
+              "text": "\nイ境界立会（原則、現地）、境界確認後のウ土地境界立会確認書への署名押印のご協力よろしくお願いします。",
+              "bold": true,
+              "color": "#D32F2F"
             }
           ],
           "fontSize": 16,
-          "maxWidth": 450
+          "maxWidth": 400
         },
         "image": {
-          "maxHeight": 120,
+          "maxHeight": 150,
           "maxWidth": 200,
           "images": [
             {
@@ -1278,18 +1283,6 @@
               "imagePath": "aramashi3_10_2.png"
             }
           ]
-        }
-      },
-      {
-        "body": {
-          "textRuns": [
-            {
-              "text": "\nイ境界立会（原則、現地）、境界確認後のウ土地境界立会確認書への署名押印のご協力よろしくお願いします。",
-              "bold": true,
-              "color": "#D32F2F"
-            }
-          ],
-          "fontSize": 16
         }
       }
     ]
@@ -1384,7 +1377,8 @@
                 {
                   "text": "土地への立入りは、所有者の了解を得て、原則、日出から日没までの間に行います。"
                 }
-              ]
+              ],
+              "maxWidth": 320
             },
             {
               "textRuns": [
@@ -1406,7 +1400,7 @@
                   "text": "一筆の土地の一部に他の部分と異なる地目の土地があるとき、または一筆の土地に他の部分と異なる権利（借地権、耕作権等）が設定されているときは、それぞれ異なる地目の土地ごと、または異なる権利が設定されている土地ごとに測量を行います。"
                 }
               ],
-              "maxWidth": 650
+              "maxWidth": 320
             },
             {
               "textRuns": [
@@ -1427,7 +1421,8 @@
                 {
                   "text": "建物等の主要な物件が現地にある場合は、その位置の測量を行います。"
                 }
-              ]
+              ],
+              "maxWidth": 320
             },
             {
               "textRuns": [
@@ -1453,15 +1448,14 @@
                 {
                   "text": "します。"
                 }
-              ]
+              ],
+              "maxWidth": 320
             }
           ]
-        }
-      },
-      {
+        },
         "image": {
-          "maxHeight": 100,
-          "maxWidth": 200,
+          "maxHeight": 300,
+          "maxWidth": 290,
           "images": [
             {
               "imagePath": "aramashi3_9.png"
@@ -1526,6 +1520,16 @@
               "bold": false,
               "color": "#000000"
             }
+          ],
+          "maxWidth": 340
+        },
+        "image": {
+          "maxHeight": 200,
+          "maxWidth": 350,
+          "images": [
+            {
+              "imagePath": "aramashi3_10.png"
+            }
           ]
         }
       },
@@ -1575,17 +1579,7 @@
               "color": "#000000"
             }
           ],
-          "fontSize": 16,
-          "maxWidth": 470
-        },
-        "image": {
-          "maxHeight": 180,
-          "maxWidth": 220,
-          "images": [
-            {
-              "imagePath": "aramashi3_10.png"
-            }
-          ]
+          "fontSize": 16
         }
       }
     ]
@@ -2210,17 +2204,10 @@
               "color": "#1F78B4"
             },
             {
-              "text": "　墳墓の調査は、次の事項について調査させていただき、墳墓調査表を作成します。",
+              "text": "　墳墓の調査は、次の事項について調査させていただき、墳墓調査表を作成します。　　\n\n",
               "bold": false,
               "color": "#000000"
-            }
-          ],
-          "fontSize": 16
-        }
-      },
-      {
-        "body": {
-          "textRuns": [
+            },
             {
               "text": "　ａ  墓地管理者等の住所、氏名\n",
               "bold": false,
@@ -2242,7 +2229,7 @@
               "color": "#000000"
             },
             {
-              "text": "　ｅ  墓石、棚、垣、および生垣の種類、形状、使用材料　　　　　\n",
+              "text": "　ｅ  墓石、棚、垣、および生垣の種類、形状、使用材料\n",
               "bold": false,
               "color": "#000000"
             },
@@ -2252,11 +2239,10 @@
               "color": "#000000"
             }
           ],
-          "fontSize": 16,
-          "maxWidth": 500
+          "fontSize": 16
         },
         "image": {
-          "maxHeight": 150,
+          "maxHeight": 300,
           "maxWidth": 120,
           "images": [
             {
@@ -2353,7 +2339,20 @@
               "color": "#000000"
             }
           ],
-          "fontSize": 16
+          "fontSize": 16,
+          "maxWidth": 400
+        },
+        "image": {
+          "maxHeight": 160,
+          "maxWidth": 200,
+          "images": [
+            {
+              "imagePath": "aramashi3_18_1.png"
+            },
+            {
+              "imagePath": "aramashi3_18_2.png"
+            }
+          ]
         }
       },
       {
@@ -2365,7 +2364,7 @@
               "color": "#000000"
             },
             {
-              "text": "　ｂ  所有者の住所、氏名等　　　　　　　\n",
+              "text": "　ｂ  所有者の住所、氏名等\n",
               "bold": false,
               "color": "#000000"
             },
@@ -2376,18 +2375,6 @@
             }
           ],
           "fontSize": 16
-        },
-        "image": {
-          "maxHeight": 150,
-          "maxWidth": 200,
-          "images": [
-            {
-              "imagePath": "aramashi3_18_1.png"
-            },
-            {
-              "imagePath": "aramashi3_18_2.png"
-            }
-          ]
         }
       }
     ]
@@ -2676,7 +2663,7 @@
                   "text": "営業所の所在地、社名、代表者名、業種および開設年月日"
                 }
               ],
-              "maxwidth": 450
+              "maxwidth": 490
             },
             {
               "textRuns": [
@@ -2698,7 +2685,7 @@
                   "text": "営業を営む者の住所、氏名および生年月日"
                 }
               ],
-              "maxwidth": 450
+              "maxwidth": 490
             },
             {
               "textRuns": [
@@ -2720,7 +2707,7 @@
                   "text": "営業の種目および概要"
                 }
               ],
-              "maxwidth": 450
+              "maxwidth": 490
             },
             {
               "textRuns": [
@@ -2744,7 +2731,7 @@
                   "color": "#D32F2F"
                 }
               ],
-              "maxwidth": 450
+              "maxwidth": 490
             },
             {
               "textRuns": [
@@ -2771,7 +2758,7 @@
                   "color": "#D32F2F"
                 }
               ],
-              "maxwidth": 450
+              "maxwidth": 490
             },
             {
               "textRuns": [
@@ -2793,7 +2780,7 @@
                   "text": "得意先の状況"
                 }
               ],
-              "maxwidth": 450
+              "maxwidth": 490
             },
             {
               "textRuns": [
@@ -2815,7 +2802,7 @@
                   "text": "生産または加工の過程にある仕掛品があるときはその種類、数量、状況、原材料価格加工費および現在価格"
                 }
               ],
-              "maxwidth": 450
+              "maxwidth": 490
             },
             {
               "textRuns": [
@@ -2837,7 +2824,7 @@
                   "text": "従業員の氏名、職種、労働協約、就業規則、直近３か月の賃金台帳その他の雇用契約の内容"
                 }
               ],
-              "maxwidth": 450
+              "maxwidth": 490
             },
             {
               "textRuns": [
@@ -2859,13 +2846,13 @@
                   "text": "その他必要な事項"
                 }
               ],
-              "maxwidth": 450
+              "maxwidth": 490
             }
           ]
         },
         "image": {
-          "maxHeight": 120,
-          "maxWidth": 120,
+          "maxHeight": 150,
+          "maxWidth": 150,
           "images": [
             {
               "imagePath": "aramashi3_21.png"
