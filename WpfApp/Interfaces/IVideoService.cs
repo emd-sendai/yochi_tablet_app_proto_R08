@@ -1,13 +1,20 @@
 ﻿using System.Collections.ObjectModel;
 using WpfApp.Common.Models;
+using static WpfApp.Common.ViewModels.VideoPlayerViewModel;
 
 
 namespace WpfApp.Interfaces
 {
     public interface IVideoService
     {
-        ObservableCollection<VideoData> GetVideoDatas(string path);
+        string GetVideoFilePath(string direPath);
 
-        void ChangeVideoFile();
+        IReadOnlyList<Chapter> GetVideoChapterList(string path);
+
+        ObservableCollection<ChapterData> GetVideoChapterDatas(string path);
+
+        void ChangeVideoFile(VideoData data, string sourceFilePath);
+
+        void ClearChapter(string path);
     }
 }

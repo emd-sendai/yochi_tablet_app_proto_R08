@@ -24,6 +24,7 @@ namespace WpfApp.Common.Views
                 {
                     Media.MediaOpened += Media_MediaOpened;
 
+                    // 動画を再生する
                     vm.PlayRequested += () =>
                     {
                         Media.Play();
@@ -31,6 +32,7 @@ namespace WpfApp.Common.Views
                         _timer?.Start();
                     };
                     
+                    // 動画を一時停止する
                     vm.PauseRequested += () =>
                     {
                         Media.Pause();
@@ -38,6 +40,7 @@ namespace WpfApp.Common.Views
                         _timer?.Stop();
                     };
 
+                    // 動画の再生時間を変更する
                     vm.SeekRequested += time =>
                     {
                         if (Media.NaturalDuration.HasTimeSpan)

@@ -44,7 +44,7 @@
 
             <!-- １行目 -->
             <!-- ページタイトル -->
-            <TextBlock Grid.Row="0" Text="統合版動画チャプター設定" Foreground="#3F51B5"
+            <TextBlock Grid.Row="0" Text="動画設定 - 統合版動画チャプター" Foreground="#3F51B5"
             FontSize="30" FontWeight="Bold" Margin="0,10,0,10"
             HorizontalAlignment="Center" VerticalAlignment="Center">
             </TextBlock>

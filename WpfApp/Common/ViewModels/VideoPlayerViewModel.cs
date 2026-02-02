@@ -3,21 +3,35 @@ using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
-using System.Text.Json;
 using System.Windows;
-using WpfApp.Common.Models;
 using WpfApp.Interfaces;
 using WpfApp.Services;
 
 namespace WpfApp.Common.ViewModels
 {
+    /// <summary>
+    /// VideoPlayerWindow.xamlに対応するViewModel。
+    /// 動画ファイル（mp4）の再生を行う。
+    /// </summary>
     public partial class VideoPlayerViewModel : ObservableObject
     {
         private readonly IMessageDialogService _message;
         private readonly IAppPathService _path;
+        private readonly IVideoService _video;
 
+        /// <summary>
+        /// Viewに対して動画の再生を要求するためのイベント。
+        /// </summary>
         public event Action? PlayRequested;
+
+        /// <summary>
+        /// Viewに対して動画の再一時停止を要求するためのイベント。
+        /// </summary>
         public event Action? PauseRequested;
+
+        /// <summary>
+        /// Viewに対して指定の時間への動画の再生時間の変更を要求するためのイベント。
+        /// </summary>
         public event Action<TimeSpan>? SeekRequested;
 
         [ObservableProperty]
@@ -61,17 +75,18 @@ namespace WpfApp.Common.ViewModels
 
         public enum MediaCategory
         {
-            Main,
-            Parts
+            Main,   // 統合版動画
+            Parts   // 個別動画
         }
 
         public VideoPlayerViewModel(string folderPath, MediaCategory category)
         {
             _message = new MessageDialogService();
             _path = new AppPathService();
+            _video = new VideoService();
 
             // 動画のパスを取得する
-            var path = GetVideoPath(folderPath);
+            var path = _video.GetVideoFilePath(folderPath);
 
             if (!string.IsNullOrWhiteSpace(path) && File.Exists(path)){
                 VideoSource = new Uri(path);
@@ -87,7 +102,7 @@ namespace WpfApp.Common.ViewModels
             if (category == MediaCategory.Main)
             {
                 // チャプターを取得する
-                var chapters = LoadChapers(_path.MediaMeinAramashiChapterPath);
+                var chapters = _video.GetVideoChapterList(_path.MediaMeinAramashiChapterPath);
                 // チャプターを設定する
                 Chapters = new ObservableCollection<Chapter>(chapters);
 
@@ -105,59 +120,41 @@ namespace WpfApp.Common.ViewModels
             }
         }
 
-        private string GetVideoPath(string folderPath)
-        {
-            if (!Directory.Exists(folderPath))
-            {
-                return string.Empty;
-            }
-            else
-            {
-                var list = Directory.GetFiles(folderPath, "*.mp4").ToList();
-
-                if (list.Count > 0)
-                {
-                    return list[0];
-                }
-                else
-                {
-                    return string.Empty;
-                }
-            }
-        }
-
-        private static IReadOnlyList<Chapter> LoadChapers(string path)
-        {
-            if(!File.Exists(path)) return Array.Empty<Chapter>();
-
-            var json = File.ReadAllText(path);
-            var list = JsonSerializer.Deserialize<List<ChapterData>>(json,
-                new JsonSerializerOptions { PropertyNameCaseInsensitive = true }) ?? new List<ChapterData>();
-            Debug.WriteLine($"[DEBUG] チャプターを読み込みました: {path}");
-
-            return list
-                .OrderBy(c => c.Start)
-                .Select(c => new Chapter(c.Title,TimeSpan.FromSeconds(c.Start)))
-                .ToList();
-        }
-
-        // セクションジャンプ
+        /// <summary>
+        /// 指定された時間に再生時間を変更する要求を、Viewのコードビハインドに通知する。
+        /// </summary>
+        /// <param name="time"></param>
         public void JumpTo(TimeSpan time) => SeekRequested?.Invoke(time);
 
+        /// <summary>
+        /// 動画を再生する要求を、Viewのコードビハインドに通知する。
+        /// </summary>
         [RelayCommand]
         private void Play() => PlayRequested?.Invoke();
 
+        /// <summary>
+        /// 動画を一時停止する要求を、Viewのコードビハインドに通知する。
+        /// </summary>
         [RelayCommand]
         private void Pause() => PauseRequested?.Invoke();
 
+        /// <summary>
+        /// 現在の再生時間から10秒前へ再生時間を変更する要求を、Viewのコードビハインドに通知する。
+        /// </summary>
         [RelayCommand]
         private void Forward() => SeekRequested?.Invoke(CurrentPosition + TimeSpan.FromSeconds(10));
 
-
+        /// <summary>
+        /// 現在の再生時間から10秒後へ再生時間を変更する要求を、Viewのコードビハインドに通知する。
+        /// </summary>
         [RelayCommand]
         private void Rewind() => SeekRequested?.Invoke(
             CurrentPosition > TimeSpan.FromSeconds(10)? CurrentPosition - TimeSpan.FromSeconds(10): TimeSpan.Zero);
 
+        /// <summary>
+        /// 現在のチャプター番号を取得する。
+        /// </summary>
+        /// <returns></returns>
         private int GetCurrentChapterIndex()
         {
             var current = CurrentPosition;
@@ -172,6 +169,9 @@ namespace WpfApp.Common.ViewModels
             return -1;
         }
 
+        /// <summary>
+        /// 次のチャプターの開始時間へ再生時間を変更する要求を、Viewのコードビハインドに通知する。
+        /// </summary>
         [RelayCommand]
         private void NextChapter()
         {
@@ -185,6 +185,10 @@ namespace WpfApp.Common.ViewModels
             }
         }
 
+        /// <summary>
+        /// 前のチャプターの開始時間へ再生時間を変更する要求を、Viewのコードビハインドに通知する。
+        /// 現在のチャプターの開始時間から3秒以上経過していない場合は、現在のチャプターの開始時間へ再生時間を変更する。
+        /// </summary>
         [RelayCommand]
         private void PreviousChapter()
         {
@@ -203,6 +207,10 @@ namespace WpfApp.Common.ViewModels
             }
         }
 
+        /// <summary>
+        /// 画面を閉じる。
+        /// </summary>
+        /// <param name="window"></param>
         [RelayCommand]
         public void Close(Window window) => window.Close();
     }

@@ -1,7 +1,8 @@
 [
   {
     "title": "Start",
-    "start": 0
+    "start": 0,
+    "isProtected" : true
   },
   {
     "title": "Part1",

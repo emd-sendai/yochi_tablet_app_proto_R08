@@ -44,7 +44,7 @@
 
             <!-- １行目 -->
             <!-- ページタイトル -->
-            <TextBlock Grid.Row="0" Text="動画ファイル設定" Foreground="#3F51B5"
+            <TextBlock Grid.Row="0" Text="動画設定 - 動画ファイル" Foreground="#3F51B5"
             FontSize="30" FontWeight="Bold" Margin="0,10,0,10"
             HorizontalAlignment="Center" VerticalAlignment="Center">
             </TextBlock>
@@ -91,23 +91,23 @@
                 </Grid.RowDefinitions>
 
                 <StackPanel Grid.Row="0" Orientation="Vertical">
-                    <TextBlock Text="動画ファイルを編集する箇所を選択してください" FontSize="16.5" Margin="10,0,20,10" FontWeight="SemiBold"/>
+                    <TextBlock Text="動画ファイルを差し替える項目を選択してください" FontSize="16.5" Margin="10,0,20,10" FontWeight="SemiBold"/>
 
-                    <ListBox FontSize="16" MaxHeight="250" Style="{DynamicResource BorderedListBoxStyle}"
-                                         ScrollViewer.CanContentScroll="False"
-                                         ScrollViewer.PanningMode="VerticalOnly"
-                                         ScrollViewer.PanningDeceleration="0.001"
-                                         ScrollViewer.VerticalScrollBarVisibility="Auto"
-                                         ItemsSource="{Binding TabItems[1].Documents}" SelectedItem="{Binding SelectedPdfDocument, Mode=TwoWay}" 
-                                         DisplayMemberPath="DisplayName">
+                    <ListBox FontSize="16" Height="330" Style="{DynamicResource BorderedListBoxStyle}"
+                             ScrollViewer.CanContentScroll="False"
+                             ScrollViewer.PanningMode="VerticalOnly"
+                             ScrollViewer.PanningDeceleration="0.001"
+                             ScrollViewer.VerticalScrollBarVisibility="Auto"
+                             ItemsSource="{Binding VideoDatas}" SelectedItem="{Binding SelectedVideoData, Mode=TwoWay}" 
+                             DisplayMemberPath="LinkedPartLabel">
                     </ListBox>
                 </StackPanel>
 
                 <StackPanel Grid.Row="1">
-                    <Button Content="選択" Width="80" Height="50" FontSize="20" Margin="0,10,0,0" 
+                    <Button Content="差し替え" Width="120" Height="50" FontSize="20" Margin="0,10,0,0" 
                             VerticalAlignment="Top" Style="{StaticResource CommonButtonStyle}" 
-                            Command="{Binding SelectCommand}" 
-                            IsEnabled="{Binding SelectedPdfDocument, Converter={StaticResource NullToBoolConverter}}"/>
+                            Command="{Binding ChangeCommand}" 
+                            IsEnabled="{Binding SelectedVideoData, Converter={StaticResource NullToBoolConverter}}"/>
                 </StackPanel>
 
             </Grid>
