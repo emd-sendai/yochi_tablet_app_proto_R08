@@ -58,7 +58,7 @@
             <StackPanel Grid.Row="0" Margin="0,10,0,10" HorizontalAlignment="Center" Orientation="Horizontal" >
                 <TextBlock Text="用地交渉アプリ(試作品)" FontSize="30" FontWeight="Bold" VerticalAlignment="Bottom"  Foreground="#3F51B5" 
                            Margin="0,0,5,0" />
-                    <TextBlock Text="R8.1 ver." FontSize="22" VerticalAlignment="Bottom" Foreground="#3F51B5"/>
+                    <TextBlock Text="R8.2 ver." FontSize="22" VerticalAlignment="Bottom" Foreground="#3F51B5"/>
                 </StackPanel>
 
                 <!-- ２行目 -->

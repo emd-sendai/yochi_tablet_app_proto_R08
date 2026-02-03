@@ -44,7 +44,7 @@
 
             <!-- １行目 -->
             <!-- ページタイトル -->
-            <TextBlock Grid.Row="0" Text="管理資料" Foreground="#3F51B5"
+            <TextBlock Grid.Row="0" Text="管理資料（作成中）" Foreground="#3F51B5"
             FontSize="30" FontWeight="Bold" Margin="0,10,0,10"
             HorizontalAlignment="Center" VerticalAlignment="Center">
             </TextBlock>
