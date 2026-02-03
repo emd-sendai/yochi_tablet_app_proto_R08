@@ -81,7 +81,7 @@
     <Content Include="DocumentResources\Documents\Landowners\001\Document05\【サンプル】物件調書.pdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="DocumentResources\Documents\Landowners\001\Document06\【サンプル】補償金提示書.pdf">
+    <Content Include="DocumentResources\Documents\Landowners\001\Document06\【サンプル】損失補償協議書.pdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="DocumentResources\Documents\Landowners\001\Document07\01【サンプル】土地売買契約書.pdf">
@@ -135,9 +135,6 @@
     <Content Include="SlideResources\Aramashi\aramashi2_1_2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="SlideResources\Aramashi\aramashi3_1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="SlideResources\Aramashi\aramashi3_10.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -174,13 +171,16 @@
     <Content Include="SlideResources\Aramashi\aramashi3_19.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="SlideResources\Aramashi\aramashi3_2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="SlideResources\Aramashi\aramashi3_20.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="SlideResources\Aramashi\aramashi3_21.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\aramashi3_2_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\aramashi3_2_2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="SlideResources\Aramashi\aramashi3_3.png">

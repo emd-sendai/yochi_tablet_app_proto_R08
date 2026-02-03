@@ -531,13 +531,16 @@
                   "text": "⇒契約の際にご用意いただくものについて説明。契約日調整。"
                 },
                 {
-                  "text": "※"
+                  "text": "（「補償のあらまし」の「"
                 },
                 {
                   "text": "７ 契約",
                   "isLink": true,
                   "commandName": "GoToSlideCommand",
                   "commandParameter": "40"
+                },
+                {
+                  "text": "」参照。）"
                 }
               ],
               "fontSize": 14,

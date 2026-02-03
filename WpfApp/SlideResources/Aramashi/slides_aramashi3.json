@@ -434,13 +434,13 @@
             {
               "id": "imgbtn1_aramashi3_1",
               "label": "地図（法14条地図）（例）",
-              "imagePath": "aramashi3_1.png",
+              "imagePath": "aramashi3_2_1.png",
               "commandName": ""
             },
             {
               "id": "imgbtn1_aramashi3_2",
               "label": "公図（地図に準ずる図面）（例）",
-              "imagePath": "aramashi3_2.png",
+              "imagePath": "aramashi3_2_2.png",
               "commandName": ""
             }
           ]
