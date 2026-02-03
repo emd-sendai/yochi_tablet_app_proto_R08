@@ -21,7 +21,6 @@ namespace WpfApp.Screens.Admin.ViewModels
     {
         private readonly NavigationService _nav;
         private readonly IDialogService _dia;
-        private readonly PdfDocumentService _pdf;
         private readonly ILoggingService _log;
         private readonly IMessageDialogService _message;
         private readonly IAppPathService _path;
@@ -42,7 +41,6 @@ namespace WpfApp.Screens.Admin.ViewModels
         {
             _nav = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
             _dia = dialogService ?? throw new ArgumentNullException(nameof(dialogService));
-            _pdf = new PdfDocumentService();
             _log = new LoggingService();
             _message = new MessageDialogService();
             _path = new AppPathService();

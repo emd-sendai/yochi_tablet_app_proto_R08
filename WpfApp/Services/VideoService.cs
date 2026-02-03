@@ -10,6 +10,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using WpfApp.Common.Models;
 using WpfApp.Interfaces;
+using WpfApp.Screens.Admin.Models;
 using static WpfApp.Common.ViewModels.VideoPlayerViewModel;
 
 namespace WpfApp.Services
@@ -52,28 +53,18 @@ namespace WpfApp.Services
                 .ToList();
         }
 
-        public ObservableCollection<ChapterData> GetVideoChapterDatas(string path)
+        public ObservableCollection<ChapterItemData> GetVideoChapterDatas(string path)
         {
-            if (!File.Exists(path)) return new ObservableCollection<ChapterData>();
+            if (!File.Exists(path)) return new ObservableCollection<ChapterItemData>();
 
             var json = File.ReadAllText(path);
             var list = JsonSerializer.Deserialize<List<ChapterData>>(json, 
                 new JsonSerializerOptions { PropertyNameCaseInsensitive = true }) ?? new List<ChapterData>();
             Debug.WriteLine($"[DEBUG] チャプターを読み込みました: {path}");
 
-            var ret = new ObservableCollection<ChapterData>();
-
-            if (list.Count > 0) 
-            {
-                list = list.OrderBy(c => c.Start).ToList();
-                //list = list.OrderBy(c => c.Start).Select(c => new Chapter(c.Title, TimeSpan.FromSeconds(c.Start))).ToList();
-                foreach (var chaper in list)
-                {
-                    ret.Add(chaper);
-                }
-            }
-
-            return ret;
+            return new ObservableCollection<ChapterItemData>(
+                list.OrderBy(c => c.Start)
+                    .Select(c => new ChapterItemData(c)));
         }
 
         public void ChangeVideoFile(VideoData data, string sourceFilePath)

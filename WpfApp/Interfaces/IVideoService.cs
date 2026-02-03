@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using WpfApp.Common.Models;
+using WpfApp.Screens.Admin.Models;
 using static WpfApp.Common.ViewModels.VideoPlayerViewModel;
 
 
@@ -11,7 +12,7 @@ namespace WpfApp.Interfaces
 
         IReadOnlyList<Chapter> GetVideoChapterList(string path);
 
-        ObservableCollection<ChapterData> GetVideoChapterDatas(string path);
+        ObservableCollection<ChapterItemData> GetVideoChapterDatas(string path);
 
         void ChangeVideoFile(VideoData data, string sourceFilePath);
 
