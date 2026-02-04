@@ -32,9 +32,6 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         private Dictionary<string, bool> pageCheckStates = new();
 
         [ObservableProperty]
-        private string? presentationName;
-
-        [ObservableProperty]
         private string? topButtonText;
 
         public bool AllPagesChecked => PageCheckStates.Count > 0 && PageCheckStates.All(kv => kv.Value);
@@ -59,11 +56,13 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             Others001,
             Others002,
             Others003,
+            Others004,
+            Others005,
         }
 
-        private PresentationCategory _category;
+        private readonly PresentationCategory _category;
 
-        public PresentationViewerViewModel(string _presentationName, NavigationService navigationService, IDialogService dialogService)
+        public PresentationViewerViewModel(NavigationService navigationService, IDialogService dialogService, PresentationCategory category)
         {
             _nav = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
             _dia = dialogService ?? throw new ArgumentNullException(nameof(dialogService));
@@ -71,8 +70,9 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             _messageDialog = new MessageDialogService();
             _path = new AppPathService();
 
-            _jsonPathList = GetJsonPaths(_presentationName);
-            PresentationName = _presentationName ?? "";
+            _category = category;
+
+            _jsonPathList = GetJsonPaths();
 
             if (_jsonPathList.Count > 0)
             {
@@ -105,17 +105,16 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             TopButtonText = GetTopButtonText();
         }
 
-        private List<string> GetJsonPaths(string presentationName)
+        private List<string> GetJsonPaths()
         {
             List<string> pathList = new();
 
-            switch (presentationName)
+            switch (_category)
             {
-                case "aramashi":
+                case PresentationCategory.Aramashi:
 
                     for (int i = 1; ; i++)
                     {
-                        _category = PresentationCategory.Aramashi;
                         var aramashiPath = Path.Combine(_path.AramashiSlideDire, $"slides_aramashi{i}.json");
                         if (!Path.Exists(aramashiPath)) break;
 
@@ -124,25 +123,22 @@ namespace WpfApp.Screens.Aramashi.ViewModels
                     }
                     break;
 
-                case "daitaichi":
+                case PresentationCategory.Others001:
 
-                    _category = PresentationCategory.Others001;
                     var daitaichiPath = Path.Combine(_path.OthersSlideDire, "slides_daitaichi.json");
                     pathList.Add(daitaichiPath);
                     Debug.WriteLine($"[DEBUG] スライドパスを追加: {daitaichiPath}");
                     break;
 
-                case "zeikin":
+                case PresentationCategory.Others002:
 
-                    _category = PresentationCategory.Others002;
                     var zeikinPath = Path.Combine(_path.OthersSlideDire, "slides_zeikin.json");
                     pathList.Add(zeikinPath);
                     Debug.WriteLine($"[DEBUG] スライドパスを追加: {zeikinPath}");
                     break;
 
-                case "sonshitsu":
+                case PresentationCategory.Others003:
 
-                    _category = PresentationCategory.Others003;
                     var sonshitsuPath = Path.Combine(_path.OthersSlideDire, "slides_sonshitsu.json");
                     pathList.Add(sonshitsuPath);
                     Debug.WriteLine($"[DEBUG] スライドパスを追加: {sonshitsuPath}");
@@ -475,13 +471,13 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         [RelayCommand]
         private void GoToDaitaichi()
         {
-            _nav.Navigate(new PresentationViewerViewModel("daitaichi", _nav, _dia));
+            _nav.Navigate(new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Others001));
         }
 
         [RelayCommand]
         private void GoToZeikin(int pageIndex)
         {
-            var newVM = new PresentationViewerViewModel("zeikin", _nav, _dia);
+            var newVM = new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Others002);
             _nav.Navigate(newVM);
             newVM.GoToSlide(pageIndex);
         }
@@ -509,17 +505,16 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             }
             else
             {
-                if(PresentationName == null)
+                if(_category == PresentationCategory.Others001 || _category == PresentationCategory.Others002)
+                {
+                    // DialogService を使ってモーダル Window を開く
+                    var result = await _dia.ShowDialogAsync<SignatureViewModel, string>(editedSignMessage, _jsonPathList[0], _category);
+                }
+                else
                 {
                     _messageDialog.ShowMessage("署名データを作成できません");
                     Debug.WriteLine($"[DEBUG] PresentationNameがNULLです");
                     return;
-                }
-                // DialogService を使ってモーダル Window を開く
-                var result = await _dia.ShowDialogAsync<SignatureViewModel, string>(editedSignMessage, _jsonPathList[0], PresentationName);
-
-                if (result != null)
-                {
                 }
             }
         }

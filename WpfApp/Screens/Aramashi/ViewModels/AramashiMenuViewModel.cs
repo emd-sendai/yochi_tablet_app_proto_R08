@@ -11,6 +11,7 @@ using WpfApp.Screens.Aramashi.Models;
 using WpfApp.Screens.Menu.ViewModels;
 using WpfApp.Services;
 using static WpfApp.Common.ViewModels.VideoPlayerViewModel;
+using static WpfApp.Screens.Aramashi.ViewModels.PresentationViewerViewModel;
 
 namespace WpfApp.Screens.Aramashi.ViewModels
 {
@@ -216,7 +217,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         [RelayCommand]
         private void GoToSection1()
         {
-            var vm = new PresentationViewerViewModel("aramashi", _nav, _dia);
+            var vm = new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Aramashi);
             _nav.Navigate(vm);
             vm.GoToSlide(GetSectionFirstPages(1));
         }
@@ -227,7 +228,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         [RelayCommand]
         private void GoToSection2()
         {
-            var vm = new PresentationViewerViewModel("aramashi", _nav, _dia);
+            var vm = new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Aramashi);
             _nav.Navigate(vm);
             vm.GoToSlide(GetSectionFirstPages(2));
         }
@@ -238,7 +239,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         [RelayCommand]
         private void GoToSection3()
         {
-            var vm = new PresentationViewerViewModel("aramashi", _nav, _dia);
+            var vm = new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Aramashi);
             _nav.Navigate(vm);
             vm.GoToSlide(GetSectionFirstPages(3));
         }
@@ -249,7 +250,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         [RelayCommand]
         private void GoToSection4()
         {
-            var vm = new PresentationViewerViewModel("aramashi", _nav, _dia);
+            var vm = new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Aramashi);
             _nav.Navigate(vm);
             vm.GoToSlide(GetSectionFirstPages(4));
         }
@@ -260,7 +261,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         [RelayCommand]
         private void GoToSection5()
         {
-            var vm = new PresentationViewerViewModel("aramashi", _nav, _dia);
+            var vm = new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Aramashi);
             _nav.Navigate(vm);
             vm.GoToSlide(GetSectionFirstPages(5));
         }
@@ -271,7 +272,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         [RelayCommand]
         private void GoToSection6()
         {
-            var vm = new PresentationViewerViewModel("aramashi", _nav, _dia);
+            var vm = new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Aramashi);
             _nav.Navigate(vm);
             vm.GoToSlide(GetSectionFirstPages(6));
         }
@@ -282,7 +283,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         [RelayCommand]
         private void GoToSection7()
         {
-            var vm = new PresentationViewerViewModel("aramashi", _nav, _dia);
+            var vm = new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Aramashi);
             _nav.Navigate(vm);
             vm.GoToSlide(GetSectionFirstPages(7));
         }
@@ -293,7 +294,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         [RelayCommand]
         private void GoToSection8()
         {
-            var vm = new PresentationViewerViewModel("aramashi", _nav, _dia);
+            var vm = new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Aramashi);
             _nav.Navigate(vm);
             vm.GoToSlide(GetSectionFirstPages(8));
         }
@@ -304,7 +305,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         [RelayCommand]
         private void GoToSection9()
         {
-            var vm = new PresentationViewerViewModel("aramashi", _nav, _dia);
+            var vm = new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Aramashi);
             _nav.Navigate(vm);
             vm.GoToSlide(GetSectionFirstPages(9));
         }
@@ -315,7 +316,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         [RelayCommand]
         private void GoToSection10()
         {
-            var vm = new PresentationViewerViewModel("aramashi", _nav, _dia);
+            var vm = new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Aramashi);
             _nav.Navigate(vm);
             vm.GoToSlide(GetSectionFirstPages(10));
         }
@@ -326,7 +327,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         [RelayCommand]
         private void GoToDaitaichi()
         {
-            _nav.Navigate(new PresentationViewerViewModel("daitaichi", _nav, _dia));
+            _nav.Navigate(new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Others001));
         }
 
         /// <summary>
@@ -335,7 +336,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         [RelayCommand]
         private void GoToZeikin()
         {
-            _nav.Navigate(new PresentationViewerViewModel("zeikin", _nav, _dia));
+            _nav.Navigate(new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Others002));
         }
 
         /// <summary>
@@ -344,7 +345,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         [RelayCommand]
         private void GoToSonshitsu()
         {
-            _nav.Navigate(new PresentationViewerViewModel("sonshitsu", _nav, _dia));
+            _nav.Navigate(new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Others003));
         }
     }
 }

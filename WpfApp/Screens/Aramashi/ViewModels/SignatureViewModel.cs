@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using System.Diagnostics;
 using System.Windows.Controls;
 using WpfApp.Interfaces;
+using static WpfApp.Screens.Aramashi.ViewModels.PresentationViewerViewModel;
 
 namespace WpfApp.Screens.Aramashi.ViewModels
 {
@@ -26,19 +27,19 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         public event EventHandler<string>? PrintRequested;
         public event EventHandler<InkCanvas>? ClearRequested;
 
-        public SignatureViewModel(string _signMessage, string _jsonPath, string presentationName)
+        public SignatureViewModel(string _signMessage, string _jsonPath, PresentationCategory presentationCategory)
         {
             SignMessage = _signMessage ?? "";
             JsonPath = _jsonPath ?? "";
-            GenerateSignatureFileNames(presentationName);
+            GenerateSignatureFileNames(presentationCategory);
         }
 
-        private void GenerateSignatureFileNames(string presentationName)
+        private void GenerateSignatureFileNames(PresentationCategory presentationName)
         {
             string baseName = presentationName switch
             {
-                "daitaichi" => "signature_daitaichi",
-                "zeikin" => "signature_zeikin",
+                PresentationCategory.Others001 => "signature_others001",
+                PresentationCategory.Others002 => "signature_others002",
                 _ => throw new ArgumentException($"Invalid presentationName: {presentationName}")
             };
 
