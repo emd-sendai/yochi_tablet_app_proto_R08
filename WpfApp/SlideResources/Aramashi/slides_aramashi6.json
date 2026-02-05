@@ -325,7 +325,7 @@
                 {
                   "text": "Ⅲ 税制上の優遇措置について",
                   "isLink": true,
-                  "commandName": "GoToZeikinCommand",
+                  "commandName": "GoToOthers002Command",
                   "commandParameter": "0"
                 },
                 {
@@ -334,7 +334,7 @@
                 {
                   "text": "Ⅳ 土地の譲渡等に伴うその他の税金等",
                   "isLink": true,
-                  "commandName": "GoToZeikinCommand",
+                  "commandName": "GoToOthers002Command",
                   "commandParameter": "3"
                 },
                 {
@@ -402,7 +402,7 @@
                 {
                   "text": "Ⅱ 代替地について",
                   "isLink": true,
-                  "commandName": "GoToDaitaichiCommand"
+                  "commandName": "GoToOthers001Command"
                 },
                 {
                   "text": "」で、代替地詮索、税の特例について説明します。"

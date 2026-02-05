@@ -476,13 +476,13 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         }
 
         [RelayCommand]
-        private void GoToDaitaichi()
+        private void GoToOthers001()
         {
             _nav.Navigate(new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Others001));
         }
 
         [RelayCommand]
-        private void GoToZeikin(int pageIndex)
+        private void GoToOthers002(int pageIndex)
         {
             var newVM = new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Others002);
             _nav.Navigate(newVM);

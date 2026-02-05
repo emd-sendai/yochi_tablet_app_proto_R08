@@ -326,11 +326,11 @@ namespace WpfApp.Screens.Aramashi.Views
                             }
                             hyperlink.Command = viewModel.GoToSlideCommand;
                         }
-                        else if (runInfo.CommandName == "GoToDaitaichiCommand")
+                        else if (runInfo.CommandName == "GoToOthers001Command")
                         {
-                            hyperlink.Command = viewModel.GoToDaitaichiCommand;
+                            hyperlink.Command = viewModel.GoToOthers001Command;
                         }
-                        else if (runInfo.CommandName == "GoToZeikinCommand")
+                        else if (runInfo.CommandName == "GoToOthers002Command")
                         {
                             if (!string.IsNullOrWhiteSpace(param) && int.TryParse(param, out int value))
                             {
@@ -341,7 +341,7 @@ namespace WpfApp.Screens.Aramashi.Views
                                 Debug.WriteLine("CommandParameter は数値ではありません");
                                 hyperlink.CommandParameter = 0;    // 最初のページに遷移
                             }
-                            hyperlink.Command = viewModel.GoToZeikinCommand;
+                            hyperlink.Command = viewModel.GoToOthers002Command;
                         }
                         else if (runInfo.CommandName == "OpenUrlCommand")
                         {
