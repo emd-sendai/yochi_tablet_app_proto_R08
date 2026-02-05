@@ -127,7 +127,7 @@
                         <TextBlock Style="{StaticResource WrapTextBlockStyle}" >
                                 <Run Text="地権者個別資料（パスワードあり）" FontSize="20" />
                                 <LineBreak />
-                                <Run Text="※配置図・調査表、算定書、調書、補償金提示書、契約書等" FontSize="15"/>
+                                <Run Text="※配置図・調査表、算定書、調書、損失補償協議書、契約書等" FontSize="15"/>
                         </TextBlock>
                     </Button>
                 </StackPanel>
