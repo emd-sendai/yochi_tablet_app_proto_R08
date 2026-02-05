@@ -1,4 +1,4 @@
-[
+﻿[
   {
     "id": "zeikin_1",
     "originalIndex": 0,
@@ -14,7 +14,7 @@
     },
     "video": true,
     "document": true,
-    "documentFolderName": "Zeikin",
+    "documentFolderName": "002",
     "sections": [
       {
         "subtitle": {
@@ -165,7 +165,7 @@
         },
         "image": {
           "maxHeight": 200,
-          "maxWidth": 190,
+          "maxWidth": 180,
           "images": [
             {
               "imagePath": "zeikin_1_1.png"
@@ -190,7 +190,7 @@
     },
     "video": true,
     "document": true,
-    "documentFolderName": "Zeikin",
+    "documentFolderName": "002",
     "sections": [
       {
         "subtitle": {
@@ -291,7 +291,7 @@
     },
     "video": true,
     "document": true,
-    "documentFolderName": "Zeikin",
+    "documentFolderName": "002",
     "sections": [
       {
         "subtitle": {
@@ -375,7 +375,7 @@
     },
     "video": true,
     "document": true,
-    "documentFolderName": "Zeikin",
+    "documentFolderName": "002",
     "sections": [
       {
         "body": {
@@ -482,7 +482,7 @@
     },
     "video": true,
     "document": true,
-    "documentFolderName": "Zeikin",
+    "documentFolderName": "002",
     "sections": [
       {
         "subtitle": {
@@ -605,7 +605,7 @@
     },
     "video": true,
     "document": true,
-    "documentFolderName": "Zeikin",
+    "documentFolderName": "002",
     "sections": [
       {
         "subtitle": {
@@ -723,7 +723,7 @@
     },
     "video": true,
     "document": true,
-    "documentFolderName": "Zeikin",
+    "documentFolderName": "002",
     "sections": [
       {
         "subtitle": {

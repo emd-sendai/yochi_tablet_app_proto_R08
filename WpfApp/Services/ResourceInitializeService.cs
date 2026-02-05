@@ -86,8 +86,11 @@ namespace WpfApp.Services
             // ボタン表示設定ファイル
             CopyDirectoryIfNotExists(_sourcePath.ButtonRoot, _path.ButtonRoot);
 
-            // 直接参照されるPDFファイル（補償のあらまし - その他 - 損失補償基準）
-            CopyDirectoryIfNotExists(_sourcePath.SonshitsuPdfDire, _path.SonshitsuPdfDire);
+            // 直接参照されるPDFファイルが存在するディレクトリ
+            // 補償のあらまし - その他3
+            CopyDirectoryIfNotExists(_sourcePath.Others003PdfDire, _path.Others003PdfDire);
+            // 補償のあらまし - その他4
+            CopyDirectoryIfNotExists(_sourcePath.Others004PdfDire, _path.Others004PdfDire);
 
             // 動画関連ファイル（動画編集機能実装後はチャプターファイルのみとする）
             CopyDirectoryIfNotExists(_sourcePath.MediaResourcesRoot, _path.MediaResourcesRoot);

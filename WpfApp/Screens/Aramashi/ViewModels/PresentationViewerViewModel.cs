@@ -115,7 +115,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
 
                     for (int i = 1; ; i++)
                     {
-                        var aramashiPath = Path.Combine(_path.AramashiSlideDire, $"slides_aramashi{i}.json");
+                        var aramashiPath = _path.GetAramashiSlidePath(i);
                         if (!Path.Exists(aramashiPath)) break;
 
                         pathList.Add(aramashiPath);
@@ -125,23 +125,30 @@ namespace WpfApp.Screens.Aramashi.ViewModels
 
                 case PresentationCategory.Others001:
 
-                    var daitaichiPath = Path.Combine(_path.OthersSlideDire, "slides_daitaichi.json");
-                    pathList.Add(daitaichiPath);
-                    Debug.WriteLine($"[DEBUG] スライドパスを追加: {daitaichiPath}");
+                    var others001Path = _path.OthersSlide001Path;
+                    pathList.Add(others001Path);
+                    Debug.WriteLine($"[DEBUG] スライドパスを追加: {others001Path}");
                     break;
 
                 case PresentationCategory.Others002:
 
-                    var zeikinPath = Path.Combine(_path.OthersSlideDire, "slides_zeikin.json");
-                    pathList.Add(zeikinPath);
-                    Debug.WriteLine($"[DEBUG] スライドパスを追加: {zeikinPath}");
+                    var others002Path = _path.OthersSlide002Path;
+                    pathList.Add(others002Path);
+                    Debug.WriteLine($"[DEBUG] スライドパスを追加: {others002Path}");
                     break;
 
                 case PresentationCategory.Others003:
 
-                    var sonshitsuPath = Path.Combine(_path.OthersSlideDire, "slides_sonshitsu.json");
-                    pathList.Add(sonshitsuPath);
-                    Debug.WriteLine($"[DEBUG] スライドパスを追加: {sonshitsuPath}");
+                    var others003Path = _path.OthersSlide003Path;
+                    pathList.Add(others003Path);
+                    Debug.WriteLine($"[DEBUG] スライドパスを追加: {others003Path}");
+                    break;
+
+                case PresentationCategory.Others004:
+
+                    var others004Path = _path.OthersSlide004Path;
+                    pathList.Add(others004Path);
+                    Debug.WriteLine($"[DEBUG] スライドパスを追加: {others004Path}");
                     break;
             }
             return pathList;
@@ -571,13 +578,29 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         }
 
         [RelayCommand]
-        private void OpenSonshitsuPdfDocument(string fileName)
+        private void OpenOthers003PdfDocument(string fileName)
         {
             if (!string.IsNullOrWhiteSpace(fileName))
             {
                 if (_messageDialog.ShowConfirm($"PDFファイルを開きます。よろしいですか？"))
                 {
-                    _pdf.OpenPdf(_path.SonshitsuPdfDire, fileName);
+                    _pdf.OpenPdf(_path.Others003PdfDire, fileName);
+                }
+            }
+            else
+            {
+                Debug.WriteLine($"[ERROR] fileNameが空です");
+            }
+        }
+
+        [RelayCommand]
+        private void OpenOthers004PdfDocument(string fileName)
+        {
+            if (!string.IsNullOrWhiteSpace(fileName))
+            {
+                if (_messageDialog.ShowConfirm($"PDFファイルを開きます。よろしいですか？"))
+                {
+                    _pdf.OpenPdf(_path.Others004PdfDire, fileName);
                 }
             }
             else

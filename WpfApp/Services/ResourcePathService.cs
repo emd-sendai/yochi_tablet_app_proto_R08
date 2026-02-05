@@ -35,9 +35,13 @@ namespace WpfApp.Services
 
         public string OthersPdfDire => Path.Combine(AramashiPdfRoot, "Others");
 
-        public string SonshitsuPdfDire => Path.Combine(OthersPdfDire, "Sonshitsu");
+        public string Others002PdfDire => Path.Combine(OthersPdfDire, "002");
 
-        public string ZeikinPdfDire => Path.Combine(OthersPdfDire, "Zeikin");
+        public string Others003PdfDire => Path.Combine(OthersPdfDire, "003");
+
+        public string Others004PdfDire => Path.Combine(OthersPdfDire, "004");
+
+        public string Others005PdfDire => Path.Combine(OthersPdfDire, "005");
 
         public string DocumentPdfRoot => Path.Combine(DocumentResourcesRoot, "Documents");
 

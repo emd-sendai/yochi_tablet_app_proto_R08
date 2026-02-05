@@ -351,13 +351,21 @@ namespace WpfApp.Screens.Aramashi.Views
                             }
                             hyperlink.Command = viewModel.OpenUrlCommand;
                         }
-                        else if (runInfo.CommandName == "OpenSonshitsuPdfDocumentCommand")
+                        else if (runInfo.CommandName == "OpenOthers003PdfDocumentCommand")
                         {
                             if (!string.IsNullOrWhiteSpace(param))
                             {
                                 hyperlink.CommandParameter = param;
                             }
-                            hyperlink.Command = viewModel.OpenSonshitsuPdfDocumentCommand;
+                            hyperlink.Command = viewModel.OpenOthers003PdfDocumentCommand;
+                        }
+                        else if (runInfo.CommandName == "OpenOthers004PdfDocumentCommand")
+                        {
+                            if (!string.IsNullOrWhiteSpace(param))
+                            {
+                                hyperlink.CommandParameter = param;
+                            }
+                            hyperlink.Command = viewModel.OpenOthers004PdfDocumentCommand;
                         }
 
                         tb.Inlines.Add(hyperlink);

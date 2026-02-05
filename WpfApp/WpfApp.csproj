@@ -39,16 +39,19 @@
     <Content Include="DocumentResources\Aramashi\Aramashi\補償のあらまし.pdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="DocumentResources\Aramashi\Others\Sonshitsu\国土交通省の公共用地の取得に伴う損失補償基準.pdf">
+    <Content Include="DocumentResources\Aramashi\Others\004\所有者の所在の把握が難しい土地に関する探索・利活用のためのガイドライン.pdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="DocumentResources\Aramashi\Others\Sonshitsu\国土交通省の公共用地の取得に伴う損失補償基準の運用方針.pdf">
+    <Content Include="DocumentResources\Aramashi\Others\003\国土交通省の公共用地の取得に伴う損失補償基準.pdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="DocumentResources\Aramashi\Others\Sonshitsu\国土交通省損失補償取扱要領.pdf">
+    <Content Include="DocumentResources\Aramashi\Others\003\国土交通省の公共用地の取得に伴う損失補償基準の運用方針.pdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="DocumentResources\Aramashi\Others\Zeikin\譲渡所得税の特例あらまし.pdf">
+    <Content Include="DocumentResources\Aramashi\Others\003\国土交通省損失補償取扱要領.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DocumentResources\Aramashi\Others\002\譲渡所得税の特例あらまし.pdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="DocumentResources\Documents\Landowners\001\Document01\02 建物図面.pdf">
@@ -333,13 +336,16 @@
     <Content Include="SlideResources\Others\daitaichi_2_1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="SlideResources\Others\slides_daitaichi.json">
+    <Content Include="SlideResources\Others\slides_others001.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="SlideResources\Others\slides_sonshitsu.json">
+    <Content Include="SlideResources\Others\slides_others002.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="SlideResources\Others\slides_zeikin.json">
+    <Content Include="SlideResources\Others\slides_others003.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Others\slides_others004.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="SlideResources\Others\zeikin_1_1.png">

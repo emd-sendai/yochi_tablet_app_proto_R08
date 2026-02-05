@@ -48,7 +48,6 @@ namespace WpfApp.Services
                 if (Path.Exists(_path.AramashiSlideDire))
                 {
                     var paths = GetAramashiSlidePaths();
-                    int index = 1;
 
                     foreach (var path in paths)
                     {
@@ -63,9 +62,8 @@ namespace WpfApp.Services
                         {
                             var _json = JsonSerializer.Serialize(slides, writeOptions);
                             File.WriteAllText(path, _json);
-                            Debug.WriteLine($"[DEBUG] 用地補償の手順: {index} のチェックボックスを初期化しました");
+                            Debug.WriteLine($"[DEBUG] チェックボックスを初期化しました: {path}");
                         }
-                        index++;
                     }
                 }
 
@@ -139,7 +137,7 @@ namespace WpfApp.Services
 
             for (int i = 1; ; i++)
             {
-                var aramashiPath = Path.Combine(_path.AramashiSlideDire, $"slides_aramashi{i}.json");
+                var aramashiPath = _path.GetAramashiSlidePath(i);
                 if (!Path.Exists(aramashiPath)) break;
 
                 paths.Add(aramashiPath);

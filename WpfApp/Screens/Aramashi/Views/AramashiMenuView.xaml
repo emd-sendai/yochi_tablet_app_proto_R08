@@ -177,27 +177,28 @@
 
                     <!-- その他ボタン1 -->
                     <Button Grid.Row="0" Style="{StaticResource OthersButtonStyle}" Width="130"
-                            Command="{Binding GoToDaitaichiCommand}">
+                            Command="{Binding GoToOthers001Command}">
                         <TextBlock Style="{StaticResource WrapTextBlockStyle}" 
                                    Text="{Binding OthersButtons[0].BtnText}"/>
                     </Button>
 
                     <!-- その他ボタン2 -->
                     <Button Grid.Row="1" Style="{StaticResource OthersButtonStyle}" Width="130"
-                            Command="{Binding GoToZeikinCommand}">
+                            Command="{Binding GoToOthers002Command}">
                         <TextBlock Style="{StaticResource WrapTextBlockStyle}"
                                    Text="{Binding OthersButtons[1].BtnText}"/>
                     </Button>
 
                     <!-- その他ボタン3 -->
                     <Button Grid.Row="2" Style="{StaticResource OthersButtonStyle}" Width="130"
-                            Command="{Binding GoToSonshitsuCommand}">
+                            Command="{Binding GoToOthers003Command}">
                         <TextBlock Style="{StaticResource WrapTextBlockStyle}"
                                    Text="{Binding OthersButtons[2].BtnText}"/>
                     </Button>
 
                     <!-- その他ボタン4 -->
-                    <Button Grid.Row="3" Style="{StaticResource OthersButtonStyle}" Width="130">
+                    <Button Grid.Row="3" Style="{StaticResource OthersButtonStyle}" Width="130"
+                            Command="{Binding GoToOthers004Command}">
                         <TextBlock Style="{StaticResource WrapTextBlockStyle}"
                                    Text="{Binding OthersButtons[3].BtnText}"/>
                     </Button>

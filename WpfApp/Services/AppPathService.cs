@@ -45,14 +45,18 @@ namespace WpfApp.Services
 
         public string OthersPdfDire => Path.Combine(AramashiPdfRoot, "Others");
 
-        public string SonshitsuPdfDire => Path.Combine(OthersPdfDire, "Sonshitsu");
-
         /// <summary>
         /// 他画面のリンクから直接参照されているパス。
         /// </summary>
         private readonly HashSet<string> _linkedPathsInOtherView;
 
-        public string ZeikinPdfDire => Path.Combine(OthersPdfDire, "Zeikin");
+        public string Others002PdfDire => Path.Combine(OthersPdfDire, "002");
+
+        public string Others003PdfDire => Path.Combine(OthersPdfDire, "003");
+
+        public string Others004PdfDire => Path.Combine(OthersPdfDire, "004");
+
+        public string Others005PdfDire => Path.Combine(OthersPdfDire, "005");
 
         public string DocumentPdfRoot => Path.Combine(DocumentResourcesRoot, "Documents");
 
@@ -79,6 +83,14 @@ namespace WpfApp.Services
         public string AramashiSlideDire => Path.Combine(SlideResourcesRoot, "Aramashi");
 
         public string OthersSlideDire => Path.Combine(SlideResourcesRoot, "Others");
+
+        public string OthersSlide001Path => Path.Combine(OthersSlideDire, "slides_others001.json");
+
+        public string OthersSlide002Path => Path.Combine(OthersSlideDire, "slides_others002.json");
+
+        public string OthersSlide003Path => Path.Combine(OthersSlideDire, "slides_others003.json");
+
+        public string OthersSlide004Path => Path.Combine(OthersSlideDire, "slides_others004.json");
 
 
         public string TempDire => Path.Combine(AppResourcesRoot, "Temp");
@@ -109,9 +121,10 @@ namespace WpfApp.Services
         {
             return new HashSet<string>(StringComparer.OrdinalIgnoreCase)
             {
-                NormalizePath(Path.Combine(SonshitsuPdfDire, "国土交通省の公共用地の取得に伴う損失補償基準.pdf")),
-                NormalizePath(Path.Combine(SonshitsuPdfDire, "国土交通省の公共用地の取得に伴う損失補償基準の運用方針.pdf")),
-                NormalizePath(Path.Combine(SonshitsuPdfDire, "国土交通省損失補償取扱要領.pdf"))
+                NormalizePath(Path.Combine(Others003PdfDire, "国土交通省の公共用地の取得に伴う損失補償基準.pdf")),
+                NormalizePath(Path.Combine(Others003PdfDire, "国土交通省の公共用地の取得に伴う損失補償基準の運用方針.pdf")),
+                NormalizePath(Path.Combine(Others003PdfDire, "国土交通省損失補償取扱要領.pdf")),
+                NormalizePath(Path.Combine(Others004PdfDire, "所有者の所在の把握が難しい土地に関する探索・利活用のためのガイドライン.pdf")),
             };
         }
 
@@ -134,6 +147,16 @@ namespace WpfApp.Services
                 // 削除可能
                 return true;
             }
+        }
+
+        /// <summary>
+        /// 用地補償の手順の番号からスライドデータファイルのパスを取得する。
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        public string GetAramashiSlidePath(int index)
+        {
+            return Path.Combine(AramashiSlideDire, $"slides_aramashi{index}.json");
         }
     }
 }

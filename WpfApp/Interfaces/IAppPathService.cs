@@ -25,8 +25,10 @@
         string AramashiPdfRoot { get; }
         string AramashiPdfDire { get; }
         string OthersPdfDire { get; }
-        string SonshitsuPdfDire { get; }
-        string ZeikinPdfDire { get; }
+        string Others002PdfDire { get; }
+        string Others003PdfDire { get; }
+        string Others004PdfDire { get; }
+        string Others005PdfDire { get; }
         string DocumentPdfRoot { get; }
         string LandownersPdfDire { get; }
         string WorksPdfDire { get; }
@@ -40,7 +42,12 @@
 
         string SlideResourcesRoot { get; }
         string AramashiSlideDire { get; }
+        string GetAramashiSlidePath(int index);
         string OthersSlideDire { get; }
+        string OthersSlide001Path { get; }
+        string OthersSlide002Path { get; }
+        string OthersSlide003Path { get; }
+        string OthersSlide004Path { get; }
 
         string TempDire { get; }
 

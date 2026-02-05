@@ -325,7 +325,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         /// その他 1 （代替地）の最初のページを表示する。
         /// </summary>
         [RelayCommand]
-        private void GoToDaitaichi()
+        private void GoToOthers001()
         {
             _nav.Navigate(new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Others001));
         }
@@ -334,7 +334,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         /// その他 2 （税金等）の最初のページを表示する。
         /// </summary>
         [RelayCommand]
-        private void GoToZeikin()
+        private void GoToOthers002()
         {
             _nav.Navigate(new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Others002));
         }
@@ -343,9 +343,18 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         /// その他 3 （損失補償基準）の最初のページを表示する。
         /// </summary>
         [RelayCommand]
-        private void GoToSonshitsu()
+        private void GoToOthers003()
         {
             _nav.Navigate(new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Others003));
+        }
+
+        /// <summary>
+        /// その他 4 （手引き、マニュアル等）の最初のページを表示する。
+        /// </summary>
+        [RelayCommand]
+        private void GoToOthers004()
+        {
+            _nav.Navigate(new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Others004));
         }
     }
 }

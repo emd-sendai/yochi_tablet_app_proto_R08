@@ -1,0 +1,105 @@
+﻿[
+  {
+    "id": "others004_1",
+    "originalIndex": 0,
+    "title": {
+      "textRuns": [
+        {
+          "text": "手引、マニュアル等",
+          "bold": true,
+          "color": "#000000"
+        }
+      ],
+      "fontSize": 26
+    },
+    "document": true,
+    "documentFolderName": "004",
+    "sections": [
+      {
+        "body": {
+          "textRuns": [
+            {
+              "text": "　用地事務にあたり参考となる手引、マニュアルを掲載します。"
+            }
+          ],
+          "fontSize": 16
+        }
+      },
+      {
+        "table": {
+          "rows": 1,
+          "columns": 1,
+          "padding": 6,
+          "cells": [
+            {
+              "textRuns": [
+                {
+                  "text": "所有者の所在の把握が難しい土地に関する探索・利活用のためのガイドライン",
+                  "isLink": true,
+                  "commandName": "OpenOthers004PdfDocumentCommand",
+                  "commandParameter": "所有者の所在の把握が難しい土地に関する探索・利活用のためのガイドライン"
+                }
+              ],
+              "fontSize": 15
+            }
+          ]
+        }
+      },
+      {
+        "body": {
+          "textRuns": [
+            {
+              "text": "\n\n各種手引き、マニュアルは、以下国土交通省ホームページでも公開しております。"
+            }
+          ],
+          "fontSize": 16
+        }
+      },
+      {
+        "table": {
+          "rows": 3,
+          "columns": 1,
+          "padding": 6,
+          "cells": [
+            {
+              "textRuns": [
+                {
+                  "text": "土地：補償基準等 - 国土交通省",
+                  "isLink": true,
+                  "commandName": "OpenUrlCommand",
+                  "commandParameter": "https://www.mlit.go.jp/totikensangyo/totikensangyo_tk1_000017.html"
+                }
+              ],
+              "fontSize": 15
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "土地：所有者不明土地の利用の円滑化等に関する特別措置法（所有者不明土地法） - 国土交通省",
+                  "isLink": true,
+                  "commandName": "OpenUrlCommand",
+                  "commandParameter": "https://www.mlit.go.jp/tochi_fudousan_kensetsugyo/tochi_fudousan_kensetsugyo_tk2_000001_00014.html"
+                }
+              ],
+              "fontSize": 15
+            },
+            {
+              "textRuns": [
+                {
+                  "text": "所有者不明土地関係参考リンク集",
+                  "isLink": true,
+                  "commandName": "OpenUrlCommand",
+                  "commandParameter": "https://www.ktr.mlit.go.jp/youchi/furendo/youchi_furendo00000010.html"
+                },
+                {
+                  "text": " （ 国土交通省　関東地方整備局作成）"
+                }
+              ],
+              "fontSize": 15
+            }
+          ]
+        }
+      }
+    ]
+  }
+]

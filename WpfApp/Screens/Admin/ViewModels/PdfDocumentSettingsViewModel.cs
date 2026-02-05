@@ -156,9 +156,15 @@ namespace WpfApp.Screens.Admin.ViewModels
             /* その他 */
             tab = new TabItemData();
             documents = new ObservableCollection<PdfDocumentData>();
-
-            documents.Add(GetDocumentData("税金等", _path.ZeikinPdfDire, "Zeikin"));
-            documents.Add(GetDocumentData("損失補償基準", _path.SonshitsuPdfDire, "Sonshitsu"));
+            
+            var othersButtons = LoadButtonFromJson(_path.OthersButtonPath);
+            foreach (var button in othersButtons)
+            {
+                if (button.BtnId != "001")
+                {
+                    documents.Add(GetDocumentData(button.LabelText, Path.Combine(_path.OthersPdfDire, button.BtnId), button.BtnId));
+                }
+            }
             tab.Documents = documents;
             // TabItemリストに格納
             items.Add(tab);

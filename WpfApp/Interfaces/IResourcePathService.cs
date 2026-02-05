@@ -20,8 +20,10 @@
         string AramashiPdfRoot { get; }
         string AramashiPdfDire { get; }
         string OthersPdfDire { get; }
-        string SonshitsuPdfDire { get; }
-        string ZeikinPdfDire { get; }
+        string Others002PdfDire { get; }
+        string Others003PdfDire { get; }
+        string Others004PdfDire { get; }
+        string Others005PdfDire { get; }
         string DocumentPdfRoot { get; }
         string LandownersPdfDire { get; }
         string WorksPdfDire { get; }

@@ -1,4 +1,4 @@
-[
+﻿[
   {
     "id": "sonshitsu_1",
     "originalIndex": 0,
@@ -13,7 +13,7 @@
       "fontSize": 26
     },
     "document": true,
-    "documentFolderName": "Sonshitsu",
+    "documentFolderName": "003",
     "sections": [
       {
         "body": {
@@ -47,7 +47,7 @@
                 {
                   "text": "国土交通省の公共用地の取得に伴う損失補償基準（平成１３年１月６日国土交通省訓令第７６号）",
                   "isLink": true,
-                  "commandName": "OpenSonshitsuPdfDocumentCommand",
+                  "commandName": "OpenOthers003PdfDocumentCommand",
                   "commandParameter": "国土交通省の公共用地の取得に伴う損失補償基準"
                 }
               ],
@@ -58,7 +58,7 @@
                 {
                   "text": "国土交通省の公共用地の取得に伴う損失補償基準の運用方針（平成１５年８月５日国総国調第５７号）",
                   "isLink": true,
-                  "commandName": "OpenSonshitsuPdfDocumentCommand",
+                  "commandName": "OpenOthers003PdfDocumentCommand",
                   "commandParameter": "国土交通省の公共用地の取得に伴う損失補償基準の運用方針"
                 }
               ],
@@ -69,7 +69,7 @@
                 {
                   "text": "国土交通省損失補償取扱要領（平成１５年８月５日国総国調第５８号）",
                   "isLink": true,
-                  "commandName": "OpenSonshitsuPdfDocumentCommand",
+                  "commandName": "OpenOthers003PdfDocumentCommand",
                   "commandParameter": "国土交通省損失補償取扱要領"
                 }
               ],
