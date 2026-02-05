@@ -75,12 +75,12 @@ namespace WpfApp.Screens.Admin.ViewModels
         }
 
         /// <summary>
-        /// 詳細項目選択画面（動画設定）画面へ遷移する。
+        /// 詳細項目選択画面（動画設定）画面へ遷移する。（機能未作成のためコメントアウト中）
         /// </summary>
         [RelayCommand]
         private void GoToVideoSettings()
         {
-            _nav.Navigate(new SubCategorySelectViewModel(_nav, _dia, DisplaySettingsCategory.VideoSettings));
+            //_nav.Navigate(new SubCategorySelectViewModel(_nav, _dia, DisplaySettingsCategory.VideoSettings));
         }
     }
 }
