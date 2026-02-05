@@ -1,6 +1,6 @@
 ﻿[
   {
-    "id": "zeikin_1",
+    "id": "others002_1",
     "originalIndex": 0,
     "title": {
       "textRuns": [
@@ -29,7 +29,7 @@
           "fontSize": 18
         },
         "checkBox": {
-          "id": "z1",
+          "id": "others002_1",
           "label": "",
           "isChecked": false
         },
@@ -66,7 +66,7 @@
           "fontSize": 18
         },
         "checkBox": {
-          "id": "z2",
+          "id": "others002_2",
           "label": "",
           "isChecked": false
         },
@@ -168,7 +168,7 @@
           "maxWidth": 180,
           "images": [
             {
-              "imagePath": "zeikin_1_1.png"
+              "imagePath": "others002_1_1.png"
             }
           ]
         }
@@ -176,7 +176,7 @@
     ]
   },
   {
-    "id": "zeikin_2",
+    "id": "others002_2",
     "originalIndex": 1,
     "title": {
       "textRuns": [
@@ -204,7 +204,7 @@
           "fontSize": 18
         },
         "checkBox": {
-          "id": "z3",
+          "id": "others002_3",
           "label": "",
           "isChecked": false
         },
@@ -277,7 +277,7 @@
     ]
   },
   {
-    "id": "zeikin_3",
+    "id": "others002_3",
     "originalIndex": 2,
     "title": {
       "textRuns": [
@@ -333,26 +333,26 @@
       },
       {
         "ImageButton": {
-          "id": "zeikin_3",
+          "id": "others002_3",
           "maxHeight": 178,
           "maxWidth": 200,
           "imageButtons": [
             {
-              "id": "zeikin_3_1",
+              "id": "others002_3_1",
               "label": "買取り等の申出証明書（例）",
-              "imagePath": "zeikin_3_1.png",
+              "imagePath": "others002_3_1.png",
               "commandName": ""
             },
             {
-              "id": "zeikin_3_2",
+              "id": "others002_3_2",
               "label": "買取り等の証明書（例）",
-              "imagePath": "zeikin_3_2.png",
+              "imagePath": "others002_3_2.png",
               "commandName": ""
             },
             {
-              "id": "zeikin_3_3",
+              "id": "others002_3_3",
               "label": "収用証明書（例）",
-              "imagePath": "zeikin_3_3.png",
+              "imagePath": "others002_3_3.png",
               "commandName": ""
             }
           ]
@@ -361,7 +361,7 @@
     ]
   },
   {
-    "id": "zeikin_4",
+    "id": "others002_4",
     "originalIndex": 3,
     "title": {
       "textRuns": [
@@ -407,7 +407,7 @@
           "fontSize": 18
         },
         "checkBox": {
-          "id": "z4",
+          "id": "others002_4",
           "label": "",
           "isChecked": false
         },
@@ -445,7 +445,7 @@
           "fontSize": 18
         },
         "checkBox": {
-          "id": "z5",
+          "id": "others002_5",
           "label": "",
           "isChecked": false
         },
@@ -468,7 +468,7 @@
     ]
   },
   {
-    "id": "zeikin_5",
+    "id": "others002_5",
     "originalIndex": 4,
     "title": {
       "textRuns": [
@@ -497,7 +497,7 @@
           "fontSize": 18
         },
         "checkBox": {
-          "id": "z6",
+          "id": "others002_6",
           "label": "",
           "isChecked": false
         },
@@ -530,7 +530,7 @@
           "fontSize": 18
         },
         "checkBox": {
-          "id": "z7",
+          "id": "others002_7",
           "label": "",
           "isChecked": false
         },
@@ -568,7 +568,7 @@
           "fontSize": 18
         },
         "checkBox": {
-          "id": "z8",
+          "id": "others002_8",
           "label": "",
           "isChecked": false
         },
@@ -591,7 +591,7 @@
     ]
   },
   {
-    "id": "zeikin_6",
+    "id": "others002_6",
     "originalIndex": 5,
     "title": {
       "textRuns": [
@@ -620,7 +620,7 @@
           "fontSize": 18
         },
         "checkBox": {
-          "id": "z9",
+          "id": "others002_9",
           "label": "",
           "isChecked": false
         },
@@ -653,7 +653,7 @@
           "fontSize": 18
         },
         "checkBox": {
-          "id": "z10",
+          "id": "others002_10",
           "label": "",
           "isChecked": false
         },
@@ -686,7 +686,7 @@
           "fontSize": 18
         },
         "checkBox": {
-          "id": "z11",
+          "id": "others002_11",
           "label": "",
           "isChecked": false
         },
@@ -709,7 +709,7 @@
     ]
   },
   {
-    "id": "zeikin_7",
+    "id": "others002_7",
     "originalIndex": 6,
     "title": {
       "textRuns": [
@@ -738,7 +738,7 @@
           "fontSize": 18
         },
         "checkBox": {
-          "id": "z12",
+          "id": "others002_12",
           "label": "",
           "isChecked": false
         },
@@ -781,7 +781,7 @@
           "fontSize": 18
         },
         "checkBox": {
-          "id": "z13",
+          "id": "others002_13",
           "label": "",
           "isChecked": false
         },
@@ -819,7 +819,7 @@
     ]
   },
   {
-    "id": "zeikin_8",
+    "id": "others002_8",
     "originalIndex": 7,
     "title": {
       "textRuns": [
@@ -857,7 +857,7 @@
           "fontSize": 20
         },
         "signButton": {
-          "id": "zeikin",
+          "id": "others002",
           "text": "署名をする",
           "fontsize": 20,
           "bold": true,

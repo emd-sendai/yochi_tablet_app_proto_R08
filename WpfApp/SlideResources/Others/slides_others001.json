@@ -1,6 +1,6 @@
 [
   {
-    "id": "daitaichi_1",
+    "id": "others001_1",
     "originalIndex": 0,
     "title": {
       "textRuns": [
@@ -27,7 +27,7 @@
           "fontSize": 18
         },
         "checkBox": {
-          "id": "d1",
+          "id": "others001_1",
           "label": "",
           "isChecked": false
         },
@@ -65,7 +65,7 @@
           "fontSize": 18
         },
         "checkBox": {
-          "id": "d2",
+          "id": "others001_2",
           "label": "",
           "isChecked": false
         },
@@ -96,14 +96,14 @@
           "maxWidth": 470
         },
         "imageButton": {
-          "id": "daitaichi_1",
+          "id": "others001_1",
           "maxHeight": 200,
           "maxWidth": 200,
           "imageButtons": [
             {
-              "id": "daitaichi_1_1",
+              "id": "others001_1_1",
               "label": "（参考）三者契約",
-              "imagePath": "daitaichi_1_1.png"
+              "imagePath": "others001_1_1.png"
             }
           ]
         }
@@ -111,7 +111,7 @@
     ]
   },
   {
-    "id": "daitaichi_2",
+    "id": "others001_2",
     "originalIndex": 1,
     "title": {
       "textRuns": [
@@ -217,7 +217,7 @@
           "maxWidth": 200,
           "images": [
             {
-              "imagePath": "daitaichi_2_1.png"
+              "imagePath": "others001_2_1.png"
             }
           ]
         }
@@ -225,7 +225,7 @@
     ]
   },
   {
-    "id": "daitaichi_3",
+    "id": "others001_3",
     "originalIndex": 2,
     "title": {
       "textRuns": [
@@ -258,7 +258,7 @@
           "fontSize": 20
         },
         "signButton": {
-          "id": "daitaichi",
+          "id": "others001",
           "text": "署名をする",
           "fontsize": 20,
           "bold": true,
