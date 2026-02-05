@@ -138,7 +138,10 @@
     <Content Include="SlideResources\Aramashi\aramashi2_1_2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="SlideResources\Aramashi\aramashi3_10.png">
+    <Content Include="SlideResources\Aramashi\aramashi3_11.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\aramashi3_12.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="SlideResources\Aramashi\aramashi3_10_1.png">
@@ -147,19 +150,19 @@
     <Content Include="SlideResources\Aramashi\aramashi3_10_2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="SlideResources\Aramashi\aramashi3_11.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="SlideResources\Aramashi\aramashi3_12.5.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="SlideResources\Aramashi\aramashi3_12.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="SlideResources\Aramashi\aramashi3_13.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="SlideResources\Aramashi\aramashi3_14.png">
+    <Content Include="SlideResources\Aramashi\aramashi3_14_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\aramashi3_14_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\aramashi3_15.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\aramashi3_16.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="SlideResources\Aramashi\aramashi3_17.png">
@@ -198,9 +201,6 @@
     <Content Include="SlideResources\Aramashi\aramashi3_6.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="SlideResources\Aramashi\aramashi3_7.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="SlideResources\Aramashi\aramashi3_9.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -226,6 +226,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="SlideResources\Aramashi\aramashi5_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\aramashi5_3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SlideResources\Aramashi\aramashi5_4.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="SlideResources\Aramashi\aramashi5_5.png">

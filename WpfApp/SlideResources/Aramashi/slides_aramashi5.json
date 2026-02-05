@@ -496,9 +496,9 @@
           "maxWidth": 200,
           "imageButtons": [
             {
-              "id": "aramashi3_12.5",
+              "id": "aramashi5_3",
               "label": "（参考）建物と工作物の補償区分",
-              "imagePath": "aramashi3_12.5.png",
+              "imagePath": "aramashi5_3.png",
               "CommandName": ""
             }
           ]
@@ -588,39 +588,10 @@
         "body": {
           "textRuns": [
             {
-              "text": "　立竹木は、利用目的、樹種等によって算定方法が異なりますが、原則として、庭木等の移植することが相当と認められる場合の立竹木は移植（掘り起こし、運搬、根付け等）に必要な費用を、移植できない場合の立竹木については伐採（伐採、運搬等）に必要な費用の補償または取得による補償をします。",
+              "text": "　立竹木は、利用目的、樹種等によって算定方法が異なりますが、原則として、庭木等の移植することが相当と認められる場合の立竹木は移植（掘り起こし、運搬、根付け等）に必要な費用を、移植できない場合の立竹木については伐採（伐採、運搬等）に必要な費用の補償または取得による補償をします。\n\n",
               "bold": false,
               "color": "#000000"
-            }
-          ],
-          "fontSize": 16,
-          "maxWidth": 580
-        },
-        "image": {
-          "maxHeight": 100,
-          "maxWidth": 200,
-          "images": [
-            {
-              "imagePath": "aramashi3_14.png"
-            }
-          ]
-        }
-      },
-      {
-        "body": {
-          "textRuns": [
-            {
-              "text": "　",
-              "bold": false,
-              "color": "#000000"
-            }
-          ],
-          "fontSize": 16
-        }
-      },
-      {
-        "body": {
-          "textRuns": [
+            },
             {
               "text": "※廃材処分費について\n",
               "bold": false,
@@ -632,7 +603,17 @@
               "color": "#000000"
             }
           ],
-          "fontSize": 16
+          "fontSize": 16,
+          "maxWidth": 505
+        },
+        "image": {
+          "maxHeight": 200,
+          "maxWidth": 200,
+          "images": [
+            {
+              "imagePath": "aramashi5_4.png"
+            }
+          ]
         }
       }
     ]
@@ -683,10 +664,10 @@
             }
           ],
           "fontSize": 16,
-          "maxWidth": 510
+          "maxWidth": 460
         },
         "image": {
-          "maxHeight": 100,
+          "maxHeight": 140,
           "maxWidth": 250,
           "images": [
             {
@@ -770,11 +751,11 @@
             }
           ],
           "fontSize": 16,
-          "maxWidth": 550
+          "maxWidth": 520
         },
         "image": {
-          "maxHeight": 113,
-          "maxWidth": 125,
+          "maxHeight": 120,
+          "maxWidth": 250,
           "images": [
             {
               "imagePath": "aramashi5_6.png"

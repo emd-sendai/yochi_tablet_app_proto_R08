@@ -1186,7 +1186,7 @@
           "maxWidth": 290,
           "images": [
             {
-              "imagePath": "aramashi3_7.png"
+              "imagePath": "aramashi3_9.png"
             }
           ]
         }
@@ -1460,7 +1460,7 @@
           "maxWidth": 290,
           "images": [
             {
-              "imagePath": "aramashi3_9.png"
+              "imagePath": "aramashi3_11.png"
             }
           ]
         }
@@ -1530,7 +1530,7 @@
           "maxWidth": 350,
           "images": [
             {
-              "imagePath": "aramashi3_10.png"
+              "imagePath": "aramashi3_12.png"
             }
           ]
         }
@@ -1544,7 +1544,7 @@
               "color": "#1F78B4"
             },
             {
-              "text": "　建物調査は、所有者および居住されている方々と相談しながら調査日を決めさせていただきます。\n",
+              "text": "　建物調査は、所有者および居住されている方々と相談しながら調査日を決めさせていただきます。",
               "bold": false,
               "color": "#000000"
             }
@@ -1785,7 +1785,7 @@
           "maxWidth": 330,
           "images": [
             {
-              "imagePath": "aramashi3_11.png"
+              "imagePath": "aramashi3_13.png"
             }
           ]
         }
@@ -1877,7 +1877,7 @@
               "color": "#1F78B4"
             },
             {
-              "text": "　ａ  電灯、テレビアンテナ等の電気設備　　　　　　\n",
+              "text": "　ａ  電灯、テレビアンテナ等の電気設備　　　　\n",
               "bold": false,
               "color": "#000000"
             },
@@ -1905,7 +1905,7 @@
           "maxWidth": 120,
           "images": [
             {
-              "imagePath": "aramashi3_12.png"
+              "imagePath": "aramashi3_14_1.png"
             }
           ]
         }
@@ -1924,7 +1924,7 @@
               "color": "#000000"
             },
             {
-              "text": "　ｂ  看板、物干し台、藤棚、花壇、庭石　　　　　　\n",
+              "text": "　ｂ  看板、物干し台、藤棚、花壇、庭石　\n",
               "bold": false,
               "color": "#000000"
             },
@@ -1938,11 +1938,11 @@
           "maxWidth": 500
         },
         "image": {
-          "maxHeight": 120,
-          "maxWidth": 120,
+          "maxHeight": 150,
+          "maxWidth": 400,
           "images": [
             {
-              "imagePath": "aramashi3_13.png"
+              "imagePath": "aramashi3_14_2.png"
             }
           ]
         }
@@ -1995,52 +1995,15 @@
       },
       {
         "imageButton": {
-          "id": "aramashi3_14.5_imgbtn1",
+          "id": "aramashi3_15",
           "maxHeight": 281,
           "maxWidth": 700,
           "imageButtons": [
             {
-              "id": "imgbtn1_aramashi3_12.5",
+              "id": "imgbtn1_aramashi3_15",
               "label": "（参考）建物と工作物の補償区分",
-              "imagePath": "aramashi3_12.5.png",
+              "imagePath": "aramashi3_15.png",
               "CommandName": ""
-            }
-          ]
-        }
-      },
-      {
-        "body": {
-          "textRuns": [
-            {
-              "text": "イ  その他の工作物の主なもの\n",
-              "bold": true,
-              "color": "#1F78B4"
-            },
-            {
-              "text": "　ａ  物置、車庫、ブロック塀、門柱\n",
-              "bold": false,
-              "color": "#000000"
-            },
-            {
-              "text": "　ｂ  看板、物干し台、藤棚、花壇、庭石　　　　　　\n",
-              "bold": false,
-              "color": "#000000"
-            },
-            {
-              "text": "　ｃ  井戸、ビニールハウス等",
-              "bold": false,
-              "color": "#000000"
-            }
-          ],
-          "fontSize": 16,
-          "maxWidth": 500
-        },
-        "image": {
-          "maxHeight": 120,
-          "maxWidth": 120,
-          "images": [
-            {
-              "imagePath": "aramashi3_13.png"
             }
           ]
         }
@@ -2098,24 +2061,17 @@
               "color": "#1F78B4"
             },
             {
-              "text": "　立竹木の調査は、庭木類、生垣、風致木、収穫樹、用材林、薪炭林、竹林、苗木、その他立木および草花等に分類し、それぞれ次の事項について調査させていただき、立竹木調査表を作成します。",
+              "text": "　立竹木の調査は、庭木類、生垣、風致木、収穫樹、用材林、薪炭林、竹林、苗木、その他立木および草花等に分類し、それぞれ次の事項について調査させていただき、立竹木調査表を作成します。\n\n",
               "bold": false,
               "color": "#000000"
-            }
-          ],
-          "fontSize": 16
-        }
-      },
-      {
-        "body": {
-          "textRuns": [
+            },
             {
               "text": "　ａ  用途\n",
               "bold": false,
               "color": "#000000"
             },
             {
-              "text": "　ｂ  樹種、樹齢、樹高、樹幅、幹周、根廻りまたは株廻り　　　　　\n",
+              "text": "　ｂ  樹種、樹齢、樹高、樹幅、幹周、根廻りまたは株廻り\n",
               "bold": false,
               "color": "#000000"
             },
@@ -2141,14 +2097,14 @@
             }
           ],
           "fontSize": 16,
-          "maxWidth": 500
+          "maxWidth": 520
         },
         "image": {
-          "maxHeight": 120,
-          "maxWidth": 120,
+          "maxHeight": 200,
+          "maxWidth": 200,
           "images": [
             {
-              "imagePath": "aramashi3_14.png"
+              "imagePath": "aramashi3_16.png"
             }
           ]
         }
@@ -2442,7 +2398,17 @@
               "color": "#000000"
             }
           ],
-          "fontSize": 16
+          "fontSize": 16,
+          "maxWidth": 500
+        },
+        "image": {
+          "maxHeight": 190,
+          "maxWidth": 190,
+          "images": [
+            {
+              "imagePath": "aramashi3_19.png"
+            }
+          ]
         }
       },
       {
@@ -2459,7 +2425,7 @@
               "color": "#000000"
             },
             {
-              "text": "　ｃ  配偶者居住権者の氏名、住所　　　　　　　\n",
+              "text": "　ｃ  配偶者居住権者の氏名、住所\n",
               "bold": false,
               "color": "#000000"
             },
@@ -2470,15 +2436,6 @@
             }
           ],
           "fontSize": 16
-        },
-        "image": {
-          "maxHeight": 150,
-          "maxWidth": 150,
-          "images": [
-            {
-              "imagePath": "aramashi3_19.png"
-            }
-          ]
         }
       }
     ]
@@ -2534,19 +2491,12 @@
               "color": "#1F78B4"
             },
             {
-              "text": "　家や部屋を借りて住んでいる方々について、次の事項について調査させていただき、居住者調査表を作成します。",
+              "text": "　家や部屋を借りて住んでいる方々について、次の事項について調査させていただき、居住者調査表を作成します。\n\n",
               "bold": false,
               "color": "#000000"
-            }
-          ],
-          "fontSize": 16
-        }
-      },
-      {
-        "body": {
-          "textRuns": [
+            },
             {
-              "text": "　ａ  賃貸借の契約年月日、契約期間　　　　　　　\n",
+              "text": "　ａ  賃貸借の契約年月日、契約期間\n",
               "bold": false,
               "color": "#000000"
             },
@@ -2566,11 +2516,12 @@
               "color": "#000000"
             }
           ],
-          "fontSize": 16
+          "fontSize": 16,
+          "maxWidth": 370
         },
         "image": {
-          "maxHeight": 200,
-          "maxWidth": 200,
+          "maxHeight": 300,
+          "maxWidth": 320,
           "images": [
             {
               "imagePath": "aramashi3_20.png"
@@ -2665,7 +2616,7 @@
                   "text": "営業所の所在地、社名、代表者名、業種および開設年月日"
                 }
               ],
-              "maxwidth": 490
+              "maxwidth": 400
             },
             {
               "textRuns": [
@@ -2687,7 +2638,7 @@
                   "text": "営業を営む者の住所、氏名および生年月日"
                 }
               ],
-              "maxwidth": 490
+              "maxwidth": 400
             },
             {
               "textRuns": [
@@ -2709,7 +2660,7 @@
                   "text": "営業の種目および概要"
                 }
               ],
-              "maxwidth": 490
+              "maxwidth": 400
             },
             {
               "textRuns": [
@@ -2733,7 +2684,7 @@
                   "color": "#D32F2F"
                 }
               ],
-              "maxwidth": 490
+              "maxwidth": 400
             },
             {
               "textRuns": [
@@ -2760,7 +2711,7 @@
                   "color": "#D32F2F"
                 }
               ],
-              "maxwidth": 490
+              "maxwidth": 400
             },
             {
               "textRuns": [
@@ -2782,7 +2733,7 @@
                   "text": "得意先の状況"
                 }
               ],
-              "maxwidth": 490
+              "maxwidth": 400
             },
             {
               "textRuns": [
@@ -2804,7 +2755,7 @@
                   "text": "生産または加工の過程にある仕掛品があるときはその種類、数量、状況、原材料価格加工費および現在価格"
                 }
               ],
-              "maxwidth": 490
+              "maxwidth": 400
             },
             {
               "textRuns": [
@@ -2826,7 +2777,7 @@
                   "text": "従業員の氏名、職種、労働協約、就業規則、直近３か月の賃金台帳その他の雇用契約の内容"
                 }
               ],
-              "maxwidth": 490
+              "maxwidth": 400
             },
             {
               "textRuns": [
@@ -2848,13 +2799,13 @@
                   "text": "その他必要な事項"
                 }
               ],
-              "maxwidth": 490
+              "maxwidth": 400
             }
           ]
         },
         "image": {
-          "maxHeight": 150,
-          "maxWidth": 150,
+          "maxHeight": 300,
+          "maxWidth": 250,
           "images": [
             {
               "imagePath": "aramashi3_21.png"
