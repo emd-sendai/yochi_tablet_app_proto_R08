@@ -78,12 +78,7 @@
               "commandParameter": "26"
             },
             {
-              "text": "」の移転義務有りの物件の移転をお願いします。\n",
-              "bold": true,
-              "color": "#D32F2F"
-            },
-            {
-              "text": "移転完了時点で、（移転作業漏れによる再作業を防ぐため、可能であれば解体業者が撤収する前に）ご連絡をお願いします。\n",
+              "text": "」の移転義務有りの物件の移転をお願いします。",
               "bold": true,
               "color": "#D32F2F"
             }
@@ -102,9 +97,21 @@
         }
       },
       {
+        "body": {
+          "textRuns": [
+            {
+              "text": "移転完了時点で、（移転作業漏れによる再作業を防ぐため、可能であれば解体業者が撤収する前に）ご連絡をお願いします。",
+              "bold": true,
+              "color": "#D32F2F"
+            }
+          ],
+          "fontSize": 16
+        }
+      },
+      {
         "image": {
-          "maxHeight": 145,
-          "maxWidth": 350,
+          "maxHeight": 150,
+          "maxWidth": 400,
           "images": [
             {
               "imagePath": "aramashi9_1_2.png"

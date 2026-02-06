@@ -1051,20 +1051,34 @@
               "color": "#1F78B4"
             },
             {
-              "text": "　用地幅杭の設置により事業用地の範囲が明確になりましたら、土地の境界を確認していただくため土地所有者等の立会をお願いします。\n\n",
+              "text": "　用地幅杭の設置により事業用地の範囲が明確になりましたら、土地の境界を確認していただくため土地所有者等の立会をお願いします。",
               "bold": false,
               "color": "#000000"
-            },
+            }
+          ],
+          "fontSize": 16
+        }
+      },
+      {
+        "body": {
+          "textRuns": [
             {
               "text": "ア 境界立会の依頼通知\n",
               "bold": true,
               "color": "#1F78B4"
             },
             {
-              "text": "（土地所有者・隣接土地所有者・関係人（借地人・耕作人等））\n\n",
+              "text": "（土地所有者・隣接土地所有者・関係人（借地人・耕作人等））",
               "bold": false,
               "color": "#000000"
-            },
+            }
+          ],
+          "fontSize": 16
+        }
+      },
+      {
+        "body": {
+          "textRuns": [
             {
               "text": "　事業用地内の土地所有者および隣接土地所有者に対して境界立会の日時、場所等を記した依頼通知をあらかじめお送りします。\n",
               "bold": false,
@@ -1127,20 +1141,34 @@
         "body": {
           "textRuns": [
             {
-              "text": "②境界立会\n\n",
+              "text": "②境界立会",
               "bold": true,
               "color": "#1F78B4"
-            },
+            }
+          ],
+          "fontSize": 16
+        }
+      },
+      {
+        "body": {
+          "textRuns": [
             {
               "text": "イ 境界立会\n",
               "bold": true,
               "color": "#1F78B4"
             },
             {
-              "text": "（土地所有者・隣接土地所有者・関係人（借地人・耕作人等））\n\n",
+              "text": "（土地所有者・隣接土地所有者・関係人（借地人・耕作人等））",
               "bold": false,
               "color": "#000000"
-            },
+            }
+          ],
+          "fontSize": 16
+        }
+      },
+      {
+        "body": {
+          "textRuns": [
             {
               "text": "　事業に必要な土地と隣接土地の境については、隣接する相互の所有者に確認していただきます。\n",
               "bold": true,
@@ -1152,7 +1180,17 @@
               "color": "#000000"
             }
           ],
-          "fontSize": 16
+          "fontSize": 16,
+          "maxWidth": 330
+        },
+        "image": {
+          "maxHeight": 300,
+          "maxWidth": 370,
+          "images": [
+            {
+              "imagePath": "aramashi3_9.png"
+            }
+          ]
         }
       },
       {
@@ -1174,21 +1212,12 @@
               "color": "#000000"
             },
             {
-              "text": "　□ 土地に関する資料等をお持ちの方は、その資料等　",
+              "text": "　□ 土地に関する資料等をお持ちの方は、その資料等",
               "bold": false,
               "color": "#000000"
             }
           ],
           "fontSize": 16
-        },
-        "image": {
-          "maxHeight": 200,
-          "maxWidth": 290,
-          "images": [
-            {
-              "imagePath": "aramashi3_9.png"
-            }
-          ]
         }
       }
     ]
@@ -1239,10 +1268,17 @@
         "body": {
           "textRuns": [
             {
-              "text": "②境界立会\n\n",
+              "text": "②境界立会",
               "bold": true,
               "color": "#1F78B4"
-            },
+            }
+          ],
+          "fontSize": 16
+        }
+      },
+      {
+        "body": {
+          "textRuns": [
             {
               "text": "ウ 土地境界立会確認書ヘの署名・押印\n",
               "bold": true,
@@ -1357,7 +1393,7 @@
         "table": {
           "rows": 4,
           "columns": 3,
-          "indent": 1,
+          "indent": 0,
           "padding": 2,
           "cells": [
             {
@@ -1380,7 +1416,7 @@
                   "text": "土地への立入りは、所有者の了解を得て、原則、日出から日没までの間に行います。"
                 }
               ],
-              "maxWidth": 320
+              "maxWidth": 350
             },
             {
               "textRuns": [
@@ -1402,7 +1438,7 @@
                   "text": "一筆の土地の一部に他の部分と異なる地目の土地があるとき、または一筆の土地に他の部分と異なる権利（借地権、耕作権等）が設定されているときは、それぞれ異なる地目の土地ごと、または異なる権利が設定されている土地ごとに測量を行います。"
                 }
               ],
-              "maxWidth": 320
+              "maxWidth": 350
             },
             {
               "textRuns": [
@@ -1424,7 +1460,7 @@
                   "text": "建物等の主要な物件が現地にある場合は、その位置の測量を行います。"
                 }
               ],
-              "maxWidth": 320
+              "maxWidth": 350
             },
             {
               "textRuns": [
@@ -1451,13 +1487,13 @@
                   "text": "します。"
                 }
               ],
-              "maxWidth": 320
+              "maxWidth": 350
             }
           ]
         },
         "image": {
-          "maxHeight": 300,
-          "maxWidth": 290,
+          "maxHeight": 400,
+          "maxWidth": 310,
           "images": [
             {
               "imagePath": "aramashi3_11.png"
