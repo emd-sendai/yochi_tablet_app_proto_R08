@@ -47,7 +47,7 @@ namespace WpfApp.Screens.Menu.ViewModels
                 if (pwDialog.ShowDialog() == true)
                 {
                     // パスワードが正解の場合
-                    if (pwVm.Result == "0000")
+                    if (pwVm.Result)
                     {
                         //メッセージウィンドウを表示
                         var vm = new MessageDialogViewModel
@@ -66,12 +66,6 @@ namespace WpfApp.Screens.Menu.ViewModels
                         {
                             IsLeftDrawerOpen = true;
                         }
-                    }
-                    // パスワードが不正解の場合
-                    else
-                    {
-                        //メッセージウィンドウを表示
-                        _message.ShowMessage("パスワードが違います");
                     }
                 }
             }

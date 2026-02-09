@@ -141,23 +141,11 @@ namespace WpfApp.Screens.Documents.ViewModels
                 if (pwDialog.ShowDialog() == true)
                 {
                     // パスワードが正しい場合
-                    if (pwVm.Result == "0000")
+                    if (pwVm.Result)
                     {
                         isPasswordCorrect = true;
-                        
                         // 地権者ユーザ選択画面を表示する
                         OpenLandownerSelectWindow();
-                    }
-                    // パスワードが誤っている場合
-                    else
-                    {
-                        isPasswordCorrect = false;
-
-                        //地権者ユーザの選択を初期化
-                        SelectedLandowner = null;
-
-                        //メッセージウィンドウを表示
-                        _message.ShowMessage("パスワードが違います");
                     }
                 }
             }
