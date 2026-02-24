@@ -13,30 +13,25 @@ namespace WpfApp
     {
         private NavigationService navigationService = default!;
         private IDialogService dialogService = default!;
-        private IAppPathService appPathService = default!;
         private ILoggingService loggingService = default!;
 
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
 
-            appPathService = new AppPathService();
-            var initializer = new ResourceInitializeService(appPathService);
+            var initializer = new ResourceInitializeService();
 
             loggingService = new LoggingService();
 
             try
             {
-                // 初回起動時のみすべての初期ファイルをローカルフォルダへコピーする
-                //initializer.InitializeIfNeeded();
-                // 必須ファイルが存在しない場合はローカルフォルダへコピーする
-                //initializer.EnsureRequiredResources();
+                // LocalAppDataに必須ファイルが存在しない場合、ProgramFilesから初期ファイルをコピーする
+                initializer.EnsureRequiredResources();
             }
             catch (Exception ex)
             {
-                // MSIX ではログ出力推奨（メモ）
-                // アプリを落とさない
-                Debug.WriteLine($"[ERROR] コンテンツディレクトリのコピー時にエラーが発生しました");
+                Debug.WriteLine($"[ERROR] 必須ファイルのコピー時にエラーが発生しました");
+                // ログファイルを作成する
                 loggingService.LogError(ex);
             }
 

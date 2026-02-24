@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+	<Fragment>
+		<DirectoryRef Id="DataFolder">
+			<Component Id="AppResourcesDataComponent" Guid="7572F335-E0C3-4403-8402-9C4BBA6554E4">
+				<File Id="filUBW2BHlrSNqYp2E90ERp9GDzvgw" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\Data\landowners.json" />
+				<File Id="filPx.QeTP5GZO.xk_4aU8RuWIwwbE" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\Data\works.json" />
+				<!-- KeyPath 用レジストリ -->
+				<RegistryValue Root="HKCU" Key="Software\YouchiNegoProto\YouchiNego\AppResources\Data" Name="Installed" Type="integer" Value="1" KeyPath="yes"/>
+			</Component>
+		</DirectoryRef>
+
+		<DirectoryRef Id="ButtonSettingsFolder">
+			<Component Id="AppResourcesButtonSettingsComponent" Guid="B7EA8C2C-0A9A-4040-AD54-3BBCE7B894EC">
+				<File Id="filDgtyfo..dtZSneo69c7xpT_7RQg" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\Data\ButtonSettings\aramashiButtons.json" />
+				<File Id="filBfP7npromrxDy_b5ciJqKyxBKbQ" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\Data\ButtonSettings\documentLandownerButtons.json" />
+				<File Id="filxF5dMyZfvkXTKQyFPw1czu6GlbE" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\Data\ButtonSettings\documentWorksButtons.json" />
+				<File Id="filT9tp9gxn7tn53ZXhuRvIE78oWoo" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\Data\ButtonSettings\othersButtons.json" />
+				<!-- KeyPath 用レジストリ -->
+				<RegistryValue Root="HKCU" Key="Software\YouchiNegoProto\YouchiNego\AppResources\Data\ButtonSettings" Name="Installed" Type="integer" Value="1" KeyPath="yes"/>
+			</Component>
+		</DirectoryRef>
+	</Fragment>
+	<Fragment>
+		<ComponentGroup Id="AppResourcesData">
+			<ComponentRef Id="AppResourcesDataComponent" />
+			<ComponentRef Id="AppResourcesButtonSettingsComponent" />
+		</ComponentGroup>
+	</Fragment>
+</Wix>

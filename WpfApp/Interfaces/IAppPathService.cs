@@ -7,8 +7,6 @@
     {
         string AppRoot { get; }
 
-        string InitializeFlagFile { get; }
-
         string LogsDire { get; }
         string AppResourcesRoot { get; }
 

@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+	
+	<Package Name="R7年度用地交渉試作品アプリ" Manufacturer="YouchiNegoProto" Version="1.0.0.0"
+		 ProductCode="*" InstallerVersion="500" Scope="perMachine" Compressed="yes"
+		 Codepage="932" Language="1041" ShortNames="no" UpgradeCode="C906C57E-50ED-4848-829D-8F062AA7A68B">
+		<MajorUpgrade  AllowDowngrades="no" DowngradeErrorMessage="新しいバージョンが既にインストールされています。"
+					   Schedule="afterInstallInitialize"  IgnoreRemoveFailure="no"/>
+
+		<!-- CAB を MSI に埋め込む -->
+		<Media Id="1" Cabinet="cab1.cab" EmbedCab="yes" />
+
+		<!-- ProgramFiles -->
+		<StandardDirectory Id="ProgramFiles64Folder">
+			
+			<Directory Id="ProgramFilesManufacturerFolder" Name="YouchiNegoProto">
+				<Directory Id="ProgramFilesProductFolder" Name="YouchiNego"/>
+			</Directory>
+
+			<Component Id="ProgramFilesFolders" Guid="02F935DA-7939-4CFF-B08E-F9D6748E3DE2" Directory="ProgramFilesManufacturerFolder">
+				<CreateFolder />
+
+				<CreateFolder  Directory="ProgramFilesProductFolder"/>
+			</Component>
+			
+		</StandardDirectory>
+		
+		<!-- LocalAppData（アプリ内処理専用ディレクトリ） -->
+		<StandardDirectory Id="LocalAppDataFolder">
+			<!-- Manufacturer フォルダ -->
+			<Directory Id="AppManufacturerFolder" Name="YouchiNegoProto">
+				<!-- Product フォルダ -->
+				<Directory Id="AppProductFolder" Name="YouchiNego">
+					<!-- AppResources フォルダ -->
+					<Directory Id="AppResourcesFolder" Name="AppResources">
+						
+						<!-- Data フォルダ (サブフォルダ含む)-->
+						<Directory Id="DataFolder" Name="Data">
+							<Directory Id="ButtonSettingsFolder" Name="ButtonSettings"/>
+						</Directory>
+						<!-- DocumentResources フォルダ (サブフォルダ含む)-->
+						<Directory Id="DocumentResourcesFolder" Name="DocumentResources">
+							<Directory Id="DRAramashiFolder" Name="Aramashi">
+								<Directory Id="DRAAramashiFolder" Name="Aramashi"/>
+								<Directory Id="DRAOthersFolder" Name="Others">
+									<Directory Id="DRAOthers002Folder" Name="002"/>
+									<Directory Id="DRAOthers003Folder" Name="003"/>
+									<Directory Id="DRAOthers004Folder" Name="004"/>
+								</Directory>
+							</Directory>
+							<Directory Id="DRDocumentsFolder" Name="Documents">
+								<Directory Id="DRDLandownersFolder" Name="Landowners">
+									<Directory Id="DRDL001Folder" Name="001">
+										<Directory Id="DRDL001D01Folder" Name="Document01"/>
+										<Directory Id="DRDL001D02Folder" Name="Document02"/>
+										<Directory Id="DRDL001D04Folder" Name="Document04"/>
+										<Directory Id="DRDL001D05Folder" Name="Document05"/>
+										<Directory Id="DRDL001D06Folder" Name="Document06"/>
+										<Directory Id="DRDL001D07Folder" Name="Document07"/>
+									</Directory>
+								</Directory>
+								<Directory Id="DRDWorksFolder" Name="Works">
+									<Directory Id="DRDWD1Folder" Name="Document01"/>
+									<Directory Id="DRDWD2Folder" Name="Document02"/>
+									<Directory Id="DRDWD3Folder" Name="Document03"/>
+									<Directory Id="DRDWD5Folder" Name="Document05"/>
+								</Directory>
+							</Directory>
+						</Directory>
+						<!-- MediaResources フォルダ (サブフォルダ含む)-->
+						<Directory Id="MediaResourcesFolder" Name="MediaResources">
+							<Directory Id="MRAramashiFolder" Name="Aramashi">
+								<Directory Id="MRAMainFolder" Name="Main"/>
+								<Directory Id="MRAPartsFolder" Name="Parts">
+									<Directory Id="MRAPAramashiFolder" Name="Aramashi">
+										<Directory Id="MRAPA001Folder" Name="001"/>
+									</Directory>
+									<Directory Id="MRAPOthersFolder" Name="Others">
+									</Directory>
+								</Directory>
+							</Directory>
+						</Directory>
+						<!-- SlideResources フォルダ (サブフォルダ含む)-->
+						<Directory Id="SlideResourcesFolder" Name="SlideResources">
+							<Directory Id="SRAramashiFolder" Name="Aramashi"/>
+							<Directory Id="SROthersFolder" Name="Others"/>
+						</Directory>
+						
+					</Directory>
+					<!-- Logs フォルダ -->
+					<Directory Id="LogsFolder" Name="Logs"/>
+					
+				</Directory>
+			</Directory>
+
+			<Component Id="AppDataFolders" Directory="AppManufacturerFolder" Guid="BB66779D-F406-4838-B67F-5E334ABCBFF6">
+
+				<CreateFolder/>
+				<CreateFolder Directory="MRAPOthersFolder"/>
+				<CreateFolder Directory="LogsFolder"/>
+				
+				<!-- Manufacturer フォルダ -->
+				<RemoveFolder Id="RemoveAppManufacturerFolder" On="uninstall"/>
+
+				<!-- Product フォルダ -->
+				<RemoveFolder Id="RemoveAppProductFolder" Directory="AppProductFolder" On="uninstall"/>
+
+				<!-- AppResources フォルダ -->
+				<RemoveFolder Id="RemoveAppResourcesFolder" Directory="AppResourcesFolder" On="uninstall"/>
+
+				<!-- Data フォルダ (サブフォルダ含む)-->
+				<RemoveFolder Id="RemoveDataFolder" Directory="DataFolder" On="uninstall"/>
+				<RemoveFolder Id="RemoveButtonSettingsFolder" Directory="ButtonSettingsFolder" On="uninstall"/>
+
+				<!-- DocumentResources フォルダ (サブフォルダ含む)-->
+				<RemoveFolder Id="RemoveDocumentResourcesFolder" Directory="DocumentResourcesFolder" On="uninstall"/>
+				<RemoveFolder Id="RemoveDRAramashiFolder" Directory="DRAramashiFolder" On="uninstall"/>
+				<RemoveFolder Id="RemoveDRAAramashiFolder" Directory="DRAAramashiFolder" On="uninstall"/>
+				<RemoveFolder Id="RemoveDRAOthersFolder" Directory="DRAOthersFolder" On="uninstall"/>
+				<RemoveFolder Id="RemoveDRAOthers002Folder" Directory="DRAOthers002Folder" On="uninstall"/>
+				<RemoveFolder Id="RemoveDRAOthers003Folder" Directory="DRAOthers003Folder" On="uninstall"/>
+				<RemoveFolder Id="RemoveDRAOthers004Folder" Directory="DRAOthers004Folder" On="uninstall"/>
+				<RemoveFolder Id="RemoveDRDocumentsFolder" Directory="DRDocumentsFolder" On="uninstall"/>
+				<RemoveFolder Id="RemoveDRDLandownersFolder" Directory="DRDLandownersFolder" On="uninstall"/>
+				<RemoveFolder Id="RemoveDRDL001Folder" Directory="DRDL001Folder" On="uninstall"/>
+				<RemoveFolder Id="RemoveDRDL001D01Folder" Directory="DRDL001D01Folder" On="uninstall"/>
+				<RemoveFolder Id="RemoveDRDL001D02Folder" Directory="DRDL001D02Folder" On="uninstall"/>
+				<RemoveFolder Id="RemoveDRDL001D04Folder" Directory="DRDL001D04Folder" On="uninstall"/>
+				<RemoveFolder Id="RemoveDRDL001D05Folder" Directory="DRDL001D05Folder" On="uninstall"/>
+				<RemoveFolder Id="RemoveDRDL001D06Folder" Directory="DRDL001D06Folder" On="uninstall"/>
+				<RemoveFolder Id="RemoveDRDL001D07Folder" Directory="DRDL001D07Folder" On="uninstall"/>
+				<RemoveFolder Id="RemoveDRDWorksFolder" Directory="DRDWorksFolder" On="uninstall"/>
+				<RemoveFolder Id="RemoveDRDWD1Folder" Directory="DRDWD1Folder" On="uninstall"/>
+				<RemoveFolder Id="RemoveDRDWD2Folder" Directory="DRDWD2Folder" On="uninstall"/>
+				<RemoveFolder Id="RemoveDRDWD3Folder" Directory="DRDWD3Folder" On="uninstall"/>
+				<RemoveFolder Id="RemoveDRDWD5Folder" Directory="DRDWD5Folder" On="uninstall"/>
+
+				<!-- MediaResources フォルダ (サブフォルダ含む)-->
+				<RemoveFolder Id="RemoveMediaResourcesFolder" Directory="MediaResourcesFolder" On="uninstall"/>
+				<RemoveFolder Id="RemoveMRAramashiFolder" Directory="MRAramashiFolder" On="uninstall"/>
+				<RemoveFolder Id="RemoveMRAMainFolder" Directory="MRAMainFolder" On="uninstall"/>
+				<RemoveFolder Id="RemoveMRAPartsFolder" Directory="MRAPartsFolder" On="uninstall"/>
+				<RemoveFolder Id="RemoveMRAPAramashiFolder" Directory="MRAPAramashiFolder" On="uninstall"/>
+				<RemoveFolder Id="RemoveMRAPA001Folder" Directory="MRAPA001Folder" On="uninstall"/>
+				<RemoveFolder Id="RemoveMRAPOthersFolder" Directory="MRAPOthersFolder" On="uninstall"/>
+
+				<!-- SlideResources フォルダ (サブフォルダ含む)-->
+				<RemoveFolder Id="RemoveSlideResourcesFolder" Directory="SlideResourcesFolder" On="uninstall"/>
+				<RemoveFolder Id="RemoveSRAramashiFolder" Directory="SRAramashiFolder" On="uninstall"/>
+				<RemoveFolder Id="RemoveSROthersFolder" Directory="SROthersFolder" On="uninstall"/>
+
+				<!-- Logs フォルダ -->
+				<RemoveFolder Id="RemoveLogsFolder" Directory="LogsFolder" On="uninstall"/>
+
+				<!-- KeyPath 用レジストリ -->
+				<RegistryValue Root="HKCU" Key="Software\YouchiNegoProto" Name="Installed" Type="integer" Value="1" KeyPath="yes"/>
+			</Component>
+
+		</StandardDirectory>
+
+		<!-- デスクトップショートカット -->
+		<StandardDirectory Id="DesktopFolder">
+			<Component Id="CreateDesktopShortcut" Guid="9B398AC6-E47A-47BB-9752-80A68356F669">
+				<Shortcut Id="DesktopShortcut" Name="R7年度用地交渉試作品アプリ" Target="[ProgramFilesProductFolder]YouchiNego.exe"
+						  WorkingDirectory="ProgramFilesProductFolder" Directory="DesktopFolder"/>
+				<RemoveFolder Id="RemoveDesktopShortcutOnUninstall" On="uninstall" />
+				<!-- KeyPath 用レジストリ -->
+				<RegistryValue Root="HKCU" Key="Software\YouchiNegoProto\YouchiNego\Shortcuts" Name="desktop" Type="integer" Value="1" KeyPath="yes" />
+			</Component>
+		</StandardDirectory>
+		
+		<!-- スタートメニューショートカット -->
+		<StandardDirectory Id="ProgramMenuFolder">
+			<Component Id="CreateStartMenuShortcut" Guid="0AB88126-4A23-4DE2-9FBB-824CC0912578">
+				<Shortcut Id="StartMenuShortcut" Name="R7年度用地交渉試作品アプリ" Target="[ProgramFilesProductFolder]YouchiNego.exe"
+						  WorkingDirectory="ProgramFilesProductFolder" Directory="ProgramMenuFolder"/>
+				<RemoveFolder Id="RemoveStartMenuShortcutOnUninstall" On="uninstall" />
+				<!-- KeyPath 用レジストリ -->
+				<RegistryValue Root="HKCU" Key="Software\YouchiNegoProto\YouchiNego\Shortcuts" Name="startmenu" Type="integer" Value="1" KeyPath="yes" />
+			</Component>
+		</StandardDirectory>
+	
+			<!-- Feature -->
+		<Feature Id="MainFeature" Level="1">
+			<ComponentRef Id="ProgramFilesFolders"/>
+			<ComponentRef Id="AppDataFolders"/>
+			<ComponentRef Id="CreateDesktopShortcut"/>
+			<ComponentRef Id="CreateStartMenuShortcut"/>
+			<ComponentGroupRef Id="PublishedFiles" />
+			<ComponentGroupRef Id="AppResourcesData" />
+			<ComponentGroupRef Id="AppResourcesDocumentResources" />
+			<ComponentGroupRef Id="AppResourcesMediaResources" />
+			<ComponentGroupRef Id="AppResourcesSlideResources" />
+		</Feature>
+	
+	</Package>
+	
+</Wix>

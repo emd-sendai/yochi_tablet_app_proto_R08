@@ -30,6 +30,9 @@
                     <Button Content="管理資料" FontSize="20" VerticalAlignment="Center"
                             Style="{StaticResource MaterialDesignFlatButton}" 
                             Command="{Binding GoToAdminDocumentCommand}"/>
+                    <Button Content="データの初期化" FontSize="20" VerticalAlignment="Center" Margin="0,30,0,0"
+                            Style="{StaticResource MaterialDesignFlatButton}" 
+                            Command="{Binding CleanupAppDataCommand}"/>
                 </StackPanel>
             </materialDesign:DrawerHost.LeftDrawerContent>
         </materialDesign:DrawerHost>

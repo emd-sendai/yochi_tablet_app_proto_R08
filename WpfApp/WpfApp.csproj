@@ -9,23 +9,12 @@
 
 	<!-- 配布用自己完結型アプリケーション設定 -->
 	<RuntimeIdentifier>win-x64</RuntimeIdentifier>
-	<PublishSingleFile>true</PublishSingleFile>
 	<SelfContained>true</SelfContained>
 	<PublishSingleFile>false</PublishSingleFile>
 	<PublishTrimmed>false</PublishTrimmed>
 	<PublishReadyToRun>false</PublishReadyToRun>
 	<AssemblyName>YouchiNego</AssemblyName>
-
   </PropertyGroup>
-
-	<!-- アプリケーションの発行後、Releaseフォルダ配下に配布用自己完結型アプリケーションをコピー -->
-	<Target Name="AfterPublish">
-		<ItemGroup>
-			<PublishedFiles Include="$(PublishDir)**\*.*" />
-		</ItemGroup>
-
-		<Copy SourceFiles="@(PublishedFiles)" DestinationFolder="$(ProjectDir)bin\Release\net8.0-windows\" SkipUnchangedFiles="true" Recursive="true" />
-	</Target>
 
   <ItemGroup>
     <Content Include="Data\ButtonSettings\documentLandownerButtons.json">

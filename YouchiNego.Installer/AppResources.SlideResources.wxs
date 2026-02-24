@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+	<Fragment>
+
+		<DirectoryRef Id="SRAramashiFolder">
+			<Component Id="SRAramashi" Guid="FC26BA13-748A-4985-931C-1B678910F1D9">
+				<File Id="fil5jRI9lw5NpetnLRoWV3GnwIwtiE" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\aramashi1.png" />
+				<File Id="filWG_cAl301gtyqNiML9BywZmufpo" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\aramashi10_1.png" />
+				<File Id="filLKNw68ioLNkdwHO8tJPzeR2G91Y" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\aramashi2_1_1.png" />
+				<File Id="filkSCixhdfJOIpTPNhbEiVI7vJTwg" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\aramashi2_1_2.png" />
+				<File Id="filUm.r0XU5p8qsqs7UQwXJQ.0aXyA" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\aramashi3_10_1.png" />
+				<File Id="filDauJyT1XYRJBTDLiZajbutilMd4" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\aramashi3_10_2.png" />
+				<File Id="fil44SyAgy49Vgqfbdv56j0ltdeNQo" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\aramashi3_11.png" />
+				<File Id="fil7Han9lRDaEqdQEom6TiGYe240yM" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\aramashi3_12.png" />
+				<File Id="filOGQFkUrySXvOQ5yDCLx75swzYjI" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\aramashi3_13.png" />
+				<File Id="fil_zoaS69pC.8jl6TX6sRBcRdMpSI" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\aramashi3_14_1.png" />
+				<File Id="filmzEenTDTgA86LBtYq9NVdLHVP6Y" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\aramashi3_14_2.png" />
+				<File Id="fil43eduyOtsn1xn7Pk3urb0VnUQsU" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\aramashi3_15.png" />
+				<File Id="filrdmkt1IMoJZMGYo.41D00rrhed4" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\aramashi3_16.png" />
+				<File Id="filV0WoAvji0G4YTt8KVj8mjJoBy5o" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\aramashi3_17.png" />
+				<File Id="fil_87HEWh41KNuCF6KMZyZWb0po4w" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\aramashi3_18_1.png" />
+				<File Id="filylmIh7kX.YoUb6xcjve7b_VBGfI" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\aramashi3_18_2.png" />
+				<File Id="filseiP1AZ38J_OHB2iOlea6aGYKgo" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\aramashi3_19.png" />
+				<File Id="filg3_KKdA.BhvoWXzyU_EdAmRyuag" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\aramashi3_20.png" />
+				<File Id="filEz9soallNls4Dh.09zdL5yan2Ak" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\aramashi3_21.png" />
+				<File Id="filDmG2oKxxRAIGIFnbnkRgrJchjUE" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\aramashi3_2_1.png" />
+				<File Id="filocNMVmHH4zJmkD2Taeq9E8R9UHc" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\aramashi3_2_2.png" />
+				<File Id="filoiP8qHQ17Ga4uzB5EwHXcMtvgio" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\aramashi3_3.png" />
+				<File Id="filF42n9eF3eTA3R7ZX1j_tntbUfX4" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\aramashi3_4.png" />
+				<File Id="filqhb4w..s4oltPNbo4ZWibenbxTI" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\aramashi3_5.png" />
+				<File Id="filmSEPiUQ8GJs14ST77039oanlazI" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\aramashi3_6.png" />
+				<File Id="filfVEmS4pY8mow6DPyhtjaqxM9rFg" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\aramashi3_9.png" />
+				<File Id="filqXkcybBREL63NPUpGDj6rCIzxzQ" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\aramashi4_1_1.png" />
+				<File Id="filxng8P8uYiRdBUdRXa2JQ7VOoDMg" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\aramashi4_1_2.png" />
+				<File Id="filo8OoPLpIf0wVZTifTs8AaoFVsyE" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\aramashi4_1_3.png" />
+				<File Id="fild5ZY2zG2blBjADXBEDUH2fEBS8A" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\aramashi4_2_1.png" />
+				<File Id="filsAEJsQJnAXti4zarOQevHda6x88" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\aramashi4_2_2.png" />
+				<File Id="filbm__YZoFiQvfThEl.ecUw61.bhg" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\aramashi4_4_1.png" />
+				<File Id="filjbFhyljaMRUWgXJ8pm4eINT6iew" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\aramashi4_4_2.png" />
+				<File Id="filuTY8GiEla7IeDwT30QO2Kc1Sh94" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\aramashi5_1.png" />
+				<File Id="filc.ohiABQ1q6ROPZSQsYThZ9JJjA" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\aramashi5_3.png" />
+				<File Id="filY4keE9ts2mis9jPYeGDfuKBkzJs" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\aramashi5_4.png" />
+				<File Id="fil0vqPRGwzLTAEtUMd2fYvI5uhk0I" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\aramashi5_5.png" />
+				<File Id="filvhte9IWrSGBNvm7oikiuVhXc8Co" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\aramashi5_6.png" />
+				<File Id="filuoONtapEl_xxNmGagChSp9cuGcQ" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\aramashi6_1.png" />
+				<File Id="filn2tA6ecZYHdmCpUa1MCmqAOsC9M" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\aramashi6_2.png" />
+				<File Id="filTzhdozDD81Za3ok8fcL9YRAkvkc" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\aramashi7_1_1.png" />
+				<File Id="filRJinWAiZRKg7PNde5Yp.Oo5ANvA" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\aramashi7_1_2.png" />
+				<File Id="fil9kNyrOSiAxSSquW44Of00WZFqks" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\aramashi7_1_3.png" />
+				<File Id="filRk1aTW7.lKBEMwrPHHkeLMALN9A" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\aramashi7_1_4.png" />
+				<File Id="filLsceuJ8vN0u3VDdBTG.04iPMlFw" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\aramashi7_2_1.png" />
+				<File Id="filox4Xgz90x9V.JFbbiNoqOT9fZ78" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\aramashi7_2_2.png" />
+				<File Id="filjbSXW2ZnWG23llxMg.AGw3i8lEk" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\aramashi7_2_3.png" />
+				<File Id="filkiQjnSgz_GN8tlAkpKN7DLpEZP0" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\aramashi7_2_4.png" />
+				<File Id="filkzehOpxCX3qR0Bnrz.UbHNIDSGE" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\aramashi7_3_1.png" />
+				<File Id="filjucSipuCk.yc8sAb0OxdHyVv8v8" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\aramashi7_3_2.png" />
+				<File Id="filcUatjZGThbr2aYAWcyY_MVW9HeQ" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\aramashi7_3_3.png" />
+				<File Id="filk1.KIsyIF6A_3PW32jMOgSe97qE" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\aramashi8_1_1.png" />
+				<File Id="filq2JDfDUfj8CVbQb_r_ixiW_D.4k" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\aramashi8_1_2.png" />
+				<File Id="filKCIL4ZpfkS47AiPaYRV9dCrnqOc" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\aramashi9_1_1.png" />
+				<File Id="filKFi.j6MmMb7koJRp1JqrQuZ_2Xw" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\aramashi9_1_2.png" />
+				<File Id="filhmGo4iDc89wPBIIyWNgqArsE_yc" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\aramashi9_1_3.png" />
+				<File Id="filtfsOPc69Zf7fEmF5P8Ucfc0XOP0" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\slides_aramashi1.json" />
+				<File Id="filJMnCzhVZ6KkY6j0oFN8acFX7S28" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\slides_aramashi10.json" />
+				<File Id="filzYFY4VbmxpfGWxtcHRYcSNCfVXA" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\slides_aramashi2.json" />
+				<File Id="fil1845om_1e2WE9uZWoVH2OkMf7zA" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\slides_aramashi3.json" />
+				<File Id="filgNczg8VnXOFL0H53JGzDVJjZOXw" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\slides_aramashi4.json" />
+				<File Id="filbIAPrFcr0RzbTorAQLDYEpj5FwA" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\slides_aramashi5.json" />
+				<File Id="filn7kyHambtuFpeOWsTe9dulOeLe8" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\slides_aramashi6.json" />
+				<File Id="filk9akoECX8924k.rwG8BpGJy0c.c" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\slides_aramashi7.json" />
+				<File Id="filcr5PEP2dlQAMoWxZ.k_Ha6wP8o4" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\slides_aramashi8.json" />
+				<File Id="filZbv8WcgUMjMCzCfgu3_Oee.zB3k" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Aramashi\slides_aramashi9.json" />
+				<!-- KeyPath 用レジストリ -->
+				<RegistryValue Root="HKCU" Key="Software\YouchiNegoProto\YouchiNego\AppResources\SlideResources\Aramashi" Name="Installed" Type="integer" Value="1" KeyPath="yes"/>
+			</Component>
+		</DirectoryRef>
+
+		<DirectoryRef Id="SROthersFolder">
+			<Component Id="SROthers" Guid="6A1186C0-3B0E-496E-95DD-4284DC300AB3">
+				<File Id="filbZxGhJY.iCHO7MdsFyrc90QSAdU" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Others\others001_1_1.png" />
+				<File Id="fil0l6H3Q2OzHwcoEsWJsD7ZKpGLV8" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Others\others001_2_1.png" />
+				<File Id="filY7DvzjpOIjGauvP_.TbB75SCNmw" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Others\others002_1_1.png" />
+				<File Id="filZpnw5L0e2hRck9eIuBOP9ELFCOI" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Others\others002_3_1.png" />
+				<File Id="filplk7hZh9BVa6nPRKZ770rS0MzVg" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Others\others002_3_2.png" />
+				<File Id="filSNRE3s3WFvN9nEEe4edXOgKOto4" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Others\others002_3_3.png" />
+				<File Id="filfjSMi8YSXU4O6wdGJn1.w1W.klg" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Others\slides_others001.json" />
+				<File Id="filRS28bnFPxhqfF4TW0lxKGEglPzs" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Others\slides_others002.json" />
+				<File Id="filRMSgjms96v.6AOg8NjPLLzT.hqc" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Others\slides_others003.json" />
+				<File Id="filDGEoXkGSCnLhqmyeujXDYiKu9JQ" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\SlideResources\Others\slides_others004.json" />
+				<!-- KeyPath 用レジストリ -->
+				<RegistryValue Root="HKCU" Key="Software\YouchiNegoProto\YouchiNego\AppResources\SlideResources\Others" Name="Installed" Type="integer" Value="1" KeyPath="yes"/>
+			</Component>
+		</DirectoryRef>
+		
+	</Fragment>
+	
+	<Fragment>
+		<ComponentGroup Id="AppResourcesSlideResources">
+			<ComponentRef Id="SRAramashi" />
+			<ComponentRef Id="SROthers" />
+		</ComponentGroup>
+	</Fragment>
+</Wix>

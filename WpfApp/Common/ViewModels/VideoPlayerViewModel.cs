@@ -85,39 +85,55 @@ namespace WpfApp.Common.ViewModels
             _path = new AppPathService();
             _video = new VideoService();
 
-            // 動画のパスを取得する
-            var path = _video.GetVideoFilePath(folderPath);
-
-            if (!string.IsNullOrWhiteSpace(path) && File.Exists(path)){
-                VideoSource = new Uri(path);
-                Debug.WriteLine($"[DEBUG] 動画のパスを設定しました: {path}");
-            }
-            else
+            try
             {
-                _message.ShowMessage("動画が存在しません。");
-                Debug.WriteLine($"[ERROR] 動画が存在しません: {path}");
-            }
+                // 動画のパスを取得する
+                var path = _video.GetVideoFilePath(folderPath);
 
-            // 全体動画の場合
-            if (category == MediaCategory.Main)
-            {
-                // チャプターを取得する
-                var chapters = _video.GetVideoChapterList(_path.MediaMeinAramashiChapterPath);
-                // チャプターを設定する
-                Chapters = new ObservableCollection<Chapter>(chapters);
-
-                if (!Chapters.Any())
+                if (!string.IsNullOrWhiteSpace(path) && File.Exists(path))
                 {
+                    VideoSource = new Uri(path);
+                    Debug.WriteLine($"[DEBUG] 動画のパスを設定しました: {path}");
+                }
+                else
+                {
+                    _message.ShowMessage("動画が存在しません。");
+                    Debug.WriteLine($"[ERROR] 動画が存在しません: {path}");
+                }
+
+                // 全体動画の場合
+                if (category == MediaCategory.Main)
+                {
+                    // チャプターを取得する
+                    var chapters = _video.GetVideoChapterList(_path.MediaMeinAramashiChapterPath);
+                    // チャプターを設定する
+                    Chapters = new ObservableCollection<Chapter>(chapters);
+
+                    if (!Chapters.Any())
+                    {
+                        Chapters.Add(new Chapter("Start", TimeSpan.Zero));
+                    }
+                }
+                // 個別動画の場合
+                else
+                {
+                    // チャプター（開始時間のみ）を設定する
+                    Chapters = new ObservableCollection<Chapter>();
                     Chapters.Add(new Chapter("Start", TimeSpan.Zero));
                 }
             }
-            // 個別動画の場合
-            else
+            catch (Exception ex) 
             {
                 // チャプター（開始時間のみ）を設定する
                 Chapters = new ObservableCollection<Chapter>();
                 Chapters.Add(new Chapter("Start", TimeSpan.Zero));
+
+                Debug.WriteLine($"[ERROR] 動画の読み込みに失敗: {ex.Message}");
+                _message.ShowMessage("動画の読み込みに失敗しました。");
+                throw;
             }
+
+
         }
 
         /// <summary>

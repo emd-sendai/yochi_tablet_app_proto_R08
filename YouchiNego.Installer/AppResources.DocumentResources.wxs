@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+	<Fragment>
+		
+		<DirectoryRef Id="DRAAramashiFolder">
+			<Component Id="DRAramashiAramashi" Guid="C5BA4EC5-9B28-48EC-8328-DD5F2A094288">
+				<File Id="fil4LTCJVEA2ajMuzVZJCA1CUCLtgE" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\DocumentResources\Aramashi\Aramashi\補償のあらまし.pdf" />
+				<!-- KeyPath 用レジストリ -->
+				<RegistryValue Root="HKCU" Key="Software\YouchiNegoProto\YouchiNego\AppResources\DocumentResources\Aramashi\Aramashi" Name="Installed" Type="integer" Value="1" KeyPath="yes"/>
+			</Component>
+		</DirectoryRef>
+
+		<DirectoryRef Id="DRAOthers002Folder">
+			<Component Id="DRAramashiOthers002" Guid="540349C1-2E17-4C61-A956-DA51751E40EF">
+				<File Id="fil4Gg7KoTUKVVYBPzpNA3NCa_BC2I" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\DocumentResources\Aramashi\Others\002\譲渡所得税の特例あらまし.pdf" />
+				<!-- KeyPath 用レジストリ -->
+				<RegistryValue Root="HKCU" Key="Software\YouchiNegoProto\YouchiNego\AppResources\DocumentResources\Aramashi\Others\002" Name="Installed" Type="integer" Value="1" KeyPath="yes"/>
+			</Component>
+		</DirectoryRef>
+
+		<DirectoryRef Id="DRAOthers003Folder">
+			<Component Id="DRAramashiOthers003" Guid="7996E88C-AE5B-48DB-964F-1C772E0368B2">
+				<File Id="filpxFPGn6wcXAdQ69t6TrO0a_3gWE" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\DocumentResources\Aramashi\Others\003\国土交通省の公共用地の取得に伴う損失補償基準.pdf" />
+				<File Id="filIvnws3c6BeHKIRir8Bj_ZKBH6x0" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\DocumentResources\Aramashi\Others\003\国土交通省の公共用地の取得に伴う損失補償基準の運用方針.pdf" />
+				<File Id="filAblZLKXETSCZQYX8n8IX8KdjIpA" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\DocumentResources\Aramashi\Others\003\国土交通省損失補償取扱要領.pdf" />
+				<!-- KeyPath 用レジストリ -->
+				<RegistryValue Root="HKCU" Key="Software\YouchiNegoProto\YouchiNego\AppResources\DocumentResources\Aramashi\Others\003" Name="Installed" Type="integer" Value="1" KeyPath="yes"/>
+			</Component>
+		</DirectoryRef>
+
+		<DirectoryRef Id="DRAOthers004Folder">
+			<Component Id="DRAramashiOthers004" Guid="7C0BCE94-A041-413F-95E3-B78A21382A98">
+				<File Id="filzPDnqduSqWKDdKYrW0x7BzNGQgg" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\DocumentResources\Aramashi\Others\004\所有者の所在の把握が難しい土地に関する探索・利活用のためのガイドライン.pdf" />
+				<!-- KeyPath 用レジストリ -->
+				<RegistryValue Root="HKCU" Key="Software\YouchiNegoProto\YouchiNego\AppResources\DocumentResources\Aramashi\Others\004" Name="Installed" Type="integer" Value="1" KeyPath="yes"/>
+			</Component>
+		</DirectoryRef>
+
+		<DirectoryRef Id="DRDL001D01Folder">
+			<Component Id="DRLandowners001D01" Guid="F80A23D2-FC87-4BB4-9801-534FC86C8F3F">
+				<File Id="filiPgKiIFt7L1O9w3alOSjxoJwaiM" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\DocumentResources\Documents\Landowners\001\Document01\02 建物図面.pdf" />
+				<File Id="filVUZnntoQsxyGyf7v8y_HGNXBqkA" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\DocumentResources\Documents\Landowners\001\Document01\04 工作物図面.pdf" />
+				<File Id="fil3btPR079MFHwecQMGgx_MZ_Dc3g" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\DocumentResources\Documents\Landowners\001\Document01\06 立竹木図面.pdf" />
+				<!-- KeyPath 用レジストリ -->
+				<RegistryValue Root="HKCU" Key="Software\YouchiNegoProto\YouchiNego\AppResources\DocumentResources\Documents\Landowners\001\Document01" Name="Installed" Type="integer" Value="1" KeyPath="yes"/>
+			</Component>
+		</DirectoryRef>
+
+		<DirectoryRef Id="DRDL001D02Folder">
+			<Component Id="DRLandowners001D02" Guid="8C0BAFD9-7686-4CF9-85AA-4E28F4454FB4">
+				<File Id="filp5QnkAqbjbJYwe7LOK2yjQ._qpQ" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\DocumentResources\Documents\Landowners\001\Document02\【サンプル】土地評価資料.pdf" />
+				<File Id="filKa1wxYPnYkH40.vgh4mPQ6OOQdg" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\DocumentResources\Documents\Landowners\001\Document02\【サンプル】物件補償金算定資料.pdf" />
+				<!-- KeyPath 用レジストリ -->
+				<RegistryValue Root="HKCU" Key="Software\YouchiNegoProto\YouchiNego\AppResources\DocumentResources\Documents\Landowners\001\Document02" Name="Installed" Type="integer" Value="1" KeyPath="yes"/>
+			</Component>
+		</DirectoryRef>
+
+		<DirectoryRef Id="DRDL001D04Folder">
+			<Component Id="DRLandowners001D04" Guid="41F16E00-EA53-4A13-B78B-BBCF2FF1B271">
+				<File Id="filHDwLgEt9vM0Sjt0q6sta1zZsR3A" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\DocumentResources\Documents\Landowners\001\Document04\【サンプル】戸籍（説明時は個人情報削除）.pdf" />
+				<File Id="filtBktYHs4YgTmkzBTAYR10sRgH_U" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\DocumentResources\Documents\Landowners\001\Document04\【サンプル】相続関係図（説明時は個人情報削除）.pdf" />
+				<File Id="filyASJo4REiiHUKyP2_us6bKZlC8A" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\DocumentResources\Documents\Landowners\001\Document04\（参考）法定相続の変遷.pdf" />
+				<!-- KeyPath 用レジストリ -->
+				<RegistryValue Root="HKCU" Key="Software\YouchiNegoProto\YouchiNego\AppResources\DocumentResources\Documents\Landowners\001\Document04" Name="Installed" Type="integer" Value="1" KeyPath="yes"/>
+			</Component>
+		</DirectoryRef>
+
+		<DirectoryRef Id="DRDL001D05Folder">
+			<Component Id="DRLandowners001D05" Guid="F79C9269-BB48-4484-B547-4F98315DB908">
+				<File Id="filWBg6k3tKlPI6b0oiR5tcqSd1zzo" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\DocumentResources\Documents\Landowners\001\Document05\【サンプル】土地調書.pdf" />
+				<File Id="fil7L44ttqNpFKuZLbdO6pXitjyESE" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\DocumentResources\Documents\Landowners\001\Document05\【サンプル】物件調書.pdf" />
+				<!-- KeyPath 用レジストリ -->
+				<RegistryValue Root="HKCU" Key="Software\YouchiNegoProto\YouchiNego\AppResources\DocumentResources\Documents\Landowners\001\Document05" Name="Installed" Type="integer" Value="1" KeyPath="yes"/>
+			</Component>
+		</DirectoryRef>
+
+		<DirectoryRef Id="DRDL001D06Folder">
+			<Component Id="DRLandowners001D06" Guid="F115E44B-28C5-4135-8470-6DFFE5BE2CF8">
+				<File Id="file.fZt5utfE.bzv0z3ZIpnj6lZPU" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\DocumentResources\Documents\Landowners\001\Document06\【サンプル】損失補償協議書.pdf" />
+				<!-- KeyPath 用レジストリ -->
+				<RegistryValue Root="HKCU" Key="Software\YouchiNegoProto\YouchiNego\AppResources\DocumentResources\Documents\Landowners\001\Document06" Name="Installed" Type="integer" Value="1" KeyPath="yes"/>
+			</Component>
+		</DirectoryRef>
+
+		<DirectoryRef Id="DRDL001D07Folder">
+			<Component Id="DRLandowners001D07" Guid="AD7F140D-C0D8-4996-8BCC-8DE6B5F2758E">
+				<File Id="filh9jJEAepoctNsDRyfHittr7zYfQ" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\DocumentResources\Documents\Landowners\001\Document07\01【サンプル】土地売買契約書.pdf" />
+				<File Id="filG4adso1VrpvJogf5uHYJO6BBrfg" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\DocumentResources\Documents\Landowners\001\Document07\02【サンプル】請求書.pdf" />
+				<File Id="filnjqCuvE_mcYQ35MgLMHdFQWiH6E" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\DocumentResources\Documents\Landowners\001\Document07\03【サンプル】登記原因証明情報兼承諾書.pdf" />
+				<File Id="filMW2RUpq7SWMOAYMQoq4FY6YfqOI" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\DocumentResources\Documents\Landowners\001\Document07\04【サンプル】マイナンバー提供依頼.pdf" />
+				<File Id="filCdHzOEuZcpmX38dE7mCXbsg5tnY" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\DocumentResources\Documents\Landowners\001\Document07\05【サンプル】基礎撤去承諾書（関東）.pdf" />
+				<!-- KeyPath 用レジストリ -->
+				<RegistryValue Root="HKCU" Key="Software\YouchiNegoProto\YouchiNego\AppResources\DocumentResources\Documents\Landowners\001\Document07" Name="Installed" Type="integer" Value="1" KeyPath="yes"/>
+			</Component>
+		</DirectoryRef>
+
+		<DirectoryRef Id="DRDWD1Folder">
+			<Component Id="DRWorksD01" Guid="C3C9AC07-8F70-42C1-A3B3-0ED4AC955BB2">
+				<File Id="filFM7xquEQ2IgUcbjJ.tpnQwzhJsE" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\DocumentResources\Documents\Works\Document01\【サンプル】地図（公図）.pdf" />
+				<!-- KeyPath 用レジストリ -->
+				<RegistryValue Root="HKCU" Key="Software\YouchiNegoProto\YouchiNego\AppResources\DocumentResources\Documents\Works\Document01" Name="Installed" Type="integer" Value="1" KeyPath="yes"/>
+			</Component>
+		</DirectoryRef>
+
+		<DirectoryRef Id="DRDWD2Folder">
+			<Component Id="DRWorksD02" Guid="BFAF1F54-C48E-41FA-8B5A-531753230EBD">
+				<File Id="filMWfz6MBp94vWt_qCGl37YNMquWQ" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\DocumentResources\Documents\Works\Document02\【サンプル】土地登記事項証明書.pdf" />
+				<File Id="filuA4lx4kdM4Si.ejpuiWK_HiNZAU" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\DocumentResources\Documents\Works\Document02\【サンプル】建物登記事項証明書.pdf" />
+				<!-- KeyPath 用レジストリ -->
+				<RegistryValue Root="HKCU" Key="Software\YouchiNegoProto\YouchiNego\AppResources\DocumentResources\Documents\Works\Document02" Name="Installed" Type="integer" Value="1" KeyPath="yes"/>
+			</Component>
+		</DirectoryRef>
+
+		<DirectoryRef Id="DRDWD3Folder">
+			<Component Id="DRWorksD03" Guid="FB1D6E30-FB9B-4AFD-9299-19ABE2DD8672">
+				<File Id="filbHV1p4K3fvF1clJg1Hv9eZkIiFY" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\DocumentResources\Documents\Works\Document03\【サンプル】用地平面図.pdf" />
+				<!-- KeyPath 用レジストリ -->
+				<RegistryValue Root="HKCU" Key="Software\YouchiNegoProto\YouchiNego\AppResources\DocumentResources\Documents\Works\Document03" Name="Installed" Type="integer" Value="1" KeyPath="yes"/>
+			</Component>
+		</DirectoryRef>
+
+		<DirectoryRef Id="DRDWD5Folder">
+			<Component Id="DRWorksD05" Guid="3E8F9CE7-C406-459A-8681-12E66EC30BC3">
+				<File Id="filHkCt6zMBKsx.tgOfYzPjh4V.W.0" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\DocumentResources\Documents\Works\Document05\【サンプル】地積測量図.pdf" />
+				<!-- KeyPath 用レジストリ -->
+				<RegistryValue Root="HKCU" Key="Software\YouchiNegoProto\YouchiNego\AppResources\DocumentResources\Documents\Works\Document05" Name="Installed" Type="integer" Value="1" KeyPath="yes"/>
+			</Component>
+		</DirectoryRef>
+		
+	</Fragment>
+	
+	<Fragment>
+		<ComponentGroup Id="AppResourcesDocumentResources">
+			<ComponentRef Id="DRAramashiAramashi" />
+			<ComponentRef Id="DRAramashiOthers002" />
+			<ComponentRef Id="DRAramashiOthers003" />
+			<ComponentRef Id="DRAramashiOthers004" />
+			<ComponentRef Id="DRLandowners001D01" />
+			<ComponentRef Id="DRLandowners001D02" />
+			<ComponentRef Id="DRLandowners001D04" />
+			<ComponentRef Id="DRLandowners001D05" />
+			<ComponentRef Id="DRLandowners001D06" />
+			<ComponentRef Id="DRLandowners001D07" />
+			<ComponentRef Id="DRWorksD01" />
+			<ComponentRef Id="DRWorksD02" />
+			<ComponentRef Id="DRWorksD03" />
+			<ComponentRef Id="DRWorksD05" />
+		</ComponentGroup>
+	</Fragment>
+</Wix>

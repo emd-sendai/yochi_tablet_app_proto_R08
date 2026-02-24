@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using System.IO;
 using System.Windows;
 using WpfApp.Common.ViewModels;
 using WpfApp.Common.Views;
@@ -17,6 +18,7 @@ namespace WpfApp.Screens.Menu.ViewModels
         private readonly IDialogService _dia;
         private readonly IMessageDialogService _message;
         private readonly ShutdownService _shutdownService;
+        private readonly ResourceInitializeService _initializer;
 
         [ObservableProperty]
         private bool isLeftDrawerOpen;
@@ -27,6 +29,7 @@ namespace WpfApp.Screens.Menu.ViewModels
             _dia = dialogService ?? throw new ArgumentNullException(nameof(dialogService));
             _message = new MessageDialogService();
             _shutdownService = new ShutdownService();
+            _initializer = new ResourceInitializeService();
         }
 
         [RelayCommand]
@@ -89,6 +92,40 @@ namespace WpfApp.Screens.Menu.ViewModels
         }
 
         [RelayCommand]
+        private void CleanupAppData()
+        {
+            // 確認ダイアログを表示
+            if (!_message.ShowConfirm("データを初期化します。よろしいですか？\n※初期化完了後アプリケーションは自動で終了します。"))
+            {
+                return;
+            }
+
+            try
+            {
+                _initializer.CleanupResources();
+            }
+            catch (IOException)
+            {
+                _message.ShowMessage("アプリで使用中のファイルまたは他のアプリで開いているファイルがあります。" +
+                    "\nファイルを閉じてから、もう一度お試しください。");
+                return;
+            }
+            catch (UnauthorizedAccessException)
+            {
+                _message.ShowMessage("アクセス権が不足しているため、ファイルを削除できません。");
+                return;
+            }
+            catch (Exception)
+            {
+                _message.ShowMessage("ファイルを削除できません。\n管理者へお問い合わせください。");
+                return;
+            }
+
+            _shutdownService.Cleanup();
+            Application.Current.Shutdown();
+        }
+
+        [RelayCommand]
         private void GoToAramashiMenu()
         {
             _nav.Navigate(new AramashiMenuViewModel(_nav, _dia));
@@ -104,7 +141,6 @@ namespace WpfApp.Screens.Menu.ViewModels
         private void Exit()
         {
             _shutdownService.Cleanup();
-
             Application.Current.Shutdown();
         }
 

@@ -53,7 +53,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             catch (Exception ex)
             {
                 Debug.WriteLine($"[ERROR] FixedDocument → XPS 書き出し失敗: {ex.Message}");
-                _message.ShowMessage("PDF 作成用 XPS の生成に失敗しました。");
+                _message.ShowMessage("PDF作成用XPSの生成に失敗しました。");
                 throw;
             }
         }
@@ -73,7 +73,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             catch (Exception ex)
             {
                 Debug.WriteLine($"[ERROR] XPS → PDF 印刷処理で失敗: {ex.Message}");
-                _message.ShowMessage("PDF の作成に失敗しました。");
+                _message.ShowMessage("PDFの作成に失敗しました。");
                 throw;
             }
         }

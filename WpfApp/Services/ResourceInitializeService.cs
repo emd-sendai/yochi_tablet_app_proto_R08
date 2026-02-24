@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.IO;
+using System.Windows;
 using WpfApp.Interfaces;
 
 namespace WpfApp.Services
@@ -13,34 +14,15 @@ namespace WpfApp.Services
         private readonly IResourcePathService _sourcePath;
         private readonly ILoggingService _log;
         private readonly IMessageDialogService _message;
+        private readonly ShutdownService _shutdownService;
 
-        public ResourceInitializeService(IAppPathService appPathService)
+        public ResourceInitializeService()
         {
-            _path = appPathService;
+            _path = new AppPathService();
             _sourcePath = new ResourcePathService();
             _log = new LoggingService();
             _message = new MessageDialogService();
-        }
-
-        /// <summary>
-        /// アプリ初回起動時に初期ファイルをLocalAppDataにコピーする
-        /// </summary>
-        public void InitializeIfNeeded()
-        {
-            // 初期ファイル配置完了フラグが存在する場合は処理を行わない
-            if (File.Exists(_path.InitializeFlagFile)) { return; }
-
-            // 設定その他ファイル
-            CopyDirectoryIfNotExists(_sourcePath.DataDire, _path.DataDire);
-            // PDFファイル
-            CopyDirectoryIfNotExists(_sourcePath.DocumentResourcesRoot, _path.DocumentResourcesRoot);
-            // 動画関連ファイル
-            CopyDirectoryIfNotExists(_sourcePath.MediaResourcesRoot, _path.MediaResourcesRoot);
-            // 補償のあらましスライドファイル
-            CopyDirectoryIfNotExists(_sourcePath.SlideResourcesRoot, _path.SlideResourcesRoot);
-
-            // 初期ファイル配置完了フラグを作成する
-            File.WriteAllText(_path.InitializeFlagFile, DateTime.Now.ToString("O"));
+            _shutdownService = new ShutdownService();
         }
 
         /// <summary>
@@ -86,7 +68,7 @@ namespace WpfApp.Services
             // ボタン表示設定ファイル
             CopyDirectoryIfNotExists(_sourcePath.ButtonRoot, _path.ButtonRoot);
 
-            // 直接参照されるPDFファイルが存在するディレクトリ
+            // リンクから直接参照されるPDFファイル
             // 補償のあらまし - その他3
             CopyDirectoryIfNotExists(_sourcePath.Others003PdfDire, _path.Others003PdfDire);
             // 補償のあらまし - その他4
@@ -125,36 +107,34 @@ namespace WpfApp.Services
         {
             if (!Directory.Exists(_path.AppRoot))
             {
-                _message.ShowConfirm("アプリは既に初期化されています。");
+                _message.ShowConfirm("既にデータが初期化されています。");
                 return;
             }
 
             try
             {
                 Directory.Delete(_path.AppRoot, true);
-                _message.ShowConfirm("アプリの初期化が完了しました。");
             }
             catch (IOException ex)
             {
                 Debug.WriteLine($"[ERROR] アプリ内のファイルが使用中か読み取り専用のためディレクトリを削除できません");
                 Debug.WriteLine($"[ERROR] {ex}");
                 _log.LogError(ex);
-                _message.ShowConfirm("アプリで使用中のファイルまたは他のアプリで開いているファイルがあります。" +
-                    "\nファイルを閉じてから、もう一度お試しください。");
+                throw;
             }
             catch (UnauthorizedAccessException ex)
             {
                 Debug.WriteLine($"[ERROR] アクセス権が不足しているためディレクトリを削除できません");
                 Debug.WriteLine($"[ERROR] {ex}");
                 _log.LogError(ex);
-                _message.ShowConfirm("アクセス権が不足しているため、ファイルを削除できません。");
+                throw;
             }
             catch (Exception ex)
             {
                 Debug.WriteLine($"[ERROR] ディレクトリを削除できません");
                 Debug.WriteLine($"[ERROR] {ex}");
                 _log.LogError(ex);
-                _message.ShowConfirm("ファイルを削除できません。\n管理者へお問い合わせください。");
+                throw;
             }
         }
     }

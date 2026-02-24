@@ -1,8 +1,11 @@
 ﻿using System.ComponentModel;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
 using WpfApp.Common.ViewModels;
+using WpfApp.Interfaces;
+using WpfApp.Services;
 
 namespace WpfApp.Common.Views
 {
@@ -11,6 +14,8 @@ namespace WpfApp.Common.Views
     /// </summary>
     public partial class VideoPlayerWindow : Window
     {
+        private readonly IMessageDialogService _message = new MessageDialogService();
+
         private DispatcherTimer? _timer;
         private bool _isDragging;
 
@@ -27,28 +32,56 @@ namespace WpfApp.Common.Views
                     // 動画を再生する
                     vm.PlayRequested += () =>
                     {
-                        Media.Play();
-                        vm.IsPlaying = true;
-                        _timer?.Start();
+                        try
+                        {
+                            Media.Play();
+                            vm.IsPlaying = true;
+                            _timer?.Start();
+                        }
+                        catch (Exception ex)
+                        {
+                            Debug.WriteLine($"[ERROR] 動画の再生に失敗 : {ex.Message}");
+                            _message.ShowMessage("動画の再生に失敗しました。");
+                            throw;
+                        }
+
                     };
                     
                     // 動画を一時停止する
                     vm.PauseRequested += () =>
                     {
-                        Media.Pause();
-                        vm.IsPlaying = false;
-                        _timer?.Stop();
+                        try
+                        {
+                            Media.Pause();
+                            vm.IsPlaying = false;
+                            _timer?.Stop();
+                        }
+                        catch (Exception ex)
+                        {
+                            Debug.WriteLine($"[ERROR] 動画の一時停止に失敗 : {ex.Message}");
+                            _message.ShowMessage("動画の一時停止に失敗しました。");
+                            throw;
+                        }
                     };
 
                     // 動画の再生時間を変更する
                     vm.SeekRequested += time =>
                     {
-                        if (Media.NaturalDuration.HasTimeSpan)
+                        try
                         {
-                            Media.Position = time;
+                            if (Media.NaturalDuration.HasTimeSpan)
+                            {
+                                Media.Position = time;
 
-                            // 直接現在の再生位置を設定（UI要素の更新）
-                            vm.CurrentPosition = time;
+                                // 直接現在の再生位置を設定（UI要素の更新）
+                                vm.CurrentPosition = time;
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Debug.WriteLine($"[ERROR] 動画の再生時間の変更に失敗 : {ex.Message}");
+                            _message.ShowMessage("動画の再生時間の変更に失敗しました。");
+                            throw;
                         }
                     };
 
@@ -59,9 +92,17 @@ namespace WpfApp.Common.Views
 
                     _timer.Tick += (_, _) =>
                     {
-                        if (!_isDragging && Media.NaturalDuration.HasTimeSpan)
+                        try
                         {
-                            vm.CurrentPosition = Media.Position;
+                            if (!_isDragging && Media.NaturalDuration.HasTimeSpan)
+                            {
+                                vm.CurrentPosition = Media.Position;
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Debug.WriteLine($"[ERROR] 動画の再生時間の変更に失敗 : {ex.Message}");
+                            throw;
                         }
                     };
                 }

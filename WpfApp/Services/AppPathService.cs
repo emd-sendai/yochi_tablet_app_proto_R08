@@ -8,16 +8,12 @@ namespace WpfApp.Services
     /// </summary>
     public class AppPathService : IAppPathService
     {
-        public string AppRoot => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MyCompany", "SampleApp");
-
-        public string InitializeFlagFile => Path.Combine(AppRoot, ".initialized");
+        public string AppRoot => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "YouchiNegoProto", "YouchiNego");
 
 
-        //public string DataRoot => Path.Combine(AppRoot, "Logs");
-        public string LogsDire => Path.Combine(AppResourcesRoot, "Logs");
+        public string LogsDire => Path.Combine(AppRoot, "Logs");
 
-        //public string AppResourcesRoot => Path.Combine(AppRoot, "AppResources");
-        public string AppResourcesRoot => Path.Combine(AppDomain.CurrentDomain.BaseDirectory);
+        public string AppResourcesRoot => Path.Combine(AppRoot, "AppResources");
 
 
         public string DataDire => Path.Combine(AppResourcesRoot, "Data");

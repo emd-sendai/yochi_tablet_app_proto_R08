@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+	<Fragment>
+		<DirectoryRef Id="MRAMainFolder">
+			<Component Id="MRAramashiMain" Guid="389CBAF9-313A-4255-9031-5459EDAA2C7F">
+				<File Id="filUB8iwc4VdRMGVfATykZP3.ABkSQ" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\MediaResources\Aramashi\Main\AramashiSample.mp4" />
+				<File Id="filpbMCXC3S9IsaAPBNAsVc3hnFmVs" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\MediaResources\Aramashi\Main\chapters.json" />
+				<!-- KeyPath 用レジストリ -->
+				<RegistryValue Root="HKCU" Key="Software\YouchiNegoProto\YouchiNego\AppResources\MediaResources\Aramashi\Main" Name="Installed" Type="integer" Value="1" KeyPath="yes"/>
+			</Component>
+		</DirectoryRef>
+
+		<DirectoryRef Id="MRAPA001Folder">
+			<Component Id="MRAramashiPartsAramashi001" Guid="695ED50E-6811-4BB2-88A7-3A93C8378B78">
+				<File Id="filXlsAhF1UxY1lPD4HWXafmQdDCA4" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\MediaResources\Aramashi\Parts\Aramashi\001\テスト.mp4" />
+				<!-- KeyPath 用レジストリ -->
+				<RegistryValue Root="HKCU" Key="Software\YouchiNegoProto\YouchiNego\AppResources\MediaResources\Aramashi\Parts\Aramashi\001" Name="Installed" Type="integer" Value="1" KeyPath="yes"/>
+			</Component>
+		</DirectoryRef>
+	</Fragment>
+	
+	<Fragment>
+		<ComponentGroup Id="AppResourcesMediaResources">
+			<ComponentRef Id="MRAramashiMain" />
+			<ComponentRef Id="MRAramashiPartsAramashi001" />
+		</ComponentGroup>
+	</Fragment>
+</Wix>
