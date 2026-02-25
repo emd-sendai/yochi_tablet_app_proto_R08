@@ -44,7 +44,7 @@
 
             <!-- １行目 -->
             <!-- ページタイトル -->
-            <TextBlock Grid.Row="0" Text="管理資料" Foreground="#3F51B5"
+            <TextBlock Grid.Row="0" Text="管理資料（準備中）" Foreground="#3F51B5"
             FontSize="30" FontWeight="Bold" Margin="0,10,0,10"
             HorizontalAlignment="Center" VerticalAlignment="Center">
             </TextBlock>
@@ -95,17 +95,17 @@
                             Margin="0,20,0,10" Cursor="Hand">
                     <!--  -->
                     <Button FontSize="20" Margin="20,0,15,0" Style="{StaticResource DocumentWorksButtonStyle}" Height="80"
-                            Command="" CommandParameter="">
+                            Command="{Binding ShowTestMessageCommand}">
                         <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="項目①"/>
                     </Button>
                     <!--  -->
                     <Button FontSize="20"  Margin="0,0,15,0" Style="{StaticResource DocumentWorksButtonStyle}" Height="80"
-                            Command="" CommandParameter="">
+                            Command="{Binding ShowTestMessageCommand}">
                         <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="項目②"/>
                     </Button>
                     <!--  -->
                     <Button FontSize="20"  Margin="0,0,20,0" Style="{StaticResource DocumentWorksButtonStyle}" Height="80"
-                            Command="" CommandParameter="">
+                            Command="{Binding ShowTestMessageCommand}">
                         <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="項目③"/>
                     </Button>
                 </StackPanel>
@@ -114,17 +114,17 @@
                 <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,20,0,10">
                     <!--  -->
                     <Button FontSize="20" Margin="20,0,15,0" Style="{StaticResource DocumentWorksButtonStyle}" Height="80"
-                            Command="" CommandParameter="">
+                            Command="{Binding ShowTestMessageCommand}">
                         <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="項目④"/>
                     </Button>
                     <!--  -->
                     <Button FontSize="20"  Margin="0,0,15,0" Style="{StaticResource DocumentWorksButtonStyle}" Height="80"
-                            Command="" CommandParameter="">
+                            Command="{Binding ShowTestMessageCommand}">
                         <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="項目⑤"/>
                     </Button>
                     <!--  -->
                     <Button FontSize="20"  Margin="0,0,20,0" Style="{StaticResource DocumentWorksButtonStyle}" Height="80"
-                            Command="" CommandParameter="">
+                            Command="{Binding ShowTestMessageCommand}">
                         <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="項目⑥"/>
                     </Button>
                 </StackPanel>

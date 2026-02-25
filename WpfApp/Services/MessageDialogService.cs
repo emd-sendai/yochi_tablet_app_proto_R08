@@ -17,6 +17,11 @@ namespace WpfApp.Services
             return ShowDialog(message, showCancel: true) == true;
         }
 
+        public void ShowTestMessage()
+        {
+            ShowDialog("この機能は準備中です。", showCancel: false);
+        }
+
         private bool? ShowDialog(string message, bool showCancel)
         {
             var vm = new MessageDialogViewModel

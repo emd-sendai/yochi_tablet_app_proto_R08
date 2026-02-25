@@ -356,5 +356,17 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         {
             _nav.Navigate(new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Others004));
         }
+
+        /// <summary>
+        /// その他 5 （その他）の最初のページを表示する。
+        /// </summary>
+        [RelayCommand]
+        private void GoToOthers005()
+        {
+            //_nav.Navigate(new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Others005));
+
+            // 準備中ダイアログを表示する
+            _message.ShowTestMessage();
+        }
     }
 }

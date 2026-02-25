@@ -5,5 +5,7 @@
         void ShowMessage(string message);
 
         bool ShowConfirm(string message);
+
+        void ShowTestMessage();
     }
 }

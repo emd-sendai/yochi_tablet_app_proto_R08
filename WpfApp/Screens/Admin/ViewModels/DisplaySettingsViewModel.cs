@@ -14,6 +14,7 @@ namespace WpfApp.Screens.Admin.ViewModels
     {
         private readonly NavigationService _nav;
         private readonly IDialogService _dia;
+        private readonly IMessageDialogService _message;
 
         [ObservableProperty]
         private bool isLeftDrawerOpen;
@@ -29,6 +30,7 @@ namespace WpfApp.Screens.Admin.ViewModels
         {
             _nav = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
             _dia = dialogService ?? throw new ArgumentNullException(nameof(dialogService));
+            _message = new MessageDialogService();
         }
 
         [RelayCommand]
@@ -81,6 +83,9 @@ namespace WpfApp.Screens.Admin.ViewModels
         private void GoToVideoSettings()
         {
             //_nav.Navigate(new SubCategorySelectViewModel(_nav, _dia, DisplaySettingsCategory.VideoSettings));
+
+            // 準備中ダイアログを表示する
+            _message.ShowTestMessage();
         }
     }
 }

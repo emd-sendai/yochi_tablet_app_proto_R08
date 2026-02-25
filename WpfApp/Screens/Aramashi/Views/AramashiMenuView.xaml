@@ -204,7 +204,8 @@
                     </Button>
 
                     <!-- その他ボタン5 -->
-                    <Button  Grid.Row="4" Style="{StaticResource OthersButtonStyle}" Width="130">
+                    <Button  Grid.Row="4" Style="{StaticResource OthersButtonStyle}" Width="130"
+                             Command="{Binding GoToOthers005Command}">
                         <TextBlock Style="{StaticResource WrapTextBlockStyle}"
                                    Text="{Binding OthersButtons[4].BtnText}"/>
                     </Button>

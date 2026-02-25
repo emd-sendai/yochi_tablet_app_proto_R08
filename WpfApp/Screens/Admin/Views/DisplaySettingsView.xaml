@@ -90,7 +90,7 @@
                         Command="{Binding GoToPdfDocumentSettingsCommand}"/>
 
                 <!-- 動画ボタン -->
-                <Button Content="動画" FontSize="22" Height="60" Margin="0,0,0,40" Style="{StaticResource CommonButtonStyle}"
+                <Button Content="動画（準備中）" FontSize="22" Height="60" Margin="0,0,0,40" Style="{StaticResource CommonButtonStyle}"
                         Command="{Binding GoToVideoSettingsCommand}"/>
 
             </StackPanel>
