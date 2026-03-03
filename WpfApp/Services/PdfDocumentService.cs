@@ -8,7 +8,7 @@ using WpfApp.Interfaces;
 namespace WpfApp.Services
 {
     /// <summary>
-    /// アプリ内のPDFファイルの閲覧、追加、上書き、削除を行う。
+    /// アプリ内のPDFファイルの閲覧、追加、上書き、削除を行うサービスクラス。
     /// </summary>
     public class PdfDocumentService : IPdfDocumentService
     {

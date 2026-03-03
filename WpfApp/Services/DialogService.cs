@@ -5,8 +5,19 @@ using WpfApp.Screens.Aramashi.ViewModels;
 
 namespace WpfApp.Services
 {
+    /// <summary>
+    /// 画面を表示するサービスクラス。
+    /// </summary>
     public class DialogService : IDialogService
     {
+        /// <summary>
+        /// 画面をモーダル表示する。
+        /// </summary>
+        /// <typeparam name="TViewModel"></typeparam>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
+        /// <exception cref="InvalidOperationException"></exception>
         public async Task<TResult?> ShowDialogAsync<TViewModel, TResult>(params object[] parameters) where TViewModel : class
         {
             var tcs = new TaskCompletionSource<TResult?>();
@@ -59,6 +70,12 @@ namespace WpfApp.Services
             return await tcs.Task;
         }
 
+        /// <summary>
+        /// 画面を非モーダル表示する。
+        /// </summary>
+        /// <typeparam name="TViewModel"></typeparam>
+        /// <param name="parameters"></param>
+        /// <exception cref="InvalidOperationException"></exception>
         public void ShowWindow<TViewModel>(params object[] parameters) where TViewModel : class
         {
             var vmType = typeof(TViewModel);

@@ -7,6 +7,9 @@ using WpfApp.Screens.Aramashi.Models;
 
 namespace WpfApp.Services
 {
+    /// <summary>
+    /// アプリのシャットダウン処理を行うサービスクラス。
+    /// </summary>
     public class ShutdownService
     {
         private readonly IAppPathService _path;
@@ -20,6 +23,9 @@ namespace WpfApp.Services
             _log = new LoggingService();
         }
 
+        /// <summary>
+        /// 一時保存データを初期化する。
+        /// </summary>
         public void Cleanup()
         {
             if (_hasCleaned) return;
@@ -96,7 +102,7 @@ namespace WpfApp.Services
                     Debug.WriteLine($"[DEBUG] 署名データを初期化しました: {_path.SignatureDire}");
                 }
 
-                // 一時保存フォルダの初期化
+                // 印刷用一時保存フォルダの初期化
                 if (Directory.Exists(_path.TempDire))
                 {
                     // サブフォルダやファイルをまとめて削除
@@ -114,6 +120,10 @@ namespace WpfApp.Services
             }
         }
 
+        /// <summary>
+        /// チェックボックスの状態を初期化する。
+        /// </summary>
+        /// <param name="slides"></param>
         public void ClearCheckBox(List<PresentationPageConfig>? slides)
         {
             if (slides == null) return;
@@ -131,6 +141,10 @@ namespace WpfApp.Services
             }
         }
 
+        /// <summary>
+        /// 用地補償の手順のJSONファイルパスを取得する。
+        /// </summary>
+        /// <returns></returns>
         public List<string> GetAramashiSlidePaths()
         {
             List<string> paths = new();
@@ -146,6 +160,10 @@ namespace WpfApp.Services
             return paths;
         }
 
+        /// <summary>
+        /// テーブル内のチェックボックスの状態を初期化する。
+        /// </summary>
+        /// <param name="slides"></param>
         public static void ClearTableCheckBox(List<PresentationPageConfig>? slides)
         {
             if (slides == null) return;

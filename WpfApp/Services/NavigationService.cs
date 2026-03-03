@@ -12,7 +12,7 @@ using WpfApp.Screens.Menu.Views;
 namespace WpfApp.Services
 {
     /// <summary>
-    /// 画面遷移処理を行う。
+    /// 画面遷移処理を行うサービスクラス。
     /// </summary>
     public class NavigationService
     {

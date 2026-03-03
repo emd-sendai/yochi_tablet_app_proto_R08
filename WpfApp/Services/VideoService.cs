@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 using WpfApp.Common.Models;
 using WpfApp.Interfaces;
 using WpfApp.Screens.Admin.Models;
@@ -15,8 +9,17 @@ using static WpfApp.Common.ViewModels.VideoPlayerViewModel;
 
 namespace WpfApp.Services
 {
+    /// <summary>
+    /// アプリ内の動画ファイルやチャプター設定ファイルのパスの取得を行うサービスクラス。
+    /// （動画ファイルの差し替えやチャプター設定ファイルの編集処理については作成中）
+    /// </summary>
     public class VideoService : IVideoService
     {
+        /// <summary>
+        /// 動画ファイルのパスを取得する。
+        /// </summary>
+        /// <param name="direPath"></param>
+        /// <returns></returns>
         public string GetVideoFilePath(string direPath)
         {
             if (!Directory.Exists(direPath))
@@ -38,6 +41,11 @@ namespace WpfApp.Services
             }
         }
 
+        /// <summary>
+        /// チャプターファイルのパスを取得する。
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
         public IReadOnlyList<Chapter> GetVideoChapterList(string path)
         {
             if (!File.Exists(path)) return Array.Empty<Chapter>();
@@ -53,6 +61,11 @@ namespace WpfApp.Services
                 .ToList();
         }
 
+        /// <summary>
+        /// チャプターデータを編集用の形式（ChapterItemData）で取得する。（作成中）
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
         public ObservableCollection<ChapterItemData> GetVideoChapterDatas(string path)
         {
             if (!File.Exists(path)) return new ObservableCollection<ChapterItemData>();
@@ -67,6 +80,11 @@ namespace WpfApp.Services
                     .Select(c => new ChapterItemData(c)));
         }
 
+        /// <summary>
+        /// 動画ファイルを差し替えする。（作成中）
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="sourceFilePath"></param>
         public void ChangeVideoFile(VideoData data, string sourceFilePath)
         {
             // 既存の動画ファイルをDirectoryごと削除
@@ -75,6 +93,10 @@ namespace WpfApp.Services
             AddVideoFile(data, sourceFilePath);
         }
 
+        /// <summary>
+        /// 動画ファイルをディレクトリごと削除する。（作成中）
+        /// </summary>
+        /// <param name="data"></param>
         private void DeleteVideoDirectory(VideoData data)
         {
             if (Directory.Exists(data.DirectoryPath))
@@ -84,6 +106,11 @@ namespace WpfApp.Services
             }
         }
 
+        /// <summary>
+        /// 動画ファイルをディレクトリごと追加する。（作成中）
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="sourceFilePath"></param>
         private void AddVideoFile(VideoData data, string sourceFilePath)
         {
             Directory.CreateDirectory(data.DirectoryPath);
@@ -95,6 +122,11 @@ namespace WpfApp.Services
             Debug.WriteLine($"[DEBUG] mp4ファイルを追加しました: {addFilePath}");
         }
 
+        /// <summary>
+        /// チャプター設定データを初期化する。（作成中）
+        /// 動画ファイル差し替え時に実行予定。
+        /// </summary>
+        /// <param name="path"></param>
         public void ClearChapter(string path)
         {
             if (!File.Exists(path)) { return; }

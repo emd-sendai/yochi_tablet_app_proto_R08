@@ -4,10 +4,13 @@ using WpfApp.Interfaces;
 namespace WpfApp.Services
 {
     /// <summary>
-    /// アプリ内で使用するディレクトリ、ファイルのパスや状態を取得する。
+    /// アプリ内処理で使用するディレクトリ、ファイルのパスや状態を取得するサービスクラス。
     /// </summary>
     public class AppPathService : IAppPathService
     {
+        /// <summary>
+        /// LocalAppData内の専用フォルダ（インストーラで作成）
+        /// </summary>
         public string AppRoot => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "YouchiNegoProto", "YouchiNego");
 
 
@@ -111,6 +114,7 @@ namespace WpfApp.Services
 
         /// <summary>
         /// 他画面のリンクから直接参照されているパスを取得する。
+        /// （現在は直に定義しているため、補償のあらましページ編集機能の作成時には改良が必要）
         /// </summary>
         /// <returns></returns>
         private HashSet<string> GetlinkedPathsInOtherView()

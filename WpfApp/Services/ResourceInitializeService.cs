@@ -1,12 +1,11 @@
 ﻿using System.Diagnostics;
 using System.IO;
-using System.Windows;
 using WpfApp.Interfaces;
 
 namespace WpfApp.Services
 {
     /// <summary>
-    /// アプリ内で使用する初期ファイルの配置、削除を行う。
+    /// アプリ内で使用する初期ファイルの配置、削除を行うサービスクラス。
     /// </summary>
     public class ResourceInitializeService
     {
@@ -14,7 +13,6 @@ namespace WpfApp.Services
         private readonly IResourcePathService _sourcePath;
         private readonly ILoggingService _log;
         private readonly IMessageDialogService _message;
-        private readonly ShutdownService _shutdownService;
 
         public ResourceInitializeService()
         {
@@ -22,7 +20,6 @@ namespace WpfApp.Services
             _sourcePath = new ResourcePathService();
             _log = new LoggingService();
             _message = new MessageDialogService();
-            _shutdownService = new ShutdownService();
         }
 
         /// <summary>

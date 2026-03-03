@@ -4,10 +4,13 @@ using WpfApp.Interfaces;
 namespace WpfApp.Services
 {
     /// <summary>
-    /// 初期配置用のディレクトリ、ファイルのパスを取得する。
+    /// 初期ファイルのディレクトリ、ファイルのパスを取得するサービスクラス。
     /// </summary>
     public class ResourcePathService : IResourcePathService
     {
+        /// <summary>
+        /// ProgramFiles内の実行フォルダ（インストーラで作成）
+        /// </summary>
         public string Root => AppDomain.CurrentDomain.BaseDirectory;
 
         public string DataDire => Path.Combine(Root, "Data");
