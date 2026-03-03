@@ -17,7 +17,7 @@ namespace WpfApp
         private readonly ShutdownService _shutdownService;
 
         /// <summary>
-        /// 初期画面を表示する
+        /// 初期画面（メインメニュー画面）を表示する。
         /// </summary>
         public MainWindow()
         {
@@ -39,7 +39,7 @@ namespace WpfApp
         }
 
         /// <summary>
-        /// ウィンドウサイズを調整する
+        /// ウィンドウサイズを調整する。（コメントアウト中未使用）
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -64,6 +64,11 @@ namespace WpfApp
 
         }
 
+        /// <summary>
+        /// 一時保存データを初期化してメイン画面を閉じる。（×ボタン用）
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MainWindow_Closing(object? sender, CancelEventArgs e)
         {
             _shutdownService.Cleanup();
