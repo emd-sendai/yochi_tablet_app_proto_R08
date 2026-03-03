@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WpfApp.Interfaces
+﻿namespace WpfApp.Interfaces
 {
+    /// <summary>
+    /// 画面を表示するためのインターフェース。
+    /// </summary>
     public interface IDialogService
     {
         Task<TResult?> ShowDialogAsync<TViewModel, TResult>(params object[] parameters) where TViewModel : class;

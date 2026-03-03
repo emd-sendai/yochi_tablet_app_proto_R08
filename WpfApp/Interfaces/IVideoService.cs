@@ -6,6 +6,9 @@ using static WpfApp.Common.ViewModels.VideoPlayerViewModel;
 
 namespace WpfApp.Interfaces
 {
+    /// <summary>
+    /// 動画ファイルやチャプターのパスを取得、編集を行うためのインターフェース。
+    /// </summary>
     public interface IVideoService
     {
         string GetVideoFilePath(string direPath);

@@ -1,7 +1,7 @@
 ﻿namespace WpfApp.Interfaces
 {
     /// <summary>
-    /// 初期配置用のディレクトリ、ファイルのパスを取得するためのインターフェース。
+    /// 初期ファイルのディレクトリ、ファイルのパスを取得するためのインターフェース。
     /// </summary>
     public interface IResourcePathService
     {

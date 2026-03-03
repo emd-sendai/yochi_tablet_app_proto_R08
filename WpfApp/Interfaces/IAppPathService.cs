@@ -1,7 +1,7 @@
 ﻿namespace WpfApp.Interfaces
 {
     /// <summary>
-    /// アプリ内で使用するディレクトリ、ファイルのパスや状態を取得するためのインターフェース。
+    /// アプリ内処理で使用するディレクトリ、ファイルのパスや状態を取得するためのインターフェース。
     /// </summary>
     public interface IAppPathService
     {
