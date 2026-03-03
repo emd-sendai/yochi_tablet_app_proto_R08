@@ -14,8 +14,8 @@ using static WpfApp.Screens.Admin.ViewModels.DisplaySettingsViewModel;
 namespace WpfApp.Screens.Admin.ViewModels
 {
     /// <summary>
-    /// VideoFileSettingsView.xamlに対応するViewModel。
-    /// 動画ファイル（mp4）の差し替え処理を行う。
+    /// VideoFileSettingsView.xamlに対応するViewModel。（作成中）
+    /// 動画ファイル設定画面での処理を行う。
     /// </summary>
     public partial class VideoFileSettingsViewModel : ObservableObject, INavigationTarget
     {
@@ -31,9 +31,15 @@ namespace WpfApp.Screens.Admin.ViewModels
         [ObservableProperty]
         private bool isLeftDrawerOpen;
 
+        /// <summary>
+        /// 一覧表示用動画ファイルデータリスト
+        /// </summary>
         [ObservableProperty]
         private ObservableCollection<VideoData> videoDatas;
 
+        /// <summary>
+        /// 選択された動画ファイルデータ
+        /// </summary>
         [ObservableProperty]
         private VideoData? selectedVideoData;
 
@@ -74,7 +80,7 @@ namespace WpfApp.Screens.Admin.ViewModels
             var othersButtons = LoadOthersButtonFromJson();
             foreach (var button in othersButtons)
             {
-                // 代替地と税金等の場合
+                // その他ボタン１とその他ボタン２の場合
                 if (button.BtnId == "001" || button.BtnId == "002")
                 {
                     datas.Add(GetVideoDataFromButtonData(false, button));

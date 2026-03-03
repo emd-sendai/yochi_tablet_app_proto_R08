@@ -4,7 +4,7 @@ using WpfApp.Common.Models;
 namespace WpfApp.Screens.Admin.Models
 {
     /// <summary>
-    /// Tabに表示するTabItemを格納する。
+    /// Tabに表示するTabItemを保持するクラス。
     /// </summary>
     public class TabItemData
     {
@@ -25,7 +25,15 @@ namespace WpfApp.Screens.Admin.Models
             /// 対応する機能のボタンID（地権者個別資料のPDF資料の表示時のみ使用）
             /// </summary>
             public string? Id { get; set; }
+
+            /// <summary>
+            /// 表示用項目名
+            /// </summary>
             public string? DisplayName { get; set; }
+
+            /// <summary>
+            /// ディレクトリパス
+            /// </summary>
             public string? FolderPath { get; set; }
         }
     }

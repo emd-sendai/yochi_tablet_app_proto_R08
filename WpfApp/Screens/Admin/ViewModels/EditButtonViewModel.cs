@@ -4,21 +4,53 @@ using WpfApp.Interfaces;
 
 namespace WpfApp.Screens.Admin.ViewModels
 {
+    /// <summary>
+    /// EditButtonWindow.xamlに対応するViewModel。
+    /// ボタンの名称編集画面での処理を行う。
+    /// </summary>
     public partial class EditButtonViewModel : ObservableObject, IDialogResult<string>
     {
         public event EventHandler? RequestClose;
         public string? Result { get; private set; }
 
+        /// <summary>
+        /// 最大入力可能文字数
+        /// </summary>
         private const double MaxFullWidthLength = 10;
 
+        /// <summary>
+        /// ボタンの名称（１行目）
+        /// </summary>
         [ObservableProperty] private string line1;
+
+        /// <summary>
+        /// ボタンの名称（２行目）
+        /// </summary>
         [ObservableProperty] private string line2;
+
+        /// <summary>
+        /// ボタンの名称（３行目）
+        /// </summary>
         [ObservableProperty] private string line3;
 
+        /// <summary>
+        /// 入力可能文字数（１行目）
+        /// </summary>
         [ObservableProperty] private double line1Remaining;
+
+        /// <summary>
+        /// 入力可能文字数（２行目）
+        /// </summary>
         [ObservableProperty] private double line2Remaining;
+
+        /// <summary>
+        /// 入力可能文字数（３行目）
+        /// </summary>
         [ObservableProperty] private double line3Remaining;
 
+        /// <summary>
+        /// プレビューエリアに表示するボタンの名称
+        /// </summary>
         public string PreviewText => string.Join("\n", new[] { Line1, Line2, Line3 }.Where(l => !string.IsNullOrWhiteSpace(l)));
 
         public EditButtonViewModel(string text)
@@ -31,6 +63,10 @@ namespace WpfApp.Screens.Admin.ViewModels
             UpdateRemaining();
         }
 
+        /// <summary>
+        /// ボタンの名称（１行目）を更新する。
+        /// </summary>
+        /// <param name="value"></param>
         partial void OnLine1Changed(string value)
         {
             Line1 = TruncateByFullWidth(value);
@@ -38,6 +74,10 @@ namespace WpfApp.Screens.Admin.ViewModels
             OnPropertyChanged(nameof(PreviewText));
         }
 
+        /// <summary>
+        /// ボタンの名称（２行目）を更新する。
+        /// </summary>
+        /// <param name="value"></param>
         partial void OnLine2Changed(string value)
         {
             Line2 = TruncateByFullWidth(value);
@@ -45,6 +85,10 @@ namespace WpfApp.Screens.Admin.ViewModels
             OnPropertyChanged(nameof(PreviewText));
         }
 
+        /// <summary>
+        /// ボタンの名称（３行目）を更新する。
+        /// </summary>
+        /// <param name="value"></param>
         partial void OnLine3Changed(string value)
         {
             Line3 = TruncateByFullWidth(value);
@@ -52,6 +96,9 @@ namespace WpfApp.Screens.Admin.ViewModels
             OnPropertyChanged(nameof(PreviewText));
         }
 
+        /// <summary>
+        /// 入力可能文字数を更新する。
+        /// </summary>
         private void UpdateRemaining()
         {
             Line1Remaining = Math.Max(0, MaxFullWidthLength - CountFullWidthChars(Line1));
@@ -59,6 +106,11 @@ namespace WpfApp.Screens.Admin.ViewModels
             Line3Remaining = Math.Max(0, MaxFullWidthLength - CountFullWidthChars(Line3));
         }
 
+        /// <summary>
+        /// 文字列を最大入力可能文字数までにして返す。
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
         private static string TruncateByFullWidth(string text)
         {
             if (string.IsNullOrEmpty(text)) return text;
@@ -81,6 +133,11 @@ namespace WpfApp.Screens.Admin.ViewModels
             return text.Substring(0, index);
         }
 
+        /// <summary>
+        /// 文字列の文字数をカウントする。
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
         private static double CountFullWidthChars(string text)
         {
             if (string.IsNullOrEmpty(text)) return 0;
@@ -92,6 +149,11 @@ namespace WpfApp.Screens.Admin.ViewModels
             return count;
         }
 
+        /// <summary>
+        /// 文字のカウント方法を判定する。
+        /// </summary>
+        /// <param name="c"></param>
+        /// <returns></returns>
         private static bool IsFullWidth(char c)
         {
             // Unicodeの全角文字 + ASCII英数字を全角扱いにする
@@ -110,6 +172,9 @@ namespace WpfApp.Screens.Admin.ViewModels
                    (c >= 0xFFE0 && c <= 0xFFE6);
         }
 
+        /// <summary>
+        /// 編集後の名称を返して画面を閉じる。
+        /// </summary>
         [RelayCommand]
         private void Confirm()
         {
@@ -117,6 +182,9 @@ namespace WpfApp.Screens.Admin.ViewModels
             RequestClose?.Invoke(this, EventArgs.Empty);
         }
 
+        /// <summary>
+        /// 編集状態を初期化して画面を閉じる。
+        /// </summary>
         [RelayCommand]
         private void Cancel()
         {

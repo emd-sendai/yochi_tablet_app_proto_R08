@@ -11,6 +11,7 @@ namespace WpfApp.Screens.Admin.ViewModels
 {
     /// <summary>
     /// SubCategorySelectView.xamlに対応するViewModel。
+    /// 詳細項目選択画面での処理を行う。
     /// 前の画面で選択された表示設定項目からサブ項目を選択して、該当する画面に遷移する。
     /// </summary>
     public partial class SubCategorySelectViewModel : ObservableObject, INavigationTarget

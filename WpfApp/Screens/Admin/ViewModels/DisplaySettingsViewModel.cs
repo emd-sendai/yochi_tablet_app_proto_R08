@@ -23,7 +23,7 @@ namespace WpfApp.Screens.Admin.ViewModels
         {
             ButtonSettings, // ボタンの名称設定
             PdfDocumentSettings, // PDF資料設定
-            VideoSettings // 動画の設定
+            VideoSettings // 動画設定
         }
 
         public DisplaySettingsViewModel(NavigationService navigationService, IDialogService dialogService)
@@ -68,7 +68,7 @@ namespace WpfApp.Screens.Admin.ViewModels
         }
 
         /// <summary>
-        /// 画面選択（PDF資料設定）画面へ遷移する。
+        /// 画面選択画面（PDF資料設定）へ遷移する。
         /// </summary>
         [RelayCommand]
         private void GoToPdfDocumentSettings()
@@ -77,14 +77,14 @@ namespace WpfApp.Screens.Admin.ViewModels
         }
 
         /// <summary>
-        /// 詳細項目選択画面（動画設定）画面へ遷移する。（機能未作成のためコメントアウト中）
+        /// 詳細項目選択画面（動画設定）へ遷移する。（作成中のためコメントアウト中）
         /// </summary>
         [RelayCommand]
         private void GoToVideoSettings()
         {
             //_nav.Navigate(new SubCategorySelectViewModel(_nav, _dia, DisplaySettingsCategory.VideoSettings));
 
-            // 準備中ダイアログを表示する
+            // 準備中ダイアログを表示する（作成後削除）
             _message.ShowTestMessage();
         }
     }

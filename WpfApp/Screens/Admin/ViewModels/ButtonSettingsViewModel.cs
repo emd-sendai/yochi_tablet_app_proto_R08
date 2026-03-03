@@ -11,6 +11,10 @@ using WpfApp.Services;
 
 namespace WpfApp.Screens.Admin.ViewModels
 {
+    /// <summary>
+    /// ButtonSettingsView.xamlに対応するViewModel。
+    /// ボタンの名称設定画面での処理を行う。（現在は補償のあらまし画面の用地補償の手順のボタンの名称のみ編集可能）
+    /// </summary>
     public partial class ButtonSettingsViewModel : ObservableObject
     {
         private readonly NavigationService _nav;
@@ -21,8 +25,14 @@ namespace WpfApp.Screens.Admin.ViewModels
         [ObservableProperty]
         private bool isLeftDrawerOpen;
 
+        /// <summary>
+        /// 一覧表示用ボタンデータリスト
+        /// </summary>
         public ObservableCollection<ButtonConfig> Buttons { get; } = new();
 
+        /// <summary>
+        /// 選択されたボタンデータ
+        /// </summary>
         [ObservableProperty]
         private ButtonConfig? selectedButton;
 
@@ -36,6 +46,11 @@ namespace WpfApp.Screens.Admin.ViewModels
             LoadButtonFromJson();
         }
 
+        /// <summary>
+        /// 選択されたボタンデータを渡してボタンの名称編集画面を開く。
+        /// ボタンの名称編集画面から返ってきた入力値をボタンの名称として保存する。
+        /// </summary>
+        /// <returns></returns>
         [RelayCommand]
         private async Task EditSelectedAsync()
         {
@@ -61,6 +76,9 @@ namespace WpfApp.Screens.Admin.ViewModels
             }
         }
 
+        /// <summary>
+        /// 一覧表示用ボタンデータリストを取得する。
+        /// </summary>
         private void LoadButtonFromJson()
         {
             try
@@ -97,6 +115,9 @@ namespace WpfApp.Screens.Admin.ViewModels
             }
         }
 
+        /// <summary>
+        /// ボタンデータを保存する。
+        /// </summary>
         private void SaveToJson()
         {
             try

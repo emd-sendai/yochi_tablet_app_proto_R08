@@ -6,6 +6,10 @@ using WpfApp.Services;
 
 namespace WpfApp.Screens.Admin.ViewModels
 {
+    /// <summary>
+    /// AdminDocumentView.xamlに対応するViewModel。
+    /// 管理資料画面での処理を行う。
+    /// </summary>
     public partial class AdminDocumentViewModel : ObservableObject
     {
         private readonly NavigationService _nav;
@@ -47,6 +51,9 @@ namespace WpfApp.Screens.Admin.ViewModels
 
         }
 
+        /// <summary>
+        /// 準備中ダイアログを表示する。（機能作成後削除）
+        /// </summary>
         [RelayCommand]
         private void ShowTestMessage()
         {
