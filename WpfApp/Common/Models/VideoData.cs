@@ -1,7 +1,7 @@
 ﻿namespace WpfApp.Common.Models
 {
     /// <summary>
-    /// 動画のデータを格納する。
+    /// 動画ファイルのデータを格納するクラス。
     /// </summary>
     public class VideoData
     {
@@ -10,6 +10,9 @@
         /// </summary>
         public string LinkedPartLabel { get; set; } = string.Empty;
 
+        /// <summary>
+        /// 動画ファイルのディレクトリパス
+        /// </summary>
         public string DirectoryPath { get; set; } = string.Empty;
     }
 }

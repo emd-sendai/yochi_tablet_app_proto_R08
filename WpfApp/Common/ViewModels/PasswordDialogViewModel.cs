@@ -7,14 +7,24 @@ using WpfApp.Services;
 
 namespace WpfApp.Common.ViewModels
 {
-
+    /// <summary>
+    /// PasswordDialogWindow.xamlに対応するViewModel。
+    /// パスワードダイアログ画面での処理を行う。
+    /// </summary>
     public partial class PasswordDialogViewModel : ObservableObject, IDialogResult<bool>
     {
         private readonly PasswordService _passwordService;
 
         public event EventHandler? RequestClose;
+
+        /// <summary>
+        /// パスワードの照合結果
+        /// </summary>
         public bool Result { get; private set; }
 
+        /// <summary>
+        /// エラーメッセージ
+        /// </summary>
         [ObservableProperty]
         private string errorMessage = string.Empty;
 
@@ -23,19 +33,27 @@ namespace WpfApp.Common.ViewModels
             _passwordService = new PasswordService();
         }
 
+        /// <summary>
+        /// 入力されたパスワードをpwBoxから受け取り照合する。
+        /// </summary>
+        /// <param name="pwBox"></param>
         [RelayCommand]
         private void Submit(PasswordBox pwBox)
         {
             if (pwBox == null) return;
 
+            // パスワードが正解の場合
             if (_passwordService.Verify(pwBox.Password))
             {
+                // tureを返して画面を閉じる
                 Result = true;
                 RequestClose?.Invoke(this, EventArgs.Empty);
                 ErrorMessage = string.Empty;
             }
+            // パスワードが間違っている場合
             else
             {
+                // エラーメッセージを表示する
                 ErrorMessage = "パスワードが違います。";
             }
             

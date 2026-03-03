@@ -10,14 +10,24 @@ using WpfApp.Services;
 
 namespace WpfApp.Common.ViewModels
 {
+    /// <summary>
+    /// LandownerSelectWindow.xamlに対応するViewModel。
+    /// 地権者ユーザ選択画面での処理を行う。
+    /// </summary>
     public partial class LandownerSelectViewModel : ObservableObject
     {
         private readonly IMessageDialogService _message;
         private readonly IAppPathService _path;
 
+        /// <summary>
+        /// 一覧表示用地権者ユーザリスト
+        /// </summary>
         [ObservableProperty]
         private ObservableCollection<LandownerData>? landowners;
 
+        /// <summary>
+        /// 選択された地権者ユーザ
+        /// </summary>
         [ObservableProperty]
         private LandownerData? selectedLandowner;
 
@@ -31,6 +41,9 @@ namespace WpfApp.Common.ViewModels
             LoadLandownersFromJson();
         }
 
+        /// <summary>
+        /// 地権者ユーザデータを読み込む。
+        /// </summary>
         private void LoadLandownersFromJson()
         {
             try 
@@ -55,6 +68,9 @@ namespace WpfApp.Common.ViewModels
             }
         }
 
+        /// <summary>
+        /// 地権者ユーザを選択して画面を閉じる。
+        /// </summary>
         [RelayCommand]
         private void Select()
         {
@@ -71,6 +87,9 @@ namespace WpfApp.Common.ViewModels
                 
         }
 
+        /// <summary>
+        /// 選択状態を初期化して画面を閉じる。
+        /// </summary>
         [RelayCommand]
         private void Cancel()
         {

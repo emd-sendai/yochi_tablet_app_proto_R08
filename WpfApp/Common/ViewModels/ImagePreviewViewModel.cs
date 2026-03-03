@@ -7,13 +7,23 @@ using System.Windows.Media.Imaging;
 
 namespace WpfApp.Common.ViewModels
 {
+    /// <summary>
+    /// ImagePreviewWindow.xamlに対応するViewModel。
+    /// 画像プレビュー画面での処理を行う。
+    /// </summary>
     public partial class ImagePreviewViewModel : ObservableObject
     {
         public event EventHandler? RequestClose;
 
+        /// <summary>
+        /// 画像データ
+        /// </summary>
         [ObservableProperty]
         private BitmapImage? image;
 
+        /// <summary>
+        /// 表示倍率
+        /// </summary>
         [ObservableProperty]
         private double scale = 1.0;
 
@@ -41,6 +51,10 @@ namespace WpfApp.Common.ViewModels
             }
         }
 
+        /// <summary>
+        /// imagePathから画像を読み込み、BitmapImageとしてUI要素に設定する。
+        /// </summary>
+        /// <param name="imagePath"></param>
         public void LoadImage(string imagePath)
         {
             var bitmap = new BitmapImage();
@@ -52,6 +66,10 @@ namespace WpfApp.Common.ViewModels
             Image = bitmap;
         }
 
+        /// <summary>
+        /// 画像の表示倍率を変更する。
+        /// </summary>
+        /// <param name="factor"></param>
         [RelayCommand]
         public void Zoom(double factor)
         {
@@ -61,12 +79,21 @@ namespace WpfApp.Common.ViewModels
             Scale = newScale;
         }
 
+        /// <summary>
+        /// 画像を拡大する。
+        /// </summary>
         [RelayCommand]
         public void ZoomIn() => Zoom(1.1);
 
+        /// <summary>
+        /// 画像を縮小する。
+        /// </summary>
         [RelayCommand]
         public void ZoomOut() => Zoom(1 / 1.1);
 
+        /// <summary>
+        /// 画面を閉じる。
+        /// </summary>
         [RelayCommand]
         private void Close()
         {

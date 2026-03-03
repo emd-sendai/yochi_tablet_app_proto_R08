@@ -8,15 +8,25 @@ using WpfApp.Services;
 
 namespace WpfApp.Common.ViewModels
 {
+    /// <summary>
+    /// DocumentSelectWindow.xamlに対応するViewModel。
+    /// PDF資料選択画面での処理を行う。
+    /// </summary>
     public partial class DocumentSelectViewModel : ObservableObject
     {
         private readonly PdfDocumentService _pdf;
 
         private readonly IReadOnlyList<PdfData>? _documents;
 
+        /// <summary>
+        /// 一覧表示用PDF資料リスト
+        /// </summary>
         [ObservableProperty]
         private ObservableCollection<PdfData>? documents;
 
+        /// <summary>
+        /// 選択されたPDF資料
+        /// </summary>
         [ObservableProperty]
         private PdfData? selectedDocument;
 
@@ -30,6 +40,9 @@ namespace WpfApp.Common.ViewModels
             Documents = new ObservableCollection<PdfData>(_documents);
         }
 
+        /// <summary>
+        /// 選択されたPDF資料を開く。
+        /// </summary>
         [RelayCommand]
         private void Select()
         {
@@ -55,6 +68,9 @@ namespace WpfApp.Common.ViewModels
             }
         }
 
+        /// <summary>
+        /// 選択状態を初期化して画面を閉じる。
+        /// </summary>
         [RelayCommand]
         private void Cancel()
         {
