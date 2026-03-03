@@ -6,7 +6,7 @@ using System.Windows.Input;
 namespace WpfApp.Screens.Aramashi.Models
 {
     /// <summary>
-    /// 用地補償の手順・その他の各ページの内容を保持するクラス
+    /// 用地補償の手順・その他の各説明ページの内容を保持するクラス。
     /// </summary>
     public class PresentationPageConfig
     {
@@ -135,20 +135,6 @@ namespace WpfApp.Screens.Aramashi.Models
         public TextBlockData? SignTarget { get; set; }
         public TextBlockData? SignMessage { get; set; }
         public ButtonData? SignButton { get; set; }
-
-
-        //public string? ImagePath { get; set; }
-        /*
-        public void ResolvePaths(string baseDir)
-        {
-            if (string.IsNullOrWhiteSpace(ImagePath))
-                return;
-
-            var path = Path.Combine(baseDir, ImagePath);
-            if (File.Exists(path))
-                ImagePath = path;
-        }
-        */
     }
 
     public class CheckBoxData

@@ -98,12 +98,20 @@ namespace WpfApp.Screens.Aramashi.Views
             }
         }
 
+        /// <summary>
+        /// 保存された署名データが存在する場合は表示する。
+        /// </summary>
         private void LoadCanvas()
         {
             if (!string.IsNullOrEmpty(IsfPath) && File.Exists(IsfPath))
                 LoadSignatureIsf(SignatureCanvas, IsfPath);
         }
 
+        /// <summary>
+        /// 保存された署名データを表示する。
+        /// </summary>
+        /// <param name="canvas"></param>
+        /// <param name="path"></param>
         private void LoadSignatureIsf(InkCanvas canvas, string path)
         {
             canvas.Strokes.Clear();
@@ -112,6 +120,10 @@ namespace WpfApp.Screens.Aramashi.Views
             Debug.WriteLine($"[DEBUG] 署名のISFデータを取得しました: {path}");
         }
 
+        /// <summary>
+        /// 署名データを削除する。
+        /// </summary>
+        /// <param name="canvas"></param>
         private void ClearCanvas(InkCanvas canvas)
         {
             canvas.Strokes.Clear();
@@ -129,7 +141,10 @@ namespace WpfApp.Screens.Aramashi.Views
             }            
         }
 
-        // 署名だけをPNG画像としてローカルフォルダに保存する
+        /// <summary>
+        /// 署名データのみをPNG画像としてローカルフォルダへ保存する。（未使用）
+        /// </summary>
+        /// <param name="canvas"></param>
         private void SaveCanvasAsPng(InkCanvas canvas)
         {
             var dlg = new Microsoft.Win32.SaveFileDialog
@@ -156,6 +171,10 @@ namespace WpfApp.Screens.Aramashi.Views
             ShowMessageWindow("署名をPNG画像として保存しました");
         }
 
+        /// <summary>
+        /// 署名データを保存する。
+        /// </summary>
+        /// <param name="canvas"></param>
         private void SaveCanvas(InkCanvas canvas)
         {
             if (string.IsNullOrWhiteSpace(DataFolder) || string.IsNullOrWhiteSpace(IsfPath)
@@ -185,7 +204,12 @@ namespace WpfApp.Screens.Aramashi.Views
             }
         }
 
-        // ISF保存
+        /// <summary>
+        /// 署名データをISF形式で保存する。（表示用）
+        /// </summary>
+        /// <param name="canvas"></param>
+        /// <param name="path"></param>
+        /// <returns></returns>
         private bool SaveSignatureIsf(InkCanvas canvas, string path)
         {
             bool ret = false;
@@ -206,7 +230,12 @@ namespace WpfApp.Screens.Aramashi.Views
             return ret;
         }
 
-        // PNG保存
+        /// <summary>
+        /// 署名データをPNG形式で保存する。（印刷用）
+        /// </summary>
+        /// <param name="canvas"></param>
+        /// <param name="path"></param>
+        /// <returns></returns>
         private bool SaveSignaturePng(InkCanvas canvas, string path)
         {
             bool ret = false;
@@ -246,6 +275,10 @@ namespace WpfApp.Screens.Aramashi.Views
             return ret;
         }
 
+        /// <summary>
+        /// 署名データと文面データをFixedDocumentとして渡して印刷プレビュー画面を表示する。
+        /// </summary>
+        /// <param name="slidePath"></param>
         private void PrintPreview(string slidePath)
         {
             if (!File.Exists(PngPath))
@@ -287,6 +320,13 @@ namespace WpfApp.Screens.Aramashi.Views
             dialogService.ShowWindow<PrintPreviewViewModel>(doc);
         }
 
+        /// <summary>
+        /// 署名データと文面データをFixedDocumentに変換する。
+        /// 文面データには画像は含めない。
+        /// </summary>
+        /// <param name="slides"></param>
+        /// <param name="singPath"></param>
+        /// <returns></returns>
         private FixedDocument GeneratFixedDocument(List<PresentationPageConfig> slides, string singPath)
         {
             const double inch = 96; // WPF単位 = 1/96 inch

@@ -24,6 +24,11 @@ namespace WpfApp.Screens.Aramashi.Views
             };
         }
 
+        /// <summary>
+        /// CurrentSlideが変更されたとき、それに応じたUI要素を作成して表示する。
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ViewModel_PropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
             if (sender is PresentationViewerViewModel vm &&

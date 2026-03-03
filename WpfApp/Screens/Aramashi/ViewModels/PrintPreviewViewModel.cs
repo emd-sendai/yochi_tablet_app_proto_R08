@@ -10,6 +10,10 @@ using WpfApp.Services;
 
 namespace WpfApp.Screens.Aramashi.ViewModels
 {
+    /// <summary>
+    /// PrintPreviewWindow.xamlに対応するViewModel。
+    /// 印刷プレビュー画面での処理を行う。
+    /// </summary>
     public partial class PrintPreviewViewModel : ObservableObject
     {
         public event EventHandler? RequestClose;
@@ -33,7 +37,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         }
 
         /// <summary>
-        /// FixedDocument → 一時 XPS に保存（印刷用）
+        /// FixedDocument → XPS に変換して一時保存する。（印刷プレビュー用）
         /// </summary>
         private string SaveFixedDocumentToXps(FixedDocument fixedDoc)
         {
@@ -59,7 +63,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         }
 
         /// <summary>
-        /// XPS → PDF（Microsoft Print to PDF）
+        /// XPS → PDF（Microsoft Print to PDF）に変換する。
         /// </summary>
         private void PrintXpsViaMicrosoftPdf(string xpsPath)
         {
@@ -78,6 +82,9 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             }
         }
 
+        /// <summary>
+        /// 一時 XPS ファイルを削除する。
+        /// </summary>
         public void CleanupTempFiles()
         {
             // プレビュー用 XPS を削除
@@ -96,6 +103,9 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             }
         }
 
+        /// <summary>
+        /// プレビュー対象ファイルをPDFファイルとして保存する。
+        /// </summary>
         [RelayCommand]
         private void SaveAsPdf()
         {
@@ -111,6 +121,9 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             }
         }
 
+        /// <summary>
+        /// 一時 XPS ファイルを削除して、画面を閉じる。
+        /// </summary>
         [RelayCommand]
         private void Close()
         {

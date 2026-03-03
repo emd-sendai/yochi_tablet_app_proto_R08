@@ -7,17 +7,30 @@ using static WpfApp.Screens.Aramashi.ViewModels.PresentationViewerViewModel;
 
 namespace WpfApp.Screens.Aramashi.ViewModels
 {
+    /// <summary>
+    /// SignatureWindow.xamlに対応するViewModel。
+    /// 
+    /// </summary>
     public partial class SignatureViewModel : ObservableObject, IDialogResult<string>
     {
         public event EventHandler? RequestClose;
         public string? Result { get; private set; }
 
+        /// <summary>
+        /// 署名メッセージ
+        /// </summary>
         [ObservableProperty]
         private string? signMessage;
 
+        /// <summary>
+        /// 表示中の項目のJSONファイルパス
+        /// </summary>
         [ObservableProperty]
         private string? jsonPath;
 
+        /// <summary>
+        /// 保存用署名ファイルの名称を格納するディクショナリ
+        /// </summary>
         [ObservableProperty]
         private Dictionary<string, string> signaturefileNames = new();
 
@@ -34,6 +47,11 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             GenerateSignatureFileNames(presentationCategory);
         }
 
+        /// <summary>
+        /// 表示中の項目カテゴリに応じた保存用署名ファイルの名称を取得する。
+        /// </summary>
+        /// <param name="presentationName"></param>
+        /// <exception cref="ArgumentException"></exception>
         private void GenerateSignatureFileNames(PresentationCategory presentationName)
         {
             string baseName = presentationName switch
@@ -47,6 +65,10 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             SignaturefileNames["png"] = $"{baseName}.png";
         }
 
+        /// <summary>
+        /// 入力されたInkCanvasデータを署名データとして保存する。
+        /// </summary>
+        /// <param name="parameter"></param>
         [RelayCommand]
         private void Save(object? parameter)
         {
@@ -66,6 +88,9 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             SaveRequested?.Invoke(this, canvas);
         }
 
+        /// <summary>
+        /// 署名データと表示中の項目のJSONファイルパス（文面用）を印刷プレビュー画面に渡して表示する。
+        /// </summary>
         [RelayCommand]
         private void Print()
         {
@@ -80,6 +105,10 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             }
         }
 
+        /// <summary>
+        /// 署名データを削除する。
+        /// </summary>
+        /// <param name="parameter"></param>
         [RelayCommand]
         private void Clear(object? parameter)
         {
@@ -92,12 +121,18 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             ClearRequested?.Invoke(this, canvas);
         }
 
+        /// <summary>
+        /// 画面を閉じる。
+        /// </summary>
         [RelayCommand]
         private void Close()
         {
             RequestClose?.Invoke(this, EventArgs.Empty);
         }
 
+        /// <summary>
+        /// 画面を閉じるリクエストを送る。
+        /// </summary>
         public void OnRequestClose()
         {
             // イベントの null チェックとスレッドセーフ呼び出し
@@ -106,6 +141,9 @@ namespace WpfApp.Screens.Aramashi.ViewModels
                 handler(this, EventArgs.Empty);
         }
 
+        /// <summary>
+        /// 画面を閉じる。（×ボタン用）
+        /// </summary>
         public void CloseByUser()
         {
             RequestClose?.Invoke(this, EventArgs.Empty);

@@ -36,7 +36,7 @@ namespace WpfApp.Screens.Aramashi.Views
         }
 
         /// <summary>
-        /// レイアウト更新（引数なし呼び出し用）
+        /// 用地補償の手順のボタン位置を読み込んで、背景の描画を更新する。
         /// </summary>
         private void UpdateLine()
         {
@@ -70,7 +70,7 @@ namespace WpfApp.Screens.Aramashi.Views
         }
 
         /// <summary>
-        /// 矢印を描画
+        /// 矢印を描画する。
         /// </summary>
         private void DrawArrow(Point start, Point end, double length, double width)
         {

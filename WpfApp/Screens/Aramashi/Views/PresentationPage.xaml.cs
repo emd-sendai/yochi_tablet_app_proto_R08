@@ -23,6 +23,11 @@ namespace WpfApp.Screens.Aramashi.Views
             InitializeComponent();
         }
 
+        /// <summary>
+        /// PresentationPageConfigに格納されたページデータをUI要素に変換して表示する。
+        /// </summary>
+        /// <param name="page"></param>
+        /// <param name="viewModel"></param>
         public void ApplyPage(PresentationPageConfig page, PresentationViewerViewModel viewModel)
         {
             MainPanel.Children.Clear();
@@ -247,6 +252,12 @@ namespace WpfApp.Screens.Aramashi.Views
             viewModel.UpdateAllCheckedState(page.Id);
         }
 
+        /// <summary>
+        /// TextBlockDataをTextBlockに変換する。
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="viewModel"></param>
+        /// <returns></returns>
         private TextBlock CreateTextBlock(TextBlockData data, PresentationViewerViewModel viewModel)
         {
             // デフォルトの背景色（透明）を設定する
@@ -385,6 +396,12 @@ namespace WpfApp.Screens.Aramashi.Views
             return tb;
         }
 
+        /// <summary>
+        /// ButtonDataをButtonに変換する。
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="viewModel"></param>
+        /// <returns></returns>
         private Button CreateButton(ButtonData data, PresentationViewerViewModel viewModel)
         {
             var btn = new Button
@@ -444,6 +461,11 @@ namespace WpfApp.Screens.Aramashi.Views
             return btn;
         }
 
+        /// <summary>
+        /// StyledImageButtonからラベルを取得してTextBlockに変換する。
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
         private TextBlock CreateImageButtonLabel(StyledImageButton data)
         {
             var color = (Color)ColorConverter.ConvertFromString(data.LabelColor);
@@ -458,6 +480,14 @@ namespace WpfApp.Screens.Aramashi.Views
             return label;
         }
 
+        /// <summary>
+        /// StyledImageButtonをButton（画像付き）に変換する。
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="maxWidth"></param>
+        /// <param name="maxHeight"></param>
+        /// <param name="viewModel"></param>
+        /// <returns></returns>
         private Button CreateImageButton(StyledImageButton data, double maxWidth, double maxHeight, PresentationViewerViewModel viewModel)
         {
             // ボタンを作成
@@ -499,6 +529,10 @@ namespace WpfApp.Screens.Aramashi.Views
             return imgbtn;
         }
 
+        /// <summary>
+        /// 画像付きボタンのヒントテキスト用のTextBlockを作成する。
+        /// </summary>
+        /// <returns></returns>
         private TextBlock CreateImageButtonHintText()
         {
             var brush = new SolidColorBrush(Colors.Gray);
@@ -512,6 +546,11 @@ namespace WpfApp.Screens.Aramashi.Views
             return label;
         }
 
+        /// <summary>
+        /// StyledImageからラベルを取得してTextBlockに変換する。
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
         private TextBlock CreateImageLabel(StyledImage data)
         {
             var color = (Color)ColorConverter.ConvertFromString(data.LabelColor);
@@ -526,6 +565,13 @@ namespace WpfApp.Screens.Aramashi.Views
             return label;
         }
 
+        /// <summary>
+        /// StyledImageをImageに変換する。
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="maxWidth"></param>
+        /// <param name="maxHeight"></param>
+        /// <returns></returns>
         private Image CreateImage(StyledImage data, double maxWidth, double maxHeight)
         {
             var img = new Image();
@@ -555,6 +601,11 @@ namespace WpfApp.Screens.Aramashi.Views
             return img;
         }
 
+        /// <summary>
+        /// StyledImageをImageに変換し、StackPanelに格納する。
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
         private StackPanel CreateImagePanel(ImageData data)
         {
             var images = data.Images;
@@ -628,6 +679,13 @@ namespace WpfApp.Screens.Aramashi.Views
             return rowPanel;
         }
 
+        /// <summary>
+        /// TableDataの内容を各UI要素に変換し、Gridに格納する。
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="viewModel"></param>
+        /// <param name="pageId"></param>
+        /// <returns></returns>
         private Grid CreateTableGrid(TableData data, PresentationViewerViewModel viewModel, string pageId)
         {
             var rows = data.Rows;
@@ -808,6 +866,12 @@ namespace WpfApp.Screens.Aramashi.Views
             return grid;
         }
 
+        /// <summary>
+        /// ImageButtonDataをButtonに変換し、StackPanelに格納する。
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="viewModel"></param>
+        /// <returns></returns>
         private StackPanel CreateImageButtonPanel(ImageButtonData data, PresentationViewerViewModel viewModel)
         {
             var imgbtns = data.ImageButtons;
@@ -849,6 +913,12 @@ namespace WpfApp.Screens.Aramashi.Views
             return rowPanel;
         }
 
+        /// <summary>
+        /// TextButtonDataをButtonに変換し、StackPanelに格納する。
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="viewModel"></param>
+        /// <returns></returns>
         private StackPanel CreateButtonPanel(TextButtonData data, PresentationViewerViewModel viewModel)
         {
             var btns = data.TextButtons;
@@ -881,6 +951,11 @@ namespace WpfApp.Screens.Aramashi.Views
             return rowPanel;
         }
 
+        /// <summary>
+        /// CheckBoxDataをCheckBoxに変換する。
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
         private CheckBox CreateCheckBox(CheckBoxData data)
         {
             var cb = new CheckBox

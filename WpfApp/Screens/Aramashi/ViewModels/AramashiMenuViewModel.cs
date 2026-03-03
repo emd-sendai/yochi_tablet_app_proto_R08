@@ -27,9 +27,15 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         private readonly IMessageDialogService _message;
         private readonly IAppPathService _path;
 
+        /// <summary>
+        /// ボタンの名称表示用ボタンデータリスト（用地補償の手順）
+        /// </summary>
         [ObservableProperty]
         private ObservableCollection<ButtonConfig> aramashiButtons;
 
+        /// <summary>
+        /// ボタンの名称表示用ボタンデータリスト（その他）
+        /// </summary>
         [ObservableProperty]
         private ObservableCollection<ButtonConfig> othersButtons;
 

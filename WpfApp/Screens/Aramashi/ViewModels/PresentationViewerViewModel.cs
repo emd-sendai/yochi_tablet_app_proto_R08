@@ -14,6 +14,10 @@ using static WpfApp.Common.ViewModels.VideoPlayerViewModel;
 
 namespace WpfApp.Screens.Aramashi.ViewModels
 {
+    /// <summary>
+    /// PresentationViewerView.xamlに対応するViewModel。
+    /// プレゼンテーション表示画面での処理を行う。
+    /// </summary>
     public partial class PresentationViewerViewModel : ObservableObject
     {
         public int _index = 0;
@@ -23,25 +27,37 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         private readonly IMessageDialogService _messageDialog;
         private readonly IAppPathService _path;
 
+        /// <summary>
+        /// 表示用ページデータリスト
+        /// </summary>
         public ObservableCollection<PresentationPageConfig> Slides { get; } = new();
 
+        /// <summary>
+        /// 表示中のページデータ
+        /// </summary>
         [ObservableProperty]
         private PresentationPageConfig? currentSlide;
 
+        /// <summary>
+        /// ページのチェックボックスの状態保持用ディクショナリ
+        /// </summary>
         [ObservableProperty]
         private Dictionary<string, bool> pageCheckStates = new();
 
+        /// <summary>
+        /// 本手順/本項目TOPボタン用ラベル
+        /// </summary>
         [ObservableProperty]
         private string? topButtonText;
 
         public bool AllPagesChecked => PageCheckStates.Count > 0 && PageCheckStates.All(kv => kv.Value);
-        //public bool AllPagesChecked => PageCheckStates.All(kv => kv.Value); ページ情報が登録されておらずDictionaryが空の状態でもtrue扱いにする場合
         
         public bool CanGoPrev => _index > 0;
         public bool CanGoNext => _index < Slides.Count - 1;
 
-        //public int SlideIndex => _index + 1;
-
+        /// <summary>
+        /// 表示倍率
+        /// </summary>
         [ObservableProperty]
         private double scale = 1.0;
 
@@ -70,8 +86,9 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             _messageDialog = new MessageDialogService();
             _path = new AppPathService();
 
+            // カテゴリを設定する
             _category = category;
-
+            // 表示するページのデータが格納されたJSONファイルのパスリストを取得する
             _jsonPathList = GetJsonPaths();
 
             if (_jsonPathList.Count > 0)
@@ -102,9 +119,14 @@ namespace WpfApp.Screens.Aramashi.ViewModels
                 return;
             }
 
+            // 本手順/本項目TOPボタン用ラベルを設定する
             TopButtonText = GetTopButtonText();
         }
 
+        /// <summary>
+        /// 補償のあらましのカテゴリに応じたJSONファイルパスリストを取得する。
+        /// </summary>
+        /// <returns></returns>
         private List<string> GetJsonPaths()
         {
             List<string> pathList = new();
@@ -154,6 +176,11 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             return pathList;
         }
 
+        /// <summary>
+        /// JSONファイルの内容をPresentationPageConfigとして取得する。（表示用）
+        /// </summary>
+        /// <param name="pathList"></param>
+        /// <returns></returns>
         private List<PresentationPageConfig> LoadSlidesFromJsons(List<string> pathList)
         {
             List<PresentationPageConfig> ret = new List<PresentationPageConfig>();
@@ -215,6 +242,11 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             return ret;
         }
 
+        /// <summary>
+        /// JSONファイルの内容をPresentationPageConfigとして取得する。（保存先データ取得用）
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
         private List<PresentationPageConfig> LoadSlidesFromJson(string path)
         {
             List<PresentationPageConfig> ret = new List<PresentationPageConfig>();
@@ -253,6 +285,10 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             }
         }
 
+        /// <summary>
+        /// 補償のあらましのカテゴリに応じた本手順/本項目TOPボタン用ラベルを取得する
+        /// </summary>
+        /// <returns></returns>
         private string GetTopButtonText()
         {
             var ret = "本項目TOP";
@@ -265,6 +301,10 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             return ret;
         }
 
+        /// <summary>
+        /// ページのチェックボックスの状態をJSONファイルに保存する。
+        /// </summary>
+        /// <param name="slide"></param>
         private void SaveSlidesToJson(PresentationPageConfig slide)
         {
             try
@@ -293,6 +333,12 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             }
         }
 
+        /// <summary>
+        /// サブタイトル横のチェックボックスの状態を更新する。
+        /// </summary>
+        /// <param name="slideId"></param>
+        /// <param name="checkBoxId"></param>
+        /// <param name="isChecked"></param>
         public void UpdateCheckBoxState(string slideId, string checkBoxId, bool isChecked)
         {
             PresentationPageConfig? slide = Slides.FirstOrDefault(s => s.Id == slideId);
@@ -305,10 +351,14 @@ namespace WpfApp.Screens.Aramashi.ViewModels
                 SaveSlidesToJson(slide);
             }
 
-            // CheckBoxの状態が変わるたびに全チェック判定を更新
+            // CheckBoxの状態が変わるたびにチェックボックスの全チェック判定を更新
             UpdateAllCheckedState(slideId);
         }
 
+        /// <summary>
+        /// サブタイトル横のチェックボックスの全チェック判定を更新する。
+        /// </summary>
+        /// <param name="slideId"></param>
         public void UpdateAllCheckedState(string slideId)
         {
             var slide = Slides.FirstOrDefault(s => s.Id == slideId);
@@ -340,6 +390,14 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             OnPropertyChanged(nameof(AllPagesChecked));
         }
 
+        /// <summary>
+        /// デーブル内のチェックボックスの状態を更新する。
+        /// </summary>
+        /// <param name="slideId"></param>
+        /// <param name="data"></param>
+        /// <param name="cbData"></param>
+        /// <param name="checkBoxId"></param>
+        /// <param name="isChecked"></param>
         public void UpdateTableCheckBoxState(string slideId, TableData data, CheckBoxData cbData, string checkBoxId, bool isChecked)
         {
             PresentationPageConfig? slide = Slides.FirstOrDefault(s => s.Id == slideId);
@@ -362,6 +420,11 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             UpdateAllTableCheckedState(slideId, data);
         }
 
+        /// <summary>
+        /// テーブル内のチェックボックスの全チェック判定を更新する。
+        /// </summary>
+        /// <param name="slideId"></param>
+        /// <param name="data"></param>
         public void UpdateAllTableCheckedState(string slideId, TableData data)
         {
             var slide = Slides.FirstOrDefault(s => s.Id == slideId);
@@ -403,6 +466,10 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             OnPropertyChanged(nameof(AllPagesChecked));
         }
 
+        /// <summary>
+        /// 表示倍率を変更する。
+        /// </summary>
+        /// <param name="factor"></param>
         [RelayCommand]
         public void Zoom(double factor)
         {
@@ -412,12 +479,22 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             Scale = newScale;
         }
 
+        /// <summary>
+        /// 表示を拡大する。
+        /// </summary>
         [RelayCommand]
         public void ZoomIn() => Zoom(1.1);
 
+        /// <summary>
+        /// 表示を縮小する。
+        /// </summary>
         [RelayCommand]
         public void ZoomOut() => Zoom(1 / 1.1);
 
+        /// <summary>
+        /// 指定のページを表示する。
+        /// </summary>
+        /// <param name="index"></param>
         [RelayCommand]
         public void GoToSlide(int index)
         {
@@ -431,6 +508,9 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             }
         }
 
+        /// <summary>
+        /// １つ次のページを表示する。
+        /// </summary>
         [RelayCommand]
         private void Next()
         {
@@ -443,6 +523,9 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             }
         }
 
+        /// <summary>
+        /// １つ前のページを表示する。
+        /// </summary>
         [RelayCommand]
         private void Prev()
         {
@@ -455,6 +538,9 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             }
         }
 
+        /// <summary>
+        /// 表示中の手順/項目の最初のページを表示する。
+        /// </summary>
         [RelayCommand]
         private void GoToTopPage()
         {
@@ -475,12 +561,19 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             _nav.Navigate(new AramashiMenuViewModel(_nav, _dia));
         }
 
+        /// <summary>
+        /// その他１の最初のページを表示する。
+        /// </summary>
         [RelayCommand]
         private void GoToOthers001()
         {
             _nav.Navigate(new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Others001));
         }
 
+        /// <summary>
+        /// その他２の指定のページを表示する。
+        /// </summary>
+        /// <param name="pageIndex"></param>
         [RelayCommand]
         private void GoToOthers002(int pageIndex)
         {
@@ -489,18 +582,31 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             newVM.GoToSlide(pageIndex);
         }
 
+        /// <summary>
+        /// 画像プレビュー画面に指定の画像を表示する。
+        /// </summary>
+        /// <param name="imagePath"></param>
         [RelayCommand]
         private void PreviewImage(string imagePath)
         {
             _dia.ShowWindow<ImagePreviewViewModel>(imagePath);
         }
 
+        /// <summary>
+        /// 相続の概要画面を表示する。
+        /// </summary>
+        /// <param name="imagePath"></param>
         [RelayCommand]
         private void ShowInheritanceOverview(string imagePath)
         {
             _dia.ShowWindow<InheritanceOverviewViewModel>();
         }
 
+        /// <summary>
+        /// 署名画面を表示する。
+        /// </summary>
+        /// <param name="editedSignMessage"></param>
+        /// <returns></returns>
         [RelayCommand]
         private async Task EditSignatureAsync(string editedSignMessage)
         {
@@ -526,6 +632,10 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             }
         }
 
+        /// <summary>
+        /// 指定の外部リンクをデフォルトのブラウザで開く。
+        /// </summary>
+        /// <param name="url"></param>
         [RelayCommand]
         private void OpenUrl(string url)
         {
@@ -549,6 +659,10 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             }
         }
 
+        /// <summary>
+        /// 指定の項目のPDF仕様選択画面を開く。
+        /// </summary>
+        /// <param name="folderName"></param>
         [RelayCommand]
         private void OpenPdfDocuments(string folderName)
         {
@@ -577,6 +691,10 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             }
         }
 
+        /// <summary>
+        /// その他３の指定のPDF資料を表示する。
+        /// </summary>
+        /// <param name="fileName"></param>
         [RelayCommand]
         private void OpenOthers003PdfDocument(string fileName)
         {
@@ -593,6 +711,10 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             }
         }
 
+        /// <summary>
+        /// その他４の指定のPDF資料を表示する。
+        /// </summary>
+        /// <param name="fileName"></param>
         [RelayCommand]
         private void OpenOthers004PdfDocument(string fileName)
         {
@@ -609,6 +731,9 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             }
         }
 
+        /// <summary>
+        /// 動画再生画面に現在表示中のページの手順/項目の個別動画を表示する。
+        /// </summary>
         [RelayCommand]
         private void OpenVideoPlayer()
         {

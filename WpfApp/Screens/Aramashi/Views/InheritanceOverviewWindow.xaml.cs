@@ -13,6 +13,9 @@ namespace WpfApp.Screens.Aramashi.Views
     /// </summary>
     public partial class InheritanceOverviewWindow : Window
     {
+        /// <summary>
+        /// 描画中の枠線リスト
+        /// </summary>
         private List<Border> currentBorders = new List<Border>();
 
         public InheritanceOverviewWindow()
@@ -47,6 +50,10 @@ namespace WpfApp.Screens.Aramashi.Views
             };
         }
 
+        /// <summary>
+        /// 描画対象オブジェクトに枠線を描画する。（stringではなく専用enumを作成して使用する形式に改良の余地あり）
+        /// </summary>
+        /// <param name="targetNames"></param>
         private void DrawBorders(string[] targetNames)
         {
             // 以前の枠をすべて削除
@@ -103,18 +110,24 @@ namespace WpfApp.Screens.Aramashi.Views
 
                 OverlayCanvas.Children.Add(border);
                 currentBorders.Add(border);
-                Debug.WriteLine($"枠線を描画しました: {name}");
+                Debug.WriteLine($"[DEBUG] 枠線を描画しました: {name}");
             }
         }
 
+        /// <summary>
+        /// 枠線の描画を初期化する。
+        /// </summary>
         private void DeleteBorders()
         {
             foreach (var border in currentBorders)
                 OverlayCanvas.Children.Remove(border);
             currentBorders.Clear();
-            Debug.WriteLine($"描画を初期化しました");
+            Debug.WriteLine($"[DEBUG] 描画を初期化しました");
         }
 
+        /// <summary>
+        /// 枠線の描画状態を更新する。
+        /// </summary>
         private void UpdateAllLines()
         {
             var parents = GetCenter(Parents);
@@ -142,6 +155,12 @@ namespace WpfApp.Screens.Aramashi.Views
             UpdateLine(ChildrenVLine, start_ChildrenVLine, end_ChildrenVLine);
         }
 
+        /// <summary>
+        /// 直線の描画状態を更新する。
+        /// </summary>
+        /// <param name="line"></param>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
         private void UpdateLine(Line line, Point start, Point end)
         {
             line.X1 = start.X;
@@ -150,6 +169,11 @@ namespace WpfApp.Screens.Aramashi.Views
             line.Y2 = end.Y;
         }
 
+        /// <summary>
+        /// エレメントの中心座標を取得する。
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
         private Point GetCenter(FrameworkElement element)
         {
             // elementのローカル座標における中心点を取得
@@ -162,6 +186,11 @@ namespace WpfApp.Screens.Aramashi.Views
             return FamilyTreeGrid.PointFromScreen(screenPoint);
         }
 
+        /// <summary>
+        /// エレメントの左上の座標を取得する。
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
         private Point GetLeftTop(FrameworkElement element)
         {
             // elementの左上の点を設定
@@ -172,12 +201,24 @@ namespace WpfApp.Screens.Aramashi.Views
             return FamilyTreeGrid.PointFromScreen(screenPoint);
         }
 
+        /// <summary>
+        /// ２つの座標間のY軸の中心点を取得する。
+        /// </summary>
+        /// <param name="p1"></param>
+        /// <param name="p2"></param>
+        /// <returns></returns>
         private double GetMidY(Point p1, Point p2) 
         { 
             double midY = (p1.Y + p2.Y) / 2;
             return midY;
         }
 
+        /// <summary>
+        /// ２つの座標間のX軸の中心点を取得する。
+        /// </summary>
+        /// <param name="p1"></param>
+        /// <param name="p2"></param>
+        /// <returns></returns>
         private double GetMidX(Point p1, Point p2)
         {
             double midX = (p1.X + p2.X) / 2;
