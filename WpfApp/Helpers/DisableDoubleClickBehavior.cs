@@ -3,6 +3,9 @@ using System.Windows.Controls;
 
 namespace WpfApp.Helpers
 {
+    /// <summary>
+    /// ダブルクリックを防止するヘルパークラス。
+    /// </summary>
     public static class DisableDoubleClickBehavior
     {
         public static bool GetIsEnabled(Button obj)
