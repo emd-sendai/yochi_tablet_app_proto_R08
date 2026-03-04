@@ -26,14 +26,17 @@ namespace WpfApp.Screens.Documents.ViewModels
         private readonly IMessageDialogService _message;
         private readonly IAppPathService _path;
 
+        /// <summary>
+        /// ボタンの名称表示用ボタンデータリスト（事業全般資料）
+        /// </summary>
         [ObservableProperty]
         private ObservableCollection<ButtonConfig>? worksButtons;
 
+        /// <summary>
+        /// ボタンの名称表示用ボタンデータリスト（地権者個別資料）
+        /// </summary>
         [ObservableProperty]
         private ObservableCollection<ButtonConfig>? landownerButtons;
-
-        [ObservableProperty]
-        private ObservableCollection<LandownerData>? landowners;
 
         /// <summary>
         /// 選択中の地権者ユーザ。
@@ -201,7 +204,7 @@ namespace WpfApp.Screens.Documents.ViewModels
         }
 
         /// <summary>
-        /// 地権者個別資料に対応するPDF資料選択画面を表示する。
+        /// 地権者個別資料の各項目に対応するPDF資料選択画面を表示する。
         /// </summary>
         /// <param name="folderName"></param>
         [RelayCommand]

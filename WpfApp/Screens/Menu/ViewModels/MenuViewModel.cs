@@ -12,6 +12,10 @@ using WpfApp.Services;
 
 namespace WpfApp.Screens.Menu.ViewModels
 {
+    /// <summary>
+    /// MenuView.xamlに対応するViewModel。
+    /// メインメニュー画面での処理を行う。
+    /// </summary>
     public partial class MenuViewModel : ObservableObject
     {
         private readonly NavigationService _nav;
@@ -23,6 +27,8 @@ namespace WpfApp.Screens.Menu.ViewModels
         [ObservableProperty]
         private bool isLeftDrawerOpen;
 
+        private bool isPasswordCorrect;
+
         public MenuViewModel(NavigationService navigationService, IDialogService dialogService)
         {
             _nav = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
@@ -32,11 +38,14 @@ namespace WpfApp.Screens.Menu.ViewModels
             _initializer = new ResourceInitializeService();
         }
 
+        /// <summary>
+        /// パスワードを照合し、管理メニューバーを表示する。
+        /// </summary>
         [RelayCommand]
         private void ToggleDrawer()
         {
-            // サイドバーを開く場合
-            if (!IsLeftDrawerOpen)
+            // パスワードが未照合の状態でサイドバーを開く場合
+            if (!IsLeftDrawerOpen && !isPasswordCorrect)
             {
                 // パスワードダイアログを生成
                 var pwVm = new PasswordDialogViewModel();
@@ -68,9 +77,15 @@ namespace WpfApp.Screens.Menu.ViewModels
                         if (result == true)
                         {
                             IsLeftDrawerOpen = true;
+                            isPasswordCorrect = true;
                         }
                     }
                 }
+            }
+            // パスワードが照合済の状態でサイドバーを開く場合
+            else if (!IsLeftDrawerOpen && isPasswordCorrect)
+            {
+                IsLeftDrawerOpen = true;
             }
             // サイドバーを閉じる場合
             else
@@ -79,18 +94,27 @@ namespace WpfApp.Screens.Menu.ViewModels
             }
         }
 
+        /// <summary>
+        /// 表示設定画面に遷移する。（管理メニューバー）
+        /// </summary>
         [RelayCommand]
         private void GoToDisplaySetttings()
         {
             _nav.Navigate(new DisplaySettingsViewModel(_nav, _dia));
         }
 
+        /// <summary>
+        /// 管理資料画面に遷移する。（管理メニューバー）
+        /// </summary>
         [RelayCommand]
         private void GoToAdminDocument()
         {
             _nav.Navigate(new AdminDocumentViewModel(_nav, _dia));
         }
 
+        /// <summary>
+        /// アプリ全体のデータを初期化してアプリを終了する。（管理メニューバー）
+        /// </summary>
         [RelayCommand]
         private void CleanupAppData()
         {
@@ -125,18 +149,27 @@ namespace WpfApp.Screens.Menu.ViewModels
             Application.Current.Shutdown();
         }
 
+        /// <summary>
+        /// 補償のあらまし画面に遷移する。
+        /// </summary>
         [RelayCommand]
         private void GoToAramashiMenu()
         {
             _nav.Navigate(new AramashiMenuViewModel(_nav, _dia));
         }
 
+        /// <summary>
+        /// 各種資料画面に遷移する。
+        /// </summary>
         [RelayCommand]
         private void GoToDocumentMenu()
         {
             _nav.Navigate(new DocumentMenuViewModel(_nav, _dia));
         }
 
+        /// <summary>
+        /// 一時保存データを初期化してアプリを終了する。
+        /// </summary>
         [RelayCommand]
         private void Exit()
         {
