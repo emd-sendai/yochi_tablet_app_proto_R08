@@ -107,13 +107,7 @@
     <Content Include="DocumentResources\Documents\Works\Document05\【サンプル】地積測量図.pdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="MediaResources\Aramashi\Main\AramashiSample.mp4">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="MediaResources\Aramashi\Main\chapters.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="MediaResources\Aramashi\Parts\Aramashi\001\テスト.mp4">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="SlideResources\Aramashi\aramashi1.png">
@@ -368,6 +362,8 @@
     <Folder Include="DocumentResources\Documents\Works\Document06\" />
     <Folder Include="DocumentResources\Documents\Works\Document07\" />
     <Folder Include="DocumentResources\Documents\Works\Document08\" />
+    <Folder Include="MediaResources\Aramashi\Parts\Aramashi\001\" />
+    <Folder Include="MediaResources\Aramashi\Parts\Aramashi\003\" />
     <Folder Include="MediaResources\Aramashi\Parts\Others\" />
     <Folder Include="Screens\Menu\Models\" />
     <Folder Include="Screens\Documents\Models\" />
