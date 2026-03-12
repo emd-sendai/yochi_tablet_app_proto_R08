@@ -123,6 +123,7 @@
         }
       ]
     },
+    "video": true,
     "sections": [
       {
         "subtitle": {
@@ -164,6 +165,7 @@
         }
       ]
     },
+    "video": true,
     "sections": [
       {
         "subtitle": {
@@ -429,6 +431,7 @@
         }
       ]
     },
+    "video": true,
     "sections": [
       {
         "subtitle": {
