@@ -85,6 +85,8 @@
 										<Directory Id="MRAPA010Folder" Name="010"/>
 									</Directory>
 									<Directory Id="MRAPOthersFolder" Name="Others">
+										<Directory Id="MRAPOt001Folder" Name="001"/>
+										<Directory Id="MRAPOt002Folder" Name="002"/>
 									</Directory>
 								</Directory>
 							</Directory>
@@ -161,6 +163,8 @@
 				<RemoveFolder Id="RemoveMRAPA009Folder" Directory="MRAPA009Folder" On="uninstall"/>
 				<RemoveFolder Id="RemoveMRAPA010Folder" Directory="MRAPA010Folder" On="uninstall"/>
 				<RemoveFolder Id="RemoveMRAPOthersFolder" Directory="MRAPOthersFolder" On="uninstall"/>
+				<RemoveFolder Id="RemoveMRAPOt001Folder" Directory="MRAPOt001Folder" On="uninstall"/>
+				<RemoveFolder Id="RemoveMRAPOt002Folder" Directory="MRAPOt002Folder" On="uninstall"/>
 
 				<!-- SlideResources フォルダ (サブフォルダ含む)-->
 				<RemoveFolder Id="RemoveSlideResourcesFolder" Directory="SlideResourcesFolder" On="uninstall"/>

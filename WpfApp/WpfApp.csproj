@@ -143,6 +143,12 @@
     <Content Include="MediaResources\Aramashi\Parts\Aramashi\010\S10.mp4">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="MediaResources\Aramashi\Parts\Others\001\S11.mp4">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MediaResources\Aramashi\Parts\Others\002\S12.mp4">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="SlideResources\Aramashi\aramashi1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -395,7 +401,6 @@
     <Folder Include="DocumentResources\Documents\Works\Document06\" />
     <Folder Include="DocumentResources\Documents\Works\Document07\" />
     <Folder Include="DocumentResources\Documents\Works\Document08\" />
-    <Folder Include="MediaResources\Aramashi\Parts\Others\" />
     <Folder Include="Screens\Menu\Models\" />
     <Folder Include="Screens\Documents\Models\" />
   </ItemGroup>
