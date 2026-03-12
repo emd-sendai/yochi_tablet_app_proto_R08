@@ -392,20 +392,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\Signature\" />
-    <Folder Include="DocumentResources\Documents\Landowners\001\Document03\" />
-    <Folder Include="DocumentResources\Documents\Landowners\001\Document08\" />
-    <Folder Include="DocumentResources\Documents\Landowners\002\" />
-    <Folder Include="DocumentResources\Documents\Landowners\003\" />
-    <Folder Include="DocumentResources\Documents\Works\Document04\" />
-    <Folder Include="DocumentResources\Documents\Works\Document06\" />
-    <Folder Include="DocumentResources\Documents\Works\Document07\" />
-    <Folder Include="DocumentResources\Documents\Works\Document08\" />
-    <Folder Include="Screens\Menu\Models\" />
-    <Folder Include="Screens\Documents\Models\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
     <PackageReference Include="MaterialDesignColors" Version="5.3.0" />
     <PackageReference Include="MaterialDesignThemes" Version="5.3.0" />
