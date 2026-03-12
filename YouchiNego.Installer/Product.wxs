@@ -74,6 +74,8 @@
 								<Directory Id="MRAPartsFolder" Name="Parts">
 									<Directory Id="MRAPAramashiFolder" Name="Aramashi">
 										<Directory Id="MRAPA001Folder" Name="001"/>
+										<Directory Id="MRAPA002Folder" Name="002"/>
+										<Directory Id="MRAPA003Folder" Name="003"/>
 									</Directory>
 									<Directory Id="MRAPOthersFolder" Name="Others">
 									</Directory>
@@ -142,6 +144,8 @@
 				<RemoveFolder Id="RemoveMRAPartsFolder" Directory="MRAPartsFolder" On="uninstall"/>
 				<RemoveFolder Id="RemoveMRAPAramashiFolder" Directory="MRAPAramashiFolder" On="uninstall"/>
 				<RemoveFolder Id="RemoveMRAPA001Folder" Directory="MRAPA001Folder" On="uninstall"/>
+				<RemoveFolder Id="RemoveMRAPA002Folder" Directory="MRAPA002Folder" On="uninstall"/>
+				<RemoveFolder Id="RemoveMRAPA003Folder" Directory="MRAPA003Folder" On="uninstall"/>
 				<RemoveFolder Id="RemoveMRAPOthersFolder" Directory="MRAPOthersFolder" On="uninstall"/>
 
 				<!-- SlideResources フォルダ (サブフォルダ含む)-->

@@ -3,8 +3,8 @@
 	<Fragment>
 		<DirectoryRef Id="MRAMainFolder">
 			<Component Id="MRAramashiMain" Guid="389CBAF9-313A-4255-9031-5459EDAA2C7F">
-				<File Id="filUB8iwc4VdRMGVfATykZP3.ABkSQ" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\MediaResources\Aramashi\Main\AramashiSample.mp4" />
-				<File Id="filpbMCXC3S9IsaAPBNAsVc3hnFmVs" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\MediaResources\Aramashi\Main\chapters.json" />
+				<File Id="MRAMainFile" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\MediaResources\Aramashi\Main\用地補償のあらまし.mp4" />
+				<File Id="MRAMainChapterFile" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\MediaResources\Aramashi\Main\chapters.json" />
 				<!-- KeyPath 用レジストリ -->
 				<RegistryValue Root="HKCU" Key="Software\YouchiNegoProto\YouchiNego\AppResources\MediaResources\Aramashi\Main" Name="Installed" Type="integer" Value="1" KeyPath="yes"/>
 			</Component>
@@ -12,9 +12,25 @@
 
 		<DirectoryRef Id="MRAPA001Folder">
 			<Component Id="MRAramashiPartsAramashi001" Guid="695ED50E-6811-4BB2-88A7-3A93C8378B78">
-				<File Id="filXlsAhF1UxY1lPD4HWXafmQdDCA4" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\MediaResources\Aramashi\Parts\Aramashi\001\テスト.mp4" />
+				<File Id="MRAPA001File" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\MediaResources\Aramashi\Parts\Aramashi\001\S1.mp4" />
 				<!-- KeyPath 用レジストリ -->
 				<RegistryValue Root="HKCU" Key="Software\YouchiNegoProto\YouchiNego\AppResources\MediaResources\Aramashi\Parts\Aramashi\001" Name="Installed" Type="integer" Value="1" KeyPath="yes"/>
+			</Component>
+		</DirectoryRef>
+
+		<DirectoryRef Id="MRAPA002Folder">
+			<Component Id="MRAramashiPartsAramashi002" Guid="3CEA8BEC-A32C-4FE6-A4D7-7FEBB90598C9">
+				<File Id="MRAPA002File" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\MediaResources\Aramashi\Parts\Aramashi\002\S2.mp4" />
+				<!-- KeyPath 用レジストリ -->
+				<RegistryValue Root="HKCU" Key="Software\YouchiNegoProto\YouchiNego\AppResources\MediaResources\Aramashi\Parts\Aramashi\002" Name="Installed" Type="integer" Value="1" KeyPath="yes"/>
+			</Component>
+		</DirectoryRef>
+
+		<DirectoryRef Id="MRAPA003Folder">
+			<Component Id="MRAramashiPartsAramashi003" Guid="781C94A1-022D-4F36-8F64-478200A7BD53">
+				<File Id="MRAPA003File" Source="..\WpfApp\bin\Release\net8.0-windows\win-x64\MediaResources\Aramashi\Parts\Aramashi\003\S3.mp4" />
+				<!-- KeyPath 用レジストリ -->
+				<RegistryValue Root="HKCU" Key="Software\YouchiNegoProto\YouchiNego\AppResources\MediaResources\Aramashi\Parts\Aramashi\003" Name="Installed" Type="integer" Value="1" KeyPath="yes"/>
 			</Component>
 		</DirectoryRef>
 	</Fragment>
@@ -23,6 +39,8 @@
 		<ComponentGroup Id="AppResourcesMediaResources">
 			<ComponentRef Id="MRAramashiMain" />
 			<ComponentRef Id="MRAramashiPartsAramashi001" />
+			<ComponentRef Id="MRAramashiPartsAramashi002" />
+			<ComponentRef Id="MRAramashiPartsAramashi003" />
 		</ComponentGroup>
 	</Fragment>
 </Wix>

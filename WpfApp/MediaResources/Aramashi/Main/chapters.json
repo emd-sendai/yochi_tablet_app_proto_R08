@@ -2,30 +2,58 @@
   {
     "title": "Start",
     "start": 0,
-    "isProtected" : true
+    "isProtected": true
   },
   {
-    "title": "Part1",
-    "start": 56.5
+    "title": "S1",
+    "start": 5.2
   },
   {
-    "title": "Part2",
-    "start": 96.8
+    "title": "S2",
+    "start": 49.2
   },
   {
-    "title": "Part3",
-    "start": 204.5
+    "title": "S3",
+    "start": 94.9
   },
   {
-    "title": "Part4",
-    "start": 271.8
+    "title": "S4",
+    "start": 246.5
   },
   {
-    "title": "Part5",
-    "start": 373.5
+    "title": "S5",
+    "start": 314.9
   },
   {
-    "title": "Outro",
-    "start": 475
+    "title": "S6",
+    "start": 427.1
+  },
+  {
+    "title": "S7",
+    "start": 480
+  },
+  {
+    "title": "S8",
+    "start": 515.4
+  },
+  {
+    "title": "S9",
+    "start": 574.6
+  },
+  {
+    "title": "S10",
+    "start": 632.2
+  },
+  {
+    "title": "S11",
+    "start": 668
+  },
+  {
+    "title": "S12",
+    "start": 740.5
+  },
+  {
+    "title": "End",
+    "start": 1014.2
   }
 ]
