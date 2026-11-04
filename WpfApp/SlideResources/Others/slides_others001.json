@@ -20,7 +20,6 @@
             {
               "text": "１ 移転先の選索",
               "bold": true,
-              "color": "#1F78B4",
               "underline": true
             }
           ],
@@ -58,7 +57,6 @@
             {
               "text": "２ 代替地提供者への特別控除",
               "bold": true,
-              "color": "#1F78B4",
               "underline": true
             }
           ],

@@ -19,85 +19,119 @@
         "body": {
           "textRuns": [
             {
-              "text": "　用地事務にあたり参考となる手引、マニュアルを掲載します。"
+              "text": "　参考となる手引、マニュアル等を紹介します。"
             }
           ],
           "fontSize": 16
         }
       },
       {
-        "table": {
-          "rows": 1,
-          "columns": 1,
-          "padding": 6,
-          "cells": [
+        "subtitle": {
+          "textRuns": [
             {
-              "textRuns": [
-                {
-                  "text": "所有者の所在の把握が難しい土地に関する探索・利活用のためのガイドライン",
-                  "isLink": true,
-                  "commandName": "OpenOthers004PdfDocumentCommand",
-                  "commandParameter": "所有者の所在の把握が難しい土地に関する探索・利活用のためのガイドライン"
-                }
-              ],
-              "fontSize": 15
+              "text": "〇税金関係",
+              "bold": true,
+              "color": "#1F78B4"
             }
-          ]
+          ],
+          "fontSize": 18
+        },
+        "body": {
+          "textRuns": [
+            {
+              "text": "事前協議の手引き",
+              "isLink": true,
+              "commandName": "OpenUrlCommand",
+              "commandParameter": "https://www.nta.go.jp/about/organization/kantoshinetsu/topics/jizenkyogi/index.htm"
+            },
+            {
+              "text": "（関東信越国税局作成）"
+            }
+          ],
+          "fontSize": 16
+        }
+      },
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "〇相続登記関係",
+              "bold": true,
+              "color": "#1F78B4"
+            }
+          ],
+          "fontSize": 18
+        },
+        "body": {
+          "textRuns": [
+            {
+              "text": "登記申請手続きのご案内（相続登記①／遺産分割協議編）",
+              "isLink": true,
+              "commandName": "OpenUrlCommand",
+              "commandParameter": "https://houmukyoku.moj.go.jp/homu/page7_000001_00014.html"
+            },
+            {
+              "text": "（法務省民事局作成）\n"
+            },
+            {
+              "text": "登記申請手続きのご案内（相続登記②／法定相続編）",
+              "isLink": true,
+              "commandName": "OpenUrlCommand",
+              "commandParameter": "https://houmukyoku.moj.go.jp/homu/page7_000001_00014.html"
+            },
+            {
+              "text": "（法務省民事局作成）"
+            }
+          ],
+          "fontSize": 16
+        }
+      },
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "〇権利調査関係",
+              "bold": true,
+              "color": "#1F78B4"
+            }
+          ],
+          "fontSize": 18
+        },
+        "body": {
+          "textRuns": [
+            {
+              "text": "土地・不動産・建設業：所有者の所在の把握が難しい土地に関する探索・利活用のためのガイドライン - 国土交通省",
+              "isLink": true,
+              "commandName": "OpenUrlCommand",
+              "commandParameter": "https://www.mlit.go.jp/totikensangyo/totikensangyo_tk2_000125.html"
+            }
+          ],
+          "fontSize": 16
         }
       },
       {
         "body": {
           "textRuns": [
             {
-              "text": "\n\n各種手引、マニュアルは、以下国土交通省ホームページでも公開しております。"
+              "text": "各種手引、マニュアルは、以下国土交通省ホームページでも公開しております。\n"
+            },
+            {
+              "text": "土地：公共用地の取得関連 - 国土交通省\n",
+              "isLink": true,
+              "commandName": "OpenUrlCommand",
+              "commandParameter": "https://www.mlit.go.jp/totikensangyo/totikensangyo_tk1_000017.html"
+            },
+            {
+              "text": "所有者不明土地関係参考リンク集",
+              "isLink": true,
+              "commandName": "OpenUrlCommand",
+              "commandParameter": "https://www.ktr.mlit.go.jp/youchi/furendo/youchi_furendo00000010.html"
+            },
+            {
+              "text": "（国土交通省　関東地方整備局作成）"
             }
           ],
-          "fontSize": 16
-        }
-      },
-      {
-        "table": {
-          "rows": 3,
-          "columns": 1,
-          "padding": 6,
-          "cells": [
-            {
-              "textRuns": [
-                {
-                  "text": "土地：公共用地の取得関連 - 国土交通省",
-                  "isLink": true,
-                  "commandName": "OpenUrlCommand",
-                  "commandParameter": "https://www.mlit.go.jp/totikensangyo/totikensangyo_tk1_000017.html"
-                }
-              ],
-              "fontSize": 15
-            },
-            {
-              "textRuns": [
-                {
-                  "text": "土地：所有者不明土地の利用の円滑化等に関する特別措置法（所有者不明土地法） - 国土交通省",
-                  "isLink": true,
-                  "commandName": "OpenUrlCommand",
-                  "commandParameter": "https://www.mlit.go.jp/tochi_fudousan_kensetsugyo/tochi_fudousan_kensetsugyo_tk2_000001_00014.html"
-                }
-              ],
-              "fontSize": 15
-            },
-            {
-              "textRuns": [
-                {
-                  "text": "所有者不明土地関係参考リンク集",
-                  "isLink": true,
-                  "commandName": "OpenUrlCommand",
-                  "commandParameter": "https://www.ktr.mlit.go.jp/youchi/furendo/youchi_furendo00000010.html"
-                },
-                {
-                  "text": " （ 国土交通省　関東地方整備局作成）"
-                }
-              ],
-              "fontSize": 15
-            }
-          ]
+          "fontSize": 15
         }
       }
     ]

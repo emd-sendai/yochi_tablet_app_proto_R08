@@ -17,10 +17,10 @@
         "body": {
           "textRuns": [
             {
-              "text": "　用地測量および物件等の調査は、譲っていただく土地の面積や建物等の移転をお願いする物件などを測量・調査する作業です。\n"
+              "text": "　用地測量および物件等の調査は、事業に必要となる土地の面積や建物等の移転をお願いする物件などを測量・調査する作業です。\n"
             },
             {
-              "text": "　この作業は、所有者の立ち会いが必要となりますので、ご協力をお願いします。"
+              "text": "　この作業は、土地所有者や物件所有者の方々の立ち会いが必要となる場合がありますので、ご協力をお願いします。"
             }
           ],
           "fontSize": 15
@@ -376,7 +376,6 @@
             {
               "text": "（１）権利者調査",
               "bold": true,
-              "color": "#1F78B4",
               "underline": true
             }
           ],
@@ -404,7 +403,6 @@
             {
               "text": "１）地図（公図）の転写",
               "bold": true,
-              "color": "#1F78B4",
               "underline": true
             }
           ],
@@ -469,7 +467,6 @@
             {
               "text": "（１）権利者調査",
               "bold": true,
-              "color": "#1F78B4",
               "underline": true
             }
           ],
@@ -487,7 +484,6 @@
             {
               "text": "２）登記記録（登記簿）調査（土地・建物等）",
               "bold": true,
-              "color": "#1F78B4",
               "underline": true
             }
           ],
@@ -582,7 +578,6 @@
             {
               "text": "（１）権利者調査",
               "bold": true,
-              "color": "#1F78B4",
               "underline": true
             }
           ],
@@ -600,7 +595,6 @@
             {
               "text": "２）登記記録（登記簿）調査（土地・建物等）",
               "bold": true,
-              "color": "#1F78B4",
               "underline": true
             }
           ],
@@ -662,12 +656,7 @@
         "body": {
           "textRuns": [
             {
-              "text": "　なお、建物登記がなされていない場合には、聞き取り等により権利関係等の調査を行います。\n",
-              "bold": false,
-              "color": "#000000"
-            },
-            {
-              "text": "　また、令和２年４月１日の相続法制に関する民法改正により、建物に対する新たな権利である「配偶者居住権」が創設されました。配偶者居住権は建物等が移転対象とならず土地のみを取得する場合も調査を行います。",
+              "text": "　なお、建物登記がなされていない場合には、聞き取り等により権利関係等の調査を行います。",
               "bold": false,
               "color": "#000000"
             }
@@ -697,7 +686,6 @@
             {
               "text": "（１）権利者調査",
               "bold": true,
-              "color": "#1F78B4",
               "underline": true
             }
           ],
@@ -715,7 +703,6 @@
             {
               "text": "３）住民票等の調査",
               "bold": true,
-              "color": "#1F78B4",
               "underline": true
             }
           ],
@@ -734,7 +721,7 @@
               "color": "#000000"
             },
             {
-              "text": "　住民票、戸籍等は、公共事業の権利者調査等で必要な場合、職員が役所で取得できます。",
+              "text": "　住民票、戸籍等は、公共事業の権利者調査等で必要な場合、職員による役所での取得が認められております。",
               "bold": true,
               "color": "#1F78B4"
             }
@@ -793,7 +780,6 @@
             {
               "text": "（１）権利者調査",
               "bold": true,
-              "color": "#1F78B4",
               "underline": true
             }
           ],
@@ -811,7 +797,6 @@
             {
               "text": "３）住民票等の調査",
               "bold": true,
-              "color": "#1F78B4",
               "underline": true
             }
           ],
@@ -949,7 +934,6 @@
             {
               "text": "（２）用地測量および物件等の調査",
               "bold": true,
-              "color": "#1F78B4",
               "underline": true
             }
           ],
@@ -963,7 +947,7 @@
               "color": "#000000"
             },
             {
-              "text": "用地測量および物件等の調査は、一般的に専門業者に委託して行います。",
+              "text": "用地測量および物件等の調査は、一般的に専門業者（補償コンサルタント）に委託して行います。",
               "bold": false,
               "color": "#000000"
             }
@@ -976,13 +960,11 @@
           "textRuns": [
             {
               "text": "　",
-              "bold": true,
-              "color": "#1F78B4"
+              "bold": true
             },
             {
               "text": "１）土地に関する調査",
               "bold": true,
-              "color": "#1F78B4",
               "underline": true
             }
           ],
@@ -1026,7 +1008,6 @@
             {
               "text": "（２）用地測量および物件等の調査",
               "bold": true,
-              "color": "#1F78B4",
               "underline": true
             }
           ],
@@ -1038,13 +1019,11 @@
           "textRuns": [
             {
               "text": "　",
-              "bold": true,
-              "color": "#1F78B4"
+              "bold": true
             },
             {
               "text": "１）土地に関する調査",
               "bold": true,
-              "color": "#1F78B4",
               "underline": true
             }
           ],
@@ -1058,7 +1037,7 @@
               "color": "#1F78B4"
             },
             {
-              "text": "　用地幅杭の設置により事業用地の範囲が明確になりましたら、土地の境界を確認していただくため土地所有者等の立会をお願いします。",
+              "text": "　用地幅杭の設置により事業用地の範囲が明確になりましたら、土地の境界を確認していただくため土地所有者の方々等に立会をお願いします。",
               "bold": false,
               "color": "#000000"
             }
@@ -1122,7 +1101,6 @@
             {
               "text": "（２）用地測量および物件等の調査",
               "bold": true,
-              "color": "#1F78B4",
               "underline": true
             }
           ],
@@ -1134,13 +1112,11 @@
           "textRuns": [
             {
               "text": "　",
-              "bold": true,
-              "color": "#1F78B4"
+              "bold": true
             },
             {
               "text": "１）土地に関する調査",
               "bold": true,
-              "color": "#1F78B4",
               "underline": true
             }
           ],
@@ -1250,7 +1226,6 @@
             {
               "text": "（２）用地測量および物件等の調査",
               "bold": true,
-              "color": "#1F78B4",
               "underline": true
             }
           ],
@@ -1262,13 +1237,11 @@
           "textRuns": [
             {
               "text": "　",
-              "bold": true,
-              "color": "#1F78B4"
+              "bold": true
             },
             {
               "text": "１）土地に関する調査",
               "bold": true,
-              "color": "#1F78B4",
               "underline": true
             }
           ],
@@ -1354,7 +1327,6 @@
             {
               "text": "（２）用地測量および物件等の調査",
               "bold": true,
-              "color": "#1F78B4",
               "underline": true
             }
           ],
@@ -1366,13 +1338,11 @@
           "textRuns": [
             {
               "text": "　",
-              "bold": true,
-              "color": "#1F78B4"
+              "bold": true
             },
             {
               "text": "１）土地に関する調査",
               "bold": true,
-              "color": "#1F78B4",
               "underline": true
             }
           ],
@@ -1533,7 +1503,6 @@
             {
               "text": "（２）用地測量および物件等の調査",
               "bold": true,
-              "color": "#1F78B4",
               "underline": true
             }
           ],
@@ -1545,13 +1514,11 @@
           "textRuns": [
             {
               "text": "　",
-              "bold": true,
-              "color": "#1F78B4"
+              "bold": true
             },
             {
               "text": "２）物件等に関する調査",
               "bold": true,
-              "color": "#1F78B4",
               "underline": true
             }
           ],
@@ -1618,14 +1585,9 @@
               "color": "#D32F2F"
             },
             {
-              "text": "　なお、建築確認申請書（控）等の資料がありましたらご用意ください。\n\n",
+              "text": "　なお、建築確認申請書（控）等の建物建築時の図面等の資料をお持ちでしたら、参考にさせていただきたくご準備願います。",
               "bold": true,
               "color": "#000000"
-            },
-            {
-              "text": "　建物の調査は、建物の内部に入って調査いたします。ご協力をお願いします。",
-              "bold": true,
-              "color": "#D32F2F"
             }
           ],
           "fontSize": 16
@@ -1653,7 +1615,6 @@
             {
               "text": "（２）用地測量および物件等の調査",
               "bold": true,
-              "color": "#1F78B4",
               "underline": true
             }
           ],
@@ -1665,13 +1626,11 @@
           "textRuns": [
             {
               "text": "　",
-              "bold": true,
-              "color": "#1F78B4"
+              "bold": true
             },
             {
               "text": "２）物件等に関する調査",
               "bold": true,
-              "color": "#1F78B4",
               "underline": true
             }
           ],
@@ -1737,7 +1696,7 @@
             {
               "textRuns": [
                 {
-                  "text": "建物の建築年月日"
+                  "text": "建物の建築年月"
                 }
               ]
             },
@@ -1877,7 +1836,6 @@
             {
               "text": "（２）用地測量および物件等の調査",
               "bold": true,
-              "color": "#1F78B4",
               "underline": true
             }
           ],
@@ -1889,13 +1847,11 @@
           "textRuns": [
             {
               "text": "　",
-              "bold": true,
-              "color": "#1F78B4"
+              "bold": true
             },
             {
               "text": "２）物件等に関する調査",
               "bold": true,
-              "color": "#1F78B4",
               "underline": true
             }
           ],
@@ -1968,23 +1924,13 @@
               "color": "#1F78B4"
             },
             {
-              "text": "　ａ  物置、車庫、ブロック塀、門柱\n",
-              "bold": false,
-              "color": "#000000"
-            },
-            {
-              "text": "　ｂ  看板、物干し台、藤棚、花壇、庭石　\n",
-              "bold": false,
-              "color": "#000000"
-            },
-            {
-              "text": "　ｃ  井戸、ビニールハウス等",
+              "text": "　物置、車庫、ブロック塀、門柱、看板、物干し台、藤棚、花壇、庭石、井戸、ビニールハウス等",
               "bold": false,
               "color": "#000000"
             }
           ],
           "fontSize": 16,
-          "maxWidth": 500
+          "maxWidth": 280
         },
         "image": {
           "maxHeight": 150,
@@ -2018,7 +1964,6 @@
             {
               "text": "（２）用地測量および物件等の調査",
               "bold": true,
-              "color": "#1F78B4",
               "underline": true
             }
           ],
@@ -2030,13 +1975,11 @@
           "textRuns": [
             {
               "text": "　",
-              "bold": true,
-              "color": "#1F78B4"
+              "bold": true
             },
             {
               "text": "２）物件等に関する調査",
               "bold": true,
-              "color": "#1F78B4",
               "underline": true
             }
           ],
@@ -2080,7 +2023,6 @@
             {
               "text": "（２）用地測量および物件等の調査",
               "bold": true,
-              "color": "#1F78B4",
               "underline": true
             }
           ],
@@ -2092,13 +2034,11 @@
           "textRuns": [
             {
               "text": "　",
-              "bold": true,
-              "color": "#1F78B4"
+              "bold": true
             },
             {
               "text": "２）物件等に関する調査",
               "bold": true,
-              "color": "#1F78B4",
               "underline": true
             }
           ],
@@ -2122,7 +2062,7 @@
               "color": "#000000"
             },
             {
-              "text": "　ｂ  樹種、樹齢、樹高、樹幅、幹周、根廻りまたは株廻り\n",
+              "text": "　ｂ  樹種、樹齢、樹高、葉張、幹周または胸高直径\n",
               "bold": false,
               "color": "#000000"
             },
@@ -2137,12 +2077,7 @@
               "color": "#000000"
             },
             {
-              "text": "　ｅ  収穫量\n",
-              "bold": false,
-              "color": "#000000"
-            },
-            {
-              "text": "　ｆ  その他必要な事",
+              "text": "　ｅ  その他必要な事項",
               "bold": false,
               "color": "#000000"
             }
@@ -2182,7 +2117,6 @@
             {
               "text": "（２）用地測量および物件等の調査",
               "bold": true,
-              "color": "#1F78B4",
               "underline": true
             }
           ],
@@ -2194,13 +2128,11 @@
           "textRuns": [
             {
               "text": "　",
-              "bold": true,
-              "color": "#1F78B4"
+              "bold": true
             },
             {
               "text": "２）物件等に関する調査",
               "bold": true,
-              "color": "#1F78B4",
               "underline": true
             }
           ],
@@ -2283,7 +2215,6 @@
             {
               "text": "（２）用地測量および物件等の調査",
               "bold": true,
-              "color": "#1F78B4",
               "underline": true
             }
           ],
@@ -2295,13 +2226,11 @@
           "textRuns": [
             {
               "text": "　",
-              "bold": true,
-              "color": "#1F78B4"
+              "bold": true
             },
             {
               "text": "２）物件等に関する調査",
               "bold": true,
-              "color": "#1F78B4",
               "underline": true
             }
           ],
@@ -2410,7 +2339,6 @@
             {
               "text": "（２）用地測量および物件等の調査",
               "bold": true,
-              "color": "#1F78B4",
               "underline": true
             }
           ],
@@ -2422,13 +2350,11 @@
           "textRuns": [
             {
               "text": "　",
-              "bold": true,
-              "color": "#1F78B4"
+              "bold": true
             },
             {
               "text": "２）物件等に関する調査",
               "bold": true,
-              "color": "#1F78B4",
               "underline": true
             }
           ],
@@ -2514,7 +2440,6 @@
             {
               "text": "（２）用地測量および物件等の調査",
               "bold": true,
-              "color": "#1F78B4",
               "underline": true
             }
           ],
@@ -2526,13 +2451,11 @@
           "textRuns": [
             {
               "text": "　",
-              "bold": true,
-              "color": "#1F78B4"
+              "bold": true
             },
             {
               "text": "２）物件等に関する調査",
               "bold": true,
-              "color": "#1F78B4",
               "underline": true
             }
           ],
@@ -2606,7 +2529,6 @@
             {
               "text": "（２）用地測量および物件等の調査",
               "bold": true,
-              "color": "#1F78B4",
               "underline": true
             }
           ],
@@ -2618,13 +2540,11 @@
           "textRuns": [
             {
               "text": "　",
-              "bold": true,
-              "color": "#1F78B4"
+              "bold": true
             },
             {
               "text": "２）物件等に関する調査",
               "bold": true,
-              "color": "#1F78B4",
               "underline": true
             }
           ],

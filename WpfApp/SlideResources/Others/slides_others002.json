@@ -22,7 +22,6 @@
             {
               "text": "１ 譲渡所得に対する課税の特例",
               "bold": true,
-              "color": "#1F78B4",
               "underline": true
             }
           ],
@@ -299,11 +298,15 @@
             {
               "text": "２ 税務申告について",
               "bold": true,
-              "color": "#1F78B4",
               "underline": true
             }
           ],
           "fontSize": 18
+        },
+        "checkBox": {
+          "id": "others002_4",
+          "label": "",
+          "isChecked": false
         },
         "body": {
           "textRuns": [
@@ -400,14 +403,13 @@
             {
               "text": "１ 固定資産税・都市計画税について",
               "bold": true,
-              "color": "#1F78B4",
               "underline": true
             }
           ],
           "fontSize": 18
         },
         "checkBox": {
-          "id": "others002_4",
+          "id": "others002_5",
           "label": "",
           "isChecked": false
         },
@@ -438,14 +440,13 @@
             {
               "text": "２ 住民税",
               "bold": true,
-              "color": "#1F78B4",
               "underline": true
             }
           ],
           "fontSize": 18
         },
         "checkBox": {
-          "id": "others002_5",
+          "id": "others002_6",
           "label": "",
           "isChecked": false
         },
@@ -490,14 +491,13 @@
             {
               "text": "３ 不動産取得税について",
               "bold": true,
-              "color": "#1F78B4",
               "underline": true
             }
           ],
           "fontSize": 18
         },
         "checkBox": {
-          "id": "others002_6",
+          "id": "others002_7",
           "label": "",
           "isChecked": false
         },
@@ -523,14 +523,13 @@
             {
               "text": "４ 納税猶予の特例を受けた農地について",
               "bold": true,
-              "color": "#1F78B4",
               "underline": true
             }
           ],
           "fontSize": 18
         },
         "checkBox": {
-          "id": "others002_7",
+          "id": "others002_8",
           "label": "",
           "isChecked": false
         },
@@ -561,14 +560,13 @@
             {
               "text": "５ 配偶者控除・扶養控除等について（所得税・住民税）",
               "bold": true,
-              "color": "#1F78B4",
               "underline": true
             }
           ],
           "fontSize": 18
         },
         "checkBox": {
-          "id": "others002_8",
+          "id": "others002_9",
           "label": "",
           "isChecked": false
         },
@@ -613,14 +611,13 @@
             {
               "text": "６ 農業者年金（経営移譲年金）について",
               "bold": true,
-              "color": "#1F78B4",
               "underline": true
             }
           ],
           "fontSize": 18
         },
         "checkBox": {
-          "id": "others002_9",
+          "id": "others002_10",
           "label": "",
           "isChecked": false
         },
@@ -646,14 +643,13 @@
             {
               "text": "７ 福祉年金等について",
               "bold": true,
-              "color": "#1F78B4",
               "underline": true
             }
           ],
           "fontSize": 18
         },
         "checkBox": {
-          "id": "others002_10",
+          "id": "others002_11",
           "label": "",
           "isChecked": false
         },
@@ -679,14 +675,13 @@
             {
               "text": "８ 国民健康保険料および後期高齢者医療保険料について",
               "bold": true,
-              "color": "#1F78B4",
               "underline": true
             }
           ],
           "fontSize": 18
         },
         "checkBox": {
-          "id": "others002_11",
+          "id": "others002_12",
           "label": "",
           "isChecked": false
         },
@@ -731,14 +726,13 @@
             {
               "text": "９ 介護保険料等について",
               "bold": true,
-              "color": "#1F78B4",
               "underline": true
             }
           ],
           "fontSize": 18
         },
         "checkBox": {
-          "id": "others002_12",
+          "id": "others002_13",
           "label": "",
           "isChecked": false
         },
@@ -774,14 +768,13 @@
             {
               "text": "10 土地改良区決済金について",
               "bold": true,
-              "color": "#1F78B4",
               "underline": true
             }
           ],
           "fontSize": 18
         },
         "checkBox": {
-          "id": "others002_13",
+          "id": "others002_14",
           "label": "",
           "isChecked": false
         },
