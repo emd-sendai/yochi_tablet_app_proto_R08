@@ -61,7 +61,7 @@
                   "text": "土地価格",
                   "isLink": true,
                   "commandName": "GoToSlideCommand",
-                  "commandParameter": "29"
+                  "commandParameter": "30"
                 }
               ],
               "fontSize": 16
@@ -84,7 +84,7 @@
                   "text": "借地権等に関する補償",
                   "isLink": true,
                   "commandName": "GoToSlideCommand",
-                  "commandParameter": "29"
+                  "commandParameter": "30"
                 },
                 {
                   "text": "　　　　　　"
@@ -110,7 +110,7 @@
                   "text": "物件等の補償",
                   "isLink": true,
                   "commandName": "GoToSlideCommand",
-                  "commandParameter": "30"
+                  "commandParameter": "31"
                 }
               ],
               "fontSize": 16
@@ -133,7 +133,7 @@
                   "text": "建物の補償",
                   "isLink": true,
                   "commandName": "GoToSlideCommand",
-                  "commandParameter": "30"
+                  "commandParameter": "31"
                 }
               ],
               "fontSize": 16
@@ -147,7 +147,7 @@
                   "text": "借家人、借間人に対する補償",
                   "isLink": true,
                   "commandName": "GoToSlideCommand",
-                  "commandParameter": "33"
+                  "commandParameter": "34"
                 }
               ],
               "fontSize": 16
@@ -161,7 +161,7 @@
                   "text": "工作物の補償",
                   "isLink": true,
                   "commandName": "GoToSlideCommand",
-                  "commandParameter": "30"
+                  "commandParameter": "31"
                 }
               ],
               "fontSize": 16
@@ -175,7 +175,7 @@
                   "text": "家賃減収補償",
                   "isLink": true,
                   "commandName": "GoToSlideCommand",
-                  "commandParameter": "33"
+                  "commandParameter": "34"
                 }
               ],
               "fontSize": 16
@@ -189,7 +189,7 @@
                   "text": "立竹木の補償",
                   "isLink": true,
                   "commandName": "GoToSlideCommand",
-                  "commandParameter": "31"
+                  "commandParameter": "32"
                 }
               ],
               "fontSize": 16
@@ -203,7 +203,7 @@
                   "text": "営業休止等の補償（営業補償）",
                   "isLink": true,
                   "commandName": "GoToSlideCommand",
-                  "commandParameter": "34"
+                  "commandParameter": "35"
                 }
               ],
               "fontSize": 16
@@ -217,7 +217,7 @@
                   "text": "動産移転料の補償",
                   "isLink": true,
                   "commandName": "GoToSlideCommand",
-                  "commandParameter": "32"
+                  "commandParameter": "33"
                 }
               ],
               "fontSize": 16
@@ -231,7 +231,7 @@
                   "text": "移転雑費の補償",
                   "isLink": true,
                   "commandName": "GoToSlideCommand",
-                  "commandParameter": "35"
+                  "commandParameter": "36"
                 }
               ],
               "fontSize": 16
@@ -245,7 +245,7 @@
                   "text": "仮住居等に要する費用の補償",
                   "isLink": true,
                   "commandName": "GoToSlideCommand",
-                  "commandParameter": "32"
+                  "commandParameter": "33"
                 }
               ],
               "fontSize": 16
@@ -259,7 +259,7 @@
                   "text": "残地補償",
                   "isLink": true,
                   "commandName": "GoToSlideCommand",
-                  "commandParameter": "35"
+                  "commandParameter": "36"
                 }
               ],
               "fontSize": 16

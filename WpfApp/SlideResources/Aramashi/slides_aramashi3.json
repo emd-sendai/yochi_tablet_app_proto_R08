@@ -250,7 +250,13 @@
             {
               "textRuns": [
                 {
-                  "text": ""
+                  "text": "　　⑨ "
+                },
+                {
+                  "text": "消費税等調査",
+                  "isLink": true,
+                  "commandName": "GoToSlideCommand",
+                  "commandParameter": "23"
                 }
               ],
               "fontSize": 16
@@ -2787,6 +2793,90 @@
               "imagePath": "aramashi3_21.png"
             }
           ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "aramashi3_22",
+    "originalIndex": 21,
+    "title": {
+      "textRuns": [
+        {
+          "text": "３ 用地測量および物件等の調査",
+          "bold": true,
+          "color": "#000000"
+        }
+      ]
+    },
+    "video": true,
+    "sections": [
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "（２）用地測量および物件等の調査",
+              "bold": true,
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        }
+      },
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "　",
+              "bold": true
+            },
+            {
+              "text": "２）物件等に関する調査",
+              "bold": true,
+              "underline": true
+            }
+          ],
+          "fontSize": 18
+        },
+        "body": {
+          "textRuns": [
+            {
+              "text": "⑨消費税等調査\n",
+              "bold": true,
+              "color": "#1F78B4"
+            },
+            {
+              "text": "　事業を営んでいる方については、必要な資料をお借りして次の事項について調査させていただき、消費税等に関する調査表を作成します。\n\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　ａ  課税売上高\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　ｂ  課税事業者の選択の有無\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　ｃ  課税売上割合\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　ｄ  仕入控除税額計算方法\n",
+              "bold": false,
+              "color": "#000000"
+            },
+            {
+              "text": "　ｅ  その他必要な事項",
+              "bold": false,
+              "color": "#000000"
+            }
+          ],
+          "fontSize": 16
         }
       }
     ]

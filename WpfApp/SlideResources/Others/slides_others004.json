@@ -135,5 +135,53 @@
         }
       }
     ]
+  },
+  {
+    "id": "others004_2",
+    "originalIndex": 1,
+    "title": {
+      "textRuns": [
+        {
+          "text": "Ｑ＆Ａ",
+          "bold": true,
+          "color": "#000000"
+        }
+      ],
+      "fontSize": 26
+    },
+    "document": true,
+    "documentFolderName": "004",
+    "sections": [
+      {
+        "body": {
+          "textRuns": [
+            {
+              "text": "　皆様からよくある質問を掲載します。"
+            }
+          ],
+          "fontSize": 16
+        }
+      },
+      {
+        "subtitle": {
+          "textRuns": [
+            {
+              "text": "〇準備中",
+              "bold": true,
+              "color": "#1F78B4"
+            }
+          ],
+          "fontSize": 18
+        },
+        "body": {
+          "textRuns": [
+            {
+              "text": "準備中"
+            }
+          ],
+          "fontSize": 16
+        }
+      }
+    ]
   }
 ]
