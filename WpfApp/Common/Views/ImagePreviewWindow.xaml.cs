@@ -27,6 +27,7 @@ namespace WpfApp.Common.Views
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             FitImageToWindow();
+            ToolPopupBox.IsPopupOpen = true;
         }
 
         private void FitButton_Click(object sender, RoutedEventArgs e)

@@ -6,7 +6,8 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:WpfApp.Screens.Aramashi.Views"
         mc:Ignorable="d"
-        Title="相続の概要" Height="600" Width="800"
+        Title="相続の概要" d:DesignHeight="600" d:DesignWidth="800"
+        WindowState="Maximized"
         WindowStartupLocation="CenterScreen"
         Background="{DynamicResource MaterialDesignPaper}">
     
@@ -16,8 +17,8 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,10,20,10">
-            <TextBlock Text="相続人の範囲と順位" FontSize="24" Foreground="#1F78B4" FontWeight="Bold" TextDecorations="Underline"/>
+        <StackPanel Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,10,20,10">
+            <TextBlock Text="相続人の範囲と順位" FontSize="24" Foreground="Black" FontWeight="Bold" TextDecorations="Underline"/>
         </StackPanel>
 
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">

@@ -6,7 +6,8 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:WpfApp.Common.Views"
         mc:Ignorable="d"
-        Title="画像プレビュー" Height="600" Width="800"
+        Title="画像プレビュー" d:DesignHeight="600" d:DesignWidth="800"
+        WindowState="Maximized"
         WindowStartupLocation="CenterScreen"
         Background="{DynamicResource MaterialDesignPaper}"
         Loaded="Window_Loaded">
@@ -43,7 +44,7 @@
                 </Border.Style>
 
                 <!-- PopupBox（メニュー） -->
-                <materialDesign:PopupBox StaysOpen="True" PlacementMode="LeftAndAlignTopEdges" Height="40" Width="40" 
+                <materialDesign:PopupBox StaysOpen="True" PlacementMode="BottomAndAlignLeftEdges" Height="40" Width="40" x:Name="ToolPopupBox"
                                  Foreground="{DynamicResource MaterialDesign.Brush.Primary.Foreground}" HorizontalAlignment="Center">
 
                     <materialDesign:PopupBox.ToggleContent>
