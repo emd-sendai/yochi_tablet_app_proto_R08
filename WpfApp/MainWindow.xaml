@@ -3,6 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:header="clr-namespace:WpfApp.Shell.Views.Header"
+        xmlns:sidebar="clr-namespace:WpfApp.Shell.Views.Sidebar"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:WpfApp"
         mc:Ignorable="d"
@@ -12,14 +14,30 @@
         WindowState="Maximized"
         Background="{DynamicResource MaterialDesignPaper}">
 
-    <materialDesign:DialogHost Background="Transparent" Identifier="RootDialogHost">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
         
-        <Grid VerticalAlignment="Top">
-            <Viewbox Stretch="Uniform">
+        <!-- ヘッダー -->
+        <header:HeaderView Grid.Row="0" HeaderContent="{Binding HeaderView}"/>
+
+        <!-- DrawerHost -->
+        <materialDesign:DrawerHost Grid.Row="1" OpenMode="Standard" IsLeftDrawerOpen="{Binding IsSidebarOpen, Mode=TwoWay}">
+            
+            <!-- サイドバー -->
+            <materialDesign:DrawerHost.LeftDrawerContent>
+                <sidebar:SidebarView SidebarContent="{Binding SidebarView}" Width="200"/>
+            </materialDesign:DrawerHost.LeftDrawerContent>
+            
+            <!-- メイン -->
+            <Viewbox Stretch="Uniform" VerticalAlignment="Top">
                 <ContentControl x:Name="MainContent" Height="600" Width="800"/>
             </Viewbox>
-        </Grid>
 
-    </materialDesign:DialogHost>
+        </materialDesign:DrawerHost>
+
+    </Grid>
 
 </Window>

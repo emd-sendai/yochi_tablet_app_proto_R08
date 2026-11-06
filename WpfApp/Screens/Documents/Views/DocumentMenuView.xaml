@@ -6,182 +6,149 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:WpfApp.Screens.Documents.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="800">
-    <Grid>
-        <!-- Gridの行定義 -->
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <Grid >
         <Grid.RowDefinitions>
-            <!-- ヘッダー（１行目） -->
-            <RowDefinition Height="Auto" />
-            <!-- メインコンテンツ（２行目） -->
-            <RowDefinition Height="*" />
+            <!-- 事業資料（１行目） -->
+            <RowDefinition Height="1*"/>
+            <!-- 地権者個別資料（２行目） -->
+            <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
-        <!-- ヘッダー -->
-        <!-- ページタイトル -->
-        <StackPanel Grid.Row="0" Orientation="Horizontal"  HorizontalAlignment="Center" VerticalAlignment="Center">
-            <!-- Button Grid.Row="0" Style="{StaticResource MaterialDesignIconButton}" 
-                Margin="5,10,10,10" Command="{Binding GoToDocumentMenu2Command}">
-                <materialDesign:PackIcon Kind="FileDocumentBoxes" Width="40" Height="40" -->
-                <TextBlock Text="各種資料" Foreground="#3F51B5" FontSize="30" FontWeight="Bold" Margin="0,10,0,10"/>
-        </StackPanel>
-
-        <!-- ボタン -->
-        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
-
-            <!-- ホームアイコンボタン -->
-            <Button Grid.Row="0" Style="{StaticResource IconTextButtonStyle}" 
-                Margin="5,10,10,10" Command="{Binding GoToMenuCommand}">
-                <StackPanel Orientation="Vertical" >
-                    <materialDesign:PackIcon Kind="Home" Style="{StaticResource ITButtonIconStyle}"/>
-                    <TextBlock Text="メインメニュー" Style="{StaticResource ITButtonTextStyle}"/>
-                </StackPanel>
-            </Button>
-            
-        </StackPanel>
-
-        <!-- メインコンテンツ -->
-        <Grid Grid.Row="1">
+        <!-- 事業資料エリア -->
+        <Grid Grid.Row="0" Margin="10,5,10,10">
             <Grid.RowDefinitions>
-                <!-- 事業資料（１行目） -->
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="1*"/>
-                <!-- 地権者個別資料（２行目） -->
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
 
-            <!-- 事業資料エリア -->
-            <Grid Grid.Row="0" Margin="10,5,10,10">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
-                </Grid.RowDefinitions>
-
-                <!-- 事業名 -->
-                <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <TextBlock Text="国道○号○○事業" FontSize="26" FontWeight="Bold" Margin="10,5,10,5" 
+            <!-- 事業名 -->
+            <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock Text="国道○号○○事業" FontSize="26" FontWeight="Bold" Margin="10,5,10,5" 
                                VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                </StackPanel>
+            </StackPanel>
 
-                <!-- 事業資料ボタンエリア（上段） -->
-                <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" 
+            <!-- 事業資料ボタンエリア（上段） -->
+            <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" 
                             Margin="0,5,0,10" Cursor="Hand">
-                    <!-- 公図 -->
-                    <Button FontSize="20" Margin="20,0,15,0" Style="{StaticResource DocumentWorksButtonStyle}"
+                <!-- 公図 -->
+                <Button FontSize="20" Margin="20,0,15,0" Style="{StaticResource DocumentWorksButtonStyle}"
                             Command="{Binding OpenWorksPdfDocumentCommand}" CommandParameter="Document01">
-                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding WorksButtons[0].BtnText}"/>
-                    </Button>
-                    <!-- 登記簿 -->
-                    <Button FontSize="20"  Margin="0,0,15,0" Style="{StaticResource DocumentWorksButtonStyle}"
+                    <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding WorksButtons[0].BtnText}"/>
+                </Button>
+                <!-- 登記簿 -->
+                <Button FontSize="20"  Margin="0,0,15,0" Style="{StaticResource DocumentWorksButtonStyle}"
                             Command="{Binding OpenWorksPdfDocumentCommand}" CommandParameter="Document02">
-                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding WorksButtons[1].BtnText}"/>
-                    </Button>
-                    <!-- 用地平面図 -->
-                    <Button FontSize="20"  Margin="0,0,15,0" Style="{StaticResource DocumentWorksButtonStyle}"
+                    <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding WorksButtons[1].BtnText}"/>
+                </Button>
+                <!-- 用地平面図 -->
+                <Button FontSize="20"  Margin="0,0,15,0" Style="{StaticResource DocumentWorksButtonStyle}"
                             Command="{Binding OpenWorksPdfDocumentCommand}" CommandParameter="Document03">
-                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding WorksButtons[2].BtnText}"/>
-                    </Button>
-                    <!-- 面積計算書 -->
-                    <Button FontSize="20"  Margin="0,0,20,0" Style="{StaticResource DocumentWorksButtonStyle}"
+                    <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding WorksButtons[2].BtnText}"/>
+                </Button>
+                <!-- 面積計算書 -->
+                <Button FontSize="20"  Margin="0,0,20,0" Style="{StaticResource DocumentWorksButtonStyle}"
                             Command="{Binding OpenWorksPdfDocumentCommand}" CommandParameter="Document04">
-                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding WorksButtons[3].BtnText}"/>
-                    </Button>
-                </StackPanel>
-                <!-- 事業資料ボタンエリア（下段） -->
-                <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,10">
-                    <!-- 地積測量図 -->
-                    <Button FontSize="20"  Margin="20,0,15,0" Style="{StaticResource DocumentWorksButtonStyle}"
+                    <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding WorksButtons[3].BtnText}"/>
+                </Button>
+            </StackPanel>
+            <!-- 事業資料ボタンエリア（下段） -->
+            <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,10">
+                <!-- 地積測量図 -->
+                <Button FontSize="20"  Margin="20,0,15,0" Style="{StaticResource DocumentWorksButtonStyle}"
                             Command="{Binding OpenWorksPdfDocumentCommand}" CommandParameter="Document05">
-                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding WorksButtons[4].BtnText}"/>
-                    </Button>
-                    <!-- 登記簿 -->
-                    <Button FontSize="20"  Margin="0,0,15,0" Style="{StaticResource DocumentWorksButtonStyle}"
+                    <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding WorksButtons[4].BtnText}"/>
+                </Button>
+                <!-- 登記簿 -->
+                <Button FontSize="20"  Margin="0,0,15,0" Style="{StaticResource DocumentWorksButtonStyle}"
                             Command="{Binding OpenWorksPdfDocumentCommand}" CommandParameter="Document06">
-                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding WorksButtons[5].BtnText}"/>
-                    </Button>
-                    <!-- 事業計画図 -->
-                    <Button FontSize="20"  Margin="0,0,15,0" Style="{StaticResource DocumentWorksButtonStyle}"
+                    <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding WorksButtons[5].BtnText}"/>
+                </Button>
+                <!-- 事業計画図 -->
+                <Button FontSize="20"  Margin="0,0,15,0" Style="{StaticResource DocumentWorksButtonStyle}"
                             Command="{Binding OpenWorksPdfDocumentCommand}" CommandParameter="Document07">
-                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding WorksButtons[6].BtnText}"/>
-                    </Button>
-                    <!-- その他 -->
-                    <Button FontSize="20"  Margin="0,0,20,0" Style="{StaticResource DocumentWorksButtonStyle}"
+                    <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding WorksButtons[6].BtnText}"/>
+                </Button>
+                <!-- その他 -->
+                <Button FontSize="20"  Margin="0,0,20,0" Style="{StaticResource DocumentWorksButtonStyle}"
                             Command="{Binding OpenWorksPdfDocumentCommand}" CommandParameter="Document08">
-                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding WorksButtons[7].BtnText}"/>
-                    </Button>
-                </StackPanel>
-            </Grid>
+                    <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding WorksButtons[7].BtnText}"/>
+                </Button>
+            </StackPanel>
+        </Grid>
 
-            <!-- 地権者個別資料エリア -->
-            <Grid Grid.Row="1" Margin="10,10,10,5">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
-                </Grid.RowDefinitions>
+        <!-- 地権者個別資料エリア -->
+        <Grid Grid.Row="1" Margin="10,10,10,5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
 
-                <!-- 地権者選択ボタン -->
-                <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <Button Style="{StaticResource CommonButtonStyle}" Margin="0,0,0,10" 
+            <!-- 地権者選択ボタン -->
+            <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Button Style="{StaticResource CommonButtonStyle}" Margin="0,0,0,10" 
                             Width="500" Height="60" HorizontalAlignment="Center" VerticalAlignment="Center"
                             Command="{Binding OpenPasswordDialogCommand}">
-                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" >
+                    <TextBlock Style="{StaticResource WrapTextBlockStyle}" >
                                 <Run Text="地権者個別資料（パスワードあり）" FontSize="20" />
                                 <LineBreak />
                                 <Run Text="※配置図・調査表、算定書、調書、損失補償協議書、契約書等" FontSize="15"/>
-                        </TextBlock>
-                    </Button>
-                </StackPanel>
+                    </TextBlock>
+                </Button>
+            </StackPanel>
 
-                <!-- 地権者個別資料ボタンエリア（上段） -->
-                <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,5,0,10" 
+            <!-- 地権者個別資料ボタンエリア（上段） -->
+            <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,5,0,10" 
                             Visibility="{Binding IsLandownerSelected, Converter={StaticResource BooleanToHiddenVisibilityConverter}}" >
-                    <!-- 配置図　調査表 -->
-                    <Button FontSize="20" Margin="20,0,15,0" Style="{StaticResource DocumentLandownerButtonStyle}"
+                <!-- 配置図　調査表 -->
+                <Button FontSize="20" Margin="20,0,15,0" Style="{StaticResource DocumentLandownerButtonStyle}"
                             Command="{Binding OpenLandownerPdfDocumentCommand}" CommandParameter="Document01">
-                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding LandownerButtons[0].BtnText}"/>
-                    </Button>
-                    <!-- 算定書 -->
-                    <Button FontSize="20" Margin="0,0,15,0" Style="{StaticResource DocumentLandownerButtonStyle}"
+                    <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding LandownerButtons[0].BtnText}"/>
+                </Button>
+                <!-- 算定書 -->
+                <Button FontSize="20" Margin="0,0,15,0" Style="{StaticResource DocumentLandownerButtonStyle}"
                             Command="{Binding OpenLandownerPdfDocumentCommand}" CommandParameter="Document02">
-                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding LandownerButtons[1].BtnText}"/>
-                    </Button>
-                    <!-- 写真（個別） -->
-                    <Button FontSize="20" Margin="0,0,15,0" Style="{StaticResource DocumentLandownerButtonStyle}"
+                    <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding LandownerButtons[1].BtnText}"/>
+                </Button>
+                <!-- 写真（個別） -->
+                <Button FontSize="20" Margin="0,0,15,0" Style="{StaticResource DocumentLandownerButtonStyle}"
                             Command="{Binding OpenLandownerPdfDocumentCommand}" CommandParameter="Document03">
-                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding LandownerButtons[2].BtnText}"/>
-                    </Button>
-                    <!-- 相続関係図（説明用） -->
-                    <Button FontSize="20" Margin="0,0,20,0" Style="{StaticResource DocumentLandownerButtonStyle}"
+                    <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding LandownerButtons[2].BtnText}"/>
+                </Button>
+                <!-- 相続関係図（説明用） -->
+                <Button FontSize="20" Margin="0,0,20,0" Style="{StaticResource DocumentLandownerButtonStyle}"
                             Command="{Binding OpenLandownerPdfDocumentCommand}" CommandParameter="Document04">
-                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding LandownerButtons[3].BtnText}"/>
-                    </Button>
-                </StackPanel>
-                <!-- 地権者個別資料ボタンエリア（下段） -->
-                <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,0,0,0"
+                    <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding LandownerButtons[3].BtnText}"/>
+                </Button>
+            </StackPanel>
+            <!-- 地権者個別資料ボタンエリア（下段） -->
+            <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,0,0,0"
                             Visibility="{Binding IsLandownerSelected, Converter={StaticResource BooleanToHiddenVisibilityConverter}}" >
-                    <!-- 調書 -->
-                    <Button FontSize="20" Margin="20,0,15,0" Style="{StaticResource DocumentLandownerButtonStyle}"
+                <!-- 調書 -->
+                <Button FontSize="20" Margin="20,0,15,0" Style="{StaticResource DocumentLandownerButtonStyle}"
                             Command="{Binding OpenLandownerPdfDocumentCommand}" CommandParameter="Document05">
-                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding LandownerButtons[4].BtnText}"/>
-                    </Button>
-                    <!-- 補償金提示書 -->
-                    <Button FontSize="20" Margin="0,0,15,0" Style="{StaticResource DocumentLandownerButtonStyle}"
+                    <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding LandownerButtons[4].BtnText}"/>
+                </Button>
+                <!-- 補償金提示書 -->
+                <Button FontSize="20" Margin="0,0,15,0" Style="{StaticResource DocumentLandownerButtonStyle}"
                             Command="{Binding OpenLandownerPdfDocumentCommand}" CommandParameter="Document06">
-                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding LandownerButtons[5].BtnText}"/>
-                    </Button>
-                    <!-- 契約書 -->
-                    <Button FontSize="20" Margin="0,0,15,0" Style="{StaticResource DocumentLandownerButtonStyle}"
+                    <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding LandownerButtons[5].BtnText}"/>
+                </Button>
+                <!-- 契約書 -->
+                <Button FontSize="20" Margin="0,0,15,0" Style="{StaticResource DocumentLandownerButtonStyle}"
                             Command="{Binding OpenLandownerPdfDocumentCommand}" CommandParameter="Document07">
-                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding LandownerButtons[6].BtnText}"/>
-                    </Button>
-                    <!-- その他 -->
-                    <Button FontSize="20" Margin="0,0,20,0" Style="{StaticResource DocumentLandownerButtonStyle}"
+                    <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding LandownerButtons[6].BtnText}"/>
+                </Button>
+                <!-- その他 -->
+                <Button FontSize="20" Margin="0,0,20,0" Style="{StaticResource DocumentLandownerButtonStyle}"
                             Command="{Binding OpenLandownerPdfDocumentCommand}" CommandParameter="Document08">
-                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding LandownerButtons[7].BtnText}"/>
-                    </Button>
-                </StackPanel>
-                
-            </Grid>
+                    <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding LandownerButtons[7].BtnText}"/>
+                </Button>
+            </StackPanel>
+
         </Grid>
     </Grid>
 </UserControl>

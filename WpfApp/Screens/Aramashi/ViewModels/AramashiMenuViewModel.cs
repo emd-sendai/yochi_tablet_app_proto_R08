@@ -8,8 +8,12 @@ using WpfApp.Common.Models;
 using WpfApp.Common.ViewModels;
 using WpfApp.Interfaces;
 using WpfApp.Screens.Aramashi.Models;
+using WpfApp.Screens.Documents.ViewModels;
 using WpfApp.Screens.Menu.ViewModels;
 using WpfApp.Services;
+using WpfApp.Shell.Models;
+using WpfApp.Shell.Views.Header;
+using WpfApp.Shell.Views.Sidebar;
 using static WpfApp.Common.ViewModels.VideoPlayerViewModel;
 using static WpfApp.Screens.Aramashi.ViewModels.PresentationViewerViewModel;
 
@@ -19,13 +23,19 @@ namespace WpfApp.Screens.Aramashi.ViewModels
     /// AramashiMenuView.xamlに対応するViewModel。
     /// 補償のあらまし画面での処理を行う。
     /// </summary>
-    public partial class AramashiMenuViewModel : ObservableObject
+    public partial class AramashiMenuViewModel : ObservableObject, IShellLayout
     {
         private readonly NavigationService _nav;
         private readonly IDialogService _dia;
         private readonly PdfDocumentService _pdf;
         private readonly IMessageDialogService _message;
         private readonly IAppPathService _path;
+
+        public Type HeaderType => typeof(HeaderType001View);
+        public Type SidebarType => typeof(SidebarType002View);
+
+        [ObservableProperty]
+        private string title;
 
         /// <summary>
         /// ボタンの名称表示用ボタンデータリスト（用地補償の手順）
@@ -51,6 +61,8 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             _pdf = new PdfDocumentService();
             _message = new MessageDialogService();
             _path = new AppPathService();
+
+            Title = "補償のあらまし";
             
             AramashiButtons = LoadButtonFromJson(_path.AramashiButtonPath);
             OthersButtons = LoadButtonFromJson(_path.OthersButtonPath);
@@ -182,6 +194,23 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         private void GoToMenu()
         {
             _nav.Navigate(new MenuViewModel(_nav, _dia));
+        }
+
+        /// <summary>
+        /// 補償のあらまし画面に留まる。（バインドエラー防止用）
+        /// </summary>
+        [RelayCommand]
+        private void GoToAramashiMenu()
+        {
+        }
+
+        /// <summary>
+        /// 各種資料画面に遷移する。
+        /// </summary>
+        [RelayCommand]
+        private void GoToDocumentMenu()
+        {
+            _nav.Navigate(new DocumentMenuViewModel(_nav, _dia));
         }
 
         /// <summary>

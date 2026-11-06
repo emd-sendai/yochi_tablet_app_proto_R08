@@ -6,216 +6,186 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:WpfApp.Screens.Aramashi.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800">
 
-    <Grid>
-        <!-- Gridの行定義 -->
-        <Grid.RowDefinitions>
-            <!-- ヘッダー（１行目） -->
-            <RowDefinition Height="Auto" />
-            <!-- メインコンテンツ（２行目） -->
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+    <Grid HorizontalAlignment="Center">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="70" />
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
 
-        <!-- １行目 -->
-        <!-- ページタイトル -->
-        <TextBlock Grid.Row="0" Text="補償のあらまし" Foreground="#3F51B5"
-            FontSize="30" FontWeight="Bold" Margin="0,10,0,10"
-            HorizontalAlignment="Center" VerticalAlignment="Center">
-        </TextBlock>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
-        <!-- ボタン -->
-        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
-            <!-- ホームアイコンボタン -->
-            <Button Grid.Row="0" Style="{StaticResource IconTextButtonStyle}" 
-                Margin="5,10,10,10" Command="{Binding GoToMenuCommand}">
-                <StackPanel Orientation="Vertical" >
-                    <materialDesign:PackIcon Kind="Home" Style="{StaticResource ITButtonIconStyle}"/>
-                    <TextBlock Text="メインメニュー" Style="{StaticResource ITButtonTextStyle}"/>
-                </StackPanel>
-            </Button>
-        </StackPanel>
-
-        <Grid Grid.Row="1" HorizontalAlignment="Center">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3*" />
-                <ColumnDefinition Width="70" />
-                <ColumnDefinition Width="2*" />
-            </Grid.ColumnDefinitions>
-
-            <Grid Grid.Column="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-
-                <!-- エリアタイトル -->
-                <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,0">
-                    <TextBlock Text="用地補償の手順" FontSize="25" FontWeight="Bold" Margin="10,0,10,0" VerticalAlignment="Center"/>
-                    <!-- 動画アイコンボタン -->
-                    <Button Style="{StaticResource IconTextButtonStyle}" Margin="5,0,0,0" 
+            <!-- エリアタイトル -->
+            <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,0">
+                <TextBlock Text="用地補償の手順" FontSize="25" FontWeight="Bold" Margin="10,0,10,0" VerticalAlignment="Center"/>
+                <!-- 動画アイコンボタン -->
+                <Button Style="{StaticResource IconTextButtonStyle}" Margin="5,0,0,0" 
                             Command="{Binding OpenVideoPlayerCommand}">
-                        <StackPanel Orientation="Vertical">
-                            <materialDesign:PackIcon Kind="MoviePlay" Style="{StaticResource ITButtonIconStyle}" />
-                            <TextBlock Text="動画" Style="{StaticResource ITButtonTextStyle}" />
-                        </StackPanel>
-                    </Button>
-                    <!-- PDF資料アイコンボタン -->
-                    <Button Style="{StaticResource IconTextButtonStyle}" Margin="5,0,0,0" 
+                    <StackPanel Orientation="Vertical">
+                        <materialDesign:PackIcon Kind="MoviePlay" Style="{StaticResource ITButtonIconStyle}" />
+                        <TextBlock Text="動画" Style="{StaticResource ITButtonTextStyle}" />
+                    </StackPanel>
+                </Button>
+                <!-- PDF資料アイコンボタン -->
+                <Button Style="{StaticResource IconTextButtonStyle}" Margin="5,0,0,0" 
                             Command="{Binding OpenPdfDocumentsCommand}">
-                        <StackPanel Orientation="Vertical">
-                            <materialDesign:PackIcon Kind="File" Style="{StaticResource ITButtonIconStyle}" />
-                            <TextBlock Text="パンフレット" Style="{StaticResource ITButtonTextStyle}" />
-                        </StackPanel>
-                    </Button>
-                </StackPanel>
+                    <StackPanel Orientation="Vertical">
+                        <materialDesign:PackIcon Kind="File" Style="{StaticResource ITButtonIconStyle}" />
+                        <TextBlock Text="パンフレット" Style="{StaticResource ITButtonTextStyle}" />
+                    </StackPanel>
+                </Button>
+            </StackPanel>
 
-                <Grid x:Name="MainGrid" Grid.Row="1" HorizontalAlignment="Center"  Margin="0,5,0,0">
+            <Grid x:Name="MainGrid" Grid.Row="1" HorizontalAlignment="Center"  Margin="0,5,0,0">
 
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="190"/>
-                        <ColumnDefinition Width="30"/>
-                        <!-- 列間スペース -->
-                        <ColumnDefinition Width="190"/>
-                    </Grid.ColumnDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="190"/>
+                    <ColumnDefinition Width="30"/>
+                    <!-- 列間スペース -->
+                    <ColumnDefinition Width="190"/>
+                </Grid.ColumnDefinitions>
 
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-
-                    <Canvas x:Name="LineCanvas" IsHitTestVisible="False"
-                            Grid.Row="0" Grid.RowSpan="5" Grid.Column="0" Grid.ColumnSpan="3">
-                        <Polyline x:Name="ULine" Stroke="#94CBDC" StrokeThickness="30"/>
-                        <Path x:Name="Arrow" Stroke="#94CBDC" Fill="#94CBDC" StrokeThickness="5"/>
-                    </Canvas>
-
-                    <!-- 左列ボタン -->
-                    <Button x:Name="BtnL1" Grid.Row="0" Grid.Column="0" Style="{StaticResource AramashiButtonStyle}" 
-                            Command="{Binding GoToSection1Command}" >
-                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" 
-                                   Text="{Binding AramashiButtons[0].BtnText}"/>
-                    </Button>
-                    <Button x:Name="BtnL2" Grid.Row="1" Grid.Column="0" Style="{StaticResource AramashiButtonStyle}" 
-                            Command="{Binding GoToSection2Command}">
-                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" 
-                                   Text="{Binding AramashiButtons[1].BtnText}"/>
-                    </Button>
-                    <Button x:Name="BtnL3" Grid.Row="2" Grid.Column="0" Style="{StaticResource AramashiButtonStyle}" 
-                            Command="{Binding GoToSection3Command}">
-                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" 
-                                   Text="{Binding AramashiButtons[2].BtnText}"/>
-                    </Button>
-                    <Button x:Name="BtnL4" Grid.Row="3" Grid.Column="0" Style="{StaticResource AramashiButtonStyle}" 
-                            Command="{Binding GoToSection4Command}">
-                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" 
-                                   Text="{Binding AramashiButtons[3].BtnText}"/>
-                    </Button>
-                    <Button x:Name="BtnL5" Grid.Row="4" Grid.Column="0" Style="{StaticResource AramashiButtonStyle}" 
-                            Command="{Binding GoToSection5Command}">
-                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" 
-                                   Text="{Binding AramashiButtons[4].BtnText}"/>
-                    </Button>
-
-                    <!-- 右列ボタン -->
-                    <Button x:Name="BtnR1" Grid.Row="0" Grid.Column="2" Style="{StaticResource AramashiButtonStyle}" 
-                            Command="{Binding GoToSection10Command}">
-                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" 
-                                   Text="{Binding AramashiButtons[9].BtnText}"/>
-                    </Button>
-                    <Button x:Name="BtnR2" Grid.Row="1" Grid.Column="2" Style="{StaticResource AramashiButtonStyle}" 
-                            Command="{Binding GoToSection9Command}">
-                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" 
-                                   Text="{Binding AramashiButtons[8].BtnText}"/>
-                    </Button>
-                    <Button x:Name="BtnR3" Grid.Row="2" Grid.Column="2" Style="{StaticResource AramashiButtonStyle}" 
-                            Command="{Binding GoToSection8Command}">
-                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" 
-                                   Text="{Binding AramashiButtons[7].BtnText}"/>
-                    </Button>
-                    <Button x:Name="BtnR4" Grid.Row="3" Grid.Column="2" Style="{StaticResource AramashiButtonStyle}" 
-                            Command="{Binding GoToSection7Command}">
-                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" 
-                                   Text="{Binding AramashiButtons[6].BtnText}"/>
-                    </Button>
-                    <Button x:Name="BtnR5" Grid.Row="4" Grid.Column="2" Style="{StaticResource AramashiButtonStyle}" 
-                            Command="{Binding GoToSection6Command}">
-                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" 
-                                   Text="{Binding AramashiButtons[5].BtnText}"/>
-                    </Button>
-
-                </Grid>
-
-            </Grid>
-
-            <Grid Grid.Column="2">
-                <!-- Gridの列定義（１列目） -->
                 <Grid.RowDefinitions>
-                    <!-- エリアタイトル（１行目） -->
-                    <RowDefinition Height="Auto" />
-                    <!-- エリアコンテンツ（２行目） -->
-                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <!-- エリアタイトル -->
-                <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,7,0,8">
-                    <TextBlock Text="その他" FontSize="25" FontWeight="Bold" Margin="10,0,10,0" VerticalAlignment="Center"/>
-                </StackPanel>
+                <Canvas x:Name="LineCanvas" IsHitTestVisible="False"
+                            Grid.Row="0" Grid.RowSpan="5" Grid.Column="0" Grid.ColumnSpan="3">
+                    <Polyline x:Name="ULine" Stroke="#94CBDC" StrokeThickness="30"/>
+                    <Path x:Name="Arrow" Stroke="#94CBDC" Fill="#94CBDC" StrokeThickness="5"/>
+                </Canvas>
 
-                <Grid Grid.Row="1" HorizontalAlignment="Center"  Margin="0,5,0,0">
+                <!-- 左列ボタン -->
+                <Button x:Name="BtnL1" Grid.Row="0" Grid.Column="0" Style="{StaticResource AramashiButtonStyle}" 
+                            Command="{Binding GoToSection1Command}" >
+                    <TextBlock Style="{StaticResource WrapTextBlockStyle}" 
+                                   Text="{Binding AramashiButtons[0].BtnText}"/>
+                </Button>
+                <Button x:Name="BtnL2" Grid.Row="1" Grid.Column="0" Style="{StaticResource AramashiButtonStyle}" 
+                            Command="{Binding GoToSection2Command}">
+                    <TextBlock Style="{StaticResource WrapTextBlockStyle}" 
+                                   Text="{Binding AramashiButtons[1].BtnText}"/>
+                </Button>
+                <Button x:Name="BtnL3" Grid.Row="2" Grid.Column="0" Style="{StaticResource AramashiButtonStyle}" 
+                            Command="{Binding GoToSection3Command}">
+                    <TextBlock Style="{StaticResource WrapTextBlockStyle}" 
+                                   Text="{Binding AramashiButtons[2].BtnText}"/>
+                </Button>
+                <Button x:Name="BtnL4" Grid.Row="3" Grid.Column="0" Style="{StaticResource AramashiButtonStyle}" 
+                            Command="{Binding GoToSection4Command}">
+                    <TextBlock Style="{StaticResource WrapTextBlockStyle}" 
+                                   Text="{Binding AramashiButtons[3].BtnText}"/>
+                </Button>
+                <Button x:Name="BtnL5" Grid.Row="4" Grid.Column="0" Style="{StaticResource AramashiButtonStyle}" 
+                            Command="{Binding GoToSection5Command}">
+                    <TextBlock Style="{StaticResource WrapTextBlockStyle}" 
+                                   Text="{Binding AramashiButtons[4].BtnText}"/>
+                </Button>
 
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-
-                    <!-- その他ボタン1 -->
-                    <Button Grid.Row="0" Style="{StaticResource OthersButtonStyle}" Width="130"
-                            Command="{Binding GoToOthers001Command}">
-                        <TextBlock Style="{StaticResource WrapTextBlockStyle}" 
-                                   Text="{Binding OthersButtons[0].BtnText}"/>
-                    </Button>
-
-                    <!-- その他ボタン2 -->
-                    <Button Grid.Row="1" Style="{StaticResource OthersButtonStyle}" Width="130"
-                            Command="{Binding GoToOthers002Command}">
-                        <TextBlock Style="{StaticResource WrapTextBlockStyle}"
-                                   Text="{Binding OthersButtons[1].BtnText}"/>
-                    </Button>
-
-                    <!-- その他ボタン3 -->
-                    <Button Grid.Row="2" Style="{StaticResource OthersButtonStyle}" Width="130"
-                            Command="{Binding GoToOthers003Command}">
-                        <TextBlock Style="{StaticResource WrapTextBlockStyle}"
-                                   Text="{Binding OthersButtons[2].BtnText}"/>
-                    </Button>
-
-                    <!-- その他ボタン4 -->
-                    <Button Grid.Row="3" Style="{StaticResource OthersButtonStyle}" Width="130"
-                            Command="{Binding GoToOthers004Command}">
-                        <TextBlock Style="{StaticResource WrapTextBlockStyle}"
-                                   Text="{Binding OthersButtons[3].BtnText}"/>
-                    </Button>
-
-                    <!-- その他ボタン5 -->
-                    <Button  Grid.Row="4" Style="{StaticResource OthersButtonStyle}" Width="130"
-                             Command="{Binding GoToOthers005Command}">
-                        <TextBlock Style="{StaticResource WrapTextBlockStyle}"
-                                   Text="{Binding OthersButtons[4].BtnText}"/>
-                    </Button>
-
-                </Grid>
+                <!-- 右列ボタン -->
+                <Button x:Name="BtnR1" Grid.Row="0" Grid.Column="2" Style="{StaticResource AramashiButtonStyle}" 
+                            Command="{Binding GoToSection10Command}">
+                    <TextBlock Style="{StaticResource WrapTextBlockStyle}" 
+                                   Text="{Binding AramashiButtons[9].BtnText}"/>
+                </Button>
+                <Button x:Name="BtnR2" Grid.Row="1" Grid.Column="2" Style="{StaticResource AramashiButtonStyle}" 
+                            Command="{Binding GoToSection9Command}">
+                    <TextBlock Style="{StaticResource WrapTextBlockStyle}" 
+                                   Text="{Binding AramashiButtons[8].BtnText}"/>
+                </Button>
+                <Button x:Name="BtnR3" Grid.Row="2" Grid.Column="2" Style="{StaticResource AramashiButtonStyle}" 
+                            Command="{Binding GoToSection8Command}">
+                    <TextBlock Style="{StaticResource WrapTextBlockStyle}" 
+                                   Text="{Binding AramashiButtons[7].BtnText}"/>
+                </Button>
+                <Button x:Name="BtnR4" Grid.Row="3" Grid.Column="2" Style="{StaticResource AramashiButtonStyle}" 
+                            Command="{Binding GoToSection7Command}">
+                    <TextBlock Style="{StaticResource WrapTextBlockStyle}" 
+                                   Text="{Binding AramashiButtons[6].BtnText}"/>
+                </Button>
+                <Button x:Name="BtnR5" Grid.Row="4" Grid.Column="2" Style="{StaticResource AramashiButtonStyle}" 
+                            Command="{Binding GoToSection6Command}">
+                    <TextBlock Style="{StaticResource WrapTextBlockStyle}" 
+                                   Text="{Binding AramashiButtons[5].BtnText}"/>
+                </Button>
 
             </Grid>
 
         </Grid>
 
-    </Grid>  
-    
+        <Grid Grid.Column="2">
+            <!-- Gridの列定義（１列目） -->
+            <Grid.RowDefinitions>
+                <!-- エリアタイトル（１行目） -->
+                <RowDefinition Height="Auto" />
+                <!-- エリアコンテンツ（２行目） -->
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+
+            <!-- エリアタイトル -->
+            <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,7,0,8">
+                <TextBlock Text="その他" FontSize="25" FontWeight="Bold" Margin="10,0,10,0" VerticalAlignment="Center"/>
+            </StackPanel>
+
+            <Grid Grid.Row="1" HorizontalAlignment="Center"  Margin="0,5,0,0">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!-- その他ボタン1 -->
+                <Button Grid.Row="0" Style="{StaticResource OthersButtonStyle}" Width="130"
+                            Command="{Binding GoToOthers001Command}">
+                    <TextBlock Style="{StaticResource WrapTextBlockStyle}" 
+                                   Text="{Binding OthersButtons[0].BtnText}"/>
+                </Button>
+
+                <!-- その他ボタン2 -->
+                <Button Grid.Row="1" Style="{StaticResource OthersButtonStyle}" Width="130"
+                            Command="{Binding GoToOthers002Command}">
+                    <TextBlock Style="{StaticResource WrapTextBlockStyle}"
+                                   Text="{Binding OthersButtons[1].BtnText}"/>
+                </Button>
+
+                <!-- その他ボタン3 -->
+                <Button Grid.Row="2" Style="{StaticResource OthersButtonStyle}" Width="130"
+                            Command="{Binding GoToOthers003Command}">
+                    <TextBlock Style="{StaticResource WrapTextBlockStyle}"
+                                   Text="{Binding OthersButtons[2].BtnText}"/>
+                </Button>
+
+                <!-- その他ボタン4 -->
+                <Button Grid.Row="3" Style="{StaticResource OthersButtonStyle}" Width="130"
+                            Command="{Binding GoToOthers004Command}">
+                    <TextBlock Style="{StaticResource WrapTextBlockStyle}"
+                                   Text="{Binding OthersButtons[3].BtnText}"/>
+                </Button>
+
+                <!-- その他ボタン5 -->
+                <Button  Grid.Row="4" Style="{StaticResource OthersButtonStyle}" Width="130"
+                             Command="{Binding GoToOthers005Command}">
+                    <TextBlock Style="{StaticResource WrapTextBlockStyle}"
+                                   Text="{Binding OthersButtons[4].BtnText}"/>
+                </Button>
+
+            </Grid>
+
+        </Grid>
+
+    </Grid>
+
 </UserControl>

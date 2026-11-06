@@ -6,72 +6,23 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:WpfApp.Screens.Aramashi.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="800">
-    
+             d:DesignHeight="530" d:DesignWidth="800">
+
     <Grid>
-        <!-- Gridの行定義 -->
         <Grid.RowDefinitions>
-            <RowDefinition Height="70"/>
             <RowDefinition Height="80"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- ヘッダー -->
-        <!-- あらましメニューボタン -->
-        <Button Grid.Row="0" Style="{StaticResource MaterialDesignFlatButton}" 
-            Margin="10" Command="{Binding GoToAramashiMenuCommand}"
-                HorizontalAlignment="Left" FontSize="24" Height="40">
-            <StackPanel Orientation="Horizontal" >
-                <materialDesign:PackIcon Kind="OrderBoolAscending" Width="25" Height="35" Margin="0,0,5,0"/>
-                <TextBlock Text="補償のあらまし"  FontWeight="Bold" VerticalAlignment="Center"/>
-            </StackPanel>
-        </Button>
-        <!-- 基本ボタン -->
-        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
-
-            <!-- 拡大ボタン-->
-            <Button Grid.Row="0"  Style="{StaticResource IconTextButtonStyle}" 
-                Margin="5,10,5,10" Command="{Binding ZoomInCommand}">
-                <StackPanel Orientation="Vertical" >
-                    <materialDesign:PackIcon Kind="PlusCircleOutline" Style="{StaticResource ITButtonIconStyle}"/>
-                    <TextBlock Text="拡大" Style="{StaticResource ITButtonTextStyle}"/>
-                </StackPanel>
-            </Button>
-            <!-- 縮小ボタン-->
-            <Button Grid.Row="0"  Style="{StaticResource IconTextButtonStyle}" 
-                Margin="5,10,5,10" Command="{Binding ZoomOutCommand}">
-                <StackPanel Orientation="Vertical" >
-                    <materialDesign:PackIcon Kind="MinusCircleOutline" Style="{StaticResource ITButtonIconStyle}"/>
-                    <TextBlock Text="縮小" Style="{StaticResource ITButtonTextStyle}"/>
-                </StackPanel>
-            </Button>
-            <!-- 本手順TOPへ戻るボタン -->
-            <Button Grid.Row="0" Style="{StaticResource IconTextButtonStyle}" 
-                Margin="5,10,5,10" Command="{Binding GoToTopPageCommand}">
-                <StackPanel Orientation="Vertical" >
-                    <materialDesign:PackIcon Kind="ArrowCollapseLeft" Style="{StaticResource ITButtonIconStyle}" Width="25"/>
-                    <TextBlock Text="{Binding TopButtonText}" Style="{StaticResource ITButtonTextStyle}"/>
-                </StackPanel>
-            </Button>
-            <!-- ホームアイコンボタン -->
-            <Button Grid.Row="0" Style="{StaticResource IconTextButtonStyle}" 
-                Margin="5,10,10,10" Command="{Binding GoToMenuCommand}">
-                <StackPanel Orientation="Vertical" >
-                    <materialDesign:PackIcon Kind="Home" Style="{StaticResource ITButtonIconStyle}"/>
-                    <TextBlock Text="メインメニュー" Style="{StaticResource ITButtonTextStyle}"/>
-                </StackPanel>
-            </Button>
-        </StackPanel>
-
         <!-- ナビゲーション -->
         <!-- 前へボタン -->
-        <StackPanel  HorizontalAlignment="Left" Margin="20,15,0,15" Grid.Row="1" >
+        <StackPanel  HorizontalAlignment="Left" Margin="20,15,0,15" Grid.Row="0" >
             <Button Content="◀ 前へ" Command="{Binding PrevCommand}"  Height="40" Width="90"
                     Style="{StaticResource CommonButtonStyle}" FontSize="18"
                     Visibility="{Binding CanGoPrev, Converter={StaticResource BooleanToHiddenVisibilityConverter}}" />
         </StackPanel>
         <!-- セクション概要 -->
-        <StackPanel HorizontalAlignment="Center" Margin="15" Grid.Row="1" Orientation="Horizontal">
+        <StackPanel HorizontalAlignment="Center" Margin="15" Grid.Row="0" Orientation="Horizontal">
             <!-- セクションタイトル -->
             <TextBlock Text="{Binding CurrentSlide.TitleText}" FontSize="24.5" FontWeight="Bold" VerticalAlignment="Center"/>
             <!-- 動画アイコンボタン -->
@@ -94,13 +45,14 @@
             </Button>
         </StackPanel>
         <!-- 次へボタン -->
-        <StackPanel  HorizontalAlignment="Right" Margin="15" Grid.Row="1">
+        <StackPanel  HorizontalAlignment="Right" Margin="15" Grid.Row="0">
             <Button Content="次へ ▶" Command="{Binding NextCommand}" Height="40" Width="90"
                     Style="{StaticResource CommonButtonStyle}" FontSize="18"
                     Visibility="{Binding CanGoNext, Converter={StaticResource BooleanToHiddenVisibilityConverter}}" />
         </StackPanel>
 
-        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="2"
+
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1"
                       HorizontalScrollBarVisibility="Auto" PanningMode="Both"
                       IsManipulationEnabled="True"
                       PreviewMouseWheel="ScrollViewer_PreviewMouseWheel" 

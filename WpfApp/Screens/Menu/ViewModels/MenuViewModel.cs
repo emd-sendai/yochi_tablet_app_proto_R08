@@ -9,6 +9,9 @@ using WpfApp.Screens.Admin.ViewModels;
 using WpfApp.Screens.Aramashi.ViewModels;
 using WpfApp.Screens.Documents.ViewModels;
 using WpfApp.Services;
+using WpfApp.Shell.Models;
+using WpfApp.Shell.Views.Header;
+using WpfApp.Shell.Views.Sidebar;
 
 namespace WpfApp.Screens.Menu.ViewModels
 {
@@ -16,13 +19,22 @@ namespace WpfApp.Screens.Menu.ViewModels
     /// MenuView.xamlに対応するViewModel。
     /// メインメニュー画面での処理を行う。
     /// </summary>
-    public partial class MenuViewModel : ObservableObject
+    public partial class MenuViewModel : ObservableObject, IShellLayout
     {
         private readonly NavigationService _nav;
         private readonly IDialogService _dia;
         private readonly IMessageDialogService _message;
         private readonly ShutdownService _shutdownService;
         private readonly ResourceInitializeService _initializer;
+
+        public Type HeaderType => typeof(HeaderType001View);
+        public Type SidebarType => typeof(SidebarType001View);
+
+        [ObservableProperty]
+        private string title;
+
+        [ObservableProperty]
+        private string subtitle;
 
         [ObservableProperty]
         private bool isLeftDrawerOpen;
@@ -36,6 +48,9 @@ namespace WpfApp.Screens.Menu.ViewModels
             _message = new MessageDialogService();
             _shutdownService = new ShutdownService();
             _initializer = new ResourceInitializeService();
+
+            Title = "用地交渉試作品アプリ(試作品)";
+            Subtitle = "R8.11 ver.";
         }
 
         /// <summary>
@@ -147,6 +162,14 @@ namespace WpfApp.Screens.Menu.ViewModels
 
             _shutdownService.Cleanup();
             Application.Current.Shutdown();
+        }
+
+        /// <summary>
+        /// メインメニュー画面に留まる。（バインドエラー防止用）
+        /// </summary>
+        [RelayCommand]
+        private void GoToMenu()
+        {
         }
 
         /// <summary>

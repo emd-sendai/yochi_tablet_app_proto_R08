@@ -3,6 +3,7 @@ using System.Windows;
 using WpfApp.Interfaces;
 using WpfApp.Screens.Menu.ViewModels;
 using WpfApp.Services;
+using WpfApp.Shell.ViewModels;
 
 namespace WpfApp
 {
@@ -35,11 +36,20 @@ namespace WpfApp
                 loggingService.LogError(ex);
             }
 
+            // MainWindowの生成
             var mainWindow = new MainWindow();
-            navigationService = new NavigationService(mainWindow.MainContent);
+
+            // ShellViewModelの生成
+            var shellViewModel = new ShellViewModel();
+            // NavigationServiceの生成
+            navigationService = new NavigationService(mainWindow.MainContent, shellViewModel);
+            // DialogServiceの生成
             dialogService = new DialogService();
 
-            // 最初に表示する画面
+            // MainWindowにShellViewModelを設定
+            mainWindow.DataContext = shellViewModel;
+
+            // 初期画面を設定
             navigationService.Navigate(new MenuViewModel(navigationService, dialogService));
 
             mainWindow.Show();

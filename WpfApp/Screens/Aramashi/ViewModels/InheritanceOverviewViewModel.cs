@@ -30,7 +30,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         };
 
         [ObservableProperty]
-        private double scale = 0.9;
+        private double scale = 1.3;
 
         public double MinScale { get; } = 0.1;
         public double MaxScale { get; } = 5.0;

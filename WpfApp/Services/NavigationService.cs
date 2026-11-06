@@ -8,6 +8,8 @@ using WpfApp.Screens.Documents.ViewModels;
 using WpfApp.Screens.Documents.Views;
 using WpfApp.Screens.Menu.ViewModels;
 using WpfApp.Screens.Menu.Views;
+using WpfApp.Shell.Models;
+using WpfApp.Shell.ViewModels;
 
 namespace WpfApp.Services
 {
@@ -17,11 +19,13 @@ namespace WpfApp.Services
     public class NavigationService
     {
         private readonly ContentControl _contentControl;
+        private readonly ShellViewModel _shellViewModel;
         private readonly Stack<object> _history = new();
 
-        public NavigationService(ContentControl contentControl)
+        public NavigationService(ContentControl contentControl , ShellViewModel shellViewModel)
         {
             _contentControl = contentControl;
+            _shellViewModel = shellViewModel;
         }
 
         /// <summary>
@@ -34,10 +38,56 @@ namespace WpfApp.Services
         /// </exception>
         public void Navigate(object viewModel)
         {
+            if (viewModel is not IShellLayout layout)
+            {
+                throw new ArgumentNullException("IShellLayoutを実装していないViewModelです。", nameof(viewModel));
+            }
+
+            // _historyに記録
             if (_contentControl.Content is UserControl currentView &&
                 currentView.DataContext != null)
             {
                 _history.Push(currentView.DataContext);
+            }
+            // 表示を切り替える
+            ShowView(viewModel);
+        }
+
+        /// <summary>
+        /// １つ前に表示していた画面に遷移する。
+        /// 遷移対象が指定されている場合はその画面に遷移する。
+        /// </summary>
+        public void GoBack()
+        {
+            // 遷移対象が指定されている場合
+            if (_contentControl.Content is UserControl currentView &&
+                 currentView.DataContext is INavigationTarget nav &&
+                nav.CreateBackViewModel != null)
+            {
+                // 指定の画面に遷移する
+                var backViewModel = nav.CreateBackViewModel();
+                ShowView(backViewModel);
+                return;
+            }
+            // _historyの記録が1つ前の画面に遷移する
+            GoBackFromHistory();
+        }
+
+        private void GoBackFromHistory()
+        {
+            if (_history.Count == 0)
+            {
+                return;
+            }
+            var previousVm = _history.Pop();
+            ShowView(previousVm);
+        }
+
+        private void ShowView(object viewModel)
+        {
+            if (viewModel is not IShellLayout layout)
+            {
+                throw new ArgumentNullException("IShellLayoutを実装していないViewModelです。", nameof(viewModel));
             }
 
             UserControl view = viewModel switch
@@ -70,26 +120,10 @@ namespace WpfApp.Services
             };
 
             view.DataContext = viewModel;
+            // ヘッダー、サイドバーを更新
+            _shellViewModel.UpdateLayout(layout, viewModel);
+            // メインを更新
             _contentControl.Content = view;
-        }
-
-        /// <summary>
-        /// １つ前に表示していた画面に遷移する。
-        /// 遷移対象が指定されている場合はその画面に遷移する。
-        /// </summary>
-        public void GoBack()
-        {
-            if (_contentControl.Content is UserControl view && view.DataContext is INavigationTarget nav && nav.CreateBackViewModel != null)
-            {
-                Navigate(nav.CreateBackViewModel());
-                return;
-            }
-
-            if (_history.Count > 0)
-            {
-                var previousVm = _history.Pop();
-                Navigate(previousVm);
-            }
         }
 
     }

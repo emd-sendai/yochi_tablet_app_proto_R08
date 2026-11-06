@@ -9,8 +9,12 @@ using WpfApp.Common.Models;
 using WpfApp.Common.ViewModels;
 using WpfApp.Common.Views;
 using WpfApp.Interfaces;
+using WpfApp.Screens.Aramashi.ViewModels;
 using WpfApp.Screens.Menu.ViewModels;
 using WpfApp.Services;
+using WpfApp.Shell.Models;
+using WpfApp.Shell.Views.Header;
+using WpfApp.Shell.Views.Sidebar;
 
 namespace WpfApp.Screens.Documents.ViewModels
 {
@@ -18,13 +22,19 @@ namespace WpfApp.Screens.Documents.ViewModels
     /// DocumentMenuView.xamlに対応するViewModel。
     /// 各種資料画面での処理を行う。
     /// </summary>
-    public partial class DocumentMenuViewModel : ObservableObject
+    public partial class DocumentMenuViewModel : ObservableObject, IShellLayout
     {
         private readonly NavigationService _nav;
         private readonly IDialogService _dia;
         private readonly PdfDocumentService _pdf;
         private readonly IMessageDialogService _message;
         private readonly IAppPathService _path;
+
+        public Type HeaderType => typeof(HeaderType001View);
+        public Type SidebarType => typeof(SidebarType001View);
+
+        [ObservableProperty]
+        private string title;
 
         /// <summary>
         /// ボタンの名称表示用ボタンデータリスト（事業全般資料）
@@ -57,6 +67,8 @@ namespace WpfApp.Screens.Documents.ViewModels
             _pdf = new PdfDocumentService();
             _message = new MessageDialogService();
             _path = new AppPathService();
+
+            Title = "各種資料";
 
             WorksButtons = LoadButtonFromJson(_path.WorksButtonPath);
             LandownerButtons = LoadButtonFromJson(_path.LandownerButtonPath);
@@ -115,6 +127,23 @@ namespace WpfApp.Screens.Documents.ViewModels
         private void GoToMenu()
         {
             _nav.Navigate(new MenuViewModel(_nav, _dia));
+        }
+
+        /// <summary>
+        /// 補償のあらまし画面に遷移する。
+        /// </summary>
+        [RelayCommand]
+        private void GoToAramashiMenu()
+        {
+            _nav.Navigate(new AramashiMenuViewModel(_nav, _dia));
+        }
+
+        /// <summary>
+        /// 各種資料画面に留まる。（バインドエラー防止用）
+        /// </summary>
+        [RelayCommand]
+        private void GoToDocumentMenu()
+        {
         }
 
         /// <summary>

@@ -3,6 +3,7 @@ using System.Windows;
 using WpfApp.Interfaces;
 using WpfApp.Screens.Menu.ViewModels;
 using WpfApp.Services;
+using WpfApp.Shell.ViewModels;
 
 namespace WpfApp
 {
@@ -11,10 +12,10 @@ namespace WpfApp
     /// </summary>
     public partial class MainWindow : Window
     {
-
-        private readonly NavigationService _navigationService;
-        private readonly IDialogService _dialogService;
+        //private readonly IDialogService _dialogService;
         private readonly ShutdownService _shutdownService;
+        //private readonly ShellViewModel _shellViewModel;
+        //private readonly NavigationService _navigationService;
 
         /// <summary>
         /// 初期画面（メインメニュー画面）を表示する。
@@ -23,17 +24,23 @@ namespace WpfApp
         {
             InitializeComponent();
 
-            // NavigationServiceにContentControl渡す
-            _navigationService = new NavigationService(MainContent);
-
             // DialogService の初期化
-            _dialogService = new DialogService();
+            //_dialogService = new DialogService();
 
             // ShutdownServiceの初期化
             _shutdownService = new ShutdownService();
 
-            // 初期画面を設定
-            _navigationService.Navigate(new MenuViewModel(_navigationService, _dialogService));
+            // ShellViewModelの初期化
+            //_shellViewModel = new ShellViewModel();
+
+            // NavigationServiceの初期化
+            //_navigationService = new NavigationService(MainContent, _shellViewModel);
+
+            // MainWindowのDataContextを設定
+            //DataContext = _shellViewModel;
+
+            //初期画面を設定
+            //_navigationService.Navigate(new MenuViewModel(_navigationService, _dialogService));
 
             this.Closing += MainWindow_Closing;
         }

@@ -8,8 +8,12 @@ using System.Text.Json.Nodes;
 using WpfApp.Common.ViewModels;
 using WpfApp.Interfaces;
 using WpfApp.Screens.Aramashi.Models;
+using WpfApp.Screens.Documents.ViewModels;
 using WpfApp.Screens.Menu.ViewModels;
 using WpfApp.Services;
+using WpfApp.Shell.Models;
+using WpfApp.Shell.Views.Header;
+using WpfApp.Shell.Views.Sidebar;
 using static WpfApp.Common.ViewModels.VideoPlayerViewModel;
 
 namespace WpfApp.Screens.Aramashi.ViewModels
@@ -18,7 +22,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
     /// PresentationViewerView.xamlに対応するViewModel。
     /// プレゼンテーション表示画面での処理を行う。
     /// </summary>
-    public partial class PresentationViewerViewModel : ObservableObject
+    public partial class PresentationViewerViewModel : ObservableObject, IShellLayout
     {
         public int _index = 0;
         private readonly NavigationService _nav;
@@ -26,6 +30,9 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         private readonly PdfDocumentService _pdf;
         private readonly IMessageDialogService _messageDialog;
         private readonly IAppPathService _path;
+
+        public Type HeaderType => typeof(HeaderType002View);
+        public Type SidebarType => typeof(SidebarType002View);
 
         /// <summary>
         /// 表示用ページデータリスト
@@ -549,16 +556,31 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             GoToSlide(CurrentSlide.TopPageGlobalIndex);
         }
 
+        /// <summary>
+        /// メインメニュー画面に遷移する。
+        /// </summary>
         [RelayCommand]
         private void GoToMenu()
         {
             _nav.Navigate(new MenuViewModel(_nav, _dia));
         }
 
+        /// <summary>
+        /// 補償のあらまし画面に遷移する。
+        /// </summary>
         [RelayCommand]
         private void GoToAramashiMenu()
         {
             _nav.Navigate(new AramashiMenuViewModel(_nav, _dia));
+        }
+
+        /// <summary>
+        /// 各種資料画面に遷移する。
+        /// </summary>
+        [RelayCommand]
+        private void GoToDocumentMenu()
+        {
+            _nav.Navigate(new DocumentMenuViewModel(_nav, _dia));
         }
 
         /// <summary>
