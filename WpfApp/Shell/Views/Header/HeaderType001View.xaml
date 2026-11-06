@@ -21,7 +21,7 @@
         </StackPanel>
 
         <!-- ページタイトル -->
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,70,0">
             <!-- タイトル -->
             <TextBlock Text="{Binding Title}" Foreground="#3F51B5" FontSize="30" FontWeight="Bold"
             HorizontalAlignment="Center" VerticalAlignment="Bottom">

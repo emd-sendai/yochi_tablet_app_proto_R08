@@ -1,0 +1,60 @@
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using WpfApp.Interfaces;
+using WpfApp.Screens.Menu.ViewModels;
+using WpfApp.Screens.Aramashi.ViewModels;
+using WpfApp.Services;
+using WpfApp.Shell.Models;
+using WpfApp.Shell.Views.Header;
+using WpfApp.Shell.Views.Sidebar;
+
+namespace WpfApp.Screens.Admin.ViewModels
+{
+    public partial class AdminMenuViewModel : ObservableObject, IShellLayout
+    {
+        private readonly NavigationService _nav;
+        private readonly IDialogService _dia;
+        private readonly PdfDocumentService _pdf;
+        private readonly IMessageDialogService _message;
+        private readonly IAppPathService _path;
+
+        public Type HeaderType => typeof(HeaderType001View);
+        public Type SidebarType => typeof(SidebarType003View);
+
+        [ObservableProperty]
+        private string title;
+
+        public AdminMenuViewModel(NavigationService navigationService, IDialogService dialogService)
+        {
+            _nav = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
+            _dia = dialogService ?? throw new ArgumentNullException(nameof(dialogService));
+            _pdf = new PdfDocumentService();
+            _message = new MessageDialogService();
+            _path = new AppPathService();
+
+            Title = "管理メニュー";
+        }
+
+        /// <summary>
+        /// 管理メニュー画面に留まる。（バインドエラー防止用）
+        /// </summary>
+        [RelayCommand]
+        private void GoToAdminMenu()
+        {
+        }
+
+        /// <summary>
+        /// メインメニュー画面に遷移する。
+        /// </summary>
+        [RelayCommand]
+        private void GoToMenu()
+        {
+            _nav.Navigate(new MenuViewModel(_nav, _dia));
+        }
+    }
+}

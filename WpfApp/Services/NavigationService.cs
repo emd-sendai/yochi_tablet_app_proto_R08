@@ -101,6 +101,7 @@ namespace WpfApp.Services
                 DocumentMenuViewModel => new DocumentMenuView(),
 
                 /* 管理メニュー */
+                AdminMenuViewModel => new AdminMenuView(),
                 // 表示設定（共通画面）
                 DisplaySettingsViewModel => new DisplaySettingsView(),
                 ScreenSelectViewModel => new ScreenSelectView(),

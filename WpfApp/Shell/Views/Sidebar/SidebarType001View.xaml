@@ -8,17 +8,15 @@
              d:DesignHeight="600" d:DesignWidth="800">
 
     <StackPanel Background="{DynamicResource MaterialDesignPaper}" HorizontalAlignment="Left">
-        <Button Content="メインメニュー" FontSize="20" VerticalAlignment="Center" Margin="0,5,0,0"
-                            Style="{StaticResource MaterialDesignFlatButton}" 
+        <Button Content="メインメニュー" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left"
+                            Style="{StaticResource MaterialDesignFlatButton}" Margin="0,5,0,10"
                             Command="{Binding GoToMenuCommand}"/>
-        <Button Content="補償のあらまし" FontSize="20" VerticalAlignment="Center" 
-                            Style="{StaticResource MaterialDesignFlatButton}" 
+        <Button Content="補償のあらまし" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Left"
+                            Style="{StaticResource MaterialDesignFlatButton}" Margin="8,0,0,0"
                             Command="{Binding GoToAramashiMenuCommand}"/>
-        <Button Content="各種資料" FontSize="20" VerticalAlignment="Center"
-                            Style="{StaticResource MaterialDesignFlatButton}" 
+        <Button Content="各種資料" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Left"
+                            Style="{StaticResource MaterialDesignFlatButton}" Margin="8,0,0,0"
                             Command="{Binding GoToDocumentMenuCommand}"/>
-        <Button Content="管理メニュー" FontSize="20" VerticalAlignment="Center" Margin="0,30,0,0"
-                            Style="{StaticResource MaterialDesignFlatButton}" 
-                            Command="{Binding GoToAdminMenuCommand}"/>
     </StackPanel>
+    
 </UserControl>

@@ -341,7 +341,7 @@ namespace WpfApp.Screens.Aramashi.Views
                         {
                             hyperlink.Command = viewModel.GoToOthers001Command;
                         }
-                        else if (runInfo.CommandName == "GoToOthers002Command")
+                        else if (runInfo.CommandName == "GoToOthers002ByIndexCommand")
                         {
                             if (!string.IsNullOrWhiteSpace(param) && int.TryParse(param, out int value))
                             {
@@ -352,7 +352,7 @@ namespace WpfApp.Screens.Aramashi.Views
                                 Debug.WriteLine("CommandParameter は数値ではありません");
                                 hyperlink.CommandParameter = 0;    // 最初のページに遷移
                             }
-                            hyperlink.Command = viewModel.GoToOthers002Command;
+                            hyperlink.Command = viewModel.GoToOthers002ByIndexCommand;
                         }
                         else if (runInfo.CommandName == "OpenUrlCommand")
                         {

@@ -28,7 +28,7 @@
             
             <!-- サイドバー -->
             <materialDesign:DrawerHost.LeftDrawerContent>
-                <sidebar:SidebarView SidebarContent="{Binding SidebarView}" Width="200"/>
+                <sidebar:SidebarView SidebarContent="{Binding SidebarView}" Width="300"/>
             </materialDesign:DrawerHost.LeftDrawerContent>
             
             <!-- メイン -->

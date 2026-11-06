@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="WpfApp.Shell.Views.Header.HeaderType003View"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:WpfApp.Shell.Views.Header"
+             mc:Ignorable="d" 
+             d:DesignHeight="70" d:DesignWidth="800">
+    <Grid Height="70" VerticalAlignment="Top">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <!-- ホームアイコンボタン -->
+            <Button Style="{StaticResource IconTextButtonStyle}" 
+                Margin="5,10,5,10" Command="{Binding GoToAdminMenuCommand}">
+                <StackPanel Orientation="Vertical" >
+                    <materialDesign:PackIcon Kind="Lock" Style="{StaticResource ITButtonIconStyle}"/>
+                    <TextBlock Text="管理メニュー" Style="{StaticResource ITButtonTextStyle}"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+
+        <!-- ページタイトル -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,70,0">
+            <!-- タイトル -->
+            <TextBlock Text="{Binding Title}" Foreground="#3F51B5" FontSize="30" FontWeight="Bold"
+            HorizontalAlignment="Center" VerticalAlignment="Bottom">
+            </TextBlock>
+            <!-- サブタイトル -->
+            <TextBlock Text="{Binding Subtitle}" FontSize="22" VerticalAlignment="Bottom" Foreground="#3F51B5" Margin="5,0,0,0"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

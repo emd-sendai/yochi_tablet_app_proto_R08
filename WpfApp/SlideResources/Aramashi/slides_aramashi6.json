@@ -321,7 +321,7 @@
                 {
                   "text": "Ⅲ 税制上の優遇措置について",
                   "isLink": true,
-                  "commandName": "GoToOthers002Command",
+                  "commandName": "GoToOthers002ByIndexCommand",
                   "commandParameter": "0"
                 },
                 {
@@ -330,7 +330,7 @@
                 {
                   "text": "Ⅳ 土地の譲渡等に伴うその他の税金等",
                   "isLink": true,
-                  "commandName": "GoToOthers002Command",
+                  "commandName": "GoToOthers002ByIndexCommand",
                   "commandParameter": "3"
                 },
                 {

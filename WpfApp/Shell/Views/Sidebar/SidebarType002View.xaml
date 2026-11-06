@@ -8,19 +8,78 @@
              d:DesignHeight="600" d:DesignWidth="800">
     <Grid>
         <StackPanel Background="{DynamicResource MaterialDesignPaper}" HorizontalAlignment="Left">
-            <Button Content="メインメニュー" FontSize="20" VerticalAlignment="Center" Margin="0,5,0,0"
-                            Style="{StaticResource MaterialDesignFlatButton}" 
+            <Button Content="メインメニュー" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left"
+                            Style="{StaticResource MaterialDesignFlatButton}" Margin="0,5,0,10"
                             Command="{Binding GoToMenuCommand}"/>
-            <TextBlock Text="補償のあらまし画面用（仮）"/>
-            <Button Content="補償のあらまし" FontSize="20" VerticalAlignment="Center" 
-                            Style="{StaticResource MaterialDesignFlatButton}" 
+            <Button Content="補償のあらまし" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Left"
+                            Style="{StaticResource MaterialDesignFlatButton}" Margin="8,0,0,0"
                             Command="{Binding GoToAramashiMenuCommand}"/>
-            <Button Content="各種資料" FontSize="20" VerticalAlignment="Center"
+
+            <Expander IsExpanded="True" FontWeight="Bold" FontSize="20">
+                <Expander.Header>
+                    <TextBlock Text="用地補償の手順" FontSize="20"/>
+                </Expander.Header>
+                <StackPanel Orientation="Vertical" Margin="20,0,0,0">
+                    <Button Content="{Binding AramashiButtons[0].LabelText}" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Left"
                             Style="{StaticResource MaterialDesignFlatButton}" 
+                            Command="{Binding GoToSection1Command}"/>
+                    <Button Content="{Binding AramashiButtons[1].LabelText}" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Left"
+                            Style="{StaticResource MaterialDesignFlatButton}" 
+                            Command="{Binding GoToSection2Command}"/>
+                    <Button Content="{Binding AramashiButtons[2].LabelText}" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Left"
+                            Style="{StaticResource MaterialDesignFlatButton}" 
+                            Command="{Binding GoToSection3Command}"/>
+                    <Button Content="{Binding AramashiButtons[3].LabelText}" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Left"
+                            Style="{StaticResource MaterialDesignFlatButton}" 
+                            Command="{Binding GoToSection4Command}"/>
+                    <Button Content="{Binding AramashiButtons[4].LabelText}" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Left"
+                            Style="{StaticResource MaterialDesignFlatButton}" 
+                            Command="{Binding GoToSection5Command}"/>
+                    <Button Content="{Binding AramashiButtons[5].LabelText}" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Left"
+                            Style="{StaticResource MaterialDesignFlatButton}" 
+                            Command="{Binding GoToSection6Command}"/>
+                    <Button Content="{Binding AramashiButtons[6].LabelText}" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Left"
+                            Style="{StaticResource MaterialDesignFlatButton}" 
+                            Command="{Binding GoToSection7Command}"/>
+                    <Button Content="{Binding AramashiButtons[7].LabelText}" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Left"
+                            Style="{StaticResource MaterialDesignFlatButton}" 
+                            Command="{Binding GoToSection8Command}"/>
+                    <Button Content="{Binding AramashiButtons[8].LabelText}" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Left"
+                            Style="{StaticResource MaterialDesignFlatButton}" 
+                            Command="{Binding GoToSection9Command}"/>
+                    <Button Content="{Binding AramashiButtons[9].LabelText}" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Left"
+                            Style="{StaticResource MaterialDesignFlatButton}" 
+                            Command="{Binding GoToSection10Command}"/>
+                </StackPanel>
+            </Expander>
+
+            <Expander IsExpanded="True" FontWeight="Bold" FontSize="20">
+                <Expander.Header>
+                    <TextBlock Text="その他" FontSize="20"/>
+                </Expander.Header>
+                <StackPanel Orientation="Vertical" Margin="20,0,0,0">
+                    <Button Content="{Binding OthersButtons[0].LabelText}" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Left"
+                            Style="{StaticResource MaterialDesignFlatButton}" 
+                            Command="{Binding GoToOthers001Command}"/>
+                    <Button Content="{Binding OthersButtons[1].LabelText}" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Left"
+                            Style="{StaticResource MaterialDesignFlatButton}" 
+                            Command="{Binding GoToOthers002Command}"/>
+                    <Button Content="{Binding OthersButtons[2].LabelText}" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Left"
+                            Style="{StaticResource MaterialDesignFlatButton}" 
+                            Command="{Binding GoToOthers003Command}"/>
+                    <Button Content="{Binding OthersButtons[3].LabelText}" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Left"
+                            Style="{StaticResource MaterialDesignFlatButton}" 
+                            Command="{Binding GoToOthers004Command}"/>
+                    <Button Content="{Binding OthersButtons[4].LabelText}" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Left"
+                            Style="{StaticResource MaterialDesignFlatButton}" 
+                            Command="{Binding GoToOthers005Command}"/>
+                </StackPanel>
+            </Expander>
+
+            <Button Content="各種資料" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Left"
+                            Style="{StaticResource MaterialDesignFlatButton}" Margin="8,0,0,0"
                             Command="{Binding GoToDocumentMenuCommand}"/>
-            <Button Content="管理メニュー" FontSize="20" VerticalAlignment="Center" Margin="0,30,0,0"
-                            Style="{StaticResource MaterialDesignFlatButton}" 
-                            Command="{Binding GoToAdminMenuCommand}"/>
+
         </StackPanel>
     </Grid>
 </UserControl>

@@ -1,0 +1,68 @@
+﻿<UserControl x:Class="WpfApp.Shell.Views.Sidebar.SidebarType003View"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfApp.Shell.Views.Sidebar"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800">
+    <Grid>
+        <StackPanel Background="{DynamicResource MaterialDesignPaper}" HorizontalAlignment="Left">
+            <Button Content="管理メニュー" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left"
+                            Style="{StaticResource MaterialDesignFlatButton}" Margin="0,5,0,10"
+                            Command="{Binding GoToAdminMenuCommand}"/>
+            <Button Content="管理資料" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Left"
+                            Style="{StaticResource MaterialDesignFlatButton}" Margin="8,0,0,0"
+                            Command="{Binding Command}"/>
+
+            <Expander IsExpanded="True" FontWeight="Bold" FontSize="20">
+                <Expander.Header>
+                    <TextBlock Text="メイン機能表示設定" FontSize="20"/>
+                </Expander.Header>
+                <StackPanel Orientation="Vertical" Margin="8,0,0,0">
+                    <Button Content="補償のあらまし" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Left"
+                            Style="{StaticResource MaterialDesignFlatButton}" 
+                            Command="{Binding Command}"/>
+                    <Button Content="各種資料" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Left"
+                            Style="{StaticResource MaterialDesignFlatButton}" 
+                            Command="{Binding Command}"/>
+                </StackPanel>
+            </Expander>
+
+            <Expander IsExpanded="True" FontWeight="Bold" FontSize="20">
+                <Expander.Header>
+                    <TextBlock Text="事業・地権者情報設定" FontSize="20"/>
+                </Expander.Header>
+                <StackPanel Orientation="Vertical" Margin="8,0,0,0">
+                    <Button Content="事業情報" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Left"
+                            Style="{StaticResource MaterialDesignFlatButton}" 
+                            Command="{Binding Command}"/>
+                    <Button Content="地権者情報" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Left"
+                            Style="{StaticResource MaterialDesignFlatButton}" 
+                            Command="{Binding Command}"/>
+                </StackPanel>
+            </Expander>
+
+            <Expander IsExpanded="True" FontWeight="Bold" FontSize="20">
+                <Expander.Header>
+                    <TextBlock Text="アプリデータ設定" FontSize="20"/>
+                </Expander.Header>
+                <StackPanel Orientation="Vertical" Margin="8,0,0,0">
+                    <Button Content="管理者パスワード" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Left"
+                            Style="{StaticResource MaterialDesignFlatButton}" 
+                            Command="{Binding Command}"/>
+                    <Button Content="資料一覧出力" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Left"
+                            Style="{StaticResource MaterialDesignFlatButton}" 
+                            Command="{Binding Command}"/>
+                    <Button Content="データ共有・引継ぎ" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Left"
+                            Style="{StaticResource MaterialDesignFlatButton}" 
+                            Command="{Binding Command}"/>
+                    <Button Content="データ初期化" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Left"
+                            Style="{StaticResource MaterialDesignFlatButton}" 
+                            Command="{Binding Command}"/>
+                </StackPanel>
+            </Expander>
+
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Text.Json;
 using System.Text.Json.Nodes;
+using WpfApp.Common.Models;
 using WpfApp.Common.ViewModels;
 using WpfApp.Interfaces;
 using WpfApp.Screens.Aramashi.Models;
@@ -33,6 +34,18 @@ namespace WpfApp.Screens.Aramashi.ViewModels
 
         public Type HeaderType => typeof(HeaderType002View);
         public Type SidebarType => typeof(SidebarType002View);
+
+        /// <summary>
+        /// ボタンの名称表示用ボタンデータリスト（用地補償の手順）
+        /// </summary>
+        [ObservableProperty]
+        private ObservableCollection<ButtonConfig> aramashiButtons;
+
+        /// <summary>
+        /// ボタンの名称表示用ボタンデータリスト（その他）
+        /// </summary>
+        [ObservableProperty]
+        private ObservableCollection<ButtonConfig> othersButtons;
 
         /// <summary>
         /// 表示用ページデータリスト
@@ -85,13 +98,18 @@ namespace WpfApp.Screens.Aramashi.ViewModels
 
         private readonly PresentationCategory _category;
 
-        public PresentationViewerViewModel(NavigationService navigationService, IDialogService dialogService, PresentationCategory category)
+        public PresentationViewerViewModel(NavigationService navigationService, IDialogService dialogService, 
+            PresentationCategory category, ObservableCollection<ButtonConfig> aramashiButtonList, 
+            ObservableCollection<ButtonConfig> othersButtonList)
         {
             _nav = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
             _dia = dialogService ?? throw new ArgumentNullException(nameof(dialogService));
             _pdf = new PdfDocumentService();
             _messageDialog = new MessageDialogService();
             _path = new AppPathService();
+
+            AramashiButtons = aramashiButtonList;
+            OthersButtons = othersButtonList;
 
             // カテゴリを設定する
             _category = category;
@@ -584,24 +602,202 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         }
 
         /// <summary>
-        /// その他１の最初のページを表示する。
+        /// 用地補償の手順 1 の最初のページを表示する。
+        /// </summary>
+        [RelayCommand]
+        private void GoToSection1()
+        {
+            if (CurrentSlide == null) return;
+
+            if (_category == PresentationCategory.Aramashi)
+            {
+                if (CurrentSlide.Id.Equals("aramashi1_1"))
+                {
+                    GoToTopPage();
+                }
+                else
+                {
+                    // GetSectionFirstPagesにあたるメソッドを作成
+                    //GoToSlide(GetSectionFirstPages(1));
+                }
+            }
+            else
+            {
+                var vm = new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Aramashi, AramashiButtons, OthersButtons);
+                _nav.Navigate(vm);
+                // GetSectionFirstPagesにあたるメソッドを作成
+                //vm.GoToSlide(GetSectionFirstPages(1));
+            }
+        }
+
+        /// <summary>
+        /// 用地補償の手順 2 の最初のページを表示する。
+        /// </summary>
+        [RelayCommand]
+        private void GoToSection2()
+        {
+        }
+
+        /// <summary>
+        /// 用地補償の手順 3 の最初のページを表示する。
+        /// </summary>
+        [RelayCommand]
+        private void GoToSection3()
+        {
+        }
+
+        /// <summary>
+        /// 用地補償の手順 4 の最初のページを表示する。
+        /// </summary>
+        [RelayCommand]
+        private void GoToSection4()
+        {
+        }
+
+        /// <summary>
+        /// 用地補償の手順 5 の最初のページを表示する。
+        /// </summary>
+        [RelayCommand]
+        private void GoToSection5()
+        {
+        }
+
+        /// <summary>
+        /// 用地補償の手順 6 の最初のページを表示する。
+        /// </summary>
+        [RelayCommand]
+        private void GoToSection6()
+        {
+        }
+
+        /// <summary>
+        /// 用地補償の手順 7 の最初のページを表示する。
+        /// </summary>
+        [RelayCommand]
+        private void GoToSection7()
+        {
+        }
+
+        /// <summary>
+        /// 用地補償の手順 8 の最初のページを表示する。
+        /// </summary>
+        [RelayCommand]
+        private void GoToSection8()
+        {
+        }
+
+        /// <summary>
+        /// 用地補償の手順 9 の最初のページを表示する。
+        /// </summary>
+        [RelayCommand]
+        private void GoToSection9()
+        {
+        }
+
+        /// <summary>
+        /// 用地補償の手順 10 の最初のページを表示する。
+        /// </summary>
+        [RelayCommand]
+        private void GoToSection10()
+        {
+        }
+
+        /// <summary>
+        /// その他１の最初のページを表示する。（リンクテキスト/サイドバー兼用）
         /// </summary>
         [RelayCommand]
         private void GoToOthers001()
         {
-            _nav.Navigate(new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Others001));
+            if (_category == PresentationCategory.Others001)
+            {
+                GoToTopPage();
+            }
+            else
+            {
+                _nav.Navigate(new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Others001, AramashiButtons, OthersButtons));
+            }
         }
 
         /// <summary>
-        /// その他２の指定のページを表示する。
+        /// その他２の最初のページを表示する。（サイドバー用）
+        /// </summary>
+        [RelayCommand]
+        private void GoToOthers002()
+        {
+            if (_category == PresentationCategory.Others002)
+            {
+                GoToTopPage();
+            }
+            else
+            {
+                _nav.Navigate(new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Others002, AramashiButtons, OthersButtons));
+            }
+        }
+
+        /// <summary>
+        /// その他２の指定のページを表示する。（リンクテキスト用）
         /// </summary>
         /// <param name="pageIndex"></param>
         [RelayCommand]
-        private void GoToOthers002(int pageIndex)
+        private void GoToOthers002ByIndex(int pageIndex)
         {
-            var newVM = new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Others002);
+            var newVM = new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Others002, AramashiButtons, OthersButtons);
             _nav.Navigate(newVM);
             newVM.GoToSlide(pageIndex);
+        }
+
+        /// <summary>
+        /// その他３の最初のページを表示する。（サイドバー用）
+        /// </summary>
+        [RelayCommand]
+        private void GoToOthers003()
+        {
+            if (_category == PresentationCategory.Others003)
+            {
+                GoToTopPage();
+            }
+            else
+            {
+                _nav.Navigate(new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Others003, AramashiButtons, OthersButtons));
+            }
+        }
+
+        /// <summary>
+        /// その他４の最初のページを表示する。（サイドバー用）
+        /// </summary>
+        [RelayCommand]
+        private void GoToOthers004()
+        {
+            if (_category == PresentationCategory.Others004)
+            {
+                GoToTopPage();
+            }
+            else
+            {
+                _nav.Navigate(new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Others004, AramashiButtons, OthersButtons));
+            }
+        }
+
+        /// <summary>
+        /// その他５の最初のページを表示する。（サイドバー用）
+        /// </summary>
+        [RelayCommand]
+        private void GoToOthers005()
+        {
+            if (_category == PresentationCategory.Others005)
+            {
+                //GoToTopPage();
+
+                // 準備中ダイアログを表示する
+                _messageDialog.ShowTestMessage();
+            }
+            else
+            {
+                //_nav.Navigate(new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Others005, AramashiButtons, OthersButtons));
+
+                // 準備中ダイアログを表示する
+                _messageDialog.ShowTestMessage();
+            }
         }
 
         /// <summary>

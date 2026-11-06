@@ -27,7 +27,7 @@ namespace WpfApp.Screens.Menu.ViewModels
         private readonly ShutdownService _shutdownService;
         private readonly ResourceInitializeService _initializer;
 
-        public Type HeaderType => typeof(HeaderType001View);
+        public Type HeaderType => typeof(HeaderType003View);
         public Type SidebarType => typeof(SidebarType001View);
 
         [ObservableProperty]
@@ -35,9 +35,6 @@ namespace WpfApp.Screens.Menu.ViewModels
 
         [ObservableProperty]
         private string subtitle;
-
-        [ObservableProperty]
-        private bool isLeftDrawerOpen;
 
         private bool isPasswordCorrect;
 
@@ -51,62 +48,6 @@ namespace WpfApp.Screens.Menu.ViewModels
 
             Title = "用地交渉試作品アプリ(試作品)";
             Subtitle = "R8.11 ver.";
-        }
-
-        /// <summary>
-        /// パスワードを照合し、管理メニューバーを表示する。
-        /// </summary>
-        [RelayCommand]
-        private void ToggleDrawer()
-        {
-            // パスワードが未照合の状態でサイドバーを開く場合
-            if (!IsLeftDrawerOpen && !isPasswordCorrect)
-            {
-                // パスワードダイアログを生成
-                var pwVm = new PasswordDialogViewModel();
-                var pwDialog = new PasswordDialogWindow
-                {
-                    DataContext = pwVm,
-                    Owner = Application.Current.MainWindow
-                };
-
-                // ShowDialog() は true/false/null を返す
-                if (pwDialog.ShowDialog() == true)
-                {
-                    // パスワードが正解の場合
-                    if (pwVm.Result)
-                    {
-                        //メッセージウィンドウを表示
-                        var vm = new MessageDialogViewModel
-                        {
-                            Message = "管理メニューを表示します"
-                        };
-
-                        var dialog = new MessageDialogWindow
-                        {
-                            DataContext = vm,
-                            Owner = Application.Current.MainWindow
-                        };
-
-                        bool? result = dialog.ShowDialog();
-                        if (result == true)
-                        {
-                            IsLeftDrawerOpen = true;
-                            isPasswordCorrect = true;
-                        }
-                    }
-                }
-            }
-            // パスワードが照合済の状態でサイドバーを開く場合
-            else if (!IsLeftDrawerOpen && isPasswordCorrect)
-            {
-                IsLeftDrawerOpen = true;
-            }
-            // サイドバーを閉じる場合
-            else
-            {
-                IsLeftDrawerOpen = false;
-            }
         }
 
         /// <summary>
@@ -188,6 +129,57 @@ namespace WpfApp.Screens.Menu.ViewModels
         private void GoToDocumentMenu()
         {
             _nav.Navigate(new DocumentMenuViewModel(_nav, _dia));
+        }
+
+        /// <summary>
+        /// パスワードの照合に成功した場合、管理メニュー画面に遷移する。
+        /// </summary>
+        [RelayCommand]
+        private void GoToAdminMenu()
+        {
+            // パスワードが未照合の状態で管理メニューを開く場合
+            if (!isPasswordCorrect)
+            {
+                // パスワードダイアログを生成
+                var pwVm = new PasswordDialogViewModel();
+                var pwDialog = new PasswordDialogWindow
+                {
+                    DataContext = pwVm,
+                    Owner = Application.Current.MainWindow
+                };
+
+                // ShowDialog() は true/false/null を返す
+                if (pwDialog.ShowDialog() == true)
+                {
+                    // パスワードが正解の場合
+                    if (pwVm.Result)
+                    {
+                        //メッセージウィンドウを表示
+                        var vm = new MessageDialogViewModel
+                        {
+                            Message = "管理メニューを表示します。"
+                        };
+
+                        var dialog = new MessageDialogWindow
+                        {
+                            DataContext = vm,
+                            Owner = Application.Current.MainWindow
+                        };
+
+                        bool? result = dialog.ShowDialog();
+                        if (result == true)
+                        {
+                            isPasswordCorrect = true;
+                            _nav.Navigate(new AdminMenuViewModel(_nav, _dia));
+                        }
+                    }
+                }
+            }
+            // パスワードが照合済の状態でサイドバーを開く場合
+            else if (isPasswordCorrect)
+            {
+                _nav.Navigate(new AdminMenuViewModel(_nav, _dia));
+            }
         }
 
         /// <summary>

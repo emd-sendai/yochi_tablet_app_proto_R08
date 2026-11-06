@@ -252,7 +252,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         [RelayCommand]
         private void GoToSection1()
         {
-            var vm = new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Aramashi);
+            var vm = new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Aramashi, AramashiButtons, OthersButtons);
             _nav.Navigate(vm);
             vm.GoToSlide(GetSectionFirstPages(1));
         }
@@ -263,7 +263,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         [RelayCommand]
         private void GoToSection2()
         {
-            var vm = new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Aramashi);
+            var vm = new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Aramashi, AramashiButtons, OthersButtons);
             _nav.Navigate(vm);
             vm.GoToSlide(GetSectionFirstPages(2));
         }
@@ -274,7 +274,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         [RelayCommand]
         private void GoToSection3()
         {
-            var vm = new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Aramashi);
+            var vm = new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Aramashi, AramashiButtons, OthersButtons);
             _nav.Navigate(vm);
             vm.GoToSlide(GetSectionFirstPages(3));
         }
@@ -285,7 +285,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         [RelayCommand]
         private void GoToSection4()
         {
-            var vm = new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Aramashi);
+            var vm = new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Aramashi, AramashiButtons, OthersButtons);
             _nav.Navigate(vm);
             vm.GoToSlide(GetSectionFirstPages(4));
         }
@@ -296,7 +296,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         [RelayCommand]
         private void GoToSection5()
         {
-            var vm = new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Aramashi);
+            var vm = new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Aramashi, AramashiButtons, OthersButtons);
             _nav.Navigate(vm);
             vm.GoToSlide(GetSectionFirstPages(5));
         }
@@ -307,7 +307,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         [RelayCommand]
         private void GoToSection6()
         {
-            var vm = new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Aramashi);
+            var vm = new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Aramashi, AramashiButtons, OthersButtons);
             _nav.Navigate(vm);
             vm.GoToSlide(GetSectionFirstPages(6));
         }
@@ -318,7 +318,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         [RelayCommand]
         private void GoToSection7()
         {
-            var vm = new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Aramashi);
+            var vm = new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Aramashi, AramashiButtons, OthersButtons);
             _nav.Navigate(vm);
             vm.GoToSlide(GetSectionFirstPages(7));
         }
@@ -329,7 +329,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         [RelayCommand]
         private void GoToSection8()
         {
-            var vm = new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Aramashi);
+            var vm = new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Aramashi, AramashiButtons, OthersButtons);
             _nav.Navigate(vm);
             vm.GoToSlide(GetSectionFirstPages(8));
         }
@@ -340,7 +340,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         [RelayCommand]
         private void GoToSection9()
         {
-            var vm = new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Aramashi);
+            var vm = new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Aramashi, AramashiButtons, OthersButtons);
             _nav.Navigate(vm);
             vm.GoToSlide(GetSectionFirstPages(9));
         }
@@ -351,7 +351,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         [RelayCommand]
         private void GoToSection10()
         {
-            var vm = new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Aramashi);
+            var vm = new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Aramashi, AramashiButtons, OthersButtons);
             _nav.Navigate(vm);
             vm.GoToSlide(GetSectionFirstPages(10));
         }
@@ -362,7 +362,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         [RelayCommand]
         private void GoToOthers001()
         {
-            _nav.Navigate(new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Others001));
+            _nav.Navigate(new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Others001, AramashiButtons, OthersButtons));
         }
 
         /// <summary>
@@ -371,7 +371,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         [RelayCommand]
         private void GoToOthers002()
         {
-            _nav.Navigate(new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Others002));
+            _nav.Navigate(new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Others002, AramashiButtons, OthersButtons));
         }
 
         /// <summary>
@@ -380,7 +380,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         [RelayCommand]
         private void GoToOthers003()
         {
-            _nav.Navigate(new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Others003));
+            _nav.Navigate(new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Others003, AramashiButtons, OthersButtons));
         }
 
         /// <summary>
@@ -389,7 +389,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         [RelayCommand]
         private void GoToOthers004()
         {
-            _nav.Navigate(new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Others004));
+            _nav.Navigate(new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Others004, AramashiButtons, OthersButtons));
         }
 
         /// <summary>
@@ -398,7 +398,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         [RelayCommand]
         private void GoToOthers005()
         {
-            //_nav.Navigate(new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Others005));
+            //_nav.Navigate(new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Others005, AramashiButtons, OthersButtons));
 
             // 準備中ダイアログを表示する
             _message.ShowTestMessage();
