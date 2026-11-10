@@ -29,6 +29,18 @@ namespace WpfApp.Screens.Admin.ViewModels
         [ObservableProperty]
         private string title;
 
+        [ObservableProperty]
+        private bool isExpander1Open = true;
+
+        [ObservableProperty]
+        private bool isExpander2Open = true;
+
+        [ObservableProperty]
+        private bool isExpander3Open = true;
+
+        [ObservableProperty]
+        private int selectedMode = 100;
+
         public AdminMenuViewModel(NavigationService navigationService, IDialogService dialogService)
         {
             _nav = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
@@ -58,6 +70,19 @@ namespace WpfApp.Screens.Admin.ViewModels
             {
                 _nav.Navigate(new MenuViewModel(_nav, _dia));
             }
+        }
+
+        /// <summary>
+        /// 管理資料画面に遷移する。
+        /// </summary>
+        [RelayCommand]
+        private void GoToAdminDocument()
+        {
+            var vm = new AdminDocumentViewModel(_nav, _dia);
+            _nav.Navigate(vm);
+            vm.IsExpander1Open = IsExpander1Open;
+            vm.IsExpander2Open = IsExpander2Open;
+            vm.IsExpander3Open = IsExpander3Open;
         }
     }
 }

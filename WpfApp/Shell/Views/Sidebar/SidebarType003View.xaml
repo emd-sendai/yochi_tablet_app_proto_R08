@@ -9,74 +9,116 @@
              d:DesignHeight="600" d:DesignWidth="800">
     <Grid>
         <StackPanel Background="{DynamicResource MaterialDesignPaper}" HorizontalAlignment="Left">
-            <Button Style="{StaticResource MaterialDesignFlatButton}" Margin="0,5,0,0" 
-                    HorizontalAlignment="Left" FontSize="20" Height="40" 
-                    Command="{Binding GoToMenuCommand}">
+            <RadioButton Style="{StaticResource SidebarRadioButtonStyle}" GroupName="Sidebar99" Margin="1,5,0,0" 
+                         IsChecked="{Binding SelectedMode, Mode=OneWay,  
+                                     Converter={StaticResource SelectedModeToBoolConverter}, ConverterParameter=99}"
+                         Command="{Binding GoToMenuCommand}">
                 <StackPanel Orientation="Horizontal" >
                     <materialDesign:PackIcon Kind="Home" Width="25" Height="35" Margin="0,0,5,0"/>
                     <TextBlock Text="メインメニュー"  FontWeight="Bold" VerticalAlignment="Center"/>
                 </StackPanel>
-            </Button>
-            <Button Style="{StaticResource MaterialDesignFlatButton}" Margin="0,5,0,0" 
-                    HorizontalAlignment="Left" FontSize="20" Height="40" 
-                    Command="{Binding GoToAdminMenuCommand}">
+            </RadioButton>
+            <RadioButton Style="{StaticResource SidebarRadioButtonStyle}" GroupName="Sidebar100" Margin="1,5,0,0" 
+                         IsChecked="{Binding SelectedMode, Mode=OneWay,  
+                                     Converter={StaticResource SelectedModeToBoolConverter}, ConverterParameter=100}"
+                         Command="{Binding GoToAdminMenuCommand}">
                 <StackPanel Orientation="Horizontal" >
                     <materialDesign:PackIcon Kind="HomeLockOpen" Width="25" Height="35" Margin="0,0,5,0"/>
                     <TextBlock Text="管理メニュー"  FontWeight="Bold" VerticalAlignment="Center"/>
                 </StackPanel>
-            </Button>
-            <Button Content="管理資料" 
-                            Style="{StaticResource SidebarButtonStyle}" Margin="8,5,0,0"
-                            Command="{Binding Command}"/>
+            </RadioButton>
 
-            <Expander IsExpanded="True" FontWeight="Bold" FontSize="20">
+            <RadioButton Style="{StaticResource SidebarRadioButtonStyle}" GroupName="Sidebar0" Margin="2,5,0,0" 
+                         IsChecked="{Binding SelectedMode, Mode=OneWay, 
+                                     Converter={StaticResource SelectedModeToBoolConverter}, ConverterParameter=0}"
+                         Command="{Binding GoToAdminDocumentCommand}">
+                <TextBlock Text="管理資料" Style="{StaticResource ExpanderWrapTextBlockStyle}"/>
+            </RadioButton>
+
+            <Expander IsExpanded="{Binding IsExpander1Open, Mode=TwoWay}">
                 <Expander.Header>
-                    <TextBlock Text="メイン機能表示設定" FontSize="20"/>
+                    <TextBlock Text="メイン機能表示設定" FontSize="20" FontWeight="Bold" />
                 </Expander.Header>
-                <StackPanel Orientation="Vertical" Margin="8,0,0,0">
-                    <Button Content="補償のあらまし" 
-                            Style="{StaticResource SidebarButtonStyle}" 
-                            Command="{Binding Command}"/>
-                    <Button Content="各種資料" 
-                            Style="{StaticResource SidebarButtonStyle}" 
-                            Command="{Binding Command}"/>
+                <StackPanel Orientation="Vertical" Margin="20,0,0,0">
+                    <RadioButton Style="{StaticResource SidebarRadioButtonStyle}" GroupName="Sidebar1" 
+                                 IsChecked="{Binding SelectedMode, Mode=OneWay, 
+                                             Converter={StaticResource SelectedModeToBoolConverter}, ConverterParameter=1}"
+                                 Command="{Binding Command}">
+                        <TextBlock Text="補償のあらまし" 
+                                   Style="{StaticResource ExpanderWrapTextBlockStyle}"/>
+                    </RadioButton>
+                    <RadioButton Style="{StaticResource SidebarRadioButtonStyle}" GroupName="Sidebar2" 
+                                 IsChecked="{Binding SelectedMode, Mode=OneWay, 
+                                             Converter={StaticResource SelectedModeToBoolConverter}, ConverterParameter=2}"
+                                 Command="{Binding Command}">
+                        <TextBlock Text="各種資料" 
+                                   Style="{StaticResource ExpanderWrapTextBlockStyle}"/>
+                    </RadioButton>
                 </StackPanel>
             </Expander>
 
-            <Expander IsExpanded="True" FontWeight="Bold" FontSize="20">
+            <Expander IsExpanded="{Binding IsExpander2Open, Mode=TwoWay}">
                 <Expander.Header>
-                    <TextBlock Text="事業・地権者情報設定" FontSize="20"/>
+                    <TextBlock Text="事業・地権者情報設定" FontSize="20" FontWeight="Bold" />
                 </Expander.Header>
-                <StackPanel Orientation="Vertical" Margin="8,0,0,0">
-                    <Button Content="事業情報" 
-                            Style="{StaticResource SidebarButtonStyle}" 
-                            Command="{Binding Command}"/>
-                    <Button Content="地権者情報" 
-                            Style="{StaticResource SidebarButtonStyle}" 
-                            Command="{Binding Command}"/>
-                    <Button Content="事業実績" 
-                            Style="{StaticResource SidebarButtonStyle}" 
-                            Command="{Binding Command}"/>
+                <StackPanel Orientation="Vertical" Margin="20,0,0,0">
+                    <RadioButton Style="{StaticResource SidebarRadioButtonStyle}" GroupName="Sidebar3" 
+                                 IsChecked="{Binding SelectedMode, Mode=OneWay, 
+                                             Converter={StaticResource SelectedModeToBoolConverter}, ConverterParameter=3}"
+                                 Command="{Binding Command}">
+                        <TextBlock Text="事業情報" 
+                                   Style="{StaticResource ExpanderWrapTextBlockStyle}"/>
+                    </RadioButton>
+                    <RadioButton Style="{StaticResource SidebarRadioButtonStyle}" GroupName="Sidebar4" 
+                                 IsChecked="{Binding SelectedMode, Mode=OneWay, 
+                                             Converter={StaticResource SelectedModeToBoolConverter}, ConverterParameter=4}"
+                                 Command="{Binding Command}">
+                        <TextBlock Text="地権者情報" 
+                                   Style="{StaticResource ExpanderWrapTextBlockStyle}"/>
+                    </RadioButton>
+                    <RadioButton Style="{StaticResource SidebarRadioButtonStyle}" GroupName="Sidebar5" 
+                                 IsChecked="{Binding SelectedMode, Mode=OneWay, 
+                                             Converter={StaticResource SelectedModeToBoolConverter}, ConverterParameter=5}"
+                                 Command="{Binding Command}">
+                        <TextBlock Text="事業実績" 
+                                   Style="{StaticResource ExpanderWrapTextBlockStyle}"/>
+                    </RadioButton>
                 </StackPanel>
             </Expander>
 
-            <Expander IsExpanded="True" FontWeight="Bold" FontSize="20">
+            <Expander IsExpanded="{Binding IsExpander3Open, Mode=TwoWay}">
                 <Expander.Header>
-                    <TextBlock Text="アプリデータ設定" FontSize="20"/>
+                    <TextBlock Text="アプリデータ設定" FontSize="20" FontWeight="Bold" />
                 </Expander.Header>
-                <StackPanel Orientation="Vertical" Margin="8,0,0,0">
-                    <Button Content="管理者パスワード" 
-                            Style="{StaticResource SidebarButtonStyle}" 
-                            Command="{Binding Command}"/>
-                    <Button Content="資料一覧出力" 
-                            Style="{StaticResource SidebarButtonStyle}" 
-                            Command="{Binding Command}"/>
-                    <Button Content="データ共有・引継ぎ" 
-                            Style="{StaticResource SidebarButtonStyle}" 
-                            Command="{Binding Command}"/>
-                    <Button Content="データ初期化" 
-                            Style="{StaticResource SidebarButtonStyle}" 
-                            Command="{Binding Command}"/>
+                <StackPanel Orientation="Vertical" Margin="20,0,0,0">
+                    <RadioButton Style="{StaticResource SidebarRadioButtonStyle}" GroupName="Sidebar6" 
+                                 IsChecked="{Binding SelectedMode, Mode=OneWay, 
+                                             Converter={StaticResource SelectedModeToBoolConverter}, ConverterParameter=6}"
+                                 Command="{Binding Command}">
+                        <TextBlock Text="管理者パスワード" 
+                                   Style="{StaticResource ExpanderWrapTextBlockStyle}"/>
+                    </RadioButton>
+                    <RadioButton Style="{StaticResource SidebarRadioButtonStyle}" GroupName="Sidebar7" 
+                                 IsChecked="{Binding SelectedMode, Mode=OneWay, 
+                                             Converter={StaticResource SelectedModeToBoolConverter}, ConverterParameter=7}"
+                                 Command="{Binding Command}">
+                        <TextBlock Text="資料一覧出力" 
+                                   Style="{StaticResource ExpanderWrapTextBlockStyle}"/>
+                    </RadioButton>
+                    <RadioButton Style="{StaticResource SidebarRadioButtonStyle}" GroupName="Sidebar8" 
+                                 IsChecked="{Binding SelectedMode, Mode=OneWay, 
+                                             Converter={StaticResource SelectedModeToBoolConverter}, ConverterParameter=8}"
+                                 Command="{Binding Command}">
+                        <TextBlock Text="データ共有・引継ぎ" 
+                                   Style="{StaticResource ExpanderWrapTextBlockStyle}"/>
+                    </RadioButton>
+                    <RadioButton Style="{StaticResource SidebarRadioButtonStyle}" GroupName="Sidebar9" 
+                                 IsChecked="{Binding SelectedMode, Mode=OneWay, 
+                                             Converter={StaticResource SelectedModeToBoolConverter}, ConverterParameter=9}"
+                                 Command="{Binding Command}">
+                        <TextBlock Text="データ初期化" 
+                                   Style="{StaticResource ExpanderWrapTextBlockStyle}"/>
+                    </RadioButton>
                 </StackPanel>
             </Expander>
 

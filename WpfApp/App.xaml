@@ -199,75 +199,7 @@
                 <Setter Property="FontSize" Value="15"/>
             </Style>
 
-            <!-- testエキスパンダー内部配置用ボタン様式 -->
-            <Style x:Key="TestExpanderButtonStyle" TargetType="Button" >
-                <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="HorizontalContentAlignment" Value="Left"/>
-                <Setter Property="Background" Value="Transparent" />
-                <Setter Property="Foreground" Value="#3F51B5" />
-                <Setter Property="BorderThickness" Value="0"/>
-                <Setter Property="FontSize" Value="15"/>
-                <Setter Property="Padding" Value="4"/>
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="Button">
-                            <Border x:Name="border" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}">
-                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" RecognizesAccessKey="True"/>
-                            </Border>
-
-                            <ControlTemplate.Triggers>
-                                <!-- ホバー時 -->
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter TargetName="border" Property="Background" Value="#293F51B5"/>
-                                </Trigger>
-                                <!-- 押下時 -->
-                                <Trigger Property="IsPressed" Value="True">
-                                    <Setter TargetName="border" Property="Background" Value="#403F51B5"/>
-                                </Trigger>
-                                <!-- 無効時 -->
-                                <Trigger Property="IsEnabled" Value="False">
-                                    <Setter Property="Opacity" Value="0.5"/>
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-
-            <!-- エキスパンダー内部配置用トグルボタン様式 -->
-            <Style x:Key="ExpanderToggleButtonStyle" TargetType="ToggleButton">
-                <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="HorizontalContentAlignment" Value="Left"/>
-                <Setter Property="Background" Value="Transparent" />
-                <Setter Property="Foreground" Value="#3F51B5" />
-                <Setter Property="BorderThickness" Value="2"/>
-                <Setter Property="FontSize" Value="15"/>
-                <Setter Property="Padding" Value="4"/>
-
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="ToggleButton">
-                            <Border x:Name="border" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}">
-                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                            </Border>
-
-                            <ControlTemplate.Triggers>
-                                <!-- ホバー時 -->
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter TargetName="border" Property="Background" Value="#293F51B5"/>
-                                </Trigger>
-                                <!-- 選択状態 -->
-                                <Trigger Property="IsChecked" Value="True">
-                                    <Setter TargetName="border" Property="Background" Value="#403F51B5"/>
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-
-            <!-- サイドバー内部配置用ラジオボタン様式 -->
+            <!-- サイドバー内部配置用ラジオボタン様式（大） -->
             <Style x:Key="SidebarRadioButtonStyle" TargetType="RadioButton" BasedOn="{StaticResource MaterialDesignTabRadioButtonLeft}">
                 <Setter Property="Foreground" Value="#3F51B5"/>
                 <Setter Property="HorizontalContentAlignment" Value="Left"/>
@@ -275,7 +207,7 @@
                 <Setter Property="FontSize" Value="20"/>
             </Style>
 
-            <!-- エキスパンダー内部配置用ラジオボタン様式 -->
+            <!-- エキスパンダー内部配置用ラジオボタン様式（小） -->
             <Style x:Key="ExpanderRadioButtonStyle" TargetType="RadioButton" BasedOn="{StaticResource MaterialDesignTabRadioButtonLeft}">
                 <Setter Property="Foreground" Value="#3F51B5"/>
                 <Setter Property="HorizontalContentAlignment" Value="Left"/>
