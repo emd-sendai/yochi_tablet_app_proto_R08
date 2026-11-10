@@ -3,16 +3,30 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:WpfApp.Shell.Views.Sidebar"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="800">
     <Grid>
         <StackPanel Background="{DynamicResource MaterialDesignPaper}" HorizontalAlignment="Left">
-            <Button Content="管理メニュー" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left"
-                            Style="{StaticResource MaterialDesignFlatButton}" Margin="0,5,0,10"
-                            Command="{Binding GoToAdminMenuCommand}"/>
-            <Button Content="管理資料" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Left"
-                            Style="{StaticResource MaterialDesignFlatButton}" Margin="8,0,0,0"
+            <Button Style="{StaticResource MaterialDesignFlatButton}" Margin="0,5,0,0" 
+                    HorizontalAlignment="Left" FontSize="20" Height="40" 
+                    Command="{Binding GoToMenuCommand}">
+                <StackPanel Orientation="Horizontal" >
+                    <materialDesign:PackIcon Kind="Home" Width="25" Height="35" Margin="0,0,5,0"/>
+                    <TextBlock Text="メインメニュー"  FontWeight="Bold" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+            <Button Style="{StaticResource MaterialDesignFlatButton}" Margin="0,5,0,0" 
+                    HorizontalAlignment="Left" FontSize="20" Height="40" 
+                    Command="{Binding GoToAdminMenuCommand}">
+                <StackPanel Orientation="Horizontal" >
+                    <materialDesign:PackIcon Kind="HomeLockOpen" Width="25" Height="35" Margin="0,0,5,0"/>
+                    <TextBlock Text="管理メニュー"  FontWeight="Bold" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+            <Button Content="管理資料" 
+                            Style="{StaticResource SidebarButtonStyle}" Margin="8,5,0,0"
                             Command="{Binding Command}"/>
 
             <Expander IsExpanded="True" FontWeight="Bold" FontSize="20">
@@ -20,11 +34,11 @@
                     <TextBlock Text="メイン機能表示設定" FontSize="20"/>
                 </Expander.Header>
                 <StackPanel Orientation="Vertical" Margin="8,0,0,0">
-                    <Button Content="補償のあらまし" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Left"
-                            Style="{StaticResource MaterialDesignFlatButton}" 
+                    <Button Content="補償のあらまし" 
+                            Style="{StaticResource SidebarButtonStyle}" 
                             Command="{Binding Command}"/>
-                    <Button Content="各種資料" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Left"
-                            Style="{StaticResource MaterialDesignFlatButton}" 
+                    <Button Content="各種資料" 
+                            Style="{StaticResource SidebarButtonStyle}" 
                             Command="{Binding Command}"/>
                 </StackPanel>
             </Expander>
@@ -34,11 +48,14 @@
                     <TextBlock Text="事業・地権者情報設定" FontSize="20"/>
                 </Expander.Header>
                 <StackPanel Orientation="Vertical" Margin="8,0,0,0">
-                    <Button Content="事業情報" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Left"
-                            Style="{StaticResource MaterialDesignFlatButton}" 
+                    <Button Content="事業情報" 
+                            Style="{StaticResource SidebarButtonStyle}" 
                             Command="{Binding Command}"/>
-                    <Button Content="地権者情報" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Left"
-                            Style="{StaticResource MaterialDesignFlatButton}" 
+                    <Button Content="地権者情報" 
+                            Style="{StaticResource SidebarButtonStyle}" 
+                            Command="{Binding Command}"/>
+                    <Button Content="事業実績" 
+                            Style="{StaticResource SidebarButtonStyle}" 
                             Command="{Binding Command}"/>
                 </StackPanel>
             </Expander>
@@ -48,17 +65,17 @@
                     <TextBlock Text="アプリデータ設定" FontSize="20"/>
                 </Expander.Header>
                 <StackPanel Orientation="Vertical" Margin="8,0,0,0">
-                    <Button Content="管理者パスワード" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Left"
-                            Style="{StaticResource MaterialDesignFlatButton}" 
+                    <Button Content="管理者パスワード" 
+                            Style="{StaticResource SidebarButtonStyle}" 
                             Command="{Binding Command}"/>
-                    <Button Content="資料一覧出力" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Left"
-                            Style="{StaticResource MaterialDesignFlatButton}" 
+                    <Button Content="資料一覧出力" 
+                            Style="{StaticResource SidebarButtonStyle}" 
                             Command="{Binding Command}"/>
-                    <Button Content="データ共有・引継ぎ" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Left"
-                            Style="{StaticResource MaterialDesignFlatButton}" 
+                    <Button Content="データ共有・引継ぎ" 
+                            Style="{StaticResource SidebarButtonStyle}" 
                             Command="{Binding Command}"/>
-                    <Button Content="データ初期化" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Left"
-                            Style="{StaticResource MaterialDesignFlatButton}" 
+                    <Button Content="データ初期化" 
+                            Style="{StaticResource SidebarButtonStyle}" 
                             Command="{Binding Command}"/>
                 </StackPanel>
             </Expander>

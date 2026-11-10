@@ -37,9 +37,18 @@ namespace WpfApp.Shell.ViewModels
         public void UpdateLayout(IShellLayout layout, object viewModel)
         {
             // ヘッダー
-            HeaderView = CreateView(layout.HeaderType);
+            // 表示切替前のViewModelのヘッダーと表示切替先のViewModelのヘッダーのタイプが異なる場合
+            if (HeaderView == null || HeaderView.GetType() != layout.HeaderType)
+            {
+                HeaderView = CreateView(layout.HeaderType);
+            }
+
             // サイドバー
-            SidebarView = CreateView(layout.SidebarType);
+            // 表示切替前のViewModelのサイドバーと表示切替先のViewModelのサイドバーのタイプが異なる場合
+            if (SidebarView == null || SidebarView.GetType() != layout.SidebarType)
+            {
+                SidebarView = CreateView(layout.SidebarType);
+            }
 
             HeaderView.DataContext = viewModel;
             SidebarView.DataContext = viewModel;
@@ -64,61 +73,6 @@ namespace WpfApp.Shell.ViewModels
         private void ToggleSidebar()
         {
             IsSidebarOpen = !IsSidebarOpen;
-        }
-
-        [RelayCommand]
-        private void GoToMenu()
-        {
-            //ChangeScreen(new MenuViewModel(_nav, _dia));
-        }
-
-        [RelayCommand]
-        private void GoToAramashiMenu()
-        {
-            //ChangeScreen(new AramashiMenuViewModel(_nav, _dia));
-        }
-
-        [RelayCommand]
-        private void GoToDocumentMenu()
-        {
-            //ChangeScreen(new DocumentMenuViewModel(_nav, _dia));
-        }
-
-        [RelayCommand]
-        private void GoToAdminMenu()
-        {
-            // パスワードダイアログを生成
-            var pwVm = new PasswordDialogViewModel();
-            var pwDialog = new PasswordDialogWindow
-            {
-                DataContext = pwVm,
-                Owner = Application.Current.MainWindow
-            };
-
-            if (pwDialog.ShowDialog() == true)
-            {
-                // パスワードが正解の場合
-                if (pwVm.Result)
-                {
-                    //メッセージウィンドウを表示
-                    var vm = new MessageDialogViewModel
-                    {
-                        Message = "管理メニューを表示します"
-                    };
-
-                    var dialog = new MessageDialogWindow
-                    {
-                        DataContext = vm,
-                        Owner = Application.Current.MainWindow
-                    };
-
-                    bool? result = dialog.ShowDialog();
-                    if (result == true)
-                    {
-                        // 管理メニューに遷移
-                    }
-                }
-            }
         }
     }
 }

@@ -398,7 +398,8 @@
                 {
                   "text": "Ⅱ 代替地について",
                   "isLink": true,
-                  "commandName": "GoToOthers001Command"
+                  "commandName": "GoToOthers001ByIndexCommand",
+                  "commandParameter": "0"
                 },
                 {
                   "text": "」で、代替地詮索、税の特例についてご説明します。"

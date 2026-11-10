@@ -10,24 +10,6 @@
     <Grid>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
-            <!-- ホームアイコンボタン -->
-            <Button Style="{StaticResource IconTextButtonStyle}" 
-                Margin="5,10,5,10" Command="{Binding GoToMenuCommand}">
-                <StackPanel Orientation="Vertical" >
-                    <materialDesign:PackIcon Kind="Home" Style="{StaticResource ITButtonIconStyle}"/>
-                    <TextBlock Text="メインメニュー" Style="{StaticResource ITButtonTextStyle}"/>
-                </StackPanel>
-            </Button>
-            
-            <!-- あらましメニューボタン -->
-            <Button Style="{StaticResource MaterialDesignFlatButton}" 
-            Margin="10" Command="{Binding GoToAramashiMenuCommand}"
-                HorizontalAlignment="Left" FontSize="24" Height="40">
-            <StackPanel Orientation="Horizontal" >
-                <materialDesign:PackIcon Kind="OrderBoolAscending" Width="25" Height="35" Margin="0,0,5,0"/>
-                <TextBlock Text="補償のあらまし"  FontWeight="Bold" VerticalAlignment="Center"/>
-            </StackPanel>
-        </Button>
         </StackPanel>
         <!-- 基本ボタン -->
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">

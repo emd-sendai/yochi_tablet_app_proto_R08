@@ -9,11 +9,11 @@
              d:DesignHeight="70" d:DesignWidth="800">
     <Grid Height="70" VerticalAlignment="Top">
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
-            <!-- ホームアイコンボタン -->
+            <!-- 管理メニューアイコンボタン -->
             <Button Style="{StaticResource IconTextButtonStyle}" 
                 Margin="5,10,5,10" Command="{Binding GoToAdminMenuCommand}">
                 <StackPanel Orientation="Vertical" >
-                    <materialDesign:PackIcon Kind="Lock" Style="{StaticResource ITButtonIconStyle}"/>
+                    <materialDesign:PackIcon Kind="HomeLock" Style="{StaticResource ITButtonIconStyle}"/>
                     <TextBlock Text="管理メニュー" Style="{StaticResource ITButtonTextStyle}"/>
                 </StackPanel>
             </Button>

@@ -3,19 +3,25 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:WpfApp.Shell.Views.Sidebar"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="800">
 
     <StackPanel Background="{DynamicResource MaterialDesignPaper}" HorizontalAlignment="Left">
-        <Button Content="メインメニュー" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left"
-                            Style="{StaticResource MaterialDesignFlatButton}" Margin="0,5,0,10"
-                            Command="{Binding GoToMenuCommand}"/>
-        <Button Content="補償のあらまし" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Left"
-                            Style="{StaticResource MaterialDesignFlatButton}" Margin="8,0,0,0"
+        <Button Style="{StaticResource MaterialDesignFlatButton}" Margin="0,5,0,0" 
+                    HorizontalAlignment="Left" FontSize="20" Height="40" 
+                    Command="{Binding GoToMenuCommand}">
+            <StackPanel Orientation="Horizontal" >
+                <materialDesign:PackIcon Kind="Home" Width="25" Height="35" Margin="0,0,5,0"/>
+                <TextBlock Text="メインメニュー"  FontWeight="Bold" VerticalAlignment="Center"/>
+            </StackPanel>
+        </Button>
+        <Button Content="補償のあらまし" 
+                            Style="{StaticResource SidebarButtonStyle}" Margin="8,5,0,0"
                             Command="{Binding GoToAramashiMenuCommand}"/>
-        <Button Content="各種資料" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Left"
-                            Style="{StaticResource MaterialDesignFlatButton}" Margin="8,0,0,0"
+        <Button Content="各種資料" 
+                            Style="{StaticResource SidebarButtonStyle}" Margin="8,0,0,0"
                             Command="{Binding GoToDocumentMenuCommand}"/>
     </StackPanel>
     

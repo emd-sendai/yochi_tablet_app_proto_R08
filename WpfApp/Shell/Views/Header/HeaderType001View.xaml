@@ -10,14 +10,6 @@
 
     <Grid Height="70" VerticalAlignment="Top">
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
-            <!-- ホームアイコンボタン -->
-            <Button Style="{StaticResource IconTextButtonStyle}" 
-                Margin="5,10,5,10" Command="{Binding GoToMenuCommand}">
-                <StackPanel Orientation="Vertical" >
-                    <materialDesign:PackIcon Kind="Home" Style="{StaticResource ITButtonIconStyle}"/>
-                    <TextBlock Text="メインメニュー" Style="{StaticResource ITButtonTextStyle}"/>
-                </StackPanel>
-            </Button>
         </StackPanel>
 
         <!-- ページタイトル -->

@@ -25,12 +25,18 @@ namespace WpfApp.Common.Models
         public string LabelText => BtnText?.Replace("\r", "").Replace("\n", " ") ?? "";
 
         /// <summary>
+        /// サイドバー表示用ラベル
+        /// </summary>
+        public string SidebarLabelText => BtnText?.Replace("\r", "").Replace("\n", "") ?? "";
+
+        /// <summary>
         /// ボタンの名称が変更されたとき、一覧表示用ラベルを変更する。
         /// </summary>
         /// <param name="value"></param>
         partial void OnBtnTextChanged(string value)
         {
             OnPropertyChanged(nameof(LabelText));
+            OnPropertyChanged(nameof(SidebarLabelText));
         }
 
     }

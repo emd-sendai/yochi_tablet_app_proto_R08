@@ -35,6 +35,15 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         public Type HeaderType => typeof(HeaderType002View);
         public Type SidebarType => typeof(SidebarType002View);
 
+        [ObservableProperty]
+        private bool isAramashiExpanderOpen = true;
+
+        [ObservableProperty]
+        private bool isOthersExpanderOpen = true;
+
+        [ObservableProperty]
+        private int selectedMode = 0;
+
         /// <summary>
         /// ボタンの名称表示用ボタンデータリスト（用地補償の手順）
         /// </summary>
@@ -69,6 +78,11 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         /// </summary>
         [ObservableProperty]
         private string? topButtonText;
+
+        /// <summary>
+        /// 用地補償の手順の番号をキー、各手順の最初のページを値として保持する。
+        /// </summary>
+        private Dictionary<int, int> SectionPageCounts = new();
 
         public bool AllPagesChecked => PageCheckStates.Count > 0 && PageCheckStates.All(kv => kv.Value);
         
@@ -242,6 +256,8 @@ namespace WpfApp.Screens.Aramashi.ViewModels
                             if (i == 0)
                             {
                                 slideTopPageGlobalIndex = globalIndex;
+                                // 用地補償の手順の番号をキー、各手順の最初のページを値として辞書に保存
+                                SectionPageCounts.Add(slidePartIndex, slideTopPageGlobalIndex);
                             }
                             slideList[i].TopPageGlobalIndex = slideTopPageGlobalIndex;　　// 手順（項目）のTOPページ番号
 
@@ -324,6 +340,24 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             }
 
             return ret;
+        }
+
+        /// <summary>
+        /// sectionIndexと一致する用地補償の手順の最初のページ番号を取得する。
+        /// 一致する手順番号が存在しない場合は1ページを表示する。
+        /// </summary>
+        /// <param name="sectionIndex"></param>
+        /// <returns></returns>
+        private int GetSectionFirstPages(int sectionIndex)
+        {
+            int firstPage = 0;
+
+            if (SectionPageCounts.TryGetValue(sectionIndex, out int pageCount))
+            {
+                firstPage = pageCount;
+            }
+
+            return firstPage;
         }
 
         /// <summary>
@@ -491,6 +525,56 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             OnPropertyChanged(nameof(AllPagesChecked));
         }
 
+        partial void OnCurrentSlideChanged(PresentationPageConfig? value)
+        {
+            if (value == null) return;
+
+            int topPage = value.TopPageGlobalIndex;
+            var ret = SectionPageCounts.FirstOrDefault(x => x.Value == topPage);
+
+            if (SectionPageCounts.ContainsValue(topPage))
+            {
+                int sectionIndex = ret.Key;
+                UpdateSidebar(sectionIndex);
+            }
+            else
+            {
+                SelectedMode = 0;
+            }
+        }
+
+        private void UpdateSidebar(int sectionIndex)
+        {
+            if (_category == PresentationCategory.Aramashi)
+            {
+                SelectedMode = sectionIndex;
+            }
+            else if (_category == PresentationCategory.Others001)
+            {
+                SelectedMode = 11;
+            }
+            else if (_category == PresentationCategory.Others002)
+            {
+                SelectedMode = 12;
+            }
+            else if (_category == PresentationCategory.Others003)
+            {
+                SelectedMode = 13;
+            }
+            else if (_category == PresentationCategory.Others004)
+            {
+                SelectedMode = 14;
+            }
+            else if (_category == PresentationCategory.Others005)
+            {
+                SelectedMode = 15;
+            }
+            else
+            {
+                SelectedMode = 0;
+            }
+        }
+
         /// <summary>
         /// 表示倍率を変更する。
         /// </summary>
@@ -589,7 +673,10 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         [RelayCommand]
         private void GoToAramashiMenu()
         {
-            _nav.Navigate(new AramashiMenuViewModel(_nav, _dia));
+            var vm = new AramashiMenuViewModel(_nav, _dia);
+            _nav.Navigate(vm);
+            vm.IsAramashiExpanderOpen = IsAramashiExpanderOpen;
+            vm.IsOthersExpanderOpen = IsOthersExpanderOpen;
         }
 
         /// <summary>
@@ -601,121 +688,299 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             _nav.Navigate(new DocumentMenuViewModel(_nav, _dia));
         }
 
+        private bool CanGoToSection(int index)
+        {
+            if (CurrentSlide == null) return false;
+
+            int topPage = CurrentSlide.TopPageGlobalIndex;
+            var ret = SectionPageCounts.FirstOrDefault(x => x.Value == topPage);
+
+            if (SectionPageCounts.ContainsValue(topPage))
+            {
+                int sectionIndex = ret.Key;
+
+                if (sectionIndex == index)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         /// <summary>
-        /// 用地補償の手順 1 の最初のページを表示する。
+        /// 用地補償の手順 1 の最初のページを表示する。（サイドバー用）
         /// </summary>
         [RelayCommand]
         private void GoToSection1()
         {
-            if (CurrentSlide == null) return;
-
             if (_category == PresentationCategory.Aramashi)
             {
-                if (CurrentSlide.Id.Equals("aramashi1_1"))
+                if (CanGoToSection(1))
                 {
-                    GoToTopPage();
-                }
-                else
-                {
-                    // GetSectionFirstPagesにあたるメソッドを作成
-                    //GoToSlide(GetSectionFirstPages(1));
+                    GoToSlide(GetSectionFirstPages(1));
                 }
             }
             else
             {
                 var vm = new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Aramashi, AramashiButtons, OthersButtons);
                 _nav.Navigate(vm);
-                // GetSectionFirstPagesにあたるメソッドを作成
-                //vm.GoToSlide(GetSectionFirstPages(1));
+                vm.GoToSlide(vm.GetSectionFirstPages(1));
+                vm.IsAramashiExpanderOpen = IsAramashiExpanderOpen;
+                vm.IsOthersExpanderOpen = IsOthersExpanderOpen;
             }
         }
 
         /// <summary>
-        /// 用地補償の手順 2 の最初のページを表示する。
+        /// 用地補償の手順 2 の最初のページを表示する。（サイドバー用）
         /// </summary>
         [RelayCommand]
         private void GoToSection2()
         {
+            if (_category == PresentationCategory.Aramashi)
+            {
+                if (CanGoToSection(2))
+                {
+                    GoToSlide(GetSectionFirstPages(2));
+                }
+            }
+            else
+            {
+                var vm = new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Aramashi, AramashiButtons, OthersButtons);
+                _nav.Navigate(vm);
+                vm.GoToSlide(vm.GetSectionFirstPages(2));
+                vm.IsAramashiExpanderOpen = IsAramashiExpanderOpen;
+                vm.IsOthersExpanderOpen = IsOthersExpanderOpen;
+            }
         }
 
         /// <summary>
-        /// 用地補償の手順 3 の最初のページを表示する。
+        /// 用地補償の手順 3 の最初のページを表示する。（サイドバー用）
         /// </summary>
         [RelayCommand]
         private void GoToSection3()
         {
+            if (_category == PresentationCategory.Aramashi)
+            {
+                if (CanGoToSection(3))
+                {
+                    GoToSlide(GetSectionFirstPages(3));
+                }
+            }
+            else
+            {
+                var vm = new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Aramashi, AramashiButtons, OthersButtons);
+                _nav.Navigate(vm);
+                vm.GoToSlide(vm.GetSectionFirstPages(3));
+                vm.IsAramashiExpanderOpen = IsAramashiExpanderOpen;
+                vm.IsOthersExpanderOpen = IsOthersExpanderOpen;
+            }
         }
 
         /// <summary>
-        /// 用地補償の手順 4 の最初のページを表示する。
+        /// 用地補償の手順 4 の最初のページを表示する。（サイドバー用）
         /// </summary>
         [RelayCommand]
         private void GoToSection4()
         {
+            if (_category == PresentationCategory.Aramashi)
+            {
+                if (CanGoToSection(4))
+                {
+                    GoToSlide(GetSectionFirstPages(4));
+                }
+            }
+            else
+            {
+                var vm = new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Aramashi, AramashiButtons, OthersButtons);
+                _nav.Navigate(vm);
+                vm.GoToSlide(vm.GetSectionFirstPages(4));
+                vm.IsAramashiExpanderOpen = IsAramashiExpanderOpen;
+                vm.IsOthersExpanderOpen = IsOthersExpanderOpen;
+            }
         }
 
         /// <summary>
-        /// 用地補償の手順 5 の最初のページを表示する。
+        /// 用地補償の手順 5 の最初のページを表示する。（サイドバー用）
         /// </summary>
         [RelayCommand]
         private void GoToSection5()
         {
+            if (_category == PresentationCategory.Aramashi)
+            {
+                if (CanGoToSection(5))
+                {
+                    GoToSlide(GetSectionFirstPages(5));
+                }
+            }
+            else
+            {
+                var vm = new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Aramashi, AramashiButtons, OthersButtons);
+                _nav.Navigate(vm);
+                vm.GoToSlide(vm.GetSectionFirstPages(5));
+                vm.IsAramashiExpanderOpen = IsAramashiExpanderOpen;
+                vm.IsOthersExpanderOpen = IsOthersExpanderOpen;
+            }
         }
 
         /// <summary>
-        /// 用地補償の手順 6 の最初のページを表示する。
+        /// 用地補償の手順 6 の最初のページを表示する。（サイドバー用）
         /// </summary>
         [RelayCommand]
         private void GoToSection6()
         {
+            if (_category == PresentationCategory.Aramashi)
+            {
+                if (CanGoToSection(6))
+                {
+                    GoToSlide(GetSectionFirstPages(6));
+                }
+            }
+            else
+            {
+                var vm = new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Aramashi, AramashiButtons, OthersButtons);
+                _nav.Navigate(vm);
+                vm.GoToSlide(vm.GetSectionFirstPages(6));
+                vm.IsAramashiExpanderOpen = IsAramashiExpanderOpen;
+                vm.IsOthersExpanderOpen = IsOthersExpanderOpen;
+            }
         }
 
         /// <summary>
-        /// 用地補償の手順 7 の最初のページを表示する。
+        /// 用地補償の手順 7 の最初のページを表示する。（サイドバー用）
         /// </summary>
         [RelayCommand]
         private void GoToSection7()
         {
+            if (_category == PresentationCategory.Aramashi)
+            {
+                if (CanGoToSection(7))
+                {
+                    GoToSlide(GetSectionFirstPages(7));
+                }
+            }
+            else
+            {
+                var vm = new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Aramashi, AramashiButtons, OthersButtons);
+                _nav.Navigate(vm);
+                vm.GoToSlide(vm.GetSectionFirstPages(7));
+                vm.IsAramashiExpanderOpen = IsAramashiExpanderOpen;
+                vm.IsOthersExpanderOpen = IsOthersExpanderOpen;
+            }
         }
 
         /// <summary>
-        /// 用地補償の手順 8 の最初のページを表示する。
+        /// 用地補償の手順 8 の最初のページを表示する。（サイドバー用）
         /// </summary>
         [RelayCommand]
         private void GoToSection8()
         {
+            if (_category == PresentationCategory.Aramashi)
+            {
+                if (CanGoToSection(8))
+                {
+                    GoToSlide(GetSectionFirstPages(8));
+                }
+            }
+            else
+            {
+                var vm = new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Aramashi, AramashiButtons, OthersButtons);
+                _nav.Navigate(vm);
+                vm.GoToSlide(vm.GetSectionFirstPages(8));
+                vm.IsAramashiExpanderOpen = IsAramashiExpanderOpen;
+                vm.IsOthersExpanderOpen = IsOthersExpanderOpen;
+            }
         }
 
         /// <summary>
-        /// 用地補償の手順 9 の最初のページを表示する。
+        /// 用地補償の手順 9 の最初のページを表示する。（サイドバー用）
         /// </summary>
         [RelayCommand]
         private void GoToSection9()
         {
+            if (_category == PresentationCategory.Aramashi)
+            {
+                if (CanGoToSection(9))
+                {
+                    GoToSlide(GetSectionFirstPages(9));
+                }
+            }
+            else
+            {
+                var vm = new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Aramashi, AramashiButtons, OthersButtons);
+                _nav.Navigate(vm);
+                vm.GoToSlide(vm.GetSectionFirstPages(9));
+                vm.IsAramashiExpanderOpen = IsAramashiExpanderOpen;
+                vm.IsOthersExpanderOpen = IsOthersExpanderOpen;
+            }
         }
 
         /// <summary>
-        /// 用地補償の手順 10 の最初のページを表示する。
+        /// 用地補償の手順 10 の最初のページを表示する。（サイドバー用）
         /// </summary>
         [RelayCommand]
         private void GoToSection10()
         {
+            if (_category == PresentationCategory.Aramashi)
+            {
+                if (CanGoToSection(10))
+                {
+                    GoToSlide(GetSectionFirstPages(10));
+                }
+            }
+            else
+            {
+                var vm = new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Aramashi, AramashiButtons, OthersButtons);
+                _nav.Navigate(vm);
+                vm.GoToSlide(vm.GetSectionFirstPages(10));
+                vm.IsAramashiExpanderOpen = IsAramashiExpanderOpen;
+                vm.IsOthersExpanderOpen = IsOthersExpanderOpen;
+            }
         }
 
         /// <summary>
-        /// その他１の最初のページを表示する。（リンクテキスト/サイドバー兼用）
+        /// その他１の最初のページを表示する。（サイドバー用）
         /// </summary>
         [RelayCommand]
         private void GoToOthers001()
         {
             if (_category == PresentationCategory.Others001)
             {
-                GoToTopPage();
             }
             else
             {
-                _nav.Navigate(new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Others001, AramashiButtons, OthersButtons));
+                var vm = new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Others001, AramashiButtons, OthersButtons);
+                _nav.Navigate(vm);
+                vm.IsAramashiExpanderOpen = IsAramashiExpanderOpen;
+                vm.IsOthersExpanderOpen = IsOthersExpanderOpen;
             }
+        }
+
+        /// <summary>
+        /// その他１の最初のページを表示する。（リンクテキスト用）
+        /// </summary>
+        [RelayCommand]
+        private void GoToOthers001ByIndex(int pageIndex)
+        {
+            if (_category == PresentationCategory.Others001)
+            {
+                GoToSlide(pageIndex);
+            }
+            else
+            {
+                var vm = new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Others001, AramashiButtons, OthersButtons);
+                _nav.Navigate(vm);
+                vm.GoToSlide(pageIndex);
+                vm.IsAramashiExpanderOpen = IsAramashiExpanderOpen;
+                vm.IsOthersExpanderOpen = IsOthersExpanderOpen;
+            }
+
         }
 
         /// <summary>
@@ -726,11 +991,13 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         {
             if (_category == PresentationCategory.Others002)
             {
-                GoToTopPage();
             }
             else
             {
-                _nav.Navigate(new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Others002, AramashiButtons, OthersButtons));
+                var vm = new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Others002, AramashiButtons, OthersButtons);
+                _nav.Navigate(vm);
+                vm.IsAramashiExpanderOpen = IsAramashiExpanderOpen;
+                vm.IsOthersExpanderOpen = IsOthersExpanderOpen;
             }
         }
 
@@ -741,9 +1008,19 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         [RelayCommand]
         private void GoToOthers002ByIndex(int pageIndex)
         {
-            var newVM = new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Others002, AramashiButtons, OthersButtons);
-            _nav.Navigate(newVM);
-            newVM.GoToSlide(pageIndex);
+            if (_category == PresentationCategory.Others002)
+            {
+                GoToSlide(pageIndex);
+            }
+            else
+            {
+                var vm = new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Others002, AramashiButtons, OthersButtons);
+                _nav.Navigate(vm);
+                vm.GoToSlide(pageIndex);
+                vm.IsAramashiExpanderOpen = IsAramashiExpanderOpen;
+                vm.IsOthersExpanderOpen = IsOthersExpanderOpen;
+            }
+
         }
 
         /// <summary>
@@ -754,11 +1031,13 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         {
             if (_category == PresentationCategory.Others003)
             {
-                GoToTopPage();
             }
             else
             {
-                _nav.Navigate(new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Others003, AramashiButtons, OthersButtons));
+                var vm = new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Others003, AramashiButtons, OthersButtons);
+                _nav.Navigate(vm);
+                vm.IsAramashiExpanderOpen = IsAramashiExpanderOpen;
+                vm.IsOthersExpanderOpen = IsOthersExpanderOpen;
             }
         }
 
@@ -770,11 +1049,13 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         {
             if (_category == PresentationCategory.Others004)
             {
-                GoToTopPage();
             }
             else
             {
-                _nav.Navigate(new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Others004, AramashiButtons, OthersButtons));
+                var vm = new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Others004, AramashiButtons, OthersButtons);
+                _nav.Navigate(vm);
+                vm.IsAramashiExpanderOpen = IsAramashiExpanderOpen;
+                vm.IsOthersExpanderOpen = IsOthersExpanderOpen;
             }
         }
 
@@ -786,14 +1067,13 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         {
             if (_category == PresentationCategory.Others005)
             {
-                //GoToTopPage();
-
-                // 準備中ダイアログを表示する
-                _messageDialog.ShowTestMessage();
             }
             else
             {
-                //_nav.Navigate(new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Others005, AramashiButtons, OthersButtons));
+                //var vm = new PresentationViewerViewModel(_nav, _dia, PresentationCategory.Others005, AramashiButtons, OthersButtons);
+                //_nav.Navigate(vm);
+                //vm.IsAramashiExpanderOpen = IsAramashiExpanderOpen;
+                //vm.IsOthersExpanderOpen = IsOthersExpanderOpen;
 
                 // 準備中ダイアログを表示する
                 _messageDialog.ShowTestMessage();

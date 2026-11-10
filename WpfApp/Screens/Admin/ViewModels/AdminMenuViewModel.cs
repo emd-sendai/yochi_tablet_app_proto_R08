@@ -54,7 +54,10 @@ namespace WpfApp.Screens.Admin.ViewModels
         [RelayCommand]
         private void GoToMenu()
         {
-            _nav.Navigate(new MenuViewModel(_nav, _dia));
+            if (_message.ShowConfirm("メインメニューに戻ります。よろしいですか？"))
+            {
+                _nav.Navigate(new MenuViewModel(_nav, _dia));
+            }
         }
     }
 }

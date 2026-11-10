@@ -337,9 +337,18 @@ namespace WpfApp.Screens.Aramashi.Views
                             }
                             hyperlink.Command = viewModel.GoToSlideCommand;
                         }
-                        else if (runInfo.CommandName == "GoToOthers001Command")
+                        else if (runInfo.CommandName == "GoToOthers001ByIndexCommand")
                         {
-                            hyperlink.Command = viewModel.GoToOthers001Command;
+                            if (!string.IsNullOrWhiteSpace(param) && int.TryParse(param, out int value))
+                            {
+                                hyperlink.CommandParameter = value;
+                            }
+                            else
+                            {
+                                Debug.WriteLine("CommandParameter は数値ではありません");
+                                hyperlink.CommandParameter = 0;    // 最初のページに遷移
+                            }
+                            hyperlink.Command = viewModel.GoToOthers001ByIndexCommand;
                         }
                         else if (runInfo.CommandName == "GoToOthers002ByIndexCommand")
                         {
