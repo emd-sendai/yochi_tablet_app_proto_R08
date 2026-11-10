@@ -24,12 +24,12 @@
         </ScrollViewer>
         
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Content="キャンセル" FontSize="22" Height="50" Width="120" Margin="0,0,30,0"
+            <Button Content="OK" IsDefault="True" FontSize="22" Height="50" Width="90" Margin="0,0,30,0"
+                    Command="{Binding OkCommand}" Style="{StaticResource CommonButtonStyle}"/>
+            <Button Content="キャンセル" FontSize="20" Height="50" Width="120" 
                     Command="{Binding CancelCommand}" Style="{StaticResource CommonButtonStyle}"
                     Visibility="{Binding ShowCancel, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
-            <Button Content="OK" IsDefault="True" FontSize="22" Height="50" Width="80"
-                    Command="{Binding OkCommand}" Style="{StaticResource CommonButtonStyle}"/>
         </StackPanel>
         
 
