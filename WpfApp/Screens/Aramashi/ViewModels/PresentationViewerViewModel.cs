@@ -567,7 +567,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
             }
             else if (_category == PresentationCategory.Others005)
             {
-                SelectedMode = 15;
+                //SelectedMode = 15;
             }
             else
             {

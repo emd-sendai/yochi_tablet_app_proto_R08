@@ -9,20 +9,28 @@
              d:DesignHeight="600" d:DesignWidth="800">
 
     <StackPanel Background="{DynamicResource MaterialDesignPaper}" HorizontalAlignment="Left">
-        <Button Style="{StaticResource MaterialDesignFlatButton}" Margin="0,5,0,0" 
-                    HorizontalAlignment="Left" FontSize="20" Height="40" 
-                    Command="{Binding GoToMenuCommand}">
+        <RadioButton Style="{StaticResource SidebarRadioButtonStyle}" GroupName="Sidebar99" Margin="1,5,0,0" 
+                         IsChecked="{Binding SelectedMode, Mode=OneWay,  
+                                     Converter={StaticResource SelectedModeToBoolConverter}, ConverterParameter=99}"
+                         Command="{Binding GoToMenuCommand}">
             <StackPanel Orientation="Horizontal" >
                 <materialDesign:PackIcon Kind="Home" Width="25" Height="35" Margin="0,0,5,0"/>
                 <TextBlock Text="メインメニュー"  FontWeight="Bold" VerticalAlignment="Center"/>
             </StackPanel>
-        </Button>
-        <Button Content="補償のあらまし" 
-                            Style="{StaticResource SidebarButtonStyle}" Margin="8,5,0,0"
-                            Command="{Binding GoToAramashiMenuCommand}"/>
-        <Button Content="各種資料" 
-                            Style="{StaticResource SidebarButtonStyle}" Margin="8,0,0,0"
-                            Command="{Binding GoToDocumentMenuCommand}"/>
+        </RadioButton>
+
+        <RadioButton Style="{StaticResource SidebarRadioButtonStyle}" GroupName="Sidebar0" Margin="2,5,0,0" 
+                         IsChecked="{Binding SelectedMode, Mode=OneWay, 
+                                     Converter={StaticResource SelectedModeToBoolConverter}, ConverterParameter=0}"
+                         Command="{Binding GoToAramashiMenuCommand}">
+            <TextBlock Text="補償のあらまし" Style="{StaticResource ExpanderWrapTextBlockStyle}"/>
+        </RadioButton>
+        <RadioButton Style="{StaticResource SidebarRadioButtonStyle}" GroupName="Sidebar2" Margin="2,5,0,0" 
+                         IsChecked="{Binding SelectedMode, Mode=OneWay, 
+                                     Converter={StaticResource SelectedModeToBoolConverter}, ConverterParameter=1}"
+                         Command="{Binding GoToDocumentMenuCommand}">
+            <TextBlock Text="各種資料" Style="{StaticResource ExpanderWrapTextBlockStyle}"/>
+        </RadioButton>
     </StackPanel>
     
 </UserControl>

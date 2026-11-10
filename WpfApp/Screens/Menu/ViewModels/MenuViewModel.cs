@@ -36,6 +36,9 @@ namespace WpfApp.Screens.Menu.ViewModels
         [ObservableProperty]
         private string subtitle;
 
+        [ObservableProperty]
+        private int selectedMode = 99;
+
         private bool isPasswordCorrect;
 
         public MenuViewModel(NavigationService navigationService, IDialogService dialogService)

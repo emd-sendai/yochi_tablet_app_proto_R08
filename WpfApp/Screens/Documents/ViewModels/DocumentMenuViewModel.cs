@@ -36,6 +36,9 @@ namespace WpfApp.Screens.Documents.ViewModels
         [ObservableProperty]
         private string title;
 
+        [ObservableProperty]
+        private int selectedMode = 1;
+
         /// <summary>
         /// ボタンの名称表示用ボタンデータリスト（事業全般資料）
         /// </summary>
