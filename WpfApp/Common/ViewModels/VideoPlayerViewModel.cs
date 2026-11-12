@@ -34,6 +34,11 @@ namespace WpfApp.Common.ViewModels
         /// </summary>
         public event Action<TimeSpan>? SeekRequested;
 
+        /// <summary>
+        /// Viewに対して指定の速度へ動画の再生速度の変更を要求するためのイベント。
+        /// </summary>
+        public event Action<double>? SpeedChangedRequested;
+
         [ObservableProperty]
         private bool isPlaying;
 
@@ -50,6 +55,21 @@ namespace WpfApp.Common.ViewModels
         {
             get => CurrentPosition.TotalSeconds;
             set => CurrentPosition = TimeSpan.FromSeconds(value);
+        }
+
+        [ObservableProperty]
+        private double selectedSpeed = 1.0;
+
+        public List<double> SpeedOptions { get; } = new()
+        {
+            1.0,
+            1.5,
+            2.0
+        };
+
+        partial void OnSelectedSpeedChanged(double value)
+        {
+            SpeedChangedRequested?.Invoke(value);
         }
 
         public string CurrentTimeText => CurrentPosition.ToString(@"hh\:mm\:ss");
@@ -132,8 +152,6 @@ namespace WpfApp.Common.ViewModels
                 _message.ShowMessage("動画の読み込みに失敗しました。");
                 throw;
             }
-
-
         }
 
         /// <summary>

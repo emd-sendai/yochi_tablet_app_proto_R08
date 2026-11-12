@@ -23,11 +23,13 @@ namespace WpfApp.Common.Views
         {
             InitializeComponent();
 
+            Loaded += Window_Loaded;
+
             Loaded += (_, _) =>
             {
                 if (DataContext is VideoPlayerViewModel vm)
                 {
-                    Media.MediaOpened += Media_MediaOpened;
+                    //Media.MediaOpened += Media_MediaOpened;
 
                     // 動画を再生する
                     vm.PlayRequested += () =>
@@ -112,12 +114,55 @@ namespace WpfApp.Common.Views
 
         }
 
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            Debug.WriteLine("========== Window_Loaded ==========");
+
+            if (DataContext is VideoPlayerViewModel vm)
+            {
+                Debug.WriteLine($"[DEBUG] Media.Sourceを設定");
+                Media.Source = vm.VideoSource;
+
+                Dispatcher.BeginInvoke(
+                    System.Windows.Threading.DispatcherPriority.Loaded,
+                    new Action(() =>
+                    {
+                        try
+                        {
+                            // Mediaの読み込みを開始
+                            Debug.WriteLine($"[DEBUG] Media.Play()");
+                            Media.Play();
+                        }
+                        catch (Exception ex)
+                        {
+                            Debug.WriteLine($"[ERROR] Media.Play(): {ex}");
+                            Debug.WriteLine($"[ERROR] 動画自動再生に失敗 : {ex.Message}");
+                            _message.ShowMessage("動画自動再生に失敗しました。");
+                            throw;
+                        }
+                    })
+                );
+            }
+        }
+
+        private void Media_MediaFailed(object sender, ExceptionRoutedEventArgs e)
+        {
+            Debug.WriteLine("[ERROR] MediaFailed");
+
+            Debug.WriteLine(e.ErrorException?.ToString());
+        }
+
         private void Media_MediaOpened(object sender, RoutedEventArgs e)
         {
             if (DataContext is VideoPlayerViewModel vm)
             {
+                Debug.WriteLine("★★ MediaOpened 発生 ★★");
+                Debug.WriteLine($"NaturalDuration: {Media.NaturalDuration}");
+
                 vm.Duration = Media.NaturalDuration.TimeSpan;
                 vm.CurrentPosition = TimeSpan.Zero;
+                vm.IsPlaying = true;
+                _timer?.Start();
             }
         }
 
