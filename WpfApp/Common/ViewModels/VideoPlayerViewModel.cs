@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Windows;
+using WpfApp.Common.Models;
 using WpfApp.Interfaces;
 using WpfApp.Services;
 
@@ -60,11 +61,11 @@ namespace WpfApp.Common.ViewModels
         [ObservableProperty]
         private double selectedSpeed = 1.0;
 
-        public List<double> SpeedOptions { get; } = new()
+        public List<PlaybackSpeedData> SpeedOptions { get; } = new()
         {
-            1.0,
-            1.5,
-            2.0
+            new PlaybackSpeedData { Label = "標準", Value = 1.0 },
+            new PlaybackSpeedData { Label = "1.5倍速", Value = 1.5 },
+            new PlaybackSpeedData { Label = "2.0倍速", Value = 2.0 }
         };
 
         partial void OnSelectedSpeedChanged(double value)

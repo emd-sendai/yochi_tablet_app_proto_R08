@@ -66,7 +66,7 @@ namespace WpfApp.Common.Views
                         }
                     };
 
-                    // 動画の再生時間を変更する
+                    // 動画の再生位置を変更する
                     vm.SeekRequested += time =>
                     {
                         try
@@ -81,8 +81,25 @@ namespace WpfApp.Common.Views
                         }
                         catch (Exception ex)
                         {
-                            Debug.WriteLine($"[ERROR] 動画の再生時間の変更に失敗 : {ex.Message}");
-                            _message.ShowMessage("動画の再生時間の変更に失敗しました。");
+                            Debug.WriteLine($"[ERROR] 動画の再生位置の変更に失敗 : {ex.Message}");
+                            _message.ShowMessage("動画の再生位置の変更に失敗しました。");
+                            throw;
+                        }
+                    };
+
+                    // 動画の再生速度を変更する
+                    vm.SpeedChangedRequested += speed =>
+                    {
+                        try
+                        {
+                            Media.SpeedRatio = speed;
+
+                            Debug.WriteLine($"[DEBUG] 再生速度を変更: {speed}倍速");
+                        }
+                        catch (Exception ex)
+                        {
+                            Debug.WriteLine($"[ERROR] 再生速度の変更に失敗: {ex.Message}");
+                            _message.ShowMessage("再生速度の変更に失敗しました。");
                             throw;
                         }
                     };
