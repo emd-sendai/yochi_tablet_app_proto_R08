@@ -44,6 +44,9 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         [ObservableProperty]
         private int selectedMode = 0;
 
+        [ObservableProperty]
+        private string title;
+
         /// <summary>
         /// ボタンの名称表示用ボタンデータリスト（用地補償の手順）
         /// </summary>
@@ -127,6 +130,16 @@ namespace WpfApp.Screens.Aramashi.ViewModels
 
             // カテゴリを設定する
             _category = category;
+
+            if (_category == PresentationCategory.Aramashi)
+            {
+                Title = "Ⅰ 用地補償の手順";
+            }
+            else
+            {
+                Title = string.Empty;
+            }
+
             // 表示するページのデータが格納されたJSONファイルのパスリストを取得する
             _jsonPathList = GetJsonPaths();
 
