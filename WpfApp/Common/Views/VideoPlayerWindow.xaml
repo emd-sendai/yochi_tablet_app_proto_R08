@@ -37,13 +37,13 @@
                        FontWeight="SemiBold" Foreground="{DynamicResource MaterialDesign.Brush.Primary}"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,80,10">
+        <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,90,10">
             <!-- 再生速度コンボボックス -->
             <StackPanel Orientation="Vertical" Margin="5,5,10,5">
                 <ComboBox ItemsSource="{Binding SpeedOptions}" DisplayMemberPath="Label" SelectedValuePath="Value"
-                      SelectedValue="{Binding SelectedSpeed, Mode=TwoWay}" 
+                      SelectedValue="{Binding SelectedSpeed, Mode=TwoWay}" Background="White" Padding="5,0"
                       HorizontalContentAlignment="Center" VerticalAlignment="Top"
-                      Height="35" Width="70" FontSize="15" FontWeight="SemiBold"/>
+                      Height="35" Width="80" FontSize="15" />
                 <TextBlock Text="再生速度" Style="{StaticResource ITButtonTextStyle}" FontSize="10"
                            FontWeight="SemiBold" Foreground="{DynamicResource MaterialDesign.Brush.Primary}"/>
             </StackPanel>

@@ -116,6 +116,8 @@ namespace WpfApp.Services
                 VideoChapterSettingsViewModel => new VideoChapterSettingsView(),
                 //　管理資料
                 AdminDocumentViewModel => new AdminDocumentView(),
+                // 管理者パスワード
+                AdminPasswordSettingsViewModel => new AdminPasswordSettingsView(),
 
                 _ => throw new ArgumentException("Unknown ViewModel"),
             };

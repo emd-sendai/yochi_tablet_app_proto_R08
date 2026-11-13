@@ -18,7 +18,6 @@ namespace WpfApp.Services
 
         public string AppResourcesRoot => Path.Combine(AppRoot, "AppResources");
 
-
         public string DataDire => Path.Combine(AppResourcesRoot, "Data");
 
         public string ButtonRoot => Path.Combine(DataDire, "ButtonSettings");
@@ -34,6 +33,8 @@ namespace WpfApp.Services
         public string SignatureDire => Path.Combine(DataDire, "Signature");
 
         public string LandownersPath => Path.Combine(DataDire, "landowners.json");
+
+        public string AdminSettings => Path.Combine(DataDire, "adminSettings.json");
 
 
         public string DocumentResourcesRoot => Path.Combine(AppResourcesRoot, "DocumentResources");

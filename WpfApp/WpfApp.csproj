@@ -335,6 +335,9 @@
     <Content Include="Data\works.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+	  <Content Include="Data\adminSettings.json">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
     <Content Include="SlideResources\Aramashi\slides_aramashi1.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

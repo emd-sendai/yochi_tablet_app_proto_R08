@@ -40,10 +40,30 @@ namespace WpfApp.Common.ViewModels
         [RelayCommand]
         private void Submit(PasswordBox pwBox)
         {
+            ErrorMessage = string.Empty;
+
             if (pwBox == null) return;
 
+            var inputPass = pwBox.Password;
+
+            if (string.IsNullOrEmpty(inputPass))
+            {
+                // エラーメッセージを表示する
+                ErrorMessage = "パスワードを入力してください。";
+                return;
+            }
+
+            var passData = _passwordService.LoasPasswordFromJson();
+            // 照合先のパスワードデータが取得できなかった場合
+            if (passData == null)
+            {
+                // エラーメッセージを表示する
+                ErrorMessage = "パスワードを照合できません。";
+                return;
+            }
+
             // パスワードが正解の場合
-            if (_passwordService.Verify(pwBox.Password))
+            if (_passwordService.Verify(inputPass, passData))
             {
                 // tureを返して画面を閉じる
                 Result = true;

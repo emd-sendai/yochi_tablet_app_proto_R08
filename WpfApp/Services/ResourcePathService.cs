@@ -29,6 +29,8 @@ namespace WpfApp.Services
 
         public string LandownersPath => Path.Combine(DataDire, "landowners.json");
 
+        public string AdminSettings => Path.Combine(DataDire, "adminSettings.json");
+
 
         public string DocumentResourcesRoot => Path.Combine(Root, "DocumentResources");
 

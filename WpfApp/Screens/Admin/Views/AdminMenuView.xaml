@@ -51,7 +51,7 @@
             <TextBlock Text="アプリデータ設定" FontSize="18" Foreground="#3F51B5" FontWeight="Bold" HorizontalAlignment="Center"/>
             <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
                 <Button Content="管理者パスワード" FontSize="22" Height="60" Width="200" Margin="0,0,0,0"
-                    Command="{Binding Command}" Style="{StaticResource CommonButtonStyle}"/>
+                    Command="{Binding GoToAdminPasswordSettingsCommand}" Style="{StaticResource CommonButtonStyle}"/>
                 <Button Content="資料一覧出力" FontSize="22" Height="60" Width="200" Margin="20,0,0,0"
                     Command="{Binding Command}" Style="{StaticResource CommonButtonStyle}"/>
                 <Button Content="データ共有・引継ぎ" FontSize="22" Height="60" Width="200" Margin="20,0,0,0"

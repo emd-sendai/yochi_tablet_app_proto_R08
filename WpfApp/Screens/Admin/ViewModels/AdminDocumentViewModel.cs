@@ -86,6 +86,19 @@ namespace WpfApp.Screens.Admin.ViewModels
         }
 
         /// <summary>
+        /// 管理者パスワード設定画面に遷移する。
+        /// </summary>
+        [RelayCommand]
+        private void GoToAdminPasswordSettings()
+        {
+            var vm = new AdminPasswordSettingsViewModel(_nav, _dia);
+            _nav.Navigate(vm);
+            vm.IsExpander1Open = IsExpander1Open;
+            vm.IsExpander2Open = IsExpander2Open;
+            vm.IsExpander3Open = IsExpander3Open;
+        }
+
+        /// <summary>
         /// 準備中ダイアログを表示する。（機能作成後削除）
         /// </summary>
         [RelayCommand]
