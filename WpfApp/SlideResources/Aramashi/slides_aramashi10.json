@@ -49,8 +49,8 @@
             {
               "text": "第４条第２項",
               "isLink": true,
-              "commandName": "GoToSlideCommand",
-              "commandParameter": "44"
+              "commandName": "GoToSection7ByIndexCommand",
+              "commandParameter": "3"
             },
             {
               "text": "に記載。\n",

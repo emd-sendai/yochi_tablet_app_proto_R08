@@ -281,8 +281,8 @@
                 {
                   "text": "５ 補償金の算定",
                   "isLink": true,
-                  "commandName": "GoToSlideCommand",
-                  "commandParameter": "29"
+                  "commandName": "GoToSection5ByIndexCommand",
+                  "commandParameter": "0"
                 },
                 {
                   "text": "」参照。）\n"
@@ -533,8 +533,8 @@
                 {
                   "text": "７ 契約",
                   "isLink": true,
-                  "commandName": "GoToSlideCommand",
-                  "commandParameter": "41"
+                  "commandName": "GoToSection7ByIndexCommand",
+                  "commandParameter": "0"
                 },
                 {
                   "text": "」参照。）"

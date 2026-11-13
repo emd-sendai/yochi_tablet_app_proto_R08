@@ -3,7 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using System.Diagnostics;
 using System.Windows.Controls;
 using WpfApp.Interfaces;
-using static WpfApp.Screens.Aramashi.ViewModels.PresentationViewerViewModel;
+using WpfApp.Screens.Aramashi.Models;
 
 namespace WpfApp.Screens.Aramashi.ViewModels
 {

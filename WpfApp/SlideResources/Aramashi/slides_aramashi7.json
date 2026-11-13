@@ -653,8 +653,8 @@
                 {
                   "text": "９ 土地登記・物件移転・土地の引渡し",
                   "isLink": true,
-                  "commandName": "GoToSlideCommand",
-                  "commandParameter": "47"
+                  "commandName": "GoToSection9ByIndexCommand",
+                  "commandParameter": "0"
                 },
                 {
                   "text": "」参照）"

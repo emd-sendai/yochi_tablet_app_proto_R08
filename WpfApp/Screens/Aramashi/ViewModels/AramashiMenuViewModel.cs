@@ -15,7 +15,6 @@ using WpfApp.Shell.Models;
 using WpfApp.Shell.Views.Header;
 using WpfApp.Shell.Views.Sidebar;
 using static WpfApp.Common.ViewModels.VideoPlayerViewModel;
-using static WpfApp.Screens.Aramashi.ViewModels.PresentationViewerViewModel;
 
 namespace WpfApp.Screens.Aramashi.ViewModels
 {

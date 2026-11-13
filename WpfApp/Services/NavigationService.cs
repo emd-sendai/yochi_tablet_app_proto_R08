@@ -2,6 +2,7 @@
 using WpfApp.Interfaces;
 using WpfApp.Screens.Admin.ViewModels;
 using WpfApp.Screens.Admin.Views;
+using WpfApp.Screens.Aramashi.Models;
 using WpfApp.Screens.Aramashi.ViewModels;
 using WpfApp.Screens.Aramashi.Views;
 using WpfApp.Screens.Documents.ViewModels;
@@ -21,6 +22,7 @@ namespace WpfApp.Services
         private readonly ContentControl _contentControl;
         private readonly ShellViewModel _shellViewModel;
         private readonly Stack<object> _history = new();
+        private readonly Stack<PresentationPageState> _presentationPageStates = new(); 
 
         public NavigationService(ContentControl contentControl , ShellViewModel shellViewModel)
         {
@@ -43,14 +45,47 @@ namespace WpfApp.Services
                 throw new ArgumentNullException("IShellLayoutを実装していないViewModelです。", nameof(viewModel));
             }
 
-            // _historyに記録
             if (_contentControl.Content is UserControl currentView &&
                 currentView.DataContext != null)
             {
+                // _historyに記録
                 _history.Push(currentView.DataContext);
+
+                // PresentationViewerViewModelから別のViewModelを表示する場合
+                if (currentView.DataContext is PresentationViewerViewModel
+                    && viewModel is not PresentationViewerViewModel )
+                {
+                    // リンクテキストからの遷移記録を初期化
+                    _presentationPageStates.Clear();
+                }
             }
             // 表示を切り替える
             ShowView(viewModel);
+        }
+
+        public void PushPresentationPageStates(PresentationCategory category, int index)
+        {
+            // ページの状態を記録
+            _presentationPageStates.Push(new PresentationPageState
+            {
+                Category = category,
+                Index = index
+            });
+        }
+
+        public PresentationPageState? PopPresentationPageState()
+        {
+            if (_presentationPageStates.Count == 0)
+            {
+                return null;
+            }
+
+            return _presentationPageStates.Pop();
+        }
+
+        public int GetPresentationPageStatesCount()
+        {
+            return _presentationPageStates.Count;
         }
 
         /// <summary>

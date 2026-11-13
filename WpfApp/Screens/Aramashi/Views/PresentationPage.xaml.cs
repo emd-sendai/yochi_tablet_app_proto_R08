@@ -324,7 +324,7 @@ namespace WpfApp.Screens.Aramashi.Views
                         // コマンドと引数を設定
                         string? param = runInfo.CommandParameter as string;
 
-                        if (runInfo.CommandName == "GoToSlideCommand")
+                        if (runInfo.CommandName == "GoToSection1ByIndexCommand")
                         {
                             if (!string.IsNullOrWhiteSpace(param) && int.TryParse(param, out int value))
                             {
@@ -335,7 +335,124 @@ namespace WpfApp.Screens.Aramashi.Views
                                 Debug.WriteLine("CommandParameter は数値ではありません");
                                 hyperlink.CommandParameter = 0;    // 最初のページに遷移
                             }
-                            hyperlink.Command = viewModel.GoToSlideCommand;
+                            hyperlink.Command = viewModel.GoToSection1ByIndexCommand;
+                        }
+                        else if (runInfo.CommandName == "GoToSection2ByIndexCommand")
+                        {
+                            if (!string.IsNullOrWhiteSpace(param) && int.TryParse(param, out int value))
+                            {
+                                hyperlink.CommandParameter = value;
+                            }
+                            else
+                            {
+                                Debug.WriteLine("CommandParameter は数値ではありません");
+                                hyperlink.CommandParameter = 0;    // 最初のページに遷移
+                            }
+                            hyperlink.Command = viewModel.GoToSection2ByIndexCommand;
+                        }
+                        else if (runInfo.CommandName == "GoToSection3ByIndexCommand")
+                        {
+                            if (!string.IsNullOrWhiteSpace(param) && int.TryParse(param, out int value))
+                            {
+                                hyperlink.CommandParameter = value;
+                            }
+                            else
+                            {
+                                Debug.WriteLine("CommandParameter は数値ではありません");
+                                hyperlink.CommandParameter = 0;    // 最初のページに遷移
+                            }
+                            hyperlink.Command = viewModel.GoToSection3ByIndexCommand;
+                        }
+                        else if (runInfo.CommandName == "GoToSection4ByIndexCommand")
+                        {
+                            if (!string.IsNullOrWhiteSpace(param) && int.TryParse(param, out int value))
+                            {
+                                hyperlink.CommandParameter = value;
+                            }
+                            else
+                            {
+                                Debug.WriteLine("CommandParameter は数値ではありません");
+                                hyperlink.CommandParameter = 0;    // 最初のページに遷移
+                            }
+                            hyperlink.Command = viewModel.GoToSection4ByIndexCommand;
+                        }
+                        else if (runInfo.CommandName == "GoToSection5ByIndexCommand")
+                        {
+                            if (!string.IsNullOrWhiteSpace(param) && int.TryParse(param, out int value))
+                            {
+                                hyperlink.CommandParameter = value;
+                            }
+                            else
+                            {
+                                Debug.WriteLine("CommandParameter は数値ではありません");
+                                hyperlink.CommandParameter = 0;    // 最初のページに遷移
+                            }
+                            hyperlink.Command = viewModel.GoToSection5ByIndexCommand;
+                        }
+                        else if (runInfo.CommandName == "GoToSection6ByIndexCommand")
+                        {
+                            if (!string.IsNullOrWhiteSpace(param) && int.TryParse(param, out int value))
+                            {
+                                hyperlink.CommandParameter = value;
+                            }
+                            else
+                            {
+                                Debug.WriteLine("CommandParameter は数値ではありません");
+                                hyperlink.CommandParameter = 0;    // 最初のページに遷移
+                            }
+                            hyperlink.Command = viewModel.GoToSection6ByIndexCommand;
+                        }
+                        else if (runInfo.CommandName == "GoToSection7ByIndexCommand")
+                        {
+                            if (!string.IsNullOrWhiteSpace(param) && int.TryParse(param, out int value))
+                            {
+                                hyperlink.CommandParameter = value;
+                            }
+                            else
+                            {
+                                Debug.WriteLine("CommandParameter は数値ではありません");
+                                hyperlink.CommandParameter = 0;    // 最初のページに遷移
+                            }
+                            hyperlink.Command = viewModel.GoToSection7ByIndexCommand;
+                        }
+                        else if (runInfo.CommandName == "GoToSection8ByIndexCommand")
+                        {
+                            if (!string.IsNullOrWhiteSpace(param) && int.TryParse(param, out int value))
+                            {
+                                hyperlink.CommandParameter = value;
+                            }
+                            else
+                            {
+                                Debug.WriteLine("CommandParameter は数値ではありません");
+                                hyperlink.CommandParameter = 0;    // 最初のページに遷移
+                            }
+                            hyperlink.Command = viewModel.GoToSection8ByIndexCommand;
+                        }
+                        else if (runInfo.CommandName == "GoToSection9ByIndexCommand")
+                        {
+                            if (!string.IsNullOrWhiteSpace(param) && int.TryParse(param, out int value))
+                            {
+                                hyperlink.CommandParameter = value;
+                            }
+                            else
+                            {
+                                Debug.WriteLine("CommandParameter は数値ではありません");
+                                hyperlink.CommandParameter = 0;    // 最初のページに遷移
+                            }
+                            hyperlink.Command = viewModel.GoToSection9ByIndexCommand;
+                        }
+                        else if (runInfo.CommandName == "GoToSection10ByIndexCommand")
+                        {
+                            if (!string.IsNullOrWhiteSpace(param) && int.TryParse(param, out int value))
+                            {
+                                hyperlink.CommandParameter = value;
+                            }
+                            else
+                            {
+                                Debug.WriteLine("CommandParameter は数値ではありません");
+                                hyperlink.CommandParameter = 0;    // 最初のページに遷移
+                            }
+                            hyperlink.Command = viewModel.GoToSection10ByIndexCommand;
                         }
                         else if (runInfo.CommandName == "GoToOthers001ByIndexCommand")
                         {
@@ -362,6 +479,45 @@ namespace WpfApp.Screens.Aramashi.Views
                                 hyperlink.CommandParameter = 0;    // 最初のページに遷移
                             }
                             hyperlink.Command = viewModel.GoToOthers002ByIndexCommand;
+                        }
+                        else if (runInfo.CommandName == "GoToOthers003ByIndexCommand")
+                        {
+                            if (!string.IsNullOrWhiteSpace(param) && int.TryParse(param, out int value))
+                            {
+                                hyperlink.CommandParameter = value;
+                            }
+                            else
+                            {
+                                Debug.WriteLine("CommandParameter は数値ではありません");
+                                hyperlink.CommandParameter = 0;    // 最初のページに遷移
+                            }
+                            hyperlink.Command = viewModel.GoToOthers003ByIndexCommand;
+                        }
+                        else if (runInfo.CommandName == "GoToOthers004ByIndexCommand")
+                        {
+                            if (!string.IsNullOrWhiteSpace(param) && int.TryParse(param, out int value))
+                            {
+                                hyperlink.CommandParameter = value;
+                            }
+                            else
+                            {
+                                Debug.WriteLine("CommandParameter は数値ではありません");
+                                hyperlink.CommandParameter = 0;    // 最初のページに遷移
+                            }
+                            hyperlink.Command = viewModel.GoToOthers004ByIndexCommand;
+                        }
+                        else if (runInfo.CommandName == "GoToOthers005ByIndexCommand")
+                        {
+                            if (!string.IsNullOrWhiteSpace(param) && int.TryParse(param, out int value))
+                            {
+                                hyperlink.CommandParameter = value;
+                            }
+                            else
+                            {
+                                Debug.WriteLine("CommandParameter は数値ではありません");
+                                hyperlink.CommandParameter = 0;    // 最初のページに遷移
+                            }
+                            hyperlink.Command = viewModel.GoToOthers005ByIndexCommand;
                         }
                         else if (runInfo.CommandName == "OpenUrlCommand")
                         {
@@ -453,7 +609,7 @@ namespace WpfApp.Screens.Aramashi.Views
             {
                 btn.Command = viewModel.ShowInheritanceOverviewCommand;
             }
-            else if (data.CommandName == "GoToSlideCommand")
+            else if (data.CommandName == "GoToSection1ByIndexCommand")
             {
                 if (!string.IsNullOrWhiteSpace(param) && int.TryParse(param, out int value))
                 {
@@ -464,7 +620,189 @@ namespace WpfApp.Screens.Aramashi.Views
                     Debug.WriteLine("CommandParameter は数値ではありません");
                     btn.CommandParameter = 0;    // 最初のページに遷移
                 }
-                btn.Command = viewModel.GoToSlideCommand;
+                btn.Command = viewModel.GoToSection1ByIndexCommand;
+            }
+            else if (data.CommandName == "GoToSection2ByIndexCommand")
+            {
+                if (!string.IsNullOrWhiteSpace(param) && int.TryParse(param, out int value))
+                {
+                    btn.CommandParameter = value;
+                }
+                else
+                {
+                    Debug.WriteLine("CommandParameter は数値ではありません");
+                    btn.CommandParameter = 0;    // 最初のページに遷移
+                }
+                btn.Command = viewModel.GoToSection2ByIndexCommand;
+            }
+            else if (data.CommandName == "GoToSection3ByIndexCommand")
+            {
+                if (!string.IsNullOrWhiteSpace(param) && int.TryParse(param, out int value))
+                {
+                    btn.CommandParameter = value;
+                }
+                else
+                {
+                    Debug.WriteLine("CommandParameter は数値ではありません");
+                    btn.CommandParameter = 0;    // 最初のページに遷移
+                }
+                btn.Command = viewModel.GoToSection3ByIndexCommand;
+            }
+            else if (data.CommandName == "GoToSection4ByIndexCommand")
+            {
+                if (!string.IsNullOrWhiteSpace(param) && int.TryParse(param, out int value))
+                {
+                    btn.CommandParameter = value;
+                }
+                else
+                {
+                    Debug.WriteLine("CommandParameter は数値ではありません");
+                    btn.CommandParameter = 0;    // 最初のページに遷移
+                }
+                btn.Command = viewModel.GoToSection4ByIndexCommand;
+            }
+            else if (data.CommandName == "GoToSection5ByIndexCommand")
+            {
+                if (!string.IsNullOrWhiteSpace(param) && int.TryParse(param, out int value))
+                {
+                    btn.CommandParameter = value;
+                }
+                else
+                {
+                    Debug.WriteLine("CommandParameter は数値ではありません");
+                    btn.CommandParameter = 0;    // 最初のページに遷移
+                }
+                btn.Command = viewModel.GoToSection5ByIndexCommand;
+            }
+            else if (data.CommandName == "GoToSection6ByIndexCommand")
+            {
+                if (!string.IsNullOrWhiteSpace(param) && int.TryParse(param, out int value))
+                {
+                    btn.CommandParameter = value;
+                }
+                else
+                {
+                    Debug.WriteLine("CommandParameter は数値ではありません");
+                    btn.CommandParameter = 0;    // 最初のページに遷移
+                }
+                btn.Command = viewModel.GoToSection6ByIndexCommand;
+            }
+            else if (data.CommandName == "GoToSection7ByIndexCommand")
+            {
+                if (!string.IsNullOrWhiteSpace(param) && int.TryParse(param, out int value))
+                {
+                    btn.CommandParameter = value;
+                }
+                else
+                {
+                    Debug.WriteLine("CommandParameter は数値ではありません");
+                    btn.CommandParameter = 0;    // 最初のページに遷移
+                }
+                btn.Command = viewModel.GoToSection7ByIndexCommand;
+            }
+            else if (data.CommandName == "GoToSection8ByIndexCommand")
+            {
+                if (!string.IsNullOrWhiteSpace(param) && int.TryParse(param, out int value))
+                {
+                    btn.CommandParameter = value;
+                }
+                else
+                {
+                    Debug.WriteLine("CommandParameter は数値ではありません");
+                    btn.CommandParameter = 0;    // 最初のページに遷移
+                }
+                btn.Command = viewModel.GoToSection8ByIndexCommand;
+            }
+            else if (data.CommandName == "GoToSection9ByIndexCommand")
+            {
+                if (!string.IsNullOrWhiteSpace(param) && int.TryParse(param, out int value))
+                {
+                    btn.CommandParameter = value;
+                }
+                else
+                {
+                    Debug.WriteLine("CommandParameter は数値ではありません");
+                    btn.CommandParameter = 0;    // 最初のページに遷移
+                }
+                btn.Command = viewModel.GoToSection9ByIndexCommand;
+            }
+            else if (data.CommandName == "GoToSection10ByIndexCommand")
+            {
+                if (!string.IsNullOrWhiteSpace(param) && int.TryParse(param, out int value))
+                {
+                    btn.CommandParameter = value;
+                }
+                else
+                {
+                    Debug.WriteLine("CommandParameter は数値ではありません");
+                    btn.CommandParameter = 0;    // 最初のページに遷移
+                }
+                btn.Command = viewModel.GoToSection10ByIndexCommand;
+            }
+            else if (data.CommandName == "GoToOthers001ByIndexCommand")
+            {
+                if (!string.IsNullOrWhiteSpace(param) && int.TryParse(param, out int value))
+                {
+                    btn.CommandParameter = value;
+                }
+                else
+                {
+                    Debug.WriteLine("CommandParameter は数値ではありません");
+                    btn.CommandParameter = 0;    // 最初のページに遷移
+                }
+                btn.Command = viewModel.GoToOthers001ByIndexCommand;
+            }
+            else if (data.CommandName == "GoToOthers002ByIndexCommand")
+            {
+                if (!string.IsNullOrWhiteSpace(param) && int.TryParse(param, out int value))
+                {
+                    btn.CommandParameter = value;
+                }
+                else
+                {
+                    Debug.WriteLine("CommandParameter は数値ではありません");
+                    btn.CommandParameter = 0;    // 最初のページに遷移
+                }
+                btn.Command = viewModel.GoToOthers002ByIndexCommand;
+            }
+            else if (data.CommandName == "GoToOthers003ByIndexCommand")
+            {
+                if (!string.IsNullOrWhiteSpace(param) && int.TryParse(param, out int value))
+                {
+                    btn.CommandParameter = value;
+                }
+                else
+                {
+                    Debug.WriteLine("CommandParameter は数値ではありません");
+                    btn.CommandParameter = 0;    // 最初のページに遷移
+                }
+                btn.Command = viewModel.GoToOthers003ByIndexCommand;
+            }
+            else if (data.CommandName == "GoToOthers004ByIndexCommand")
+            {
+                if (!string.IsNullOrWhiteSpace(param) && int.TryParse(param, out int value))
+                {
+                    btn.CommandParameter = value;
+                }
+                else
+                {
+                    Debug.WriteLine("CommandParameter は数値ではありません");
+                    btn.CommandParameter = 0;    // 最初のページに遷移
+                }
+                btn.Command = viewModel.GoToOthers004ByIndexCommand;
+            }
+            else if (data.CommandName == "GoToOthers005ByIndexCommand")
+            {
+                if (!string.IsNullOrWhiteSpace(param) && int.TryParse(param, out int value))
+                {
+                    btn.CommandParameter = value;
+                }
+                else
+                {
+                    Debug.WriteLine("CommandParameter は数値ではありません");
+                    btn.CommandParameter = 0;    // 最初のページに遷移
+                }
+                btn.Command = viewModel.GoToOthers005ByIndexCommand;
             }
 
             return btn;

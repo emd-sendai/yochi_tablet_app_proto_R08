@@ -49,8 +49,8 @@
                 {
                   "text": "地図（公図）の転写",
                   "isLink": true,
-                  "commandName": "GoToSlideCommand",
-                  "commandParameter": "3"
+                  "commandName": "GoToSection3ByIndexCommand",
+                  "commandParameter": "1"
                 }
               ],
               "fontSize": 16
@@ -63,8 +63,8 @@
                 {
                   "text": "登記記録（登記簿）調査（土地・建物等）",
                   "isLink": true,
-                  "commandName": "GoToSlideCommand",
-                  "commandParameter": "4"
+                  "commandName": "GoToSection3ByIndexCommand",
+                  "commandParameter": "2"
                 }
               ],
               "fontSize": 16
@@ -77,8 +77,8 @@
                 {
                   "text": "住民票等の調査",
                   "isLink": true,
-                  "commandName": "GoToSlideCommand",
-                  "commandParameter": "6"
+                  "commandName": "GoToSection3ByIndexCommand",
+                  "commandParameter": "4"
                 }
               ],
               "fontSize": 16
@@ -149,8 +149,8 @@
                 {
                   "text": "現地踏査",
                   "isLink": true,
-                  "commandName": "GoToSlideCommand",
-                  "commandParameter": "8"
+                  "commandName": "GoToSection3ByIndexCommand",
+                  "commandParameter": "6"
                 }
               ],
               "fontSize": 16
@@ -163,8 +163,8 @@
                 {
                   "text": "建物の調査",
                   "isLink": true,
-                  "commandName": "GoToSlideCommand",
-                  "commandParameter": "13"
+                  "commandName": "GoToSection3ByIndexCommand",
+                  "commandParameter": "11"
                 }
               ],
               "fontSize": 16
@@ -177,8 +177,8 @@
                 {
                   "text": "借家、借間人の調査",
                   "isLink": true,
-                  "commandName": "GoToSlideCommand",
-                  "commandParameter": "21"
+                  "commandName": "GoToSection3ByIndexCommand",
+                  "commandParameter": "19"
                 }
               ],
               "fontSize": 16
@@ -191,8 +191,8 @@
                 {
                   "text": "境界立会",
                   "isLink": true,
-                  "commandName": "GoToSlideCommand",
-                  "commandParameter": "9"
+                  "commandName": "GoToSection3ByIndexCommand",
+                  "commandParameter": "7"
                 }
               ],
               "fontSize": 16
@@ -205,8 +205,8 @@
                 {
                   "text": "工作物の調査",
                   "isLink": true,
-                  "commandName": "GoToSlideCommand",
-                  "commandParameter": "15"
+                  "commandName": "GoToSection3ByIndexCommand",
+                  "commandParameter": "13"
                 }
               ],
               "fontSize": 16
@@ -219,8 +219,8 @@
                 {
                   "text": "営業調査",
                   "isLink": true,
-                  "commandName": "GoToSlideCommand",
-                  "commandParameter": "22"
+                  "commandName": "GoToSection3ByIndexCommand",
+                  "commandParameter": "20"
                 }
               ],
               "fontSize": 16
@@ -241,8 +241,8 @@
                 {
                   "text": "立竹木の調査",
                   "isLink": true,
-                  "commandName": "GoToSlideCommand",
-                  "commandParameter": "17"
+                  "commandName": "GoToSection3ByIndexCommand",
+                  "commandParameter": "15"
                 }
               ],
               "fontSize": 16
@@ -255,8 +255,8 @@
                 {
                   "text": "消費税等調査",
                   "isLink": true,
-                  "commandName": "GoToSlideCommand",
-                  "commandParameter": "23"
+                  "commandName": "GoToSection3ByIndexCommand",
+                  "commandParameter": "21"
                 }
               ],
               "fontSize": 16
@@ -277,8 +277,8 @@
                 {
                   "text": "墳墓の調査",
                   "isLink": true,
-                  "commandName": "GoToSlideCommand",
-                  "commandParameter": "18"
+                  "commandName": "GoToSection3ByIndexCommand",
+                  "commandParameter": "16"
                 }
               ],
               "fontSize": 16
@@ -307,8 +307,8 @@
                 {
                   "text": "動産の調査",
                   "isLink": true,
-                  "commandName": "GoToSlideCommand",
-                  "commandParameter": "19"
+                  "commandName": "GoToSection3ByIndexCommand",
+                  "commandParameter": "17"
                 }
               ],
               "fontSize": 16
@@ -329,8 +329,8 @@
                 {
                   "text": "用地測量",
                   "isLink": true,
-                  "commandName": "GoToSlideCommand",
-                  "commandParameter": "12"
+                  "commandName": "GoToSection3ByIndexCommand",
+                  "commandParameter": "10"
                 }
               ],
               "fontSize": 16
@@ -343,8 +343,8 @@
                 {
                   "text": "居住者の調査",
                   "isLink": true,
-                  "commandName": "GoToSlideCommand",
-                  "commandParameter": "20"
+                  "commandName": "GoToSection3ByIndexCommand",
+                  "commandParameter": "18"
                 }
               ],
               "fontSize": 16

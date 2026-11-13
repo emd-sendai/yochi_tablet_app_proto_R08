@@ -74,8 +74,8 @@
             {
               "text": "物件調書",
               "isLink": true,
-              "commandName": "GoToSlideCommand",
-              "commandParameter": "27"
+              "commandName": "GoToSection4ByIndexCommand",
+              "commandParameter": "3"
             },
             {
               "text": "」の移転義務有りの物件の移転をお願いします。",

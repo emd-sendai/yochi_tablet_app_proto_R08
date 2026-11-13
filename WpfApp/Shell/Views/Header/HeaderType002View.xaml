@@ -10,6 +10,14 @@
     <Grid>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <!-- 遷移前のページに戻るボタン-->
+            <Button  Style="{StaticResource IconTextButtonStyle}" IsEnabled="{Binding CanGoBackToLink}"
+                Margin="10,10,5,10" Command="{Binding GoBackToLinkCommand}">
+                <StackPanel Orientation="Vertical" >
+                    <materialDesign:PackIcon Kind="undo" Style="{StaticResource ITButtonIconStyle}"/>
+                    <TextBlock Text="リンクに戻る" Style="{StaticResource ITButtonTextStyle}" />
+                </StackPanel>
+            </Button>
         </StackPanel>
 
         <!-- ページタイトル -->
