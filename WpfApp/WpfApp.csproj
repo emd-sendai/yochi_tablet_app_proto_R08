@@ -26,6 +26,12 @@
     <Content Include="Data\ButtonSettings\othersButtons.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Data\workLandowners.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\works.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="DocumentResources\Aramashi\Aramashi\補償のあらまし.pdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -42,6 +48,69 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="DocumentResources\Aramashi\Others\002\譲渡所得税の特例あらまし.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DocumentResources\Documents\000001\Landowners\000001\Document01\02 建物図面.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DocumentResources\Documents\000001\Landowners\000001\Document01\04 工作物図面.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DocumentResources\Documents\000001\Landowners\000001\Document01\06 立竹木図面.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DocumentResources\Documents\000001\Landowners\000001\Document02\【サンプル】土地評価資料.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DocumentResources\Documents\000001\Landowners\000001\Document02\【サンプル】物件補償金算定資料.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DocumentResources\Documents\000001\Landowners\000001\Document04\【サンプル】戸籍（説明時は個人情報削除）.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DocumentResources\Documents\000001\Landowners\000001\Document04\【サンプル】相続関係図（説明時は個人情報削除）.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DocumentResources\Documents\000001\Landowners\000001\Document04\（参考）法定相続の変遷.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DocumentResources\Documents\000001\Landowners\000001\Document05\【サンプル】土地調書.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DocumentResources\Documents\000001\Landowners\000001\Document05\【サンプル】物件調書.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DocumentResources\Documents\000001\Landowners\000001\Document06\【サンプル】損失補償協議書.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DocumentResources\Documents\000001\Landowners\000001\Document07\01【サンプル】土地売買契約書.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DocumentResources\Documents\000001\Landowners\000001\Document07\02【サンプル】請求書.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DocumentResources\Documents\000001\Landowners\000001\Document07\03【サンプル】登記原因証明情報兼承諾書.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DocumentResources\Documents\000001\Landowners\000001\Document07\04【サンプル】マイナンバー提供依頼.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DocumentResources\Documents\000001\Landowners\000001\Document07\05【サンプル】基礎撤去承諾書（関東）.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DocumentResources\Documents\000001\Works\Document01\【サンプル】地図（公図）.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DocumentResources\Documents\000001\Works\Document02\【サンプル】土地登記事項証明書.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DocumentResources\Documents\000001\Works\Document02\【サンプル】建物登記事項証明書.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DocumentResources\Documents\000001\Works\Document03\【サンプル】用地平面図.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DocumentResources\Documents\000001\Works\Document05\【サンプル】地積測量図.pdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="DocumentResources\Documents\Landowners\001\Document01\02 建物図面.pdf">
@@ -332,9 +401,6 @@
     <Content Include="Data\landowners.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Data\works.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
 	  <Content Include="Data\adminSettings.json">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </Content>
@@ -398,6 +464,11 @@
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
     <PackageReference Include="MaterialDesignColors" Version="5.3.0" />
     <PackageReference Include="MaterialDesignThemes" Version="5.3.0" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="8.0.34" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Database\" />
   </ItemGroup>
 
 </Project>

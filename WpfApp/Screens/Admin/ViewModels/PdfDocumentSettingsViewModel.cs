@@ -206,10 +206,10 @@ namespace WpfApp.Screens.Admin.ViewModels
                 {
                     var button = landownerButtons[i];
                     // PDFデータフォルダのパスを取得して格納
-                    documents.Add(GetDocumentData(button.LabelText, Path.Combine(_path.LandownersPdfDire, owner.LandownerId, button.BtnId), button.BtnId));
+                    //documents.Add(GetDocumentData(button.LabelText, Path.Combine(_path.LandownersPdfDire, owner.LandownerId, button.BtnId), button.BtnId));
                 }
                 // 地権者ごとのPDFフォルダ情報をDictonaryに格納
-                LandownerDocuments.Add(owner.LandownerId, documents);
+                //LandownerDocuments.Add(owner.LandownerId, documents);
                 Debug.WriteLine($"[DEBUG] 地権者個別資料データを格納します :{owner.LandownerId}");
             }
             // 最後のPDFフォルダ情報を格納（表示用）
@@ -357,7 +357,7 @@ namespace WpfApp.Screens.Admin.ViewModels
                     Debug.WriteLine($"[ERROR] SelectedPdfDocumentがNULLです");
                     return;
                 }
-
+                /*
                 if (LandownerDocuments != null && LandownerDocuments.TryGetValue(SelectedLandowner.LandownerId, out var pdfDocuments))
                 {
                     var isUpdated = false;
@@ -387,7 +387,7 @@ namespace WpfApp.Screens.Admin.ViewModels
                     Debug.WriteLine($"[ERROR] LandownerDocumentsがNULLです");
                     return;
                 }
-
+                */
             }
             // それ以外の場合
             else

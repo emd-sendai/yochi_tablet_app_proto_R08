@@ -17,6 +17,12 @@ namespace WpfApp.Services
         public string LogsDire => Path.Combine(AppRoot, "Logs");
 
         public string AppResourcesRoot => Path.Combine(AppRoot, "AppResources");
+        // テスト用
+        //public string AppResourcesRoot => AppDomain.CurrentDomain.BaseDirectory;
+
+        public string DatabaseDire => Path.Combine(AppResourcesRoot, "Database");
+
+        public string DatabasePath => Path.Combine(DatabaseDire, "YouchiNego.db");
 
         public string DataDire => Path.Combine(AppResourcesRoot, "Data");
 
@@ -33,6 +39,10 @@ namespace WpfApp.Services
         public string SignatureDire => Path.Combine(DataDire, "Signature");
 
         public string LandownersPath => Path.Combine(DataDire, "landowners.json");
+
+        public string WorksPath => Path.Combine(DataDire, "works.json");
+
+        public string WorkLandownersPath => Path.Combine(DataDire, "workLandowners.json");
 
         public string AdminSettings => Path.Combine(DataDire, "adminSettings.json");
 
@@ -58,12 +68,24 @@ namespace WpfApp.Services
 
         public string Others005PdfDire => Path.Combine(OthersPdfDire, "005");
 
-        public string DocumentPdfRoot => Path.Combine(DocumentResourcesRoot, "Documents");
+        public string DocumentRoot => Path.Combine(DocumentResourcesRoot, "Documents");
 
-        public string LandownersPdfDire => Path.Combine(DocumentPdfRoot, "Landowners");
+        public string LandownersPdfDire => Path.Combine(DocumentRoot, "Landowners");
 
-        public string WorksPdfDire => Path.Combine(DocumentPdfRoot, "Works");
+        public string WorksPdfDire => Path.Combine(DocumentRoot, "Works");
 
+        public string GetWorksDire(int workId, string buttonName)
+        {
+            var str = workId.ToString("D6");
+            return Path.Combine(DocumentRoot, str, "Works", buttonName);
+        }
+
+        public string GetLandownersDire(int workId, int landownerId, string buttonName)
+        {
+            var str1 = workId.ToString("D6");
+            var str2 = landownerId.ToString("D6");
+            return Path.Combine(DocumentRoot, str1, "Landowners", str2, buttonName);
+        }
 
         public string MediaResourcesRoot => Path.Combine(AppResourcesRoot, "MediaResources");
 

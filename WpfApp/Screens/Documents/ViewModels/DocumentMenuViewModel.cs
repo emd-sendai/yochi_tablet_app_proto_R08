@@ -154,12 +154,12 @@ namespace WpfApp.Screens.Documents.ViewModels
         /// パスワードが正しい場合に地権者ユーザ選択画面を表示する。
         /// </summary>
         [RelayCommand]
-        private void OpenPasswordDialog()
+        private async Task OpenPasswordDialog()
         {
             // パスワードが照合済の場合
             if(isPasswordCorrect == true)
             {
-                OpenLandownerSelectWindow();
+                await OpenLandownerSelectWindow();
             }
             // パスワードが照合されていない場合
             else
@@ -180,7 +180,7 @@ namespace WpfApp.Screens.Documents.ViewModels
                     {
                         isPasswordCorrect = true;
                         // 地権者ユーザ選択画面を表示する
-                        OpenLandownerSelectWindow();
+                        await OpenLandownerSelectWindow();
                     }
                 }
             }
@@ -190,9 +190,12 @@ namespace WpfApp.Screens.Documents.ViewModels
         /// 地権者ユーザ選択画面を表示する。
         /// 選択中の地権者ユーザをSelectedLandownerに代入する。
         /// </summary>
-        private void OpenLandownerSelectWindow()
+        private async Task OpenLandownerSelectWindow()
         {
-            var lanWin = new LandownerSelectWindow
+            var vm = new LandownerSelectViewModel(App.LandownerRepository);
+            await vm.GetLandownersAsync();
+
+            var lanWin = new LandownerSelectWindow(vm)
             {
                 Owner = Application.Current.MainWindow
             };
@@ -243,9 +246,9 @@ namespace WpfApp.Screens.Documents.ViewModels
         private void OpenLandownerPdfDocument(string folderName)
         {
             if (SelectedLandowner == null) return;
-            if (string.IsNullOrWhiteSpace(SelectedLandowner.LandownerId)) return;
+            if (string.IsNullOrWhiteSpace(folderName)) return;
 
-            var folderPath = Path.Combine(_path.LandownersPdfDire, SelectedLandowner.LandownerId, folderName);
+            var folderPath = _path.GetLandownersDire(1, SelectedLandowner.LandownerId, folderName);
             var pdfList = _pdf.GetPdfList(folderPath);
 
             // PDF資料が存在しない場合

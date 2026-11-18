@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Text.Json;
 using WpfApp.Common.Models;
+using WpfApp.Common.Repositories.Interfaces;
 using WpfApp.Interfaces;
 using WpfApp.Services;
 
@@ -18,6 +19,7 @@ namespace WpfApp.Common.ViewModels
     {
         private readonly IMessageDialogService _message;
         private readonly IAppPathService _path;
+        private readonly ILandownerRepository _landownerRepos;
 
         /// <summary>
         /// 一覧表示用地権者ユーザリスト
@@ -33,12 +35,20 @@ namespace WpfApp.Common.ViewModels
 
         public event EventHandler<bool>? RequestClose;
 
-        public LandownerSelectViewModel()
+        public LandownerSelectViewModel(ILandownerRepository landownerRepository)
         {
             _message = new MessageDialogService();
             _path = new AppPathService();
+            _landownerRepos = landownerRepository;
 
-            LoadLandownersFromJson();
+            //LoadLandownersFromJson();
+
+        }
+
+        public async Task GetLandownersAsync()
+        {
+            var list = await _landownerRepos.GetAllAsync();
+            Landowners = new ObservableCollection<LandownerData>(list ?? new List<LandownerData>());
         }
 
         /// <summary>

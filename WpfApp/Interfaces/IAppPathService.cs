@@ -10,6 +10,9 @@
         string LogsDire { get; }
         string AppResourcesRoot { get; }
 
+        string DatabaseDire { get; }
+        string DatabasePath { get; }
+
         string DataDire {  get; }
         string ButtonRoot { get; }
         string AramashiButtonPath { get; }
@@ -18,6 +21,8 @@
         string LandownerButtonPath { get; }
         string SignatureDire { get; }
         string LandownersPath { get; }
+        string WorksPath { get; }
+        string WorkLandownersPath { get; }
         string AdminSettings {  get; }
 
         string DocumentResourcesRoot { get; }
@@ -28,9 +33,12 @@
         string Others003PdfDire { get; }
         string Others004PdfDire { get; }
         string Others005PdfDire { get; }
-        string DocumentPdfRoot { get; }
+        string DocumentRoot { get; }
         string LandownersPdfDire { get; }
         string WorksPdfDire { get; }
+
+        string GetWorksDire(int workId, string buttonId);
+        string GetLandownersDire(int workId, int landownerId, string buttonId);
 
         string MediaResourcesRoot { get; }
         string MediaAramashiRoot { get; }

@@ -1,42 +1,42 @@
 [
   {
-    "LandownerId": "001",
-    "LandownerName": "国土太郎"
+    "LandownerName": "用地太郎",
+    "LandownerKana": "ヨウチタロウ"
   },
   {
-    "LandownerId": "002",
-    "LandownerName": "用地次郎"
+    "LandownerName": "用地次郎",
+    "LandownerKana": "ヨウチジロウ"
   },
   {
-    "LandownerId": "003",
-    "LandownerName": "用地三郎"
+    "LandownerName": "用地三郎",
+    "LandownerKana": "ヨウチサブロウ"
   },
   {
-    "LandownerId": "004",
-    "LandownerName": "用地四郎"
+    "LandownerName": "用地四郎",
+    "LandownerKana": "ヨウチシロウ"
   },
   {
-    "LandownerId": "005",
-    "LandownerName": "用地五郎"
+    "LandownerName": "用地五郎",
+    "LandownerKana": "ヨウチゴロウ"
   },
   {
-    "LandownerId": "006",
-    "LandownerName": "用地六郎"
+    "LandownerName": "用地六郎",
+    "LandownerKana": "ヨウチロクロウ"
   },
   {
-    "LandownerId": "007",
-    "LandownerName": "用地七郎"
+    "LandownerName": "用地七郎",
+    "LandownerKana": "ヨウチナナロウ"
   },
   {
-    "LandownerId": "008",
-    "LandownerName": "用地八郎"
+    "LandownerName": "用地八郎",
+    "LandownerKana": "ヨウチハチロウ"
   },
   {
-    "LandownerId": "009",
-    "LandownerName": "用地九郎"
+    "LandownerName": "用地九郎",
+    "LandownerKana": "ヨウチクロウ"
   },
   {
-    "LandownerId": "010",
-    "LandownerName": "用地十郎"
+    "LandownerName": "用地十郎",
+    "LandownerKana": "ヨウチジュウロウ"
   }
 ]

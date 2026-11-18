@@ -9,10 +9,9 @@ namespace WpfApp.Common.Views
     /// </summary>
     public partial class LandownerSelectWindow : Window
     {
-        public LandownerSelectWindow()
+        public LandownerSelectWindow(LandownerSelectViewModel vm)
         {
             InitializeComponent();
-            var vm = new LandownerSelectViewModel();
             DataContext = vm;
 
             vm.RequestClose += Vm_RequestClose;
