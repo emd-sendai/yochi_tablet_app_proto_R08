@@ -25,7 +25,7 @@ namespace WpfApp.Common.ViewModels
         /// 一覧表示用地権者ユーザリスト
         /// </summary>
         [ObservableProperty]
-        private ObservableCollection<LandownerData>? landowners;
+        private List<LandownerData> landowners = new();
 
         /// <summary>
         /// 選択された地権者ユーザ
@@ -40,42 +40,11 @@ namespace WpfApp.Common.ViewModels
             _message = new MessageDialogService();
             _path = new AppPathService();
             _landownerRepos = landownerRepository;
-
-            //LoadLandownersFromJson();
-
         }
 
-        public async Task GetLandownersAsync()
+        public async void GetLandownersAsync()
         {
-            var list = await _landownerRepos.GetAllAsync();
-            Landowners = new ObservableCollection<LandownerData>(list ?? new List<LandownerData>());
-        }
-
-        /// <summary>
-        /// 地権者ユーザデータを読み込む。
-        /// </summary>
-        private void LoadLandownersFromJson()
-        {
-            try 
-            { 
-                string path = _path.LandownersPath;
-
-                if (!File.Exists(path))
-                {
-                    _message.ShowMessage("地権者データが見つかりません");
-                    Debug.WriteLine($"[DEBUG] 地権者データが見つかりません: {path}");
-                } 
-                    
-                string json = File.ReadAllText(path);
-                var list = JsonSerializer.Deserialize<List<LandownerData>>(json);
-
-                Landowners = new ObservableCollection<LandownerData>(list ?? new List<LandownerData>());
-            }
-            catch (Exception ex)
-            {
-                _message.ShowMessage("地権者データを読み込むことができません");
-                Debug.WriteLine($"[DEBUG] 地権者データを読み込むことができません: {ex.Message}");
-            }
+            Landowners = await _landownerRepos.GetAllAsync();
         }
 
         /// <summary>

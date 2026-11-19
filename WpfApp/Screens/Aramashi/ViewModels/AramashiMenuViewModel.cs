@@ -218,7 +218,8 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         [RelayCommand]
         private void GoToDocumentMenu()
         {
-            _nav.Navigate(new DocumentMenuViewModel(_nav, _dia));
+            var vm = new DocumentMenuViewModel(_nav, _dia, App.WorkRepository, App.WorkLandownerRepository);
+            _nav.Navigate(vm);
         }
 
         /// <summary>

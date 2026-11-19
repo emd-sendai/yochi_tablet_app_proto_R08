@@ -8,8 +8,10 @@ namespace WpfApp.Common.Repositories.Interfaces
 
         Task<int> InsertRangeAsync(List<WorkLandownerData> workLandowners);
 
-        Task RemoveLandownerAsync(int workId, int landownerId);
+        Task<int> RemoveLandownerAsync(int workId, int landownerId);
 
         Task<List<int>> GetLandownerIdsByWorkIdAsync(int workId);
+
+        Task<List<LandownerData>> GetLandownersByWorkIdAsync(int workId);
     }
 }

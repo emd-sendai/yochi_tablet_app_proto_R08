@@ -8,9 +8,9 @@ namespace WpfApp.Common.Repositories.Interfaces
 
         Task<int> InsertRangeAsync(List<WorkData> works);
 
-        Task UpdateAsync(WorkData work);
+        Task<int> UpdateAsync(WorkData work);
 
-        Task DeleteAsync(int workId);
+        Task<int> DeleteAsync(int workId);
 
         Task<WorkData?> GetByIdAsync(int workId);
 

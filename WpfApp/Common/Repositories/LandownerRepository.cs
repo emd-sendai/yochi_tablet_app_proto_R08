@@ -96,7 +96,7 @@ namespace WpfApp.Common.Repositories
             return cnt;
         }
 
-        public async Task UpdateAsync(LandownerData landowner)
+        public async Task<int> UpdateAsync(LandownerData landowner)
         {
             await using var connection = await _database.CreateConnectionAsync();
 
@@ -115,11 +115,11 @@ namespace WpfApp.Common.Repositories
             command.Parameters.AddWithValue(ParamKana, landowner.LandownerKana);
             command.Parameters.AddWithValue(ParamUpdatedAt, landowner.UpdatedAt.ToString(DataFormat, CultureInfo.InvariantCulture));
             command.Parameters.AddWithValue(ParamId, landowner.LandownerId);
-
-            await command.ExecuteNonQueryAsync();
+            var ret= await command.ExecuteNonQueryAsync();
+            return ret;
         }
 
-        public async Task DeleteAsync(int landownerId)
+        public async Task<int> DeleteAsync(int landownerId)
         {
             await using var connection = await _database.CreateConnectionAsync();
 
@@ -132,8 +132,8 @@ namespace WpfApp.Common.Repositories
 
             await using var command = new SqliteCommand(sql, connection);
             command.Parameters.AddWithValue(ParamId, landownerId);
-
-            await command.ExecuteNonQueryAsync();
+            var ret = await command.ExecuteNonQueryAsync();
+            return ret;
         }
 
         public async Task<LandownerData?> GetByIdAsync(int landownerId)
@@ -156,7 +156,6 @@ namespace WpfApp.Common.Repositories
 
             await using var command = new SqliteCommand(sql, connection);
             command.Parameters.AddWithValue(ParamId, landownerId);
-
             await using var reader = await command.ExecuteReaderAsync();
 
             if (!await reader.ReadAsync())
@@ -211,7 +210,6 @@ namespace WpfApp.Common.Repositories
                 };
                 ret.Add(landowner);
             }
-
             return ret;
         }
     }

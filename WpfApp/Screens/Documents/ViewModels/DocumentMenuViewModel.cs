@@ -6,6 +6,7 @@ using System.IO;
 using System.Text.Json;
 using System.Windows;
 using WpfApp.Common.Models;
+using WpfApp.Common.Repositories.Interfaces;
 using WpfApp.Common.ViewModels;
 using WpfApp.Common.Views;
 using WpfApp.Interfaces;
@@ -29,6 +30,8 @@ namespace WpfApp.Screens.Documents.ViewModels
         private readonly PdfDocumentService _pdf;
         private readonly IMessageDialogService _message;
         private readonly IAppPathService _path;
+        private readonly IWorkRepository _workRepos;
+        private readonly IWorkLandownerRepository _workLandownerRepos;
 
         public Type HeaderType => typeof(HeaderType001View);
         public Type SidebarType => typeof(SidebarType001View);
@@ -52,29 +55,58 @@ namespace WpfApp.Screens.Documents.ViewModels
         private ObservableCollection<ButtonConfig>? landownerButtons;
 
         /// <summary>
-        /// 選択中の地権者ユーザ。
-        /// nullの場合は未選択状態を表す。
+        /// 事業リスト
+        /// </summary>
+        [ObservableProperty]
+        private List<WorkData> works = new ();
+
+        /// <summary>
+        /// 選択中の事業（nullの場合は未選択状態を表す）
+        /// </summary>
+        [ObservableProperty]
+        private WorkData? selectedWork;
+
+        /// <summary>
+        /// 事業に紐付けられた地権者リスト
+        /// </summary>
+        [ObservableProperty]
+        private List<LandownerData> workLandowners = new ();
+
+        /// <summary>
+        /// 選択中の地権者（nullの場合は未選択状態を表す）
         /// </summary>
         [ObservableProperty]
         private LandownerData? selectedLandowner;
 
-        private bool isPasswordCorrect;
+        [ObservableProperty]
+        private bool isPasswordCorrect = false;
+
+        [ObservableProperty]
+        private bool isNotPasswordCorrect = true;
+
+        public bool IsWorkSelected => SelectedWork != null;
 
         public bool IsLandownerSelected => SelectedLandowner != null;
 
+        public bool IsNotLandownerSelected => SelectedLandowner == null;
 
-        public DocumentMenuViewModel(NavigationService navigationService, IDialogService dialogService)
+
+        public DocumentMenuViewModel(NavigationService navigationService, IDialogService dialogService,
+            IWorkRepository workRepository, IWorkLandownerRepository workLandownerRepository)
         {
             _nav = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
             _dia = dialogService ?? throw new ArgumentNullException(nameof(dialogService));
             _pdf = new PdfDocumentService();
             _message = new MessageDialogService();
             _path = new AppPathService();
+            _workRepos = workRepository;
+            _workLandownerRepos = workLandownerRepository;
 
             Title = "各種資料";
 
             WorksButtons = LoadButtonFromJson(_path.WorksButtonPath);
             LandownerButtons = LoadButtonFromJson(_path.LandownerButtonPath);
+            LoadWorks();
         }
 
         /// <summary>
@@ -116,11 +148,32 @@ namespace WpfApp.Screens.Documents.ViewModels
 
             return buttons;
         }
-
-        partial void OnSelectedLandownerChanged(LandownerData? oldValue, LandownerData? newValue)
+        private async void LoadWorks()
         {
-            // SelectedLandowner の値が変更された際に IsLandownerSelected に通知
+            Works = await _workRepos.GetAllAsync();
+        }
+
+        partial void OnSelectedWorkChanged(WorkData? oldValue, WorkData? newValue)
+        {
+            OnPropertyChanged(nameof(IsWorkSelected));
+
+            // 選択中の事業が変更され、変更後の値がnullではない場合
+            if (oldValue != newValue && newValue != null)
+            {
+                LoadWorkLandowners(newValue.WorkId);
+            }
+        }
+
+        private async void LoadWorkLandowners(int workId)
+        {
+            WorkLandowners = await _workLandownerRepos.GetLandownersByWorkIdAsync(workId);
+            SelectedLandowner = null;
+        }
+
+        partial void OnSelectedLandownerChanged(LandownerData? value)
+        {
             OnPropertyChanged(nameof(IsLandownerSelected));
+            OnPropertyChanged(nameof(IsNotLandownerSelected));
         }
 
         /// <summary>
@@ -154,62 +207,24 @@ namespace WpfApp.Screens.Documents.ViewModels
         /// パスワードが正しい場合に地権者ユーザ選択画面を表示する。
         /// </summary>
         [RelayCommand]
-        private async Task OpenPasswordDialog()
+        private void OpenPasswordDialog()
         {
-            // パスワードが照合済の場合
-            if(isPasswordCorrect == true)
+            // パスワードダイアログを生成
+            var pwVm = new PasswordDialogViewModel(App.AdminPasswordRepository);
+            var pwDialog = new PasswordDialogWindow
             {
-                await OpenLandownerSelectWindow();
-            }
-            // パスワードが照合されていない場合
-            else
-            {
-                // パスワードダイアログを生成
-                var pwVm = new PasswordDialogViewModel(App.AdminPasswordRepository);
-                var pwDialog = new PasswordDialogWindow
-                {
-                    DataContext = pwVm,
-                    Owner = Application.Current.MainWindow
-                };
-
-                // パスワード入力後にOKボタンが押下された場合
-                if (pwDialog.ShowDialog() == true)
-                {
-                    // パスワードが正しい場合
-                    if (pwVm.Result)
-                    {
-                        isPasswordCorrect = true;
-                        // 地権者ユーザ選択画面を表示する
-                        await OpenLandownerSelectWindow();
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// 地権者ユーザ選択画面を表示する。
-        /// 選択中の地権者ユーザをSelectedLandownerに代入する。
-        /// </summary>
-        private async Task OpenLandownerSelectWindow()
-        {
-            var vm = new LandownerSelectViewModel(App.LandownerRepository);
-            await vm.GetLandownersAsync();
-
-            var lanWin = new LandownerSelectWindow(vm)
-            {
+                DataContext = pwVm,
                 Owner = Application.Current.MainWindow
             };
 
-            if (lanWin.ShowDialog() == true)
+            // パスワード入力後にOKボタンが押下された場合
+            if (pwDialog.ShowDialog() == true)
             {
-                // 選択された地権者ユーザを取得して画面に反映
-                SelectedLandowner = lanWin.SelectedLandowner;
-
-                // 地権者ユーザが選択されている場合（未選択の状態でキャンセルボタン押下時以外の場合）
-                if (SelectedLandowner != null)
+                // パスワードが正しい場合
+                if (pwVm.Result)
                 {
-                    //メッセージウィンドウを表示
-                    _message.ShowMessage($"{SelectedLandowner.LandownerName} 様の資料を表示します");
+                    IsPasswordCorrect = true;
+                    IsNotPasswordCorrect = false;
                 }
             }
         }

@@ -8,9 +8,9 @@ namespace WpfApp.Common.Repositories.Interfaces
 
         Task<int> InsertRangeAsync(List<LandownerData> landowners);
 
-        Task UpdateAsync(LandownerData landowner);
+        Task<int> UpdateAsync(LandownerData landowner);
 
-        Task DeleteAsync(int landownerId);
+        Task<int> DeleteAsync(int landownerId);
 
         Task<LandownerData?> GetByIdAsync(int landownerId);
 

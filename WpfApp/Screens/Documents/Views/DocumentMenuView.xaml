@@ -24,33 +24,35 @@
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
 
-            <!-- 事業名 -->
-            <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <TextBlock Text="国道○号○○事業" FontSize="26" FontWeight="Bold" Margin="10,5,10,5" 
-                               VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <!-- 事業コンボボックス -->
+            <StackPanel Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <ComboBox ItemsSource="{Binding Works}" DisplayMemberPath="WorkName" SelectedItem="{Binding SelectedWork}"
+                    FontSize="22" Margin="10,5,10,5" Padding="8" Width="500" Background="White"
+                    VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
+                    materialDesign:HintAssist.Hint="事業を選択してください"/>
             </StackPanel>
 
             <!-- 事業資料ボタンエリア（上段） -->
             <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" 
-                            Margin="0,5,0,10" Cursor="Hand">
+                            Margin="0,5,0,10" >
                 <!-- 公図 -->
                 <Button FontSize="20" Margin="20,0,15,0" Style="{StaticResource DocumentWorksButtonStyle}"
-                            Command="{Binding OpenWorksPdfDocumentCommand}" CommandParameter="Document01">
+                            Command="{Binding OpenWorksPdfDocumentCommand}" CommandParameter="Document01" IsEnabled="{Binding IsWorkSelected}">
                     <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding WorksButtons[0].BtnText}"/>
                 </Button>
                 <!-- 登記簿 -->
                 <Button FontSize="20"  Margin="0,0,15,0" Style="{StaticResource DocumentWorksButtonStyle}"
-                            Command="{Binding OpenWorksPdfDocumentCommand}" CommandParameter="Document02">
+                            Command="{Binding OpenWorksPdfDocumentCommand}" CommandParameter="Document02" IsEnabled="{Binding IsWorkSelected}">
                     <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding WorksButtons[1].BtnText}"/>
                 </Button>
                 <!-- 用地平面図 -->
                 <Button FontSize="20"  Margin="0,0,15,0" Style="{StaticResource DocumentWorksButtonStyle}"
-                            Command="{Binding OpenWorksPdfDocumentCommand}" CommandParameter="Document03">
+                            Command="{Binding OpenWorksPdfDocumentCommand}" CommandParameter="Document03" IsEnabled="{Binding IsWorkSelected}">
                     <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding WorksButtons[2].BtnText}"/>
                 </Button>
                 <!-- 面積計算書 -->
                 <Button FontSize="20"  Margin="0,0,20,0" Style="{StaticResource DocumentWorksButtonStyle}"
-                            Command="{Binding OpenWorksPdfDocumentCommand}" CommandParameter="Document04">
+                            Command="{Binding OpenWorksPdfDocumentCommand}" CommandParameter="Document04" IsEnabled="{Binding IsWorkSelected}">
                     <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding WorksButtons[3].BtnText}"/>
                 </Button>
             </StackPanel>
@@ -58,22 +60,22 @@
             <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,10">
                 <!-- 地積測量図 -->
                 <Button FontSize="20"  Margin="20,0,15,0" Style="{StaticResource DocumentWorksButtonStyle}"
-                            Command="{Binding OpenWorksPdfDocumentCommand}" CommandParameter="Document05">
+                            Command="{Binding OpenWorksPdfDocumentCommand}" CommandParameter="Document05" IsEnabled="{Binding IsWorkSelected}">
                     <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding WorksButtons[4].BtnText}"/>
                 </Button>
                 <!-- 登記簿 -->
                 <Button FontSize="20"  Margin="0,0,15,0" Style="{StaticResource DocumentWorksButtonStyle}"
-                            Command="{Binding OpenWorksPdfDocumentCommand}" CommandParameter="Document06">
+                            Command="{Binding OpenWorksPdfDocumentCommand}" CommandParameter="Document06" IsEnabled="{Binding IsWorkSelected}">
                     <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding WorksButtons[5].BtnText}"/>
                 </Button>
                 <!-- 事業計画図 -->
                 <Button FontSize="20"  Margin="0,0,15,0" Style="{StaticResource DocumentWorksButtonStyle}"
-                            Command="{Binding OpenWorksPdfDocumentCommand}" CommandParameter="Document07">
+                            Command="{Binding OpenWorksPdfDocumentCommand}" CommandParameter="Document07" IsEnabled="{Binding IsWorkSelected}">
                     <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding WorksButtons[6].BtnText}"/>
                 </Button>
                 <!-- その他 -->
                 <Button FontSize="20"  Margin="0,0,20,0" Style="{StaticResource DocumentWorksButtonStyle}"
-                            Command="{Binding OpenWorksPdfDocumentCommand}" CommandParameter="Document08">
+                            Command="{Binding OpenWorksPdfDocumentCommand}" CommandParameter="Document08" IsEnabled="{Binding IsWorkSelected}">
                     <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding WorksButtons[7].BtnText}"/>
                 </Button>
             </StackPanel>
@@ -88,63 +90,82 @@
             </Grid.RowDefinitions>
 
             <!-- 地権者選択ボタン -->
-            <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <StackPanel Grid.Row="0" Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <Button Style="{StaticResource CommonButtonStyle}" Margin="0,0,0,10" 
-                            Width="500" Height="60" HorizontalAlignment="Center" VerticalAlignment="Center"
-                            Command="{Binding OpenPasswordDialogCommand}">
+                        Width="500" Height="60" HorizontalAlignment="Center" VerticalAlignment="Center"
+                        Command="{Binding OpenPasswordDialogCommand}"
+                        Visibility="{Binding IsNotPasswordCorrect, Converter={StaticResource BooleanToVisibilityConverter}}"
+                        IsEnabled="{Binding IsWorkSelected}">
                     <TextBlock Style="{StaticResource WrapTextBlockStyle}" >
                                 <Run Text="地権者個別資料（パスワードあり）" FontSize="20" />
                                 <LineBreak />
                                 <Run Text="※配置図・調査表、算定書、調書、損失補償協議書、契約書等" FontSize="15"/>
                     </TextBlock>
                 </Button>
+                <StackPanel Orientation="Horizontal"
+                            Visibility="{Binding IsPasswordCorrect, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <ComboBox ItemsSource="{Binding WorkLandowners}" DisplayMemberPath="LandownerName" 
+                              SelectedItem="{Binding SelectedLandowner}"
+                              FontSize="22" Margin="37,5,10,5" Padding="8" Width="500" Background="White"
+                              VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
+                              materialDesign:HintAssist.Hint="地権者を選択してください"/>
+                    <TextBlock Text="様" FontSize="22" VerticalAlignment="Bottom" Margin="5,8"/>
+                </StackPanel>
             </StackPanel>
 
             <!-- 地権者個別資料ボタンエリア（上段） -->
             <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,5,0,10" 
-                            Visibility="{Binding IsLandownerSelected, Converter={StaticResource BooleanToHiddenVisibilityConverter}}" >
+                        Visibility="{Binding IsPasswordCorrect, Converter={StaticResource BooleanToHiddenVisibilityConverter}}" >
                 <!-- 配置図　調査表 -->
                 <Button FontSize="20" Margin="20,0,15,0" Style="{StaticResource DocumentLandownerButtonStyle}"
-                            Command="{Binding OpenLandownerPdfDocumentCommand}" CommandParameter="Document01">
+                        Command="{Binding OpenLandownerPdfDocumentCommand}" CommandParameter="Document01" 
+                        IsEnabled="{Binding IsLandownerSelected}">
                     <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding LandownerButtons[0].BtnText}"/>
                 </Button>
                 <!-- 算定書 -->
                 <Button FontSize="20" Margin="0,0,15,0" Style="{StaticResource DocumentLandownerButtonStyle}"
-                            Command="{Binding OpenLandownerPdfDocumentCommand}" CommandParameter="Document02">
+                        Command="{Binding OpenLandownerPdfDocumentCommand}" CommandParameter="Document02"
+                        IsEnabled="{Binding IsLandownerSelected}">
                     <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding LandownerButtons[1].BtnText}"/>
                 </Button>
                 <!-- 写真（個別） -->
                 <Button FontSize="20" Margin="0,0,15,0" Style="{StaticResource DocumentLandownerButtonStyle}"
-                            Command="{Binding OpenLandownerPdfDocumentCommand}" CommandParameter="Document03">
+                        Command="{Binding OpenLandownerPdfDocumentCommand}" CommandParameter="Document03"
+                        IsEnabled="{Binding IsLandownerSelected}">
                     <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding LandownerButtons[2].BtnText}"/>
                 </Button>
                 <!-- 相続関係図（説明用） -->
                 <Button FontSize="20" Margin="0,0,20,0" Style="{StaticResource DocumentLandownerButtonStyle}"
-                            Command="{Binding OpenLandownerPdfDocumentCommand}" CommandParameter="Document04">
+                        Command="{Binding OpenLandownerPdfDocumentCommand}" CommandParameter="Document04"
+                        IsEnabled="{Binding IsLandownerSelected}">
                     <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding LandownerButtons[3].BtnText}"/>
                 </Button>
             </StackPanel>
             <!-- 地権者個別資料ボタンエリア（下段） -->
             <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,0,0,0"
-                            Visibility="{Binding IsLandownerSelected, Converter={StaticResource BooleanToHiddenVisibilityConverter}}" >
+                        Visibility="{Binding IsPasswordCorrect, Converter={StaticResource BooleanToHiddenVisibilityConverter}}" >
                 <!-- 調書 -->
                 <Button FontSize="20" Margin="20,0,15,0" Style="{StaticResource DocumentLandownerButtonStyle}"
-                            Command="{Binding OpenLandownerPdfDocumentCommand}" CommandParameter="Document05">
+                        Command="{Binding OpenLandownerPdfDocumentCommand}" CommandParameter="Document05"
+                        IsEnabled="{Binding IsLandownerSelected}">
                     <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding LandownerButtons[4].BtnText}"/>
                 </Button>
                 <!-- 補償金提示書 -->
                 <Button FontSize="20" Margin="0,0,15,0" Style="{StaticResource DocumentLandownerButtonStyle}"
-                            Command="{Binding OpenLandownerPdfDocumentCommand}" CommandParameter="Document06">
+                        Command="{Binding OpenLandownerPdfDocumentCommand}" CommandParameter="Document06"
+                        IsEnabled="{Binding IsLandownerSelected}">
                     <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding LandownerButtons[5].BtnText}"/>
                 </Button>
                 <!-- 契約書 -->
                 <Button FontSize="20" Margin="0,0,15,0" Style="{StaticResource DocumentLandownerButtonStyle}"
-                            Command="{Binding OpenLandownerPdfDocumentCommand}" CommandParameter="Document07">
+                        Command="{Binding OpenLandownerPdfDocumentCommand}" CommandParameter="Document07"
+                        IsEnabled="{Binding IsLandownerSelected}">
                     <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding LandownerButtons[6].BtnText}"/>
                 </Button>
                 <!-- その他 -->
                 <Button FontSize="20" Margin="0,0,20,0" Style="{StaticResource DocumentLandownerButtonStyle}"
-                            Command="{Binding OpenLandownerPdfDocumentCommand}" CommandParameter="Document08">
+                        Command="{Binding OpenLandownerPdfDocumentCommand}" CommandParameter="Document08"
+                        IsEnabled="{Binding IsLandownerSelected}">
                     <TextBlock Style="{StaticResource WrapTextBlockStyle}" Text="{Binding LandownerButtons[7].BtnText}"/>
                 </Button>
             </StackPanel>

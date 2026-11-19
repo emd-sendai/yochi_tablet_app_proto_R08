@@ -89,7 +89,7 @@ namespace WpfApp.Common.Repositories
             return cnt;
         }
 
-        public async Task UpdateAsync(WorkData work)
+        public async Task<int> UpdateAsync(WorkData work)
         {
             await using var connection = await _database.CreateConnectionAsync();
 
@@ -106,11 +106,11 @@ namespace WpfApp.Common.Repositories
             command.Parameters.AddWithValue(ParamName, work.WorkName);
             command.Parameters.AddWithValue(ParamUpdatedAt, work.UpdatedAt.ToString(DataFormat, CultureInfo.InvariantCulture));
             command.Parameters.AddWithValue(ParamId, work.WorkId);
-
-            await command.ExecuteNonQueryAsync();
+            var ret = await command.ExecuteNonQueryAsync();
+            return ret;
         }
 
-        public async Task DeleteAsync(int workId)
+        public async Task<int> DeleteAsync(int workId)
         {
             await using var connection = await _database.CreateConnectionAsync();
 
@@ -123,8 +123,8 @@ namespace WpfApp.Common.Repositories
 
             await using var command = new SqliteCommand(sql, connection);
             command.Parameters.AddWithValue(ParamId, workId);
-
-            await command.ExecuteNonQueryAsync();
+            var ret = await command.ExecuteNonQueryAsync();
+            return ret;
         }
 
         public async Task<WorkData?> GetByIdAsync(int workId) 
@@ -146,7 +146,6 @@ namespace WpfApp.Common.Repositories
 
             await using var command = new SqliteCommand(sql, connection);
             command.Parameters.AddWithValue(ParamId, workId);
-
             await using var reader = await command.ExecuteReaderAsync();
 
             if (!await reader.ReadAsync())

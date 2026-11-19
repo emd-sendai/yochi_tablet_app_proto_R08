@@ -40,6 +40,9 @@ namespace WpfApp.Common.Repositories
         private const string ColumnWorkId = "WorkId";
         private const string ColumnCreatedAt = "CreatedAt";
         private const string ColumnUpdatedAt = "UpdatedAt";
+        private const string ColumnLandownerGuid = "LandownerGuid";
+        private const string ColumnLandownerName = "LandownerName";
+        private const string ColumnLandownerKana = "LandownerKana";
         // DateTime用データフォーマット
         private const string DataFormat = "yyyy-MM-dd HH:mm:ss.fff";
 
@@ -61,7 +64,6 @@ namespace WpfApp.Common.Repositories
             command.Parameters.AddWithValue(ParamLandownerId, workLandowner.LandownerId);
             command.Parameters.AddWithValue(ParamCreatedAt, workLandowner.CreatedAt.ToString(DataFormat, CultureInfo.InvariantCulture));
             command.Parameters.AddWithValue(ParamUpdatedAt, workLandowner.UpdatedAt.ToString(DataFormat, CultureInfo.InvariantCulture));
-
             var ret = await command.ExecuteNonQueryAsync();
             return ret;
         }
@@ -92,11 +94,10 @@ namespace WpfApp.Common.Repositories
                 cnt += await command.ExecuteNonQueryAsync();
             }
             await transaction.CommitAsync();
-
             return cnt;
         }
 
-        public async Task RemoveLandownerAsync(int workId, int landownerId)
+        public async Task<int> RemoveLandownerAsync(int workId, int landownerId)
         {
             await using var connection = await _database.CreateConnectionAsync();
 
@@ -111,8 +112,8 @@ namespace WpfApp.Common.Repositories
             await using var command = new SqliteCommand(sql, connection);
             command.Parameters.AddWithValue(ParamWorkId, workId);
             command.Parameters.AddWithValue(ParamLandownerId, landownerId);
-
-            await command.ExecuteNonQueryAsync();
+            var ret = await command.ExecuteNonQueryAsync();
+            return ret;
         }
 
         public async Task<List<int>> GetLandownerIdsByWorkIdAsync(int workId)
@@ -133,15 +134,56 @@ namespace WpfApp.Common.Repositories
 
             await using var command = new SqliteCommand(sql, connection);
             command.Parameters.AddWithValue(ParamWorkId, workId);
-
             await using var reader = await command.ExecuteReaderAsync();
 
             while (await reader.ReadAsync())
             {
                 landownerIds.Add(reader.GetInt32(reader.GetOrdinal(ColumnLandownerId)));
             }
-
             return landownerIds;
+        }
+
+        public async Task<List<LandownerData>> GetLandownersByWorkIdAsync(int workId)
+        {
+            var ret = new List<LandownerData>();
+
+            await using var connection = await _database.CreateConnectionAsync();
+
+            string sql = """
+                SELECT 
+                    L.LandownerId,
+                    L.LandownerGuid,
+                    L.LandownerName,
+                    L.LandownerKana,
+                    L.CreatedAt,
+                    L.UpdatedAt
+                FROM
+                    WorkLandowners AS WL
+                INNER JOIN Landowners AS L
+                    ON WL.LandownerId = L.LandownerId
+                WHERE
+                    WL.WorkId = $WorkId
+                ORDER BY L.LandownerId;
+                """;
+
+            await using var command = new SqliteCommand(sql, connection);
+            command.Parameters.AddWithValue(ParamWorkId, workId);
+            await using var reader = await command.ExecuteReaderAsync();
+
+            while (await reader.ReadAsync())
+            {
+                var landowner = new LandownerData()
+                {
+                    LandownerId = reader.GetInt32(reader.GetOrdinal(ColumnLandownerId)),
+                    LandownerGuid = reader.GetString(reader.GetOrdinal(ColumnLandownerGuid)),
+                    LandownerName = reader.GetString(reader.GetOrdinal(ColumnLandownerName)),
+                    LandownerKana = reader.GetString(reader.GetOrdinal(ColumnLandownerKana)),
+                    CreatedAt = DateTime.Parse(reader.GetString(reader.GetOrdinal(ColumnCreatedAt))),
+                    UpdatedAt = DateTime.Parse(reader.GetString(reader.GetOrdinal(ColumnUpdatedAt)))
+                };
+                ret.Add(landowner);
+            }
+            return ret;
         }
     }
 }
