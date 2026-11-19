@@ -165,7 +165,7 @@ namespace WpfApp.Screens.Documents.ViewModels
             else
             {
                 // パスワードダイアログを生成
-                var pwVm = new PasswordDialogViewModel();
+                var pwVm = new PasswordDialogViewModel(App.AdminPasswordRepository);
                 var pwDialog = new PasswordDialogWindow
                 {
                     DataContext = pwVm,

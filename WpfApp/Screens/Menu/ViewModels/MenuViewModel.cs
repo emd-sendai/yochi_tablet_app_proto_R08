@@ -144,7 +144,7 @@ namespace WpfApp.Screens.Menu.ViewModels
             if (!isPasswordCorrect)
             {
                 // パスワードダイアログを生成
-                var pwVm = new PasswordDialogViewModel();
+                var pwVm = new PasswordDialogViewModel(App.AdminPasswordRepository);
                 var pwDialog = new PasswordDialogWindow
                 {
                     DataContext = pwVm,

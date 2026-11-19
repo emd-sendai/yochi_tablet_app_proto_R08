@@ -10,7 +10,7 @@ namespace WpfApp.Services
 {
     public class DatabaseInitializeService
     {
-        private const string CreateWorksTableSql = """
+        private const string CreateWorksTable = """
             CREATE TABLE IF NOT EXISTS Works
             (
                 WorkId INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -21,7 +21,7 @@ namespace WpfApp.Services
             );
             """;
 
-        private const string CreateLandownersTableSql = """
+        private const string CreateLandownersTable = """
             CREATE TABLE IF NOT EXISTS Landowners
             (
                 LandownerId INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -33,7 +33,7 @@ namespace WpfApp.Services
             );
             """;
 
-        private const string CreateWorkLandownersTableSql = """
+        private const string CreateWorkLandownersTable = """
             CREATE TABLE IF NOT EXISTS WorkLandowners
             (
                 WorkLandownerGuid TEXT NOT NULL UNIQUE,
@@ -54,20 +54,38 @@ namespace WpfApp.Services
             );
             """;
 
+        private const string CreateAdminPasswordTable = """
+            CREATE TABLE IF NOT EXISTS AdminPassword
+            (
+                Id INTEGER PRIMARY KEY CHECK (Id = 1),
+                PasswordHash TEXT NOT NULL,
+                Salt TEXT NOT NULL,
+                Iterations INTEGER NOT NULL,
+                CreatedAt TEXT NOT NULL,
+                UpdatedAt TEXT NOT NULL
+            );
+            """;
+
         private readonly IAppPathService _path;
+        private readonly PasswordService _password;
         private readonly DatabaseService _database;
         private readonly IWorkRepository _workRepos;
         private readonly ILandownerRepository _landownerRepos;
         private readonly IWorkLandownerRepository _workLandownerRepos;
+        private readonly IAdminPasswordRepository _adminPasswordRepos;
 
         public DatabaseInitializeService(DatabaseService databaseService, IWorkRepository workRepository,
-            ILandownerRepository landownerRepository, IWorkLandownerRepository workLandownerRepository)
+            ILandownerRepository landownerRepository, IWorkLandownerRepository workLandownerRepository, 
+            IAdminPasswordRepository adminPasswordRepository)
         {
-            _path = new AppPathService();
             _database = databaseService;
             _workRepos = workRepository;
             _landownerRepos = landownerRepository;
             _workLandownerRepos = workLandownerRepository;
+            _adminPasswordRepos = adminPasswordRepository;
+            _path = new AppPathService();
+            _password = new PasswordService();
+
         }
 
         public async Task InitializeAsync()
@@ -76,6 +94,7 @@ namespace WpfApp.Services
 
             await using var connection = await _database.CreateConnectionAsync();
 
+            // テーブル作成処理実行前に存在を確認する
             bool worksTableExists = await TableExistsAsync(connection, "Works");
             Debug.WriteLine($"[DEBUG] worksTableExists : {worksTableExists}");
             bool landownersTableExists = await TableExistsAsync(connection, "Landowners");
@@ -84,9 +103,10 @@ namespace WpfApp.Services
             Debug.WriteLine($"[DEBUG] worklandownersTableExits : {worklandownersTableExits}");
 
             // テーブルを作成
-            await CreateTables(connection, CreateWorksTableSql);
-            await CreateTables(connection, CreateLandownersTableSql);
-            await CreateTables(connection, CreateWorkLandownersTableSql);
+            await CreateTables(connection, CreateWorksTable);
+            await CreateTables(connection, CreateLandownersTable);
+            await CreateTables(connection, CreateWorkLandownersTable);
+            await CreateTables(connection, CreateAdminPasswordTable);
 
             int worksCnt = 0;
             int landownersCnt = 0;
@@ -111,6 +131,14 @@ namespace WpfApp.Services
                     hasEnoughData = true;
                 }
                 await InsertWorkLandownersSampleDataAsync(hasEnoughData);
+            }
+
+            bool adminPasswordDataExits = await _adminPasswordRepos.ExistsAsync();
+            Debug.WriteLine($"[DEBUG] adminPasswordDataExits : {adminPasswordDataExits}");
+            // テーブルに管理パスワードデータが存在しない場合
+            if (!adminPasswordDataExits)
+            {
+                await InsertAdminPasswordInitialDataAsync();
             }
         }
 
@@ -295,6 +323,18 @@ namespace WpfApp.Services
                 Debug.WriteLine($"[ERROR] 事業と地権者の紐付けのサンプルデータを読み込むことができません: {ex}");
                 return ret;
             }
+        }
+
+        private async Task InsertAdminPasswordInitialDataAsync()
+        {
+            // 初期管理パスワードデータを作成
+            PasswordData password = _password.HashPassword("0000");
+            DateTime now = DateTime.Now;
+            password.CreatedAt = now;
+            password.UpdatedAt = now;
+
+            int cnt = await _adminPasswordRepos.InsertAsync(password);
+            Debug.WriteLine($"[DEBUG] 初期管理者パスワードデータを {cnt} 件作成しました");
         }
     }
 }

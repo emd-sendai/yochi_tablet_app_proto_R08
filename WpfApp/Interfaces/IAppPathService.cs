@@ -23,7 +23,6 @@
         string LandownersPath { get; }
         string WorksPath { get; }
         string WorkLandownersPath { get; }
-        string AdminSettings {  get; }
 
         string DocumentResourcesRoot { get; }
         string AramashiPdfRoot { get; }

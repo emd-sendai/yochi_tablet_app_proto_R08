@@ -76,7 +76,7 @@ namespace WpfApp.Screens.Admin.Views
             }
         }
 
-        private void ChangePasswordButton_Click(object sender, RoutedEventArgs e)
+        private async void ChangePasswordButton_Click(object sender, RoutedEventArgs e)
         {
             if (DataContext is AdminPasswordSettingsViewModel vm)
             {
@@ -84,7 +84,7 @@ namespace WpfApp.Screens.Admin.Views
                 string newPass = NewPwBox.Password;
                 string confirmPass = ConfirmPwBox.Password;
 
-                vm.ChangePassword(currentPass, newPass, confirmPass);
+                await vm.ChangePassword(currentPass, newPass, confirmPass);
             }
         }
 

@@ -1,8 +1,4 @@
-﻿using System.Diagnostics;
-using System.IO;
-using System.Security.Cryptography;
-using System.Text;
-using System.Text.Json;
+﻿using System.Security.Cryptography;
 using WpfApp.Common.Models;
 using WpfApp.Interfaces;
 
@@ -22,6 +18,7 @@ namespace WpfApp.Services
         public PasswordService()
         {
             _path = new AppPathService();
+
         }
 
         /// <summary>
@@ -43,7 +40,7 @@ namespace WpfApp.Services
         }
 
         /// <summary>
-        /// パスワード(string)を、ハッシュ化して保存されたパスワード(PasswordData)と同一か照合する。
+        /// パスワード(string)を、ハッシュ化して保存された管理者パスワード(PasswordData)と同一か照合する。
         /// </summary>
         /// <param name="password"></param>
         /// <param name="saveData"></param>
@@ -55,34 +52,6 @@ namespace WpfApp.Services
             byte[] actualHash = Rfc2898DeriveBytes.Pbkdf2(password, salt, saveData.Iterations, HashAlgorithmName.SHA256, HashSize);
 
             return CryptographicOperations.FixedTimeEquals(expectedHash, actualHash);
-        }
-
-        /// <summary>
-        /// ハッシュ化して保存された管理者パスワードをPasswordDataで取得する。
-        /// </summary>
-        /// <returns>管理者パスワードデータ</returns>
-        public PasswordData? LoasPasswordFromJson()
-        {
-            PasswordData? ret = null;
-            string path = _path.AdminSettings;
-
-            try
-            {
-                if (!File.Exists(path))
-                {
-                    Debug.WriteLine($"[ERROR] パスワードデータが見つかりません: {path}");
-                    return ret;
-                }
-
-                string json = File.ReadAllText(path);
-                ret = JsonSerializer.Deserialize<PasswordData>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-                return ret;
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"[ERROR] パスワードデータを読み込むことができません: {ex}");
-                return null;
-            }
         }
     }
 }

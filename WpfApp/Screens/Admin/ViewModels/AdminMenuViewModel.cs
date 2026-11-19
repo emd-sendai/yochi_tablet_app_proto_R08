@@ -91,7 +91,7 @@ namespace WpfApp.Screens.Admin.ViewModels
         [RelayCommand]
         private void GoToAdminPasswordSettings()
         {
-            var vm = new AdminPasswordSettingsViewModel(_nav, _dia);
+            var vm = new AdminPasswordSettingsViewModel(_nav, _dia, App.AdminPasswordRepository);
             _nav.Navigate(vm);
             vm.IsExpander1Open = IsExpander1Open;
             vm.IsExpander2Open = IsExpander2Open;

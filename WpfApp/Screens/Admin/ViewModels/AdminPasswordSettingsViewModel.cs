@@ -1,14 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
-using WpfApp.Common.Models;
+using WpfApp.Common.Repositories.Interfaces;
 using WpfApp.Interfaces;
 using WpfApp.Screens.Menu.ViewModels;
 using WpfApp.Services;
@@ -25,6 +17,7 @@ namespace WpfApp.Screens.Admin.ViewModels
         private readonly PdfDocumentService _pdf;
         private readonly IMessageDialogService _message;
         private readonly IAppPathService _path;
+        private readonly IAdminPasswordRepository _adminPasswordRepos;
         private readonly PasswordService _password;
 
         public Type HeaderType => typeof(HeaderType001View);
@@ -68,19 +61,21 @@ namespace WpfApp.Screens.Admin.ViewModels
         [ObservableProperty]
         private bool isConfirmPassError = false;
 
-        public AdminPasswordSettingsViewModel(NavigationService navigationService, IDialogService dialogService)
+        public AdminPasswordSettingsViewModel(NavigationService navigationService, IDialogService dialogService,
+            IAdminPasswordRepository adminPasswordRepository)
         {
             _nav = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
             _dia = dialogService ?? throw new ArgumentNullException(nameof(dialogService));
             _pdf = new PdfDocumentService();
             _message = new MessageDialogService();
             _path = new AppPathService();
+            _adminPasswordRepos = adminPasswordRepository;
             _password = new PasswordService();
 
             Title = "管理者パスワード";
         }
 
-        public void ChangePassword(string currentPass, string newPass, string confirmPass)
+        public async Task ChangePassword(string currentPass, string newPass, string confirmPass)
         {
             // エラーメッセージの初期化
             ClearErrorMessage();
@@ -113,7 +108,7 @@ namespace WpfApp.Screens.Admin.ViewModels
             }
 
             // 現在のパスワードを取得
-            var passData = _password.LoasPasswordFromJson();
+            var passData = await _adminPasswordRepos.GetAsync();
             if (passData == null) {
                 _message.ShowMessage("現在のパスワードを照合できません。");
                 return;
@@ -143,7 +138,7 @@ namespace WpfApp.Screens.Admin.ViewModels
             // パスワード更新処理
             if (_message.ShowConfirm("管理者パスワードを変更します。\nよろしいですか？"))
             {
-                if (SavePasswordToJson(newPass))
+                if (await UpdatePassword(newPass))
                 {
                     _message.ShowMessage("管理者パスワードを変更しました。");
                     ClearAllPassRequested?.Invoke();
@@ -219,39 +214,11 @@ namespace WpfApp.Screens.Admin.ViewModels
             return ret;
         }
 
-        private bool SavePasswordToJson(string newPass)
+        private async Task<bool> UpdatePassword(string newPass)
         {
-            bool ret = false;
-
-            string path = _path.AdminSettings;
-
-            try
-            {
-                var newPassData = _password.HashPassword(newPass);
-                if (newPassData == null)
-                {
-                    Debug.WriteLine($"[ERROR] パスワード文字列をハッシュ化できません: {newPass}");
-                    return ret;
-                }
-
-                if (!File.Exists(path))
-                {
-                    Debug.WriteLine($"[ERROR] パスワードデータが見つかりません: {path}");
-                    return ret;
-                }
-
-                var json = JsonSerializer.Serialize(newPassData, new JsonSerializerOptions { WriteIndented = true });
-                File.WriteAllText(path, json);
-                Debug.WriteLine($"[DEBUG] パスワードデータを更新しました: {path}");
-                ret = true;
-
-                return ret;
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"[ERROR] パスワードデータを更新できません: {ex}");
-                return ret;
-            }
+            var newPassData = _password.HashPassword(newPass);
+            var ret = await _adminPasswordRepos.UpdateAsync(newPassData);
+            return ret == 1;
         }
 
         /// <summary>
