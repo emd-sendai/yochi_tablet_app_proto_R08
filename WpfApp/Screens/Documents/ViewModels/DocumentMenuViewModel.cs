@@ -230,21 +230,23 @@ namespace WpfApp.Screens.Documents.ViewModels
         }
 
         /// <summary>
-        /// 事業全般資料の各項目に対応するPDF資料選択画面を表示する。
+        /// 事業全般資料の各項目に対応する資料選択画面を表示する。
         /// </summary>
         /// <param name="folderName"></param>
         [RelayCommand]
-        private void OpenWorksPdfDocument(string folderName)
+        private void OpenWorksDocument(string folderName)
         {
-            var folderPath = Path.Combine(_path.WorksPdfDire, folderName);
+            if (SelectedWork == null) return;
+            if (string.IsNullOrWhiteSpace(folderName)) return;
+            var folderPath = _path.GetWorksDire(SelectedWork.WorkId, folderName);
             var pdfList = _pdf.GetPdfList(folderPath);
 
             // PDF資料が存在しない場合
             if (pdfList.Count <= 0)
             {
-                Debug.WriteLine($"[ERROR] PDFファイルが存在しません {folderPath}");
+                Debug.WriteLine($"[DEBUG] ファイルが存在しません {folderPath}");
                 //メッセージウィンドウを表示
-                _message.ShowMessage("PDFファイルが存在しません");
+                _message.ShowMessage("ファイルが存在しません");
             }
             else
             {
@@ -254,24 +256,25 @@ namespace WpfApp.Screens.Documents.ViewModels
         }
 
         /// <summary>
-        /// 地権者個別資料の各項目に対応するPDF資料選択画面を表示する。
+        /// 地権者個別資料の各項目に対応する資料選択画面を表示する。
         /// </summary>
         /// <param name="folderName"></param>
         [RelayCommand]
-        private void OpenLandownerPdfDocument(string folderName)
+        private void OpenLandownerDocument(string folderName)
         {
+            if (SelectedWork == null) return;
             if (SelectedLandowner == null) return;
             if (string.IsNullOrWhiteSpace(folderName)) return;
 
-            var folderPath = _path.GetLandownersDire(1, SelectedLandowner.LandownerId, folderName);
+            var folderPath = _path.GetLandownersDire(SelectedWork.WorkId, SelectedLandowner.LandownerId, folderName);
             var pdfList = _pdf.GetPdfList(folderPath);
 
             // PDF資料が存在しない場合
             if (pdfList.Count <= 0)
             {
-                Debug.WriteLine($"[ERROR] PDFファイルが存在しません {folderPath}");
+                Debug.WriteLine($"[DEBUG] ファイルが存在しません {folderPath}");
                 //メッセージウィンドウを表示
-                _message.ShowMessage("PDFファイルが存在しません");
+                _message.ShowMessage("ファイルが存在しません");
             }
             else
             {
