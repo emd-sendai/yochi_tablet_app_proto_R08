@@ -3,10 +3,49 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:WpfApp.Screens.Admin.Views"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="800">
-    <Grid>
-            
+    
+    <Grid VerticalAlignment="Top" Margin="20" Width="700">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <ComboBox Grid.Row="0" ItemsSource="{Binding Works}" DisplayMemberPath="DisplayLabel" 
+                  SelectedItem="{Binding SelectedWork, Mode=TwoWay}"
+                    FontSize="22" Padding="8" Background="White"
+                    materialDesign:HintAssist.Hint="事業を選択してください"/>
+
+        <Grid Grid.Row="1" Margin="8,15,8,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="地権者一覧" FontSize="20" VerticalAlignment="Center"/>
+            <Button Grid.Column="1" Content="新規追加"  FontSize="18" Width="120" Height="45" Margin="30,0,0,0"
+                    Style="{StaticResource CommonButtonStyle}" 
+                    Command="{Binding InsertWorkLandownerCommand}"/>
+        </Grid>
+
+        <ListBox Grid.Row="2" Height="300" Margin="0,20" FontSize="18" 
+                 ItemsSource="{Binding WorkLandowners}" DisplayMemberPath="DisplayLabel" 
+                 SelectedItem="{Binding SelectedLandowner, Mode=TwoWay}"
+                 Style="{StaticResource BorderedListBoxStyle}" 
+                 ScrollViewer.CanContentScroll="False"
+                 ScrollViewer.PanningMode="VerticalOnly"
+                 ScrollViewer.PanningDeceleration="0.001"
+                 ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Margin="20">
+            <Button Content="削除"  FontSize="20" Width="130" Height="50"  Margin="0,0,0,0"
+                    Style="{StaticResource CommonButtonStyle}" 
+                    IsEnabled="{Binding SelectedLandowner, Converter={StaticResource NullToBoolConverter}}"
+                    Command="{Binding DeleteWorkLandownerCommand}"/>
+        </StackPanel>
     </Grid>
 </UserControl>

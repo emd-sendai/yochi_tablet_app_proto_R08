@@ -97,7 +97,7 @@ namespace WpfApp.Common.Repositories
             return cnt;
         }
 
-        public async Task<int> RemoveLandownerAsync(int workId, int landownerId)
+        public async Task<int> DeleteAsync(int workId, int landownerId)
         {
             await using var connection = await _database.CreateConnectionAsync();
 
@@ -114,33 +114,6 @@ namespace WpfApp.Common.Repositories
             command.Parameters.AddWithValue(ParamLandownerId, landownerId);
             var ret = await command.ExecuteNonQueryAsync();
             return ret;
-        }
-
-        public async Task<List<int>> GetLandownerIdsByWorkIdAsync(int workId)
-        {
-            var landownerIds = new List<int>();
-
-            await using var connection = await _database.CreateConnectionAsync();
-
-            string sql = """
-                SELECT 
-                    LandownerId
-                FROM
-                    WorkLandowners
-                WHERE
-                    WorkId = $WorkId
-                ORDER BY LandownerId;
-                """;
-
-            await using var command = new SqliteCommand(sql, connection);
-            command.Parameters.AddWithValue(ParamWorkId, workId);
-            await using var reader = await command.ExecuteReaderAsync();
-
-            while (await reader.ReadAsync())
-            {
-                landownerIds.Add(reader.GetInt32(reader.GetOrdinal(ColumnLandownerId)));
-            }
-            return landownerIds;
         }
 
         public async Task<List<WorkLandownerData>> GetWorkLandownersByLandownerId(int landownerId)
@@ -196,6 +169,54 @@ namespace WpfApp.Common.Repositories
                     ON WL.LandownerId = L.LandownerId
                 WHERE
                     WL.WorkId = $WorkId
+                ORDER BY L.LandownerId;
+                """;
+
+            await using var command = new SqliteCommand(sql, connection);
+            command.Parameters.AddWithValue(ParamWorkId, workId);
+            await using var reader = await command.ExecuteReaderAsync();
+
+            while (await reader.ReadAsync())
+            {
+                var landowner = new LandownerData()
+                {
+                    LandownerId = reader.GetInt32(reader.GetOrdinal(ColumnLandownerId)),
+                    LandownerGuid = reader.GetString(reader.GetOrdinal(ColumnLandownerGuid)),
+                    LandownerName = reader.GetString(reader.GetOrdinal(ColumnLandownerName)),
+                    LandownerKana = reader.GetString(reader.GetOrdinal(ColumnLandownerKana)),
+                    CreatedAt = DateTime.Parse(reader.GetString(reader.GetOrdinal(ColumnCreatedAt))),
+                    UpdatedAt = DateTime.Parse(reader.GetString(reader.GetOrdinal(ColumnUpdatedAt)))
+                };
+                ret.Add(landowner);
+            }
+            return ret;
+        }
+
+        public async Task<List<LandownerData>> GetNotRelatedLandownersByWorkIdAsync(int workId)
+        {
+            var ret = new List<LandownerData>();
+
+            await using var connection = await _database.CreateConnectionAsync();
+
+            string sql = """
+                SELECT 
+                    L.LandownerId,
+                    L.LandownerGuid,
+                    L.LandownerName,
+                    L.LandownerKana,
+                    L.CreatedAt,
+                    L.UpdatedAt
+                FROM
+                    Landowners AS L
+                WHERE NOT EXISTS
+                (
+                    SELECT 1
+                    FROM 
+                        WorkLandowners AS WL
+                    WHERE 
+                        WL.WorkId = $WorkId
+                        AND WL.LandownerId = L.LandownerId
+                )
                 ORDER BY L.LandownerId;
                 """;
 

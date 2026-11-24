@@ -1,7 +1,11 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
+using WpfApp.Common.Models;
 using WpfApp.Common.Repositories.Interfaces;
 using WpfApp.Interfaces;
+using WpfApp.Screens.Admin.Views;
 using WpfApp.Screens.Menu.ViewModels;
 using WpfApp.Services;
 using WpfApp.Shell.Models;
@@ -15,7 +19,9 @@ namespace WpfApp.Screens.Admin.ViewModels
         private readonly NavigationService _nav;
         private readonly IDialogService _dia;
         private readonly IMessageDialogService _message;
-        private readonly IWorkLandownerRepository _worklandownerRepos;
+        private readonly IAppPathService _path;
+        private readonly IWorkRepository _workRepos;
+        private readonly IWorkLandownerRepository _workLandownerRepos;
 
         public Type HeaderType => typeof(HeaderType001View);
         public Type SidebarType => typeof(SidebarType003View);
@@ -35,15 +41,163 @@ namespace WpfApp.Screens.Admin.ViewModels
         [ObservableProperty]
         private int selectedMode = 5;
 
+        /// <summary>
+        /// 事業一覧
+        /// </summary>
+        [ObservableProperty]
+        private ObservableCollection<WorkData> works = new();
+
+        /// <summary>
+        /// 選択中の事業（nullの場合は未選択状態を表す）
+        /// </summary>
+        [ObservableProperty]
+        private WorkData? selectedWork;
+
+        /// <summary>
+        /// 事業に紐付けられた地権者一覧
+        /// </summary>
+        [ObservableProperty]
+        private ObservableCollection<LandownerData> workLandowners = new();
+
+        /// <summary>
+        /// 選択中の地権者（nullの場合は未選択状態を表す）
+        /// </summary>
+        [ObservableProperty]
+        private LandownerData? selectedLandowner;
+
         public WorkLandownerManagementViewModel(NavigationService navigationService, IDialogService dialogService,
-            IWorkLandownerRepository workLandownerRepository)
+            IWorkRepository workRepository, IWorkLandownerRepository workLandownerRepos)
         {
             _nav = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
             _dia = dialogService ?? throw new ArgumentNullException(nameof(dialogService));
-            _worklandownerRepos = workLandownerRepository ?? throw new ArgumentNullException(nameof(workLandownerRepository));
+            _workRepos = workRepository ?? throw new ArgumentNullException(nameof(workRepository));
+            _workLandownerRepos = workLandownerRepos ?? throw new ArgumentNullException(nameof(workLandownerRepos));
             _message = new MessageDialogService();
+            _path = new AppPathService();
 
             Title = "事業実績管理";
+            LoadWorks();
+        }
+
+        private async void LoadWorks()
+        {
+            var list = await _workRepos.GetAllAsync();
+            Works = new ObservableCollection<WorkData>(list);
+        }
+
+        private async void LoadWorkLandowners(int workId)
+        {
+            var list = await _workLandownerRepos.GetLandownersByWorkIdAsync(workId);
+            WorkLandowners = new ObservableCollection<LandownerData>(list);
+        }
+
+        partial void OnSelectedWorkChanged(WorkData? oldValue, WorkData? newValue)
+        {
+            // 選択中の事業が変更され、変更後の値がnullではない場合
+            if (oldValue != newValue && newValue != null)
+            {
+                LoadWorkLandowners(newValue.WorkId);
+                SelectedLandowner = null;
+            }
+        }
+
+        [RelayCommand]
+        private async Task InsertWorkLandowner()
+        {
+            if (SelectedWork == null) { return; }
+
+            var workId = SelectedWork.WorkId;
+
+            // 地権者選択画面を開く
+            var vm = new WorkLandownerSelectViewModel(_workLandownerRepos, workId);
+            var window = new WorkLandownerSelectWindow(vm);
+
+            if (window.ShowDialog() == true)
+            {
+                if (vm.SelectedLandowner == null)
+                {
+                    _message.ShowMessage("地権者を選択してください。");
+                    return;
+                }
+                // 登録用のモデルを作成する
+                var landowner = vm.SelectedLandowner;
+                var now = DateTime.Now;
+                var workLandowner = new WorkLandownerData()
+                {
+                    WorkLandownerGuid = Guid.NewGuid().ToString(),
+                    WorkId = workId,
+                    LandownerId = landowner.LandownerId,
+                    CreatedAt = now,
+                    UpdatedAt = now
+                };
+
+                try
+                {
+                    // レコードを登録する
+                    await _workLandownerRepos.InsertAsync(workLandowner);
+                    // 一覧を更新する
+                    WorkLandowners.Add(landowner);
+                    var sortedList = WorkLandowners.OrderBy(x => x.LandownerId).ToList();
+                    WorkLandowners.Clear();
+                    foreach (var item in sortedList)
+                    {
+                        WorkLandowners.Add(item);
+                    }
+                    SelectedLandowner = landowner;
+                    _message.ShowMessage("地権者を追加しました。");
+                }
+                catch (Exception ex)
+                {
+                    _message.ShowMessage("地権者情報を追加できませんでした。");
+                    Debug.WriteLine($"[ERROR] 地権者を追加できませんでした。LandownerId：{landowner.LandownerId}");
+                    Debug.WriteLine(ex);
+                    throw;
+                }
+            }
+        }
+
+        [RelayCommand]
+        private async Task DeleteWorkLandowner()
+        {
+            if (SelectedWork == null) { return; }
+            if (SelectedLandowner == null) { return; }
+
+            var landownerId = SelectedLandowner.LandownerId;
+
+            if (_message.ShowConfirm("地権者個別資料も削除されます。\nよろしいですか？"))
+            {
+                // 削除対象となるディレクトリを取得する
+                var path = _path.GetLandownerDire(SelectedWork.FormattedWorkId, SelectedLandowner.FormattedLandownerId);
+
+                try
+                {
+                    // ディレクトリごと削除する（サービス作成後追加）
+                }
+                catch (Exception ex)
+                {
+                    _message.ShowMessage("地権者個別資料を削除できませんでした。");
+                    Debug.WriteLine($"[ERROR] 地権者個別資料を削除できませんでした。 : {path}");
+                    Debug.WriteLine(ex);
+                    throw;
+                }
+
+                try
+                {
+                    // レコードを削除する
+                    await _workLandownerRepos.DeleteAsync(SelectedWork.WorkId, SelectedLandowner.LandownerId);
+                    // 一覧を更新する
+                    WorkLandowners.Remove(SelectedLandowner);
+                    SelectedLandowner = null;
+                    _message.ShowMessage("地権者を削除しました。");
+                }
+                catch (Exception ex)
+                {
+                    _message.ShowMessage("地権者を削除できませんでした。");
+                    Debug.WriteLine($"[ERROR] 地権者を削除できませんでした。LandownerId：{landownerId}");
+                    Debug.WriteLine(ex);
+                    throw;
+                }
+            }
         }
 
         /// <summary>

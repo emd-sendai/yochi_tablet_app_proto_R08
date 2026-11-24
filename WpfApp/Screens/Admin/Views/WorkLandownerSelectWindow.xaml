@@ -1,0 +1,50 @@
+﻿<Window x:Class="WpfApp.Screens.Admin.Views.WorkLandownerSelectWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:WpfApp.Screens.Admin.Views"
+        mc:Ignorable="d"
+        Height="500" Width="800"
+        WindowStartupLocation="CenterScreen"
+        Background="{DynamicResource MaterialDesignPaper}">
+    
+    <Grid VerticalAlignment="Top" Margin="20" Width="700" Height="400">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- タイトル -->
+        <TextBlock Grid.Row="0" Text="事業実績管理 - 地権者新規追加" Foreground="#3F51B5" FontSize="23" FontWeight="Bold"
+            HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        
+        <!-- メッセージ -->
+        <StackPanel Grid.Row="1">
+            <TextBlock Text="地権者を選択してください" FontSize="18" />
+        </StackPanel>
+
+        <!-- 地権者一覧 -->
+        <ListBox Grid.Row="2" Margin="0,10" FontSize="18" 
+                 ItemsSource="{Binding Landowners}" DisplayMemberPath="DisplayLabel" 
+                 SelectedItem="{Binding SelectedLandowner, Mode=TwoWay}"
+                 Style="{StaticResource BorderedListBoxStyle}" 
+                 ScrollViewer.CanContentScroll="False"
+                 ScrollViewer.PanningMode="VerticalOnly"
+                 ScrollViewer.PanningDeceleration="0.001"
+                 ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+
+        <!-- ボタンエリア -->
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Margin="20">
+            <Button Content="追加"  FontSize="20" Width="130" Height="50"  Margin="0,0,0,0"
+                    Style="{StaticResource CommonButtonStyle}" 
+                    IsEnabled="{Binding SelectedLandowner, Converter={StaticResource NullToBoolConverter}}"
+                    Command="{Binding ConfirmCommand}"/>
+            <Button Content="キャンセル"  FontSize="20" Width="130" Height="50"  Margin="50,0,0,0"
+                    Style="{StaticResource CommonButtonStyle}" Command="{Binding CancelCommand}"/>
+        </StackPanel>
+    </Grid>
+</Window>
