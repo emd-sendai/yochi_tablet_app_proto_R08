@@ -36,9 +36,10 @@
         string LandownersPdfDire { get; }
         string WorksPdfDire { get; }
 
-        string GetWorksAllDire(string formattedWorkId);
-        string GetWorksDire(string formattedWorkId, string buttonFolderName);
-        string GetLandownersDire(string formattedWorkId, string formattedLandownerId, string buttonFolderName);
+        string GetWorkRootDire(string formattedWorkId);
+        string GetWorkDocumentDire(string formattedWorkId, string buttonFolderName);
+        string GetLandownerDire(string formattedWorkId, string formattedLandownerId);
+        string GetLandownerDocumentDire(string formattedWorkId, string formattedLandownerId, string buttonFolderName);
 
         string MediaResourcesRoot { get; }
         string MediaAramashiRoot { get; }

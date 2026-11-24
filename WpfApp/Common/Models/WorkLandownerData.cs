@@ -1,30 +1,49 @@
-﻿namespace WpfApp.Common.Models
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+
+namespace WpfApp.Common.Models
 {
-    public class WorkLandownerData
+    public partial class WorkLandownerData : ObservableObject
     {
         /// <summary>
         /// 事業と地権者の紐付け識別用Guid
         /// </summary>
-        public string WorkLandownerGuid { get; set; } = string.Empty;
+        [ObservableProperty]
+        private string workLandownerGuid = string.Empty;
 
         /// <summary>
         /// 事業ID
         /// </summary>
-        public int WorkId { get; set; }
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(FormattedWorkId))]
+        private int workId;
+
+        /// <summary>
+        /// 事業ID（6桁の文字列）
+        /// </summary>
+        public string FormattedWorkId => WorkId.ToString("D6");
 
         /// <summary>
         /// 地権者ID
         /// </summary>
-        public int LandownerId { get; set; }
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(FormattedLandownerId))]
+        private int landownerId;
+
+        /// <summary>
+        /// 地権者ID（6桁の文字列）
+        /// </summary>
+        public string FormattedLandownerId => LandownerId.ToString("D6");
 
         /// <summary>
         /// 作成日時
         /// </summary>
-        public DateTime CreatedAt { get; set; }
+        [ObservableProperty]
+        private DateTime createdAt;
 
         /// <summary>
         /// 更新日時
         /// </summary>
-        public DateTime UpdatedAt { get; set; }
+        [ObservableProperty]
+        private DateTime updatedAt;
     }
 }

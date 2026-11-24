@@ -52,19 +52,40 @@ namespace WpfApp.Common.Repositories
             _database = database;
         }
 
-        public async Task<int> InsertAsync(LandownerData landowner)
+        public async Task<int> InsertAndGetLandownerIdAsync(LandownerData landowner)
         {
             await using var connection = await _database.CreateConnectionAsync();
 
-            string sql = InsertSql;
+            string sql = """
+                INSERT INTO Landowners
+                (
+                    LandownerGuid,
+                    LandownerName,
+                    LandownerKana,
+                    CreatedAt,
+                    UpdatedAt
+                )
+                VALUES
+                (
+                    $LandownerGuid,
+                    $LandownerName,
+                    $LandownerKana,
+                    $CreatedAt,
+                    $UpdatedAt
+                );
+
+                SELECT last_insert_rowid();
+                """;
+
             await using var command = new SqliteCommand(sql, connection);
             command.Parameters.AddWithValue(ParamGuid, landowner.LandownerGuid);
             command.Parameters.AddWithValue(ParamName, landowner.LandownerName);
             command.Parameters.AddWithValue(ParamKana, landowner.LandownerKana);
             command.Parameters.AddWithValue(ParamCreatedAt, landowner.CreatedAt.ToString(DataFormat, CultureInfo.InvariantCulture));
             command.Parameters.AddWithValue(ParamUpdatedAt, landowner.UpdatedAt.ToString(DataFormat, CultureInfo.InvariantCulture));
-            var ret = await command.ExecuteNonQueryAsync();
-            return ret;
+            var ret = await command.ExecuteScalarAsync();
+            int insertedLandownerId = Convert.ToInt32(ret);
+            return insertedLandownerId;
         }
 
         public async Task<int> InsertRangeAsync(List<LandownerData> landowners)
@@ -72,7 +93,25 @@ namespace WpfApp.Common.Repositories
             await using var connection = await _database.CreateConnectionAsync();
             using var transaction = connection.BeginTransaction();
 
-            string sql = InsertSql;
+            string sql = """
+                INSERT INTO Landowners
+                (
+                    LandownerGuid,
+                    LandownerName,
+                    LandownerKana,
+                    CreatedAt,
+                    UpdatedAt
+                )
+                VALUES
+                (
+                    $LandownerGuid,
+                    $LandownerName,
+                    $LandownerKana,
+                    $CreatedAt,
+                    $UpdatedAt
+                );
+                """;
+
             await using var command = new SqliteCommand(sql, connection, transaction);
             // パラメータのみを設定
             command.Parameters.AddWithValue(ParamGuid, "");

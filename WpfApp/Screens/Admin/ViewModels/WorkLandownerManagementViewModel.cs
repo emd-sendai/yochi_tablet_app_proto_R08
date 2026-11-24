@@ -103,7 +103,7 @@ namespace WpfApp.Screens.Admin.ViewModels
         [RelayCommand]
         private void GoToLandownerManagement()
         {
-            var vm = new LandownerManagementViewModel(_nav, _dia, App.LandownerRepository);
+            var vm = new LandownerManagementViewModel(_nav, _dia, App.LandownerRepository, App.WorkLandownerRepository);
             _nav.Navigate(vm);
             vm.IsExpander1Open = IsExpander1Open;
             vm.IsExpander2Open = IsExpander2Open;

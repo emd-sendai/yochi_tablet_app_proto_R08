@@ -12,6 +12,8 @@ namespace WpfApp.Common.Repositories.Interfaces
 
         Task<List<int>> GetLandownerIdsByWorkIdAsync(int workId);
 
+        Task<List<WorkLandownerData>> GetWorkLandownersByLandownerId(int landownerId);
+
         Task<List<LandownerData>> GetLandownersByWorkIdAsync(int workId);
     }
 }

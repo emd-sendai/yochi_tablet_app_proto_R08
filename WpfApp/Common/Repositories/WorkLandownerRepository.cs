@@ -143,6 +143,39 @@ namespace WpfApp.Common.Repositories
             return landownerIds;
         }
 
+        public async Task<List<WorkLandownerData>> GetWorkLandownersByLandownerId(int landownerId)
+        {
+            var ret = new List<WorkLandownerData>();
+
+            await using var connection = await _database.CreateConnectionAsync();
+
+            string sql = """
+                SELECT 
+                    WorkId,
+                    LandownerId
+                FROM
+                    WorkLandowners
+                WHERE
+                    LandownerId = $LandownerId
+                ORDER BY WorkId;
+                """;
+
+            await using var command = new SqliteCommand( sql, connection);
+            command.Parameters.AddWithValue(ParamLandownerId, landownerId);
+            await using var reader = await command.ExecuteReaderAsync();
+
+            while (await reader.ReadAsync())
+            {
+                var workLandowner = new WorkLandownerData()
+                {
+                    WorkId = reader.GetInt32(reader.GetOrdinal(ColumnWorkId)),
+                    LandownerId = reader.GetInt32(reader.GetOrdinal(ColumnLandownerId))
+                };
+                ret.Add(workLandowner);
+            }
+            return ret;
+        }
+
         public async Task<List<LandownerData>> GetLandownersByWorkIdAsync(int workId)
         {
             var ret = new List<LandownerData>();

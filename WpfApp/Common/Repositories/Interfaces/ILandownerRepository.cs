@@ -4,7 +4,7 @@ namespace WpfApp.Common.Repositories.Interfaces
 {
     public interface ILandownerRepository
     {
-        Task<int> InsertAsync(LandownerData landowner);
+        Task<int> InsertAndGetLandownerIdAsync(LandownerData landowner);
 
         Task<int> InsertRangeAsync(List<LandownerData> landowners);
 

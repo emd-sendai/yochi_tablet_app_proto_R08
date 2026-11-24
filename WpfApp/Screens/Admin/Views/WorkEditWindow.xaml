@@ -60,13 +60,9 @@
         <!-- ボタンエリア -->
         <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Margin="20">
             <Button Content="登録"  FontSize="20" Width="130" Height="50"  Margin="0,0,0,0"
-                    Style="{StaticResource CommonButtonStyle}" 
-                    IsEnabled="{Binding SelectedWork, Converter={StaticResource NullToBoolConverter}}"
-                    Command="{Binding ConfirmCommand}"/>
+                    Style="{StaticResource CommonButtonStyle}" Command="{Binding ConfirmCommand}"/>
             <Button Content="キャンセル"  FontSize="20" Width="130" Height="50"  Margin="50,0,0,0"
-                    Style="{StaticResource CommonButtonStyle}" 
-                    IsEnabled="{Binding SelectedWork, Converter={StaticResource NullToBoolConverter}}"
-                    Command="{Binding CancelCommand}"/>
+                    Style="{StaticResource CommonButtonStyle}" Command="{Binding CancelCommand}"/>
         </StackPanel>
     </Grid>
 </Window>

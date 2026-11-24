@@ -74,7 +74,7 @@ namespace WpfApp.Screens.Admin.ViewModels
         [RelayCommand]
         private async Task InsertWork()
         {
-            // 新規作成用のモデルを作成する
+            // 新規登録用のモデルを作成する
             var work = new WorkData();
 
             // 新規登録画面を開く
@@ -83,7 +83,7 @@ namespace WpfApp.Screens.Admin.ViewModels
 
             if (window.ShowDialog() == true)
             {
-                // 新規追加画面から入力データを取得
+                // 新規登録画面から入力データを取得する
                 var editedWork = vm.Work;
 
                 if (editedWork == null)
@@ -102,7 +102,7 @@ namespace WpfApp.Screens.Admin.ViewModels
                 {
                     // レコードを登録する
                     var workId = await _workRepos.InsertAndGetWorkIdAsync(editedWork);
-                    // 自動採番されたWorkIdを設定する
+                    // 自動採番された事業IDを設定する
                     editedWork.WorkId = workId;
                     // 一覧を更新する
                     Works.Add(editedWork);
@@ -140,7 +140,7 @@ namespace WpfApp.Screens.Admin.ViewModels
 
             if (window.ShowDialog() == true)
             {
-                // 編集画面から入力データを取得
+                // 編集画面から入力データを取得する
                 var editedWork = vm.Work;
 
                 if (editedWork == null)
@@ -148,6 +148,7 @@ namespace WpfApp.Screens.Admin.ViewModels
                     _message.ShowMessage("事業情報を更新できません。");
                     return;
                 }
+
                 // 更新日時を設定する
                 editedWork.UpdatedAt = DateTime.Now;
 
@@ -191,8 +192,9 @@ namespace WpfApp.Screens.Admin.ViewModels
                 try
                 {
                     // 紐付けられたディレクトリを取得
-                    var workAllDire = _path.GetWorksAllDire(SelectedWork.FormattedWorkId);
-                    // ディレクトリごと削除
+                    var workAllDire = _path.GetWorkRootDire(SelectedWork.FormattedWorkId);
+
+                    // ディレクトリごと削除する（サービス作成後追加）
 
                 }
                 catch (Exception ex)
@@ -207,7 +209,7 @@ namespace WpfApp.Screens.Admin.ViewModels
                 {
                     // レコードを削除する（事業と地権者の紐付けレコードは自動削除される）
                     await _workRepos.DeleteAsync(workId);
-                    // 事業一覧を更新する
+                    // 一覧を更新する
                     Works.Remove(SelectedWork);
                     SelectedWork = null;
                     _message.ShowMessage("事業情報を削除しました。");
@@ -274,7 +276,7 @@ namespace WpfApp.Screens.Admin.ViewModels
         [RelayCommand]
         private void GoToLandownerManagement()
         {
-            var vm = new LandownerManagementViewModel(_nav, _dia, App.LandownerRepository);
+            var vm = new LandownerManagementViewModel(_nav, _dia, App.LandownerRepository, App.WorkLandownerRepository);
             _nav.Navigate(vm);
             vm.IsExpander1Open = IsExpander1Open;
             vm.IsExpander2Open = IsExpander2Open;

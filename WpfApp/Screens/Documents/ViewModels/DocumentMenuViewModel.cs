@@ -238,7 +238,7 @@ namespace WpfApp.Screens.Documents.ViewModels
         {
             if (SelectedWork == null) return;
             if (string.IsNullOrWhiteSpace(folderName)) return;
-            var folderPath = _path.GetWorksDire(SelectedWork.FormattedWorkId, folderName);
+            var folderPath = _path.GetWorkDocumentDire(SelectedWork.FormattedWorkId, folderName);
             var pdfList = _pdf.GetPdfList(folderPath);
 
             // PDF資料が存在しない場合
@@ -266,7 +266,7 @@ namespace WpfApp.Screens.Documents.ViewModels
             if (SelectedLandowner == null) return;
             if (string.IsNullOrWhiteSpace(folderName)) return;
 
-            var folderPath = _path.GetLandownersDire(SelectedWork.FormattedWorkId, SelectedLandowner.FormattedLandownerId, folderName);
+            var folderPath = _path.GetLandownerDocumentDire(SelectedWork.FormattedWorkId, SelectedLandowner.FormattedLandownerId, folderName);
             var pdfList = _pdf.GetPdfList(folderPath);
 
             // PDF資料が存在しない場合

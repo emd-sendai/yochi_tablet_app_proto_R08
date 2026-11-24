@@ -11,6 +11,8 @@ namespace WpfApp.Common.Models
         /// 地権者ID
         /// </summary>
         [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(FormattedLandownerId))]
+        [NotifyPropertyChangedFor(nameof(DisplayLabel))]
         private int landownerId;
 
         /// <summary>
@@ -25,15 +27,17 @@ namespace WpfApp.Common.Models
         private string landownerGuid = string.Empty;
 
         /// <summary>
-        /// 地権者氏名（漢字）
+        /// 地権者氏名
         /// </summary>
         [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(DisplayLabel))]
         private string landownerName = string.Empty;
 
         /// <summary>
-        /// 地権者氏名（かな）
+        /// 地権者氏名（フリガナ）
         /// </summary>
         [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(DisplayLabel))]
         private string landownerKana = string.Empty;
 
         /// <summary>
@@ -49,8 +53,8 @@ namespace WpfApp.Common.Models
         private DateTime updatedAt;
 
         /// <summary>
-        /// 一覧表示用（地権者ID（6桁の文字列）：地権者氏名（漢字））
+        /// 一覧表示用（地権者ID（6桁の文字列）：地権者氏名（フリガナ））
         /// </summary>
-        public string DisplayLabel => LandownerId.ToString("D6") + "：" + LandownerName;
+        public string DisplayLabel => LandownerId.ToString("D6") + "：" + LandownerName + $"（{LandownerKana}）";
     }
 }

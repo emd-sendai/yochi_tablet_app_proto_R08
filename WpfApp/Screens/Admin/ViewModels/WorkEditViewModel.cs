@@ -1,13 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WpfApp.Common.Models;
-using WpfApp.Interfaces;
-using WpfApp.Services;
 
 namespace WpfApp.Screens.Admin.ViewModels
 {
@@ -51,7 +44,7 @@ namespace WpfApp.Screens.Admin.ViewModels
             else
             {
                 Title = "事業情報編集";
-                WorkId = work.FormattedWorkId;
+                WorkId = Work.FormattedWorkId;
             }
         }
 
@@ -70,7 +63,7 @@ namespace WpfApp.Screens.Admin.ViewModels
             {
                 IsWorkNameError = true;
                 FocusWorkNameRequested?.Invoke();
-                ErrorMessage = "事業名を入力してください。";
+                ErrorMessage = "未入力の項目があります。";
                 return;
             }
 

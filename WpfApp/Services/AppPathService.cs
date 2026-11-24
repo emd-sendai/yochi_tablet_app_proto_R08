@@ -72,17 +72,22 @@ namespace WpfApp.Services
 
         public string WorksPdfDire => Path.Combine(DocumentRoot, "Works");
 
-        public string GetWorksAllDire(string formattedWorkId)
+        public string GetWorkRootDire(string formattedWorkId)
         {
             return Path.Combine(DocumentRoot, formattedWorkId);
         }
 
-        public string GetWorksDire(string formattedWorkId, string buttonFolderName)
+        public string GetWorkDocumentDire(string formattedWorkId, string buttonFolderName)
         {
             return Path.Combine(DocumentRoot, formattedWorkId, "Works", buttonFolderName);
         }
 
-        public string GetLandownersDire(string formattedWorkId, string formattedLandownerId, string buttonFolderName)
+        public string GetLandownerDire(string formattedWorkId, string formattedLandownerId)
+        {
+            return Path.Combine(DocumentRoot, formattedWorkId, "Landowners", formattedLandownerId);
+        }
+
+        public string GetLandownerDocumentDire(string formattedWorkId, string formattedLandownerId, string buttonFolderName)
         {
             return Path.Combine(DocumentRoot, formattedWorkId, "Landowners", formattedLandownerId, buttonFolderName);
         }
