@@ -4,7 +4,7 @@ namespace WpfApp.Common.Repositories.Interfaces
 {
     public interface IWorkRepository
     {
-        Task<int> InsertAsync(WorkData work);
+        Task<int> InsertAndGetWorkIdAsync(WorkData work);
 
         Task<int> InsertRangeAsync(List<WorkData> works);
 

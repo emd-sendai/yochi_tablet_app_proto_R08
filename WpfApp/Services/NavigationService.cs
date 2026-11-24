@@ -149,8 +149,14 @@ namespace WpfApp.Services
                 // 表示設定（動画）
                 VideoFileSettingsViewModel => new VideoFileSettingsView(),
                 VideoChapterSettingsViewModel => new VideoChapterSettingsView(),
-                //　管理資料
+                // 管理資料
                 AdminDocumentViewModel => new AdminDocumentView(),
+                // 事業情報管理
+                WorkManagementViewModel => new WorkManagementView(),
+                // 地権者情報管理
+                LandownerManagementViewModel => new LandownerManagementView(),
+                // 事業実績管理
+                WorkLandownerManagementViewModel => new WorkLandownerManagementView(),
                 // 管理者パスワード
                 AdminPasswordSettingsViewModel => new AdminPasswordSettingsView(),
 

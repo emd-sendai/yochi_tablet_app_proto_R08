@@ -10,7 +10,7 @@
         mc:Ignorable="d"
         Title=""
         WindowStartupLocation="CenterScreen"
-        MinHeight="600" MinWidth="800"
+        MinHeight="670" MinWidth="800"
         WindowState="Maximized"
         Background="{DynamicResource MaterialDesignPaper}">
 

@@ -8,24 +8,6 @@ namespace WpfApp.Common.Repositories
 {
     public class WorkRepository : IWorkRepository
     {
-        // INSERT文
-        private const string InsertSql = """
-            INSERT INTO Works
-            (
-                WorkGuid,
-                WorkName,
-                CreatedAt,
-                UpdatedAt
-            )
-            VALUES
-            (
-                $WorkGuid,
-                $WorkName,
-                $CreatedAt,
-                $UpdatedAt
-            );
-            """;
-
         // SQLパラメータ名
         private const string ParamId = "$WorkId";
         private const string ParamGuid = "$WorkGuid";
@@ -48,18 +30,36 @@ namespace WpfApp.Common.Repositories
             _database = database;
         }
 
-        public async Task<int> InsertAsync(WorkData work)
+        public async Task<int> InsertAndGetWorkIdAsync(WorkData work)
         {
             await using var connection = await _database.CreateConnectionAsync();
 
-            string sql = InsertSql;
+            string sql = """
+                INSERT INTO Works
+                (
+                    WorkGuid,
+                    WorkName,
+                    CreatedAt,
+                    UpdatedAt
+                )
+                VALUES
+                (
+                    $WorkGuid,
+                    $WorkName,
+                    $CreatedAt,
+                    $UpdatedAt
+                );
+
+                SELECT last_insert_rowid();
+                """;
             await using var command = new SqliteCommand(sql, connection);
             command.Parameters.AddWithValue(ParamGuid, work.WorkGuid);
             command.Parameters.AddWithValue(ParamName, work.WorkName);
             command.Parameters.AddWithValue(ParamCreatedAt, work.CreatedAt.ToString(DataFormat, CultureInfo.InvariantCulture));
             command.Parameters.AddWithValue(ParamUpdatedAt, work.UpdatedAt.ToString(DataFormat, CultureInfo.InvariantCulture));
-            var ret = await command.ExecuteNonQueryAsync();
-            return ret;
+            var ret = await command.ExecuteScalarAsync();
+            int insertedWorkId = Convert.ToInt32(ret);
+            return insertedWorkId;
         }
 
         public async Task<int> InsertRangeAsync(List<WorkData> works)
@@ -67,7 +67,23 @@ namespace WpfApp.Common.Repositories
             await using var connection = await _database.CreateConnectionAsync();
             using var transaction = connection.BeginTransaction();
 
-            string sql = InsertSql;
+            string sql = """
+                INSERT INTO Works
+                (
+                    WorkGuid,
+                    WorkName,
+                    CreatedAt,
+                    UpdatedAt
+                )
+                VALUES
+                (
+                    $WorkGuid,
+                    $WorkName,
+                    $CreatedAt,
+                    $UpdatedAt
+                );
+                """;
+
             await using var command = new SqliteCommand(sql, connection, transaction);
             // パラメータのみを設定
             command.Parameters.AddWithValue(ParamGuid, "");

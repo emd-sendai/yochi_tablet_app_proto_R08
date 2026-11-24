@@ -1,33 +1,54 @@
-﻿namespace WpfApp.Common.Models
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+
+namespace WpfApp.Common.Models
 {
     /// <summary>
     /// 事業データを保持するクラス。
     /// </summary>
-    public class WorkData
+    public partial class WorkData : ObservableObject
     {
         /// <summary>
         /// 事業ID
         /// </summary>
-        public int WorkId { get; set; }
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(FormattedWorkId))]
+        [NotifyPropertyChangedFor(nameof(DisplayLabel))]
+        private int workId;
+
+        /// <summary>
+        /// 事業ID（6桁の文字列）
+        /// </summary>
+        public string FormattedWorkId => WorkId.ToString("D6");
 
         /// <summary>
         /// 事業識別用Guid
         /// </summary>
-        public string WorkGuid { get; set; } = string.Empty;
+        [ObservableProperty]
+        private string workGuid = string.Empty;
 
         /// <summary>
         /// 事業名
         /// </summary>
-        public string WorkName { get; set; } = string.Empty;
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(DisplayLabel))]
+        private string workName = string.Empty;
 
         /// <summary>
         /// 作成日時
         /// </summary>
-        public DateTime CreatedAt { get; set; }
+        [ObservableProperty]
+        private DateTime createdAt;
 
         /// <summary>
         /// 更新日時
         /// </summary>
-        public DateTime UpdatedAt { get; set; }
+        [ObservableProperty]
+        private DateTime updatedAt;
+
+        /// <summary>
+        /// 一覧表示用（事業ID（6桁の文字列）：事業名）
+        /// </summary>
+        public string DisplayLabel => WorkId.ToString("D6") + "：" + WorkName;
+
     }
 }

@@ -1,13 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WpfApp.Interfaces;
 using WpfApp.Screens.Menu.ViewModels;
-using WpfApp.Screens.Aramashi.ViewModels;
 using WpfApp.Services;
 using WpfApp.Shell.Models;
 using WpfApp.Shell.Views.Header;
@@ -79,6 +73,45 @@ namespace WpfApp.Screens.Admin.ViewModels
         private void GoToAdminDocument()
         {
             var vm = new AdminDocumentViewModel(_nav, _dia);
+            _nav.Navigate(vm);
+            vm.IsExpander1Open = IsExpander1Open;
+            vm.IsExpander2Open = IsExpander2Open;
+            vm.IsExpander3Open = IsExpander3Open;
+        }
+
+        /// <summary>
+        /// 事業情報管理画面に遷移する。
+        /// </summary>
+        [RelayCommand]
+        private void GoToWorkManagement()
+        {
+            var vm = new WorkManagementViewModel(_nav, _dia, App.WorkRepository);
+            _nav.Navigate(vm);
+            vm.IsExpander1Open = IsExpander1Open;
+            vm.IsExpander2Open = IsExpander2Open;
+            vm.IsExpander3Open = IsExpander3Open;
+        }
+
+        /// <summary>
+        /// 地権者情報管理画面に遷移する。
+        /// </summary>
+        [RelayCommand]
+        private void GoToLandownerManagement()
+        {
+            var vm = new LandownerManagementViewModel(_nav, _dia, App.LandownerRepository);
+            _nav.Navigate(vm);
+            vm.IsExpander1Open = IsExpander1Open;
+            vm.IsExpander2Open = IsExpander2Open;
+            vm.IsExpander3Open = IsExpander3Open;
+        }
+
+        /// <summary>
+        /// 事業実績管理画面に遷移する。
+        /// </summary>
+        [RelayCommand]
+        private void GoToWorkLandownerManagement()
+        {
+            var vm = new WorkLandownerManagementViewModel(_nav, _dia, App.WorkLandownerRepository);
             _nav.Navigate(vm);
             vm.IsExpander1Open = IsExpander1Open;
             vm.IsExpander2Open = IsExpander2Open;

@@ -14,9 +14,7 @@ namespace WpfApp.Screens.Admin.ViewModels
     {
         private readonly NavigationService _nav;
         private readonly IDialogService _dia;
-        private readonly PdfDocumentService _pdf;
         private readonly IMessageDialogService _message;
-        private readonly IAppPathService _path;
         private readonly IAdminPasswordRepository _adminPasswordRepos;
         private readonly PasswordService _password;
 
@@ -66,9 +64,7 @@ namespace WpfApp.Screens.Admin.ViewModels
         {
             _nav = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
             _dia = dialogService ?? throw new ArgumentNullException(nameof(dialogService));
-            _pdf = new PdfDocumentService();
             _message = new MessageDialogService();
-            _path = new AppPathService();
             _adminPasswordRepos = adminPasswordRepository;
             _password = new PasswordService();
 
@@ -253,6 +249,45 @@ namespace WpfApp.Screens.Admin.ViewModels
         private void GoToAdminDocument()
         {
             var vm = new AdminDocumentViewModel(_nav, _dia);
+            _nav.Navigate(vm);
+            vm.IsExpander1Open = IsExpander1Open;
+            vm.IsExpander2Open = IsExpander2Open;
+            vm.IsExpander3Open = IsExpander3Open;
+        }
+
+        /// <summary>
+        /// 事業情報管理画面に遷移する。
+        /// </summary>
+        [RelayCommand]
+        private void GoToWorkManagement()
+        {
+            var vm = new WorkManagementViewModel(_nav, _dia, App.WorkRepository);
+            _nav.Navigate(vm);
+            vm.IsExpander1Open = IsExpander1Open;
+            vm.IsExpander2Open = IsExpander2Open;
+            vm.IsExpander3Open = IsExpander3Open;
+        }
+
+        /// <summary>
+        /// 地権者情報管理画面に遷移する。
+        /// </summary>
+        [RelayCommand]
+        private void GoToLandownerManagement()
+        {
+            var vm = new LandownerManagementViewModel(_nav, _dia, App.LandownerRepository);
+            _nav.Navigate(vm);
+            vm.IsExpander1Open = IsExpander1Open;
+            vm.IsExpander2Open = IsExpander2Open;
+            vm.IsExpander3Open = IsExpander3Open;
+        }
+
+        /// <summary>
+        /// 事業実績管理画面に遷移する。
+        /// </summary>
+        [RelayCommand]
+        private void GoToWorkLandownerManagement()
+        {
+            var vm = new WorkLandownerManagementViewModel(_nav, _dia, App.WorkLandownerRepository);
             _nav.Navigate(vm);
             vm.IsExpander1Open = IsExpander1Open;
             vm.IsExpander2Open = IsExpander2Open;

@@ -65,21 +65,21 @@
                     <RadioButton Style="{StaticResource SidebarRadioButtonStyle}" GroupName="Sidebar3" 
                                  IsChecked="{Binding SelectedMode, Mode=OneWay, 
                                              Converter={StaticResource SelectedModeToBoolConverter}, ConverterParameter=3}"
-                                 Command="{Binding Command}">
+                                 Command="{Binding GoToWorkManagementCommand}">
                         <TextBlock Text="事業情報" 
                                    Style="{StaticResource ExpanderWrapTextBlockStyle}"/>
                     </RadioButton>
                     <RadioButton Style="{StaticResource SidebarRadioButtonStyle}" GroupName="Sidebar4" 
                                  IsChecked="{Binding SelectedMode, Mode=OneWay, 
                                              Converter={StaticResource SelectedModeToBoolConverter}, ConverterParameter=4}"
-                                 Command="{Binding Command}">
+                                 Command="{Binding GoToLandownerManagementCommand}">
                         <TextBlock Text="地権者情報" 
                                    Style="{StaticResource ExpanderWrapTextBlockStyle}"/>
                     </RadioButton>
                     <RadioButton Style="{StaticResource SidebarRadioButtonStyle}" GroupName="Sidebar5" 
                                  IsChecked="{Binding SelectedMode, Mode=OneWay, 
                                              Converter={StaticResource SelectedModeToBoolConverter}, ConverterParameter=5}"
-                                 Command="{Binding Command}">
+                                 Command="{Binding GoToWorkLandownerManagementCommand}">
                         <TextBlock Text="事業実績" 
                                    Style="{StaticResource ExpanderWrapTextBlockStyle}"/>
                     </RadioButton>
