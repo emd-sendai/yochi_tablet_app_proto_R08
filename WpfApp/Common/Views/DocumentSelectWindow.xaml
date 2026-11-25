@@ -18,7 +18,7 @@
 
         <StackPanel Grid.Row="0">
             <TextBlock Text="表示するファイル名を選択してください" Margin="15" FontSize="18"/>
-            <ListBox ItemsSource="{Binding Documents}" SelectedItem="{Binding SelectedDocument}"
+            <ListBox ItemsSource="{Binding Files}" SelectedItem="{Binding SelectedFile}"
                      DisplayMemberPath="FileName" FontSize="16" MaxHeight="180" Width="530" 
                      Style="{StaticResource BorderedListBoxStyle}" 
                      ScrollViewer.CanContentScroll="False"
@@ -29,7 +29,8 @@
 
         <StackPanel Grid.Row="1"  Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Button Content="表示" Command="{Binding SelectCommand}" Width="80" Height="50" Margin="15" HorizontalAlignment="Center"
-                         Style="{StaticResource CommonButtonStyle}" FontSize="19"/>
+                    Style="{StaticResource CommonButtonStyle}" FontSize="19"
+                    IsEnabled="{Binding SelectedFile, Converter={StaticResource NullToBoolConverter}}"/>
             <Button Content="キャンセル" Command="{Binding CancelCommand}" Width="100" Height="50" Margin="15" HorizontalAlignment="Center"
                          Style="{StaticResource CommonButtonStyle}" FontSize="17"/>
 

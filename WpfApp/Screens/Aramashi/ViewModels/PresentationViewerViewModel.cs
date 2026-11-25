@@ -28,7 +28,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         public int _index = 0;
         private readonly NavigationService _nav;
         private readonly IDialogService _dia;
-        private readonly PdfDocumentService _pdf;
+        private readonly IFileService _file;
         private readonly IMessageDialogService _messageDialog;
         private readonly IAppPathService _path;
 
@@ -114,7 +114,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         {
             _nav = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
             _dia = dialogService ?? throw new ArgumentNullException(nameof(dialogService));
-            _pdf = new PdfDocumentService();
+            _file = new FileService();
             _messageDialog = new MessageDialogService();
             _path = new AppPathService();
 
@@ -1335,71 +1335,99 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         /// </summary>
         /// <param name="folderName"></param>
         [RelayCommand]
-        private void OpenPdfDocuments(string folderName)
+        private void OpenDocuments(string folderName)
         {
-            if (!string.IsNullOrWhiteSpace(folderName))
-            {
-                var folderPath = Path.Combine(_path.OthersPdfDire, folderName);
-
-                var pdfList = _pdf.GetPdfList(folderPath);
-
-                // PDF資料が存在しない場合
-                if (pdfList.Count <= 0)
-                {
-                    Debug.WriteLine($"[ERROR] PDFファイルが存在しません {folderPath}");
-                    //メッセージウィンドウを表示
-                    _messageDialog.ShowMessage("PDFファイルが存在しません。");
-                }
-                else
-                {
-                    // 非モーダル表示
-                    _dia.ShowWindow<DocumentSelectViewModel>(pdfList);
-                }
-            }
-            else
+            if (string.IsNullOrWhiteSpace(folderName))
             {
                 Debug.WriteLine($"[ERROR] folderNameが空です");
+                _messageDialog.ShowMessage("ファイルを表示できません。");
+                return;
+            }
+
+            var direPath = Path.Combine(_path.OthersPdfDire, folderName);
+            var list = _file.GetFiles(direPath);
+
+            if (list.Count <= 0)
+            {
+                Debug.WriteLine($"[ERROR] ファイルが存在しません {direPath}");
+                _messageDialog.ShowMessage("ファイルが存在しません。");
+            }
+            else
+            {
+                // 非モーダル表示
+                _dia.ShowWindow<DocumentSelectViewModel>(list);
+            }
+        }
+
+        private void OpenOthersDocument(string path)
+        {
+            if (!Path.Exists(path))
+            {
+                Debug.WriteLine($"[ERROR] ファイルが存在しません {path}");
+                _messageDialog.ShowMessage("ファイルが存在しません。");
+                return;
+            }
+
+            if (_messageDialog.ShowConfirm($"ファイルを開きます。よろしいですか？"))
+            {
+                try
+                {
+                    Debug.WriteLine($"[[DEBUG] ファイルを開きます {path}");
+                    _file.OpenFile(path);
+                }
+                catch (FileNotFoundException ex)
+                {
+                    Debug.WriteLine($"[ERROR] ファイルが存在しません {path}");
+                    _messageDialog.ShowMessage("ファイルが存在しません。");
+                    Debug.WriteLine(ex);
+                    throw;
+                }
+                catch (UnauthorizedAccessException ex)
+                {
+                    Debug.WriteLine($"[ERROR] ファイルにアクセス権限がありません {path}");
+                    _messageDialog.ShowMessage("ファイルにアクセス権限がありません。");
+                    Debug.WriteLine(ex);
+                    throw;
+                }
+                catch (System.ComponentModel.Win32Exception ex)
+                {
+                    Debug.WriteLine($"[ERROR] ファイルを開くことができません {path}");
+                    _messageDialog.ShowMessage("ファイルを開くことができません。");
+                    Debug.WriteLine(ex);
+                    throw;
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine($"[ERROR] ファイルの表示時に予期せぬエラーが発生しました {path}");
+                    _messageDialog.ShowMessage("ファイルの表示時に予期せぬエラーが発生しました。");
+                    Debug.WriteLine(ex);
+                    throw;
+                }
             }
         }
 
         /// <summary>
-        /// その他３の指定のPDF資料を表示する。
+        /// その他３の指定の資料を表示する。
         /// </summary>
         /// <param name="fileName"></param>
         [RelayCommand]
-        private void OpenOthers003PdfDocument(string fileName)
+        private void OpenOthers003Document(string fileName)
         {
-            if (!string.IsNullOrWhiteSpace(fileName))
-            {
-                if (_messageDialog.ShowConfirm($"PDFファイルを開きます。よろしいですか？"))
-                {
-                    _pdf.OpenPdf(_path.Others003PdfDire, fileName);
-                }
-            }
-            else
-            {
-                Debug.WriteLine($"[ERROR] fileNameが空です");
-            }
+            // パスを生成する
+            var path = Path.Combine(_path.Others003PdfDire, fileName);
+            OpenOthersDocument(path);
         }
 
         /// <summary>
-        /// その他４の指定のPDF資料を表示する。
+        /// その他４の指定の資料を表示する。
         /// </summary>
         /// <param name="fileName"></param>
         [RelayCommand]
-        private void OpenOthers004PdfDocument(string fileName)
+        private void OpenOthers004Document(string fileName)
         {
-            if (!string.IsNullOrWhiteSpace(fileName))
-            {
-                if (_messageDialog.ShowConfirm($"PDFファイルを開きます。よろしいですか？"))
-                {
-                    _pdf.OpenPdf(_path.Others004PdfDire, fileName);
-                }
-            }
-            else
-            {
-                Debug.WriteLine($"[ERROR] fileNameが空です");
-            }
+            // パスを生成する
+            var path = Path.Combine(_path.Others004PdfDire, fileName);
+            OpenOthersDocument(path);
         }
 
         /// <summary>

@@ -26,7 +26,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
     {
         private readonly NavigationService _nav;
         private readonly IDialogService _dia;
-        private readonly PdfDocumentService _pdf;
+        private readonly IFileService _file;
         private readonly IMessageDialogService _message;
         private readonly IAppPathService _path;
 
@@ -66,7 +66,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         {
             _nav = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
             _dia = dialogService ?? throw new ArgumentNullException(nameof(dialogService));
-            _pdf = new PdfDocumentService();
+            _file = new FileService();
             _message = new MessageDialogService();
             _path = new AppPathService();
 
@@ -236,22 +236,22 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         /// PDF資料選択画面で補償のあらましのPDF資料を表示する。
         /// </summary>
         [RelayCommand]
-        private void OpenPdfDocuments()
+        private void OpenDocuments()
         {
-            var folderPath = _path.AramashiPdfDire;
-            var pdfList = _pdf.GetPdfList(folderPath);
+            var direPath = _path.AramashiPdfDire;
+            var list = _file.GetFiles(direPath);
 
             // PDF資料が存在しない場合
-            if (pdfList.Count <= 0)
+            if (list.Count <= 0)
             {
-                Debug.WriteLine($"[ERROR] PDFファイルが存在しません {folderPath}");
+                Debug.WriteLine($"[ERROR] ファイルが存在しません {direPath}");
                 //メッセージウィンドウを表示
-                _message.ShowMessage("PDFファイルが存在しません。");
+                _message.ShowMessage("ファイルが存在しません。");
             }
             else
             {
                 // 非モーダル表示
-                _dia.ShowWindow<DocumentSelectViewModel>(pdfList);
+                _dia.ShowWindow<DocumentSelectViewModel>(list);
             }
         }
 

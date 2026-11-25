@@ -27,7 +27,7 @@ namespace WpfApp.Screens.Documents.ViewModels
     {
         private readonly NavigationService _nav;
         private readonly IDialogService _dia;
-        private readonly PdfDocumentService _pdf;
+        private readonly IFileService _file;
         private readonly IMessageDialogService _message;
         private readonly IAppPathService _path;
         private readonly IWorkRepository _workRepos;
@@ -96,7 +96,7 @@ namespace WpfApp.Screens.Documents.ViewModels
         {
             _nav = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
             _dia = dialogService ?? throw new ArgumentNullException(nameof(dialogService));
-            _pdf = new PdfDocumentService();
+            _file = new FileService();
             _message = new MessageDialogService();
             _path = new AppPathService();
             _workRepos = workRepository;
@@ -238,20 +238,21 @@ namespace WpfApp.Screens.Documents.ViewModels
         {
             if (SelectedWork == null) return;
             if (string.IsNullOrWhiteSpace(folderName)) return;
-            var folderPath = _path.GetWorkDocumentDire(SelectedWork.FormattedWorkId, folderName);
-            var pdfList = _pdf.GetPdfList(folderPath);
 
-            // PDF資料が存在しない場合
-            if (pdfList.Count <= 0)
+            var direPath = _path.GetWorkDocumentDire(SelectedWork.FormattedWorkId, folderName);
+            var list = _file.GetFiles(direPath);
+
+            // 資料が存在しない場合
+            if (list.Count <= 0)
             {
-                Debug.WriteLine($"[DEBUG] ファイルが存在しません {folderPath}");
+                Debug.WriteLine($"[DEBUG] ファイルが存在しません {direPath}");
                 //メッセージウィンドウを表示
                 _message.ShowMessage("ファイルが存在しません");
             }
             else
             {
                 // 非モーダル表示
-                _dia.ShowWindow<DocumentSelectViewModel>(pdfList);
+                _dia.ShowWindow<DocumentSelectViewModel>(list);
             }
         }
 
@@ -266,20 +267,20 @@ namespace WpfApp.Screens.Documents.ViewModels
             if (SelectedLandowner == null) return;
             if (string.IsNullOrWhiteSpace(folderName)) return;
 
-            var folderPath = _path.GetLandownerDocumentDire(SelectedWork.FormattedWorkId, SelectedLandowner.FormattedLandownerId, folderName);
-            var pdfList = _pdf.GetPdfList(folderPath);
+            var direPath = _path.GetLandownerDocumentDire(SelectedWork.FormattedWorkId, SelectedLandowner.FormattedLandownerId, folderName);
+            var list = _file.GetFiles(direPath);
 
-            // PDF資料が存在しない場合
-            if (pdfList.Count <= 0)
+            // 資料が存在しない場合
+            if (list.Count <= 0)
             {
-                Debug.WriteLine($"[DEBUG] ファイルが存在しません {folderPath}");
+                Debug.WriteLine($"[DEBUG] ファイルが存在しません {direPath}");
                 //メッセージウィンドウを表示
-                _message.ShowMessage("ファイルが存在しません");
+                _message.ShowMessage("ファイルが存在しません。");
             }
             else
             {
                 // 非モーダル表示
-                _dia.ShowWindow<DocumentSelectViewModel>(pdfList);
+                _dia.ShowWindow<DocumentSelectViewModel>(list);
             }
         }
     }

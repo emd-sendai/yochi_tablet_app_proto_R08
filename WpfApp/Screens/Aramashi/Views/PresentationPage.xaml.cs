@@ -527,21 +527,21 @@ namespace WpfApp.Screens.Aramashi.Views
                             }
                             hyperlink.Command = viewModel.OpenUrlCommand;
                         }
-                        else if (runInfo.CommandName == "OpenOthers003PdfDocumentCommand")
+                        else if (runInfo.CommandName == "OpenOthers003DocumentCommand")
                         {
                             if (!string.IsNullOrWhiteSpace(param))
                             {
                                 hyperlink.CommandParameter = param;
                             }
-                            hyperlink.Command = viewModel.OpenOthers003PdfDocumentCommand;
+                            hyperlink.Command = viewModel.OpenOthers003DocumentCommand;
                         }
-                        else if (runInfo.CommandName == "OpenOthers004PdfDocumentCommand")
+                        else if (runInfo.CommandName == "OpenOthers004DocumentCommand")
                         {
                             if (!string.IsNullOrWhiteSpace(param))
                             {
                                 hyperlink.CommandParameter = param;
                             }
-                            hyperlink.Command = viewModel.OpenOthers004PdfDocumentCommand;
+                            hyperlink.Command = viewModel.OpenOthers004DocumentCommand;
                         }
 
                         tb.Inlines.Add(hyperlink);
