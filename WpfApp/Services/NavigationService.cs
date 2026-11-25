@@ -153,6 +153,8 @@ namespace WpfApp.Services
                 AdminDocumentViewModel => new AdminDocumentView(),
                 // 各種資料設定
                 DocumentMenuSettingsViewModel => new DocumentMenuSettingsView(),
+                // 各種資料設定 - 資料設定
+                DocumentManagementViewModel => new DocumentManagementView(),
                 // 事業情報管理
                 WorkManagementViewModel => new WorkManagementView(),
                 // 地権者情報管理

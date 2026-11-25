@@ -1,10 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WpfApp.Interfaces;
 using WpfApp.Screens.Menu.ViewModels;
 using WpfApp.Services;
@@ -56,7 +51,11 @@ namespace WpfApp.Screens.Admin.ViewModels
         [RelayCommand]
         private void GoToDocumentManagement()
         {
-
+            var vm = new DocumentManagementViewModel(_nav, _dia, App.WorkRepository);
+            _nav.Navigate(vm);
+            vm.IsExpander1Open = IsExpander1Open;
+            vm.IsExpander2Open = IsExpander2Open;
+            vm.IsExpander3Open = IsExpander3Open;
         }
 
         /// <summary>
