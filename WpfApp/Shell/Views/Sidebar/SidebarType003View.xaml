@@ -50,7 +50,7 @@
                     <RadioButton Style="{StaticResource SidebarRadioButtonStyle}" GroupName="Sidebar2" 
                                  IsChecked="{Binding SelectedMode, Mode=OneWay, 
                                              Converter={StaticResource SelectedModeToBoolConverter}, ConverterParameter=2}"
-                                 Command="{Binding Command}">
+                                 Command="{Binding GoToDocumentMenuSettingsCommand}">
                         <TextBlock Text="各種資料" 
                                    Style="{StaticResource ExpanderWrapTextBlockStyle}"/>
                     </RadioButton>

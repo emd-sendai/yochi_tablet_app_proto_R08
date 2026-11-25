@@ -1,10 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
-using System.Windows.Shapes;
 using WpfApp.Common.Models;
 using WpfApp.Common.Repositories.Interfaces;
 using WpfApp.Interfaces;
@@ -278,6 +276,19 @@ namespace WpfApp.Screens.Admin.ViewModels
         private void GoToAdminDocument()
         {
             var vm = new AdminDocumentViewModel(_nav, _dia);
+            _nav.Navigate(vm);
+            vm.IsExpander1Open = IsExpander1Open;
+            vm.IsExpander2Open = IsExpander2Open;
+            vm.IsExpander3Open = IsExpander3Open;
+        }
+
+        /// <summary>
+        /// 管理資料設定画面に遷移する。
+        /// </summary>
+        [RelayCommand]
+        private void GoToDocumentMenuSettings()
+        {
+            var vm = new DocumentMenuSettingsViewModel(_nav, _dia);
             _nav.Navigate(vm);
             vm.IsExpander1Open = IsExpander1Open;
             vm.IsExpander2Open = IsExpander2Open;

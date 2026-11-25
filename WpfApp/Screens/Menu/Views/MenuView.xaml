@@ -7,33 +7,29 @@
              xmlns:local="clr-namespace:WpfApp.Screens.Menu.Views"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="800">
-    <Grid>
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0,70,0,0" Width="300">
+    
+    <Grid Margin="0,90,0,0">
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Width="350">
 
-            <TextBlock Text="メインメニュー" FontSize="26" Foreground="#3F51B5" Margin="0,0,0,40"  HorizontalAlignment="Center" 
+            <TextBlock Text="メインメニュー" FontSize="28" Foreground="#3F51B5" Margin="0,0,0,40"  HorizontalAlignment="Center" 
                                FontWeight="Bold"/>
 
             <!-- 補償のあらましボタン -->
-            <Button Content="補償のあらまし" FontSize="22" Height="60" Margin="0,0,0,40"
+            <Button Content="補償のあらまし" FontSize="24" Height="70" Margin="0,0,0,50"
                     Command="{Binding GoToAramashiMenuCommand}" Style="{StaticResource CommonButtonStyle}"/>
 
             <!-- 各種資料ボタン -->
-            <Button FontSize="22" Height="60" Margin="0,0,0,40"
+            <Button FontSize="24" Height="70" Margin="0,0,0,50"
                     Command="{Binding GoToDocumentMenuCommand}" Style="{StaticResource CommonButtonStyle}">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                    <materialDesign:PackIcon Kind="FileDocumentBoxes" Width="35" Height="30" Margin="0,0,5,0"/>
+                    <materialDesign:PackIcon Kind="FileDocumentBoxes" Width="37" Height="32" Margin="0,0,5,0"/>
                     <TextBlock Text="各種資料" VerticalAlignment="Center"/>
                 </StackPanel>
             </Button>
 
-            <!-- まとめボタン -->
-            <!--Button Content="まとめ（内部管理資料）" FontSize="22" Height="60" Margin="0,0,0,50"
-                    Style="{StaticResource CommonButtonStyle}"
-                    Command="{Binding GoToAramashiMenuTestCommand}" -->
-
             <!-- アプリ終了ボタン -->
             <Button Style="{StaticResource MaterialDesignFlatButton}" HorizontalAlignment="Center"
-                    Command="{Binding ExitCommand}" Height="60" FontSize="20">
+                    Command="{Binding ExitCommand}" Height="60" FontSize="22">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                     <materialDesign:PackIcon Kind="Close" Width="30" Height="30" Margin="0,0,5,0"/>
                     <TextBlock Text="アプリケーションを終了する" VerticalAlignment="Center"/>

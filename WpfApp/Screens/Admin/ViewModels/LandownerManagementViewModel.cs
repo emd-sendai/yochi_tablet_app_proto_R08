@@ -310,6 +310,19 @@ namespace WpfApp.Screens.Admin.ViewModels
         }
 
         /// <summary>
+        /// 管理資料設定画面に遷移する。
+        /// </summary>
+        [RelayCommand]
+        private void GoToDocumentMenuSettings()
+        {
+            var vm = new DocumentMenuSettingsViewModel(_nav, _dia);
+            _nav.Navigate(vm);
+            vm.IsExpander1Open = IsExpander1Open;
+            vm.IsExpander2Open = IsExpander2Open;
+            vm.IsExpander3Open = IsExpander3Open;
+        }
+
+        /// <summary>
         /// 事業情報管理画面に遷移する。
         /// </summary>
         [RelayCommand]

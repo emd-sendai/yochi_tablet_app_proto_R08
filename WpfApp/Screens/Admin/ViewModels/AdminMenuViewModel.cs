@@ -13,9 +13,7 @@ namespace WpfApp.Screens.Admin.ViewModels
     {
         private readonly NavigationService _nav;
         private readonly IDialogService _dia;
-        private readonly PdfDocumentService _pdf;
         private readonly IMessageDialogService _message;
-        private readonly IAppPathService _path;
 
         public Type HeaderType => typeof(HeaderType001View);
         public Type SidebarType => typeof(SidebarType003View);
@@ -39,9 +37,7 @@ namespace WpfApp.Screens.Admin.ViewModels
         {
             _nav = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
             _dia = dialogService ?? throw new ArgumentNullException(nameof(dialogService));
-            _pdf = new PdfDocumentService();
             _message = new MessageDialogService();
-            _path = new AppPathService();
 
             Title = "管理メニュー";
         }
@@ -73,6 +69,19 @@ namespace WpfApp.Screens.Admin.ViewModels
         private void GoToAdminDocument()
         {
             var vm = new AdminDocumentViewModel(_nav, _dia);
+            _nav.Navigate(vm);
+            vm.IsExpander1Open = IsExpander1Open;
+            vm.IsExpander2Open = IsExpander2Open;
+            vm.IsExpander3Open = IsExpander3Open;
+        }
+
+        /// <summary>
+        /// 管理資料設定画面に遷移する。
+        /// </summary>
+        [RelayCommand]
+        private void GoToDocumentMenuSettings()
+        {
+            var vm = new DocumentMenuSettingsViewModel(_nav, _dia);
             _nav.Navigate(vm);
             vm.IsExpander1Open = IsExpander1Open;
             vm.IsExpander2Open = IsExpander2Open;
