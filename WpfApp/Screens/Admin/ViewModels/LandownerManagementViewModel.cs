@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.IO;
 using WpfApp.Common.Models;
 using WpfApp.Common.Repositories.Interfaces;
 using WpfApp.Interfaces;
@@ -20,6 +21,7 @@ namespace WpfApp.Screens.Admin.ViewModels
         private readonly IDialogService _dia;
         private readonly IMessageDialogService _message;
         private readonly IAppPathService _path;
+        private readonly IFileService _file;
         private readonly ILandownerRepository _landownerRepos;
         private readonly IWorkLandownerRepository _worklandownerRepos;
 
@@ -62,6 +64,7 @@ namespace WpfApp.Screens.Admin.ViewModels
             _worklandownerRepos = workLandownerRepository ?? throw new ArgumentNullException(nameof(workLandownerRepository));
             _message = new MessageDialogService();
             _path = new AppPathService();
+            _file = new FileService();
 
             Title = "地権者情報管理";
             LoadLandowners();
@@ -194,26 +197,57 @@ namespace WpfApp.Screens.Admin.ViewModels
 
             if (_message.ShowConfirm("各事業に紐付けられた地権者個別資料も削除されます。\nよろしいですか？"))
             {
+                // 削除対象ディレクトリリスト
+                var pathList = new List<string>();
 
                 try
                 {
                     // 対象の地権者と事業の紐付け情報を取得する
                     var workLandowners = await _worklandownerRepos.GetWorkLandownersByLandownerId(landownerId);
                     // 削除対象となるディレクトリを取得する
-                    var pathList = new List<string>();
                     foreach (var worklandowner in workLandowners)
                     {
                         var path = _path.GetLandownerDire(worklandowner.FormattedWorkId, worklandowner.FormattedLandownerId);
                         pathList.Add(path);
                     }
-
-                    // ディレクトリごと削除する（サービス作成後追加）
-
                 }
                 catch (Exception ex)
                 {
-                    _message.ShowMessage("各事業に紐付けられた地権者個別資料を削除できませんでした。");
-                    Debug.WriteLine($"[ERROR] 各事業に紐付けられた地権者個別資料を削除できませんでした。");
+                    _message.ShowMessage("各事業と地権者の紐付け情報を取得できませんでした。");
+                    Debug.WriteLine($"[ERROR] 各事業と地権者の紐付け情報を取得できませんでした。");
+                    Debug.WriteLine(ex);
+                    throw;
+                }
+
+                try
+                {
+                    // ディレクトリを削除
+                    foreach (var path in pathList)
+                    {
+                        if (Directory.Exists(path))
+                        {
+                            _file.DeleteDirectory(path);
+                        }
+                    }
+                }
+                catch (IOException ex)
+                {
+                    _message.ShowMessage("対象のファイルを削除できませんでした。");
+                    Debug.WriteLine($"[ERROR] 対象のファイルを削除できませんでした。");
+                    Debug.WriteLine(ex);
+                    throw;
+                }
+                catch (UnauthorizedAccessException ex)
+                {
+                    _message.ShowMessage("削除対象のファイルにアクセス権限がありません。");
+                    Debug.WriteLine($"[ERROR] 削除対象のディレクトリやファイルにアクセス権限がありません。");
+                    Debug.WriteLine(ex);
+                    throw;
+                }
+                catch (Exception ex)
+                {
+                    _message.ShowMessage("ファイルの削除時に予期せぬエラーが発生しました。");
+                    Debug.WriteLine($"[ERROR] ファイルの削除時に予期せぬエラーが発生しました。");
                     Debug.WriteLine(ex);
                     throw;
                 }
@@ -229,8 +263,8 @@ namespace WpfApp.Screens.Admin.ViewModels
                 }
                 catch (Exception ex)
                 {
-                    _message.ShowMessage("地権者情報を削除できませんでした。");
-                    Debug.WriteLine($"[ERROR] 地権者を削除できませんでした。LandownerId：{landownerId}");
+                    _message.ShowMessage("地権者情報を削除できませんでした。\n※資料の削除は完了しました。");
+                    Debug.WriteLine($"[ERROR] 地権者情報をDBから削除できませんでした。LandownerId：{landownerId}");
                     Debug.WriteLine(ex);
                     throw;
                 }

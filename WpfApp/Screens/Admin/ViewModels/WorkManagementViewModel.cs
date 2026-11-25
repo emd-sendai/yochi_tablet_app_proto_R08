@@ -1,7 +1,10 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.IO;
+using System.Windows.Shapes;
 using WpfApp.Common.Models;
 using WpfApp.Common.Repositories.Interfaces;
 using WpfApp.Interfaces;
@@ -20,6 +23,7 @@ namespace WpfApp.Screens.Admin.ViewModels
         private readonly IDialogService _dia;
         private readonly IMessageDialogService _message;
         private readonly IAppPathService _path;
+        private readonly IFileService _file;
         private readonly IWorkRepository _workRepos;
 
         public Type HeaderType => typeof(HeaderType001View);
@@ -60,6 +64,7 @@ namespace WpfApp.Screens.Admin.ViewModels
             _workRepos = workRepository ?? throw new ArgumentNullException(nameof(workRepository));
             _message = new MessageDialogService();
             _path = new AppPathService();
+            _file = new FileService();
 
             Title = "事業情報管理";
             LoadWorks();
@@ -189,18 +194,35 @@ namespace WpfApp.Screens.Admin.ViewModels
 
             if (_message.ShowConfirm("事業全般資料や地権者個別資料も削除されます。\nよろしいですか？"))
             {
+                // 削除対象ディレクトリを取得する
+                string direPath = _path.GetWorkRootDire(SelectedWork.FormattedWorkId);
+
                 try
                 {
-                    // 紐付けられたディレクトリを取得
-                    var workAllDire = _path.GetWorkRootDire(SelectedWork.FormattedWorkId);
-
-                    // ディレクトリごと削除する（サービス作成後追加）
-
+                    // ディレクトリを削除
+                    if (Directory.Exists(direPath))
+                    {
+                        _file.DeleteDirectory(direPath);
+                    }
+                }
+                catch (IOException ex)
+                {
+                    _message.ShowMessage("対象のファイルを削除できませんでした。");
+                    Debug.WriteLine($"[ERROR] 対象のファイルを削除できませんでした。");
+                    Debug.WriteLine(ex);
+                    throw;
+                }
+                catch (UnauthorizedAccessException ex)
+                {
+                    _message.ShowMessage("削除対象のファイルにアクセス権限がありません。");
+                    Debug.WriteLine($"[ERROR] 削除対象のディレクトリやファイルにアクセス権限がありません。");
+                    Debug.WriteLine(ex);
+                    throw;
                 }
                 catch (Exception ex)
                 {
-                    _message.ShowMessage("関連付けられた資料を削除できませんでした。");
-                    Debug.WriteLine("[ERROR] 事業全般資料や地権者個別資料を削除できませんでした。");
+                    _message.ShowMessage("ファイルの削除時に予期せぬエラーが発生しました。");
+                    Debug.WriteLine($"[ERROR] ファイルの削除時に予期せぬエラーが発生しました。");
                     Debug.WriteLine(ex);
                     throw;
                 }
@@ -216,8 +238,8 @@ namespace WpfApp.Screens.Admin.ViewModels
                 }
                 catch (Exception ex)
                 {
-                    _message.ShowMessage("事業情報を削除できませんでした。");
-                    Debug.WriteLine($"[ERROR] 事業を削除できませんでした。WorkId：{workId}");
+                    _message.ShowMessage("事業情報を削除できませんでした。\n※資料の削除は完了しました。");
+                    Debug.WriteLine($"[ERROR] 事業をDBから削除できませんでした。WorkId：{workId}");
                     Debug.WriteLine(ex);
                     throw;
                 }
