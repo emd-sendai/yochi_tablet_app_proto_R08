@@ -44,6 +44,8 @@ namespace WpfApp.Services
 
         public string WorkLandownersPath => Path.Combine(DataDire, "workLandowners.json");
 
+        public string ButtonsPath => Path.Combine(DataDire, "buttons.json");
+
 
         public string DocumentResourcesRoot => Path.Combine(AppResourcesRoot, "DocumentResources");
 

@@ -23,6 +23,7 @@ namespace WpfApp
         public static ILandownerRepository LandownerRepository { get; private set; } = default!;
         public static IWorkLandownerRepository WorkLandownerRepository { get; private set; } = default!;
         public static IAdminPasswordRepository AdminPasswordRepository { get; private set; } = default!;
+        public static IButtonRepository ButtonRepository { get; private set; } = default!;
         public static DatabaseInitializeService DatabaseInitializeService { get; private set; } = default!;
 
         protected override async void OnStartup(StartupEventArgs e)
@@ -40,10 +41,11 @@ namespace WpfApp
             LandownerRepository = new LandownerRepository(DatabaseService);
             WorkLandownerRepository = new WorkLandownerRepository(DatabaseService);
             AdminPasswordRepository = new AdminPasswordRepository(DatabaseService);
+            ButtonRepository = new ButtonRepository(DatabaseService);
 
             // DatabaseInitializeServiceの生成
             DatabaseInitializeService = new DatabaseInitializeService(DatabaseService, WorkRepository, LandownerRepository, 
-                WorkLandownerRepository, AdminPasswordRepository);
+                WorkLandownerRepository, AdminPasswordRepository, ButtonRepository);
             try
             {
                 // LocalAppDataにデータベースが存在しない場合、生成する（サンプルデータ含む）

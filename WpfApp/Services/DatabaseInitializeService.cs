@@ -66,6 +66,19 @@ namespace WpfApp.Services
             );
             """;
 
+        private const string CreateButtonsTable = """
+            CREATE TABLE IF NOT EXISTS Buttons
+            (
+                Type INTEGER NOT NULL,
+                Id INTEGER NOT NULL,
+                Content TEXT NOT NULL,
+                CreatedAt TEXT NOT NULL,
+                UpdatedAt TEXT NOT NULL,
+
+                PRIMARY KEY (Type, Id)
+            );
+            """;
+
         private readonly IAppPathService _path;
         private readonly PasswordService _password;
         private readonly DatabaseService _database;
@@ -73,16 +86,18 @@ namespace WpfApp.Services
         private readonly ILandownerRepository _landownerRepos;
         private readonly IWorkLandownerRepository _workLandownerRepos;
         private readonly IAdminPasswordRepository _adminPasswordRepos;
+        private readonly IButtonRepository _buttonRepos;
 
         public DatabaseInitializeService(DatabaseService databaseService, IWorkRepository workRepository,
             ILandownerRepository landownerRepository, IWorkLandownerRepository workLandownerRepository, 
-            IAdminPasswordRepository adminPasswordRepository)
+            IAdminPasswordRepository adminPasswordRepository, IButtonRepository buttonRepository)
         {
             _database = databaseService;
             _workRepos = workRepository;
             _landownerRepos = landownerRepository;
             _workLandownerRepos = workLandownerRepository;
             _adminPasswordRepos = adminPasswordRepository;
+            _buttonRepos = buttonRepository;
             _path = new AppPathService();
             _password = new PasswordService();
 
@@ -107,6 +122,7 @@ namespace WpfApp.Services
             await CreateTables(connection, CreateLandownersTable);
             await CreateTables(connection, CreateWorkLandownersTable);
             await CreateTables(connection, CreateAdminPasswordTable);
+            await CreateTables(connection, CreateButtonsTable);
 
             int worksCnt = 0;
             int landownersCnt = 0;
@@ -135,10 +151,17 @@ namespace WpfApp.Services
 
             bool adminPasswordDataExits = await _adminPasswordRepos.ExistsAsync();
             Debug.WriteLine($"[DEBUG] adminPasswordDataExits : {adminPasswordDataExits}");
-            // テーブルに管理パスワードデータが存在しない場合
+            // 管理パスワードテーブルにデータが存在しない場合
             if (!adminPasswordDataExits)
             {
                 await InsertAdminPasswordInitialDataAsync();
+            }
+
+            int bottonCount = await _buttonRepos.CountAsync();
+            // ボタンテーブルにデータが不足している場合
+            if (bottonCount != 31)
+            {
+                await InsertButtonsInitialDataAsync();
             }
         }
 
@@ -334,7 +357,83 @@ namespace WpfApp.Services
             password.UpdatedAt = now;
 
             int cnt = await _adminPasswordRepos.InsertAsync(password);
-            Debug.WriteLine($"[DEBUG] 初期管理者パスワードデータを {cnt} 件作成しました");
+            Debug.WriteLine($"[DEBUG] 管理者パスワードの初期データを {cnt} 件作成しました");
+        }
+
+        private async Task InsertButtonsInitialDataAsync()
+        {
+            List<ButtonData> buttons = LoadButtonsInitialDataFromJson();
+
+            // JSONファイルからデータを取得できなかった場合、仮データを作成する
+            if (buttons.Count != 31)
+            {
+                // 用地補償の手順（type:1、10個）
+                buttons = CreateDummyInitialData(1, 10);
+                // その他（type:2、5個）
+                buttons.AddRange(CreateDummyInitialData(2, 5));
+                // 事業全般資料（type:3、8個）
+                buttons.AddRange(CreateDummyInitialData(3, 8));
+                // 地権者個別資料（type:4、8個）
+                buttons.AddRange(CreateDummyInitialData(4, 8));
+            }
+
+            foreach (var button in buttons)
+            {
+                DateTime now = DateTime.Now;
+                button.CreatedAt = now;
+                button.UpdatedAt = now;
+            }
+            int cnt = await _buttonRepos.InsertRangeAsync(buttons);
+            Debug.WriteLine($"[DEBUG] ボタンの初期データを {cnt} 件作成しました");
+        }
+
+        private List<ButtonData> LoadButtonsInitialDataFromJson()
+        {
+            var path = _path.ButtonsPath;
+            List<ButtonData> ret = new ();
+
+            try
+            {
+                if (!File.Exists(path))
+                {
+                    Debug.WriteLine($"[ERROR] ボタンの初期データが見つかりません: {path}");
+                    return ret;
+                }
+
+                string json = File.ReadAllText(path);
+                var list = JsonSerializer.Deserialize<List<ButtonData>>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+
+                if (list != null)
+                {
+                    ret = list;
+                    Debug.WriteLine($"[DEBUG] ボタンの初期データを {ret.Count} 件読み込みました");
+                }
+                return ret;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"[ERROR] ボタンの初期データを読み込むことができません: {ex}");
+                return ret;
+            }
+        }
+
+        private List<ButtonData> CreateDummyInitialData(int type, int cnt)
+        {
+            List<ButtonData> ret = new();
+            int id = 1;
+
+            for (int i = 0; i < cnt; i++)
+            {
+                var button = new ButtonData()
+                {
+                    Type = type,
+                    Id = id,
+                    Content = id.ToString()
+                };
+                ret.Add(button);
+                id++;
+            }
+            return ret;
         }
     }
 }
