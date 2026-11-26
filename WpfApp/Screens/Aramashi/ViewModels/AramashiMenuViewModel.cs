@@ -4,8 +4,10 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Text.Json;
-using WpfApp.Common.Models;
+using WpfApp.Common.Enums;
+using WpfApp.Common.Repositories.Interfaces;
 using WpfApp.Common.ViewModels;
+using WpfApp.Common.Views;
 using WpfApp.Interfaces;
 using WpfApp.Screens.Aramashi.Models;
 using WpfApp.Screens.Documents.ViewModels;
@@ -14,7 +16,6 @@ using WpfApp.Services;
 using WpfApp.Shell.Models;
 using WpfApp.Shell.Views.Header;
 using WpfApp.Shell.Views.Sidebar;
-using static WpfApp.Common.ViewModels.VideoPlayerViewModel;
 
 namespace WpfApp.Screens.Aramashi.ViewModels
 {
@@ -29,6 +30,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         private readonly IFileService _file;
         private readonly IMessageDialogService _message;
         private readonly IAppPathService _path;
+        private readonly IButtonRepository _buttonRepos;
 
         public Type HeaderType => typeof(HeaderType001View);
         public Type SidebarType => typeof(SidebarType002View);
@@ -49,73 +51,46 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         /// ボタンの名称表示用ボタンデータリスト（用地補償の手順）
         /// </summary>
         [ObservableProperty]
-        private ObservableCollection<ButtonConfig> aramashiButtons;
+        private ObservableCollection<Common.Models.ButtonData> aramashiButtons = new();
 
         /// <summary>
         /// ボタンの名称表示用ボタンデータリスト（その他）
         /// </summary>
         [ObservableProperty]
-        private ObservableCollection<ButtonConfig> othersButtons;
+        private ObservableCollection<Common.Models.ButtonData> othersButtons = new();
 
         /// <summary>
         /// 用地補償の手順の番号をキー、各手順の最初のページを値として保持する。
         /// </summary>
         private Dictionary<int, int> SectionPageCounts = new();
 
-        public AramashiMenuViewModel(NavigationService navigationService, IDialogService dialogService)
+        public AramashiMenuViewModel(NavigationService navigationService, IDialogService dialogService,
+            IButtonRepository buttonRepository)
         {
             _nav = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
             _dia = dialogService ?? throw new ArgumentNullException(nameof(dialogService));
+            _buttonRepos = buttonRepository ?? throw new ArgumentNullException(nameof(buttonRepository));
             _file = new FileService();
             _message = new MessageDialogService();
             _path = new AppPathService();
 
             Title = "補償のあらまし";
-            
-            AramashiButtons = LoadButtonFromJson(_path.AramashiButtonPath);
-            OthersButtons = LoadButtonFromJson(_path.OthersButtonPath);
 
+            LoadAramashiButtons();
+            LoadOthersButtons();
             LoadSlidesFromJsons();
         }
 
-        /// <summary>
-        /// ボタンに表示する名称を取得する。
-        /// </summary>
-        /// <param name="path"></param>
-        /// <returns></returns>
-        private ObservableCollection<ButtonConfig> LoadButtonFromJson(string path)
+        private async void LoadAramashiButtons()
         {
-            var buttons = new ObservableCollection<ButtonConfig>();
+            var list = await _buttonRepos.GetButtonsAsync(1);
+            AramashiButtons = new ObservableCollection<Common.Models.ButtonData>(list);
+        }
 
-            if (!File.Exists(path))
-            {
-                _message.ShowMessage("ボタンの名称を表示できません。");
-                Debug.WriteLine($"[DEBUG] ボタンデータが存在しません: {path}");
-            }
-            else
-            {
-                string json = File.ReadAllText(path);
-                var list = JsonSerializer.Deserialize<List<ButtonConfig>>
-                    (json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-
-                if (list == null || list.Count <= 0)
-                {
-                    _message.ShowMessage("ボタンの名称を表示できません。");
-                    Debug.WriteLine($"[DEBUG] ボタンデータが空です: {path}");
-                }
-                else
-                {
-                    list = list.OrderBy(x => x.BtnId).ToList();
-
-                    foreach (var btn in list)
-                    {
-                        buttons.Add(btn);
-                    }
-                    Debug.WriteLine($"[DEBUG] ボタンデータ読み込み完了: {path} 件数 = {buttons.Count}");
-                }
-            }
-
-            return buttons;
+        private async void LoadOthersButtons()
+        {
+            var list = await _buttonRepos.GetButtonsAsync(2);
+            OthersButtons = new ObservableCollection<Common.Models.ButtonData>(list);
         }
 
         /// <summary>
@@ -218,7 +193,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         [RelayCommand]
         private void GoToDocumentMenu()
         {
-            var vm = new DocumentMenuViewModel(_nav, _dia, App.WorkRepository, App.WorkLandownerRepository);
+            var vm = new DocumentMenuViewModel(_nav, _dia, App.WorkRepository, App.WorkLandownerRepository, _buttonRepos);
             _nav.Navigate(vm);
         }
 
@@ -228,8 +203,9 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         [RelayCommand]
         private void OpenVideoPlayer()
         {
-            // 非モーダル表示
-            _dia.ShowWindow<VideoPlayerViewModel> (_path.MediaMeinAramashiDire, MediaCategory.Main);
+            var vm = new VideoPlayerViewModel(_path.MediaMeinAramashiDire, VideoCategory.Main);
+            var window = new VideoPlayerWindow(vm);
+            window.Show();
         }
 
         /// <summary>

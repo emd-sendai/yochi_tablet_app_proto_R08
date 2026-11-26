@@ -122,7 +122,7 @@ namespace WpfApp.Screens.Menu.ViewModels
         [RelayCommand]
         private void GoToAramashiMenu()
         {
-            _nav.Navigate(new AramashiMenuViewModel(_nav, _dia));
+            _nav.Navigate(new AramashiMenuViewModel(_nav, _dia, App.ButtonRepository));
         }
 
         /// <summary>
@@ -131,7 +131,7 @@ namespace WpfApp.Screens.Menu.ViewModels
         [RelayCommand]
         private void GoToDocumentMenu()
         {
-            var vm = new DocumentMenuViewModel(_nav, _dia, App.WorkRepository, App.WorkLandownerRepository);
+            var vm = new DocumentMenuViewModel(_nav, _dia, App.WorkRepository, App.WorkLandownerRepository, App.ButtonRepository);
             _nav.Navigate(vm);
         }
 

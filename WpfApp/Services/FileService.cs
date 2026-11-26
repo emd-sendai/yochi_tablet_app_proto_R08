@@ -7,6 +7,13 @@ namespace WpfApp.Services
 {
     public class FileService : IFileService
     {
+        private readonly IVideoService _video;
+
+        public FileService()
+        {
+            _video = new VideoService();
+        }
+
         /// <summary>
         /// ディレクトリ内に存在するファイルデータをリストで取得する。
         /// </summary>
@@ -43,7 +50,7 @@ namespace WpfApp.Services
         /// <param name="filePath"></param>
         private void OpenVideo(string filePath)
         {
-            // 動画再生画面を開く
+           _video.OpenVideo(filePath);
         }
 
         /// <summary>

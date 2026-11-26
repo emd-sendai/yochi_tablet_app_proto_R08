@@ -11,6 +11,8 @@ namespace WpfApp.Interfaces
     /// </summary>
     public interface IVideoService
     {
+        void OpenVideo(string path);
+
         string GetVideoFilePath(string direPath);
 
         IReadOnlyList<Chapter> GetVideoChapterList(string path);

@@ -2,8 +2,6 @@
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.IO;
-using System.Text.Json;
 using System.Windows;
 using WpfApp.Common.Models;
 using WpfApp.Common.Repositories.Interfaces;
@@ -32,6 +30,7 @@ namespace WpfApp.Screens.Documents.ViewModels
         private readonly IAppPathService _path;
         private readonly IWorkRepository _workRepos;
         private readonly IWorkLandownerRepository _workLandownerRepos;
+        private readonly IButtonRepository _buttonRepos;
 
         public Type HeaderType => typeof(HeaderType001View);
         public Type SidebarType => typeof(SidebarType001View);
@@ -46,13 +45,13 @@ namespace WpfApp.Screens.Documents.ViewModels
         /// ボタンの名称表示用ボタンデータリスト（事業全般資料）
         /// </summary>
         [ObservableProperty]
-        private ObservableCollection<ButtonConfig>? worksButtons;
+        private ObservableCollection<ButtonData> workButtons = new();
 
         /// <summary>
         /// ボタンの名称表示用ボタンデータリスト（地権者個別資料）
         /// </summary>
         [ObservableProperty]
-        private ObservableCollection<ButtonConfig>? landownerButtons;
+        private ObservableCollection<ButtonData> landownerButtons = new();
 
         /// <summary>
         /// 事業リスト
@@ -92,10 +91,12 @@ namespace WpfApp.Screens.Documents.ViewModels
 
 
         public DocumentMenuViewModel(NavigationService navigationService, IDialogService dialogService,
-            IWorkRepository workRepository, IWorkLandownerRepository workLandownerRepository)
+            IWorkRepository workRepository, IWorkLandownerRepository workLandownerRepository,
+            IButtonRepository buttonRepository)
         {
             _nav = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
             _dia = dialogService ?? throw new ArgumentNullException(nameof(dialogService));
+            _buttonRepos = buttonRepository ?? throw new ArgumentNullException(nameof(buttonRepository));
             _file = new FileService();
             _message = new MessageDialogService();
             _path = new AppPathService();
@@ -104,50 +105,23 @@ namespace WpfApp.Screens.Documents.ViewModels
 
             Title = "各種資料";
 
-            WorksButtons = LoadButtonFromJson(_path.WorksButtonPath);
-            LandownerButtons = LoadButtonFromJson(_path.LandownerButtonPath);
+            LoadWorksButtons();
+            LoadLandownerButtons();
             LoadWorks();
         }
 
-        /// <summary>
-        /// ボタンに表示する名称を取得する。
-        /// </summary>
-        /// <param name="path"></param>
-        /// <returns></returns>
-        private ObservableCollection<ButtonConfig> LoadButtonFromJson(string path)
+        private async void LoadWorksButtons()
         {
-            var buttons = new ObservableCollection<ButtonConfig>();
-
-            if (!File.Exists(path))
-            {
-                _message.ShowMessage("ボタンの名称を表示できません。");
-                Debug.WriteLine($"[DEBUG] ボタンデータが存在しません: {path}");
-            }
-            else
-            {
-                string json = File.ReadAllText(path);
-                var list = JsonSerializer.Deserialize<List<ButtonConfig>>
-                    (json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-
-                if(list == null || list.Count <= 0)
-                {
-                    _message.ShowMessage("ボタンの名称を表示できません。");
-                    Debug.WriteLine($"[DEBUG] ボタンデータが空です: {path}");
-                }
-                else
-                {
-                    list = list.OrderBy(x => x.BtnId).ToList();
-
-                    foreach (var btn in list)
-                    {
-                        buttons.Add(btn);
-                    }
-                    Debug.WriteLine($"[DEBUG] ボタンデータ読み込み完了: {path} 件数 = {buttons.Count}");
-                }
-            }
-
-            return buttons;
+            var list = await _buttonRepos.GetButtonsAsync(3);
+            WorkButtons = new ObservableCollection<ButtonData>(list);
         }
+
+        private async void LoadLandownerButtons()
+        {
+            var list = await _buttonRepos.GetButtonsAsync(4);
+            LandownerButtons = new ObservableCollection<ButtonData>(list);
+        }
+
         private async void LoadWorks()
         {
             Works = await _workRepos.GetAllAsync();
@@ -174,32 +148,6 @@ namespace WpfApp.Screens.Documents.ViewModels
         {
             OnPropertyChanged(nameof(IsLandownerSelected));
             OnPropertyChanged(nameof(IsNotLandownerSelected));
-        }
-
-        /// <summary>
-        /// メインメニュー画面に遷移する。
-        /// </summary>
-        [RelayCommand]
-        private void GoToMenu()
-        {
-            _nav.Navigate(new MenuViewModel(_nav, _dia));
-        }
-
-        /// <summary>
-        /// 補償のあらまし画面に遷移する。
-        /// </summary>
-        [RelayCommand]
-        private void GoToAramashiMenu()
-        {
-            _nav.Navigate(new AramashiMenuViewModel(_nav, _dia));
-        }
-
-        /// <summary>
-        /// 各種資料画面に留まる。（バインドエラー防止用）
-        /// </summary>
-        [RelayCommand]
-        private void GoToDocumentMenu()
-        {
         }
 
         /// <summary>
@@ -232,42 +180,17 @@ namespace WpfApp.Screens.Documents.ViewModels
         /// <summary>
         /// 事業全般資料の各項目に対応する資料選択画面を表示する。
         /// </summary>
-        /// <param name="folderName"></param>
-        [RelayCommand]
-        private void OpenWorksDocument(string folderName)
+        /// <param name="buttonId"></param>
+        private void OpenWorkDocument(int buttonId)
         {
-            if (SelectedWork == null) return;
-            if (string.IsNullOrWhiteSpace(folderName)) return;
+            if (SelectedWork == null) { return; }
+            if (!WorkButtonsContainsIndex(buttonId)) { return; }
+
+            var folderName = WorkButtons[buttonId].DocumentDireName;
+
+            if (string.IsNullOrWhiteSpace(folderName)) { return; }
 
             var direPath = _path.GetWorkDocumentDire(SelectedWork.FormattedWorkId, folderName);
-            var list = _file.GetFiles(direPath);
-
-            // 資料が存在しない場合
-            if (list.Count <= 0)
-            {
-                Debug.WriteLine($"[DEBUG] ファイルが存在しません {direPath}");
-                //メッセージウィンドウを表示
-                _message.ShowMessage("ファイルが存在しません");
-            }
-            else
-            {
-                // 非モーダル表示
-                _dia.ShowWindow<DocumentSelectViewModel>(list);
-            }
-        }
-
-        /// <summary>
-        /// 地権者個別資料の各項目に対応する資料選択画面を表示する。
-        /// </summary>
-        /// <param name="folderName"></param>
-        [RelayCommand]
-        private void OpenLandownerDocument(string folderName)
-        {
-            if (SelectedWork == null) return;
-            if (SelectedLandowner == null) return;
-            if (string.IsNullOrWhiteSpace(folderName)) return;
-
-            var direPath = _path.GetLandownerDocumentDire(SelectedWork.FormattedWorkId, SelectedLandowner.FormattedLandownerId, folderName);
             var list = _file.GetFiles(direPath);
 
             // 資料が存在しない場合
@@ -282,6 +205,170 @@ namespace WpfApp.Screens.Documents.ViewModels
                 // 非モーダル表示
                 _dia.ShowWindow<DocumentSelectViewModel>(list);
             }
+        }
+
+        private bool WorkButtonsContainsIndex(int index)
+        {
+            return index < WorkButtons.Count;
+        }
+
+        [RelayCommand]
+        private void OpenWorkDocument01()
+        {
+            OpenWorkDocument(0);
+        }
+
+        [RelayCommand]
+        private void OpenWorkDocument02()
+        {
+            OpenWorkDocument(1);
+        }
+
+        [RelayCommand]
+        private void OpenWorkDocument03()
+        {
+            OpenWorkDocument(2);
+        }
+
+        [RelayCommand]
+        private void OpenWorkDocument04()
+        {
+            OpenWorkDocument(3);
+        }
+
+        [RelayCommand]
+        private void OpenWorkDocument05()
+        {
+            OpenWorkDocument(4);
+        }
+
+        [RelayCommand]
+        private void OpenWorkDocument06()
+        {
+            OpenWorkDocument(5);
+        }
+
+        [RelayCommand]
+        private void OpenWorkDocument07()
+        {
+            OpenWorkDocument(6);
+        }
+
+        [RelayCommand]
+        private void OpenWorkDocument08()
+        {
+            OpenWorkDocument(7);
+        }
+
+        /// <summary>
+        /// 地権者個別資料の各項目に対応する資料選択画面を表示する。
+        /// </summary>
+        /// <param name="buttonId"></param>
+        private void OpenLandownerDocument(int buttonId)
+        {
+            if (SelectedWork == null) { return; }
+            if (SelectedLandowner == null) { return; }
+            if (!LandownerButtonsContainsIndex(buttonId)) { return; }
+
+            var folderName = LandownerButtons[buttonId].DocumentDireName;
+
+            if (string.IsNullOrWhiteSpace(folderName)) { return; }
+
+            var direPath = _path.GetLandownerDocumentDire(SelectedWork.FormattedWorkId, 
+                SelectedLandowner.FormattedLandownerId, folderName);
+            var list = _file.GetFiles(direPath);
+
+            // 資料が存在しない場合
+            if (list.Count <= 0)
+            {
+                Debug.WriteLine($"[DEBUG] ファイルが存在しません {direPath}");
+                //メッセージウィンドウを表示
+                _message.ShowMessage("ファイルが存在しません。");
+            }
+            else
+            {
+                // 非モーダル表示
+                _dia.ShowWindow<DocumentSelectViewModel>(list);
+            }
+        }
+
+        private bool LandownerButtonsContainsIndex(int index)
+        {
+            return index < LandownerButtons.Count;
+        }
+
+        [RelayCommand]
+        private void OpenLandownerDocument01()
+        {
+            OpenLandownerDocument(0);
+        }
+
+        [RelayCommand]
+        private void OpenLandownerDocument02()
+        {
+            OpenLandownerDocument(1);
+        }
+
+        [RelayCommand]
+        private void OpenLandownerDocument03()
+        {
+            OpenLandownerDocument(2);
+        }
+
+        [RelayCommand]
+        private void OpenLandownerDocument04()
+        {
+            OpenLandownerDocument(3);
+        }
+
+        [RelayCommand]
+        private void OpenLandownerDocument05()
+        {
+            OpenLandownerDocument(4);
+        }
+
+        [RelayCommand]
+        private void OpenLandownerDocument06()
+        {
+            OpenLandownerDocument(5);
+        }
+
+        [RelayCommand]
+        private void OpenLandownerDocument07()
+        {
+            OpenLandownerDocument(6);
+        }
+
+        [RelayCommand]
+        private void OpenLandownerDocument08()
+        {
+            OpenLandownerDocument(7);
+        }
+
+        /// <summary>
+        /// メインメニュー画面に遷移する。
+        /// </summary>
+        [RelayCommand]
+        private void GoToMenu()
+        {
+            _nav.Navigate(new MenuViewModel(_nav, _dia));
+        }
+
+        /// <summary>
+        /// 補償のあらまし画面に遷移する。
+        /// </summary>
+        [RelayCommand]
+        private void GoToAramashiMenu()
+        {
+            _nav.Navigate(new AramashiMenuViewModel(_nav, _dia, _buttonRepos));
+        }
+
+        /// <summary>
+        /// 各種資料画面に留まる。（バインドエラー防止用）
+        /// </summary>
+        [RelayCommand]
+        private void GoToDocumentMenu()
+        {
         }
     }
 }

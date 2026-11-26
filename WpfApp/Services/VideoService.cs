@@ -2,7 +2,10 @@
 using System.Diagnostics;
 using System.IO;
 using System.Text.Json;
+using WpfApp.Common.Enums;
 using WpfApp.Common.Models;
+using WpfApp.Common.ViewModels;
+using WpfApp.Common.Views;
 using WpfApp.Interfaces;
 using WpfApp.Screens.Admin.Models;
 using static WpfApp.Common.ViewModels.VideoPlayerViewModel;
@@ -15,6 +18,13 @@ namespace WpfApp.Services
     /// </summary>
     public class VideoService : IVideoService
     {
+        public void OpenVideo(string path)
+        {
+            var vm = new VideoPlayerViewModel(path, VideoCategory.Document);
+            var window = new VideoPlayerWindow(vm);
+            window.Show();
+        }
+
         /// <summary>
         /// 動画ファイルのパスを取得する。
         /// </summary>

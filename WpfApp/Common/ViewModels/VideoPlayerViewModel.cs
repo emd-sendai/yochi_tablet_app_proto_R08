@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Windows;
 using WpfApp.Common.Models;
+using WpfApp.Common.Enums;
 using WpfApp.Interfaces;
 using WpfApp.Services;
 
@@ -94,36 +95,40 @@ namespace WpfApp.Common.ViewModels
 
         public ObservableCollection<Chapter> Chapters { get; }
 
-        public enum MediaCategory
-        {
-            Main,   // 統合版動画
-            Parts   // 個別動画
-        }
-
-        public VideoPlayerViewModel(string folderPath, MediaCategory category)
+        public VideoPlayerViewModel(string path, VideoCategory category)
         {
             _message = new MessageDialogService();
             _path = new AppPathService();
             _video = new VideoService();
+            var filePath = string.Empty;
 
             try
             {
-                // 動画のパスを取得する
-                var path = _video.GetVideoFilePath(folderPath);
-
-                if (!string.IsNullOrWhiteSpace(path) && File.Exists(path))
+                // 補償のあらましの場合
+                if (category == VideoCategory.Main || category == VideoCategory.Parts)
                 {
-                    VideoSource = new Uri(path);
-                    Debug.WriteLine($"[DEBUG] 動画のパスを設定しました: {path}");
+                    // 動画ファイルのパスを取得する
+                    filePath = _video.GetVideoFilePath(path);
+                }
+                // それ以外の場合
+                else
+                {
+                    filePath = path;
+                }
+
+                if (!string.IsNullOrWhiteSpace(filePath) && File.Exists(filePath))
+                {
+                    VideoSource = new Uri(filePath);
+                    Debug.WriteLine($"[DEBUG] 動画ファイルのパスを設定しました: {filePath}");
                 }
                 else
                 {
-                    _message.ShowMessage("動画が存在しません。");
-                    Debug.WriteLine($"[ERROR] 動画が存在しません: {path}");
+                    _message.ShowMessage("動画ファイルが存在しません。");
+                    Debug.WriteLine($"[ERROR] 動画ファイルが存在しません: {filePath}");
                 }
 
-                // 全体動画の場合
-                if (category == MediaCategory.Main)
+                // 補償のあらまし（統合版動画）の場合
+                if (category == VideoCategory.Main)
                 {
                     // チャプターを取得する
                     var chapters = _video.GetVideoChapterList(_path.MediaMeinAramashiChapterPath);
@@ -135,7 +140,7 @@ namespace WpfApp.Common.ViewModels
                         Chapters.Add(new Chapter("Start", TimeSpan.Zero));
                     }
                 }
-                // 個別動画の場合
+                // それ以外の場合
                 else
                 {
                     // チャプター（開始時間のみ）を設定する
@@ -149,8 +154,8 @@ namespace WpfApp.Common.ViewModels
                 Chapters = new ObservableCollection<Chapter>();
                 Chapters.Add(new Chapter("Start", TimeSpan.Zero));
 
-                Debug.WriteLine($"[ERROR] 動画の読み込みに失敗: {ex.Message}");
-                _message.ShowMessage("動画の読み込みに失敗しました。");
+                Debug.WriteLine($"[ERROR] 動画ファイルの読み込みに失敗: {ex.Message}");
+                _message.ShowMessage("動画ファイルの読み込みに失敗しました。");
                 throw;
             }
         }

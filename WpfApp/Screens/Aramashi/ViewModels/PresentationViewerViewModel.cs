@@ -5,8 +5,9 @@ using System.Diagnostics;
 using System.IO;
 using System.Text.Json;
 using System.Text.Json.Nodes;
-using WpfApp.Common.Models;
+using WpfApp.Common.Enums;
 using WpfApp.Common.ViewModels;
+using WpfApp.Common.Views;
 using WpfApp.Interfaces;
 using WpfApp.Screens.Aramashi.Models;
 using WpfApp.Screens.Documents.ViewModels;
@@ -15,7 +16,6 @@ using WpfApp.Services;
 using WpfApp.Shell.Models;
 using WpfApp.Shell.Views.Header;
 using WpfApp.Shell.Views.Sidebar;
-using static WpfApp.Common.ViewModels.VideoPlayerViewModel;
 
 namespace WpfApp.Screens.Aramashi.ViewModels
 {
@@ -51,13 +51,13 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         /// ボタンの名称表示用ボタンデータリスト（用地補償の手順）
         /// </summary>
         [ObservableProperty]
-        private ObservableCollection<ButtonConfig> aramashiButtons;
+        private ObservableCollection<Common.Models.ButtonData> aramashiButtons;
 
         /// <summary>
         /// ボタンの名称表示用ボタンデータリスト（その他）
         /// </summary>
         [ObservableProperty]
-        private ObservableCollection<ButtonConfig> othersButtons;
+        private ObservableCollection<Common.Models.ButtonData> othersButtons;
 
         /// <summary>
         /// 表示用ページデータリスト
@@ -109,8 +109,8 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         public readonly PresentationCategory _category;
 
         public PresentationViewerViewModel(NavigationService navigationService, IDialogService dialogService, 
-            PresentationCategory category, ObservableCollection<ButtonConfig> aramashiButtonList, 
-            ObservableCollection<ButtonConfig> othersButtonList)
+            PresentationCategory category, ObservableCollection<Common.Models.ButtonData> aramashiButtonList, 
+            ObservableCollection<Common.Models.ButtonData> othersButtonList)
         {
             _nav = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
             _dia = dialogService ?? throw new ArgumentNullException(nameof(dialogService));
@@ -685,7 +685,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         [RelayCommand]
         private void GoToAramashiMenu()
         {
-            var vm = new AramashiMenuViewModel(_nav, _dia);
+            var vm = new AramashiMenuViewModel(_nav, _dia, App.ButtonRepository);
             _nav.Navigate(vm);
             vm.IsAramashiExpanderOpen = IsAramashiExpanderOpen;
             vm.IsOthersExpanderOpen = IsOthersExpanderOpen;
@@ -697,7 +697,7 @@ namespace WpfApp.Screens.Aramashi.ViewModels
         [RelayCommand]
         private void GoToDocumentMenu()
         {
-            var vm = new DocumentMenuViewModel(_nav, _dia, App.WorkRepository, App.WorkLandownerRepository);
+            var vm = new DocumentMenuViewModel(_nav, _dia, App.WorkRepository, App.WorkLandownerRepository, App.ButtonRepository);
             _nav.Navigate(vm);
         }
 
@@ -1460,8 +1460,9 @@ namespace WpfApp.Screens.Aramashi.ViewModels
                 return;
             }
 
-            // 非モーダル表示
-            _dia.ShowWindow<VideoPlayerViewModel>(path, MediaCategory.Parts);
+            var vm = new VideoPlayerViewModel(path, VideoCategory.Parts);
+            var window = new VideoPlayerWindow(vm);
+            window.Show();
         }
     }
 }

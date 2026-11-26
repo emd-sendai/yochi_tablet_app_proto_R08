@@ -19,112 +19,109 @@ namespace WpfApp.Common.Views
         private DispatcherTimer? _timer;
         private bool _isDragging;
 
-        public VideoPlayerWindow()
+        public VideoPlayerWindow(VideoPlayerViewModel vm)
         {
             InitializeComponent();
+
+            DataContext = vm;
 
             Loaded += Window_Loaded;
 
             Loaded += (_, _) =>
             {
-                if (DataContext is VideoPlayerViewModel vm)
+                // 動画を再生する
+                vm.PlayRequested += () =>
                 {
-                    //Media.MediaOpened += Media_MediaOpened;
-
-                    // 動画を再生する
-                    vm.PlayRequested += () =>
+                    try
                     {
-                        try
-                        {
-                            Media.Play();
-                            vm.IsPlaying = true;
-                            _timer?.Start();
-                        }
-                        catch (Exception ex)
-                        {
-                            Debug.WriteLine($"[ERROR] 動画の再生に失敗 : {ex.Message}");
-                            _message.ShowMessage("動画の再生に失敗しました。");
-                            throw;
-                        }
-
-                    };
-                    
-                    // 動画を一時停止する
-                    vm.PauseRequested += () =>
+                        Media.Play();
+                        vm.IsPlaying = true;
+                        _timer?.Start();
+                    }
+                    catch (Exception ex)
                     {
-                        try
-                        {
-                            Media.Pause();
-                            vm.IsPlaying = false;
-                            _timer?.Stop();
-                        }
-                        catch (Exception ex)
-                        {
-                            Debug.WriteLine($"[ERROR] 動画の一時停止に失敗 : {ex.Message}");
-                            _message.ShowMessage("動画の一時停止に失敗しました。");
-                            throw;
-                        }
-                    };
+                        Debug.WriteLine($"[ERROR] 動画の再生に失敗 : {ex.Message}");
+                        _message.ShowMessage("動画の再生に失敗しました。");
+                        throw;
+                    }
 
-                    // 動画の再生位置を変更する
-                    vm.SeekRequested += time =>
+                };
+
+                // 動画を一時停止する
+                vm.PauseRequested += () =>
+                {
+                    try
                     {
-                        try
-                        {
-                            if (Media.NaturalDuration.HasTimeSpan)
-                            {
-                                Media.Position = time;
-
-                                // 直接現在の再生位置を設定（UI要素の更新）
-                                vm.CurrentPosition = time;
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-                            Debug.WriteLine($"[ERROR] 動画の再生位置の変更に失敗 : {ex.Message}");
-                            _message.ShowMessage("動画の再生位置の変更に失敗しました。");
-                            throw;
-                        }
-                    };
-
-                    // 動画の再生速度を変更する
-                    vm.SpeedChangedRequested += speed =>
+                        Media.Pause();
+                        vm.IsPlaying = false;
+                        _timer?.Stop();
+                    }
+                    catch (Exception ex)
                     {
-                        try
-                        {
-                            Media.SpeedRatio = speed;
+                        Debug.WriteLine($"[ERROR] 動画の一時停止に失敗 : {ex.Message}");
+                        _message.ShowMessage("動画の一時停止に失敗しました。");
+                        throw;
+                    }
+                };
 
-                            Debug.WriteLine($"[DEBUG] 再生速度を変更: {speed}倍速");
-                        }
-                        catch (Exception ex)
-                        {
-                            Debug.WriteLine($"[ERROR] 再生速度の変更に失敗: {ex.Message}");
-                            _message.ShowMessage("再生速度の変更に失敗しました。");
-                            throw;
-                        }
-                    };
-
-                    _timer = new DispatcherTimer
+                // 動画の再生位置を変更する
+                vm.SeekRequested += time =>
+                {
+                    try
                     {
-                        Interval = TimeSpan.FromMilliseconds(200)
-                    };
+                        if (Media.NaturalDuration.HasTimeSpan)
+                        {
+                            Media.Position = time;
 
-                    _timer.Tick += (_, _) =>
+                            // 直接現在の再生位置を設定（UI要素の更新）
+                            vm.CurrentPosition = time;
+                        }
+                    }
+                    catch (Exception ex)
                     {
-                        try
+                        Debug.WriteLine($"[ERROR] 動画の再生位置の変更に失敗 : {ex.Message}");
+                        _message.ShowMessage("動画の再生位置の変更に失敗しました。");
+                        throw;
+                    }
+                };
+
+                // 動画の再生速度を変更する
+                vm.SpeedChangedRequested += speed =>
+                {
+                    try
+                    {
+                        Media.SpeedRatio = speed;
+
+                        Debug.WriteLine($"[DEBUG] 再生速度を変更: {speed}倍速");
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine($"[ERROR] 再生速度の変更に失敗: {ex.Message}");
+                        _message.ShowMessage("再生速度の変更に失敗しました。");
+                        throw;
+                    }
+                };
+
+                _timer = new DispatcherTimer
+                {
+                    Interval = TimeSpan.FromMilliseconds(200)
+                };
+
+                _timer.Tick += (_, _) =>
+                {
+                    try
+                    {
+                        if (!_isDragging && Media.NaturalDuration.HasTimeSpan)
                         {
-                            if (!_isDragging && Media.NaturalDuration.HasTimeSpan)
-                            {
-                                vm.CurrentPosition = Media.Position;
-                            }
+                            vm.CurrentPosition = Media.Position;
                         }
-                        catch (Exception ex)
-                        {
-                            Debug.WriteLine($"[ERROR] 動画の再生時間の変更に失敗 : {ex.Message}");
-                            throw;
-                        }
-                    };
-                }
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine($"[ERROR] 動画の再生時間の変更に失敗 : {ex.Message}");
+                        throw;
+                    }
+                };
             };
 
             Closing += VideoPlayerWindow_Closing;
@@ -133,8 +130,6 @@ namespace WpfApp.Common.Views
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Debug.WriteLine("========== Window_Loaded ==========");
-
             if (DataContext is VideoPlayerViewModel vm)
             {
                 Debug.WriteLine($"[DEBUG] Media.Sourceを設定");
@@ -173,7 +168,6 @@ namespace WpfApp.Common.Views
         {
             if (DataContext is VideoPlayerViewModel vm)
             {
-                Debug.WriteLine("★★ MediaOpened 発生 ★★");
                 Debug.WriteLine($"NaturalDuration: {Media.NaturalDuration}");
 
                 vm.Duration = Media.NaturalDuration.TimeSpan;
