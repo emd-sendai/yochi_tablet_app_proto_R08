@@ -38,13 +38,16 @@ namespace WpfApp.Services
 
         public string SignatureDire => Path.Combine(DataDire, "Signature");
 
-        public string LandownersPath => Path.Combine(DataDire, "landowners.json");
 
-        public string WorksPath => Path.Combine(DataDire, "works.json");
+        public string InitialDataDire => Path.Combine(AppResourcesRoot, "InitialData");
 
-        public string WorkLandownersPath => Path.Combine(DataDire, "workLandowners.json");
+        public string WorksPath => Path.Combine(InitialDataDire, "Works.json");
 
-        public string ButtonsPath => Path.Combine(DataDire, "buttons.json");
+        public string LandownersPath => Path.Combine(InitialDataDire, "Landowners.json");
+
+        public string WorkLandownersPath => Path.Combine(InitialDataDire, "WorkLandowners.json");
+
+        public string ButtonsPath => Path.Combine(InitialDataDire, "Buttons.json");
 
 
         public string DocumentResourcesRoot => Path.Combine(AppResourcesRoot, "DocumentResources");

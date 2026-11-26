@@ -1,0 +1,157 @@
+[
+  {
+    "Type": 1,
+    "Id": 1,
+    "Content": "１\n事業計画等の説明"
+  },
+  {
+    "Type": 1,
+    "Id": 2,
+    "Content": "２\n用地幅杭の設置"
+  },
+  {
+    "Type": 1,
+    "Id": 3,
+    "Content": "３\n用地測量・\n物件等の調査"
+  },
+  {
+    "Type": 1,
+    "Id": 4,
+    "Content": "４\n土地調書・\n物件調書の確認"
+  },
+  {
+    "Type": 1,
+    "Id": 5,
+    "Content": "５\n補償金の算定"
+  },
+  {
+    "Type": 1,
+    "Id": 6,
+    "Content": "６\n補償説明・協議\n（用地交渉）"
+  },
+  {
+    "Type": 1,
+    "Id": 7,
+    "Content": "７\n契約"
+  },
+  {
+    "Type": 1,
+    "Id": 8,
+    "Content": "８\n補償金の前金払"
+  },
+  {
+    "Type": 1,
+    "Id": 9,
+    "Content": "９\n土地登記・物件移転・\n土地の引渡し"
+  },
+  {
+    "Type": 1,
+    "Id": 10,
+    "Content": "１０\n補償金の\n後金払・一括払"
+  },
+  {
+    "Type": 2,
+    "Id": 1,
+    "Content": "代替地"
+  },
+  {
+    "Type": 2,
+    "Id": 2,
+    "Content": "税金等"
+  },
+  {
+    "Type": 2,
+    "Id": 3,
+    "Content": "損失補償基準"
+  },
+  {
+    "Type": 2,
+    "Id": 4,
+    "Content": "手引、\nマニュアル等"
+  },
+  {
+    "Type": 2,
+    "Id": 5,
+    "Content": "その他\n（準備中）"
+  },
+  {
+    "Type": 3,
+    "Id": 1,
+    "Content": "公図"
+  },
+  {
+    "Type": 3,
+    "Id": 2,
+    "Content": "登記簿\n（土地・建物）"
+  },
+  {
+    "Type": 3,
+    "Id": 3,
+    "Content": "用地平面図"
+  },
+  {
+    "Type": 3,
+    "Id": 4,
+    "Content": "面積計算書"
+  },
+  {
+    "Type": 3,
+    "Id": 5,
+    "Content": "地積測量図"
+  },
+  {
+    "Type": 3,
+    "Id": 6,
+    "Content": "写真\n（全体）"
+  },
+  {
+    "Type": 3,
+    "Id": 7,
+    "Content": "事業計画図"
+  },
+  {
+    "Type": 3,
+    "Id": 8,
+    "Content": "その他"
+  },
+  {
+    "Type": 4,
+    "Id": 1,
+    "Content": "配置図\n調査表"
+  },
+  {
+    "Type": 4,
+    "Id": 2,
+    "Content": "算定書"
+  },
+  {
+    "Type": 4,
+    "Id": 3,
+    "Content": "写真\n（個別）"
+  },
+  {
+    "Type": 4,
+    "Id": 4,
+    "Content": "相続関係図\n（説明用）"
+  },
+  {
+    "Type": 4,
+    "Id": 5,
+    "Content": "調書"
+  },
+  {
+    "Type": 4,
+    "Id": 6,
+    "Content": "損失補償協議書"
+  },
+  {
+    "Type": 4,
+    "Id": 7,
+    "Content": "契約時作成書類"
+  },
+  {
+    "Type": 4,
+    "Id": 8,
+    "Content": "その他"
+  }
+]

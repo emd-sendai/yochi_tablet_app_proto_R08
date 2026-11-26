@@ -20,8 +20,10 @@
         string WorksButtonPath { get; }
         string LandownerButtonPath { get; }
         string SignatureDire { get; }
-        string LandownersPath { get; }
+
+        string InitialDataDire { get; }
         string WorksPath { get; }
+        string LandownersPath { get; }
         string WorkLandownersPath { get; }
         string ButtonsPath { get; }
 
