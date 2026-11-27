@@ -151,10 +151,17 @@ namespace WpfApp.Services
                 VideoChapterSettingsViewModel => new VideoChapterSettingsView(),
                 // 管理資料
                 AdminDocumentViewModel => new AdminDocumentView(),
+
                 // 各種資料設定
                 DocumentMenuSettingsViewModel => new DocumentMenuSettingsView(),
                 // 各種資料設定 - 資料設定
                 DocumentManagementViewModel => new DocumentManagementView(),
+                // 各種資料設定 - 資料設定 - 事業全般資料
+                WorkDocumentManagementViewModel => new WorkDocumentManagementView(),
+
+                // ファイル管理画面（共通画面）
+                FileManagementViewModel => new FileManagementView(),
+
                 // 事業情報管理
                 WorkManagementViewModel => new WorkManagementView(),
                 // 地権者情報管理

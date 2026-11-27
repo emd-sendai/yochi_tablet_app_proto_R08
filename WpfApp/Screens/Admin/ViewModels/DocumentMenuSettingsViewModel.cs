@@ -59,7 +59,7 @@ namespace WpfApp.Screens.Admin.ViewModels
         }
 
         /// <summary>
-        /// 管理メニュー画面に留まる。（バインドエラー防止用）
+        /// 管理メニュー画面に遷移する。
         /// </summary>
         [RelayCommand]
         private void GoToAdminMenu()

@@ -96,21 +96,22 @@ namespace WpfApp.Screens.Documents.ViewModels
         {
             _nav = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
             _dia = dialogService ?? throw new ArgumentNullException(nameof(dialogService));
+            _workRepos = workRepository ?? throw new ArgumentNullException(nameof(workRepository));
+            _workLandownerRepos = workLandownerRepository ?? throw new ArgumentNullException(nameof(workLandownerRepository));
             _buttonRepos = buttonRepository ?? throw new ArgumentNullException(nameof(buttonRepository));
             _file = new FileService();
             _message = new MessageDialogService();
             _path = new AppPathService();
-            _workRepos = workRepository;
-            _workLandownerRepos = workLandownerRepository;
+
 
             Title = "各種資料";
 
-            LoadWorksButtons();
+            LoadWorkButtons();
             LoadLandownerButtons();
             LoadWorks();
         }
 
-        private async void LoadWorksButtons()
+        private async void LoadWorkButtons()
         {
             var list = await _buttonRepos.GetButtonsAsync(3);
             WorkButtons = new ObservableCollection<ButtonData>(list);

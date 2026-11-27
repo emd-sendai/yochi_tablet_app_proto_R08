@@ -1,11 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WpfApp.Common.Models;
 using WpfApp.Common.Repositories.Interfaces;
 using WpfApp.Interfaces;
@@ -76,6 +71,12 @@ namespace WpfApp.Screens.Admin.ViewModels
         private void GoToWorkDocumentManagement()
         {
             if (SelectedWork == null) { return; }
+
+            var vm = new WorkDocumentManagementViewModel(_nav, _dia, App.ButtonRepository, Works, SelectedWork);
+            _nav.Navigate(vm);
+            vm.IsExpander1Open = IsExpander1Open;
+            vm.IsExpander2Open = IsExpander2Open;
+            vm.IsExpander3Open = IsExpander3Open;
         }
 
         [RelayCommand]
@@ -85,7 +86,7 @@ namespace WpfApp.Screens.Admin.ViewModels
         }
 
         /// <summary>
-        /// 管理メニュー画面に留まる。（バインドエラー防止用）
+        /// 管理メニュー画面に遷移する。
         /// </summary>
         [RelayCommand]
         private void GoToAdminMenu()

@@ -132,9 +132,9 @@ namespace WpfApp.Services
         /// <summary>
         /// 指定のファイルの内容を上書きする。
         /// </summary>
-        /// <param name="filePath"></param>
-        /// <param name="sourceFilePath"></param>
-        public void UpdateFile(string filePath, string sourceFilePath)
+        /// <param name="sourceFilePath">コピー元ファイルパス</param>
+        /// <param name="filePath">上書き先ファイルパス</param>
+        public void UpdateFile(string sourceFilePath, string filePath)
         {
             File.Copy(sourceFilePath, filePath, overwrite: true);
             Debug.WriteLine($"[DEBUG] ファイルの内容を上書きしました: {filePath}");
